@@ -1,0 +1,8 @@
+{ "id": "p258", "brand": "Offpiste Festival", "sector": "Electronic music festival", "kind": "video",
+  "format": "1080x1920", "duration": 20, "slides": null,
+  "title": "First line-up wave reveal",
+  "concept": "Acid-lime and black beat-cut reveal: glitching OFF PISTE slam over graphic alpine peaks, three colour-coded stage cuts with 12 fictional acts slamming in on the beat, then the 89 euro early-bird price and a link-in-bio close.",
+  "techniques": ["gsap", "svg-illustration", "glitch-rgb-split", "beat-synced-cuts"],
+  "fonts": ["Anton", "Space Mono", "Unbounded"],
+  "palette": ["#C8FF00", "#0B0B0D", "#6C2BFF", "#FF2E88", "#12E7FF", "#F3F1EA"],
+  "copy_language": "en" }

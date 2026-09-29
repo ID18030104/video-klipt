@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--
+  ART DIRECTION — Fourmi (restaurant rota app), Instagram Reel 1080×1920, 22 s
+  Concept: "Sunday, 11pm" pain → a real-looking Fourmi rota that fills itself in 3 taps, a shift swap
+           approved in one tap, clock-in + payroll export, proof (2,400 restaurants), free-month CTA.
+  Palette: cream #F5EFE4 (dominant), ink #1E1B18 (secondary), ant red #E0482B (accent);
+           saffron #F2B53A + sage #7FA77A only as role colours inside the rota.
+  Type: Bricolage Grotesque (display + UI) · JetBrains Mono (shift times, numbers).
+  Graphic language: ant mark (three body segments + antennae), marching dot trails, paper grain, real UI.
+  Motion: snappy UI micro-interactions (expo/power3.out), finger taps with ripples, red wipes between beats.
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/500.css">
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../node_modules/gsap/dist/DrawSVGPlugin.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<style>
+  :root{--cream:#F5EFE4;--paper:#FBF7F0;--ink:#1E1B18;--red:#E0482B;--saff:#F2B53A;--sage:#7FA77A;--mute:#8A8177;--line:#E6DDD0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1920px;margin:0;overflow:hidden;background:var(--cream)}
+  body{font-family:'Bricolage Grotesque',sans-serif;color:var(--ink);position:relative}
+  .abs{position:absolute}
+  .scene{position:absolute;inset:0;overflow:hidden}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .m{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+  .m > span{display:inline-block;will-change:transform}
+
+  /* ---------- scene 1: hook ---------- */
+  #s1{background:var(--cream)}
+  #s1 .kicker{left:80px;top:250px;font:700 34px 'JetBrains Mono';color:var(--red);letter-spacing:.02em}
+  #s1 h1{position:absolute;left:76px;top:310px;font-weight:800;font-size:132px;line-height:.98;letter-spacing:-.035em}
+  #s1 h1 .red{color:var(--red)}
+  #paper{left:130px;top:850px;width:820px;height:600px;background:#FFFDF8;border-radius:6px;
+    box-shadow:0 30px 60px rgba(30,27,24,.16),0 4px 10px rgba(30,27,24,.08);transform:rotate(-4deg)}
+
+  /* ---------- scene 2: app ---------- */
+  #s2{background:var(--cream)}
+  .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(30,27,24,.09) 2px,transparent 2.5px);background-size:36px 36px}
+  .cap{left:80px;right:80px;top:250px;font-weight:800;font-size:92px;line-height:1;letter-spacing:-.03em}
+  .cap .red{color:var(--red)}
+  .cap2{font-size:80px}
+  #counter{left:82px;top:382px;display:flex;gap:14px;align-items:center;font:700 28px 'JetBrains Mono';color:var(--mute)}
+  #counter .c{width:50px;height:50px;border-radius:50%;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;font:700 26px 'JetBrains Mono';color:var(--ink);position:relative;overflow:hidden}
+  #counter .c i{position:absolute;inset:0;background:var(--red);border-radius:50%;transform:scale(0)}
+  #counter .c b{position:relative}
+  #counter .lab{margin-left:8px}
+
+  #phone{left:110px;top:500px;width:860px;height:1760px;background:#151311;border-radius:104px;padding:16px;
+    box-shadow:0 60px 120px rgba(30,27,24,.28),0 10px 30px rgba(30,27,24,.18), inset 0 0 0 3px #2c2824}
+  #screen{position:relative;width:828px;height:1728px;border-radius:90px;background:var(--paper);overflow:hidden}
+  .island{left:50%;top:18px;width:200px;height:56px;margin-left:-100px;background:#151311;border-radius:30px;z-index:30}
+  .status{left:60px;right:60px;top:28px;display:flex;justify-content:space-between;font:700 28px 'Bricolage Grotesque';z-index:29}
+  .pane{position:absolute;left:0;top:0;width:828px;height:1728px}
+  .appbar{left:28px;right:28px;top:104px;display:flex;align-items:center;gap:18px}
+  .appbar .t1{font-weight:800;font-size:46px;letter-spacing:-.02em;line-height:1}
+  .appbar .t2{font-weight:500;font-size:26px;color:var(--mute);margin-top:6px}
+  .appbar .av{margin-left:auto;width:64px;height:64px;border-radius:50%;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:26px}
+  .dayrow{left:180px;top:212px;display:flex}
+  .dayrow div{width:89px;text-align:center;font-weight:700;font-size:24px;color:var(--mute);line-height:1.15}
+  .dayrow div b{display:block;font:700 26px 'JetBrains Mono';color:var(--ink)}
+  .dayrow div.we b{color:var(--red)}
+  .rowbg{left:16px;width:796px;height:88px;border-top:2px solid var(--line)}
+  .who{left:28px;height:88px;display:flex;align-items:center;gap:12px}
+  .who .a{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;color:#fff}
+  .who .n{font-weight:700;font-size:27px;line-height:1}
+  .who .r{font-weight:500;font-size:19px;color:var(--mute);margin-top:3px}
+  .slot{width:81px;height:72px;border-radius:14px;border:2px dashed #D9CFC1}
+  .chip{width:81px;height:72px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 22px 'JetBrains Mono';line-height:1.05}
+  .chip small{font:500 16px 'JetBrains Mono';opacity:.75;margin-top:3px}
+  .off{width:81px;height:72px;display:flex;align-items:center;justify-content:center;color:#CFC5B7;font:700 22px 'JetBrains Mono'}
+  .fl{background:#FBD9CF;color:#9E2A14}
+  .kt{background:#FBE7B5;color:#7A4E00}
+  .br{background:#D7E7D4;color:#2D5732}
+  .gap{border:3px dashed var(--red);background:rgba(224,72,43,.07);color:var(--red);font:800 34px 'Bricolage Grotesque';display:flex;align-items:center;justify-content:center}
+  .btn{height:88px;border-radius:26px;display:flex;align-items:center;justify-content:center;gap:12px;font-weight:700;font-size:32px}
+  #bAuto{left:28px;top:830px;width:376px;background:var(--ink);color:var(--cream)}
+  #bPub{left:424px;top:830px;width:376px;background:#EDE5D8;color:var(--ink);overflow:hidden}
+  #bPub .fill{position:absolute;inset:0;background:var(--red);transform:scaleX(0);transform-origin:left}
+  #bPub span{position:relative}
+  .warn{left:28px;top:940px;width:772px;height:74px;border-radius:20px;background:#FCE3DC;color:#9E2A14;display:flex;align-items:center;gap:14px;padding:0 24px;font-weight:700;font-size:27px}
+  .toast{left:28px;top:940px;width:772px;height:74px;border-radius:20px;background:var(--ink);color:var(--cream);display:flex;align-items:center;gap:14px;padding:0 24px;font-weight:700;font-size:27px}
+  .toast .ok{width:36px;height:36px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center}
+
+  #notif{left:20px;top:92px;width:788px;background:#fff;border-radius:40px;padding:26px 28px;z-index:20;
+    box-shadow:0 30px 60px rgba(30,27,24,.25),0 0 0 2px rgba(30,27,24,.05)}
+  #notif .top{display:flex;align-items:center;gap:12px;font-weight:700;font-size:23px;color:var(--mute)}
+  #notif .top .lg{width:40px;height:40px;border-radius:12px;background:var(--red);display:flex;align-items:center;justify-content:center}
+  #notif .ttl{font-weight:800;font-size:36px;margin-top:16px;letter-spacing:-.01em}
+  #notif .body{font-weight:500;font-size:29px;margin-top:6px;line-height:1.25}
+  #notif .acts{display:flex;gap:16px;margin-top:22px}
+  #notif .acts div{flex:1;height:76px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:30px;position:relative;overflow:hidden}
+  #notif .dec{background:#EFE8DD}
+  #notif .apr{background:var(--ink);color:#fff}
+  #notif .apr i{position:absolute;inset:0;background:var(--sage);transform:scale(0);border-radius:22px}
+  #notif .apr span{position:relative}
+  .hl{width:89px;height:84px;border:4px solid var(--red);border-radius:18px}
+
+  /* clock-in pane */
+  #pane2{background:var(--paper)}
+  #pane2 .card{left:28px;width:772px;height:112px;border-radius:26px;background:#fff;display:flex;align-items:center;gap:18px;padding:0 26px;box-shadow:0 2px 0 var(--line)}
+  #pane2 .card .a{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;color:#fff}
+  #pane2 .card .n{font-weight:700;font-size:32px}
+  #pane2 .card .s{font-weight:500;font-size:23px;color:var(--mute);margin-top:4px}
+  #pane2 .card .tm{margin-left:auto;display:flex;align-items:center;gap:12px;font:700 30px 'JetBrains Mono'}
+  #pane2 .dot{width:18px;height:18px;border-radius:50%;background:#4E9A55}
+  .hours{left:28px;top:780px;width:772px;height:210px;border-radius:30px;background:var(--ink);color:var(--cream);padding:30px 34px}
+  .hours .l{font-weight:500;font-size:26px;opacity:.7}
+  .hours .v{font:700 84px 'JetBrains Mono';letter-spacing:-.03em;margin-top:6px}
+  .hours .v small{font-size:34px;opacity:.7;margin-left:10px}
+  #bExp{left:28px;top:1016px;width:772px;background:var(--red);color:#fff;overflow:hidden}
+  #bExp span,#bExp svg{position:relative}
+  .file{left:28px;top:1124px;width:772px;height:96px;border-radius:24px;border:3px solid var(--sage);background:#EEF5EC;display:flex;align-items:center;gap:16px;padding:0 24px;font-weight:700;font-size:27px;color:#2D5732}
+  .file .mono{font-size:24px}
+
+  /* finger */
+  #finger{left:0;top:0;width:84px;height:84px;margin:-42px 0 0 -42px;z-index:50;pointer-events:none}
+  #finger .core{position:absolute;inset:0;border-radius:50%;background:rgba(30,27,24,.28);border:3px solid rgba(255,255,255,.85);box-shadow:0 8px 20px rgba(30,27,24,.25)}
+  #finger .rip{position:absolute;inset:-4px;border-radius:50%;border:4px solid var(--red);opacity:0}
+
+  /* ---------- wipes ---------- */
+  #wipe1{left:0;top:0;width:1080px;height:1920px;background:var(--red);z-index:60}
+  #iris{left:0;top:0;width:1080px;height:1920px;background:var(--ink);z-index:61;clip-path:circle(0px at 540px 1500px)}
+
+  /* ---------- scene 4: proof ---------- */
+  #s4{background:var(--ink);color:var(--cream);z-index:62;visibility:hidden}
+  #s4 .num{left:0;right:0;top:600px;text-align:center;font-weight:800;font-size:300px;letter-spacing:-.05em;line-height:1}
+  #s4 .num span{color:var(--red)}
+  #s4 .sub{left:90px;right:90px;top:960px;text-align:center;font-weight:700;font-size:64px;line-height:1.08;letter-spacing:-.02em}
+  #s4 .sub .soft{color:#BDB3A6}
+  #s4 .flags{left:0;right:0;top:500px;text-align:center;font:700 30px 'JetBrains Mono';color:var(--saff);letter-spacing:.14em}
+
+  /* ---------- scene 5: end ---------- */
+  #s5{background:var(--cream);z-index:70;clip-path:inset(100% 0 0 0)}
+  #logo{left:0;right:0;top:500px;display:flex;justify-content:center;align-items:center;gap:22px}
+  #logo .wm{font-weight:800;font-size:112px;letter-spacing:-.045em;line-height:1}
+  #s5 h2{position:absolute;left:80px;right:80px;top:760px;text-align:center;font-weight:800;font-size:108px;line-height:1;letter-spacing:-.035em}
+  #s5 h2 .red{color:var(--red)}
+  #cta{left:50%;top:1060px;width:760px;margin-left:-380px;height:128px;border-radius:64px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;gap:18px;font-weight:800;font-size:46px;letter-spacing:-.01em}
+  #s5 .feat{left:0;right:0;top:1240px;text-align:center;font:500 30px 'JetBrains Mono';color:var(--mute);letter-spacing:.02em}
+  #s5 .feat b{color:var(--red)}
+
+  #grain{left:0;top:0;width:1080px;height:1920px;z-index:100;opacity:.07;pointer-events:none;mix-blend-mode:multiply}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="ant" viewBox="0 0 120 60">
+      <path d="M22 22 C14 12 8 10 2 12 M22 38 C14 48 8 50 2 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="30" cy="30" r="11" fill="currentColor"/>
+      <circle cx="55" cy="30" r="12" fill="currentColor"/>
+      <ellipse cx="92" cy="30" rx="24" ry="19" fill="currentColor"/>
+    </symbol>
+    <symbol id="chk" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="spark" viewBox="0 0 24 24"><path d="M12 2.5l2.2 6.3 6.3 2.2-6.3 2.2L12 19.5l-2.2-6.3L3.5 11l6.3-2.2z" fill="currentColor"/><circle cx="19.5" cy="19.5" r="2" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ SCENE 1 — hook ============ -->
+<div class="scene" id="s1">
+  <div class="abs kicker"><span class="m"><span>SUNDAY, 11:04 PM</span></span></div>
+  <h1>
+    <span class="m"><span>Still doing</span></span>
+    <span class="m"><span>next week’s</span></span>
+    <span class="m"><span class="red">rota by hand?</span></span>
+  </h1>
+  <div class="abs" id="paper">
+    <svg width="820" height="600" viewBox="0 0 820 600" fill="none" stroke="#2a2622" stroke-linecap="round" stroke-linejoin="round">
+      <g class="scrib" stroke-width="3.2">
+        <path d="M40 60 C200 57 420 64 780 58"/>
+        <path d="M42 150 C260 154 520 146 778 152"/>
+        <path d="M40 240 C300 236 540 244 782 238"/>
+        <path d="M44 330 C250 334 520 326 780 332"/>
+        <path d="M40 420 C300 416 560 424 778 418"/>
+        <path d="M42 510 C280 514 540 506 780 512"/>
+        <path d="M190 30 C188 200 194 400 190 560"/>
+        <path d="M340 32 C344 220 338 380 342 558"/>
+        <path d="M490 30 C486 200 492 410 488 560"/>
+        <path d="M640 34 C644 210 638 400 642 556"/>
+      </g>
+      <g class="scrib" stroke-width="3" font-family="Caveat">
+        <path d="M60 110 c8 -20 20 -20 26 0 s18 20 26 0 s18 -18 30 2"/>
+        <path d="M60 200 c10 -16 22 -18 30 0 s20 16 34 -4"/>
+        <path d="M60 290 c6 -18 18 -18 28 0 s16 18 30 -2 s14 -14 24 0"/>
+        <path d="M60 380 c10 -18 24 -16 32 2 s18 12 30 -6"/>
+        <path d="M216 110 l40 -4 M372 200 l50 2 M520 110 l44 -2 M218 290 l46 0 M668 200 l48 4 M520 380 l40 -2 M372 470 l54 0 M668 380 l40 2"/>
+      </g>
+      <g class="scrib" stroke="#E0482B" stroke-width="5">
+        <path d="M510 190 L620 222 M512 222 L618 188"/>
+        <path d="M360 280 C400 250 440 310 470 276 C490 258 470 300 456 296"/>
+        <path d="M660 450 C700 420 740 480 770 440"/>
+        <circle cx="720" cy="300" r="46"/>
+      </g>
+      <g class="scrib" stroke="#E0482B" stroke-width="4">
+        <path d="M676 470 l20 -34 l20 34 z"/>
+      </g>
+      <circle cx="140" cy="500" r="70" stroke="#b58a5a" stroke-width="10" opacity=".22"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ============ SCENE 2/3 — the app ============ -->
+<div class="scene" id="s2">
+  <div class="dots"></div>
+  <div class="abs cap" id="cap1"><span class="m"><span>Rotas in <span class="red">3 taps.</span></span></span></div>
+  <div class="abs" id="counter">
+    <div class="c" id="c1"><i></i><b>1</b></div>
+    <div class="c" id="c2"><i></i><b>2</b></div>
+    <div class="c" id="c3"><i></i><b>3</b></div>
+    <div class="lab" id="clab">taps</div>
+  </div>
+  <div class="abs cap cap2" id="cap2">
+    <span class="m"><span>Shift swaps? Sorted.</span></span>
+    <span class="m"><span>You just tap <span class="red">approve.</span></span></span>
+  </div>
+  <div class="abs cap cap2" id="cap3">
+    <span class="m"><span>Clock-in and payroll,</span></span>
+    <span class="m"><span class="red">built right in.</span></span>
+  </div>
+
+  <div class="abs" id="phone">
+    <div id="screen">
+      <div class="abs island"></div>
+      <div class="abs status"><span>9:41</span><span class="mono" style="font-size:24px">5G ▮▮▮</span></div>
+
+      <!-- pane 1: rota -->
+      <div class="pane" id="pane1">
+        <div class="abs appbar">
+          <svg width="72" height="36" style="color:var(--red)"><use href="#ant"/></svg>
+          <div><div class="t1">Week of 12 Oct</div><div class="t2">The Copper Pot · Soho</div></div>
+          <div class="av">JB</div>
+        </div>
+        <div class="abs dayrow">
+          <div>Mon<b>12</b></div><div>Tue<b>13</b></div><div>Wed<b>14</b></div><div>Thu<b>15</b></div><div>Fri<b>16</b></div><div class="we">Sat<b>17</b></div><div class="we">Sun<b>18</b></div>
+        </div>
+        <div id="grid"></div>
+        <div class="abs btn" id="bAuto"><svg width="34" height="34" style="color:var(--saff)"><use href="#spark"/></svg>Auto-fill week</div>
+        <div class="abs btn" id="bPub"><div class="fill"></div><span id="pubTxt">Publish</span></div>
+        <div class="abs warn" id="warn"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17v.5"/></svg>Sat 17 · bar is one person short</div>
+        <div class="abs toast" id="toast1"><div class="ok"><svg width="22" height="22" style="color:#fff"><use href="#chk"/></svg></div>Published · 6 staff notified</div>
+        <div class="abs toast" id="toast2"><div class="ok"><svg width="22" height="22" style="color:#fff"><use href="#chk"/></svg></div>Swap approved · rota updated</div>
+      </div>
+
+      <!-- pane 2: clock-in -->
+      <div class="pane" id="pane2">
+        <div class="abs appbar">
+          <svg width="72" height="36" style="color:var(--red)"><use href="#ant"/></svg>
+          <div><div class="t1">Today · Fri 16</div><div class="t2">Who’s in right now</div></div>
+          <div class="av">JB</div>
+        </div>
+        <div class="abs card" style="top:230px"><div class="a" style="background:#C98A12">M</div><div><div class="n">Marco</div><div class="s">Kitchen · 16:00–23:00</div></div><div class="tm"><span class="dot"></span>15:56</div></div>
+        <div class="abs card" style="top:360px"><div class="a" style="background:#C23A20">T</div><div><div class="n">Tom</div><div class="s">Floor · 17:00–23:00 · swapped</div></div><div class="tm"><span class="dot"></span>16:57</div></div>
+        <div class="abs card" style="top:490px"><div class="a" style="background:#4F7F4F">I</div><div><div class="n">Inès</div><div class="s">Bar · 18:00–01:00</div></div><div class="tm"><span class="dot"></span>17:54</div></div>
+        <div class="abs card" id="samCard" style="top:620px"><div class="a" style="background:#6E9A6A">S</div><div><div class="n">Sam</div><div class="s">Bar · 18:00–01:00</div></div><div class="tm" id="samTm" style="position:relative;width:220px;height:40px"><span id="samTxt" style="position:absolute;right:0;top:0;display:flex;align-items:center;gap:12px;color:var(--mute)"><span class="dot" style="background:#D9CFC1"></span>due 18:00</span><span id="samIn" style="position:absolute;right:0;top:0;display:flex;align-items:center;gap:12px;opacity:0"><span class="dot"></span>17:59</span></div></div>
+        <div class="abs hours"><div class="l">Hours worked this week</div><div class="v"><span id="hrs">0.0</span><small>hrs</small></div></div>
+        <div class="abs btn" id="bExp"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span>Export payroll</span></div>
+        <div class="abs file" id="file"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h8"/></svg><span class="mono">payroll_w42.csv</span><span style="margin-left:auto">Sent to accountant</span></div>
+      </div>
+
+      <div class="abs" id="notif">
+        <div class="top"><div class="lg"><svg width="30" height="16" style="color:#fff"><use href="#ant"/></svg></div>FOURMI · now</div>
+        <div class="ttl">Chloé wants to swap a shift</div>
+        <div class="body">Fri 16 · Floor · 17:00–23:00 → <b>Tom</b> has said yes.</div>
+        <div class="acts"><div class="dec">Decline</div><div class="apr" id="apr"><i></i><span>Approve</span></div></div>
+      </div>
+
+      <div class="abs" id="finger"><div class="rip"></div><div class="core"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="abs" id="wipe1"></div>
+<div class="abs" id="iris"></div>
+
+<!-- ============ SCENE 4 — proof ============ -->
+<div class="scene" id="s4">
+  <svg class="abs" id="trail" style="left:0;top:1340px" width="3600" height="80"></svg>
+  <svg class="abs" id="trail2" style="left:0;top:330px" width="3600" height="80"></svg>
+  <div class="abs flags">UK · FRANCE</div>
+  <div class="abs num"><span id="count">0</span></div>
+  <div class="abs sub">
+    <span class="m"><span>restaurants and bars</span></span>
+    <span class="m"><span class="soft">already run their week</span></span>
+    <span class="m"><span class="soft">on Fourmi.</span></span>
+  </div>
+</div>
+
+<!-- ============ SCENE 5 — end card ============ -->
+<div class="scene" id="s5">
+  <div class="dots"></div>
+  <div class="abs" id="logo"><svg width="170" height="85" style="color:var(--red)"><use href="#ant"/></svg><span class="wm">fourmi</span></div>
+  <h2><span class="m"><span>Your first month</span></span><span class="m"><span class="red">is on us.</span></span></h2>
+  <div class="abs" id="cta">Start free at fourmi.app</div>
+  <div class="abs feat">Rotas <b>·</b> Swaps <b>·</b> Clock-in <b>·</b> Payroll</div>
+</div>
+
+<svg class="abs" id="grain" viewBox="0 0 1080 1920"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="7"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1.4 0"/></filter><rect width="1080" height="1920" filter="url(#n)"/></svg>
+
+<script>
+gsap.registerPlugin(DrawSVGPlugin);
+
+/* ---------- build the rota grid ---------- */
+const COLX = 180, COLW = 89, ROWY = 270, ROWH = 88;
+const staff = [
+  {n:'Chloé', r:'Floor',   c:'#C23A20', k:'fl', s:['', '11 17','11 17','', '17 23','17 23','11 17']},
+  {n:'Tom',   r:'Floor',   c:'#E0482B', k:'fl', s:['17 23','17 23','', '17 23','', '11 17','']},
+  {n:'Priya', r:'Kitchen', c:'#D9A21E', k:'kt', s:['10 16','10 16','16 23','16 23','', '16 23','10 16']},
+  {n:'Marco', r:'Kitchen', c:'#C98A12', k:'kt', s:['16 23','', '10 16','10 16','16 23','10 16','']},
+  {n:'Inès',  r:'Bar',     c:'#4F7F4F', k:'br', s:['', '18 00','18 00','18 00','18 01','', '12 18']},
+  {n:'Sam',   r:'Bar',     c:'#6E9A6A', k:'br', s:['18 00','', '', '12 18','18 01','GAP','']},
+];
+const grid = document.getElementById('grid');
+const chips = []; // {el, r, c}
+let gapEl, gapChip, swapChip;
+staff.forEach((p, r) => {
+  const y = ROWY + r*ROWH;
+  grid.insertAdjacentHTML('beforeend', `<div class="abs rowbg" style="top:${y}px"></div>
+    <div class="abs who" style="top:${y}px"><div class="a" style="background:${p.c}">${p.n[0]}</div><div><div class="n">${p.n}</div><div class="r">${p.r}</div></div></div>`);
+  p.s.forEach((v, c) => {
+    const x = COLX + c*COLW + 4, yy = y + 8;
+    const slot = document.createElement('div');
+    slot.className = 'abs slot'; slot.style.left = x+'px'; slot.style.top = yy+'px';
+    grid.appendChild(slot);
+    let el = document.createElement('div');
+    el.style.left = x+'px'; el.style.top = yy+'px';
+    if (v === 'GAP') {
+      el.className = 'abs gap'; el.textContent = '+'; gapEl = el;
+      const fill = document.createElement('div');
+      fill.className = 'abs chip br'; fill.style.left = x+'px'; fill.style.top = yy+'px';
+      fill.innerHTML = '18–01<small>Sam</small>'; gapChip = fill;
+      grid.appendChild(el); grid.appendChild(fill);
+      return;
+    } else if (v === '') {
+      el.className = 'abs off'; el.textContent = '·';
+    } else {
+      const [a,b] = v.split(' ');
+      el.className = 'abs chip ' + p.k; el.innerHTML = `${a}–${b}`;
+    }
+    grid.appendChild(el);
+    chips.push({el, r, c});
+    if (r === 0 && c === 4) swapChip = el;
+  });
+});
+// highlight frames for the swap
+const hlA = document.createElement('div'); hlA.className='abs hl'; hlA.style.left=(COLX+4*COLW)+'px'; hlA.style.top=(ROWY+2)+'px'; grid.appendChild(hlA);
+const hlB = document.createElement('div'); hlB.className='abs hl'; hlB.style.left=(COLX+4*COLW)+'px'; hlB.style.top=(ROWY+ROWH+2)+'px'; grid.appendChild(hlB);
+// the empty "off" dot in Tom's Friday (swap target) — find it
+const tomFriOff = chips.find(o => o.r===1 && o.c===4).el;
+
+/* ---------- ant trails (proof scene) ---------- */
+function buildTrail(id, seed, n, gap) {
+  const svg = document.getElementById(id), R = KK.rng(seed);
+  let h = '';
+  for (let i=0;i<n;i++){ const x = i*gap + R()*20, y = 40 + Math.sin(i*.7)*14; const s = .5 + R()*.08;
+    h += `<use href="#ant" x="${x}" y="${y-15*s*2}" width="${120*s}" height="${60*s}" style="color:${i%9===4?'#E0482B':'#4a433c'}"/>`; }
+  svg.innerHTML = h;
+}
+buildTrail('trail', 11, 40, 90); buildTrail('trail2', 23, 40, 90);
+
+/* ---------- timeline ---------- */
+const tl = gsap.timeline({paused:true});
+const hrsP = {v:0}, cntP = {v:0};
+function build(){
+const F = $('#finger');
+gsap.set(F, {x:640, y:1200, opacity:0});
+function tap(t, x, y, moveDur = .5) {
+  tl.to(F, {x, y, duration:moveDur, ease:'power3.inOut'}, t - moveDur);
+  tl.to(F, {scale:.82, duration:.08, ease:'power2.in'}, t)
+    .to(F, {scale:1, duration:.25, ease:'back.out(3)'}, t + .08)
+    .fromTo(F.querySelector('.rip'), {scale:.6, opacity:1}, {scale:2.1, opacity:0, duration:.5, ease:'power2.out'}, t);
+}
+
+gsap.set('#wipe1', {yPercent:100});
+gsap.set('#s2', {visibility:'hidden'});
+/* Scene 1: hook 0 – 3.3 */
+gsap.set('#s1 h1 .m > span, #s1 .kicker .m > span', {yPercent:110});
+tl.to('#s1 .kicker .m > span', {yPercent:0, duration:.5, ease:'expo.out'}, 0)
+  .to('#s1 h1 .m > span', {yPercent:0, duration:.8, ease:'expo.out', stagger:.12}, .08)
+  .from('#paper', {y:260, rotation:6, duration:1.2, ease:'expo.out'}, 0)
+  .fromTo('#paper .scrib path, #paper .scrib circle', {drawSVG:'0%'}, {drawSVG:'100%', duration:.55, ease:'power2.out', stagger:.045}, 0)
+  .to('#paper', {rotation:-7, scale:1.04, duration:2.6, ease:'sine.inOut'}, .6);
+
+/* wipe → app 3.2 – 3.9 */
+tl.to('#wipe1', {yPercent:0, duration:.42, ease:'power3.in'}, 3.15)
+  .set('#s1', {visibility:'hidden'}, 3.57)
+  .set('#s2', {visibility:'visible'}, 3.57)
+  .to('#wipe1', {yPercent:-100, duration:.5, ease:'power3.out'}, 3.6);
+
+/* Scene 2: rotas in 3 taps */
+gsap.set('#cap1 .m > span, #cap2 .m > span, #cap3 .m > span', {yPercent:110});
+gsap.set('#counter', {opacity:0, y:20});
+gsap.set('#phone', {y:500, rotation:4});
+gsap.set(chips.map(o=>o.el), {scale:0, opacity:0});
+gsap.set([gapEl, gapChip, '#warn', '#toast1', '#toast2', hlA, hlB], {opacity:0});
+gsap.set(gapChip, {scale:0});
+gsap.set('#notif', {y:-420});
+gsap.set('#pane2', {xPercent:100});
+gsap.set('#file', {opacity:0, y:20});
+
+tl.to('#phone', {y:0, rotation:0, duration:.9, ease:'expo.out'}, 3.6)
+  .to('#cap1 .m > span', {yPercent:0, duration:.7, ease:'expo.out'}, 3.75)
+  .to('#counter', {opacity:1, y:0, duration:.5, ease:'power3.out'}, 3.95)
+  .to('#phone', {scale:1.02, duration:5, ease:'sine.inOut'}, 4.5)
+  .to(F, {opacity:1, duration:.25}, 4.2);
+
+// tap 1 — auto-fill
+tap(4.75, 216, 874, .55);
+tl.to('#c1 i', {scale:1, duration:.3, ease:'back.out(2)'}, 4.75).to('#c1 b', {color:'#fff', duration:.1}, 4.8)
+  .to('#bAuto', {scale:.96, duration:.08, yoyo:true, repeat:1}, 4.75);
+chips.sort((a,b)=> (a.c+a.r) - (b.c+b.r));
+chips.forEach((o, i) => {
+  const t0 = 4.9 + (o.c + o.r) * .1;
+  tl.to(o.el, {scale:1, opacity:1, duration:.4, ease:'back.out(2.2)'}, t0);
+});
+tl.to(gapEl, {opacity:1, duration:.25}, 5.9)
+  .fromTo(gapEl, {scale:.6}, {scale:1, duration:.4, ease:'back.out(3)'}, 5.9)
+  .to('#warn', {opacity:1, duration:.3}, 6.0).from('#warn', {y:20, duration:.4, ease:'power3.out'}, 6.0);
+
+// tap 2 — fill the gap
+tap(6.75, COLX+5*COLW+44, ROWY+5*ROWH+44, .55);
+tl.to('#c2 i', {scale:1, duration:.3, ease:'back.out(2)'}, 6.75).to('#c2 b', {color:'#fff', duration:.1}, 6.8)
+  .to(gapEl, {opacity:0, duration:.15}, 6.8)
+  .to(gapChip, {opacity:1, scale:1, duration:.45, ease:'back.out(2.5)'}, 6.82)
+  .to('#warn', {opacity:0, y:10, duration:.25, ease:'power2.in'}, 6.95);
+
+// tap 3 — publish
+tap(7.55, 612, 874, .5);
+tl.to('#c3 i', {scale:1, duration:.3, ease:'back.out(2)'}, 7.55).to('#c3 b', {color:'#fff', duration:.1}, 7.6)
+  .to('#bPub .fill', {scaleX:1, duration:.45, ease:'expo.out'}, 7.58)
+  .to('#bPub', {color:'#fff', duration:.2}, 7.6)
+  .add(() => {}, 7.6)
+  .to('#toast1', {opacity:1, duration:.25}, 7.8).from('#toast1', {y:24, duration:.45, ease:'expo.out'}, 7.8)
+  .to('#clab', {color:'#E0482B', duration:.2}, 7.6);
+tl.to(F, {x:720, y:1260, opacity:0, duration:.5, ease:'power2.inOut'}, 8.1);
+
+/* Scene 3: swap 8.9 – 13.2 */
+tl.to('#cap1 .m > span', {yPercent:-110, duration:.4, ease:'power2.in'}, 8.8)
+  .to('#counter', {opacity:0, y:-20, duration:.3, ease:'power2.in'}, 8.8)
+  .to('#toast1', {opacity:0, duration:.3}, 8.9)
+  .to('#cap2 .m > span', {yPercent:0, duration:.7, ease:'expo.out', stagger:.1}, 9.1)
+  .to('#notif', {y:0, duration:.7, ease:'expo.out'}, 9.35)
+  .to([hlA, hlB], {opacity:1, duration:.3, stagger:.1}, 9.6)
+  .to(F, {opacity:1, duration:.25}, 10.3);
+const apr = $('#apr'), nt = $('#notif'), acts = apr.parentElement;
+tap(11.0, nt.offsetLeft + apr.offsetLeft + apr.offsetWidth/2, nt.offsetTop + apr.offsetTop + apr.offsetHeight/2, .6);
+tl.to('#apr i', {scale:1.1, duration:.35, ease:'power3.out'}, 11.0)
+  .to('#notif', {y:-440, duration:.5, ease:'power3.in'}, 11.4)
+  .to(tomFriOff, {opacity:0, duration:.15}, 11.5)
+  .to(swapChip, {y:ROWH, duration:.6, ease:'power3.inOut'}, 11.55)
+  .to(hlA, {opacity:0, duration:.3}, 11.6)
+  .to(hlB, {borderColor:'#4E9A55', duration:.3}, 12.1)
+  .to('#toast2', {opacity:1, duration:.25}, 12.0).from('#toast2', {y:24, duration:.45, ease:'expo.out'}, 12.0)
+  .to(F, {x:700, y:1300, opacity:0, duration:.5, ease:'power2.inOut'}, 11.8);
+
+/* Scene 3b: clock-in & payroll 13.2 – 16.3 */
+tl.to('#cap2 .m > span', {yPercent:-110, duration:.4, ease:'power2.in', stagger:.05}, 13.1)
+  .to('#cap3 .m > span', {yPercent:0, duration:.7, ease:'expo.out', stagger:.1}, 13.45)
+  .to('#pane1', {xPercent:-30, opacity:.2, duration:.7, ease:'power3.inOut'}, 13.2)
+  .to('#pane2', {xPercent:0, duration:.7, ease:'power3.inOut'}, 13.2)
+  .from('#pane2 .card', {x:120, opacity:0, duration:.6, ease:'expo.out', stagger:.08}, 13.45)
+  .fromTo(hrsP, {v:0}, {v:412.5, duration:1.2, ease:'power2.out', onUpdate:()=>{ $('#hrs').textContent = (Math.round(hrsP.v*2)/2).toFixed(1); }}, 13.7)
+  .set('#samTxt', {opacity:0}, 14.4).set('#samIn', {opacity:1}, 14.4)
+  .fromTo('#samCard', {scale:1}, {scale:1.03, duration:.15, yoyo:true, repeat:1, ease:'power2.out'}, 14.4)
+  .to(F, {opacity:1, duration:.2}, 14.5);
+tap(15.1, 414, 1060, .55);
+tl.to('#bExp', {scale:.97, duration:.08, yoyo:true, repeat:1}, 15.1)
+  .to('#file', {opacity:1, y:0, duration:.45, ease:'expo.out'}, 15.3);
+
+/* iris → proof 16.2 – 19.1 */
+tl.set('#s4', {visibility:'visible', clipPath:'circle(0px at 524px 1576px)'}, 16.15)
+  .to('#s4', {clipPath:'circle(2200px at 524px 1576px)', duration:.75, ease:'power3.in'}, 16.15)
+  .set('#s2', {visibility:'hidden'}, 16.95)
+  .to(F, {opacity:0, duration:.2}, 16.3);
+gsap.set('#s4 .sub .m > span', {yPercent:110});
+gsap.set('#s4 .flags', {opacity:0});
+tl.fromTo(cntP, {v:0}, {v:2400, duration:1.1, ease:'expo.out', onUpdate:()=>{ $('#count').textContent = Math.round(cntP.v).toLocaleString('en-GB'); }}, 16.6)
+  .from('#s4 .num', {scale:.8, duration:1.2, ease:'expo.out'}, 16.6)
+  .to('#s4 .flags', {opacity:1, duration:.4}, 16.9)
+  .to('#s4 .sub .m > span', {yPercent:0, duration:.7, ease:'expo.out', stagger:.1}, 17.0)
+  .fromTo('#trail', {x:-1800}, {x:-600, duration:3.2, ease:'none'}, 16.2)
+  .fromTo('#trail2', {x:-400}, {x:-1600, duration:3.2, ease:'none'}, 16.2)
+  .to('#s4 .num', {scale:1.04, duration:1.8, ease:'sine.inOut'}, 17.6);
+
+/* end card 19.2 – 22 */
+gsap.set('#s5 h2 .m > span', {yPercent:110});
+gsap.set(['#cta', '#s5 .feat'], {opacity:0, y:30});
+tl.to('#s5', {clipPath:'inset(0% 0 0 0)', duration:.6, ease:'power3.inOut'}, 19.1)
+  .from('#logo svg', {x:-60, opacity:0, duration:.7, ease:'expo.out'}, 19.4)
+  .from('#logo .wm', {x:30, opacity:0, duration:.7, ease:'expo.out'}, 19.45)
+  .to('#s5 h2 .m > span', {yPercent:0, duration:.7, ease:'expo.out', stagger:.1}, 19.55)
+  .to('#cta', {opacity:1, y:0, duration:.6, ease:'expo.out'}, 19.8)
+  .to('#s5 .feat', {opacity:1, y:0, duration:.6, ease:'expo.out'}, 19.95)
+  .fromTo('#cta', {scale:1}, {scale:1.03, duration:1.6, ease:'sine.inOut'}, 20.4);
+tl.set({}, {}, 22);
+}
+const $ = s => document.querySelector(s);
+window.KLIPT = {
+  width:1080, height:1920, fps:30, duration:22,
+  ready: document.fonts.ready.then(() => { build(); tl.seek(0, false); }),
+  render(t){ tl.seek(t, false); }
+};
+</script>
+</body>
+</html>

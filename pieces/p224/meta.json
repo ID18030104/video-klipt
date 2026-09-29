@@ -1,0 +1,8 @@
+{ "id": "p224", "brand": "Blank Page Books", "sector": "Independent bookshop",
+  "kind": "carousel", "format": "1080x1350", "duration": null, "slides": 7,
+  "title": "Our 5 autumn favourites",
+  "concept": "A bookseller's table in carousel form: each fictional book gets an illustrated SVG cover, a big serif pick number and a handwritten staff note taped beside it, on warm paper tones framed by a dark cover slide with the five books fanned out and a rust reserve-and-collect CTA.",
+  "techniques": ["svg-illustration", "css-layout", "svg-noise-texture", "seeded-procedural-details"],
+  "fonts": ["Fraunces", "Caveat", "Space Grotesk", "DM Serif Display", "Anton", "Bricolage Grotesque"],
+  "palette": ["#F3EBDD", "#1F1B18", "#B8492C", "#E9A23B", "#2F5D62", "#3E6475", "#1B2440"],
+  "copy_language": "en" }

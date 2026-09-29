@@ -1,0 +1,8 @@
+{ "id": "p287", "brand": "Bastide Immobilier", "sector": "Agence immobilière", "kind": "video",
+  "format": "1080x1920", "duration": 22, "slides": null,
+  "title": "Vendue en 12 jours. Au prix.",
+  "concept": "La preuve par le terrain : une carte gravée du pays d'Aix trace la route de Cézanne jusqu'au Tholonet, plonge dans la fiche du bien où 12 jours, 23 visites et 4 offres s'affichent avant que le tampon VENDU ne tombe, puis interpelle le propriétaire avec l'estimation offerte en 48 h. Palette crème papier, vert cyprès et terre cuite, typographie Fraunces/Figtree, grain et courbes de niveau pour un ton provençal haut de gamme.",
+  "techniques": ["gsap", "DrawSVGPlugin", "svg-illustration", "d3-contours", "svg-filters", "clip-path-transitions", "kinetic-type"],
+  "fonts": ["Fraunces", "Figtree"],
+  "palette": ["#F3EAD8", "#1F3A2E", "#B8492A", "#D9A441", "#1B1A17"],
+  "copy_language": "fr" }

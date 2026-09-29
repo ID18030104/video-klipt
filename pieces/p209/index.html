@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<title>Encre Noire Flash Day</title>
+<!--
+DIRECTION
+Concept: a photocopied flash sheet taped to a shop wall — raw, fast, hand-drawn. Cuts hit like a tattoo machine.
+Palette: noir #0c0c0c, papier #ece6d8, rouge encre #ff2a1a (single colour).
+Type: Anton (impact) + Space Mono (labels, fine print).
+Graphic language: halftone dots, copier grain and specks, line-drawn flash motifs, tape, strobes.
+Motion: smash cuts, slams with shake, motifs drawn stroke by stroke, one red wipe into a calm end card.
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/anton/index.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/space-mono/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/space-mono/700.css">
+<style>
+:root{--k:#0c0c0c;--p:#ece6d8;--r:#ff2a1a}
+*{box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--k)}
+#stage{position:absolute;inset:0;width:1080px;height:1920px;overflow:hidden}
+.scene{position:absolute;inset:0;display:none;overflow:hidden}
+.an{font-family:Anton,Impact,sans-serif;text-transform:uppercase;line-height:.92;margin:0}
+.mono{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.06em}
+.abs{position:absolute}
+.mask{overflow:hidden;display:block;padding-top:.18em;margin-top:-.18em}
+canvas.ht{position:absolute;left:0;top:0}
+#grain{position:absolute;left:-60px;top:-60px;width:1200px;height:2040px;mix-blend-mode:overlay;opacity:.55;pointer-events:none;z-index:50}
+#specks{position:absolute;inset:0;pointer-events:none;z-index:51;mix-blend-mode:normal;opacity:.9}
+/* S1 */
+#s1{background:var(--k)}
+#s1 .n40{left:0;width:1080px;top:330px;text-align:center;font-size:830px;color:var(--r);letter-spacing:-.02em;transform-origin:50% 60%}
+#s1 .fl{left:0;width:1080px;top:1050px;text-align:center;font-size:250px;color:var(--p)}
+#s1 .tag{left:90px;top:262px;font-size:34px;color:var(--p);font-weight:700}
+#s1 .stk{right:70px;top:1330px;background:var(--p);color:var(--k);padding:18px 28px;font-size:64px;transform:rotate(-6deg)}
+/* S2 */
+#s2{background:var(--p);color:var(--k)}
+#s2 h2{left:70px;top:250px;font-size:112px;white-space:nowrap}
+#s2 .grid{left:70px;top:430px;width:940px;display:grid;grid-template-columns:repeat(3,300px);gap:20px 20px}
+.tile{position:relative;width:300px;height:300px;border:4px solid var(--k);background:var(--p);overflow:hidden}
+.tile svg{position:absolute;inset:14px;width:264px;height:264px;fill:none;stroke:var(--k);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.tile .no{position:absolute;left:10px;top:6px;font-size:20px;font-weight:700}
+.tile.red{background:var(--r);border-color:var(--k)}
+.tile.red .big{position:absolute;left:0;right:0;top:40px;text-align:center;font-size:170px;color:var(--k)}
+.tile.red .mono{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-size:22px;font-weight:700}
+#s2 .cap{left:70px;top:1560px;font-size:30px;font-weight:700;line-height:1.35}
+.tape{position:absolute;width:150px;height:46px;background:rgba(236,230,216,.0);}
+/* S3 */
+#s3{background:var(--r);color:var(--k)}
+#s3 .pre{color:var(--p);left:0;width:1080px;top:470px;text-align:center;font-size:66px;font-weight:700}
+#s3 .big{left:0;width:1080px;top:600px;text-align:center;font-size:560px;letter-spacing:-.02em;line-height:1}
+#s3 .post{color:var(--p);left:0;width:1080px;top:1200px;text-align:center;font-size:170px}
+/* S4 */
+#s4{background:var(--k)}
+.band{position:absolute;left:0;width:1080px;display:flex;align-items:center;padding:0 70px;overflow:hidden}
+#b1{top:300px;height:340px;background:var(--p);color:var(--k)}
+#b2{top:660px;height:260px;background:var(--r);color:var(--k)}
+#b3{top:940px;height:260px;background:var(--p);color:var(--k)}
+#b1 .an{font-size:245px;white-space:nowrap}
+#b2 .an,#b3 .an{font-size:140px;white-space:nowrap}
+#s4 .foot{left:70px;top:1290px;font-size:36px;color:var(--p);font-weight:700}
+/* S5 */
+#s5{background:var(--k);color:var(--p)}
+#wipe{position:absolute;left:0;top:0;width:1080px;height:1920px;background:var(--r);z-index:40;transform:translateX(-1100px);display:none}
+#s5 .logo{left:0;width:1080px;top:290px;text-align:center}
+#s5 .nm{font-size:190px;line-height:.9}
+#s5 .tt{font-size:78px;letter-spacing:.42em;color:var(--r);margin-top:22px;padding-left:.42em}
+#s5 .pill{left:90px;top:1010px;width:900px;background:var(--r);color:var(--k);padding:22px 0 12px;text-align:center;font-size:200px;transform:rotate(-2deg)}
+#s5 .when{left:0;width:1080px;top:1240px;text-align:center;font-size:58px;line-height:1.2}
+#s5 .where{left:0;width:1080px;top:1430px;text-align:center;font-size:34px;line-height:1.5;font-weight:700}
+#s5 .price{left:0;width:1080px;top:1350px;text-align:center;font-size:34px}
+</style></head>
+<body>
+<div id="stage">
+
+<div class="scene" id="s1">
+  <canvas class="ht" id="h1" width="540" height="960" style="width:1080px;height:1920px"></canvas>
+  <div class="abs mono tag" id="s1tag">FLASH DAY — MARSEILLE</div>
+  <div class="abs an n40" id="n40">40</div>
+  <div class="abs an fl" id="fl"><span class="mask"><span id="flin" style="display:block">flashs</span></span></div>
+  <div class="abs an stk" id="stk">sam. 14 nov.</div>
+</div>
+
+<div class="scene" id="s2">
+  <h2 class="abs an" id="s2h"><span class="mask"><span id="s2hin" style="display:block">Tous dessinés main</span></span></h2>
+  <div class="abs grid" id="grid"></div>
+  <div class="abs mono cap" id="s2cap">40 motifs. 4 artistes.<br>Tu choisis, on pique.</div>
+</div>
+
+<div class="scene" id="s3">
+  <canvas class="ht" id="h3" width="540" height="960" style="width:1080px;height:1920px"></canvas>
+  <div class="abs mono pre" id="pre">à partir de</div>
+  <div class="abs an big" id="big">60€</div>
+  <div class="abs an post" id="post"><span class="mask"><span id="postin" style="display:block">le flash.</span></span></div>
+</div>
+
+<div class="scene" id="s4">
+  <div class="band" id="b1"><div class="an" id="t1">Sans RDV.</div></div>
+  <div class="band" id="b2"><div class="an" id="t2">Premier arrivé,</div></div>
+  <div class="band" id="b3"><div class="an" id="t3">premier servi.</div></div>
+  <div class="abs mono foot" id="foot">11h–20h · Sam. 14 novembre</div>
+</div>
+
+<div class="scene" id="s5">
+  <div class="abs logo" id="logo">
+    <svg id="lmark" width="150" height="150" viewBox="0 0 200 200" fill="none" stroke="#ece6d8" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:26px"><circle cx="100" cy="100" r="92" id="lc"/><path id="ld" d="M100 28 L112 112 L100 124 L88 112 Z"/><path d="M68 120 Q100 136 132 120"/><path d="M100 124 L100 160"/><circle cx="100" cy="168" r="6"/></svg>
+    <div class="an nm" id="nm1"><span class="mask"><span style="display:block" class="nmi">Encre</span></span></div>
+    <div class="an nm" id="nm2"><span class="mask"><span style="display:block" class="nmi">Noire</span></span></div>
+    <div class="an tt" id="tt">Tattoo</div>
+  </div>
+  <div class="abs an pill" id="pill">Flash Day</div>
+  <div class="abs an when" id="when">Sam. 14 novembre · 11h–20h</div>
+  <div class="abs mono price" id="pr">40 flashs dès 60 € · sans RDV</div>
+  <div class="abs mono where" id="where">Cours Julien, Marseille<br>@encrenoire.tattoo</div>
+</div>
+
+<div id="wipe"></div>
+<canvas id="grain" width="600" height="1020"></canvas>
+<canvas id="specks" width="540" height="960" style="width:1080px;height:1920px"></canvas>
+</div>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../node_modules/gsap/dist/DrawSVGPlugin.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+gsap.registerPlugin(DrawSVGPlugin);
+const R = KK.rng(209);
+const $ = s => document.querySelector(s);
+
+/* ---------- halftone (static, drawn once) ---------- */
+function halftone(cv, cell, fn, color){
+  const c = cv.getContext('2d'), w = cv.width, h = cv.height;
+  c.fillStyle = color; const a = Math.PI/4, ca = Math.cos(a), sa = Math.sin(a);
+  const D = Math.hypot(w,h);
+  for(let u=-D; u<D; u+=cell) for(let v=-D; v<D; v+=cell){
+    const x = w/2 + u*ca - v*sa, y = h/2 + u*sa + v*ca;
+    if(x<-cell||y<-cell||x>w+cell||y>h+cell) continue;
+    const val = KK.clamp(fn(x/w, y/h)); if(val<.03) continue;
+    c.beginPath(); c.arc(x,y,cell*.72*Math.sqrt(val),0,7); c.fill();
+  }
+}
+halftone($('#h1'), 11, (x,y)=> Math.pow(KK.clamp(1.15 - Math.hypot((x-.15)*1, (y-.95)*.56)*1.5),1.4) + (x>.8&&y<.12?.5:0), '#ff2a1a');
+halftone($('#h3'), 12, (x,y)=> Math.pow(KK.clamp(Math.hypot((x-.5)*.9,(y-.5)*.5)*1.9-.15),1.2), '#0c0c0c');
+
+/* ---------- grain + specks ---------- */
+(function(){
+  const g = $('#grain').getContext('2d'), im = g.createImageData(600,1020);
+  for(let i=0;i<im.data.length;i+=4){ const v = R()*255|0; im.data[i]=im.data[i+1]=im.data[i+2]=v; im.data[i+3]=255; }
+  g.putImageData(im,0,0);
+  const s = $('#specks').getContext('2d');
+  for(let i=0;i<260;i++){ s.fillStyle = R()<.5?'rgba(12,12,12,.55)':'rgba(236,230,216,.4)';
+    const x=R()*540,y=R()*960,r=R()*1.6+.3; s.beginPath(); s.ellipse(x,y,r,r*(R()*2+.5),R()*3,0,7); s.fill(); }
+  s.strokeStyle='rgba(12,12,12,.18)'; s.lineWidth=1;
+  for(let i=0;i<6;i++){ const x=R()*540; s.beginPath(); s.moveTo(x,0); s.lineTo(x+R()*6-3,960); s.stroke(); }
+})();
+
+/* ---------- flash motifs ---------- */
+const M = [
+ ['DAGUE', '<path class="d" d="M100 12 L116 118 L100 134 L84 118 Z"/><path class="d" d="M100 30 L100 118"/><path class="d" d="M52 130 Q100 152 148 130"/><path class="d" d="M100 134 L100 174"/><circle class="d" cx="100" cy="184" r="9"/><path class="d" d="M40 40 L52 52 M160 40 L148 52 M30 90 L46 90"/>'],
+ ['COEUR', '<path class="d" d="M100 172 C22 122 26 52 72 52 C88 52 100 62 100 76 C100 62 112 52 128 52 C174 52 178 122 100 172 Z"/><path class="d" d="M58 84 C60 72 70 68 78 70"/><path class="d" d="M100 172 L100 190"/><path class="d" d="M100 52 C92 36 108 30 100 14"/><path class="d" d="M20 158 L180 158" stroke-dasharray="3 12"/>'],
+ ['CRANE', '<path class="d" d="M48 92 C46 34 154 34 152 92 C152 116 136 120 136 142 L64 142 C64 120 48 116 48 92 Z"/><circle class="d" cx="78" cy="94" r="15"/><circle class="d" cx="122" cy="94" r="15"/><path class="d" d="M100 108 L92 126 L108 126 Z"/><path class="d" d="M80 142 L80 164 M100 142 L100 164 M120 142 L120 164"/><path class="d" d="M30 176 L170 176"/>'],
+ ['OEIL', '<path class="d" d="M14 100 Q100 22 186 100 Q100 178 14 100 Z"/><circle class="d" cx="100" cy="100" r="34"/><circle class="d" cx="100" cy="100" r="12"/><path class="d" d="M100 24 L100 8 M50 40 L40 26 M150 40 L160 26 M100 192 L100 176 M50 160 L40 174 M150 160 L160 174"/>'],
+ ['ECLAIR', '<path class="d" d="M120 10 L52 108 L96 108 L78 190 L152 84 L106 84 Z"/><path class="d" d="M120 34 L78 96"/><path class="d" d="M20 60 L40 66 M170 130 L188 138 M20 150 L36 142"/>'],
+ ['ROSE', '<path class="d" d="M100 96 C78 76 108 62 122 82 C138 106 94 122 82 98 C74 80 98 72 106 88"/><path class="d" d="M62 96 C50 64 76 38 100 44 C130 38 152 64 140 98 C138 122 112 136 100 132"/><path class="d" d="M100 132 C100 150 96 170 90 190"/><path class="d" d="M97 156 C74 156 62 144 60 132 C80 132 92 140 97 156 Z"/><path class="d" d="M96 172 C120 168 134 156 138 144 C118 144 102 154 96 172 Z"/>'],
+ ['SERPENT', '<path class="d" d="M46 184 C6 150 96 140 100 108 C104 78 30 76 58 44 C76 24 126 26 138 48"/><path class="d" d="M46 184 C52 176 60 176 66 180"/><path class="d" d="M138 48 C150 44 160 52 156 62 C152 68 144 66 140 60"/><path class="d" d="M158 56 L178 50 M170 52 L178 62"/><circle class="d" cx="146" cy="52" r="2"/>'],
+ ['ANCRE', '<circle class="d" cx="100" cy="30" r="14"/><path class="d" d="M100 44 L100 176"/><path class="d" d="M70 66 L130 66"/><path class="d" d="M34 120 C40 164 80 184 100 176 C120 184 160 164 166 120"/><path class="d" d="M34 120 L20 132 M34 120 L46 134 M166 120 L152 134 M166 120 L180 132"/>']
+];
+const grid = $('#grid');
+const order = [0,1,2,3,'P',4,5,6,7];
+order.forEach((o,i)=>{
+  const t = document.createElement('div'); t.className='tile' + (o==='P'?' red':''); t.id='tile'+i;
+  if(o==='P'){ t.innerHTML = '<div class="an big">60€</div><div class="mono">le flash, dès</div>'; }
+  else { t.innerHTML = '<span class="mono no">N°'+String(i*4+7).padStart(2,'0')+'</span><svg viewBox="0 0 200 200">'+M[o][1]+'</svg>'; }
+  grid.appendChild(t);
+});
+
+/* ---------- timeline ---------- */
+const tl = gsap.timeline({paused:true});
+const scenes = ['#s1','#s2','#s3','#s4','#s5'];
+gsap.set(scenes,{display:'none'});
+const cuts = [0,1.9,4.9,7.3,10.3,14];
+scenes.forEach((s,i)=>{ tl.set(s,{display:'block'},cuts[i]); if(i<4) tl.set(s,{display:'none'},cuts[i+1]); });
+
+/* S1 hook: 40 slams from frame 0 */
+tl.fromTo('#n40',{scale:1.6,opacity:1},{scale:1,duration:.28,ease:'expo.out'},0);
+tl.fromTo('#s1tag',{x:-40,opacity:0},{x:0,opacity:1,duration:.3,ease:'power3.out'},.15);
+tl.fromTo('#flin',{yPercent:110},{yPercent:0,duration:.35,ease:'expo.out'},.45);
+tl.fromTo('#stk',{scale:2.4,opacity:0,rotation:-20},{scale:1,opacity:1,rotation:-6,duration:.3,ease:'back.out(2)'},1.0);
+tl.to('#n40',{scale:1.05,duration:1.5,ease:'none'},.3);
+
+/* S2 flash sheet */
+tl.fromTo('#s2hin',{yPercent:110},{yPercent:0,duration:.4,ease:'expo.out'},cuts[1]+.05);
+order.forEach((o,i)=>{
+  const st = cuts[1] + .2 + i*.22, id='#tile'+i;
+  tl.fromTo(id,{scale:1.25,opacity:0,rotation:(i%2?3:-3)},{scale:1,opacity:1,rotation:(i%3-1)*.8,duration:.16,ease:'power4.out'},st);
+  if(o!=='P') tl.fromTo(id+' .d',{drawSVG:'0%'},{drawSVG:'100%',duration:.5,ease:'power2.inOut',stagger:.06},st+.04);
+  else tl.fromTo(id+' .big',{scale:1.6},{scale:1,duration:.25,ease:'expo.out'},st);
+});
+tl.fromTo('#s2cap',{opacity:0,y:20},{opacity:1,y:0,duration:.35,ease:'power3.out'},cuts[1]+1.9);
+tl.to('#grid',{y:-14,duration:3,ease:'none'},cuts[1]);
+
+/* S3 price */
+tl.fromTo('#pre',{opacity:0,y:-30},{opacity:1,y:0,duration:.3,ease:'power3.out'},cuts[2]+.05);
+tl.fromTo('#big',{scale:2.2,opacity:0},{scale:1,opacity:1,duration:.3,ease:'expo.out'},cuts[2]+.15);
+tl.fromTo('#postin',{yPercent:115},{yPercent:0,duration:.35,ease:'expo.out'},cuts[2]+.6);
+tl.to('#big',{scale:1.06,duration:2,ease:'none'},cuts[2]+.45);
+
+/* S4 rules */
+tl.fromTo('#b1',{xPercent:-105},{xPercent:0,duration:.3,ease:'expo.out'},cuts[3]);
+tl.fromTo('#b2',{xPercent:105},{xPercent:0,duration:.3,ease:'expo.out'},cuts[3]+.45);
+tl.fromTo('#b3',{xPercent:-105},{xPercent:0,duration:.3,ease:'expo.out'},cuts[3]+.85);
+tl.fromTo('#foot',{opacity:0,y:20},{opacity:1,y:0,duration:.3,ease:'power3.out'},cuts[3]+1.7);
+['#t1','#t2','#t3'].forEach((s,i)=> tl.fromTo(s,{x:60},{x:0,duration:.5,ease:'power3.out'},cuts[3]+i*.4+.05));
+
+/* S5 end card: red wipe then calm */
+tl.set('#wipe',{display:'block'},cuts[4]-.3);
+tl.fromTo('#wipe',{x:-1100},{x:0,duration:.3,ease:'power3.in'},cuts[4]-.3);
+tl.to('#wipe',{x:1100,duration:.4,ease:'power3.out'},cuts[4]);
+tl.set('#wipe',{display:'none'},cuts[4]+.4);
+tl.fromTo('#lc',{drawSVG:'0%'},{drawSVG:'100%',duration:.7,ease:'power2.inOut'},cuts[4]+.05);
+tl.fromTo('#ld',{drawSVG:'0%'},{drawSVG:'100%',duration:.6,ease:'power2.inOut'},cuts[4]+.25);
+tl.fromTo('#logo .nmi',{yPercent:110},{yPercent:0,duration:.5,ease:'expo.out',stagger:.1},cuts[4]+.3);
+tl.fromTo('#tt',{opacity:0,letterSpacing:'.9em'},{opacity:1,letterSpacing:'.42em',duration:.7,ease:'power3.out'},cuts[4]+.6);
+tl.fromTo('#pill',{scale:1.5,opacity:0,rotation:-8},{scale:1,opacity:1,rotation:-2,duration:.3,ease:'back.out(2)'},cuts[4]+1.0);
+tl.fromTo('#when',{opacity:0,y:20},{opacity:1,y:0,duration:.4,ease:'power3.out'},cuts[4]+1.3);
+tl.fromTo('#pr',{opacity:0,y:20},{opacity:1,y:0,duration:.4,ease:'power3.out'},cuts[4]+1.5);
+tl.fromTo('#where',{opacity:0,y:20},{opacity:1,y:0,duration:.4,ease:'power3.out'},cuts[4]+1.7);
+tl.to('#logo',{scale:1.03,duration:3.7,ease:'none'},cuts[4]);
+
+/* ---------- per-frame: grain jitter, impact shake, strobes ---------- */
+const hash = n => { const x = Math.sin(n*127.1+311.7)*43758.5453; return x-Math.floor(x); };
+const hits = [0.0,.15,1.9,4.9,5.05,7.3,7.75,8.15,10.6,11.3];
+window.KLIPT = {
+  width:1080, height:1920, fps:30, duration:14,
+  render(t){
+    tl.seek(t,false);
+    const f = Math.floor(t*12);
+    const g = $('#grain'); g.style.transform = 'translate('+(hash(f)*60)+'px,'+(hash(f+9)*60)+'px)';
+    let sx=0, sy=0;
+    hits.forEach(h=>{ const d=t-h; if(d>=0&&d<.22){ const k=(1-d/.22)*14; const q=Math.floor(t*30); sx+=(hash(q)-.5)*2*k; sy+=(hash(q+5)-.5)*2*k; }});
+    $('#stage').style.transform = 'translate('+sx+'px,'+sy+'px)';
+    // strobe end of hook & before price
+    const inv = (t>1.62&&t<1.9 && Math.floor(t*30)%2===0) || (t>4.7&&t<4.9 && Math.floor(t*30)%2===0);
+    $('#s1').style.filter = (t<1.9&&inv)?'grayscale(1) invert(1)':'none';
+    $('#s2').style.filter = (t>4.7&&inv)?'grayscale(1) invert(1)':'none';
+  }
+};
+</script>
+</body></html>

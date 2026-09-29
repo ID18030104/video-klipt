@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Blank Page Books — Our 5 autumn favourites</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/400-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/900.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/caveat/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/caveat/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/space-grotesk/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/space-grotesk/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/dm-serif-display/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/anton/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/800.css">
+<style>
+  :root{
+    --paper:#F3EBDD; --ink:#1F1B18; --ink2:#4A4038; --rust:#B8492C; --amber:#E9A23B;
+    --teal:#2F5D62; --cream:#F7EFDF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{margin:0;overflow:hidden;background:var(--paper);width:1080px}
+  .slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--paper);color:var(--ink);font-family:'Space Grotesk',sans-serif}
+  .grain{position:absolute;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:multiply}
+  .grain svg{width:100%;height:100%}
+
+  /* shared header */
+  .hdr{position:absolute;left:72px;right:72px;top:54px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+  .logo{display:flex;align-items:center;gap:14px;font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:30px;letter-spacing:-.01em}
+  .logo .pg{width:26px;height:34px;border:2.5px solid currentColor;border-radius:2px;position:relative;background:transparent}
+  .logo .pg:after{content:"";position:absolute;right:-2.5px;top:-2.5px;width:10px;height:10px;background:var(--bgc,var(--paper));border-left:2.5px solid currentColor;border-bottom:2.5px solid currentColor}
+  .kicker{font-size:19px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+
+  /* book slides */
+  .cover{position:absolute;left:84px;top:150px;width:430px;height:645px;transform:rotate(-2.2deg);
+    box-shadow:0 2px 0 rgba(0,0,0,.08), 30px 40px 60px rgba(31,27,24,.28);border-radius:3px 6px 6px 3px;overflow:hidden}
+  .cover svg{display:block;width:100%;height:100%}
+  .rcol{position:absolute;left:570px;top:150px;width:440px}
+  .genre{display:inline-block;padding:10px 18px 9px;border-radius:40px;font-size:17px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cream);background:var(--acc)}
+  .num{font-family:'Fraunces',serif;font-weight:900;font-size:230px;line-height:.78;color:var(--acc);margin-top:34px;letter-spacing:-.04em}
+  .num small{font-size:40px;font-weight:600;font-style:italic;letter-spacing:0;color:var(--ink);vertical-align:top;margin-left:4px;position:relative;top:18px}
+  .note{position:relative;margin-top:56px;width:420px;background:#FFFCF4;padding:40px 34px 28px;transform:rotate(1.8deg);
+    box-shadow:0 1px 0 rgba(0,0,0,.05),0 14px 30px rgba(31,27,24,.16)}
+  .note:before{content:"";position:absolute;top:-18px;left:50%;width:150px;height:38px;margin-left:-75px;background:var(--acc);opacity:.55;transform:rotate(-4deg)}
+  .note .lbl{font-size:15px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);margin-bottom:10px}
+  .note p{font-family:'Caveat',cursive;font-weight:500;font-size:37px;line-height:1.08;color:#2A2420}
+  .note .sig{font-family:'Caveat',cursive;font-weight:700;font-size:33px;color:var(--acc);margin-top:14px;text-align:right}
+  .body{position:absolute;left:84px;right:84px;bottom:120px}
+  .title{font-family:'Fraunces',serif;font-weight:600;font-size:68px;line-height:1.0;letter-spacing:-.02em}
+  .title i{font-weight:400}
+  .meta{margin-top:18px;font-size:22px;font-weight:500;letter-spacing:.02em;color:var(--ink2)}
+  .meta b{color:var(--ink);font-weight:700}
+  .rule{width:64px;height:4px;background:var(--acc);margin:26px 0 22px}
+  .pitch{font-family:'Fraunces',serif;font-size:31px;line-height:1.34;color:#2E2722;max-width:900px}
+  .foot{position:absolute;left:84px;right:84px;bottom:52px;display:flex;justify-content:space-between;align-items:center;font-size:17px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+  .dots{display:flex;gap:10px}
+  .dots i{width:10px;height:10px;border-radius:50%;background:rgba(31,27,24,.18)}
+  .dots i.on{background:var(--ink);width:30px;border-radius:6px}
+  .leaf{position:absolute;pointer-events:none}
+
+  /* slide 1 */
+  .s-cover{background:#1F1B18;color:var(--cream);--bgc:#1F1B18}
+  .s-cover .dots i{background:rgba(247,239,223,.25)} .s-cover .dots i.on{background:var(--cream)}
+  .s-cover .foot{color:rgba(247,239,223,.7)}
+  .hero{position:absolute;left:72px;right:72px;top:170px}
+  .hero .over{font-family:'Caveat',cursive;font-weight:700;font-size:48px;color:var(--amber);transform:rotate(-3deg);display:inline-block;margin-left:6px}
+  .hero h1{font-family:'Fraunces',serif;font-weight:600;font-size:132px;line-height:.9;letter-spacing:-.035em;margin-top:14px}
+  .hero h1 .five{font-weight:900;color:var(--rust);font-size:170px;display:inline-block;margin-right:6px;line-height:.7}
+  .hero h1 em{font-style:italic;font-weight:400}
+  .hero .sub{margin-top:34px;font-family:'Fraunces',serif;font-size:32px;line-height:1.35;color:rgba(247,239,223,.82);max-width:720px}
+  .fan{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .fan .mini{position:absolute;left:415px;top:780px;width:250px;height:375px;transform-origin:125px 1100px;border-radius:2px 4px 4px 2px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.45)}
+  .fan .mini svg{display:block;width:100%;height:100%}
+
+  /* slide 7 */
+  .s-cta{background:var(--rust);color:var(--cream);--bgc:#B8492C}
+  .s-cta .dots i{background:rgba(247,239,223,.3)} .s-cta .dots i.on{background:var(--cream)}
+  .s-cta .foot{color:rgba(247,239,223,.8)}
+  .cta-h{position:absolute;left:72px;right:72px;top:180px;font-family:'Fraunces',serif;font-weight:600;font-size:118px;line-height:.94;letter-spacing:-.035em}
+  .cta-h em{font-style:italic;font-weight:400;color:#FFD9A0}
+  .stamp{position:absolute;right:70px;top:500px;width:250px;height:250px;border-radius:50%;background:var(--cream);color:var(--rust);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(8deg);box-shadow:0 16px 40px rgba(60,20,10,.35)}
+  .stamp:before{content:"";position:absolute;inset:12px;border-radius:50%;border:2.5px dashed rgba(184,73,44,.55)}
+  .stamp b{font-family:'Fraunces',serif;font-weight:900;font-size:120px;line-height:.85;letter-spacing:-.04em}
+  .stamp span{font-size:15px;font-weight:700;letter-spacing:.16em;text-align:center;line-height:1.3;text-transform:uppercase;margin-top:6px}
+  .cta-sub{position:absolute;left:72px;top:600px;width:560px;font-family:'Fraunces',serif;font-size:32px;line-height:1.35;color:rgba(247,239,223,.88)}
+  .steps{position:absolute;left:72px;right:72px;top:810px}
+  .step{display:flex;align-items:center;gap:30px;padding:26px 0;border-top:2px solid rgba(247,239,223,.28)}
+  .step:last-child{border-bottom:2px solid rgba(247,239,223,.28)}
+  .step .ic{flex:0 0 84px;height:84px;border-radius:50%;background:rgba(247,239,223,.14);display:flex;align-items:center;justify-content:center}
+  .step .ic svg{width:40px;height:40px}
+  .step .n{font-size:17px;font-weight:700;letter-spacing:.16em;opacity:.7;text-transform:uppercase}
+  .step .t{font-family:'Fraunces',serif;font-size:36px;line-height:1.15;margin-top:4px}
+  .step .t i{font-style:italic}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+window.KLIPT = { width: 1080, height: 1350 };
+
+const GRAIN = `<svg xmlns="http://www.w3.org/2000/svg"><filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="7"/><feColorMatrix values="0 0 0 0 0.35  0 0 0 0 0.3  0 0 0 0 0.25  0 0 0 .55 0"/></filter><rect width="100%" height="100%" filter="url(#gr)"/></svg>`;
+
+// shared book-object overlay: spine crease, sheen, print texture
+function finish(id){
+  return `
+  <defs>
+    <linearGradient id="sp${id}" x1="0" x2="1">
+      <stop offset="0" stop-color="#000" stop-opacity=".38"/>
+      <stop offset=".05" stop-color="#000" stop-opacity=".10"/>
+      <stop offset=".075" stop-color="#fff" stop-opacity=".16"/>
+      <stop offset=".11" stop-color="#000" stop-opacity=".06"/>
+      <stop offset=".2" stop-color="#000" stop-opacity="0"/>
+      <stop offset=".9" stop-color="#fff" stop-opacity=".04"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".14"/>
+    </linearGradient>
+    <filter id="tx${id}"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="${id*3}"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .85  0 0 0 .18 0"/></filter>
+  </defs>
+  <rect width="460" height="690" filter="url(#tx${id})"/>
+  <rect width="460" height="690" fill="url(#sp${id})"/>`;
+}
+
+function gableRow(buildings, fill){
+  // Old Town tenements with crow-stepped gables
+  let d = 'M0,690 ';
+  buildings.forEach(([x,w,top,steps])=>{
+    d += `L${x},${top+steps*16} `;
+    if(steps){
+      const sw = w/(steps*2+2);
+      let cx = x, cy = top+steps*16;
+      for(let i=0;i<steps;i++){ d += `L${cx},${cy-16} `; cy-=16; cx+=sw; d+=`L${cx},${cy} `; }
+      d += `L${cx},${cy-16} L${x+w-(cx-x)},${cy-16} `;
+      cx = x+w-(cx-x);
+      for(let i=0;i<steps;i++){ d += `L${cx},${cy} `; cx+=sw; d+=`L${cx},${cy} `; cy+=16; d+=`L${cx},${cy} `;}
+      d += `L${x+w},${top+steps*16} `;
+    } else { d += `L${x},${top} L${x+w},${top} L${x+w},${top+steps*16} `; }
+  });
+  d += 'L460,690 Z';
+  return `<path d="${d}" fill="${fill}"/>`;
+}
+
+const COVERS = {
+  lamp(id){
+    let stars=''; const r=KK.rng(11);
+    for(let i=0;i<40;i++){ stars+=`<circle cx="${(r()*460).toFixed(1)}" cy="${(r()*430).toFixed(1)}" r="${(r()*1.6+.4).toFixed(2)}" fill="#F3E6C8" opacity="${(r()*.6+.2).toFixed(2)}"/>`; }
+    let wins=''; const w=KK.rng(4);
+    [[20,560],[70,560],[20,610],[70,610],[330,540],[380,540],[330,590],[380,590],[330,640],[380,640],[150,590],[150,640],[260,620]].forEach(([x,y],i)=>{
+      const lit = w()>.45; wins+=`<rect x="${x}" y="${y}" width="22" height="30" fill="${lit?'#F2B34B':'#243052'}" opacity="${lit?.95:1}"/>`; });
+    return `<svg viewBox="0 0 460 690" xmlns="http://www.w3.org/2000/svg">
+      <defs><radialGradient id="gl${id}" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#F6C15A" stop-opacity=".75"/><stop offset=".35" stop-color="#E9A23B" stop-opacity=".28"/><stop offset="1" stop-color="#E9A23B" stop-opacity="0"/></radialGradient></defs>
+      <rect width="460" height="690" fill="#1B2440"/>${stars}
+      <circle cx="230" cy="330" r="230" fill="url(#gl${id})"/>
+      <!-- lamp post -->
+      <rect x="223" y="360" width="14" height="260" fill="#0E1428"/>
+      <rect x="214" y="600" width="32" height="30" fill="#0E1428"/>
+      <rect x="180" y="382" width="100" height="6" fill="#0E1428"/>
+      <polygon points="202,290 258,290 250,358 210,358" fill="#FFE3A0"/>
+      <polygon points="202,290 258,290 250,358 210,358" fill="none" stroke="#0E1428" stroke-width="6"/>
+      <line x1="230" y1="290" x2="230" y2="358" stroke="#0E1428" stroke-width="3"/>
+      <polygon points="194,292 266,292 230,262" fill="#0E1428"/><rect x="226" y="248" width="8" height="16" fill="#0E1428"/>
+      <rect x="206" y="356" width="48" height="8" fill="#0E1428"/>
+      <!-- ladder -->
+      <g stroke="#0E1428" stroke-width="5"><line x1="276" y1="388" x2="336" y2="640"/><line x1="298" y1="384" x2="360" y2="640"/>
+      ${[0,1,2,3,4,5,6].map(i=>{const t=(i+.6)/7.3; return `<line x1="${276+60*t}" y1="${388+252*t}" x2="${298+62*t}" y2="${384+256*t}"/>`}).join('')}</g>
+      ${gableRow([[0,120,520,2],[118,92,568,0],[208,64,590,1],[330,130,500,3]],'#131A33')}
+      ${wins}
+      <rect x="0" y="672" width="460" height="18" fill="#0E1428"/>
+      <text x="230" y="92" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="17" letter-spacing="7" fill="#F2B34B">THE</text>
+      <text x="230" y="150" text-anchor="middle" font-family="Fraunces" font-style="italic" font-weight="400" font-size="58" fill="#F3E6C8">Lamplighter’s</text>
+      <text x="230" y="205" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="44" letter-spacing="14" fill="#F3E6C8">ALMANAC</text>
+      <text x="230" y="661" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="15" letter-spacing="6" fill="#F3E6C8" opacity=".85">MORAG KEILLOR</text>
+      ${finish(id)}</svg>`;
+  },
+  orchard(id){
+    const waves = [0,1,2,3,4,5,6,7].map(i=>{const y=520+i*22; const x0=300+i*6; let d=`M${x0},${y}`; for(let x=x0;x<470;x+=28){ d+=` q7,-7 14,0 t14,0`; } return `<path d="${d}" fill="none" stroke="#2F5D62" stroke-width="3" opacity="${.9-i*.07}"/>`}).join('');
+    const ap=KK.rng(21); let apples='';
+    for(let i=0;i<16;i++){ const a=ap()*Math.PI*2, rr=Math.sqrt(ap())*72; apples+=`<circle cx="${(150+Math.cos(a)*rr).toFixed(1)}" cy="${(318+Math.sin(a)*rr*.85).toFixed(1)}" r="7" fill="#C8553D"/>`; }
+    return `<svg viewBox="0 0 460 690" xmlns="http://www.w3.org/2000/svg">
+      <rect width="460" height="690" fill="#EAD8B6"/>
+      <circle cx="335" cy="352" r="92" fill="#D9A441" opacity=".9"/>
+      <rect x="0" y="470" width="460" height="220" fill="#9EB9B0"/>
+      ${waves}
+      <path d="M0,470 L285,470 C305,470 312,486 318,510 L336,690 L0,690 Z" fill="#24474B"/>
+      <path d="M150,470 C148,430 152,400 146,372 M148,420 C165,405 178,395 190,380 M149,440 C135,425 120,418 108,400" stroke="#24474B" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <ellipse cx="150" cy="318" rx="98" ry="84" fill="#2F5D62"/>
+      <ellipse cx="118" cy="296" rx="48" ry="36" fill="#3A6E70" opacity=".8"/>
+      ${apples}
+      <circle cx="344" cy="428" r="7" fill="#C8553D"/><circle cx="356" cy="484" r="7" fill="#C8553D" opacity=".9"/>
+      <path d="M338,410 l3,-8 M350,466 l3,-8" stroke="#24474B" stroke-width="2"/>
+      <text x="40" y="120" font-family="DM Serif Display" font-size="104" fill="#24474B">Salt</text>
+      <text x="40" y="215" font-family="DM Serif Display" font-style="italic" font-size="104" fill="#C8553D">Orchard</text>
+      
+      <text x="40" y="652" font-family="Space Grotesk" font-weight="700" font-size="16" letter-spacing="6" fill="#EAD8B6">TOMASZ WREN</text>
+      ${finish(id)}</svg>`;
+  },
+  candle(id){
+    const bs=[[0,78,440,2],[76,62,500,0],[136,96,420,3],[230,58,480,1],[286,90,392,3],[374,90,452,2]];
+    let wins='';
+    bs.forEach(([x,w,top,s],bi)=>{ const y0=top+s*16+26; for(let yy=y0; yy<650; yy+=48){ for(let xx=x+12; xx<x+w-20; xx+=26){ const red = (bi===4 && yy===y0+96 && xx===x+12+26); wins+=`<rect x="${xx}" y="${yy}" width="12" height="22" fill="${red?'#E0432D':'#2A1416'}"/>`; if(red) wins+=`<rect x="${xx-8}" y="${yy-8}" width="28" height="38" fill="#E0432D" opacity=".18"/>`; } } });
+    return `<svg viewBox="0 0 460 690" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="sk${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A1216"/><stop offset="1" stop-color="#140C0D"/></linearGradient></defs>
+      <rect width="460" height="690" fill="url(#sk${id})"/>
+      <circle cx="392" cy="372" r="44" fill="#EFE3C8"/>
+      <circle cx="392" cy="372" r="70" fill="#EFE3C8" opacity=".08"/>
+      ${gableRow(bs,'#0B0708')}
+      <rect x="292" y="330" width="6" height="30" fill="#0B0708"/><rect x="440" y="360" width="6" height="30" fill="#0B0708"/>
+      ${wins}
+      <text x="34" y="146" font-family="Anton" font-size="104" fill="#EFE3C8" letter-spacing="1">A QUIET</text>
+      <text x="34" y="252" font-family="Anton" font-size="104" fill="#E0432D" letter-spacing="1">DEATH</text>
+      <text x="36" y="298" font-family="Fraunces" font-style="italic" font-size="31" fill="#EFE3C8">on Candlemaker Row</text>
+      <text x="230" y="672" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="15" letter-spacing="6" fill="#EFE3C8" opacity=".8">HAMISH DRUMMOND</text>
+      ${finish(id)}</svg>`;
+  },
+  fox(id){
+    let ticks=''; for(let i=0;i<60;i++){ const a=i/60*Math.PI*2, big=i%5===0, r1=big?150:158, r2=166;
+      ticks+=`<line x1="${(230+Math.sin(a)*r1).toFixed(1)}" y1="${(345-Math.cos(a)*r1).toFixed(1)}" x2="${(230+Math.sin(a)*r2).toFixed(1)}" y2="${(345-Math.cos(a)*r2).toFixed(1)}" stroke="#2A1A12" stroke-width="${big?5:2}"/>`; }
+    return `<svg viewBox="0 0 460 690" xmlns="http://www.w3.org/2000/svg">
+      <rect width="460" height="690" fill="#DB6A2C"/>
+      <circle cx="230" cy="345" r="186" fill="none" stroke="#F3E3C3" stroke-width="3" opacity=".6"/>
+      <circle cx="230" cy="345" r="176" fill="#F3E3C3"/>
+      ${ticks}
+      <text x="230" y="230" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="24" fill="#2A1A12">XII</text>
+      <text x="230" y="478" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="24" fill="#2A1A12">VI</text>
+      <text x="112" y="354" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="24" fill="#2A1A12">IX</text>
+      <text x="348" y="354" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="24" fill="#2A1A12">III</text>
+      <g transform="translate(230 352) scale(.72) translate(-230 -330)">
+        <polygon points="145,200 200,265 260,265 315,200 330,300 352,342 230,452 108,342 130,300" fill="#C4501F"/>
+        <polygon points="152,222 190,266 158,282" fill="#2A1A12"/><polygon points="308,222 270,266 302,282" fill="#2A1A12"/>
+        <polygon points="108,342 176,334 230,392 284,334 352,342 230,452" fill="#FFF6E6"/>
+        <polygon points="200,265 260,265 230,330" fill="#E07A3E"/>
+        <ellipse cx="186" cy="312" rx="12" ry="7" fill="#2A1A12" transform="rotate(18 186 312)"/>
+        <ellipse cx="274" cy="312" rx="12" ry="7" fill="#2A1A12" transform="rotate(-18 274 312)"/>
+        <path d="M216,398 L244,398 L230,416 Z" fill="#2A1A12"/>
+      </g>
+      <text x="230" y="98" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="48" fill="#FFF3DF">The Fox Who</text>
+      <text x="230" y="600" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="52" fill="#FFF3DF">Kept the Hours</text>
+      <text x="230" y="650" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="15" letter-spacing="6" fill="#2A1A12">ELSPETH NAIRN</text>
+      ${finish(id)}</svg>`;
+  },
+  weather(id){
+    const cloud=(x,y,s,c)=>`<g transform="translate(${x} ${y}) scale(${s})" fill="${c}"><circle cx="0" cy="0" r="40"/><circle cx="48" cy="-18" r="52"/><circle cx="100" cy="4" r="38"/><rect x="-10" y="0" width="120" height="40" rx="20"/></g>`;
+    let rain=''; const r=KK.rng(5);
+    for(let i=0;i<34;i++){ const x=40+r()*380, y=330+r()*200; rain+=`<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${(x-7).toFixed(1)}" y2="${(y+20).toFixed(1)}" stroke="#3E6475" stroke-width="3.5" stroke-linecap="round"/>`; }
+    return `<svg viewBox="0 0 460 690" xmlns="http://www.w3.org/2000/svg">
+      <rect width="460" height="690" fill="#AEC6D1"/>
+      <defs><clipPath id="rc${id}"><rect x="0" y="0" width="460" height="690"/></clipPath></defs>
+      ${rain}
+      ${cloud(60,290,1.3,'#F5F0E6')}${cloud(250,250,.9,'#E3ECEF')}${cloud(300,320,1.05,'#F5F0E6')}
+      <!-- umbrella, rain stops around it -->
+      <g transform="translate(250 470)">
+        <path d="M-95,0 A95,82 0 0 1 95,0 q-15.8,-12 -31.6,0 q-15.8,-12 -31.6,0 q-15.8,-12 -31.6,0 q-15.8,-12 -31.6,0 q-15.8,-12 -31.6,0 q-15.8,-12 -31.6,0 Z" fill="#F2B63A"/>
+        <path d="M0,-82 C-20,-50 -28,-20 -31.6,0 M0,-82 C20,-50 28,-20 31.6,0" stroke="#D9922A" stroke-width="3" fill="none"/>
+        <rect x="-2.5" y="-94" width="5" height="14" fill="#1F3440"/>
+        <path d="M0,0 L0,92 a14,14 0 0 1 -28,0" stroke="#1F3440" stroke-width="7" fill="none" stroke-linecap="round"/>
+      </g>
+      <text x="36" y="132" font-family="Bricolage Grotesque" font-weight="800" font-size="100" letter-spacing="-4" fill="#1F3440">Weather</text>
+      <text x="38" y="196" font-family="Fraunces" font-style="italic" font-size="50" fill="#1F3440">for Beginners</text>
+      <text x="38" y="652" font-family="Space Grotesk" font-weight="700" font-size="16" letter-spacing="6" fill="#1F3440">PRIYA CASTELLAN</text>
+      <text x="38" y="624" font-family="Space Grotesk" font-weight="500" font-size="14" letter-spacing="2" fill="#1F3440" opacity=".8">a funny, hopeful novel</text>
+      ${finish(id)}</svg>`;
+  },
+};
+
+const BOOKS = [
+  { key:'lamp', acc:'#C98A1E', genre:'Historical fiction',
+    title:'The Lamplighter’s <i>Almanac</i>', author:'Morag Keillor', pub:'Thistle & Quill Press',
+    pitch:'1890s Leith. Every dusk, Nell lights the same forty lamps — and writes down what she sees in the windows. Then one entry goes missing.',
+    note:'Read it by lamplight, obviously. I finished it in two evenings and walked home the long way.', sig:'Isla, fiction' },
+  { key:'orchard', acc:'#2F5D62', genre:'Literary fiction',
+    title:'Salt <i>Orchard</i>', author:'Tomasz Wren', pub:'Harbourlight Editions',
+    pitch:'Two sisters who haven’t spoken in ten years inherit an apple orchard on the Fife coast. The cliff it stands on is falling into the sea.',
+    note:'Tender, funny and quietly devastating. Bring tissues. And maybe an apple.', sig:'Callum, owner' },
+  { key:'candle', acc:'#B23A2A', genre:'Crime & mystery',
+    title:'A Quiet Death on <i>Candlemaker Row</i>', author:'Hamish Drummond', pub:'Old Close Press',
+    pitch:'A retired bookbinder is found dead in his locked workshop, 200 yards from our shop. DI Laing has one clue: a book that doesn’t exist.',
+    note:'Edinburgh noir at its best. You’ll never walk past Greyfriars the same way.', sig:'Ros, crime desk' },
+  { key:'fox', acc:'#D0602A', genre:'Fable · all ages',
+    title:'The Fox Who <i>Kept the Hours</i>', author:'Elspeth Nairn', pub:'Bramble & Birch',
+    pitch:'When the old clockmaker falls ill, a vixen takes over winding every clock in the village — until time itself starts to slip.',
+    note:'Our bedtime read-aloud of the season. Adults: you will cry at chapter nine.', sig:'Fergus, kids’ corner' },
+  { key:'weather', acc:'#3E6475', genre:'Feel-good fiction',
+    title:'Weather <i>for Beginners</i>', author:'Priya Castellan', pub:'Lowtide Books',
+    pitch:'A TV weather presenter is fired live on air. She moves to the rainiest town in Scotland to start over — and forecasts her own life instead.',
+    note:'The antidote to grey November afternoons. Laughed out loud on the number 23 bus.', sig:'Niamh, bookseller' },
+];
+
+const LEAF = (c,s,rot)=>`<svg width="${60*s}" height="${60*s}" viewBox="0 0 60 60" style="transform:rotate(${rot}deg)"><path d="M30,4 C44,14 50,28 44,42 C40,50 34,54 30,56 C26,54 20,50 16,42 C10,28 16,14 30,4 Z" fill="${c}"/><path d="M30,8 L30,58 M30,24 L40,18 M30,34 L42,28 M30,24 L20,18 M30,34 L18,28 M30,44 L38,40 M30,44 L22,40" stroke="rgba(0,0,0,.22)" stroke-width="1.6" fill="none"/></svg>`;
+
+function dots(i){ return `<div class="dots">${[0,1,2,3,4,5,6].map(k=>`<i class="${k===i?'on':''}"></i>`).join('')}</div>`; }
+const header = (right)=>`<div class="hdr"><div class="logo"><span class="pg"></span>Blank Page Books</div><div class="kicker">${right}</div></div>`;
+
+let html = '';
+
+// ---------- Slide 1: cover ----------
+const fanRot=[-15,-7.5,0,7.5,15];
+html += `<section class="slide s-cover">
+  ${header('Edinburgh')}
+  <div class="hero">
+    <div class="over">the booksellers’ picks</div>
+    <h1>Our <span class="five">5</span><br><em>autumn</em><br>favourites</h1>
+    <div class="sub">Five books we can’t stop pressing into people’s hands this season.</div>
+  </div>
+  <div class="fan">${[0,1,2,3,4].map(i=>`<div class="mini" style="transform:rotate(${fanRot[i]}deg);z-index:${i===2?5:(i===1||i===3?4:3)}">${COVERS[BOOKS[i].key](100+i)}</div>`).join('')}</div>
+  <div class="leaf" style="left:860px;top:210px">${LEAF('#E9A23B',1.5,24)}</div>
+  <div class="leaf" style="left:930px;top:420px">${LEAF('#B8492C',1.1,-40)}</div>
+  <div class="leaf" style="left:800px;top:600px">${LEAF('#C98A1E',.8,70)}</div>
+  <div class="foot" style="z-index:9"><span>Swipe to meet them →</span>${dots(0)}</div>
+  <div class="grain">${GRAIN}</div>
+</section>`;
+
+// ---------- Slides 2–6: books ----------
+BOOKS.forEach((b,i)=>{
+  html += `<section class="slide" style="--acc:${b.acc}">
+    ${header(`Autumn favourites · ${String(i+1).padStart(2,'0')}/05`)}
+    <div class="cover">${COVERS[b.key](i+1)}</div>
+    <div class="rcol">
+      <span class="genre">${b.genre}</span>
+      <div class="num">${String(i+1).padStart(2,'0')}</div>
+      <div class="note"><div class="lbl">Bookseller’s note</div><p>“${b.note}”</p><div class="sig">— ${b.sig}</div></div>
+    </div>
+    <div class="body">
+      <div class="title">${b.title}</div>
+      <div class="meta"><b>${b.author}</b> &nbsp;·&nbsp; ${b.pub}</div>
+      <div class="rule"></div>
+      <div class="pitch">${b.pitch}</div>
+    </div>
+    <div class="foot"><span>${i<4?'Next pick →':'How to get yours →'}</span>${dots(i+1)}</div>
+    <div class="grain">${GRAIN}</div>
+  </section>`;
+});
+
+// ---------- Slide 7: CTA ----------
+const IC = {
+  book:'<path d="M12 5v16"/><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z"/>',
+  click:'<path d="M14 4.1 12 6"/><path d="m5.1 8-2.9-.8"/><path d="m6 12-1.9 2"/><path d="M7.2 2.2 8 5.1"/><path d="M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z"/>',
+  bag:'<path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/>',
+};
+const ic = k=>`<svg viewBox="0 0 24 24" fill="none" stroke="#F7EFDF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
+html += `<section class="slide s-cta">
+  ${header('Reserve & collect')}
+  <div class="cta-h">Reserve online.<br><em>Collect in</em><br><em>two hours.</em></div>
+  <div class="stamp"><b>2h</b><span>ready to<br>collect</span></div>
+  <div class="steps">
+    <div class="step"><div class="ic">${ic('book')}</div><div><div class="n">Step 1</div><div class="t">Pick a favourite <i>(or all five)</i></div></div></div>
+    <div class="step"><div class="ic">${ic('click')}</div><div><div class="n">Step 2</div><div class="t">Reserve it online — <i>link in bio</i></div></div></div>
+    <div class="step"><div class="ic">${ic('bag')}</div><div><div class="n">Step 3</div><div class="t">Collect within 2 hours — <i>wrapped &amp; waiting</i></div></div></div>
+  </div>
+  <div class="cta-sub">Hold any of our autumn favourites online, then pop into the shop when it suits you.</div>
+  <div class="leaf" style="left:700px;top:470px">${LEAF('#E9A23B',1.1,-20)}</div>
+  <div class="leaf" style="left:680px;top:720px">${LEAF('#F7EFDF',.7,35)}</div>
+  <div class="foot"><span>Blank Page Books · Edinburgh</span>${dots(6)}</div>
+  <div class="grain">${GRAIN}</div>
+</section>`;
+
+document.getElementById('root').innerHTML = html;
+</script>
+</body>
+</html>

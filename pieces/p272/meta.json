@@ -1,0 +1,8 @@
+{ "id": "p272", "brand": "Fourmi", "sector": "SaaS (hospitality)", "kind": "video",
+  "format": "1080x1920", "duration": 22, "slides": null,
+  "title": "Your rota, done in 3 taps",
+  "concept": "Opens on the Sunday-night pain of a hand-scribbled paper rota, then a believable Fourmi phone demo: the week auto-fills in three counted taps, a shift swap is approved from a notification, staff clock in and payroll exports, before a 2,400-restaurant proof beat and a free-month end card. Warm cream/ink/ant-red art direction with an invented ant mark, finger taps with ripples, red wipe and iris transitions.",
+  "techniques": ["gsap", "drawsvg", "ui-mockup", "finger-tap-demo", "svg-illustration", "mask-text-reveals", "clip-path-transitions", "svg-grain"],
+  "fonts": ["Bricolage Grotesque", "JetBrains Mono"],
+  "palette": ["#F5EFE4", "#1E1B18", "#E0482B", "#F2B53A", "#7FA77A"],
+  "copy_language": "en" }

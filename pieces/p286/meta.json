@@ -1,0 +1,8 @@
+{ "id": "p286", "brand": "Maison Ondine", "sector": "Boutique hotel & spa", "kind": "video",
+  "format": "1920x1080", "duration": 20, "slides": null,
+  "title": "Winter Escape at sunset",
+  "concept": "A single slow sunset over the Bay of Biscay carries the whole film: sky gradients shift from amber to indigo while hairline generative waves glitter under a sinking sun. Fine italic serif type delivers the hook, the three inclusions, the €420 price and the booking card.",
+  "techniques": ["gsap", "canvas-2d", "generative-waves", "svg-logo", "masked-text-reveals"],
+  "fonts": ["Cormorant Garamond", "Figtree"],
+  "palette": ["#0A1428", "#3A2A4F", "#E9825B", "#F5C98E", "#F6EFE4"],
+  "copy_language": "en" }

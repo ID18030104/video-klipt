@@ -1,0 +1,100 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../node_modules/@fontsource/space-mono/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/space-mono/700.css">
+<style>
+:root{--paper:#EAF3E1;--bar:#D2E8C9;--strip:#BFD8B5;--ink:#14231C;--mint:#0B6544;--red:#C4372B;--hi:#C9F5DD}
+*{box-sizing:border-box;margin:0}
+html,body{background:#0f1a15}
+body{font-family:'Space Mono',monospace;color:var(--ink)}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--paper);
+ background-image:repeating-linear-gradient(180deg,transparent 0 150px,var(--bar) 150px 300px);background-position:0 84px}
+.pano{position:absolute;left:0;top:0;width:7560px;height:1350px;pointer-events:none}
+.strip{position:absolute;left:0;width:100%;height:84px;background:var(--strip);
+ background-image:radial-gradient(circle at 30px 42px,#0f1a15 0 15px,transparent 16px);background-size:60px 84px}
+.strip.t{top:0;border-bottom:2px dashed #8fb083}.strip.b{bottom:0;border-top:2px dashed #8fb083}
+.ruler{position:absolute;top:96px;left:0;width:100%;height:30px;font-size:20px;letter-spacing:.05em;color:#4f6b5b}
+.ruler span{position:absolute;top:0;white-space:nowrap}
+.ruler i{position:absolute;top:22px;width:2px;height:8px;background:#7c9a88}
+.vert{position:absolute;left:48px;bottom:100px;writing-mode:vertical-rl;transform:rotate(180deg);transform-origin:center;
+ font-weight:700;line-height:1;white-space:nowrap;color:transparent;
+ background:radial-gradient(circle at 4px 4px,var(--mint) 0 2.9px,transparent 3.4px) 0 0/8px 8px;-webkit-background-clip:text;background-clip:text;letter-spacing:.02em}
+.col{position:absolute;left:280px;right:70px;top:170px;bottom:210px;display:flex;flex-direction:column}
+.tag{align-self:flex-start;background:var(--red);color:#fff;font-weight:700;font-size:30px;letter-spacing:.14em;padding:10px 20px}
+h2{font-size:88px;line-height:1.08;letter-spacing:-.03em;font-weight:700;margin-top:44px}
+p{font-size:40px;line-height:1.4;margin-top:36px;letter-spacing:-.01em}
+.fix{margin-top:auto;background:var(--ink);color:var(--hi);padding:30px 34px;font-size:38px;line-height:1.35;font-weight:700}
+.fix small{display:block;font-size:26px;letter-spacing:.2em;color:#8fd7ae;margin-bottom:8px}
+.prog{position:absolute;left:280px;right:70px;bottom:118px;display:flex;gap:12px;align-items:center;font-size:24px;font-weight:700;letter-spacing:.12em}
+.prog b{flex:1;height:22px;border:3px solid var(--ink)}.prog b.on{background:var(--ink)}.prog b.cur{background:var(--red);border-color:var(--red)}
+.prog span{margin-right:12px}
+.brand{display:flex;align-items:center;gap:14px;font-weight:700;font-size:36px}
+.brand svg{width:48px;height:48px;color:var(--mint)}
+.big5{font-size:640px;line-height:.8;font-weight:700;color:transparent;letter-spacing:-.05em;margin-left:-20px;
+ background:radial-gradient(circle at 5px 5px,var(--ink) 0 3.5px,transparent 4.1px) 0 0/10px 10px;-webkit-background-clip:text;background-clip:text}
+.ctaBtn{align-self:flex-start;background:var(--mint);color:#fff;font-weight:700;font-size:40px;padding:26px 40px;margin-top:40px}
+.disc{margin-top:auto;font-size:30px;line-height:1.35;border-top:3px dashed var(--ink);padding-top:22px}
+</style></head><body>
+<main id="m">
+<section class="slide" data-i="0">
+ <div class="vert" style="font-size:260px">AT 25</div>
+ <div class="col" style="left:400px;top:150px">
+  <div class="brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20a10 10 0 0010-10 25.9 25.9 0 00-1.04-7.281 1 1 0 00-1.755-.325C15.833 5.5 13 5.5 9.8 6.1A7 7 0 0011 20"/><path d="M2 21a5 5 0 012.911-4.544C7.613 15.212 8.351 15.24 11 13"/></svg>Mintleaf</div>
+  <div class="big5" style="margin-top:24px">5</div>
+  <h2 style="margin-top:24px;font-size:78px">money mistakes to avoid</h2>
+  <div class="fix" style="margin-top:auto;margin-bottom:-110px;font-size:32px;padding:22px 28px"><small>NEXT PAGE</small>Swipe for the list &rarr;</div>
+ </div>
+</section>
+<section class="slide" data-i="1">
+ <div class="vert" style="font-size:150px">NO CUSHION</div>
+ <div class="col"><div class="tag">MISTAKE 01</div><h2>No emergency fund.</h2>
+  <p>One surprise bill and it lands on a card. A small buffer, built bit by bit, stops a bad week becoming a bad year.</p>
+  <div class="fix"><small>THE FIX</small>Round-ups add to it automatically.</div></div>
+ <div class="prog"><span>1/5</span><b class="cur"></b><b></b><b></b><b></b><b></b></div>
+</section>
+<section class="slide" data-i="2">
+ <div class="vert" style="font-size:135px">CREDIT BUYS</div>
+ <div class="col"><div class="tag">MISTAKE 02</div><h2>Financing impulse buys on credit.</h2>
+  <p>Pay later feels free until the repayments stack up. If you can&rsquo;t pay for it today, pause before you buy.</p>
+  <div class="fix"><small>THE FIX</small>Sleep on it. Save the money instead.</div></div>
+ <div class="prog"><span>2/5</span><b class="on"></b><b class="cur"></b><b></b><b></b><b></b></div>
+</section>
+<section class="slide" data-i="3">
+ <div class="vert" style="font-size:135px">COMPOUNDING</div>
+ <div class="col"><div class="tag">MISTAKE 03</div><h2>Ignoring compound interest.</h2>
+  <p>Growth earns growth. The sooner money starts, the longer it has to build on itself, even from small amounts.</p>
+  <div class="fix"><small>THE FIX</small>Start from &pound;1.</div></div>
+ <div class="prog"><span>3/5</span><b class="on"></b><b class="on"></b><b class="cur"></b><b></b><b></b></div>
+</section>
+<section class="slide" data-i="4">
+ <div class="vert" style="font-size:150px">GHOST SUBS</div>
+ <div class="col"><div class="tag">MISTAKE 04</div><h2>Forgotten subscriptions.</h2>
+  <p>Small monthly charges hide in plain sight. Read your statement once a month and cancel what you don&rsquo;t use.</p>
+  <div class="fix"><small>THE FIX</small>Send that money to savings instead.</div></div>
+ <div class="prog"><span>4/5</span><b class="on"></b><b class="on"></b><b class="on"></b><b class="cur"></b><b></b></div>
+</section>
+<section class="slide" data-i="5">
+ <div class="vert" style="font-size:190px">LATER</div>
+ <div class="col"><div class="tag">MISTAKE 05</div><h2 style="font-size:70px;margin-top:32px">Waiting until you &ldquo;have enough&rdquo; to invest.</h2>
+  <p style="margin-top:28px">No magic number exists. Starting small beats starting late. Begin from &pound;1.</p>
+  <div class="fix"><small>THE FIX</small>Start now. Capital at risk when investing.</div></div>
+ <div class="prog"><span>5/5</span><b class="on"></b><b class="on"></b><b class="on"></b><b class="on"></b><b class="cur"></b></div>
+</section>
+<section class="slide" data-i="6">
+ <div class="vert" style="font-size:260px">START</div>
+ <div class="col" style="left:400px;top:150px;right:70px">
+  <div class="brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20a10 10 0 0010-10 25.9 25.9 0 00-1.04-7.281 1 1 0 00-1.755-.325C15.833 5.5 13 5.5 9.8 6.1A7 7 0 0011 20"/><path d="M2 21a5 5 0 012.911-4.544C7.613 15.212 8.351 15.24 11 13"/></svg>Mintleaf</div>
+  <h2 style="font-size:96px;margin-top:70px">Download Mintleaf.</h2>
+  <p style="font-size:38px">Automatic round-ups. Start from &pound;1.</p>
+  <div class="ctaBtn">Get the app &rarr;</div>
+  <div class="disc" style="margin-bottom:-90px">Capital at risk when investing.</div>
+ </div>
+</section>
+</main>
+<script>
+window.KLIPT={width:1080,height:1350};
+const W=7560,pano=document.createElement('div');pano.className='pano';
+let h='<div class="strip t"></div><div class="strip b"></div><div class="ruler">';
+for(let x=0;x<W;x+=120){h+='<i style="left:'+x+'px"></i><span style="left:'+(x+8)+'px">'+String(x/12).padStart(4,'0')+'</span>'}
+pano.innerHTML=h+'</div>';
+document.querySelectorAll('.slide').forEach((s,i)=>{const p=pano.cloneNode(true);p.style.left=(-i*1080)+'px';s.prepend(p)});
+</script></body></html>

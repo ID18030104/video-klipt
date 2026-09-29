@@ -1,0 +1,5 @@
+{ "id":"p279","brand":"Nomad Cycles","sector":"Electric cargo bikes","kind":"video","format":"1080x1920","duration":24,"slides":null,
+"title":"School run race: bike vs car",
+"concept":"A live route race on a stylised Portland map: the car sits in a bridge jam while the Nomad cargo bike glides down the green lane, timers running, then a line-drawn product beat with price and a free test-ride CTA.",
+"techniques":["gsap","svg-map","route-animation","drawsvg","css-ui"],"fonts":["Bricolage Grotesque","Space Mono"],
+"palette":["#F3EEE2","#13251E","#14B86A","#FF6B2C","#D7263D","#A8D5DC"],"copy_language":"en"}

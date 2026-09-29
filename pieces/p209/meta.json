@@ -1,0 +1,5 @@
+{"id":"p209","brand":"Encre Noire Tattoo","sector":"Salon de tatouage","kind":"video","format":"1080x1920","duration":14,"slides":null,
+"title":"Flash Day – 40 flashs dès 60 €",
+"concept":"Une planche de flashs photocopiée : noir, papier et un seul rouge encre, trame halftone, grain et poussières, motifs dessinés trait par trait, cuts secs avec tremblement et stroboscope, puis une carte finale calme.",
+"techniques":["gsap","drawsvg","svg-illustration","canvas-halftone","grain-overlay","smash-cuts"],
+"fonts":["Anton","Space Mono"],"palette":["#0c0c0c","#ece6d8","#ff2a1a"],"copy_language":"fr"}

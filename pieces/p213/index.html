@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>Nonna Rosa · La Tartufata</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/gloock/index.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/eb-garamond/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/eb-garamond/500-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/eb-garamond/600.css">
+<style>
+  :root{
+    --parch:#EAD9B2; --ink:#3A2517; --red:#B3301E; --crust:#C98A4B;
+    --cream:#F4E8CC; --truffle:#4A3426; --rocket:#56702C;
+  }
+  html,body{margin:0;padding:0;overflow:hidden;background:var(--parch);}
+  .slide{position:relative;width:1080px;height:1350px;overflow:hidden;display:block;}
+  svg{display:block}
+  .kicker{font-family:'EB Garamond',serif;font-weight:600;font-size:30px;letter-spacing:.34em;fill:var(--ink);}
+  .title{font-family:'Gloock',serif;font-size:156px;letter-spacing:-.02em;fill:var(--ink);}
+  .sub{font-family:'EB Garamond',serif;font-style:italic;font-weight:500;font-size:48px;fill:var(--ink);}
+  .sub tspan.x{fill:var(--red);font-family:'Gloock',serif;font-style:normal;}
+  .place{font-family:'EB Garamond',serif;font-style:italic;font-weight:500;font-size:32px;fill:var(--ink);letter-spacing:.01em;}
+  .place.big{font-size:34px;}
+  .caps{font-family:'EB Garamond',serif;font-weight:600;font-size:30px;letter-spacing:.22em;fill:var(--ink);}
+  .price{font-family:'Gloock',serif;font-size:86px;fill:#F6E9CF;letter-spacing:-.01em;}
+  .seal-t{font-family:'EB Garamond',serif;font-weight:600;font-size:22px;letter-spacing:.3em;fill:#F6E9CF;}
+  .foot{font-family:'EB Garamond',serif;font-style:italic;font-weight:500;font-size:32px;fill:var(--ink);}
+</style>
+</head>
+<body>
+<main>
+<section class="slide">
+<svg id="map" width="1080" height="1350" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="stain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.006" numOctaves="4" seed="7" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.3  0 0 0 0 0.12  0 0 0 -1.6 1.05" />
+    </filter>
+    <filter id="fibre" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="f"/>
+      <feColorMatrix in="f" type="matrix" values="0 0 0 0 0.25  0 0 0 0 0.16  0 0 0 0 0.08  0 0 0 0.9 -0.38"/>
+    </filter>
+    <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="11" result="r"/>
+      <feDisplacementMap in="SourceGraphic" in2="r" scale="4"/>
+    </filter>
+    <filter id="inkwear" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="1" seed="5" result="w"/>
+      <feColorMatrix in="w" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.5" result="wm"/>
+      <feComposite in="SourceGraphic" in2="wm" operator="in"/>
+    </filter>
+    <radialGradient id="vig" cx="50%" cy="50%" r="72%">
+      <stop offset="0.55" stop-color="#8A6232" stop-opacity="0"/>
+      <stop offset="1" stop-color="#6E4A22" stop-opacity=".55"/>
+    </radialGradient>
+    <radialGradient id="crustG" cx="50%" cy="50%" r="50%">
+      <stop offset="0.80" stop-color="#E2B57A"/>
+      <stop offset="0.92" stop-color="#CE8F4E"/>
+      <stop offset="1" stop-color="#A9672F"/>
+    </radialGradient>
+    <linearGradient id="foldV" x1="0" x2="1">
+      <stop offset="0" stop-color="#6E4A22" stop-opacity="0"/>
+      <stop offset=".48" stop-color="#6E4A22" stop-opacity=".16"/>
+      <stop offset=".5" stop-color="#FFF6E0" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#FFF6E0" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="foldH" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#6E4A22" stop-opacity="0"/>
+      <stop offset=".48" stop-color="#6E4A22" stop-opacity=".14"/>
+      <stop offset=".5" stop-color="#FFF6E0" stop-opacity=".3"/>
+      <stop offset="1" stop-color="#FFF6E0" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- parchment -->
+  <rect width="1080" height="1350" fill="var(--parch)"/>
+  <rect width="1080" height="1350" filter="url(#stain)" opacity=".55"/>
+  <rect width="1080" height="1350" filter="url(#fibre)" opacity=".5"/>
+  <rect width="1080" height="1350" fill="url(#vig)"/>
+
+  <!-- frame -->
+  <rect x="34" y="34" width="1012" height="1282" fill="none" stroke="var(--ink)" stroke-width="3"/>
+  <rect x="46" y="46" width="988" height="1258" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+
+  <!-- title cartouche -->
+  <g id="titleblock">
+    <text class="kicker" x="540" y="118" text-anchor="middle">PIZZA DU MOIS · NONNA ROSA</text>
+    <line x1="330" y1="140" x2="750" y2="140" stroke="var(--ink)" stroke-width="1.5"/>
+    <text class="title" x="540" y="272" text-anchor="middle">La Tartufata</text>
+    <text class="sub" x="540" y="342" text-anchor="middle"><tspan class="x">X</tspan> marque la truffe.</text>
+  </g>
+
+  <g id="world"></g>
+
+  <!-- folds on top of everything -->
+  <rect x="505" y="0" width="70" height="1350" fill="url(#foldV)"/>
+  <rect x="0" y="640" width="1080" height="70" fill="url(#foldH)"/>
+</svg>
+</section>
+</main>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+(function(){
+  const NS='http://www.w3.org/2000/svg';
+  const W=document.getElementById('world');
+  const R=KK.rng(213);
+  const C={x:540,y:790}, RAD=345;
+  function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);(parent||W).appendChild(e);return e;}
+  function g(attrs,parent){return el('g',attrs||{},parent);}
+  function blob(cx,cy,r,amp,seed,n){ // closed wobbly shape
+    n=n||48;const ph=[seed*1.3,seed*2.1,seed*.7];let d='';
+    for(let i=0;i<=n;i++){const a=i/n*Math.PI*2;
+      const rr=r*(1+amp*(Math.sin(3*a+ph[0])*.5+Math.sin(5*a+ph[1])*.3+Math.sin(9*a+ph[2])*.2));
+      const x=cx+rr*Math.cos(a),y=cy+rr*Math.sin(a);d+=(i?'L':'M')+x.toFixed(1)+','+y.toFixed(1);}
+    return d+'Z';}
+  function coast(r,off){let d='';const n=180;
+    for(let i=0;i<=n;i++){const a=i/n*Math.PI*2;
+      const rr=r+off+RAD*(0.014*Math.sin(3*a+1)+0.01*Math.sin(7*a+2)+0.006*Math.sin(13*a+.4));
+      d+=(i?'L':'M')+(C.x+rr*Math.cos(a)).toFixed(1)+','+(C.y+rr*Math.sin(a)).toFixed(1);}
+    return d+'Z';}
+
+  // coastal hatching (sea rings)
+  const sea=g({fill:'none',stroke:'#3A2517'});
+  [16,32,50,72,98].forEach((o,i)=>el('path',{d:coast(RAD,o),'stroke-width':(1.6-i*.2),opacity:(.55-i*.09)},sea));
+  // sea wave marks
+  const waves=g({fill:'none',stroke:'#3A2517','stroke-width':2,opacity:.45,'stroke-linecap':'round'});
+  [[150,560],[930,610],[120,930],[960,960],[250,1230],[700,1250],[860,470]].forEach(([x,y])=>{
+    el('path',{d:`M${x-22},${y} q11,-10 22,0 t22,0`},waves);
+    el('path',{d:`M${x-8},${y+14} q8,-8 16,0`},waves);
+  });
+
+  // crust (island coast)
+  el('path',{d:coast(RAD,0),fill:'url(#crustG)',stroke:'#3A2517','stroke-width':3.2});
+  // wood-fire char spots (leopard) on crust
+  const chars=g({fill:'#2F1C10'});
+  for(let i=0;i<70;i++){const a=R()*Math.PI*2, rr=RAD-8-R()*42, s=3+R()*R()*16;
+    el('path',{d:blob(C.x+rr*Math.cos(a),C.y+rr*Math.sin(a),s,.25,i),opacity:(.45+R()*.45).toFixed(2)},chars);}
+  // inner land (cream base)
+  el('path',{d:coast(RAD,-52),fill:'#F1E2C2',stroke:'#3A2517','stroke-width':1.6,'stroke-dasharray':'2 5',opacity:1});
+  // cream texture stipple
+  const st=g({fill:'#B99668'});
+  for(let i=0;i<420;i++){const a=R()*Math.PI*2, rr=Math.sqrt(R())*(RAD-60);
+    el('circle',{cx:(C.x+rr*Math.cos(a)).toFixed(1),cy:(C.y+rr*Math.sin(a)).toFixed(1),r:(0.8+R()*1.4).toFixed(1),opacity:(.25+R()*.35).toFixed(2)},st);}
+
+  // fior di latte lakes
+  const lakes=g({});
+  [[C.x-40,C.y+30,62,4],[C.x+10,C.y+215,48,9],[C.x-205,C.y+175,40,2],[C.x+215,C.y-165,36,6],[C.x-95,C.y-215,34,12]].forEach(([x,y,r,s])=>{
+    el('path',{d:blob(x,y,r,.16,s),fill:'#FFFBF0',stroke:'#3A2517','stroke-width':1.6},lakes);
+    el('path',{d:blob(x,y,r*.72,.16,s+1),fill:'none',stroke:'#3A2517','stroke-width':1,opacity:.35},lakes);
+  });
+
+  // truffle marsh
+  const TM={x:C.x+95,y:C.y-70};
+  el('path',{d:blob(TM.x,TM.y,98,.14,3),fill:'#5B4131',stroke:'#2A1A0F','stroke-width':2.4,filter:'url(#rough)'});
+  const tdots=g({fill:'#1E120A'});
+  for(let i=0;i<260;i++){const a=R()*Math.PI*2, rr=Math.sqrt(R())*95;
+    el('circle',{cx:(TM.x+rr*Math.cos(a)).toFixed(1),cy:(TM.y+rr*Math.sin(a)).toFixed(1),r:(0.9+R()*2.4).toFixed(1),opacity:(.35+R()*.5).toFixed(2)},tdots);}
+  const tl=g({fill:'none',stroke:'#D8BE95','stroke-width':1.6,opacity:.55,'stroke-linecap':'round'});
+  [[-50,-30],[20,-50],[-30,30],[40,20],[-60,55]].forEach(([dx,dy])=>el('path',{d:`M${TM.x+dx-14},${TM.y+dy} h28 M${TM.x+dx-8},${TM.y+dy+7} h16`},tl));
+
+  // mushroom mountains
+  function mush(x,y,s,rot){
+    const m=g({transform:`translate(${x},${y}) rotate(${rot})`});
+    el('path',{d:`M${-s},0 C${-s},${-s*1.05} ${s},${-s*1.05} ${s},0 L${s*.34},0 C${s*.3},${s*.35} ${s*.34},${s*.6} ${s*.42},${s*.85} L${-s*.42},${s*.85} C${-s*.34},${s*.6} ${-s*.3},${s*.35} ${-s*.34},0 Z`,fill:'#D9BC90',stroke:'#3A2517','stroke-width':2.4,'stroke-linejoin':'round'},m);
+    el('path',{d:`M${-s*.78},${-s*.1} C${-s*.7},${-s*.72} ${s*.7},${-s*.72} ${s*.78},${-s*.1}`,fill:'none',stroke:'#3A2517','stroke-width':1.3,opacity:.6},m);
+    // hatching on the shaded side like map relief
+    for(let k=0;k<5;k++){el('line',{x1:s*(.15+k*.14),y1:-s*(.55-k*.08),x2:s*(.05+k*.14),y2:-s*(.2-k*.03),stroke:'#3A2517','stroke-width':1.3,opacity:.55},m);}
+  }
+  [[C.x-175,C.y-95,40,-6],[C.x-120,C.y-60,30,8],[C.x-232,C.y-30,27,-12],[C.x-110,C.y+140,36,5],[C.x+150,C.y+145,38,-8],[C.x+205,C.y+195,26,10],[C.x-20,C.y-150,28,4]].forEach(a=>mush(...a));
+
+  // rocket forest
+  const forest=g({});
+  function leaf(x,y,len,rot){
+    const w=len*.26;const lobes=`M0,0 C${len*.1},${-w} ${len*.25},${-w*.5} ${len*.32},${-w*1.05} C${len*.42},${-w*.4} ${len*.55},${-w*1.1} ${len*.64},${-w*.9} C${len*.74},${-w*.3} ${len*.9},${-w*.7} ${len},0 C${len*.9},${w*.7} ${len*.74},${w*.3} ${len*.64},${w*.9} C${len*.55},${w*1.1} ${len*.42},${w*.4} ${len*.32},${w*1.05} C${len*.25},${w*.5} ${len*.1},${w} 0,0Z`;
+    const lg=g({transform:`translate(${x.toFixed(1)},${y.toFixed(1)}) rotate(${rot.toFixed(1)})`},forest);
+    el('path',{d:lobes,fill:'#5E7A31',stroke:'#27330F','stroke-width':1.6,'stroke-linejoin':'round'},lg);
+    el('path',{d:`M2,0 L${len*.95},0`,stroke:'#C9D59A','stroke-width':1.2,opacity:.8},lg);
+  }
+  const F={x:C.x+170,y:C.y+30};
+  for(let i=0;i<26;i++){const a=R()*Math.PI*2, rr=Math.sqrt(R())*80;
+    leaf(F.x+rr*Math.cos(a)*1.15,F.y+rr*Math.sin(a)*.8,52+R()*30,R()*360);}
+  for(let i=0;i<9;i++){const a=R()*Math.PI*2, rr=Math.sqrt(R())*60;
+    leaf(C.x-185+rr*Math.cos(a),C.y+85+rr*Math.sin(a)*.6,40+R()*22,R()*360);}
+
+  // route (dotted) from Toulouse to X
+  const X={x:TM.x+6,y:TM.y-6};
+  el('path',{d:`M150,1175 C260,1150 330,1120 360,1060 S410,940 470,900 S560,860 575,800 S600,760 ${X.x-30},${X.y+34}`,fill:'none',stroke:'#B3301E','stroke-width':6,'stroke-dasharray':'2 16','stroke-linecap':'round'});
+  el('circle',{cx:150,cy:1175,r:13,fill:'#F4E8CC',stroke:'#B3301E','stroke-width':5});
+
+  // X marks the spot
+  const xg=g({stroke:'#B3301E','stroke-width':20,'stroke-linecap':'round',filter:'url(#rough)'});
+  el('path',{d:`M${X.x-42},${X.y-42} L${X.x+42},${X.y+42} M${X.x+42},${X.y-42} L${X.x-42},${X.y+42}`,stroke:'#F4E8CC','stroke-width':32},xg);
+  el('path',{d:`M${X.x-42},${X.y-42} L${X.x+42},${X.y+42} M${X.x+42},${X.y-42} L${X.x-42},${X.y+42}`},xg);
+
+  // compass rose
+  const cr=g({transform:'translate(150,470)'});
+  el('circle',{r:66,fill:'none',stroke:'#3A2517','stroke-width':1.5},cr);
+  el('circle',{r:58,fill:'none',stroke:'#3A2517','stroke-width':1,'stroke-dasharray':'2 4'},cr);
+  for(let k=0;k<8;k++){const a=k*45, L=k%2?40:62, w=k%2?7:11;
+    const p=g({transform:`rotate(${a})`},cr);
+    el('path',{d:`M0,${-L} L${w},0 L0,0Z`,fill:'#3A2517'},p);
+    el('path',{d:`M0,${-L} L${-w},0 L0,0Z`,fill:k===0?'#B3301E':'#F1E2C2',stroke:'#3A2517','stroke-width':1.2},p);}
+  el('circle',{r:5,fill:'#B3301E'},cr);
+  const nt=el('text',{x:0,y:-78,'text-anchor':'middle',class:'caps',style:'font-size:28px;letter-spacing:0'},cr);nt.textContent='N';
+
+  // labels
+  function label(txt,x,y,rot,cls,anchor){const t=el('text',{x:0,y:0,class:cls||'place','text-anchor':anchor||'middle',transform:`translate(${x},${y}) rotate(${rot||0})`});
+    const lines=txt.split('\n');lines.forEach((ln,i)=>{const s=el('tspan',{x:0,dy:i?'1.05em':0},t);s.textContent=ln;});return t;}
+  // curved coast label
+  el('path',{id:'arcTop',d:`M${C.x-RAD-44},${C.y} A${RAD+44},${RAD+44} 0 0 1 ${C.x+RAD+44},${C.y}`,fill:'none'});
+  const ct=el('text',{class:'caps','letter-spacing':'.24em'});
+  const tp=el('textPath',{href:'#arcTop',startOffset:'50%','text-anchor':'middle'},ct);tp.textContent='CÔTE DU FOUR À BOIS';
+  // halo helper: parchment-coloured stroke behind labels on busy ground
+  label('Marais de\ncrème de truffe',TM.x+8,TM.y+140,-4,'place big').setAttribute('style','paint-order:stroke;stroke:#F1E2C2;stroke-width:8px;stroke-linejoin:round');
+  label('Monts champignons',C.x-165,C.y-150,-10).setAttribute('style','paint-order:stroke;stroke:#F1E2C2;stroke-width:8px;stroke-linejoin:round');
+  label('Forêt de roquette',F.x+14,F.y+118,8).setAttribute('style','paint-order:stroke;stroke:#F1E2C2;stroke-width:8px;stroke-linejoin:round');
+  label('Lacs de fior di latte',C.x-60,C.y+262,3).setAttribute('style','paint-order:stroke;stroke:#F1E2C2;stroke-width:8px;stroke-linejoin:round');
+  label('Toulouse',120,1222,0,'caps','start');
+
+  // price wax seal
+  const seal=g({transform:'translate(905,1170) rotate(-9)'});
+  el('path',{d:blob(0,0,112,.05,5,64),fill:'#9E2616',filter:'url(#rough)'},seal);
+  el('circle',{r:92,fill:'#B3301E'},seal);
+  el('circle',{r:80,fill:'none',stroke:'#F6E9CF','stroke-width':1.6,opacity:.8},seal);
+  el('path',{id:'sealArc',d:'M-62,0 A62,62 0 0 1 62,0',fill:'none'},seal);
+  const sa=el('text',{class:'seal-t'},seal);const sp=el('textPath',{href:'#sealArc',startOffset:'50%','text-anchor':'middle'},sa);sp.textContent='LE TRÉSOR';
+  const pr=el('text',{x:0,y:44,'text-anchor':'middle',class:'price'},seal);pr.textContent='17 €';
+  el('path',{d:blob(-40,-60,18,.3,2),fill:'#FFFFFF',opacity:.12},seal);
+
+  // footer
+  label('Nonna Rosa · pizzeria napolitaine à Toulouse',540,1286,0,'foot');
+})();
+window.KLIPT={width:1080,height:1350};
+</script>
+</body>
+</html>

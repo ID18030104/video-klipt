@@ -1,0 +1,214 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../node_modules/@fontsource/anton/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/space-mono/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/unbounded/800.css">
+<style>
+:root{--lime:#C8FF00;--ink:#0b0b0d;--vio:#6C2BFF;--pink:#FF2E88;--cy:#12E7FF;--bone:#F3F1EA}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;margin:0;overflow:hidden;background:var(--ink)}
+#stage{position:absolute;inset:0;overflow:hidden;background:var(--ink)}
+.sc{position:absolute;inset:0;overflow:hidden;visibility:hidden}
+.mono{font-family:'Space Mono',monospace;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.anton{font-family:'Anton',sans-serif;text-transform:uppercase;line-height:.88}
+.unb{font-family:'Unbounded',sans-serif;font-weight:800;text-transform:uppercase}
+.g{position:relative;display:inline-block;--gx:0px;--gy:0px;--go:0}
+.g::before,.g::after{content:attr(data-t);position:absolute;left:0;top:0;white-space:pre;pointer-events:none;mix-blend-mode:screen;opacity:var(--go,0)}
+.g::before{color:var(--pink);transform:translate(calc(var(--gx)*-1),var(--gy));clip-path:inset(0 0 50% 0)}
+.g::after{color:var(--cy);transform:translate(var(--gx),calc(var(--gy)*-1));clip-path:inset(50% 0 0 0)}
+.light .g::before,.light .g::after{mix-blend-mode:multiply}
+svg.peaks{position:absolute;left:0;bottom:0;width:1080px;height:1000px}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,255,0,.09) 2px,transparent 2px),linear-gradient(90deg,rgba(200,255,0,.09) 2px,transparent 2px);background-size:90px 90px}
+#scan{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.14) 0 2px,transparent 2px 5px);z-index:50;mix-blend-mode:multiply}
+#flash{position:absolute;inset:0;background:var(--lime);opacity:0;z-index:60;pointer-events:none}
+#tick{position:absolute;left:0;top:0;width:1080px;height:14px;z-index:70;background:rgba(255,255,255,.12)}
+#tick i{display:block;height:100%;width:0;background:var(--lime)}
+/* hook */
+#s1 .word{position:absolute;left:0;width:1080px;text-align:center;color:var(--lime);font-size:430px}
+#s1 .tag{position:absolute;left:60px;right:60px;text-align:center}
+/* lineup */
+.row{position:absolute;left:60px;right:60px;display:flex;align-items:baseline;gap:26px;white-space:nowrap}
+.row .n{font-size:30px;width:60px;opacity:.75}
+.row .nm{font-size:140px}
+.row.head .nm{font-size:170px}
+.row .k{font-size:26px;margin-left:auto;padding:8px 14px;border:3px solid currentColor}
+.hdr{position:absolute;left:60px;right:60px;top:150px}
+.stagebig{font-size:200px;margin-top:14px}
+.ft{position:absolute;left:60px;right:60px;bottom:110px;display:flex;justify-content:space-between;font-size:28px}
+/* stage themes */
+.t1{background:var(--lime);color:var(--ink)}
+.t2{background:var(--ink);color:var(--bone)}
+.t3{background:var(--vio);color:var(--lime)}
+/* price */
+#s5{background:var(--pink);color:var(--ink)}
+#s6{background:var(--ink);color:var(--lime)}
+.stamp{position:absolute;border:8px solid var(--ink);padding:14px 26px;font-size:44px}
+</style></head><body>
+<div id="stage">
+
+<div class="sc" id="s1">
+  <div class="grid"></div>
+  <svg class="peaks" id="pk1" viewBox="0 0 1080 1000" preserveAspectRatio="none"></svg>
+  <div class="mono" id="s1top" style="position:absolute;left:60px;top:120px;right:60px;color:var(--lime);font-size:32px;display:flex;justify-content:space-between"><span>Grenoble / French Alps</span><span>July</span></div>
+  <div class="word anton" id="w1" style="top:360px"><span class="g" data-t="OFF">OFF</span></div>
+  <div class="word anton" id="w2" style="top:700px"><span class="g" data-t="PISTE">PISTE</span></div>
+  <div class="tag mono" id="s1tag" style="top:1130px;color:var(--bone);font-size:38px"><span style="background:var(--lime);color:var(--ink);padding:10px 22px">First line-up wave</span></div>
+  <div class="tag mono" id="s1tag2" style="top:1230px;color:var(--bone);font-size:30px">3 days &nbsp;/&nbsp; 3 stages &nbsp;/&nbsp; 0 rules</div>
+</div>
+
+<div class="sc t1" id="s2"></div>
+<div class="sc t2" id="s3"></div>
+<div class="sc t3" id="s4"></div>
+
+<div class="sc" id="s5">
+  <div class="mono" id="p_top" style="position:absolute;left:60px;top:130px;font-size:34px">Early bird / until 15 Nov</div>
+  <div class="anton" id="p_3" style="position:absolute;left:40px;top:250px;font-size:520px"><span class="g" data-t="3">3</span></div>
+  <div class="anton" id="p_days" style="position:absolute;left:400px;top:330px;font-size:230px;line-height:.9"><span class="g" data-t="DAYS">DAYS</span><br><span class="g" data-t="PASS" style="color:var(--bone)">PASS</span></div>
+  <div class="anton" id="p_price" style="position:absolute;left:0;width:1080px;text-align:center;top:830px;font-size:640px;color:var(--ink)"><span class="g" data-t="€89">€89</span></div>
+  <div class="mono" id="p_sub" style="position:absolute;left:60px;right:60px;top:1500px;font-size:36px;line-height:1.5">Price goes up on 16 Nov.<br>Every wave costs more.</div>
+  <div class="stamp mono" id="stamp" style="right:60px;top:1690px;transform:rotate(-6deg);background:var(--lime)">Early bird</div>
+</div>
+
+<div class="sc" id="s6">
+  <div class="grid"></div>
+  <svg class="peaks" id="pk2" viewBox="0 0 1080 1000" preserveAspectRatio="none" style="height:480px"></svg>
+  <div class="mono" id="c1" style="position:absolute;left:60px;right:60px;top:300px;font-size:38px;color:var(--bone);text-align:center">Alps / July / 3 days</div>
+  <div class="anton" id="c2" style="position:absolute;left:0;width:1080px;top:380px;text-align:center;font-size:330px"><span class="g" data-t="OFF">OFF</span><br><span class="g" data-t="PISTE">PISTE</span></div>
+  <div class="mono" id="c3" style="position:absolute;left:0;width:1080px;top:1040px;text-align:center;font-size:36px;color:var(--bone)">Passes on sale now</div>
+  <div class="unb" id="c4" style="position:absolute;left:110px;right:110px;top:1120px;text-align:center;background:var(--lime);color:var(--ink);font-size:46px;padding:34px 0">Link in bio</div>
+  <div class="mono" id="c5" style="position:absolute;left:0;width:1080px;top:1300px;text-align:center;font-size:30px;color:var(--lime)">3-day pass &euro;89 &nbsp;/&nbsp; until 15 Nov</div>
+</div>
+
+<div id="tick"><i></i></div>
+<div id="scan"></div>
+<div id="flash"></div>
+</div>
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+const R=KK.rng(258);
+const $=s=>document.querySelector(s);
+/* ---------- peaks ---------- */
+function peaks(id,layers,colors,strokes){
+  const svg=$(id);let h='';
+  layers.forEach((L,i)=>{
+    let pts=[[0,1000]],x=-40,up=true;
+    const base=L.base,amp=L.amp;
+    while(x<1120){pts.push([x,up?base-amp*(0.4+R()*0.6):base+amp*0.15*R()]);x+=L.step*(0.7+R()*0.6);up=!up;}
+    pts.push([1120,1000]);
+    h+=`<polygon class="pl" data-i="${i}" points="${pts.map(p=>p.map(Math.round).join(',')).join(' ')}" fill="${colors[i]}" stroke="${strokes[i]}" stroke-width="4" stroke-linejoin="miter" style="transform-origin:540px 1000px"/>`;
+  });
+  svg.innerHTML=h;
+}
+peaks('#pk1',[{base:640,amp:420,step:300},{base:760,amp:380,step:260},{base:900,amp:340,step:230}],['#151518','#0b0b0d','#C8FF00'],['#C8FF00','#C8FF00','#0b0b0d']);
+peaks('#pk2',[{base:520,amp:420,step:320},{base:720,amp:400,step:260}],['#151518','#C8FF00'],['#C8FF00','#0b0b0d']);
+
+/* ---------- lineup scenes ---------- */
+const stages=[
+ {id:'s2',cls:'light',no:'01',name:'THE PEAK',sub:'Main stage / Sat night',rows:[['Low Orbit','Live'],['Sirene 404','DJ set'],['Kai Zenith','Live'],['Vanta Kole','Headliner']]},
+ {id:'s3',cls:'',no:'02',name:'CRAMPON',sub:'Acid / Techno / Bass',rows:[['Mira Voss','B2B'],['Parallax','Live'],['Null Choir','Live'],['Nora Seven','Headliner']]},
+ {id:'s4',cls:'',no:'03',name:'THE COL',sub:'Sunrise / Melodic / Breaks',rows:[['Halo Nine','Live'],['Yuko Ansel','DJ set'],['Tide Cult','Live'],['Acid Meridian','Headliner']]}
+];
+stages.forEach(S=>{
+  const el=$('#'+S.id);if(S.cls)el.classList.add(S.cls);
+  let h=`<div class="hdr"><div class="mono" style="font-size:32px;display:flex;justify-content:space-between"><span>Stage ${S.no} / 03</span><span>${S.sub}</span></div><div class="anton stagebig"><span class="g" data-t="${S.name}">${S.name}</span></div></div>`;
+  S.rows.forEach((r,i)=>{
+    const head=i==3, top=[740,930,1120,1330][i];
+    h+=`<div class="row anton ${head?'head':''}" style="top:${top}px"><span class="n mono">${'0'+(i+1)}</span><span class="nm g" data-t="${r[0]}">${r[0]}</span><span class="k mono">${r[1]}</span></div>`;
+  });
+  h+=`<div class="ft mono"><span>Offpiste Festival</span><span>Line-up wave 01 / 12 acts</span></div>`;
+  el.innerHTML=h;
+});
+
+/* ---------- timeline ---------- */
+const tl=gsap.timeline({paused:true});
+const BEAT=.5;
+function show(id,a,b){tl.set(id,{visibility:'visible'},a);tl.set(id,{visibility:'hidden'},b);}
+function flash(t,c,o=.9){tl.set('#flash',{background:c||'#C8FF00',opacity:o},t).set('#flash',{opacity:0},t+.06);}
+function glitch(sel,t,n=5,mag=26){
+  for(let i=0;i<n;i++){
+    const a=t+i*.045;
+    tl.set(sel,{'--go':1,'--gx':((R()-.5)*2*mag)+'px','--gy':((R()-.5)*mag*.6)+'px',x:(R()-.5)*mag*.8,skewX:(R()-.5)*14},a);
+  }
+  tl.set(sel,{'--go':0,'--gx':'0px','--gy':'0px',x:0,skewX:0},t+n*.045);
+}
+function idle(sel,t0,t1,mag=6){ // subtle beat wobble
+  for(let t=t0;t<t1;t+=BEAT) tl.set(sel,{'--go':1,'--gx':mag+'px','--gy':'0px'},t).set(sel,{'--go':0,'--gx':'0px'},t+.1);
+}
+// progress bar
+tl.fromTo('#tick i',{width:'0%'},{width:'100%',duration:20,ease:'none'},0);
+
+/* S1 hook 0-3 */
+show('#s1',0,3);
+tl.set('#s1 .grid',{opacity:1},0);
+const pl1=document.querySelectorAll('#pk1 .pl');
+pl1.forEach((p,i)=>{tl.fromTo(p,{scaleY:0},{scaleY:1,duration:.5,ease:'power4.out'},.0+i*.12);});
+tl.from('#s1top',{opacity:0,y:-30,duration:.3},.4);
+tl.fromTo('#w1',{scale:3,opacity:0,y:-80},{scale:1,opacity:1,y:0,duration:.14,ease:'power4.in'},.5);
+flash(.62,'#C8FF00',.85);glitch('#w1 .g',.62,6,40);
+tl.fromTo('#w2',{scale:3,opacity:0,y:80},{scale:1,opacity:1,y:0,duration:.14,ease:'power4.in'},1.0);
+flash(1.12,'#F3F1EA',.7);glitch('#w2 .g',1.12,7,44);
+tl.from('#s1tag',{x:-1200,duration:.25,ease:'power4.out'},1.5);
+tl.from('#s1tag2',{opacity:0,y:30,duration:.25},2.0);
+glitch('#w1 .g',2.0,4,22);glitch('#w2 .g',2.5,5,30);
+tl.to('#pk1',{y:-40,duration:3,ease:'none'},0);
+// hook out: jitter then cut
+glitch('#w2 .g',2.85,3,60);
+
+/* Stage scenes */
+const starts=[3,6.5,10];
+stages.forEach((S,si)=>{
+  const a=starts[si],b=a+3.5,id='#'+S.id;
+  show(id,a,b);
+  flash(a,['#C8FF00','#F3F1EA','#6C2BFF'][si],.9);
+  // header
+  tl.from(id+' .hdr .mono',{opacity:0,y:-30,duration:.2},a+.05);
+  tl.fromTo(id+' .stagebig',{clipPath:'inset(0 100% 0 0)',x:-60},{clipPath:'inset(0 0% 0 0)',x:0,duration:.25,ease:'power4.out'},a+.05);
+  glitch(id+' .stagebig .g',a+.3,5,30);
+  tl.from(id+' .ft',{opacity:0,duration:.3},a+.4);
+  // rows
+  S.rows.forEach((r,i)=>{
+    const rt=a+.5+i*.5, sel=id+' .row:nth-of-type('+(i+2)+')';
+    const row=document.querySelectorAll(id+' .row')[i];
+    tl.fromTo(row,{x:1300,skewX:-25,opacity:0},{x:0,skewX:0,opacity:1,duration:.16,ease:'power4.out'},rt);
+    glitch(row.querySelector('.g'),rt+.1,4,i==3?50:28);
+    flash(rt+.02,['#0b0b0d','#C8FF00','#0b0b0d'][si],i==3?.5:.25);
+    
+  });
+  // beat wobble on header after
+  idle(id+' .stagebig .g',a+2.5,b,10);
+  // exit glitch
+  glitch(id+' .stagebig .g',b-.2,3,40);
+  tl.to(id+' .row',{x:-30,opacity:.0,duration:.08,stagger:.02},b-.14);
+});
+
+/* S5 price 13.5-17 */
+show('#s5',13.5,17);
+flash(13.5,'#FF2E88',1);
+tl.from('#p_top',{opacity:0,x:-40,duration:.25},13.6);
+tl.fromTo('#p_3',{scale:2.5,opacity:0},{scale:1,opacity:1,duration:.14,ease:'power4.in',transformOrigin:'0 50%'},14.0);
+glitch('#p_3 .g',14.14,5,36);
+tl.fromTo('#p_days',{x:900,opacity:0},{x:0,opacity:1,duration:.2,ease:'power4.out'},14.25);
+tl.fromTo('#p_price',{scale:2.2,opacity:0,rotate:-4},{scale:1,opacity:1,rotate:0,duration:.16,ease:'power4.in'},14.75);
+flash(14.9,'#F3F1EA',.9);glitch('#p_price .g',14.9,8,60);
+tl.from('#p_sub',{opacity:0,y:40,duration:.3},15.5);
+tl.fromTo('#stamp',{scale:3,opacity:0},{scale:1,opacity:1,duration:.12,ease:'power4.in'},15.75);
+idle('#p_price .g',15.5,16.8,14);
+glitch('#p_price .g',16.7,3,50);
+
+/* S6 CTA 17-20 */
+show('#s6',17,20);
+flash(17,'#C8FF00',1);
+const pl2=document.querySelectorAll('#pk2 .pl');
+pl2.forEach((p,i)=>tl.fromTo(p,{scaleY:0},{scaleY:1,duration:.5,ease:'power4.out'},17+i*.12));
+tl.from('#c1',{opacity:0,duration:.2},17.3);
+tl.fromTo('#c2',{scale:1.6,opacity:0},{scale:1,opacity:1,duration:.16,ease:'power4.in'},17.5);
+glitch('#c2 .g',17.66,6,40);
+tl.from('#c3',{opacity:0,y:20,duration:.2},18.2);
+tl.fromTo('#c4',{x:-1200},{x:0,duration:.25,ease:'power4.out'},18.5);
+tl.from('#c5',{opacity:0,duration:.3},18.9);
+for(let t=19;t<19.9;t+=BEAT){tl.to('#c4',{scale:1.05,duration:.08},t).to('#c4',{scale:1,duration:.2},t+.08);}
+idle('#c2 .g',18.2,19.9,8);
+glitch('#c2 .g',19.8,2,30);
+
+window.KLIPT={width:1080,height:1920,fps:30,duration:20,ready:document.fonts.ready,render(t){tl.seek(t,false);}};
+</script></body></html>

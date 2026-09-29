@@ -1,0 +1,8 @@
+{ "id": "p289", "brand": "Garage Moreau", "sector": "Garage automobile indépendant", "kind": "video",
+  "format": "1080x1920", "duration": 15, "slides": null,
+  "title": "Pneus hiver : J-10 avant le 1er novembre",
+  "concept": "Un compte à rebours géant en jaune sécurité mène à l'obligation pneus hiver en montagne, un pneu roule dans la neige le long d'une frise 1er nov.–31 mars, puis l'offre (montage + équilibrage offerts, contrôles gratuits) et l'appel au 04 73 00 11 22.",
+  "techniques": ["gsap", "svg-illustration", "canvas-snow", "color-wipes", "seeded-grain"],
+  "fonts": ["Anton", "Barlow Condensed"],
+  "palette": ["#10161d", "#ffc21a", "#dcecf4", "#e2402a", "#f6f1e6"],
+  "copy_language": "fr" }

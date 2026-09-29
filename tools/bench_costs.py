@@ -13,7 +13,7 @@ for j in glob.glob(os.path.join(root, '*', 'journal.jsonl')):
     for l in open(j):
         d = json.loads(l)
         if d['type'] == 'started': labels[d['agentId']] = d['label']
-        if d['type'] == 'result': done.add(d['agentId'])
+        if d['type'] == 'result' and (d.get('result') or {}).get('status') != 'failed': done.add(d['agentId'])
     for aid, label in labels.items():
         f = os.path.join(wf, f'agent-{aid}.jsonl')
         if not os.path.exists(f): continue

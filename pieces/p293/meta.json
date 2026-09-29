@@ -1,0 +1,8 @@
+{ "id": "p293", "brand": "Neon Arcade", "sector": "Arcade bar", "kind": "video",
+  "format": "1080x1920", "duration": 14, "slides": null,
+  "title": "Thursday Street Fighter night",
+  "concept": "The whole ad is one fighting-game match: INSERT COIN, PRESS START, ROUND 1 FIGHT, and every fact lands as a hit that drains the P2 health bar until K.O. and a final PRESS START. CRT scanlines, RGB split and glitch cuts throughout.",
+  "techniques": ["gsap", "css-crt", "glitch-cuts", "svg-icons", "health-bar-hud"],
+  "fonts": ["Dela Gothic One", "Press Start 2P"],
+  "palette": ["#07040F", "#FF2E88", "#19F0FF", "#FFE600", "#F4F0FF"],
+  "copy_language": "en" }

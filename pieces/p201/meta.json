@@ -1,0 +1,8 @@
+{ "id": "p201", "brand": "Sentinel", "sector": "Cybersecurity SaaS for SMBs", "kind": "video",
+  "format": "1920x1080", "duration": 24, "slides": null,
+  "title": "The invoice that wasn't",
+  "concept": "A believable Monday inbox and a convincing fake overdue-invoice email; the cursor hesitates over the button, then Sentinel blocks the click and exposes the lookalike domain. A 9-in-10 stat and a free-audit CTA close it.",
+  "techniques": ["gsap", "ui-mockup", "svg-illustration", "cursor-choreography", "colour-sweep-transitions"],
+  "fonts": ["Manrope", "JetBrains Mono"],
+  "palette": ["#0A1120", "#F5F7FB", "#19E3B1", "#FF4D5E", "#2F6BFF"],
+  "copy_language": "en" }

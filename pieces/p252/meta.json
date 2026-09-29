@@ -1,0 +1,8 @@
+{ "id": "p252", "brand": "Cabinet Morel & Associés", "sector": "Expertise comptable",
+  "kind": "video", "format": "1080x1080", "duration": 22, "slides": null,
+  "title": "3 échéances fiscales de fin d’année",
+  "concept": "Un échéancier façon grand livre comptable : une frise oct.→déc. avec un curseur qui avance jusqu’aux dates clés, une date géante en compteur à rouleaux (15 → 31) et chaque échéance expliquée sobrement (acompte d’IS, CFE, clôture), jusqu’à l’invitation au RDV bilan.",
+  "techniques": ["gsap", "svg-timeline", "odometer-digits", "masked-text-reveals", "svg-grain", "css-ledger-texture"],
+  "fonts": ["Fraunces", "IBM Plex Sans", "IBM Plex Mono"],
+  "palette": ["#F3EFE6", "#16233A", "#5E6B7D", "#D9D2C3", "#B5432C"],
+  "copy_language": "fr" }

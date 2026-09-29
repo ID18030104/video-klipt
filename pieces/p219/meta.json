@@ -1,0 +1,8 @@
+{ "id": "p219", "brand": "Kōri Ramen", "sector": "Restaurant (ramen bar)", "kind": "video",
+  "format": "1080x1920", "duration": 15.5, "slides": null,
+  "title": "Black Miso & Roasted Squash, October only",
+  "concept": "A top-down bowl built only from circles sits on a red sun disc like a Japanese poster; steam is concentric rings, 14 dots count the broth hours and 31 dots fill for October.",
+  "techniques": ["gsap", "svg-illustration", "procedural-steam", "paper-grain"],
+  "fonts": ["Dela Gothic One", "Sora"],
+  "palette": ["#EDE3CB", "#16110E", "#D6402A", "#E8792B", "#F0A63A", "#7DA34A", "#E9D8A6"],
+  "copy_language": "en" }
