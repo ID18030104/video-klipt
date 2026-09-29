@@ -134,7 +134,7 @@
     </symbol>
     <filter id="rough" x="-10%" y="-10%" width="120%" height="120%">
       <feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="2" seed="7" result="n"/>
-      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  7 0 0 0 -2.6" result="m"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  7 0 0 0 -1.7" result="m"/>
       <feComposite in="SourceGraphic" in2="m" operator="in" result="c"/>
       <feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="2" seed="3" result="d"/>
       <feDisplacementMap in="c" in2="d" scale="6"/>
@@ -317,17 +317,16 @@
       </div>
     </div>
     <svg class="stamp" id="stamp" viewBox="0 0 430 430">
+      <circle cx="215" cy="215" r="200" fill="#F3EAD8" fill-opacity=".62"/>
       <g filter="url(#rough)" fill="none" stroke="#B8492A" transform="rotate(-14 215 215)">
         <circle cx="215" cy="215" r="196" stroke-width="10"/>
         <circle cx="215" cy="215" r="176" stroke-width="3"/>
         <circle cx="215" cy="215" r="122" stroke-width="3"/>
-        <text x="215" y="245" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="86" fill="#B8492A" stroke="none" letter-spacing="1">VENDU</text>
+        <text x="215" y="243" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="80" fill="#B8492A" stroke="none" letter-spacing="0">VENDU</text>
         <path id="stArcT" d="M 65 215 A 150 150 0 0 1 365 215" stroke="none"/>
         <path id="stArcB" d="M 55 215 A 160 160 0 0 0 375 215" stroke="none"/>
         <text font-family="Figtree" font-weight="700" font-size="30" letter-spacing="6" fill="#B8492A" stroke="none"><textPath href="#stArcT" startOffset="50%" text-anchor="middle">EN 12 JOURS</textPath></text>
         <text font-family="Figtree" font-weight="700" font-size="30" letter-spacing="6" fill="#B8492A" stroke="none"><textPath href="#stArcB" startOffset="50%" text-anchor="middle">AU PRIX</textPath></text>
-        <text x="104" y="222" font-size="30" fill="#B8492A" stroke="none" font-family="Figtree">★</text>
-        <text x="302" y="222" font-size="30" fill="#B8492A" stroke="none" font-family="Figtree">★</text>
       </g>
     </svg>
   </div>
@@ -473,8 +472,8 @@ tl.to('#card', {y:0, rotation:0, duration:1.0, ease:'expo.out'}, 8.8)
   .to(counters, {n2:23, duration:1.3, ease:'power2.out'}, 10.1)
   .to(counters, {n3:4, duration:1.1, ease:'power2.out'}, 10.3)
   .to('#stamp', {scale:1, opacity:1, rotation:0, duration:.32, ease:'power4.in'}, 11.8)
-  .fromTo('#card', {x:0, y:0}, {keyframes:[{x:-10,y:6,duration:.05},{x:8,y:-4,duration:.05},{x:-4,y:2,duration:.05},{x:0,y:0,duration:.06}], ease:'none'}, 12.12)
-  .fromTo('#card', {scale:1}, {scale:1.025, duration:2.2, ease:'sine.inOut'}, 12.2);
+  .fromTo('#C', {x:0, y:0}, {keyframes:[{x:-10,y:6,duration:.05},{x:8,y:-4,duration:.05},{x:-4,y:2,duration:.05},{x:0,y:0,duration:.06}], ease:'none'}, 12.12)
+  .fromTo('#C', {scale:1}, {scale:1.025, duration:2.2, ease:'sine.inOut'}, 12.2);
 
 /* ---- C → D : terracotta sweep, then cream ---- */
 gsap.set('#sweep', {clipPath:'inset(100% 0% 0% 0%)'});

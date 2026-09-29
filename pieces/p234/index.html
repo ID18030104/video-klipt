@@ -9,14 +9,14 @@
 body{margin:0;overflow:hidden;background:var(--bg)}
 .slide{position:relative;width:1080px;height:1350px;background:var(--bg);overflow:hidden;color:var(--cream)}
 .slide:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 10%,#1c3a31,transparent 65%)}
-.top{position:absolute;left:64px;right:64px;top:60px;display:flex;justify-content:space-between;font:700 30px 'IBM Plex Mono';letter-spacing:.14em;color:var(--brass)}
-.hook{position:absolute;left:52px;top:96px;font:900 400px/0.82 'Big Shoulders Display';color:var(--brass);letter-spacing:-.02em;white-space:nowrap}
+.top{position:absolute;left:64px;right:64px;top:52px;display:flex;justify-content:space-between;font:700 30px 'IBM Plex Mono';letter-spacing:.14em;color:var(--brass)}
+.hook{position:absolute;left:52px;top:118px;font:900 380px/0.82 'Big Shoulders Display';color:var(--brass);letter-spacing:-.02em;white-space:nowrap}
 .hook small{font-size:190px;letter-spacing:0;color:var(--cream);margin-left:14px}
-.sub{position:absolute;left:64px;top:436px;width:952px;font:900 118px/0.92 'Big Shoulders Display';text-transform:uppercase;color:var(--cream);letter-spacing:.005em}
+.sub{position:absolute;left:64px;top:462px;width:952px;font:900 88px/0.92 'Big Shoulders Display';white-space:nowrap;text-transform:uppercase;color:var(--cream);letter-spacing:.005em}
 .sub em{font-style:normal;color:var(--red);background:none}
 .board{position:absolute;left:0;right:0;bottom:0;height:790px;background:#0a1512;border-top:8px solid var(--brass);padding:34px 48px 0}
 .hd{display:flex;justify-content:space-between;font:700 28px 'IBM Plex Mono';letter-spacing:.16em;color:var(--brass);margin-bottom:20px}
-.row{display:flex;align-items:center;justify-content:space-between;height:98px;border-bottom:2px dashed #2c463c}
+.row{display:flex;align-items:center;justify-content:space-between;height:90px;border-bottom:2px dashed #2c463c}
 .row.hl{background:var(--brass);margin:0 -48px;padding:0 48px;border:0}
 .row.hl .lab{color:#10201B}
 .lab{display:flex;gap:6px}
@@ -24,7 +24,7 @@ body{margin:0;overflow:hidden;background:var(--bg)}
 .c:after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:#0a1512}
 .c.sp{background:none}.c.sp:after{display:none}
 .hl .c{background:#10201B;color:var(--brass)}
-.tag{font:700 34px 'IBM Plex Mono';color:var(--brass);letter-spacing:.06em;display:flex;align-items:center;gap:12px}
+.tag{font:700 38px 'IBM Plex Mono';color:var(--brass);letter-spacing:.06em;display:flex;align-items:center;gap:12px}
 .tag i{width:18px;height:18px;border-radius:50%;background:var(--red)}
 .hl .tag{color:#10201B}
 .hours{position:absolute;left:48px;right:48px;bottom:44px}
@@ -36,9 +36,9 @@ body{margin:0;overflow:hidden;background:var(--bg)}
 </style></head><body>
 <main class="slide">
 <div class="top"><span>MINUTE LEFÈVRE</span><span>STRASBOURG</span></div>
-<div class="hook">15<small>min</small></div>
+<div class="hook" style="top:108px">15<small>min</small></div>
 <div class="since">DEPUIS<br><b style="color:var(--brass);font-size:56px">1972</b></div>
-<div class="sub">Talons refaits <em>pendant que vous attendez.</em></div>
+<div class="sub">Cordonnerie, <em>clés minute</em></div>
 <div class="board">
  <div class="hd"><span>SERVICES</span><span>ATELIER</span></div>
  <div id="rows"></div>
@@ -51,5 +51,5 @@ window.KLIPT={width:1080,height:1350};
 const rows=[["RESSEMELAGE",""],["TALONS","15 MIN"],["CLÉS",""],["GRAVURE",""],["SACS RÉPARÉS",""]];
 const R=document.getElementById('rows');
 rows.forEach(([l,t],i)=>{const d=document.createElement('div');d.className='row'+(i==1?' hl':'');
- d.innerHTML='<div class="lab">'+[...l].map(ch=>'<div class="c'+(ch==' '?' sp':'')+'">'+ch+'</div>').join('')+'</div>'+(i==1?'<div class="tag">'+t+'</div>':'<div class="tag"><i></i>SUR PLACE</div>');R.appendChild(d)});
+ d.innerHTML='<div class="lab">'+[...l].map(ch=>'<div class="c'+(ch==' '?' sp':'')+'">'+ch+'</div>').join('')+'</div>'+(i==1?'<div class="tag">'+t+'</div>':'<div class="tag" style="color:#5f7f70">0'+(i+1)+'</div>');R.appendChild(d)});
 </script></body></html>

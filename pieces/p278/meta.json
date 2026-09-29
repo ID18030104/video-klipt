@@ -1,0 +1,8 @@
+{ "id": "p278", "brand": "Wild Brew Co.", "sector": "Craft brewery", "kind": "carousel",
+  "format": "1080x1350", "duration": null, "slides": 6,
+  "title": "Black Snow: from grain to glass",
+  "concept": "A six-slide walk along one continuous Rocky Mountain ridgeline: hook, malts, hops, 12-day fermentation with specs, food pairings, taproom CTA. Ink, snow and ember amber with trail-sign condensed type and hand-drawn malt and hop illustrations.",
+  "techniques": ["svg-illustration", "css-layout", "generative-topo-lines", "seeded-rng"],
+  "fonts": ["Barlow Condensed", "Zilla Slab", "Work Sans"],
+  "palette": ["#0D1012", "#F1EEE6", "#E08A2B", "#24382F", "#4A2C1A"],
+  "copy_language": "en" }

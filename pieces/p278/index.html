@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Black Snow carousel</title>
+<!--
+DIRECTION
+Concept: a night-time storm in the Rockies. Black Snow = dark beer, white snow. One mountain ridgeline runs unbroken across all six slides so the swipe feels like walking the ridge.
+Palette: ink #0D1012, snow #F1EEE6, ember amber #E08A2B, pine #24382F, malt brown #4A2C1A.
+Type: Barlow Condensed 800 (trail-sign headlines, caps) + Zilla Slab (labels, warm body) + Work Sans for small copy.
+Graphic language: stamped trail-marker badges, topo contour lines, hand-drawn malt kernels and hop cones, snow specks, ridge silhouettes.
+Motion: n/a (stills) - continuity by the shared ridge and a progress trail.
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/zilla-slab/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/zilla-slab/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/zilla-slab/400-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/work-sans/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/work-sans/600.css">
+<script src="../../lib/klipt-kit.js"></script>
+<style>
+:root{--ink:#0D1012;--snow:#F1EEE6;--amber:#E08A2B;--pine:#24382F;--malt:#4A2C1A}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;background:#000}
+body{margin:0;overflow:visible;font-family:'Work Sans',sans-serif}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--bg);color:var(--fg)}
+.dark{--bg:radial-gradient(ellipse 90% 60% at 50% 100%,#1c2226 0%,#0D1012 70%);--fg:var(--snow);--mut:#9aa39f;--rule:rgba(241,238,230,.22);--ridge1:#182024;--ridge2:#080A0B;--cap:#F1EEE6}
+.paper{--bg:#F1EEE6;--fg:var(--ink);--mut:#5d625e;--rule:rgba(13,16,18,.25);--ridge1:#cfcbc0;--ridge2:#0D1012;--cap:#ffffff}
+.amber{--bg:var(--amber);--fg:var(--ink);--mut:#3a230c;--rule:rgba(13,16,18,.35);--ridge1:#c97218;--ridge2:#0D1012;--cap:#F1EEE6}
+.slide::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1.3px);background-size:6px 6px;opacity:.5;z-index:0;mix-blend-mode:overlay}
+.paper::before{background-image:radial-gradient(rgba(0,0,0,.09) 1px,transparent 1.3px)}
+.slide>*{position:absolute}
+svg.ridge,svg.snow,svg.topo{left:0;top:0;width:1080px;height:1350px}
+.head{left:80px;right:80px;top:64px;display:flex;justify-content:space-between;align-items:center;font:700 26px 'Zilla Slab';letter-spacing:.14em;text-transform:uppercase;z-index:5}
+.head b{font-weight:700}
+.head span{color:var(--mut)}
+.brandmark{display:flex;align-items:center;gap:14px}
+.brandmark svg{width:34px;height:34px}
+.foot{left:0;right:0;bottom:0;height:104px;padding:0 80px;background:#080A0B;color:var(--snow);z-index:6;display:flex;align-items:center;justify-content:space-between;font:600 24px 'Work Sans';letter-spacing:.08em;text-transform:uppercase}
+.trail{display:flex;gap:10px;align-items:center}
+.trail i{display:block;width:34px;height:6px;border-radius:3px;background:rgba(241,238,230,.28)}
+.trail i.on{background:var(--amber);width:64px}
+.swipe{display:flex;align-items:center;gap:12px}
+.swipe img{width:38px;height:38px}
+.ic{display:inline-block;background:currentColor;-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center}
+h1,h2{font-family:'Barlow Condensed';font-weight:800;text-transform:uppercase;line-height:.88;letter-spacing:.005em}
+.kicker{font:700 30px 'Zilla Slab';letter-spacing:.2em;text-transform:uppercase;color:var(--amber)}
+.paper .kicker{color:#B5601A}
+.amber .kicker{color:var(--ink)}
+.z1{z-index:1}.z2{z-index:2}.z3{z-index:3}.z4{z-index:4}
+</style></head><body>
+
+<!-- 1 HOOK -->
+<section class="slide dark" id="s1">
+  <svg class="topo" data-topo="1"></svg>
+  <svg class="snow" data-snow="1"></svg>
+  <div class="head z5"><div class="brandmark"><svg data-logo></svg><b>Wild Brew Co.</b></div><span>New release</span></div>
+  <div class="kicker z3" style="left:80px;top:196px">Black IPA · Rocky Mountain brewed</div>
+  <h1 class="z3" style="left:70px;top:250px;font-size:290px;color:var(--snow)">Black<br><span style="color:transparent;-webkit-text-stroke:5px var(--snow)">Snow</span></h1>
+  <div class="z3" style="left:80px;top:850px;width:520px;font:400 italic 44px/1.15 'Zilla Slab';color:var(--snow)">From grain to glass, in six swipes.</div>
+  <svg class="z3" style="overflow:visible;left:715px;top:360px;width:340px;height:620px" viewBox="0 0 420 760" data-glass style="overflow:visible"></svg>
+  <svg class="ridge" data-ridge="0"></svg>
+  <div class="foot"><div class="trail" data-trail="1"></div><div class="swipe"><span>Swipe</span><span class="ic" style="width:38px;height:38px;-webkit-mask-image:url(../../node_modules/lucide-static/icons/arrow-right.svg)"></span></div></div>
+</section>
+
+<!-- 2 GRAIN -->
+<section class="slide paper" id="s2">
+  <svg class="topo" data-topo="2"></svg>
+  <div class="head"><div class="brandmark"><svg data-logo></svg><b>Wild Brew Co.</b></div><span>02 / 06</span></div>
+  <div class="kicker z3" style="left:80px;top:170px">Step 01 · The grain</div>
+  <h2 class="z3" style="left:80px;top:226px;font-size:152px">Roasted dark.<br>Never harsh.</h2>
+  <div class="z3" style="left:80px;top:590px;width:920px;display:flex;flex-direction:column;gap:34px" id="malts"></div>
+  <svg class="ridge" data-ridge="1"></svg>
+  <div class="foot"><div class="trail" data-trail="2"></div><div>Three malts, one deep black</div></div>
+</section>
+
+<!-- 3 HOPS -->
+<section class="slide dark" id="s3">
+  <svg class="topo" data-topo="3"></svg>
+  <svg class="snow" data-snow="3"></svg>
+  <div class="head"><div class="brandmark"><svg data-logo></svg><b>Wild Brew Co.</b></div><span>03 / 06</span></div>
+  <div class="kicker z3" style="left:80px;top:170px">Step 02 · The hops</div>
+  <h2 class="z3" style="left:80px;top:226px;font-size:152px">Citra <span style="color:var(--amber)">+</span><br>Simcoe</h2>
+  <svg class="z2" style="left:660px;top:110px;width:400px;height:540px" viewBox="0 0 520 700" data-hop></svg>
+  <div class="z3" style="left:80px;top:690px;width:920px;display:grid;grid-template-columns:1fr 1fr;gap:28px" id="hops"></div>
+  <div class="z3" style="left:80px;top:900px;width:800px;font:400 italic 46px/1.2 'Zilla Slab';color:var(--snow)">Added late, so you get the aroma of a hazy morning hike without the bitter bite.</div>
+  <svg class="ridge" data-ridge="2"></svg>
+  <div class="foot"><div class="trail" data-trail="3"></div><div>Bright fruit over dark malt</div></div>
+</section>
+
+<!-- 4 TIME -->
+<section class="slide paper" id="s4">
+  <svg class="topo" data-topo="4"></svg>
+  <div class="head"><div class="brandmark"><svg data-logo></svg><b>Wild Brew Co.</b></div><span>04 / 06</span></div>
+  <div class="kicker z3" style="left:80px;top:170px">Step 03 · The wait</div>
+  <h2 class="z3" style="left:80px;top:226px;font-size:152px">12 days.<br>No shortcuts.</h2>
+  <div class="z3" style="left:80px;top:590px;width:920px" id="days"></div>
+  <div class="z3" style="left:80px;top:915px;width:920px;display:flex;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)" id="specs"></div>
+  <svg class="ridge" data-ridge="3"></svg>
+  <div class="foot"><div class="trail" data-trail="4"></div><div>Patience is an ingredient</div></div>
+</section>
+
+<!-- 5 PAIRINGS -->
+<section class="slide dark" id="s5">
+  <svg class="topo" data-topo="5"></svg>
+  <svg class="snow" data-snow="5"></svg>
+  <div class="head"><div class="brandmark"><svg data-logo></svg><b>Wild Brew Co.</b></div><span>05 / 06</span></div>
+  <div class="kicker z3" style="left:80px;top:170px">Step 04 · The table</div>
+  <h2 class="z3" style="left:80px;top:226px;font-size:152px">Eat this<br>with it.</h2>
+  <div class="z3" style="left:80px;top:560px;width:920px" id="pairs"></div>
+  <svg class="ridge" data-ridge="4" style="top:45px"></svg>
+  <div class="foot"><div class="trail" data-trail="5"></div><div>Serve at 45–50°F</div></div>
+</section>
+
+<!-- 6 CTA -->
+<section class="slide amber" id="s6">
+  <svg class="topo" data-topo="6"></svg>
+  <svg class="snow" data-snow="6"></svg>
+  <div class="head"><div class="brandmark"><svg data-logo></svg><b>Wild Brew Co.</b></div><span>06 / 06</span></div>
+  <div class="kicker z3" style="left:80px;top:170px">Now pouring</div>
+  <h2 class="z3" style="left:80px;top:226px;font-size:250px">Black<br>Snow</h2>
+  <div class="z3" style="left:80px;top:722px;font:700 40px 'Zilla Slab';letter-spacing:.04em">Black IPA · 6.8% ABV · 55 IBU</div>
+  <div class="z3" style="left:80px;top:800px;width:920px;background:var(--ink);color:var(--snow);padding:36px 44px;display:flex;justify-content:space-between;align-items:center;border-radius:6px">
+    <div><div style="font:800 64px/1 'Barlow Condensed';text-transform:uppercase;letter-spacing:.02em">Taste it first at the taproom</div>
+    <div style="font:400 34px/1.35 'Work Sans';margin-top:14px;color:#cfd3d0">Wild Brew Co. Taproom<br>212 Ridge Road, Salida, CO<br>Open daily, 12–9pm</div></div>
+  </div>
+  <div class="z3" style="left:80px;top:1130px;font:600 34px 'Work Sans';letter-spacing:.04em">@wildbrewco  ·  wildbrew.co</div>
+  <svg class="ridge" data-ridge="5"></svg>
+  <div class="foot"><div class="trail" data-trail="6"></div><div>Cans &amp; crowlers to go</div></div>
+</section>
+
+<script>
+window.KLIPT={width:1080,height:1350};
+const NS='http://www.w3.org/2000/svg';
+const $=(s,r=document)=>[...r.querySelectorAll(s)];
+// ---- shared ridge: one continuous function of global x
+const W=1080;
+function ridgeY(x,layer){
+  const k=layer?1.35:1;
+  return (layer?1300:1240)
+   -75*Math.sin(x/610*k+1.2)-40*Math.sin(x/233*k+.4)-16*Math.sin(x/97*k+2.1)-(layer?0:22)*Math.sin(x/1500+.3)+ (layer?30:0)*Math.sin(x/410+2)-58*Math.pow(Math.abs(Math.sin(x/290*k+.6)),1.6);
+}
+function ridgePath(off,layer){
+  let d='M0 1350 ';
+  for(let x=0;x<=W;x+=8){d+=`L${x} ${ridgeY(x+off,layer).toFixed(1)} `;}
+  return d+'L1080 1350Z';
+}
+function ridgeLine(off,layer){
+  let d='';for(let x=0;x<=W;x+=8){d+=(x?'L':'M')+x+' '+ridgeY(x+off,layer).toFixed(1)+' ';}return d;
+}
+$('svg[data-ridge]').forEach(s=>{
+  const i=+s.dataset.ridge, off=i*W;
+  s.setAttribute('viewBox','0 0 1080 1350');
+  s.innerHTML=`<path d="${ridgePath(off,0)}" fill="var(--ridge1)"/>
+  <path d="${ridgeLine(off,0)}" fill="none" stroke="var(--cap)" stroke-width="5" stroke-linejoin="round" opacity=".9"/>
+  <path d="${ridgePath(off*1.0+300,1)}" fill="var(--ridge2)" transform="translate(0,40)"/>`;
+});
+// ---- snow specks
+$('svg[data-snow]').forEach(s=>{
+  const r=KK.rng(+s.dataset.snow*77);s.setAttribute('viewBox','0 0 1080 1350');
+  let h='';for(let i=0;i<70;i++){const x=r()*1080,y=r()*1100,z=r();h+=`<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${(1.5+z*4.5).toFixed(1)}" fill="#fff" opacity="${(.25+z*.55).toFixed(2)}"/>`;}
+  s.innerHTML=h;s.style.zIndex=4;
+});
+// ---- topo contour lines (soft rings)
+$('svg[data-topo]').forEach(s=>{
+  const n=+s.dataset.topo,r=KK.rng(n*13);s.setAttribute('viewBox','0 0 1080 1350');
+  const cx=[880,180,900,150,860,300][n-1],cy=[420,300,380,520,300,900][n-1];let h='';
+  for(let i=0;i<11;i++){const R=90+i*62;let d='';for(let a=0;a<=64;a++){const t=a/64*Math.PI*2;const rr=R*(1+.09*Math.sin(t*3+n+i*.3)+.05*Math.sin(t*5+i));d+=(a?'L':'M')+(cx+Math.cos(t)*rr*1.15).toFixed(1)+' '+(cy+Math.sin(t)*rr*.85).toFixed(1)+' ';}
+   h+=`<path d="${d}Z" fill="none" stroke="var(--fg)" stroke-width="2" opacity=".09"/>`;}
+  s.innerHTML=h;
+});
+// ---- logo: peak in a ring
+$('svg[data-logo]').forEach(s=>{s.setAttribute('viewBox','0 0 40 40');s.innerHTML=`<circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="3"/><path d="M7 29 L16 14 L21 22 L25 17 L33 29Z" fill="currentColor"/><path d="M13.6 18.6 L16 14 L18.4 18.2 L16 17.2Z" fill="var(--bg,#000)" opacity=".0"/>`;s.style.color='var(--amber)';});
+// ---- trail
+$('[data-trail]').forEach(t=>{const n=+t.dataset.trail;t.innerHTML=Array.from({length:6},(_,i)=>`<i class="${i+1===n?'on':''}"></i>`).join('');});
+// ---- glass
+$('svg[data-glass]').forEach(s=>{
+  s.innerHTML=`<defs>
+  <linearGradient id="gl" x1="0" x2="1"><stop offset="0" stop-color="#3a1f0d"/><stop offset=".18" stop-color="#150b06"/><stop offset=".8" stop-color="#0a0503"/><stop offset="1" stop-color="#2a1608"/></linearGradient>
+  <linearGradient id="fo" x1="0" x2="1"><stop offset="0" stop-color="#d9c29c"/><stop offset=".5" stop-color="#f1e3c7"/><stop offset="1" stop-color="#c9ae82"/></linearGradient>
+  <radialGradient id="glow" cx=".5" cy=".55" r=".6"><stop offset="0" stop-color="#E08A2B" stop-opacity=".45"/><stop offset="1" stop-color="#E08A2B" stop-opacity="0"/></radialGradient></defs>
+  <ellipse cx="210" cy="480" rx="260" ry="330" fill="url(#glow)"/>
+  <path d="M60 90 L360 90 L322 700 Q320 730 290 730 L130 730 Q100 730 98 700Z" fill="url(#gl)" stroke="#F1EEE6" stroke-opacity=".45" stroke-width="4"/>
+  <path d="M72 100 L348 100 L340 190 Q210 215 80 190Z" fill="url(#fo)"/>
+  <path d="M50 96 Q40 40 110 52 Q140 6 200 34 Q260 0 300 44 Q380 34 370 96Z" fill="url(#fo)"/>
+  <path d="M84 150 L104 690" stroke="#E08A2B" stroke-opacity=".7" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <path d="M120 240 L130 560" stroke="#fff" stroke-opacity=".18" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <g fill="#E08A2B" opacity=".75"><circle cx="190" cy="330" r="4"/><circle cx="240" cy="420" r="3"/><circle cx="170" cy="500" r="3.5"/><circle cx="260" cy="560" r="4"/><circle cx="215" cy="630" r="3"/><circle cx="150" cy="380" r="3"/></g>
+  <text x="210" y="450" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="70" fill="#F1EEE6" opacity=".9" letter-spacing="4">6.8%</text>
+  <text x="210" y="492" text-anchor="middle" font-family="Zilla Slab" font-weight="700" font-size="24" fill="#E08A2B" letter-spacing="6">ABV</text>`;
+});
+// ---- malts
+const kernel=(c,scale=1)=>`<svg viewBox="0 0 100 70" width="${110*scale}" height="${77*scale}"><g transform="rotate(-22 50 35)"><ellipse cx="50" cy="35" rx="42" ry="22" fill="${c}"/><path d="M12 36 Q50 30 88 36" stroke="rgba(0,0,0,.45)" stroke-width="3" fill="none"/><ellipse cx="38" cy="28" rx="20" ry="5" fill="rgba(255,255,255,.22)"/></g></svg>`;
+const malts=[['Pale 2-row','The backbone. Biscuit, fresh bread.','#D9B25E','2 °L',.05],['Carafa III','Deep black colour, none of the burnt edge.','#1a0f0a','525 °L',.98],['Chocolate malt','Cocoa and fresh-pulled espresso.','#4A2C1A','350 °L',.7]];
+document.getElementById('malts').innerHTML=malts.map(m=>`<div style="display:grid;grid-template-columns:130px 1fr 130px;align-items:center;gap:18px;border-top:2px solid var(--ink);padding-top:30px">
+ <div>${kernel(m[2])}</div>
+ <div><div style="font:800 62px/1 'Barlow Condensed';text-transform:uppercase">${m[0]}</div><div style="font:500 30px/1.25 'Zilla Slab';color:#3f4441;margin-top:6px">${m[1]}</div>
+   <div style="height:12px;background:linear-gradient(90deg,#E9C36A,#B5601A 30%,#4A2C1A 65%,#0d0806);border-radius:6px;margin-top:14px;position:relative"><i style="position:absolute;left:${m[4]*100}%;top:-6px;width:6px;height:24px;background:var(--ink);border-radius:3px;box-shadow:0 0 0 3px #F1EEE6"></i></div></div>
+ <div style="text-align:right;font:800 46px 'Barlow Condensed';color:#B5601A">${m[3]}</div></div>`).join('');
+// ---- hop cone
+$('svg[data-hop]').forEach(s=>{
+  let h=`<path d="M260 30 C250 -10 240 -20 230 -40" stroke="#5f7d54" stroke-width="10" fill="none" stroke-linecap="round" transform="translate(0,40)"/><path d="M262 66 C330 20 400 40 430 90 C380 100 310 100 262 66Z" fill="#3c5a3f" transform="translate(-10,-5)"/>`;
+  const rows=[[260,150,74,5],[260,215,96,5],[260,290,104,5],[260,365,96,5],[260,435,74,4],[260,495,44,3]];
+  rows.forEach((r,ri)=>{const [cx,cy,w,n]=r;for(let i=0;i<n;i++){const x=cx+(i-(n-1)/2)*(w*2/(n))*.72;const rot=(i-(n-1)/2)*12;const col=['#B6C86A','#98B255','#7FA046','#6C8F3B'][(i+ri)%4];
+    h+=`<g transform="translate(${x} ${cy}) rotate(${rot})"><path d="M0 -62 C44 -50 52 20 0 70 C-52 20 -44 -50 0 -62Z" fill="${col}" stroke="#2c4426" stroke-width="3"/><path d="M0 -50 L0 52" stroke="#2c4426" stroke-width="2" opacity=".5"/></g>`;}});
+  s.innerHTML=h;
+});
+const hopsD=[['Citra','Grapefruit · Lime · Tropical'],['Simcoe','Pine · Resin · Passion fruit']];
+document.getElementById('hops').innerHTML=hopsD.map((x,i)=>`<div style="border-top:3px solid var(--amber);padding-top:18px"><div style="font:800 70px/1 'Barlow Condensed';text-transform:uppercase">${x[0]}</div><div style="font:500 30px/1.3 'Zilla Slab';color:#c8cdca;margin-top:8px">${x[1]}</div></div>`).join('');
+// ---- days
+const marks={1:'Yeast in',4:'Dry hop 1',8:'Dry hop 2',12:'Cold, then keg'};
+document.getElementById('days').innerHTML=`<div style="display:grid;grid-template-columns:repeat(12,1fr);gap:6px">${Array.from({length:12},(_,i)=>{const d=i+1;const on=marks[d];const shade=Math.round(200-d*10);return `<div style="text-align:center"><div style="height:${on?150:96}px;background:${on?'var(--ink)':'#d9d4c7'};border-radius:4px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px;font:800 34px 'Barlow Condensed';color:${on?'var(--amber)':'#5d625e'}">${d}</div></div>`}).join('')}</div>
+<div style="position:relative;height:120px;margin-top:20px;font:700 26px/1.1 'Zilla Slab';text-transform:uppercase;letter-spacing:.06em">
+${Object.entries(marks).map(([d,l])=>{const c=(d-.5)/12*920;const al=d==1?'left:0':d==12?'right:0;text-align:right':`left:${c}px;transform:translateX(-50%);text-align:center`;return `<div style="position:absolute;top:0;${al};width:180px;${d==1?'':''}">${l}</div>`}).join('')}</div>`;
+const specs=[['6.8%','ABV'],['55','IBU'],['12','Days']];
+document.getElementById('specs').innerHTML=specs.map((s,i)=>`<div style="flex:1;padding:18px 0 14px 28px;${i?'border-left:3px solid var(--ink)':''}"><span style="font:800 118px/1 'Barlow Condensed'">${s[0]}</span> <span style="font:700 32px 'Zilla Slab';letter-spacing:.14em;color:#B5601A">${s[1]}</span></div>`).join('');
+// ---- pairings
+const pairs=[['flame','Smoked brisket','Char and smoke meet roast.'],['beef','Green chile burger','Heat loves a dark, bitter edge.'],['cake-slice','Flourless chocolate cake','Cocoa on cocoa. Citrus on top.'],['fish','Aged cheddar, sharp and crumbly','Salt and sweet malt, plus pine.']];
+pairs[3]=['cookie','Aged cheddar & dark chocolate','Salt, cocoa, then a pine finish.'];
+document.getElementById('pairs').innerHTML=pairs.map((p,i)=>`<div style="display:grid;grid-template-columns:96px 1fr;gap:26px;align-items:center;border-top:2px solid rgba(241,238,230,.28);padding:20px 0 ${i==3?0:18}px">
+ <div style="width:96px;height:96px;border:3px solid var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--amber)"><span class="ic" style="width:50px;height:50px;-webkit-mask-image:url(../../node_modules/lucide-static/icons/${p[0]}.svg)"></span></div>
+ <div><div style="font:800 62px/1 'Barlow Condensed';text-transform:uppercase">${p[1]}</div><div style="font:500 30px 'Zilla Slab';color:#b9c0bc;margin-top:6px">${p[2]}</div></div></div>`).join('');
+</script>
+</body></html>
