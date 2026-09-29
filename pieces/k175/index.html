@@ -118,7 +118,7 @@ svg.ic{width:1em;height:1em;vertical-align:-.12em}
 
 /* S5 */
 #s5{background:var(--paper)}
-#s5 .center{position:absolute;left:0;right:0;top:300px;display:flex;flex-direction:column;align-items:center;text-align:center}
+#s5 .center{position:absolute;left:0;right:0;top:340px;display:flex;flex-direction:column;align-items:center;text-align:center}
 #s5 .biglogo{display:flex;align-items:center;gap:30px;font-size:118px;font-weight:800;letter-spacing:-.045em}
 #s5 .biglogo .mark{width:132px;height:132px;border-radius:32px}
 #s5 .biglogo .mark i{left:30px;height:15px;border-radius:8px}
@@ -311,7 +311,7 @@ $$('.plan .row').forEach((r, i) => {
 // SMS preview typed
 tl.to('#bub', {y:0, opacity:1, scale:1, duration:0.7}, S.s3 + 3.0);
 tl.to('#smstext', {duration:1.6, ease:'none',
-  text:{value:'Bonjour Julie, petit rappel pour la facture F-2026-1192 (1' + NB + '240' + NB + '€). Réglez-la en un clic' + NB + ': <span class="lnk">ledgerly.io/p/7XK2</span> Bonne journée' + NB + '!'}}, S.s3 + 3.35);
+  text:{value:'Bonjour Julie, petit rappel pour la facture <span style="white-space:nowrap">F-2026-1192</span> <span style="white-space:nowrap">(1' + NB + '240' + NB + '€)</span>. Réglez-la en un clic' + NB + ': <span class="lnk">ledgerly.io/p/7XK2</span> Bonne journée' + NB + '!'}}, S.s3 + 3.35);
 // paid
 tl.to('.s-late', {scale:.4, opacity:0, duration:0.25, ease:'power2.in'}, S.s3 + 5.25);
 tl.to('.s-paid', {scale:1, opacity:1, duration:0.5, ease:'back.out(2.2)'}, S.s3 + 5.4);

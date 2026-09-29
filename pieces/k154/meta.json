@@ -1,0 +1,8 @@
+{ "id": "k154", "brand": "Garnier & Fils — Plomberie Chauffage", "sector": "PME artisan (plomberie / chauffage)", "kind": "carousel",
+  "format": "1080x1350", "duration": null, "slides": 7,
+  "title": "5 signes que votre chauffe-eau va lâcher",
+  "concept": "Une « fiche technique du chauffe-eau » : illustrations en coupe façon plan d'artisan, bleu atelier / papier / cuivre, et un tuyau de cuivre continu qui traverse toutes les slides jusqu'au numéro de téléphone final. Carrousel éducatif (5 signes + quoi faire) puis offre diagnostic à 49 €.",
+  "techniques": ["svg-illustration","technical-cutaway","data-viz","css-textures","continuous-element-across-slides"],
+  "fonts": ["Archivo Black","Figtree"],
+  "palette": ["#14304A","#F4EEE3","#C8662F","#0F1F30","#5E8FB8"],
+  "copy_language": "fr" }

@@ -114,12 +114,15 @@ try {
     if (!slides.length) throw new Error('stills mode needs one or more .slide elements');
     const outDir = path.join(dir, 'slides'); fs.mkdirSync(outDir, { recursive: true });
     for (const f of fs.readdirSync(outDir)) fs.unlinkSync(path.join(outDir, f));
-    await page.setViewportSize({ width: meta.width, height: meta.height * slides.length });
+    // One slide-sized viewport, scrolled to each slide: a viewport as tall as the whole
+    // stack (7 × 1350 px…) makes Chromium's capture fail intermittently.
     await seek(page, 0);
     const files = [];
     for (const [i, el] of slides.entries()) {
       const p = path.join(outDir, `slide-${String(i + 1).padStart(2, '0')}.png`);
-      await el.screenshot({ path: p }); files.push(p);
+      const box = await el.evaluate(e => { e.scrollIntoView({ block: 'start' }); const r = e.getBoundingClientRect(); return { x: r.left, y: r.top, width: r.width, height: r.height }; });
+      await page.screenshot({ path: p, clip: { x: Math.max(0, box.x), y: Math.max(0, box.y), width: meta.width, height: meta.height } });
+      files.push(p);
     }
     await sheet(path.join(outDir, 'slide-%02d.png'), 1, files.length, Math.min(files.length, 5), path.join(dir, 'sheet.jpg'));
     console.log(JSON.stringify({ slides: files.length, width: meta.width, height: meta.height, renderSeconds: (Date.now() - t0) / 1000 }));

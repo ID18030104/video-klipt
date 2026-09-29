@@ -1,0 +1,8 @@
+{ "id": "k175", "brand": "Ledgerly", "sector": "SaaS B2B (fintech)", "kind": "video",
+  "format": "1080x1350", "duration": 24.5, "slides": null,
+  "title": "Ledgerly — lancement « Relances intelligentes »",
+  "concept": "Récit produit en 5 temps pour LinkedIn : 38 420 € d'impayés, lancement de la fonctionnalité, plan de relance planifié par l'IA (moment + ton) jusqu'à la facture payée, preuve chiffrée (-38 %, 11 jours de DSO) et essai gratuit. Direction fintech sobre : papier chaud, encre marine, vert Ledgerly, UI crédible, wipes verticaux et grain léger.",
+  "techniques": ["gsap", "ui-mockup", "text-mask-reveal", "counter", "TextPlugin typing", "DrawSVGPlugin chart", "clip-path wipes", "svg-grain"],
+  "fonts": ["Manrope", "JetBrains Mono"],
+  "palette": ["#F3F1EC", "#0E1B2C", "#0F7A4F", "#7CE0A8", "#0B3D2E", "#C8382F"],
+  "copy_language": "fr" }

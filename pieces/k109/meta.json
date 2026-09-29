@@ -2,5 +2,5 @@
   "format": "1080x1350", "duration": null, "slides": 7,
   "title": "5 signes que votre chauffe-eau va lâcher",
   "concept": "Fiche technique d'artisan : bleu de travail, ocre et brique, numéros géants et un tuyau de cuivre continu qui relie les slides ; chaque signe suit le format « ce que ça veut dire / que faire », puis offre diagnostic à 49 €.",
-  "techniques": ["html-css", "svg-illustration", "svg-grain", "continuous-pipe-motif"], "fonts": ["Archivo Black", "Work Sans"],
+  "techniques": ["price-stamp", "html-css", "svg-illustration", "svg-grain", "continuous-pipe-motif"], "fonts": ["Archivo Black", "Work Sans"],
   "palette": ["#14283F", "#F4ECDD", "#E8A33D", "#B5432A", "#C9773B"], "copy_language": "fr" }

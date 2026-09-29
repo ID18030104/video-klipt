@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Garnier &amp; Fils — 5 signes que votre chauffe-eau va lâcher</title>
+<!--
+DIRECTION — Concept: « La fiche technique du chauffe-eau », a plumber's technical sheet; one copper pipe crosses all slides at y=1172 and ends in the phone number.
+Palette: bleu atelier #14304A, papier #F4EEE3, cuivre #C8662F (display only; #A24E1F / #E89A66 for small text), encre #0F1F30, eau #5E8FB8.
+Type: Archivo Black (titles, numerals) + Figtree (body, labels).
+Graphic language: flat SVG cut-away illustrations, 6px navy strokes, hard offset shadows, callout tags with copper dots, urgency gauges.
+Motion: none (static carousel) — continuity carried by the pipe and the swipe cue.
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/archivo-black/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/700-italic.css">
+<style>
+:root{--navy:#14304A;--paper:#F4EEE3;--cu:#C8662F;--cu-txt:#A24E1F;--cu-lt:#E89A66;--ink:#0F1F30;--water:#5E8FB8;--lime:#E3DCCB;--white:#FFFBF4}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#0b1622}
+body{width:1080px;font-family:'Figtree',sans-serif;hyphens:none;-webkit-font-smoothing:antialiased}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden}
+.slide *{position:absolute}
+.slide.cream{background:var(--paper);color:var(--ink)}
+.slide.navy{background:var(--navy);color:var(--paper)}
+.slide.navy .bg{inset:0;background:
+ radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.05),transparent 60%),
+ repeating-linear-gradient(90deg,rgba(244,238,227,.05) 0 1px,transparent 1px 54px),
+ repeating-linear-gradient(0deg,rgba(244,238,227,.05) 0 1px,transparent 1px 54px)}
+.grain{left:0;top:0;width:1080px;height:1350px;pointer-events:none}
+.cream .grain{opacity:.9}
+.navy .grain{opacity:.9}
+.abs{position:absolute}
+/* logo */
+.logo{left:72px;top:50px;height:64px;display:flex;align-items:center;gap:16px}
+.logo *{position:static}
+.logo .wm{display:flex;flex-direction:column;gap:4px}
+.logo b{font-family:'Archivo Black';font-weight:400;font-size:34px;line-height:1;white-space:nowrap}
+.logo b i{font-style:normal}
+.logo span{font-weight:700;font-size:18px;letter-spacing:.18em;line-height:1;white-space:nowrap}
+.navy .logo b i{color:var(--cu)} .navy .logo span{color:var(--cu-lt)}
+.cream .logo b i{color:var(--cu-txt)} .cream .logo span{color:var(--cu-txt)}
+.logo.compact{top:56px;height:52px;gap:12px}
+.logo.compact b{font-size:28px}
+.pg{right:72px;top:64px;font-weight:700;font-size:30px;line-height:36px;white-space:nowrap}
+.pg em{font-style:normal;opacity:.45}
+.hair{left:72px;top:136px;width:936px;height:2px;background:rgba(15,31,48,.15)}
+/* footer */
+.foot-l{left:72px;top:1249px;font-weight:700;font-size:30px;line-height:36px;opacity:.7;white-space:nowrap}
+.arrow{left:952px;top:1236px;width:56px;height:56px;border-radius:50%;background:var(--cu);display:flex;align-items:center;justify-content:center;color:var(--paper)}
+.arrow svg{position:static;width:28px;height:28px}
+.swipe{right:144px;top:1249px;font-weight:700;font-size:30px;line-height:36px;color:var(--paper);white-space:nowrap}
+/* pipe */
+.pipe{left:0;width:1080px;top:1157px;height:30px;background:linear-gradient(#E08A52 0,#C8662F 45%,#8E4418 100%)}
+.pipe::after{content:"";position:absolute;left:0;right:0;top:7px;height:3px;background:rgba(242,183,140,.6)}
+.fit{top:1145px;width:46px;height:54px;border-radius:6px;background:var(--cu-txt);border:2px solid #8E4418}
+.fit::before,.fit::after{content:"";position:absolute;top:0;bottom:0;width:2px;background:var(--cu)}
+.fit::before{left:10px}.fit::after{right:10px}
+/* kicker */
+.kick{border:2px solid var(--cu-lt);border-radius:999px;padding:12px 24px;font-weight:800;font-size:30px;letter-spacing:.12em;line-height:1.2;white-space:nowrap}
+.dsp{font-family:'Archivo Black';font-weight:400;white-space:nowrap}
+/* sign slides */
+.num{left:72px;top:170px;font-family:'Archivo Black';font-size:260px;line-height:.85;color:var(--cu)}
+.meta{left:270px;top:196px;font-weight:800;font-size:30px;letter-spacing:.12em;line-height:36px;opacity:.6;white-space:nowrap}
+.gauge{left:270px;top:250px;height:36px;display:flex;align-items:center;gap:16px;white-space:nowrap}
+.gauge *{position:static}
+.gauge .segs{display:flex;gap:6px}
+.gauge .segs i{display:block;width:44px;height:14px;border-radius:7px;background:rgba(15,31,48,.15)}
+.gauge .segs i.on{background:var(--cu)}
+.gauge .lab{font-weight:700;font-size:30px;color:var(--cu-txt);line-height:36px}
+.ttl{left:72px;top:430px;width:528px;font-family:'Archivo Black';font-size:60px;line-height:1.06;letter-spacing:0;white-space:nowrap}
+.exp{left:72px;width:528px;font-weight:500;font-size:32px;line-height:1.35;color:rgba(15,31,48,.85)}
+.qf{left:72px;top:846px;width:936px;height:278px;background:var(--navy);border-radius:20px;padding:44px 44px 0}
+.qf *{position:static}
+.qf .row{display:flex;align-items:center;gap:14px;height:40px}
+.qf .row svg{width:40px;height:40px;color:var(--cu-lt)}
+.qf .row b{font-weight:800;font-size:30px;letter-spacing:.14em;color:var(--cu-lt)}
+.qf p{margin-top:18px;font-weight:600;font-size:34px;line-height:1.28;color:var(--paper)}
+.tag{background:var(--navy);color:var(--paper);border-radius:10px;padding:8px 16px;font-weight:700;font-size:30px;line-height:1.2;white-space:nowrap}
+.ov{left:0;top:0;width:1080px;height:1350px;overflow:visible;pointer-events:none}
+.icon{position:static}
+</style>
+</head>
+<body>
+<!-- shared defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <defs>
+  <symbol id="logo-mark" viewBox="0 0 40 64">
+   <path d="M20 5C20 5 5 26 5 43a15 15 0 0 0 30 0C35 26 20 5 20 5Z" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M20 31c1.5 5.5 8 7.5 8 15a8 8 0 0 1-16 0c0-4 3-5.5 3-9 2 .8 3 2 3.500 3.500 1-3.500 1-6 1.500-9.500Z" fill="#C8662F"/>
+  </symbol>
+  <linearGradient id="copperV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E08A52"/><stop offset=".45" stop-color="#C8662F"/><stop offset="1" stop-color="#8E4418"/></linearGradient>
+  <linearGradient id="copperH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E08A52"/><stop offset=".45" stop-color="#C8662F"/><stop offset="1" stop-color="#8E4418"/></linearGradient>
+  <filter id="grain" filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1350">
+   <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>
+   <feColorMatrix type="saturate" values="0"/>
+  </filter>
+ </defs>
+</svg>
+<div id="deck"></div>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+window.KLIPT = { width:1080, height:1350, ready: document.fonts.ready };
+const ICON = {
+ wrench:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/>',
+ check:'<path d="M20 6 9 17l-5-5"/>',
+ arrow:'<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+ phone:'<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/>'
+};
+const ic=(n,sw=2.5,cls='')=>`<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${ICON[n]}</svg>`;
+const N='#14304A', CU='#C8662F', SH='rgba(15,31,48,0.12)';
+const mkGrain=(rgb,amax)=>{const c=document.createElement('canvas');c.width=c.height=256;const x=c.getContext('2d');const d=x.createImageData(256,256);const r=KK.rng(7);for(let i=0;i<65536;i++){d.data[i*4]=rgb;d.data[i*4+1]=rgb;d.data[i*4+2]=rgb;d.data[i*4+3]=Math.floor(r()*amax);}x.putImageData(d,0,0);return c.toDataURL('image/png');};
+const G_DARK=mkGrain(15,26), G_LIGHT=mkGrain(255,16);
+const grain=(dark)=>`<div class="grain" style="background:url(${dark?G_DARK:G_LIGHT});background-size:256px 256px"></div>`;
+const logo=(compact)=>`<div class="logo ${compact?'compact':''}"><svg width="${compact?32:40}" height="${compact?52:64}" viewBox="0 0 40 64"><use href="#logo-mark"/></svg><div class="wm"><b>GARNIER <i>&amp;</i> FILS</b>${compact?'':'<span>PLOMBERIE · CHAUFFAGE</span>'}</div></div>`;
+const pg=n=>`<div class="pg">0${n}<em>&nbsp;/&nbsp;07</em></div>`;
+const footer=(left,swipe)=>`<div class="foot-l">${left}</div>${swipe?'<div class="swipe">Faites glisser</div>':''}<div class="arrow">${ic('arrow',2.5)}</div>`;
+
+/* heater component, viewBox 0 0 300 640 */
+const BODY='M30 110A120 70 0 0 1 270 110V490A120 70 0 0 1 30 490Z';
+function heater(o){
+ const {x,y,w,fill,shadow=SH,win='',pipes=true,drop=false,band=false,extra=''}=o;
+ const h=w*640/300;
+ return `<svg class="abs" style="left:${x}px;top:${y}px;overflow:visible" width="${w}" height="${h}" viewBox="0 0 300 640">
+ ${pipes?`<rect x="97" y="540" width="26" height="100" fill="#5E8FB8" stroke="${N}" stroke-width="4"/><rect x="177" y="540" width="26" height="100" fill="url(#copperH)" stroke="${N}" stroke-width="4"/>`:''}
+ <rect x="70" y="20" width="30" height="16" fill="${N}"/><rect x="200" y="20" width="30" height="16" fill="${N}"/>
+ <path d="${BODY}" transform="translate(9 9)" fill="${shadow}"/>
+ <path d="${BODY}" fill="${fill}" stroke="${N}" stroke-width="6" stroke-linejoin="round"/>
+ <clipPath id="bc${x}${y}"><path d="${BODY}"/></clipPath>
+ <rect x="30" y="150" width="240" height="20" fill="${N}" fill-opacity=".1" clip-path="url(#bc${x}${y})"/>
+ ${band?`<g color="${N}"><svg x="137" y="141" width="26" height="41" viewBox="0 0 40 64"><use href="#logo-mark"/></svg></g>`:''}
+ ${win}
+ <rect x="100" y="480" width="100" height="60" rx="10" fill="${N}" fill-opacity=".15"/>
+ <circle cx="125" cy="510" r="11" fill="${CU}" stroke="${N}" stroke-width="3"/><circle cx="175" cy="510" r="4.500" fill="${N}"/>
+ <rect x="70" y="596" width="30" height="14" rx="3" fill="${CU}" stroke="${N}" stroke-width="4"/>
+ <rect x="92" y="588" width="36" height="36" rx="4" fill="${CU}" stroke="${N}" stroke-width="4"/><circle cx="110" cy="606" r="8" fill="${fill}" stroke="${N}" stroke-width="3"/>
+ ${drop?`<path d="M76 626C76 626 66 640 66 646a10 10 0 0 0 20 0C86 640 76 626 76 626Z" fill="#5E8FB8" stroke="${N}" stroke-width="3"/>`:''}
+ ${extra}
+ </svg>`;
+}
+const HX=730, HY=180, HS=260/300;
+const hx=u=>HX+u*HS, hy=v=>HY+v*HS;
+const WIN=(inner)=>`<clipPath id="wc"><rect x="70" y="200" width="160" height="270" rx="20"/></clipPath><rect x="70" y="200" width="160" height="270" rx="20" fill="#FFFBF4"/><g clip-path="url(#wc)">${inner}</g><rect x="70" y="200" width="160" height="270" rx="20" fill="none" stroke="${N}" stroke-width="4"/>`;
+const gauge=(n,label)=>`<div class="gauge"><div class="segs"><i class="${n>=1?'on':''}"></i><i class="${n>=2?'on':''}"></i><i class="${n>=3?'on':''}"></i></div><div class="lab">${label}</div></div>`;
+const tagHTML=(t,x,y)=>`<div class="tag" style="left:${x}px;top:${y}px">${t}</div>`;
+const lead=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${N}" stroke-width="3" stroke-linecap="round"/><circle cx="${x2}" cy="${y2}" r="7" fill="${CU}"/>`;
+
+function sign(n,pos,label,title,exp,expTop,qf,fitX,right,ov=''){
+ return `<section class="slide cream">${grain(true)}
+ ${logo(true)}${pg(n+1)}<div class="hair"></div>
+ <div class="num">${n}</div><div class="meta">SIGNE N°${n} SUR 5</div>${gauge(pos,label)}
+ <div class="ttl">${title}</div><div class="exp" style="top:${expTop}px">${exp}</div>
+ ${right}
+ <div class="qf"><div class="row">${ic('wrench',2.5)}<b>QUOI FAIRE</b></div><p>${qf}</p></div>
+ <div class="pipe"></div><div class="fit" style="left:${fitX-23}px"></div>
+ <svg class="ov" viewBox="0 0 1080 1350">${ov}</svg>
+ ${footer('garnier-plomberie.fr',false)}
+ </section>`;
+}
+const slides=[];
+
+/* ---------- slide 1 ---------- */
+(function(){
+ const X=700,Y=465,S=280/300;
+ const hotX=X+190*S, coldX=X+110*S;
+ slides.push(`<section class="slide navy"><div class="bg"></div>${grain(false)}${logo(false)}${pg(1)}
+ <div class="abs kick" style="left:72px;top:196px">CONSEILS DE PLOMBIER</div>
+ <div class="abs dsp" style="left:72px;top:270px;font-size:150px;line-height:1;letter-spacing:-.01em"><span style="position:static;color:#C8662F">5</span>&nbsp;signes</div>
+ <div class="abs dsp" style="left:72px;top:450px;font-size:72px;line-height:1.04;width:560px">que votre<br>chauffe-eau<br>va lâcher</div>
+ <div class="abs" style="left:72px;top:699px;font-weight:700;font-style:italic;font-size:52px;line-height:1.1;color:#E89A66;white-space:nowrap">(et quoi faire)</div>
+ <div class="abs" style="left:72px;top:850px;width:560px;font-weight:500;font-size:34px;line-height:1.35;color:rgba(244,238,227,.8)">Les conseils de nos techniciens,<br>depuis 1987.</div>
+ <svg class="ov" viewBox="0 0 1080 1350">
+  <rect x="${hotX-15}" y="940" width="30" height="192" fill="url(#copperH)" transform="translate(6 6)" opacity="0"/>
+  <rect x="${hotX-15}" y="940" width="30" height="192" fill="url(#copperH)"/>
+  <path d="M${hotX} 1132A40 40 0 0 0 ${hotX+40} 1172" fill="none" stroke="#C8662F" stroke-width="30"/>
+  <path d="M${hotX} 1132A40 40 0 0 0 ${hotX+40} 1172" fill="none" stroke="rgba(242,183,140,.5)" stroke-width="3" transform="translate(-9 0)"/>
+  <rect x="${coldX-13}" y="940" width="26" height="272" fill="#5E8FB8" stroke="${N}" stroke-width="4"/>
+  <rect x="${coldX-19}" y="1206" width="38" height="14" rx="4" fill="#4b7aa3" stroke="${N}" stroke-width="4"/>
+ </svg>
+ <div class="pipe" style="left:${hotX+40}px;width:${1080-hotX-40}px"></div>
+ ${heater({x:X,y:Y,w:280,fill:'#F4EEE3',shadow:'rgba(0,0,0,0.25)',pipes:false,drop:true,band:true})}
+ <svg class="abs" style="left:${X+250*S-32}px;top:${Y+80*S-32}px;transform:rotate(8deg)" width="64" height="64" viewBox="0 0 24 24"><path d="m21.730 18-8-14a2 2 0 0 0-3.480 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.730-3" fill="#C8662F" stroke="${N}" stroke-width="1.600" stroke-linejoin="round"/><path d="M12 9v4M12 17h.01" stroke="${N}" stroke-width="2.400" stroke-linecap="round" fill="none"/></svg>
+ ${footer('Dépannage 7j/7 · Nantes',true)}
+ </section>`);
+})();
+
+/* ---------- slide 2 ---------- */
+(function(){
+ const win=WIN(`<rect x="70" y="200" width="160" height="270" fill="#C8662F" fill-opacity=".28"/>
+  <circle cx="190" cy="270" r="4" fill="#C8662F" fill-opacity=".5"/><circle cx="205" cy="330" r="3" fill="#C8662F" fill-opacity=".5"/><circle cx="140" cy="360" r="5" fill="#C8662F" fill-opacity=".4"/>
+  <g style="filter:drop-shadow(0 0 10px rgba(200,102,47,0.45))" fill="none" stroke="#C8662F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M100 462V290"/><rect x="90" y="454" width="20" height="10" rx="3" fill="#C8662F"/>
+   <path d="M122 428H210M210 428V440H128V452H210V464"/>
+  </g>`);
+ const right=heater({x:HX,y:HY,w:260,fill:'#FFFBF4',win});
+ const ov=lead(628+112+2,321,hx(100),hy(290))+lead(792,632,hx(126),hy(440));
+ const tags=tagHTML('Anode',620,300)+tagHTML("Résistance",620,610);
+ slides.push(sign(1,2,'À traiter vite','L’eau sort<br>tiède ou<br>rouillée','Tartre sur la résistance ou cuve qui rouille de l’intérieur&nbsp;: votre ballon s’épuise.',652,
+  'Ouvrez un robinet d’eau froide&#8239;: si elle est claire, le souci vient du ballon. Faites contrôler l’anode et détartrer la résistance.',300,right,ov).replace('<div class="qf">',tags+'<div class="qf">'));
+})();
+
+/* ---------- slide 3 ---------- */
+(function(){
+ const r=KK.rng(23);
+ let dots='';
+ for(let i=0;i<40;i++){dots+=`<circle cx="${(76+r()*148).toFixed(1)}" cy="${(410+r()*54).toFixed(1)}" r="${(3+r()*2).toFixed(1)}" fill="${N}" fill-opacity=".85" transform="scale(1)"/>`;}
+ const bub=[[100,380,8],[135,340,11],[170,395,6],[190,300,10],[120,270,7]].map(b=>`<circle cx="${b[0]}" cy="${b[1]}" r="${b[2]}" fill="none" stroke="${N}" stroke-width="3"/>`).join('');
+ const win=WIN(`<rect x="70" y="200" width="160" height="270" fill="#5E8FB8" fill-opacity=".14"/>
+  <path d="M60 402Q90 396 115 404T170 402T240 400V480H60Z" fill="#E3DCCB" stroke="${N}" stroke-width="3"/>${dots}${bub}`);
+ let arcs='';
+ [46,81,115].forEach(rad=>{
+  const a=35*Math.PI/180, cx=270, cy=440, dx=rad*Math.cos(a), dy=rad*Math.sin(a);
+  arcs+=`<path d="M${cx+dx} ${cy-dy}A${rad} ${rad} 0 0 1 ${cx+dx} ${cy+dy}" fill="none" stroke="${CU}" stroke-width="7" stroke-linecap="round"/>`;
+  arcs+=`<path d="M${300-cx-dx} ${cy-dy}A${rad} ${rad} 0 0 0 ${300-cx-dx} ${cy+dy}" fill="none" stroke="${CU}" stroke-width="7" stroke-linecap="round"/>`;
+ });
+ const right=heater({x:HX,y:HY,w:260,fill:'#FFFBF4',win,extra:arcs});
+ const ov=lead(766,733,hx(80),hy(430));
+ slides.push(sign(2,1,'À surveiller','Il claque,<br>siffle ou<br>gronde','Le calcaire tassé au fond piège de l’eau qui bout par à-coups. L’appareil force et s’use.',652,
+  'Faites détartrer le ballon tous les 2 à 3&nbsp;ans. Si le bruit continue après, c’est la résistance qu’il faut changer.',780,right,ov).replace('<div class="qf">',tagHTML('Calcaire',620,720)+'<div class="qf">'));
+})();
+
+/* ---------- slide 4 ---------- */
+(function(){
+ const C=830;
+ const drops=[[600,26],[636,22],[668,18]].map(d=>{const s=d[1]/26;return `<path transform="translate(${C} ${d[0]}) scale(${s})" d="M0-15C0-15-11-1-11 5a11 11 0 0 0 22 0C11-1 0-15 0-15Z" fill="#5E8FB8" stroke="${N}" stroke-width="${3/s}"/>`}).join('');
+ let notches='';
+ for(let i=0;i<8;i++){notches+=`<rect x="-3" y="-42" width="6" height="12" rx="2" fill="${N}" transform="rotate(${i*45})"/>`;}
+ const right=`<svg class="ov" viewBox="0 0 1080 1350">
+  <path d="M${C-172} 300V172" stroke="${N}" stroke-width="0"/>
+  <path transform="translate(9 9)" d="M${C-170} 170V215A170 85 0 0 0 ${C+170} 215V170" fill="${SH}"/>
+  <path d="M${C-170} 170V215A170 85 0 0 0 ${C+170} 215V170" fill="#FFFBF4" stroke="${N}" stroke-width="6" stroke-linejoin="round"/>
+  <rect x="${C-15}" y="296" width="30" height="72" fill="#5E8FB8" stroke="${N}" stroke-width="5"/>
+  <g>
+   <rect x="${C-40}" y="360" width="80" height="185" rx="10" fill="${CU}" stroke="${N}" stroke-width="6"/>
+   <rect x="${C-40}" y="416" width="${40+40+50}" height="68" rx="10" fill="${CU}" stroke="${N}" stroke-width="6" transform="translate(0 0)"/>
+   <rect x="${C-34}" y="422" width="74" height="56" fill="${CU}"/>
+   <rect x="${C-15}" y="540" width="30" height="58" rx="4" fill="#A24E1F" stroke="${N}" stroke-width="6"/>
+   <g transform="translate(${C+86} 450)"><circle r="38" fill="#E08A52" stroke="${N}" stroke-width="6"/>${notches}<circle r="10" fill="${N}"/></g>
+  </g>
+  ${drops}
+  <path d="M${C-62} 692H${C+62}L${C+22} 738H${C-22}Z" fill="#FFFBF4" stroke="${N}" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M${C} 738V768Q${C} 796 ${C+30} 796H${C+120}" fill="none" stroke="${N}" stroke-width="30" stroke-linecap="butt"/>
+  <path d="M${C} 738V768Q${C} 796 ${C+30} 796H${C+120}" fill="none" stroke="#FFFBF4" stroke-width="18"/>
+  ${lead(796,401,C+86,450)}${lead(760,661,C-16,650)}
+ </svg>`;
+ slides.push(sign(3,3,'Agir vite','Ça fuit sous<br>le groupe<br>de sécurité','Quelques gouttes pendant la chauffe, c’est normal. Un filet continu, non&nbsp;: pression trop forte ou groupe usé.',652,
+  'Manœuvrez la molette du groupe une fois par mois. Si ça coule sans arrêt&#8239;: coupez l’eau froide et <span style="white-space:nowrap">appelez-nous</span>.',520,right).replace('<div class="qf">',tagHTML('Molette',640,380)+tagHTML('Évacuation',620,640)+'<div class="qf">'));
+})();
+
+/* ---------- slide 5 ---------- */
+(function(){
+ const px=620+368*13/15;
+ const right=`
+ <div class="abs" style="left:629px;top:189px;width:388px;height:360px;border-radius:12px;background:${SH}"></div>
+ <div class="abs" style="left:620px;top:180px;width:388px;height:360px;border:4px solid ${N};border-radius:12px;background:#DCD6CC repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 1px,transparent 1px 4px);padding:32px">
+  <i style="left:12px;top:12px;width:12px;height:12px;border-radius:50%;border:3px solid ${N}"></i><i style="right:12px;top:12px;width:12px;height:12px;border-radius:50%;border:3px solid ${N}"></i>
+  <i style="left:12px;bottom:12px;width:12px;height:12px;border-radius:50%;border:3px solid ${N}"></i><i style="right:12px;bottom:12px;width:12px;height:12px;border-radius:50%;border:3px solid ${N}"></i>
+  <div class="dsp" style="left:32px;top:36px;font-size:34px;line-height:1.1;color:${N}">CHAUFFE-EAU</div>
+  <div style="left:32px;top:92px;width:316px;height:2px;background:${N}"></div>
+  <div style="left:32px;top:114px;font-weight:700;font-size:30px;line-height:36px;color:var(--ink);white-space:nowrap">200&nbsp;L · 2&nbsp;400&nbsp;W</div>
+  <div style="left:32px;top:200px;padding:6px 12px;border:4px solid ${CU};border-radius:8px;transform:rotate(-2deg);font-weight:800;font-size:34px;line-height:1.2;color:var(--ink);white-space:nowrap">Fab. 03/2013</div>
+ </div>
+ <div class="abs" style="left:620px;top:596px;font-weight:800;font-size:30px;letter-spacing:.1em;line-height:36px;color:rgba(15,31,48,.6);white-space:nowrap">ÂGE DU BALLON</div>
+ <div class="abs" style="left:${px-46}px;top:630px;width:92px;text-align:center;background:${N};color:var(--paper);border-radius:999px;font-weight:700;font-size:30px;line-height:36px;padding:0">13&nbsp;ans</div>
+ <svg class="ov" viewBox="0 0 1080 1350"><path d="M${px-12} 668H${px+12}L${px} 682Z" fill="${N}"/></svg>
+ <div class="abs" style="left:620px;top:686px;width:368px;height:22px;border-radius:11px;overflow:hidden;background:rgba(20,48,74,.2)">
+  <div style="left:245px;top:0;width:123px;height:22px;background:${CU} repeating-linear-gradient(45deg,rgba(255,255,255,.25) 0 5px,transparent 5px 10px)"></div></div>
+ <div class="abs" style="left:620px;top:720px;font-weight:700;font-size:30px;line-height:36px">0</div>
+ <div class="abs" style="left:743px;top:720px;transform:translateX(-50%);font-weight:700;font-size:30px;line-height:36px">5</div>
+ <div class="abs" style="left:865px;top:720px;transform:translateX(-50%);font-weight:700;font-size:30px;line-height:36px">10</div>
+ <div class="abs" style="right:72px;top:720px;font-weight:700;font-size:30px;line-height:36px;white-space:nowrap">15&nbsp;ans</div>`;
+ slides.push(sign(4,2,'À anticiper','Il a passé<br>ses 10&nbsp;ans','Un chauffe-eau électrique dure en moyenne 10 à 15&nbsp;ans. Passé 10&nbsp;ans, chaque hiver est un pari.',590,
+  'Lisez la date sur la plaque signalétique, sur le côté du ballon. Plus de 10&nbsp;ans&#8239;? Faites-le vérifier avant la panne.',220,right));
+})();
+
+/* ---------- slide 6 ---------- */
+(function(){
+ const base=740, xs=[636,776,916], hs=[380,418,456], caps=[0,14,28], vals=['+0&nbsp;%','+10&nbsp;%','+20&nbsp;%'], mm=['0&nbsp;mm','1&nbsp;mm','2&nbsp;mm'];
+ const r=KK.rng(31);
+ let g='';
+ xs.forEach((x,i)=>{
+  const top=base-hs[i];
+  g+=`<rect x="${x+8}" y="${top+8}" width="92" height="${hs[i]}" fill="${SH}"/>`;
+  g+=`<rect x="${x}" y="${top}" width="92" height="${hs[i]}" fill="${i?CU:N}"/>`;
+  if(caps[i]){
+   g+=`<rect x="${x}" y="${base-caps[i]}" width="92" height="${caps[i]}" fill="#E3DCCB" stroke="${N}" stroke-width="2"/>`;
+   for(let k=0;k<caps[i]*1.1;k++){g+=`<circle cx="${(x+6+r()*80).toFixed(1)}" cy="${(base-3-r()*(caps[i]-6)).toFixed(1)}" r="1.800" fill="${N}"/>`;}
+  }
+ });
+ const val=xs.map((x,i)=>`<div class="dsp" style="left:${x+46}px;top:${base-hs[i]-58}px;transform:translateX(-50%);font-size:44px;line-height:52px;color:${i?'#A24E1F':N}">${vals[i]}</div>`).join('');
+ const lab=xs.map((x,i)=>`<div style="left:${x+46}px;top:752px;transform:translateX(-50%);font-weight:700;font-size:30px;line-height:36px;white-space:nowrap">${mm[i]}</div>`).join('');
+ const right=`
+ <div class="abs" style="left:620px;top:180px;font-weight:800;font-size:30px;letter-spacing:.1em;line-height:36px;color:rgba(15,31,48,.6);white-space:nowrap">CONSOMMATION</div>
+ <div class="abs" style="left:620px;top:216px;font-weight:800;font-size:30px;letter-spacing:.1em;line-height:36px;color:rgba(15,31,48,.6);white-space:nowrap">DU BALLON</div>
+ <svg class="ov" viewBox="0 0 1080 1350">${g}<rect x="620" y="${base}" width="388" height="3" fill="${N}"/></svg>
+ ${val}${lab}
+ <div class="abs" style="left:814px;top:784px;transform:translateX(-50%);font-weight:500;font-size:30px;line-height:36px;color:rgba(15,31,48,.7);white-space:nowrap">de tartre</div>
+ <div class="abs" style="left:72px;top:786px;border:3px solid ${CU};border-radius:999px;padding:2px 20px;font-weight:700;font-size:30px;line-height:36px;color:#A24E1F;white-space:nowrap;background:var(--paper)">1&nbsp;mm de tartre ≈ +10&nbsp;% de consommation</div>`;
+ slides.push(sign(5,1,'À surveiller','La facture<br>d’électricité<br>grimpe','Le tartre isole la résistance&#8239;: elle chauffe plus longtemps pour la même eau chaude.',652,
+  'Réglez le thermostat sur 55–60&nbsp;°C, pas plus. Et si la facture monte sans raison, faites détartrer le ballon.',860,right));
+})();
+
+/* ---------- slide 7 ---------- */
+(function(){
+ const chk=t=>`<div class="abs" style="left:72px;width:936px;height:64px;display:flex;align-items:center;gap:18px;font-weight:600;font-size:34px;color:var(--paper)"><span style="position:static;display:flex;color:#E89A66">${ic('check',3).replace('class="icon ','class="icon ').replace('<svg','<svg width="36" height="36"')}</span><span style="position:static">${t}</span></div>`;
+ const rows=['Contrôle de l’anode et de la résistance','Test du groupe de sécurité et de la pression','Devis clair, sans engagement'].map((t,i)=>chk(t).replace('<div class="abs"',`<div class="abs" style="top:${760+i*64}px;`).replace('style="top:'+(760+i*64)+'px; style="','style="top:'+(760+i*64)+'px;'));
+ slides.push(`<section class="slide navy"><div class="bg"></div>${grain(false)}${logo(false)}${pg(7)}
+ <div class="abs kick" style="left:72px;top:180px">UN DOUTE&#8239;? ON VÉRIFIE.</div>
+ <div class="abs dsp" style="left:72px;top:260px;font-size:96px;line-height:1;letter-spacing:-.01em">Diagnostic<br>chauffe-eau</div>
+ <div class="abs dsp" style="left:72px;top:480px;font-size:240px;line-height:.9;color:#C8662F;letter-spacing:-.01em">49&nbsp;€</div>
+ <div class="abs" style="left:735px;top:465px;width:270px;height:270px;transform:rotate(-10deg)">
+  <div style="inset:0;border:4px solid #E89A66;border-radius:50%"></div><div style="inset:14px;border:2px solid #E89A66;border-radius:50%"></div>
+  <div style="left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+   <div class="dsp" style="position:static;font-size:46px;line-height:1;color:var(--paper)">OFFERT</div>
+   <div style="position:static;margin-top:8px;font-weight:700;font-size:28px;line-height:1.15;color:#E89A66">si<br>remplacement</div></div>
+ </div>
+ ${rows.join('')}
+ <div class="abs" style="left:72px;top:1000px;font-weight:700;font-size:30px;line-height:36px;color:#E89A66;white-space:nowrap">Depuis 1987 · 3 générations · 9 techniciens · 7j/7</div>
+ <div class="pipe" style="width:72px;top:1157px"></div>
+ <svg class="ov" viewBox="0 0 1080 1350"><path d="M32 1172l10-30h20l10 30-10 30H42Z" transform="translate(-6 0)" fill="#A24E1F" stroke="#8E4418" stroke-width="2"/></svg>
+ <div class="abs" style="left:72px;top:1064px;width:936px;height:216px;background:#F4EEE3;border-radius:24px;padding:36px 48px">
+  <div style="position:static;display:flex;align-items:center;gap:12px;color:#A24E1F;font-weight:800;font-size:30px;letter-spacing:.12em;line-height:36px"><span style="position:static;display:flex;width:32px;height:32px">${ic('phone',2.5)}</span>APPELEZ-NOUS</div>
+  <div class="dsp" style="position:static;margin-top:2px;font-size:76px;line-height:1;color:${N}">02&nbsp;40&nbsp;12&nbsp;34&nbsp;56</div>
+  <div style="position:static;margin-top:6px;font-weight:700;font-size:34px;line-height:1.1;color:rgba(15,31,48,.75)">garnier-plomberie.fr</div>
+ </div>
+ </section>`);
+})();
+document.getElementById('deck').innerHTML=slides.join('');
+</script>
+</body>
+</html>
