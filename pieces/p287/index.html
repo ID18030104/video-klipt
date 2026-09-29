@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<!--
+  ART DIRECTION — Bastide Immobilier, « Vendue en 12 jours »
+  Concept : la preuve par le terrain. Une carte gravée du pays d'Aix (Sainte-Victoire, route de Cézanne)
+            zoome sur Le Tholonet, s'ouvre sur la fiche du bien, les chiffres montent, le tampon VENDU tombe.
+            Puis la question au propriétaire : « et la vôtre ? » → estimation offerte en 48 h.
+  Palette : crème papier #F3EAD8 (dominante), vert cyprès #1F3A2E (secondaire), terre cuite #B8492A (accent rare),
+            ocre #D9A441 (détails), encre #1B1A17.
+  Typo : Fraunces (titres, chiffres, italiques) + Figtree (infos, labels capitales espacées).
+  Langage graphique : carte gravée à filets fins, courbes de niveau, illustration provençale, tampon encré, grain papier.
+  Mouvement : posé et sûr de lui (expo/power3), textes révélés par masques, un seul impact : le tampon.
+-->
+<title>Bastide Immobilier — Vendue en 12 jours</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/400-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/700.css">
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../node_modules/gsap/dist/DrawSVGPlugin.min.js"></script>
+<script src="../../node_modules/d3/dist/d3.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<style>
+  :root{
+    --cream:#F3EAD8; --cream2:#EADDC4; --green:#1F3A2E; --green2:#2A4A3B; --terra:#B8492A; --ochre:#D9A441; --ink:#1B1A17;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1920px;margin:0;overflow:hidden;background:var(--cream)}
+  body{font-family:'Figtree',sans-serif;color:var(--ink);position:relative;-webkit-font-smoothing:antialiased}
+  .serif{font-family:'Fraunces',serif}
+  .scene{position:absolute;inset:0;overflow:hidden}
+  .ln{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+  .ln>span{display:inline-block;will-change:transform}
+  .caps{text-transform:uppercase;letter-spacing:.22em;font-weight:700}
+  .hdr{position:absolute;left:70px;right:70px;top:236px;height:64px;display:flex;align-items:center;justify-content:space-between}
+  .mini{display:flex;align-items:center;gap:16px}
+  .mini svg{width:52px;height:52px}
+  .mini b{font-family:'Fraunces',serif;font-weight:600;font-size:36px;letter-spacing:.01em}
+  .mini i{font-style:normal;font-size:17px;letter-spacing:.3em;font-weight:700;margin-top:6px}
+  .tag{font-size:24px}
+
+  /* A — hook */
+  #A{background:var(--cream)}
+  #A .big12{position:absolute;right:-60px;top:360px;font-family:'Fraunces',serif;font-weight:600;font-size:980px;line-height:1;color:transparent;-webkit-text-stroke:2px rgba(31,58,46,.13);letter-spacing:-.04em}
+  #A .h{position:absolute;left:70px;top:560px;font-family:'Fraunces',serif;font-weight:600;font-size:172px;line-height:1.0;letter-spacing:-.02em;color:var(--green)}
+  #A .h em{font-style:italic;font-weight:400;color:var(--terra)}
+  #A .sub{position:absolute;left:70px;top:1150px;font-size:40px;font-weight:500;color:var(--ink);display:flex;align-items:center;gap:22px}
+  #A .sub .rule{width:90px;height:3px;background:var(--terra)}
+  #A svg.ridge{position:absolute;left:0;top:1280px;width:1080px;height:260px}
+
+  /* green world */
+  #G{background:var(--green)}
+  #G svg{position:absolute;inset:0;width:1080px;height:1920px}
+
+  /* B — map */
+  #B{color:var(--cream)}
+  #B .title{position:absolute;left:70px;top:330px}
+  #B .title h2{font-family:'Fraunces',serif;font-weight:600;font-size:118px;line-height:1;letter-spacing:-.015em}
+  #B .title p{font-family:'Fraunces',serif;font-style:italic;font-size:50px;color:var(--ochre);margin-top:14px}
+  #B .mapwrap{position:absolute;left:40px;top:590px;width:1000px;height:900px;transform-origin:560px 520px}
+  #B svg.map{width:1000px;height:900px;overflow:visible}
+  .lbl{font-family:'Figtree',sans-serif;font-weight:700;fill:var(--cream)}
+  .lbli{font-family:'Fraunces',serif;font-style:italic;fill:var(--cream)}
+
+  /* C — fiche */
+  #C .card{position:absolute;left:60px;top:250px;width:960px;height:1250px;background:var(--cream);border-radius:10px;box-shadow:0 40px 80px rgba(0,0,0,.35),0 6px 18px rgba(0,0,0,.25);overflow:hidden}
+  #C .ch{height:84px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;font-size:22px;color:var(--green);border-bottom:2px solid rgba(31,58,46,.15)}
+  #C .ch .dot{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--terra);margin-right:12px;vertical-align:1px}
+  #C .illu{display:block;width:960px;height:470px}
+  #C .body{padding:34px 48px 0}
+  #C h3{font-family:'Fraunces',serif;font-weight:600;font-size:66px;line-height:1.02;color:var(--green);letter-spacing:-.01em}
+  #C .loc{font-size:34px;font-weight:500;margin-top:12px;color:#3d3a33}
+  #C .chips{display:flex;gap:14px;margin-top:26px}
+  #C .chip{border:2px solid var(--green);color:var(--green);border-radius:40px;padding:10px 24px;font-size:30px;font-weight:700}
+  #C .stats{display:flex;margin-top:34px;border-top:2px solid rgba(31,58,46,.18);padding-top:26px}
+  #C .st{flex:1;padding-left:0}
+  #C .st+.st{border-left:2px solid rgba(31,58,46,.18);padding-left:34px}
+  #C .st b{display:block;font-family:'Fraunces',serif;font-weight:600;font-size:128px;line-height:1;color:var(--green);font-variant-numeric:tabular-nums}
+  #C .st:first-child b{color:var(--terra)}
+  #C .st span{display:block;font-size:31px;font-weight:700;margin-top:8px;color:var(--ink)}
+  #C .stamp{position:absolute;left:490px;top:120px;width:430px;height:430px;transform-origin:50% 50%}
+
+  /* D — question */
+  #D{background:var(--cream)}
+  #D .q{position:absolute;left:70px;top:350px;font-family:'Fraunces',serif;font-weight:600;font-size:112px;line-height:1.04;color:var(--green);letter-spacing:-.015em}
+  #D .q em{font-style:italic;font-weight:400}
+  #D .clock{position:absolute;left:70px;top:770px;width:420px;height:420px}
+  #D .clock .n{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:150px;color:var(--terra);letter-spacing:-.03em}
+  #D .clock .n small{font-size:78px;margin-left:10px;font-style:italic;font-weight:400}
+  #D .side{position:absolute;left:530px;top:830px;width:480px}
+  #D .side .k{font-family:'Fraunces',serif;font-weight:600;font-size:74px;line-height:1.02;color:var(--green)}
+  #D .side .k em{font-style:italic;font-weight:400;color:var(--terra)}
+  #D .side p{font-size:34px;line-height:1.3;font-weight:500;margin-top:24px;color:#3d3a33}
+  #D .strip{position:absolute;left:70px;right:70px;top:1290px;display:flex;flex-direction:column;gap:22px}
+  #D .strip div{display:flex;align-items:center;gap:20px;font-size:34px;font-weight:500;color:var(--ink);border-top:2px solid rgba(31,58,46,.15);padding-top:22px}
+  #D .strip svg{width:40px;height:40px;flex:none}
+
+  /* E — end card */
+  #E{background:var(--green);color:var(--cream);text-align:center}
+  #E .logo{position:absolute;left:0;right:0;top:360px;display:flex;flex-direction:column;align-items:center}
+  #E .logo svg{width:220px;height:220px}
+  #E .logo b{font-family:'Fraunces',serif;font-weight:600;font-size:150px;line-height:1;margin-top:18px;letter-spacing:-.01em}
+  #E .logo i{font-style:normal;font-size:30px;letter-spacing:.42em;font-weight:700;margin-top:16px;color:var(--ochre);padding-left:.42em}
+  #E .cta{position:absolute;left:110px;right:110px;top:1000px;background:var(--terra);color:#FFF6EA;border-radius:70px;height:128px;display:flex;align-items:center;justify-content:center;font-size:46px;font-weight:700}
+  #E .contact{position:absolute;left:0;right:0;top:1172px;font-size:44px;font-weight:700}
+  #E .contact small{display:block;font-size:32px;font-weight:500;margin-top:14px;opacity:.85}
+  #E svg.ridge{position:absolute;left:0;top:1330px;width:1080px;height:200px}
+
+  #grain{position:absolute;left:-200px;top:-200px;width:1480px;height:2320px;pointer-events:none;opacity:.075;mix-blend-mode:multiply}
+  #grain2{position:absolute;left:-200px;top:-200px;width:1480px;height:2320px;pointer-events:none;opacity:.05;mix-blend-mode:screen}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="logo" viewBox="0 0 64 64">
+      <!-- bastide : façade large, toit à faible pente, porte cintrée, cyprès -->
+      <path d="M6 27 L30 15 L54 27 Z" fill="currentColor"/>
+      <rect x="10" y="27" width="40" height="27" fill="none" stroke="currentColor" stroke-width="3.2"/>
+      <path d="M26 54 V44 a4 4 0 0 1 8 0 V54" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="15.5" y="32" width="6" height="7" fill="currentColor"/>
+      <rect x="38.5" y="32" width="6" height="7" fill="currentColor"/>
+      <path d="M58.5 54 C55 46 55.5 30 58.5 20 C61.5 30 62 46 58.5 54 Z" fill="#B8492A"/>
+      <line x1="4" y1="57.5" x2="62" y2="57.5" stroke="currentColor" stroke-width="2.4"/>
+    </symbol>
+    <filter id="rough" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="2" seed="7" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  7 0 0 0 -2.6" result="m"/>
+      <feComposite in="SourceGraphic" in2="m" operator="in" result="c"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="2" seed="3" result="d"/>
+      <feDisplacementMap in="c" in2="d" scale="6"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- ============ A — HOOK ============ -->
+<div class="scene" id="A">
+  <div class="big12" id="big12">12</div>
+  <div class="hdr" style="color:var(--green)">
+    <div class="mini"><svg><use href="#logo"/></svg><div><b>Bastide</b></div></div>
+    <div class="tag caps">Aix-en-Provence</div>
+  </div>
+  <div class="h">
+    <span class="ln"><span>Vendue</span></span>
+    <span class="ln"><span>en 12&nbsp;jours.</span></span>
+    <span class="ln"><span><em>Au prix.</em></span></span>
+  </div>
+  <div class="sub"><div class="rule"></div><span class="ln"><span>Villa avec piscine · Le Tholonet</span></span></div>
+  <svg class="ridge" viewBox="0 0 1080 260" fill="none">
+    <path id="ridgeA" d="M0 230 L160 225 L240 200 L300 150 L360 80 L398 42 L420 58 L452 50 L520 70 L600 92 L700 110 L800 140 L900 170 L1000 196 L1080 210" stroke="#1F3A2E" stroke-width="4" stroke-linejoin="round"/>
+    <g id="hatchA" stroke="#1F3A2E" stroke-width="2.4" opacity=".55">
+      <path d="M372 96 L352 170"/><path d="M392 60 L378 150"/><path d="M430 62 L424 160"/><path d="M470 60 L476 150"/><path d="M520 76 L534 160"/><path d="M570 86 L590 170"/><path d="M630 98 L656 180"/><path d="M700 114 L730 190"/><path d="M340 110 L322 190"/>
+    </g>
+    <line x1="0" y1="252" x2="1080" y2="252" stroke="#1F3A2E" stroke-width="2" opacity=".35"/>
+  </svg>
+</div>
+
+<!-- ============ GREEN WORLD (map + card background) ============ -->
+<div class="scene" id="G">
+  <svg viewBox="0 0 1080 1920"><g id="contours" fill="none" stroke="#F3EAD8" stroke-opacity=".08" stroke-width="1.6"></g></svg>
+</div>
+
+<!-- ============ B — MAP ============ -->
+<div class="scene" id="B">
+  <div class="hdr" style="color:var(--cream)">
+    <div class="mini"><svg><use href="#logo"/></svg><div><b>Bastide</b></div></div>
+    <div class="tag caps" style="color:var(--ochre)">Vente récente</div>
+  </div>
+  <div class="title">
+    <h2><span class="ln"><span>Le Tholonet</span></span></h2>
+    <p><span class="ln"><span>au pied de la Sainte-Victoire</span></span></p>
+  </div>
+  <div class="mapwrap" id="mapwrap">
+    <svg class="map" viewBox="0 0 1000 900" fill="none">
+      <!-- engraved frame -->
+      <rect id="fr1" x="6" y="6" width="988" height="888" stroke="#F3EAD8" stroke-opacity=".7" stroke-width="2.4"/>
+      <rect id="fr2" x="18" y="18" width="964" height="864" stroke="#F3EAD8" stroke-opacity=".35" stroke-width="1.2"/>
+      <!-- river Arc -->
+      <path class="dr" id="arc" d="M982 590 C 880 612, 780 640, 680 612 S 470 660, 360 600 S 150 600, 18 640" stroke="#8FB0A0" stroke-width="3" stroke-dasharray="0"/>
+      <text class="lbli" font-size="24" fill-opacity=".7" id="arcL"><textPath href="#arc" startOffset="72%">l’Arc</textPath></text>
+      <!-- A8 -->
+      <path class="dr" id="a8a" d="M18 720 C 200 712, 330 668, 440 700 S 720 810, 982 770" stroke="#F3EAD8" stroke-opacity=".55" stroke-width="7"/>
+      <path class="dr" id="a8b" d="M18 720 C 200 712, 330 668, 440 700 S 720 810, 982 770" stroke="#1F3A2E" stroke-width="3"/>
+      <g id="a8tag"><rect x="120" y="686" width="62" height="34" rx="6" fill="#D9A441"/><text x="151" y="711" text-anchor="middle" class="lbl" font-size="22" fill="#1F3A2E" style="fill:#1F3A2E">A8</text></g>
+      <!-- D10 to Vauvenargues -->
+      <path class="dr" id="d10" d="M292 452 C 420 360, 600 230, 812 146" stroke="#F3EAD8" stroke-opacity=".6" stroke-width="3"/>
+      <!-- D17 route de Cézanne -->
+      <path class="dr" id="d17" d="M296 482 C 370 500, 470 534, 560 520 S 760 452, 982 440" stroke="#F3EAD8" stroke-opacity=".75" stroke-width="4"/>
+      <text class="lbli" font-size="24" fill-opacity=".8" id="d17L"><textPath href="#d17" startOffset="58%">route de Cézanne</textPath></text>
+      <!-- other roads -->
+      <path class="dr" id="r3" d="M270 520 C 300 600, 380 700, 430 790" stroke="#F3EAD8" stroke-opacity=".45" stroke-width="2.4"/>
+      <path class="dr" id="r4" d="M210 470 C 150 420, 80 380, 18 360" stroke="#F3EAD8" stroke-opacity=".45" stroke-width="2.4"/>
+      <!-- Sainte-Victoire pictorial -->
+      <g id="sv">
+        <path class="dr" id="svR" d="M600 356 L632 318 L676 252 L712 212 L730 222 L752 214 L800 232 L856 250 L912 270 L960 300 L985 318" stroke="#F3EAD8" stroke-width="3.6" stroke-linejoin="round"/>
+        <g stroke="#F3EAD8" stroke-opacity=".5" stroke-width="2">
+          <path class="dr" d="M690 240 L672 318"/><path class="dr" d="M712 216 L700 316"/><path class="dr" d="M740 222 L738 320"/><path class="dr" d="M770 222 L780 320"/><path class="dr" d="M810 236 L826 324"/><path class="dr" d="M860 252 L880 330"/><path class="dr" d="M910 272 L930 334"/><path class="dr" d="M660 272 L642 336"/>
+        </g>
+        <path d="M712 212 v-22 m-8 7 h16" stroke="#D9A441" stroke-width="3" id="croix"/>
+        <text x="800" y="380" text-anchor="middle" class="lbli" font-size="28" id="svL">Montagne Sainte-Victoire</text>
+      </g>
+      <!-- Aix old town ring -->
+      <g id="aix">
+        <path class="dr" id="aixRing" d="M250 420 C 290 418, 304 448, 300 474 C 296 506, 262 520, 236 514 C 204 506, 196 474, 206 448 C 214 428, 230 421, 250 420 Z" stroke="#F3EAD8" stroke-width="3"/>
+        <g fill="#F3EAD8" opacity=".75" id="aixBlocks">
+          <rect x="228" y="446" width="14" height="10"/><rect x="248" y="440" width="18" height="12"/><rect x="270" y="452" width="14" height="14"/><rect x="232" y="464" width="20" height="12"/><rect x="258" y="470" width="16" height="12"/><rect x="224" y="484" width="12" height="12"/><rect x="244" y="488" width="18" height="10"/><rect x="270" y="486" width="12" height="12"/>
+        </g>
+        <text x="250" y="566" text-anchor="middle" class="lbl" font-size="34" id="aixL">Aix-en-Provence</text>
+      </g>
+      <!-- villages -->
+      <g id="vill">
+        <circle cx="812" cy="146" r="8" fill="#F3EAD8"/><text x="812" y="118" text-anchor="middle" class="lbl" font-size="26" fill-opacity=".85">Vauvenargues</text>
+        <circle cx="430" cy="790" r="8" fill="#F3EAD8"/><text x="450" y="836" text-anchor="middle" class="lbl" font-size="26" fill-opacity=".85">Meyreuil</text>
+      </g>
+      <!-- compass + scale -->
+      <g id="compass" transform="translate(96 120)" stroke="#F3EAD8" stroke-opacity=".8" stroke-width="2">
+        <circle r="44" fill="none"/><circle r="36" fill="none" stroke-opacity=".4"/>
+        <path d="M0 -58 L9 0 L0 58 L-9 0 Z" fill="#F3EAD8" fill-opacity=".85" stroke="none"/>
+        <path d="M-58 0 L0 -6 L58 0 L0 6 Z" fill="#F3EAD8" fill-opacity=".45" stroke="none"/>
+        <text y="-68" text-anchor="middle" class="lbl" font-size="24" stroke="none">N</text>
+      </g>
+      <g id="scale" transform="translate(760 846)" stroke="#F3EAD8" stroke-width="2.4">
+        <line x1="0" y1="0" x2="180" y2="0"/><line x1="0" y1="-10" x2="0" y2="10"/><line x1="90" y1="-6" x2="90" y2="6"/><line x1="180" y1="-10" x2="180" y2="10"/>
+        <text x="90" y="-18" text-anchor="middle" class="lbl" font-size="22" stroke="none">2 km</text>
+      </g>
+      <!-- highlighted route Aix → Tholonet -->
+      <path id="route" d="M296 482 C 370 500, 470 534, 560 520" stroke="#D9A441" stroke-width="8" stroke-linecap="round" stroke-dasharray="1 16"/>
+      <path id="routeSolid" d="M296 482 C 370 500, 470 534, 560 520" stroke="#D9A441" stroke-width="6" stroke-linecap="round"/>
+      <g id="chip10" transform="translate(420 600)">
+        <rect x="-118" y="-30" width="236" height="60" rx="30" fill="#D9A441"/>
+        <text y="11" text-anchor="middle" class="lbl" font-size="30" style="fill:#1F3A2E">10 min d’Aix</text>
+      </g>
+      <!-- pin -->
+      <g id="ripples" fill="none" stroke="#D9A441" stroke-width="3">
+        <circle id="rip1" cx="560" cy="520" r="20"/><circle id="rip2" cx="560" cy="520" r="20"/>
+      </g>
+      <g id="pin" transform="translate(560 520)">
+        <g id="pinIn">
+          <ellipse cx="0" cy="0" rx="16" ry="6" fill="#000" opacity=".35"/>
+          <path d="M0 0 C -8 -18, -34 -42, -34 -68 A 34 34 0 1 1 34 -68 C 34 -42, 8 -18, 0 0 Z" fill="#B8492A" stroke="#F3EAD8" stroke-width="4"/>
+          <g transform="translate(-20 -90) scale(.64)" color="#F3EAD8"><use href="#logo" width="64" height="64" style="color:#F3EAD8"/></g>
+        </g>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<!-- ============ C — FICHE BIEN ============ -->
+<div class="scene" id="C">
+  <div class="card" id="card">
+    <div class="ch caps"><span><span class="dot"></span>Fiche bien · Réf. BT-2418</span><span style="opacity:.7">Le Tholonet</span></div>
+    <svg class="illu" viewBox="0 0 960 470" id="illu">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6D9A8"/><stop offset="1" stop-color="#F3EAD8"/></linearGradient>
+        <linearGradient id="pool" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8CC3BA"/><stop offset="1" stop-color="#5E9E97"/></linearGradient>
+        <pattern id="tiles" width="18" height="12" patternUnits="userSpaceOnUse"><rect width="18" height="12" fill="#C0643E"/><path d="M0 12 Q9 4 18 12" fill="none" stroke="#9E4A2B" stroke-width="2"/></pattern>
+      </defs>
+      <rect width="960" height="470" fill="url(#sky)"/>
+      <g id="illSun"><circle cx="760" cy="120" r="54" fill="#E9B866" opacity=".8"/></g>
+      <!-- mountain -->
+      <path id="illMt" d="M0 300 L130 290 L230 250 L320 180 L372 140 L392 152 L420 146 L500 170 L600 196 L720 222 L840 250 L960 268 L960 470 L0 470 Z" fill="#C7C4B0"/>
+      <path d="M372 140 L350 230 M392 152 L386 240 M420 146 L428 236 M500 170 L512 244 M320 180 L300 260" stroke="#AFAB95" stroke-width="3"/>
+      <!-- hills -->
+      <path d="M0 350 C 180 320, 360 330, 520 350 S 820 330, 960 340 L960 470 L0 470 Z" fill="#8A9A6E"/>
+      <!-- cypress left -->
+      <g id="cyp1"><path d="M96 390 C 70 330, 78 220, 100 170 C 122 220, 130 330, 104 390 Z" fill="#2A4A3B"/><path d="M140 392 C 122 350, 126 270, 142 236 C 158 270, 162 350, 146 392 Z" fill="#1F3A2E"/></g>
+      <!-- villa -->
+      <g id="villa">
+        <rect x="250" y="240" width="460" height="168" fill="#EBCB9F"/>
+        <rect x="610" y="270" width="150" height="138" fill="#E4BF8E"/>
+        <path d="M232 244 L480 188 L728 244 Z" fill="url(#tiles)"/>
+        <path d="M596 274 L680 246 L774 274 Z" fill="url(#tiles)"/>
+        <rect x="232" y="244" width="496" height="8" fill="#F3EAD8"/><rect x="596" y="274" width="178" height="6" fill="#F3EAD8"/>
+        <g fill="#5E7A5A">
+          <rect x="282" y="274" width="16" height="50"/><rect x="332" y="274" width="16" height="50"/><rect x="298" y="274" width="34" height="50" fill="#3A3024"/>
+          <rect x="392" y="274" width="16" height="50"/><rect x="442" y="274" width="16" height="50"/><rect x="408" y="274" width="34" height="50" fill="#3A3024"/>
+          <rect x="502" y="274" width="16" height="50"/><rect x="552" y="274" width="16" height="50"/><rect x="518" y="274" width="34" height="50" fill="#3A3024"/>
+          <rect x="282" y="342" width="16" height="50"/><rect x="332" y="342" width="16" height="50"/><rect x="298" y="342" width="34" height="50" fill="#3A3024"/>
+          <rect x="648" y="306" width="14" height="44"/><rect x="694" y="306" width="14" height="44"/><rect x="662" y="306" width="32" height="44" fill="#3A3024"/>
+        </g>
+        <path d="M430 408 V360 a30 30 0 0 1 60 0 V408 Z" fill="#3A3024"/>
+        <path d="M500 350 h90 v58 h-90z" fill="#3A3024" opacity=".0"/>
+        <rect x="560" y="348" width="16" height="50" fill="#5E7A5A"/><rect x="576" y="348" width="0" height="0"/>
+        <!-- génoise -->
+        <path d="M232 256 H728" stroke="#C9A77A" stroke-width="3" stroke-dasharray="6 5"/>
+      </g>
+      <!-- terrace + pool -->
+      <rect x="150" y="408" width="700" height="62" fill="#E7D7B9"/>
+      <g id="poolG">
+        <path d="M250 424 L720 424 L760 470 L210 470 Z" fill="url(#pool)"/>
+        <path d="M280 440 C 330 434, 360 446, 410 440 M470 452 C 520 446, 560 458, 610 452" stroke="#DDF1EC" stroke-width="3" fill="none" opacity=".8"/>
+      </g>
+      <!-- olive tree right -->
+      <g id="olive"><path d="M858 470 C 856 430, 848 400, 862 370" stroke="#5B4A36" stroke-width="10" fill="none"/>
+        <ellipse cx="862" cy="340" rx="74" ry="44" fill="#7E8C62"/><ellipse cx="830" cy="360" rx="44" ry="28" fill="#6F7D55"/><ellipse cx="900" cy="354" rx="40" ry="26" fill="#8C9A70"/></g>
+    </svg>
+    <div class="body">
+      <h3>Villa provençale 5&nbsp;pièces</h3>
+      <div class="loc">avec piscine · Le Tholonet (13100)</div>
+      <div class="chips"><span class="chip">5 pièces</span><span class="chip">Piscine</span><span class="chip">Vendue au prix</span></div>
+      <div class="stats">
+        <div class="st"><b id="n1">0</b><span>jours pour vendre</span></div>
+        <div class="st"><b id="n2">0</b><span>visites</span></div>
+        <div class="st"><b id="n3">0</b><span>offres reçues</span></div>
+      </div>
+    </div>
+    <svg class="stamp" id="stamp" viewBox="0 0 430 430">
+      <g filter="url(#rough)" fill="none" stroke="#B8492A" transform="rotate(-14 215 215)">
+        <circle cx="215" cy="215" r="196" stroke-width="10"/>
+        <circle cx="215" cy="215" r="176" stroke-width="3"/>
+        <circle cx="215" cy="215" r="122" stroke-width="3"/>
+        <text x="215" y="252" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="108" fill="#B8492A" stroke="none" letter-spacing="2">VENDU</text>
+        <path id="stArcT" d="M 65 215 A 150 150 0 0 1 365 215" stroke="none"/>
+        <path id="stArcB" d="M 55 215 A 160 160 0 0 0 375 215" stroke="none"/>
+        <text font-family="Figtree" font-weight="700" font-size="30" letter-spacing="6" fill="#B8492A" stroke="none"><textPath href="#stArcT" startOffset="50%" text-anchor="middle">EN 12 JOURS</textPath></text>
+        <text font-family="Figtree" font-weight="700" font-size="30" letter-spacing="6" fill="#B8492A" stroke="none"><textPath href="#stArcB" startOffset="50%" text-anchor="middle">AU PRIX</textPath></text>
+        <text x="104" y="222" font-size="30" fill="#B8492A" stroke="none" font-family="Figtree">★</text>
+        <text x="302" y="222" font-size="30" fill="#B8492A" stroke="none" font-family="Figtree">★</text>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<!-- terracotta sweep between C and D -->
+<div class="scene" id="sweep" style="background:var(--terra)"></div>
+
+<!-- ============ D — QUESTION ============ -->
+<div class="scene" id="D">
+  <div class="hdr" style="color:var(--green)">
+    <div class="mini"><svg><use href="#logo"/></svg><div><b>Bastide</b></div></div>
+    <div class="tag caps" style="color:var(--terra)">Propriétaires</div>
+  </div>
+  <div class="q">
+    <span class="ln"><span>Et votre maison,</span></span>
+    <span class="ln"><span><em>elle vaut combien&nbsp;?</em></span></span>
+  </div>
+  <div class="clock" id="clock">
+    <svg viewBox="0 0 420 420" width="420" height="420">
+      <circle cx="210" cy="210" r="190" fill="none" stroke="rgba(31,58,46,.14)" stroke-width="14"/>
+      <circle id="ring" cx="210" cy="210" r="190" fill="none" stroke="#B8492A" stroke-width="14" stroke-linecap="round" transform="rotate(-90 210 210)"/>
+      <g id="ticks" stroke="#1F3A2E" stroke-width="3" opacity=".5"></g>
+    </svg>
+    <div class="n" id="n48"><span>48</span><small>h</small></div>
+  </div>
+  <div class="side">
+    <div class="k"><span class="ln"><span>Estimation</span></span><span class="ln"><span><em>offerte</em></span></span></div>
+    <p class="ln"><span>en 48&nbsp;h, sans engagement.</span></p>
+  </div>
+  <div class="strip">
+    <div id="s1"><svg viewBox="0 0 24 24" fill="none" stroke="#B8492A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Visite par un conseiller du pays d’Aix</div>
+    <div id="s2"><svg viewBox="0 0 24 24" fill="none" stroke="#B8492A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Prix argumenté avec les ventes du quartier</div>
+  </div>
+</div>
+
+<!-- ============ E — END CARD ============ -->
+<div class="scene" id="E">
+  <div class="logo">
+    <svg id="elogo" style="color:#F3EAD8"><use href="#logo"/></svg>
+    <b class="ln" id="ename"><span>Bastide</span></b>
+    <i id="esub">Immobilier · Aix-en-Provence</i>
+  </div>
+  <div class="cta" id="ecta">Demandez votre estimation</div>
+  <div class="contact" id="econ">bastide-immobilier.fr<small>04 42 27 18 60 · 8 rue Thiers, Aix</small></div>
+  <svg class="ridge" viewBox="0 0 1080 200" fill="none">
+    <path id="ridgeE" d="M0 180 L160 176 L240 156 L300 116 L360 62 L398 32 L420 44 L452 38 L520 54 L600 72 L700 86 L800 108 L900 132 L1000 152 L1080 162" stroke="#D9A441" stroke-width="3.5" stroke-linejoin="round"/>
+    <line x1="0" y1="196" x2="1080" y2="196" stroke="#F3EAD8" stroke-opacity=".25" stroke-width="2"/>
+  </svg>
+</div>
+
+<!-- grain -->
+<svg id="grain" viewBox="0 0 1480 2320"><filter id="gn"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="11" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="1480" height="2320" filter="url(#gn)"/></svg>
+<svg id="grain2" viewBox="0 0 1480 2320"><filter id="gn2"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="29" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="1480" height="2320" filter="url(#gn2)"/></svg>
+
+<script>
+gsap.registerPlugin(DrawSVGPlugin);
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+
+/* ---- topographic contours (seeded value noise, computed once) ---- */
+(function(){
+  const rnd = KK.rng(287);
+  const W = 108, H = 192;
+  // sum of random gaussian bumps → smooth field
+  const bumps = Array.from({length: 26}, () => ({x: rnd()*W, y: rnd()*H, r: 10 + rnd()*26, a: (rnd()*2-1)}));
+  const vals = new Float64Array(W*H);
+  for (let j=0;j<H;j++) for (let i=0;i<W;i++){
+    let v=0; for (const b of bumps){ const dx=i-b.x, dy=j-b.y; v += b.a*Math.exp(-(dx*dx+dy*dy)/(2*b.r*b.r)); }
+    vals[j*W+i]=v;
+  }
+  const ext = d3.extent(vals);
+  const th = d3.range(ext[0], ext[1], (ext[1]-ext[0])/22);
+  const cs = d3.contours().size([W,H]).smooth(true).thresholds(th)(vals);
+  const path = d3.geoPath(d3.geoIdentity().scale(10));
+  const g = d3.select('#contours');
+  cs.forEach(c => g.append('path').attr('d', path(c)));
+  // clock ticks
+  const tk = d3.select('#ticks');
+  for (let k=0;k<48;k++){ const a=k/48*Math.PI*2, r1=k%12===0?150:160, r2=170;
+    tk.append('line').attr('x1',210+Math.cos(a)*r1).attr('y1',210+Math.sin(a)*r1).attr('x2',210+Math.cos(a)*r2).attr('y2',210+Math.sin(a)*r2); }
+})();
+
+const counters = {n1:0,n2:0,n3:0};
+const tl = gsap.timeline({paused:true, defaults:{ease:'power3.out'}});
+
+/* ================= A — HOOK 0 → 3.3 ================= */
+gsap.set('#A .h .ln>span, #A .sub .ln>span', {yPercent:110});
+gsap.set('#ridgeA', {drawSVG:'0%'}); gsap.set('#hatchA path', {drawSVG:'0%'});
+gsap.set('#A .sub .rule', {scaleX:0, transformOrigin:'0 50%'});
+tl.fromTo('#big12', {xPercent:8, opacity:.4}, {xPercent:-4, opacity:1, duration:3.4, ease:'none'}, 0)
+  .to('#A .h .ln>span', {yPercent:0, duration:.75, stagger:.28, ease:'expo.out'}, 0)
+  .to('#ridgeA', {drawSVG:'100%', duration:2.2, ease:'power2.inOut'}, .1)
+  .to('#hatchA path', {drawSVG:'100%', duration:.5, stagger:.06}, .9)
+  .to('#A .sub .rule', {scaleX:1, duration:.6, ease:'expo.out'}, .95)
+  .to('#A .sub .ln>span', {yPercent:0, duration:.7, ease:'expo.out'}, 1.05);
+
+/* ---- A → B : green rises ---- */
+gsap.set('#G, #B', {clipPath:'inset(100% 0% 0% 0%)'});
+tl.to('#G, #B', {clipPath:'inset(0% 0% 0% 0%)', duration:.8, ease:'expo.inOut'}, 3.2)
+  .to('#A .h, #A .sub', {y:-160, duration:.8, ease:'expo.inOut'}, 3.2);
+
+/* ================= B — MAP 3.4 → 8.4 ================= */
+gsap.set('#B .title .ln>span', {yPercent:110});
+gsap.set('#B .dr', {drawSVG:'0%'});
+gsap.set('#fr1, #fr2', {drawSVG:'0%'});
+gsap.set('#aixBlocks rect, #vill, #compass, #scale, #a8tag, #svL, #aixL, #croix, #arcL, #d17L', {opacity:0});
+gsap.set('#route', {opacity:0}); gsap.set('#routeSolid', {drawSVG:'0%'});
+gsap.set('#chip10', {scale:0, transformOrigin:'50% 50%'});
+gsap.set('#pinIn', {y:-260, opacity:0}); gsap.set('#rip1, #rip2', {opacity:0});
+tl.to('#B .title .ln>span', {yPercent:0, duration:.8, stagger:.18, ease:'expo.out'}, 3.55)
+  .to('#fr1, #fr2', {drawSVG:'100%', duration:1.4, ease:'power2.inOut'}, 3.4)
+  .fromTo('#mapwrap', {scale:1.12}, {scale:1, duration:2.2, ease:'power3.out'}, 3.4)
+  .to('#arc, #a8a, #a8b, #d10, #d17, #r3, #r4', {drawSVG:'100%', duration:1.5, stagger:.08, ease:'power2.inOut'}, 3.6)
+  .to('#svR', {drawSVG:'100%', duration:1.3, ease:'power2.inOut'}, 3.8)
+  .to('#sv .dr:not(#svR)', {drawSVG:'100%', duration:.4, stagger:.05}, 4.5)
+  .to('#aixRing', {drawSVG:'100%', duration:.9}, 4.0)
+  .to('#aixBlocks rect', {opacity:.75, duration:.3, stagger:.04}, 4.4)
+  .to('#compass, #scale, #a8tag, #vill, #arcL, #d17L', {opacity:1, duration:.6, stagger:.08}, 4.6)
+  .to('#svL, #aixL, #croix', {opacity:1, duration:.6, stagger:.1}, 4.8)
+  .to('#routeSolid', {drawSVG:'100%', duration:1.0, ease:'power2.inOut'}, 5.2)
+  .to('#pinIn', {y:0, opacity:1, duration:.55, ease:'bounce.out'}, 5.9)
+  .to('#chip10', {scale:1, duration:.5, ease:'back.out(2)'}, 6.2)
+  .fromTo('#rip1', {attr:{r:14}, opacity:.9}, {attr:{r:120}, opacity:0, duration:1.4, ease:'power2.out'}, 6.35)
+  .fromTo('#rip2', {attr:{r:14}, opacity:.9}, {attr:{r:120}, opacity:0, duration:1.4, ease:'power2.out'}, 7.0);
+
+/* ---- B → C : dive into the pin, card rises ---- */
+tl.to('#mapwrap', {scale:3.2, duration:1.0, ease:'expo.in'}, 8.2)
+  .to('#mapwrap', {opacity:0, duration:.35, ease:'power1.in'}, 8.85)
+  .to('#B .title, #B .hdr', {y:-120, opacity:0, duration:.6, ease:'power2.in'}, 8.2);
+
+/* ================= C — FICHE 8.9 → 14.4 ================= */
+gsap.set('#card', {yPercent:110, rotation:3});
+gsap.set('#stamp', {scale:2.6, opacity:0, rotation:-20});
+gsap.set('#C .body>*', {y:40, opacity:0});
+tl.to('#card', {yPercent:0, rotation:0, duration:1.0, ease:'expo.out'}, 8.8)
+  .fromTo('#villa', {y:40}, {y:0, duration:1.4, ease:'power3.out'}, 8.9)
+  .fromTo('#illMt', {y:30}, {y:0, duration:1.8, ease:'power3.out'}, 8.9)
+  .to('#C .body>*', {y:0, opacity:1, duration:.7, stagger:.12}, 9.25)
+  .to(counters, {n1:12, duration:1.3, ease:'power2.out'}, 9.9)
+  .to(counters, {n2:23, duration:1.3, ease:'power2.out'}, 10.1)
+  .to(counters, {n3:4, duration:1.1, ease:'power2.out'}, 10.3)
+  .to('#stamp', {scale:1, opacity:1, rotation:0, duration:.32, ease:'power4.in'}, 11.8)
+  .fromTo('#card', {x:0, y:0}, {keyframes:[{x:-10,y:6,duration:.05},{x:8,y:-4,duration:.05},{x:-4,y:2,duration:.05},{x:0,y:0,duration:.06}], ease:'none'}, 12.12)
+  .fromTo('#card', {scale:1}, {scale:1.025, duration:2.2, ease:'sine.inOut'}, 12.2);
+
+/* ---- C → D : terracotta sweep, then cream ---- */
+gsap.set('#sweep', {clipPath:'inset(100% 0% 0% 0%)'});
+gsap.set('#D', {clipPath:'inset(100% 0% 0% 0%)'});
+tl.to('#sweep', {clipPath:'inset(0% 0% 0% 0%)', duration:.55, ease:'expo.inOut'}, 14.3)
+  .to('#D', {clipPath:'inset(0% 0% 0% 0%)', duration:.6, ease:'expo.inOut'}, 14.55)
+  .to('#card', {y:-200, duration:.9, ease:'power2.in'}, 14.2);
+
+/* ================= D — QUESTION 14.7 → 18.6 ================= */
+gsap.set('#D .q .ln>span, #D .side .ln>span, #D .side p.ln>span', {yPercent:110});
+gsap.set('#ring', {drawSVG:'0%'}); gsap.set('#ticks', {opacity:0});
+gsap.set('#n48', {scale:.6, opacity:0});
+gsap.set('#s1, #s2', {opacity:0, x:-30});
+tl.to('#D .q .ln>span', {yPercent:0, duration:.8, stagger:.22, ease:'expo.out'}, 14.8)
+  .to('#ticks', {opacity:.5, duration:.5}, 15.4)
+  .to('#n48', {scale:1, opacity:1, duration:.6, ease:'back.out(1.8)'}, 15.5)
+  .to('#ring', {drawSVG:'100%', duration:1.6, ease:'power2.inOut'}, 15.5)
+  .to('#D .side .ln>span', {yPercent:0, duration:.75, stagger:.14, ease:'expo.out'}, 15.8)
+  .to('#s1, #s2', {opacity:1, x:0, duration:.6, stagger:.18}, 16.5)
+  .fromTo('#clock', {rotation:0}, {rotation:0, duration:.01}, 16);
+
+/* ---- D → E : green circle from the clock ---- */
+gsap.set('#E', {clipPath:'circle(0px at 280px 980px)'});
+tl.to('#E', {clipPath:'circle(2300px at 280px 980px)', duration:1.0, ease:'expo.inOut'}, 18.7);
+
+/* ================= E — END 19.2 → 22 ================= */
+gsap.set('#elogo', {scale:.5, opacity:0});
+gsap.set('#ename>span', {yPercent:110});
+gsap.set('#esub, #ecta, #econ', {y:40, opacity:0});
+gsap.set('#ridgeE', {drawSVG:'0%'});
+tl.to('#elogo', {scale:1, opacity:1, duration:.8, ease:'back.out(1.6)'}, 19.2)
+  .to('#ename>span', {yPercent:0, duration:.8, ease:'expo.out'}, 19.35)
+  .to('#esub', {y:0, opacity:1, duration:.6}, 19.55)
+  .to('#ecta', {y:0, opacity:1, duration:.7, ease:'expo.out'}, 19.75)
+  .to('#econ', {y:0, opacity:1, duration:.6}, 19.95)
+  .to('#ridgeE', {drawSVG:'100%', duration:1.8, ease:'power2.inOut'}, 19.4)
+  .fromTo('#E .logo', {y:0}, {y:-10, duration:2.8, ease:'sine.inOut'}, 19.2)
+  .set({}, {}, 22);
+
+function render(t){
+  tl.seek(t, false);
+  $('#n1').textContent = Math.round(counters.n1);
+  $('#n2').textContent = Math.round(counters.n2);
+  $('#n3').textContent = Math.round(counters.n3);
+  const f = Math.floor(t*12);
+  const r = KK.rng(1000+f);
+  const gx = -Math.round(r()*180), gy = -Math.round(r()*180);
+  $('#grain').style.transform = `translate(${gx}px,${gy}px)`;
+  $('#grain2').style.transform = `translate(${gx}px,${gy}px)`;
+}
+
+window.KLIPT = {
+  width:1080, height:1920, fps:30, duration:22,
+  ready: document.fonts.ready.then(()=>{ render(0); }),
+  render,
+};
+render(0);
+</script>
+</body>
+</html>
