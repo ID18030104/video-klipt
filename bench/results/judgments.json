@@ -849,6 +849,58 @@
    "judge": "opus"
   },
   {
+   "id": "k198",
+   "brand_fit": 7,
+   "art_direction": 7,
+   "typography": 7,
+   "composition": 5,
+   "copy_quality": 6,
+   "storytelling": 6,
+   "technical_polish": 4,
+   "originality": 7,
+   "overall": 6,
+   "client_ready": false,
+   "defects": [
+    "Cream device panel peeks in at the bottom edge of the stat and end-card frames (leftover element at y~1340), which looks like a layout bug",
+    "Ejected card overlaps and hides the 'RETIREZ VOTRE RELANCE' label, leaving truncated 'RETI' / 'ANCE'",
+    "Stat frame counts up from -28% to -38%, and the 'avant/après' bar with '3 jours' is unlabeled and confusing; '3 jours' is an invented figure that clashes with the 11 jours claim",
+    "Caption 'retards avant Ledgerly → après' is tiny, low-contrast mono text and its meaning is unclear",
+    "Hook frame shows the device dimmed with an empty screen and a faint ghost card, so the first second is weak and the headline is greyed out",
+    "Bottom third of the stat frames and the end card is empty, while the top is crowded; the device panel is jammed right under the headline with almost no gap",
+    "'Une seule relance pour tous vos clients?' has no space before the question mark, which is fine in casual copy but not standard French typography (it needs a narrow no-break space)",
+    "Card labels (Cordial, Ferme, Neutre) are small and unreadable on mobile, and the metaphor of a vending machine that ejects reminders is not obvious to a DAF audience",
+    "End-card CTA has no free-trial line linked to 'sans CB', and the small tagline is weak; 'Relances intelligentes' is repeated in the eyebrow",
+    "'NOUVEAU' eyebrow in mono is small, and the CTA pill is left-aligned with a large dead space to its right"
+   ],
+   "verdict": "A distinctive, coherent dark and warm concept (a reminder vending machine) with strong big-number typography and correct French copy, but the mechanic is hard to read as a B2B finance message and the stat beat is muddled by an unexplained '3 jours' bar. Layout bugs (the truncated label under the ejected card, the panel edge bleeding into the bottom of the final frames, and dead space) keep it below what an agency would post as is.",
+   "judge": "sonnet"
+  },
+  {
+   "id": "k198",
+   "brand_fit": 8,
+   "art_direction": 8,
+   "typography": 7,
+   "composition": 6,
+   "copy_quality": 7,
+   "storytelling": 7,
+   "technical_polish": 6,
+   "originality": 8,
+   "overall": 7,
+   "client_ready": false,
+   "defects": [
+    "Hook headline 'Une seule relance pour tous vos clients?' is missing the French non-breaking space before '?' (should be 'clients ?')",
+    "The cream top edge of the vending-machine frame stays visible at the bottom of the stat and end-card frames (y≈1340) and reads as a leftover or cut-off element",
+    "Stat screens and end card leave the lower 40–50% of the 4:5 frame empty, so the layout looks top-heavy and unfinished",
+    "Bar labelled 'retards avant Ledgerly → après' has an ambiguous fill (about 74%) that does not clearly show a 38% reduction",
+    "The two stats (-38% and 11 jours DSO) share one screen and '11 jours' has no 'DSO' framing in the big type, so the claim hierarchy is weak",
+    "'RETIREZ VOTRE RELANCE' vending-machine slot label is partly covered by the dispensed card and the pun is slightly awkward",
+    "Small monospace client-status text (CLIENT A · échéance dans 2 jours…) is borderline legible at feed size on mobile",
+    "The hook opens on an empty, dimmed machine with no motion, which makes a weak first second for LinkedIn autoplay"
+   ],
+   "verdict": "The piece has a clever, ownable concept: a vending machine that dispenses the right follow-up by tone and timing shows the AI feature clearly, and the dark palette with warm accents suits a premium fintech brand on LinkedIn. It still needs fixes before posting: French punctuation, the frame edge left visible on the final screens, the empty lower half of the stat and CTA frames, and a hook with more energy.",
+   "judge": "opus"
+  },
+  {
    "id": "k142",
    "brand_fit": 7,
    "art_direction": 6,
@@ -1148,6 +1200,63 @@
    ],
    "verdict": "This is a coherent, well-typeset barber-shop system: serif and condensed pairing, barber-pole edge, red/black/gold palette, a clear 3-step ritual and a complete CTA end card with URL, address and hours in correct French. The poster is caught mid-transition, the hook is still masked at the start, lower-frame space is underused, and the end card resolves late, so it needs a fix pass before posting.",
    "judge": "opus"
+  },
+  {
+   "id": "k110",
+   "brand_fit": 7,
+   "art_direction": 6,
+   "typography": 6,
+   "composition": 5,
+   "copy_quality": 7,
+   "storytelling": 6,
+   "technical_polish": 4,
+   "originality": 5,
+   "overall": 5,
+   "client_ready": false,
+   "defects": [
+    "Poster frame is a mid-animation state: title 'Le coupe-chou' is clipped by a reveal mask, with a stray gold dash as the only visual, so the cover looks broken",
+    "Hook frame at 0.2s shows only a clipped 'Votre dernier' with the rest of the headline missing; the first second has no strong visual",
+    "Several frames sampled at step transitions are near-empty: a plain red frame around 16s (with only a gold strip at the top) and a bare black frame with only a small MC logo at 19.5s",
+    "Text sits in the upper half or the middle while large dead areas remain at the bottom of the hook, price and end-card frames; the end card is top-heavy",
+    "Very small text: step descriptions, 'DURÉE · 10 MIN' labels, the 'ÉTAPE x/3' tag, the 'NOUVEAU soin' stamp and the address/hours are hard to read on a phone",
+    "'RDV EN LIGNE EN 30 S' at the bottom of the end card is almost invisible (dark red on black), and it makes an unsupported claim",
+    "The end-card CTA 'PRENDRE RDV →' is a small button and the URL box is cramped; a video cannot be clicked, so a button graphic is weak",
+    "The blaireau illustration reads like a microphone or ice-cream cone rather than a shaving brush; the towel stack is generic flat clip-art",
+    "Left barber-pole stripe is very narrow and reads as a rendering artifact; it also sits close to the text margin",
+    "Step 03 title is left-aligned in the middle while step 01 sits lower, so title baselines are inconsistent between steps",
+    "Ken-burns-style clipped text reveals show cut-off glyphs across many frames; the pacing feels slow, with lots of empty in-between states",
+    "Steps run 10+10+20 min = 40 min, which is coherent, but the 35 € / 40 minutes card is plain and has no CTA link to the booking"
+   ],
+   "verdict": "The brand register is coherent (barber-pole stripe, black, red and gold, serif type, good French copy), and the tone suits a neighbourhood old-school barbershop. Execution is weakened by a broken-looking poster and hook frames, empty transition frames, tiny text, top-heavy layouts with empty bottoms, and a weak end card whose secondary line is nearly invisible, so it is not postable as is.",
+   "judge": "sonnet"
+  },
+  {
+   "id": "k174",
+   "brand_fit": 7,
+   "art_direction": 7,
+   "typography": 6,
+   "composition": 5,
+   "copy_quality": 5,
+   "storytelling": 6,
+   "technical_polish": 4,
+   "originality": 7,
+   "overall": 5,
+   "client_ready": false,
+   "defects": [
+    "Frame 3: the foam blob covers the 'le blaireau.' title, leaving it half-faded and illegible ('le blaireau' reads as 'le blaireau' behind foam); the brush overlaps the text.",
+    "Frames 4-5: the screen is almost entirely foam texture with only a small title in the middle. Large dead areas, weak hierarchy, and no illustration for coupe-chou.",
+    "Frame 4 has a stray black sliver/artifact at the left edge and blobby foam edges at the top corners.",
+    "The razor/blade sprite in the reveal frame clips the 'à l'ancienne' text and the tagline ('coupe-ch' cut off), and it lands on top of the type mid-transition.",
+    "A grey rectangular artifact sits at the left edge of the end card (visible in the poster at y≈830-1215), left over from the razor sprite.",
+    "Jagged white tear/scratch slivers cut through the 'rasage / à l'ancienne' title area and the tagline zone, and the 'g' descender is clipped by one. They look like rendering debris rather than design.",
+    "The end card leaves the lower third as empty foam. Address, hours and URL are tiny (about 12 px on the sheet, roughly 24 px at full size) and sit in the bottom safe zone, so they are barely legible on a phone.",
+    "Proper nouns are lowercase: 'maison castel', 'lyon', 'croix-rousse', 'd'austerlitz'. In French these should be capitalized, and the straight apostrophe in 'd'austerlitz' is not typographic.",
+    "The eyebrow 'nouveau chez maison castel' is small and letterspaced, so the brand name is weak and there is no logo or wordmark.",
+    "There is no call to action beyond the 'rendez-vous en ligne' label. The end card is static for the last several seconds, and the first frame (towel plus tiny text) is a weak scroll-stopping hook.",
+    "Numbering '1/3 2/3 3/3' is very small, and the 3/3 step has no visual."
+   ],
+   "verdict": "The burgundy, cream and gold palette with a high-contrast Didone display face suits an old-school barbershop, and the shaving-foam wipe concept is clever. Execution is undermined by foam covering the titles, near-empty foam frames, a razor sprite clipping the text, a grey edge artifact, tear-shaped debris in the headline, lowercase proper nouns and tiny end-card info, so it is not postable as is.",
+   "judge": "sonnet"
   }
  ],
  "ranks": [
@@ -1163,6 +1272,19 @@
     "k134"
    ],
    "rationale": "k183 is the most distinctive and best crafted. It works as one idea: an old-style technical engraving, with each sign as a numbered \"Fig.\" showing a cutaway of the water heater and a magnified detail (corroded anode, scale at the bottom of the tank, dripping safety valve, rating plate with the manufacture date circled, scaled-up heating element). Each slide splits into \"Le signe\" and \"À faire\", and a footer tracker fills in as you swipe. The serif typography is refined, it signals craft and a family business since 1987, and the CTA (49 €, \"offert si remplacement\", 3 générations, 9 techniciens, 7j/7, phone number, website) is complete. It covers the whole brief and reads well at 1080x1350.\n\nk154 is the strongest of the navy/copper \"clean flat\" group. Its diagrams are really educational: labelled Anode, Résistance, Calcaire, Molette and Évacuation, a plate reading \"Fab. 03/2013\" next to an age gauge, and a chart linking millimetres of scale to extra consumption. Each slide has a severity marker (\"À traiter vite\", \"À surveiller\"), and the offer slide is clear, with what the diagnostic covers.\n\nk112 is close behind. The cover is strong, with chips for the 5 signs. Illustrations are good (tap and thermometer, a \"CLAC!\" tank, gouttes = OK vs filet = alerte), each slide has clear \"Pourquoi / Quoi faire\" cards, sign 4 uses a big \"10+ ans\" treatment, and the CTA has trust stats. It feels slightly more generic than k154.\n\nk156 is very similar and polished: an annotated cover, a Normal / Pas normal split on sign 3, and a lifespan bar. Its outlined numbers and the familiar template put it a bit below the two above.\n\nk105 is solid and punchy, with a navy/red/mustard palette, \"TOC TOC BLOUB\" and a \"+30 %\" chart. Its icons are cruder and the all-caps heavy type is less refined.\n\nk128 is clean and readable in condensed caps with orange accents. The illustrations are simple (glass of rusty water, calendar showing \"10+\"), which makes it competent but generic.\n\nk109 puts signs 4 and 5 on a single cramped slide to make room for two offer and contact slides. That breaks the one-sign-per-slide rhythm. Its illustrations are minimal (a drop, a sound icon).\n\nk134 comes last. The pressure-gauge concept is clever, but it repeats the same gauge on all 7 slides, so the visuals barely change. The \"À faire\" advice is thin (\"Demandez un diagnostic\"), and the cover has visible defects: the circumflex on \"LÂCHER\" collides with the line above it, and the needle runs over the numeral 5.\n\nWhat separates the top from the bottom: the top pieces have an illustration made for each sign that actually teaches something and fits the brand story, while the bottom ones rely on a generic template, repeat visuals, compress content, or show typographic collisions."
+  },
+  {
+   "ranking": [
+    "k165",
+    "k175",
+    "k147",
+    "k177",
+    "k113",
+    "k198",
+    "k169",
+    "k108"
+   ],
+   "rationale": "I judged only the contact sheets. All eight pieces have French copy, a 4:5 layout, the -38 % and 11-day claims, and the 14-day trial CTA with ledgerly.io. What separates them is how well they tell the story, how polished they look and whether any frame is broken.\n\nk165 is first. It tells the clearest story: one overdue invoice (23 days, 13 200 €), then per-client tone and timing chips across three clients, then a tone slider with a best-time picker, the proof on a bold green field, and a CTA that sums up the benefit (\"L'IA relance. Vous encaissez.\"). The type is confident, the colour change from cream to navy to green has rhythm, and no frame is broken.\n\nk175 is a close second. Its hook is a receivables total that climbs from 33 962 € to 38 420 €, which a CFO will recognise. It shows the AI plan per client and an SMS being sent and marked paid. It is the only piece with a DSO curve (52 days down to 41). It loses a little for one half-wiped transition frame and a CTA end card that feels generic.\n\nk147 is third. It has the most refined editorial style: a serif-italic accent, invoice slips stamped \"IMPAYÉE\", a believable app UI with a message being written, and a before/after bar chart for DSO. One frame is fully blank.\n\nk177 is fourth. It has a distinctive dark \"music track\" idea where the tone and send time pick a note, and personalised messages are revealed word by word. It looks premium and has a clear timecode, but the metaphor is harder to read at a glance, and the dim text in the hook frames lowers legibility.\n\nk113 is fifth. It is solid and covers everything: a bold \"36 → 47 jours de retard\" hook, a dashboard with the best-time card, and a sequenced timeline of reminders. It is clean but more predictable, and one frame is empty.\n\nk198 is sixth. Its \"vending machine\" grid of tone and timing is original and memorable, but it is hard to understand without explanation. The palette is heavy, and the end card relies on the URL pill without much tie back to the product.\n\nk169 is seventh. It is competent but generic: dark cards, tone chips and a slider, with no strong hook image. It also has an empty frame and a faded CTA frame.\n\nk108 is last. The graph-paper idea and the per-client payment timelines are smart. However, it shows clear rendering defects: a huge green circle covering the content, text cropped at the left edge, a blank logo frame, and the DSO line cut off at the bottom of the frame. It also shows \"10 jours\" (the counter mid-count) where the brief says 11. These errors outweigh its good idea."
   }
  ]
 }
