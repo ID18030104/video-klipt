@@ -1,0 +1,31 @@
+{
+ "id": "k165",
+ "brand": "Ledgerly",
+ "sector": "SaaS B2B (fintech)",
+ "kind": "video",
+ "format": "1080x1350",
+ "duration": 24.5,
+ "slides": null,
+ "title": "Relances intelligentes : le bon moment, le bon ton",
+ "concept": "Une facture impayée (arithmétique exacte : 11 000 € HT + TVA 2 200 € = 13 200 € TTC) en hook, puis l'IA qui choisit ton, canal et créneau pour chaque client, preuve −38 % / 11 jours, end card CTA tenue 3 s. Direction crème/encre/menthe, UI crédible et texte par masques.",
+ "techniques": [
+  "gsap",
+  "ui-mockup",
+  "clip-path-wipes",
+  "count-up",
+  "svg-logo",
+  "grain"
+ ],
+ "fonts": [
+  "Sora",
+  "JetBrains Mono"
+ ],
+ "palette": [
+  "#F5F1E8",
+  "#0C1626",
+  "#2EE6A6",
+  "#FF5A3C",
+  "#0B7A55"
+ ],
+ "copy_language": "fr"
+}

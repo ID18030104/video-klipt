@@ -1,0 +1,8 @@
+{ "id": "k174", "brand": "Maison Castel — Barbier", "sector": "Barbier / coiffeur de quartier", "kind": "video",
+  "format": "1080x1920", "duration": 21, "slides": null,
+  "title": "Le trait de lame : rasage à l'ancienne",
+  "concept": "Les trois gestes du soin deviennent le montage : serviette chaude qui fume, blaireau qui couvre tout l'écran de mousse en spirale, puis le coupe-chou qui dégage le message trait par trait sur le cuir bordeaux des fauteuils. Didone grasse de vitrine peinte en minuscules, laiton pour le prix et l'appel au RDV.",
+  "techniques": ["gsap", "canvas-procedural-foam", "canvas-mask-reveal", "svg-illustration", "svg-turbulence-grain"],
+  "fonts": ["Abril Fatface", "Chivo"],
+  "palette": ["#4A1A1C", "#2C0E10", "#F2EEE6", "#D1AE68", "#F4EADB", "#B9BFC3"],
+  "copy_language": "fr" }

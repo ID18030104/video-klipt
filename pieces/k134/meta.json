@@ -1,0 +1,8 @@
+{ "id": "k134", "brand": "Garnier & Fils - Plomberie Chauffage", "sector": "PME artisan (plomberie / chauffage)", "kind": "carousel",
+  "format": "1080x1350", "duration": null, "slides": 7,
+  "title": "5 signes que votre chauffe-eau va lâcher",
+  "concept": "Chaque signe fait monter l'aiguille d'un manomètre en cuivre, libellé courbé sur le cadran, sur un tuyau continu d'une slide à l'autre; la phrase « Il vous prévient toujours avant de lâcher. » est coupée mot par mot en pied. L'offre à 49 € remet l'aiguille au vert sur fond crème.",
+  "techniques": ["svg-illustration", "text-on-path", "css-gradients", "python-templating", "lucide-icons"],
+  "fonts": ["Big Shoulders Display", "IBM Plex Sans", "IBM Plex Mono"],
+  "palette": ["#0F2E2C", "#F1E8D6", "#C97B45", "#E9B44C", "#FF6A48", "#6FBF8E"],
+  "copy_language": "fr" }

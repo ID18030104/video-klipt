@@ -1,0 +1,354 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Garnier & Fils · 5 signes chauffe-eau</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/cormorant-garamond/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/cormorant-garamond/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/cormorant-garamond/600-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/eb-garamond/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/eb-garamond/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/eb-garamond/500-italic.css">
+<link rel="stylesheet" href="kit.css">
+<style>
+:root{
+  --paper:#EFE6D3; --bg:#EFE6D3; --ink:#2A2019; --ink-2:#5A4A3A; --muted:#7A6A57;
+  --rust:#A2381F; --water:#A9C2C4; --warm:#E3BE97; --line:#2A2019;
+  --font-display:"Cormorant Garamond", serif; --font-body:"EB Garamond", serif;
+}
+html,body{margin:0;width:1080px;overflow:hidden;background:var(--paper)}
+body{font-family:var(--font-body);color:var(--ink);font-feature-settings:"kern","liga","onum" 0,"lnum"}
+.slide{position:relative;width:1080px;height:1350px;padding:0;display:block;overflow:hidden}
+/* plate frame: engraver's double rule */
+.frame{position:absolute;inset:34px;border:1.5px solid var(--ink);pointer-events:none}
+.frame::after{content:"";position:absolute;inset:7px;border:4px solid var(--ink)}
+.head{position:absolute;left:84px;right:84px;top:74px;display:flex;justify-content:space-between;align-items:baseline;
+  font:600 23px/1 var(--font-body);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+.head b{color:var(--ink);font-weight:600}
+.head .pl{font-family:var(--font-display);font-style:italic;text-transform:none;letter-spacing:.02em;font-size:30px;color:var(--ink)}
+.rule{position:absolute;left:84px;right:84px;top:114px;height:0;border-top:1.5px solid var(--ink)}
+
+/* COVER */
+.cover h1{position:absolute;left:84px;right:84px;top:150px;margin:0;font:700 112px/.9 var(--font-display);letter-spacing:-.022em}
+.cover h1 .num{color:var(--rust)}
+.cover .sub{position:absolute;left:88px;top:368px;font:600 italic 50px/1 var(--font-display);color:var(--rust);letter-spacing:-.005em}
+.cover .fig{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.cover .foot{position:absolute;left:84px;right:84px;bottom:74px;display:flex;justify-content:space-between;align-items:baseline;
+  font:500 26px/1.2 var(--font-body);color:var(--ink-2)}
+.cover .foot .go{font:600 italic 34px/1 var(--font-display);color:var(--ink)}
+.callout{font:500 italic 29px/1.12 var(--font-body);fill:var(--ink)}
+.callnum{font:700 30px/1 var(--font-display);fill:var(--paper)}
+
+/* SIGN SLIDES */
+.kick{position:absolute;left:84px;top:150px;font:600 italic 40px/1 var(--font-display);color:var(--rust)}
+.title{position:absolute;left:84px;right:84px;top:198px;margin:0;font:700 80px/.95 var(--font-display);letter-spacing:-.018em}
+.zone{position:absolute;left:72px;top:396px;width:936px;height:520px}
+.zone .thumb{overflow:visible;position:absolute;left:10px;top:40px;width:220px;height:396px}
+.zone .cap{position:absolute;left:0;top:452px;width:250px;text-align:center;font:500 italic 25px/1.15 var(--font-body);color:var(--ink-2)}
+.zone .lens{position:absolute;left:386px;top:-20px;width:550px;height:550px;border-radius:50%;overflow:hidden;background:var(--paper);
+  box-shadow:0 0 0 2px var(--ink),0 0 0 9px var(--paper),0 0 0 12px var(--ink)}
+.zone .lens svg{width:100%;height:100%;display:block}
+.zone .lead{position:absolute;left:0;top:0;width:936px;height:520px;overflow:visible;pointer-events:none}
+.txt{position:absolute;left:84px;right:84px;top:980px;display:grid;grid-template-columns:1fr 1fr;column-gap:52px}
+.txt h3{margin:0 0 10px;font:600 22px/1 var(--font-body);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
+.txt h3.do{color:var(--rust)}
+.txt p{margin:0;font:500 32px/1.24 var(--font-body);hyphens:none}
+.txt .sign p{font-style:italic}
+.legend{position:absolute;left:84px;right:84px;bottom:70px;display:grid;grid-template-columns:repeat(5,1fr);border-top:1.5px solid var(--ink);padding-top:16px}
+.legend span{font:500 24px/1.1 var(--font-body);color:var(--ink);white-space:nowrap}
+.legend span i{font:700 normal 26px/1 var(--font-display);margin-right:7px}
+.legend .next{color:transparent;background-image:repeating-linear-gradient(90deg,var(--muted) 0 4px,transparent 4px 10px);background-size:62% 1.5px;background-position:28px 100%;background-repeat:no-repeat}
+.legend .next i{color:var(--muted)}
+.legend .now{color:var(--rust)}
+.legend .done{color:var(--ink-2)}
+
+/* OFFER */
+.offer .kick{top:156px}
+.offer .title{top:206px;font-size:84px}
+.medal{position:absolute;left:50%;top:334px;width:600px;height:600px;margin-left:-300px}
+.medal .disc{position:absolute;left:50%;top:50%;width:440px;height:440px;margin:-220px 0 0 -220px;border-radius:50%;background:var(--paper);box-shadow:0 0 0 2px var(--rust),0 0 0 8px var(--paper),0 0 0 10px var(--rust)}
+.medal svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.medal .in{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.medal .lab{font:600 21px/1 var(--font-body);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.medal .price{font:700 168px/.85 var(--font-display);font-variant-numeric:lining-nums;color:var(--rust);letter-spacing:-.03em;margin:14px 0 6px}
+.medal .free{font:600 italic 36px/1.05 var(--font-display);color:var(--ink)}
+.facts{position:absolute;left:120px;right:120px;top:952px;text-align:center;font:500 30px/1.3 var(--font-body);color:var(--ink)}
+.cta{position:absolute;left:84px;right:84px;top:1058px;text-align:center}
+.cta .tel{display:inline-block;font:700 60px/1 var(--font-display);font-variant-numeric:lining-nums;letter-spacing:.005em;color:var(--paper);background:var(--ink);padding:14px 34px 18px}
+.cta .web{display:block;margin-top:14px;font:500 italic 30px/1 var(--font-body);color:var(--ink-2)}
+</style>
+</head><body>
+
+<!-- THE PLATE: one engraved cut-away water heater, reused (and enlarged) on every slide -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="h-water" patternUnits="userSpaceOnUse" width="8" height="5"><path d="M0 2.5H8" stroke="#2A2019" stroke-width=".7" opacity=".45"/></pattern>
+    <pattern id="h-diag" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)"><path d="M0 0V5" stroke="#2A2019" stroke-width=".9"/></pattern>
+    <pattern id="h-vert" patternUnits="userSpaceOnUse" width="3.2" height="10"><path d="M1 0V10" stroke="#2A2019" stroke-width=".8"/></pattern>
+    <pattern id="h-dots" patternUnits="userSpaceOnUse" width="7" height="7"><circle cx="1.5" cy="1.5" r=".9" fill="#2A2019"/><circle cx="5" cy="5" r=".7" fill="#2A2019"/></pattern>
+    <linearGradient id="wash" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E3BE97" stop-opacity=".85"/><stop offset=".45" stop-color="#D9C9AE" stop-opacity=".6"/><stop offset="1" stop-color="#A9C2C4" stop-opacity=".9"/>
+    </linearGradient>
+    <linearGradient id="pipeShade" x1="0" x2="1"><stop offset="0" stop-color="#EFE6D3"/><stop offset=".55" stop-color="#EFE6D3"/><stop offset="1" stop-color="#b9a98f"/></linearGradient>
+    <clipPath id="waterClip"><path d="M160,232 C160,146 232,120 300,120 C368,120 440,146 440,232 L440,798 C440,884 368,900 300,900 C232,900 160,884 160,798 Z"/></clipPath>
+      <g id="plaqueText" font-family="EB Garamond, serif" fill="#2A2019">
+        <text x="534" y="284" font-size="9" text-anchor="middle" letter-spacing="1.2" font-weight="600">CHAUFFE-EAU</text>
+        <text x="494" y="304" font-size="8.5">Modèle</text><path d="M526,304 H576" stroke="#2A2019" stroke-width=".8"/>
+        <text x="494" y="322" font-size="8.5">Capacité</text><path d="M530,322 H576" stroke="#2A2019" stroke-width=".8"/>
+        <text x="494" y="340" font-size="8.5">Tension</text><path d="M528,340 H576" stroke="#2A2019" stroke-width=".8"/>
+        <text x="494" y="362" font-size="9" font-weight="600" fill="#A2381F">Date de fab.</text>
+      </g>
+    <clipPath id="rightHalf"><rect x="300" y="0" width="300" height="1080"/></clipPath>
+  </defs>
+  <symbol id="plate" viewBox="0 0 600 1080">
+    <!-- wall bracket -->
+    <!-- outer shell + insulation (stipple) -->
+    <path d="M140,230 C140,128 222,100 300,100 C378,100 460,128 460,230 L460,800 C460,902 378,922 300,922 C222,922 140,902 140,800 Z" fill="url(#h-dots)" stroke="#2A2019" stroke-width="2.6"/>
+    <!-- right half shading of the outer skin (cylinder turning away) -->
+    <path d="M440,160 C452,180 460,205 460,230 L460,800 C460,830 452,856 440,876 Z" fill="url(#h-vert)" opacity=".7"/>
+    <!-- water -->
+    <g clip-path="url(#waterClip)">
+      <rect x="150" y="110" width="300" height="800" fill="#EFE6D3"/>
+      <rect x="150" y="110" width="300" height="800" fill="url(#wash)"/>
+      <rect x="150" y="110" width="300" height="800" fill="url(#h-water)"/>
+      <!-- scale (tartre) settled on the bottom -->
+      <g id="tartre"></g>
+      <!-- rust flakes drifting from the anode -->
+      <g id="flakes" fill="#A2381F"></g>
+    </g>
+    <!-- steel tank wall -->
+    <path d="M160,232 C160,146 232,120 300,120 C368,120 440,146 440,232 L440,798 C440,884 368,900 300,900 C232,900 160,884 160,798 Z" fill="none" stroke="#2A2019" stroke-width="5"/>
+    <!-- hot water dip tube (draws from the top) -->
+    <path d="M394,905 V190" stroke="#2A2019" stroke-width="15" fill="none"/>
+    <path d="M394,905 V192" stroke="url(#pipeShade)" stroke-width="10" fill="none"/>
+    <path d="M394,190 h0" stroke="#2A2019" stroke-width="15" stroke-linecap="round"/>
+    <!-- cold inlet with deflector -->
+    <path d="M204,905 V842" stroke="#2A2019" stroke-width="15"/>
+    <path d="M204,905 V844" stroke="#EFE6D3" stroke-width="10"/>
+    <path d="M186,836 H222" stroke="#2A2019" stroke-width="4" stroke-linecap="round"/>
+    <!-- heating element (hairpin), drawn as a tube -->
+    <g id="resistance">
+      <path d="M268,904 V652 A13,13 0 0 1 294,652 V858 A13,13 0 0 0 320,858 V652 A13,13 0 0 1 346,652 V904" fill="none" stroke="#2A2019" stroke-width="12" stroke-linejoin="round"/>
+      <path d="M268,904 V652 A13,13 0 0 1 294,652 V858 A13,13 0 0 0 320,858 V652 A13,13 0 0 1 346,652 V904" fill="none" stroke="#D8C8AE" stroke-width="6.5" stroke-linejoin="round"/>
+      <g id="crust"></g>
+    </g>
+    <!-- magnesium anode: sound at the base, eaten away above -->
+    <g id="anode">
+      <rect x="228" y="820" width="16" height="84" fill="#EFE6D3" stroke="#2A2019" stroke-width="2.4"/>
+      <rect x="236" y="822" width="6" height="80" fill="url(#h-vert)"/>
+      <path id="anodeEaten" fill="#A2381F" stroke="#2A2019" stroke-width="2"/>
+    </g>
+    <!-- flange (bride) -->
+    <rect x="252" y="898" width="110" height="20" rx="3" fill="#EFE6D3" stroke="#2A2019" stroke-width="2.6"/>
+    <rect x="252" y="898" width="110" height="20" rx="3" fill="url(#h-diag)" opacity=".55"/>
+    <circle cx="262" cy="908" r="3" fill="#2A2019"/><circle cx="352" cy="908" r="3" fill="#2A2019"/>
+    <!-- cable -->
+    <path d="M307,918 C307,960 330,980 380,1000 C430,1020 470,1030 540,1030" fill="none" stroke="#2A2019" stroke-width="3" stroke-dasharray="1 0"/>
+    <!-- cold supply + safety group -->
+    <path d="M204,905 V1052 H40" fill="none" stroke="#2A2019" stroke-width="18" stroke-linejoin="round"/>
+    <path d="M204,905 V1052 H40" fill="none" stroke="url(#pipeShade)" stroke-width="12" stroke-linejoin="round"/>
+    <g id="groupe">
+      <polygon points="190,938 218,938 222,944 222,952 186,952 186,944" fill="#EFE6D3" stroke="#2A2019" stroke-width="2.2"/>
+      <rect x="182" y="952" width="44" height="46" rx="4" fill="#EFE6D3" stroke="#2A2019" stroke-width="2.6"/>
+      <rect x="182" y="952" width="44" height="46" rx="4" fill="url(#h-diag)" opacity=".5"/>
+      <!-- knob (molette) -->
+      <rect x="152" y="962" width="30" height="26" rx="4" fill="#EFE6D3" stroke="#2A2019" stroke-width="2.4"/>
+      <path d="M158,962v26M164,962v26M170,962v26M176,962v26" stroke="#2A2019" stroke-width="1.2"/>
+      <!-- discharge to funnel (siphon) -->
+      <path d="M226,984 H246 V1000" fill="none" stroke="#2A2019" stroke-width="8"/>
+      <path d="M226,984 H246 V1000" fill="none" stroke="#EFE6D3" stroke-width="3.5"/>
+      <path d="M232,1006 H262 L252,1024 V1036 H242 V1024 Z" fill="#EFE6D3" stroke="#2A2019" stroke-width="2.2"/>
+      <path d="M234,1008 H260" stroke="url(#h-vert)" stroke-width="6"/>
+      <polygon points="190,998 218,998 222,1004 222,1010 186,1010 186,1004" fill="#EFE6D3" stroke="#2A2019" stroke-width="2.2"/>
+      <!-- drips -->
+      <g fill="#A2381F" stroke="#2A2019" stroke-width="1">
+        <path d="M247,1044 c0,0 -5,7 -5,10 a5,5 0 0 0 10,0 c0,-3 -5,-10 -5,-10z"/>
+        <path d="M247,1062 c0,0 -4,6 -4,8 a4,4 0 0 0 8,0 c0,-2 -4,-8 -4,-8z" opacity=".85"/>
+      </g>
+    </g>
+    <!-- hot outlet -->
+    <path d="M394,905 V990 H560" fill="none" stroke="#2A2019" stroke-width="18" stroke-linejoin="round"/>
+    <path d="M394,905 V990 H560" fill="none" stroke="url(#pipeShade)" stroke-width="12" stroke-linejoin="round"/>
+    <rect x="381" y="934" width="26" height="18" fill="#EFE6D3" stroke="#2A2019" stroke-width="2.2"/>
+    <!-- sound marks under the scale -->
+    <g fill="none" stroke="#A2381F" stroke-width="3" stroke-linecap="round" id="noise">
+      <path d="M178,770 q-10,14 0,28"/><path d="M168,764 q-15,20 0,40"/>
+      <path d="M422,770 q10,14 0,28"/><path d="M432,764 q15,20 0,40"/>
+    </g>
+    <!-- rating plate (plaque signalétique), riveted on the shell -->
+    <g id="plaque">
+      <path d="M460,300 H480" stroke="#2A2019" stroke-width="1.4" stroke-dasharray="3 3"/>
+      <rect x="480" y="256" width="108" height="130" rx="4" fill="#E6DAC2" stroke="#2A2019" stroke-width="2.4"/>
+      <rect x="486" y="262" width="96" height="118" rx="2" fill="none" stroke="#2A2019" stroke-width=".8"/>
+      <circle cx="490" cy="266" r="2.2" fill="#2A2019"/><circle cx="578" cy="266" r="2.2" fill="#2A2019"/>
+      <circle cx="490" cy="376" r="2.2" fill="#2A2019"/><circle cx="578" cy="376" r="2.2" fill="#2A2019"/>
+      <ellipse cx="530" cy="359" rx="42" ry="12" fill="none" stroke="#A2381F" stroke-width="2"/>
+    </g>
+  </symbol>
+</svg>
+
+<!-- 1 · COVER -->
+<section class="slide paper cover">
+  <div class="frame"></div>
+  <div class="head"><b>Garnier &amp; Fils</b><span class="pl">Planche&#8239;I · Le chauffe-eau</span></div>
+  <div class="rule"></div>
+  <h1><span class="num">5</span> signes que votre chauffe-eau va lâcher</h1>
+  <div class="sub">(et quoi faire)</div>
+  <svg class="fig" id="coverFig" viewBox="0 0 1080 1350"></svg>
+  <div class="foot"><span>Plomberie Chauffage · Nantes, depuis 1987</span><span class="go">Fig.&#8239;1 &#8594;</span></div>
+</section>
+
+<div id="signs"></div>
+
+<!-- 7 · OFFER -->
+<section class="slide paper offer">
+  <div class="frame"></div>
+  <div class="head"><b>Garnier &amp; Fils</b><span class="pl">Planche&#8239;I · Conclusion</span></div>
+  <div class="rule"></div>
+  <div class="kick">Un de ces signes chez vous&#8239;?</div>
+  <h2 class="title">Faites-le examiner.</h2>
+  <div class="medal">
+    <svg data-guilloche='{"color":"#A2381F","rings":3,"R":0.35,"stroke":0.9,"opacity":0.6}'></svg>
+    <div class="disc"></div>
+    <div class="in">
+      <div class="lab">Diagnostic chauffe-eau</div>
+      <div class="price">49&#8239;€</div>
+      <div class="free">offert si remplacement</div>
+    </div>
+  </div>
+  <div class="facts">Une entreprise familiale à Nantes depuis 1987&#8239;: 3&nbsp;générations, 9&nbsp;techniciens, dépannage 7j/7.</div>
+  <div class="cta"><span class="tel">02 40 12 34 56</span><span class="web">garnier-plomberie.fr</span></div>
+  <div class="legend" data-now="6"></div>
+</section>
+
+<script src="kit.js"></script>
+<script>
+(function(){
+  // deterministic RNG (mulberry32)
+  function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+  const NS="http://www.w3.org/2000/svg";
+  const R=rng(1987);
+
+  // scale (tartre) pebbles on the tank floor
+  let tg="";
+  for(let i=0;i<70;i++){
+    const x=170+R()*260, dome=Math.max(0,Math.abs(x-300)-40)/140; // floor rises at the edges
+    const floor=896-dome*dome*70;
+    const y=floor-R()*R()*36-4, rx=4+R()*8, ry=3+R()*5;
+    tg+=`<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${rx.toFixed(1)}" ry="${ry.toFixed(1)}" transform="rotate(${(R()*40-20).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})" fill="#D9D2C2" stroke="#2A2019" stroke-width="1.1"/>`;
+  }
+  document.getElementById("tartre").innerHTML=tg;
+
+  // crust on the heating element
+  let cg="";const legs=[[268,660,900],[294,660,858],[320,660,858],[346,660,900]];
+  legs.forEach(([x,y0,y1])=>{for(let y=y0;y<y1;y+=7+R()*6){const s=R()<.5?-1:1;const cx=x+s*(5+R()*3);cg+=`<circle cx="${cx.toFixed(1)}" cy="${y.toFixed(1)}" r="${(2.5+R()*3).toFixed(1)}" fill="#E4DDCB" stroke="#2A2019" stroke-width=".9"/>`}});
+  document.getElementById("crust").innerHTML=cg;
+
+  // eaten anode: a ragged, thinning rod from y=820 up to y=560
+  let L=[],Rt=[];
+  for(let y=820;y>=560;y-=8){const k=(820-y)/260;const w=7-k*4.2+(R()-.5)*3.2;L.push([236-w,y]);Rt.push([236+w+(R()-.5)*2,y]);}
+  const pts=L.concat(Rt.reverse()).map(p=>p[0].toFixed(1)+","+p[1].toFixed(1));
+  document.getElementById("anodeEaten").setAttribute("d","M"+pts.join(" L")+"Z");
+  let fg="";for(let i=0;i<26;i++){const x=205+R()*80,y=540+R()*260;fg+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(1.5+R()*3).toFixed(1)}" height="${(1.5+R()*2.5).toFixed(1)}" transform="rotate(${(R()*90).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})" opacity=".8"/>`}
+  document.getElementById("flakes").innerHTML=fg;
+
+  // ---- the five figures (user's signs; advice kept concrete) ----
+  const N=" ";
+  const F=[
+    {k:"Eau tiède",c:[222,640],r:118,cap:"L’anode rongée",
+     t:"L’eau sort tiède,<br>ou couleur rouille",
+     s:`L’anode qui protège la cuve s’est dissoute${N}: la rouille attaque l’acier.`,
+     d:`Tirez un seau d’eau chaude. Teintée ou tiède${N}? Faites contrôler l’anode avant que la cuve ne perce.`},
+    {k:"Bruits",c:[222,838],r:96,cap:"Le tartre au fond",
+     t:"Ça claque, ça siffle, ça crépite",
+     s:"Le tartre tapisse le fond de la cuve et l’eau piégée dessous surchauffe.",
+     d:"Faites détartrer la cuve et la résistance par un professionnel, avant que l’acier ne fatigue."},
+    {k:"Fuite",c:[212,996],r:82,cap:"Le groupe de sécurité",
+     t:"Ça goutte au groupe<br>de sécurité",
+     s:`Quelques gouttes pendant la chauffe${N}: normal. Un goutte-à-goutte permanent${N}: pas normal.`,
+     d:`Tournez la molette une fois par mois. Si ça coule encore, appelez-nous.`},
+    {k:"Âge",c:[530,322],r:86,cap:"La plaque signalétique",
+     t:"Il a plus de 10\u00A0ans",
+     s:"Passé dix ans, la cuve et ses pièces s’usent, même sans symptôme visible.",
+     d:"Relevez la date de fabrication sur la plaque. Au-delà, anticipez le remplacement plutôt que de le subir."},
+    {k:"Facture",c:[322,692],r:86,cap:"La résistance entartrée",
+     t:"La facture grimpe,<br>pas votre consommation",
+     s:"Le tartre isole la résistance&#8239;: elle chauffe plus longtemps pour la même eau.",
+     d:"Comparez vos factures d’une année sur l’autre. Hausse inexpliquée&#8239;: faites vérifier la résistance."}
+  ];
+  const PL=`<image class="plateimg" width="600" height="1080" preserveAspectRatio="none"/><use href="#plaqueText"/>`;
+
+  function legend(el,now){
+    el.innerHTML=F.map((f,i)=>{const n=i+1;const cls=n<now?"done":n===now?"now":"next";return `<span class="${cls}"><i>${n}</i>${f.k}</span>`}).join("");
+  }
+
+  let html="";
+  F.forEach((f,i)=>{
+    const n=i+1,[cx,cy]=f.c,r=f.r;
+    // thumb geometry (220x396 for 600x1080) inside the zone
+    const s=220/600, tx=10+cx*s, ty=40+cy*s, tr=r*s;
+    const lx=386+275, top=-20, bot=530;
+    html+=`<section class="slide paper sign">
+      <div class="frame"></div>
+      <div class="head"><b>Garnier &amp; Fils</b><span class="pl">Planche${N}I · Fig.${N}${n}</span></div>
+      <div class="rule"></div>
+      <div class="kick">Signe n°${N}${n}</div>
+      <h2 class="title">${f.t}</h2>
+      <div class="zone">
+        <svg class="thumb" viewBox="0 0 600 1080">${PL}
+          <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#A2381F" stroke-width="7"/></svg>
+        <svg class="lead" viewBox="0 0 936 520">
+          <path d="M${tx.toFixed(1)},${(ty-tr).toFixed(1)} L${lx},${top} M${tx.toFixed(1)},${(ty+tr).toFixed(1)} L${lx},${bot}" stroke="#2A2019" stroke-width="1.4" stroke-dasharray="2 5" fill="none"/>
+        </svg>
+        <div class="lens"><svg viewBox="${cx-r} ${cy-r} ${2*r} ${2*r}"><rect x="${cx-r}" y="${cy-r}" width="${2*r}" height="${2*r}" fill="#EFE6D3"/>${PL}</svg></div>
+        <div class="cap">Fig.${N}${n}. ${f.cap}</div>
+      </div>
+      <div class="txt">
+        <div class="sign"><h3>Le signe</h3><p>${f.s}</p></div>
+        <div><h3 class="do">À faire</h3><p>${f.d}</p></div>
+      </div>
+      <div class="legend" data-now="${n}"></div>
+    </section>`;
+  });
+  document.getElementById("signs").outerHTML=html;
+  document.querySelectorAll(".legend").forEach(el=>legend(el,+el.dataset.now));
+
+  // ---- cover: the whole plate, centred, with callouts ----
+  const S=0.74, ox=540-300*S, oy=425;
+  const P=(x,y)=>[ox+x*S,oy+y*S];
+  const calls=[
+    {n:1,p:[236,640],side:"L",y:600,lab:["eau tiède","ou rouillée"]},
+    {n:2,p:[250,872],side:"L",y:820,lab:["bruits","dans la cuve"]},
+    {n:3,p:[166,975],side:"L",y:1000,lab:["fuite au groupe","de sécurité"]},
+    {n:4,p:[588,340],side:"R",y:600,lab:["plus de","10 ans"]},
+    {n:5,p:[346,780],side:"R",y:820,lab:["facture","qui grimpe"]},
+  ];
+  let g=`<g transform="translate(${ox} ${oy}) scale(${S})">${PL}</g>`;
+  calls.forEach(c=>{
+    const [px,py]=P(...c.p);
+    const ex=c.side==="L"?300:792, ey=c.y+130, bx=c.side==="L"?112:968;
+    g+=`<path d="M${px.toFixed(1)},${py.toFixed(1)} L${ex},${ey}" stroke="#2A2019" stroke-width="1.6" fill="none"/>`;
+    g+=`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="5" fill="#A2381F" stroke="#2A2019" stroke-width="1.2"/>`;
+    const cxn=c.side==="L"?ex-26:ex+26;
+    g+=`<circle cx="${cxn}" cy="${ey}" r="24" fill="#A2381F"/><text class="callnum" x="${cxn}" y="${ey+10}" text-anchor="middle">${c.n}</text>`;
+    const anchor=c.side==="L"?"end":"start", lx=c.side==="L"?ex-60:ex+60;
+    const tx=c.side==="L"?252:828;
+    g+=`<text class="callout" text-anchor="${c.side==="L"?"end":"start"}" x="${c.side==="L"?cxn-36:cxn+36}" y="${ey-6}">${c.lab[0]}<tspan x="${c.side==="L"?cxn-36:cxn+36}" dy="32">${c.lab[1]}</tspan></text>`;
+  });
+  document.getElementById("coverFig").innerHTML=g;
+
+  // Rasterise the engraved plate once (3x) so every slide paints a bitmap, not 11 live pattern-heavy SVGs.
+  const defs=document.querySelector("svg[aria-hidden] defs").cloneNode(true);
+  defs.querySelector("#plaqueText")?.remove();
+  const sym=document.getElementById("plate");
+  const src=`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 600 1080" width="1800" height="3240">${new XMLSerializer().serializeToString(defs)}${sym.innerHTML}</svg>`;
+  window.KLIPT={width:1080,height:1350,ready:new Promise((res,rej)=>{
+    const img=new Image();
+    img.onload=()=>{const c=document.createElement("canvas");c.width=1800;c.height=3240;c.getContext("2d").drawImage(img,0,0,1800,3240);
+      const url=c.toDataURL("image/png");
+      document.querySelectorAll("image.plateimg").forEach(el=>el.setAttribute("href",url));
+      const probe=new Image();probe.onload=()=>requestAnimationFrame(()=>res());probe.src=url;};
+    img.onerror=e=>rej(new Error("plate raster failed"));
+    img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(src);
+  })};
+})();
+</script>
+</body></html>

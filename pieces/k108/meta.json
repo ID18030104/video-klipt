@@ -1,0 +1,8 @@
+{ "id": "k108", "brand": "Ledgerly", "sector": "SaaS B2B (fintech)", "kind": "video",
+  "format": "1080x1350", "duration": 23, "slides": null,
+  "title": "Relances intelligentes : le bon moment",
+  "concept": "Une page de grand livre devient une frise de 30 jours : un playhead vert (l'IA) pose une relance exactement au moment où chaque client paie, puis l'e-mail personnalisé, la preuve (−38 %, 11 jours de DSO) et l'essai gratuit.",
+  "techniques": ["gsap","svg","ui-mockup","data-viz","kinetic-type","text-plugin","iris-transition"],
+  "fonts": ["Manrope","JetBrains Mono"],
+  "palette": ["#F4F1EA","#11221E","#16A36B","#E4533A","#CFC9BC"],
+  "copy_language": "fr" }

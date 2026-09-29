@@ -1,0 +1,7 @@
+{ "id": "k183", "brand": "Garnier & Fils — Plomberie Chauffage", "sector": "PME artisan (plomberie / chauffage)", "kind": "carousel",
+  "format": "1080x1350", "duration": null, "slides": 7,
+  "title": "5 signes que votre chauffe-eau va lâcher",
+  "concept": "Le carrousel est une planche d’encyclopédie gravée : un chauffe-eau en coupe, dont chaque slide agrandit à la loupe une figure (anode rongée, tartre, groupe de sécurité, plaque, résistance) pendant que la légende des 5 signes se remplit, jusqu’au médaillon guilloché du diagnostic à 49 €. Papier chiffon, encre sépia, lavis aquarellés et rouille réservée à ce qui lâche.",
+  "techniques": ["svg-illustration", "engraving-hatching-patterns", "svg-rasterised-plate-zoom", "kit-paper", "kit-guilloche", "self-building-legend"],
+  "fonts": ["Cormorant Garamond", "EB Garamond"], "palette": ["#EFE6D3", "#2A2019", "#5A4A3A", "#A2381F", "#A9C2C4", "#E3BE97"],
+  "copy_language": "fr" }

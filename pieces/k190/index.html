@@ -1,0 +1,216 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Maison Castel</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/bodoni-moda/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/bodoni-moda/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/bodoni-moda/500-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/700.css">
+<style>
+:root{--green:#17352B;--paper:#EFE3CC;--red:#6E1620;--brass:#B8862F;--ink:#1B1410;--brassL:#D9B25E}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--green)}
+body{position:relative;font-family:'Bodoni Moda',serif;color:var(--ink)}
+.sc{position:absolute;inset:0;visibility:hidden}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.22;mix-blend-mode:multiply}
+.lab{font-family:'Barlow Condensed';font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:34px}
+.abs{position:absolute}
+/* S1 */
+#s1{background:var(--green);color:var(--paper)}
+#s1 h1{position:absolute;left:72px;top:250px;font-weight:700;font-size:150px;line-height:.98;letter-spacing:-.025em}
+#s1 h1 i{font-weight:500;color:var(--brassL)}
+.staff{position:absolute;left:0;top:820px;width:1080px;height:2px;background:var(--paper);opacity:.85;transform-origin:left}
+.sig{position:absolute;left:84px;top:735px;font-weight:700;color:var(--brassL);font-size:150px;line-height:.8;text-align:center}
+.sig span{display:block}
+.note{position:absolute;width:54px;height:40px;border-radius:50%;background:var(--paper);transform:rotate(-20deg)}
+.stem{position:absolute;width:5px;height:150px;background:var(--paper);transform-origin:top}
+.bar{position:absolute;top:820px;width:3px;height:160px;background:var(--paper);opacity:.85;transform-origin:top}
+#s1 .sub{position:absolute;left:72px;top:1230px;font-size:64px;font-weight:500;font-style:italic;line-height:1.15}
+#s1 .lab{position:absolute;left:72px;top:1420px;color:var(--brassL)}
+/* S2 */
+#s2{background:var(--paper)}
+.beat{position:absolute;inset:0;visibility:hidden}
+.num{position:absolute;font-weight:700;font-size:1000px;line-height:.8;color:var(--red);letter-spacing:-.05em;opacity:.95}
+.bl{position:absolute;left:72px;font-weight:700;font-size:118px;line-height:1;letter-spacing:-.02em;color:var(--ink)}
+.bs{position:absolute;left:76px;font-family:'Barlow Condensed';font-weight:500;font-size:44px;letter-spacing:.06em;color:var(--red)}
+svg{position:absolute;overflow:visible}
+.foot{position:absolute;left:0;top:1420px;width:1080px;height:150px}
+.foot .lab{position:absolute;color:var(--ink);font-size:30px}
+/* S3 */
+#s3{background:var(--red);color:var(--paper)}
+#s3 .big{position:absolute;left:66px;top:330px;font-weight:700;font-size:430px;line-height:.9;letter-spacing:-.05em}
+#s3 .big small{font-size:210px;font-weight:500;font-style:italic;letter-spacing:0;margin-left:16px;color:var(--brassL)}
+#s3 .min{position:absolute;left:72px;top:800px;font-weight:700;font-size:150px;letter-spacing:-.03em;line-height:1}
+#s3 .min small{font-style:italic;font-weight:500;font-size:96px;margin-left:12px;color:var(--brassL)}
+.tick{position:absolute;width:6px;height:90px;background:var(--paper);transform-origin:bottom}
+.tick.m{width:8px;height:130px;background:var(--brassL)}
+#s3 .note2{position:absolute;left:72px;top:1300px;font-family:'Barlow Condensed';font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:40px;color:var(--paper)}
+/* S4 */
+#s4{background:var(--green);color:var(--paper)}
+#s4 .brand{position:absolute;left:72px;top:230px}
+#s4 .brand b{display:block;font-size:82px;font-weight:700;letter-spacing:-.01em;line-height:1}
+#s4 .brand .lab{color:var(--brassL);font-size:32px;margin-top:14px;display:block}
+#s4 h2{position:absolute;left:72px;top:560px;font-size:132px;line-height:1;font-weight:700;letter-spacing:-.025em}
+#s4 h2 i{font-weight:500;color:var(--brassL)}
+#s4 .url{position:absolute;left:72px;top:1020px;width:936px;border:3px solid var(--brassL);border-radius:100px;padding:36px 0 40px;text-align:center;font-size:88px;font-weight:700;color:var(--green);background:var(--brassL);letter-spacing:-.01em}
+#s4 .info{position:absolute;left:72px;top:1250px;font-family:'Barlow Condensed';font-weight:500;font-size:46px;line-height:1.35;letter-spacing:.04em}
+#s4 .info b{font-weight:700;color:var(--brassL);letter-spacing:.12em;text-transform:uppercase}
+</style></head><body>
+
+<section class="sc" id="s1">
+ <h1><span class="l1 abs" style="position:relative;display:block">Une valse</span><i class="l2" style="display:block">à trois temps.</i></h1>
+ <div class="staff" style="top:820px"></div><div class="staff" style="top:860px"></div><div class="staff" style="top:900px"></div><div class="staff" style="top:940px"></div><div class="staff" style="top:980px"></div>
+ <div class="sig"><span>3</span><span style="margin-top:26px">4</span></div>
+ <div class="bar" style="left:330px"></div><div class="bar" style="left:640px"></div><div class="bar" style="left:1000px"></div>
+ <div class="note n1" style="left:420px;top:934px"></div><div class="stem s1" style="left:468px;top:820px;height:130px"></div>
+ <div class="note n2" style="left:720px;top:894px"></div><div class="stem s2" style="left:768px;top:780px;height:130px"></div>
+ <div class="note n3" style="left:850px;top:854px"></div><div class="stem s3" style="left:898px;top:740px;height:130px"></div>
+ <p class="sub">Le nouveau soin<br>« Rasage à l’ancienne »</p>
+ <div class="lab">Maison Castel · Barbier · Croix-Rousse, Lyon</div>
+</section>
+
+<section class="sc" id="s2">
+ <div class="beat" id="b1">
+  <div class="num" style="right:-70px;top:330px">1</div>
+  <svg style="left:60px;top:520px" width="700" height="600" viewBox="0 0 700 600">
+   <g class="steam" fill="none" stroke="#B8862F" stroke-width="10" stroke-linecap="round">
+    <path class="st" d="M200 200 C160 150 250 110 200 40"/><path class="st" d="M330 190 C290 130 380 100 330 20"/><path class="st" d="M460 200 C420 150 510 110 460 50"/></g>
+   <g class="towel">
+    <rect x="70" y="260" width="500" height="230" rx="34" fill="#F8F1E0" stroke="#1B1410" stroke-width="7"/>
+    <rect x="70" y="330" width="500" height="160" rx="34" fill="#E9DBBB" stroke="#1B1410" stroke-width="7"/>
+    <path d="M70 372 H570 M70 412 H570 M70 452 H570" stroke="#6E1620" stroke-width="7" opacity=".0"/>
+    <path d="M110 300 H530" stroke="#6E1620" stroke-width="10"/><path d="M110 322 H530" stroke="#6E1620" stroke-width="4"/>
+    <path d="M570 300 q40 6 34 60 q-6 46 -34 60" fill="none" stroke="#1B1410" stroke-width="7"/>
+   </g>
+  </svg>
+  <div class="bl" style="top:1180px">La serviette<br>chaude</div>
+ </div>
+ <div class="beat" id="b2">
+  <div class="num" style="right:-40px;top:330px">2</div>
+  <svg style="left:60px;top:480px" width="700" height="660" viewBox="0 0 700 660">
+   <g class="brush" transform="rotate(-28 350 330)">
+    <path d="M300 320 C300 250 400 250 400 320 L392 470 C386 500 314 500 308 470 Z" fill="#1B1410"/>
+    <rect x="290" y="300" width="120" height="40" rx="8" fill="#B8862F" stroke="#1B1410" stroke-width="5"/>
+    <path d="M296 340 H404" stroke="#1B1410" stroke-width="5"/>
+    <path d="M268 300 C210 230 230 100 350 90 C470 100 490 230 432 300 Z" fill="#E9DBBB" stroke="#1B1410" stroke-width="7"/>
+    <path d="M300 290 L292 180 M335 290 L332 150 M370 290 L372 150 M405 290 L412 180" stroke="#1B1410" stroke-width="4" opacity=".55"/>
+    <g class="lather" fill="#F8F1E0" stroke="#1B1410" stroke-width="5"><circle cx="350" cy="80" r="46"/><circle cx="290" cy="105" r="36"/><circle cx="412" cy="105" r="36"/><circle cx="330" cy="46" r="30"/><circle cx="386" cy="50" r="26"/></g>
+   </g>
+  </svg>
+  <div class="bl" style="top:1180px">Le blaireau</div>
+ </div>
+ <div class="beat" id="b3">
+  <div class="num" style="right:-60px;top:330px">3</div>
+  <svg style="left:40px;top:540px" width="760" height="560" viewBox="0 0 760 560">
+   <g class="razor" transform="rotate(-14 380 280)">
+    <path d="M60 300 L430 300 L430 350 L110 350 C70 350 50 330 60 300Z" fill="none"/>
+    <path d="M110 300 H470 V260 H130 C90 260 80 300 110 300Z" fill="#D8D2C4" stroke="#1B1410" stroke-width="7"/>
+    <path d="M110 300 H470 V318 H120 Z" fill="#9E9A90" stroke="#1B1410" stroke-width="7"/>
+    <path d="M470 262 V318" stroke="#1B1410" stroke-width="7"/>
+    <path d="M470 250 C560 240 700 300 740 420 L720 430 C650 350 560 320 470 330Z" fill="#6E1620" stroke="#1B1410" stroke-width="7"/>
+    <circle cx="490" cy="292" r="15" fill="#B8862F" stroke="#1B1410" stroke-width="5"/>
+    <path class="glint" d="M150 272 L410 272" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+   </g>
+  </svg>
+  <div class="bl" style="top:1180px">Le coupe-chou</div>
+ </div>
+ <div class="foot">
+  <svg width="1080" height="150" viewBox="0 0 1080 150" style="left:0;top:0">
+   <path id="fpath" d="M190 75 C300 -10 420 -10 540 75 C660 160 780 160 890 75" fill="none" stroke="#1B1410" stroke-width="4" stroke-dasharray="4 14" stroke-linecap="round" opacity=".6"/>
+   <path id="fdone" d="M190 75 C300 -10 420 -10 540 75 C660 160 780 160 890 75" fill="none" stroke="#6E1620" stroke-width="7" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+   <g class="fp" id="fp1"><ellipse cx="190" cy="75" rx="32" ry="20" transform="rotate(-20 190 75)" fill="#EFE3CC" stroke="#1B1410" stroke-width="5"/></g>
+   <g class="fp" id="fp2"><ellipse cx="540" cy="75" rx="32" ry="20" transform="rotate(-20 540 75)" fill="#EFE3CC" stroke="#1B1410" stroke-width="5"/></g>
+   <g class="fp" id="fp3"><ellipse cx="890" cy="75" rx="32" ry="20" transform="rotate(-20 890 75)" fill="#EFE3CC" stroke="#1B1410" stroke-width="5"/></g>
+  </svg>
+  <div class="lab" style="left:136px;top:118px">temps 1</div><div class="lab" style="left:486px;top:118px">temps 2</div><div class="lab" style="left:836px;top:118px">temps 3</div>
+ </div>
+ <div class="abs lab" id="tl" style="left:72px;top:230px;width:520px;line-height:1.2;color:#1B1410">Rasage à l’ancienne · Maison Castel</div>
+</section>
+
+<section class="sc" id="s3">
+ <div class="lab abs" style="left:72px;top:230px;color:#D9B25E">Le soin complet</div>
+ <div class="big"><span id="pr">35</span><small>€</small></div>
+ <div class="min"><span id="mn">0</span><small>min</small></div>
+ <div id="ticks"></div>
+ <div class="note2">Trois gestes · une seule séance</div>
+</section>
+
+<section class="sc" id="s4">
+ <div class="brand"><b>Maison Castel</b><span class="lab">Barbier · Croix-Rousse · depuis 2011</span></div>
+ <h2><span class="a1">Prenez</span><br><span class="a1">rendez-vous</span><br><i class="a1">en ligne.</i></h2>
+ <div class="url">maisoncastel.fr</div>
+ <div class="info"><b>Adresse</b><br>12 rue d’Austerlitz, 69004 Lyon<br><b style="display:inline-block;margin-top:14px">Horaires</b><br>mar.–sam. 9h–19h</div>
+</section>
+
+<svg class="grain" width="1080" height="1920"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .3  0 0 0 0 .2  0 0 0 0 .1  0 0 0 .9 0"/></filter><rect width="1080" height="1920" filter="url(#n)"/></svg>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+// s3 ticks: 40 minutes, two rows of 20
+const T=$('#ticks');
+for(let i=0;i<40;i++){const d=document.createElement('div');d.className='tick'+((i+1)%10==0?' m':'');
+ const row=Math.floor(i/20),c=i%20;d.style.left=(78+c*47)+'px';d.style.top=((row?1150:1010)+((i+1)%10==0?-40:0))+'px';T.appendChild(d);}
+const ticks=$$('.tick');
+const tl=gsap.timeline({paused:true});
+const E='power3.out';
+function show(sel,a,b){tl.set(sel,{visibility:'visible'},a);tl.set(sel,{visibility:'hidden'},b);}
+show('#s1',0,4.4);show('#s2',4.2,15.2);show('#s3',15,18.2);show('#s4',18,21);
+// S1
+tl.fromTo('.staff',{scaleX:0},{scaleX:1,duration:.9,ease:'power2.inOut',stagger:.06},.1);
+tl.fromTo('.bar',{scaleY:0},{scaleY:1,duration:.4,stagger:.12},.9);
+tl.from('.sig',{opacity:0,x:-30,duration:.5},.6);
+tl.fromTo('#s1 h1 .l1',{yPercent:60,opacity:0},{yPercent:0,opacity:1,duration:.7,ease:E},.3);
+tl.fromTo('#s1 h1 .l2',{yPercent:60,opacity:0},{yPercent:0,opacity:1,duration:.7,ease:E},.55);
+[['.n1','.s1',1.2],['.n2','.s2',1.85],['.n3','.s3',2.5]].forEach(([n,s,t])=>{
+ tl.fromTo(n,{scale:0,opacity:0},{scale:1,opacity:1,duration:.35,ease:'back.out(3)'},t);
+ tl.fromTo(s,{scaleY:0},{scaleY:1,duration:.3},t+.1);});
+tl.from('#s1 .sub',{opacity:0,y:30,duration:.6,ease:E},3);
+tl.from('#s1 .lab',{opacity:0,duration:.5},3.3);
+tl.to('#s1',{opacity:0,duration:.25},4.15);tl.set('#s1',{opacity:1},4.4);
+// S2 beats
+const bs=[['#b1',4.2,7.9],['#b2',7.9,11.6],['#b3',11.6,15.2]];
+tl.from('#s2',{opacity:0,duration:.3},4.2);
+tl.from('#tl',{opacity:0,duration:.4},4.5);
+bs.forEach(([b,a,e],i)=>{
+ show(b,a,e);
+ tl.fromTo(b+' .num',{xPercent:40,opacity:0},{xPercent:0,opacity:.95,duration:.8,ease:E},a);
+ tl.fromTo(b+' svg',{y:60,opacity:0,scale:.9},{y:0,opacity:1,scale:1,duration:.7,ease:E},a+.15);
+ tl.fromTo(b+' .bl',{y:50,opacity:0},{y:0,opacity:1,duration:.6,ease:E},a+.4);
+ tl.to(b,{opacity:0,duration:.25},e-.25);tl.set(b,{opacity:1},e);
+ const f='#fp'+(i+1);
+ tl.fromTo(f,{fill:'#EFE3CC'},{duration:.01},a);
+ tl.fromTo(f+' ellipse',{fill:'#EFE3CC',scale:1,transformOrigin:'50% 50%'},{fill:'#6E1620',duration:.3},a+.3);
+});
+tl.fromTo('#fdone',{strokeDashoffset:1},{strokeDashoffset:.5,duration:3.2,ease:'none'},4.4);
+tl.to('#fdone',{strokeDashoffset:0,duration:3.4,ease:'none'},8);
+tl.fromTo('#fdone',{strokeDashoffset:.5},{strokeDashoffset:0,duration:.001},15.19);
+tl.from('.foot',{opacity:0,duration:.4},4.6);
+// b1 steam loops
+$$('.st').forEach((p,i)=>{const L=p.getTotalLength();gsap.set(p,{strokeDasharray:L*.6+' '+L});
+ tl.fromTo(p,{strokeDashoffset:L*.6+L*i*.1},{strokeDashoffset:-L*.6,duration:1.8,ease:'none',repeat:1},4.4+i*.15);
+ tl.fromTo(p,{opacity:0},{opacity:1,duration:.4},4.4+i*.15);});
+// b2 lather + wobble
+tl.fromTo('.brush',{rotation:-34,svgOrigin:'350 330'},{rotation:-22,svgOrigin:'350 330',duration:3.4,ease:'sine.inOut',yoyo:true,repeat:1},7.9);
+tl.fromTo('.lather circle',{scale:0,transformOrigin:'50% 50%'},{scale:1,duration:.5,ease:'back.out(2)',stagger:.12},8.5);
+// b3 glint
+tl.fromTo('.glint',{opacity:0,x:-40},{opacity:.9,x:230,duration:.9,ease:'power2.inOut'},12.6);
+tl.fromTo('.razor',{rotation:-24,svgOrigin:'380 280'},{rotation:-14,svgOrigin:'380 280',duration:1.2,ease:E},11.6);
+tl.to('#s2',{opacity:0,duration:.25},14.95);tl.set('#s2',{opacity:1},15.2);
+// S3
+tl.from('#s3',{opacity:0,duration:.25},15);
+tl.from('#s3 .lab',{opacity:0,duration:.4},15.2);
+tl.fromTo('#s3 .big',{y:80,opacity:0},{y:0,opacity:1,duration:.7,ease:E},15.15);
+const o={v:0};
+tl.fromTo('#s3 .min',{opacity:0,y:40},{opacity:1,y:0,duration:.5,ease:E},15.6);
+tl.to(o,{v:40,duration:1.9,ease:'none',onUpdate(){$('#mn').textContent=Math.round(o.v);}},15.7);
+tl.fromTo(ticks,{scaleY:0},{scaleY:1,duration:.12,stagger:1.9/40,ease:'none'},15.7);
+tl.from('#s3 .note2',{opacity:0,duration:.5},17.2);
+tl.to('#s3',{opacity:0,duration:.2},17.95);tl.set('#s3',{opacity:1},18.2);
+// S4
+tl.from('#s4',{opacity:0,duration:.3},18);
+tl.from('#s4 .brand',{opacity:0,y:-20,duration:.5,ease:E},18.1);
+tl.fromTo('#s4 .a1',{opacity:0,y:40},{opacity:1,y:0,duration:.6,ease:E,stagger:.15},18.3);
+tl.fromTo('#s4 .url',{opacity:0,scale:.85},{opacity:1,scale:1,duration:.6,ease:'back.out(1.8)',transformOrigin:'50% 50%'},19);
+tl.from('#s4 .info',{opacity:0,y:30,duration:.6,ease:E},19.4);
+window.KLIPT={width:1080,height:1920,fps:30,duration:21,render(t){tl.seek(t,false);}};
+</script></body></html>

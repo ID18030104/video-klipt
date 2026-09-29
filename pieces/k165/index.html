@@ -28,17 +28,17 @@ html,body{width:1080px;height:1350px;overflow:hidden;background:var(--cream);fon
 .abs{position:absolute}
 /* A */
 #A{background:var(--cream)}
-.inv{position:absolute;left:150px;top:640px;width:780px;height:560px;background:#fff;border-radius:22px;box-shadow:0 40px 80px -30px rgba(12,22,38,.35),0 2px 0 rgba(12,22,38,.06);padding:44px 52px;transform-origin:50% 50%}
+.inv{position:absolute;left:150px;top:600px;width:780px;height:540px;background:#fff;border-radius:22px;box-shadow:0 40px 80px -30px rgba(12,22,38,.35),0 2px 0 rgba(12,22,38,.06);padding:44px 52px;transform-origin:50% 50%}
 .inv .top{display:flex;justify-content:space-between;align-items:flex-start}
 .inv .k{font-size:30px;color:#6b7686;font-weight:500}
 .inv .who{font-size:44px;font-weight:700;letter-spacing:-.02em;margin-top:8px}
 .inv .row{display:flex;justify-content:space-between;font-size:32px;padding:20px 0;border-bottom:2px dashed #dcd6c8}
 .inv .tot{display:flex;justify-content:space-between;align-items:baseline;margin-top:34px}
-.inv .tot b{font-size:78px;letter-spacing:-.04em;font-family:'JetBrains Mono';font-weight:800}
-.stamp{position:absolute;right:-40px;top:250px;border:9px solid var(--coral);color:var(--coral);font-weight:800;font-size:76px;letter-spacing:.04em;padding:6px 30px;border-radius:14px;background:rgba(245,241,232,.7);transform:rotate(-11deg);white-space:nowrap}
+.inv .tot b{font-size:78px;letter-spacing:-.04em;font-family:'Sora';font-weight:800;font-variant-numeric:tabular-nums}
+.stamp{position:absolute;right:-46px;top:-84px;border:9px solid var(--coral);color:var(--coral);font-weight:800;font-size:54px;letter-spacing:.04em;padding:6px 30px;border-radius:14px;background:rgba(245,241,232,.7);transform:rotate(-11deg);white-space:nowrap}
 /* B */
 #B{background:var(--ink);color:#fff}
-.cl{position:absolute;left:72px;width:936px;height:214px;background:var(--ink2);border:2px solid rgba(255,255,255,.08);border-radius:26px;padding:28px 34px}
+.cl{position:absolute;left:72px;width:936px;height:232px;background:var(--ink2);border:2px solid rgba(255,255,255,.08);border-radius:26px;padding:28px 34px}
 .cl .r1{display:flex;align-items:center;gap:24px}
 .av{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:28px;color:var(--ink)}
 .cl .nm{font-size:38px;font-weight:700;letter-spacing:-.02em;flex:1}
@@ -55,7 +55,7 @@ html,body{width:1080px;height:1350px;overflow:hidden;background:var(--cream);fon
 .tone{padding:0 40px 38px}
 .tone .lab{display:flex;justify-content:space-between;font-size:30px;font-weight:700;margin-bottom:16px}
 .track{position:relative;height:16px;border-radius:8px;background:#e6e0d1}
-.fill{position:absolute;left:0;top:0;bottom:0;border-radius:8px;background:linear-gradient(90deg,var(--mint),var(--coral))}
+.fill{position:absolute;left:0;top:0;bottom:0;border-radius:8px;background:var(--mint)}
 .knob{position:absolute;top:-14px;width:44px;height:44px;border-radius:50%;background:var(--ink);border:6px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.3);margin-left:-22px}
 .week{position:absolute;left:72px;top:1130px;width:936px}
 .week .t{font-size:32px;font-weight:700;margin-bottom:16px}
@@ -64,7 +64,7 @@ html,body{width:1080px;height:1350px;overflow:hidden;background:var(--cream);fon
 .day small{font-size:26px;font-weight:500;font-family:'JetBrains Mono'}
 /* D */
 #D{background:var(--mint)}
-.num{font-family:'JetBrains Mono';font-weight:800;letter-spacing:-.06em;line-height:1;font-size:270px}
+.num{font-family:'Sora';font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.05em;line-height:1;font-size:270px}
 .lbl{font-size:52px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
 /* E */
 #E{background:var(--cream)}
@@ -87,14 +87,14 @@ html,body{width:1080px;height:1350px;overflow:hidden;background:var(--cream);fon
   <div class="inv" id="inv">
     <div class="top"><div><div class="k mono">FACTURE 2024-0187</div><div class="who">Atelier Morel SAS</div></div><div class="k mono" style="text-align:right">Échéance<br><span style="color:var(--coral);font-weight:800">06 sept.</span></div></div>
     <div style="height:26px"></div>
-    <div class="row"><span>Refonte identité visuelle</span><span class="mono">9 200 €</span></div>
-    <div class="row"><span>Déclinaisons print</span><span class="mono">1 800 €</span></div>
-    <div class="row" style="border:0"><span>TVA 20 %</span><span class="mono">1 400 €</span></div>
-    <div class="tot"><span class="k">Total TTC</span><b>12 400 €</b></div>
+    <div class="row"><span>Refonte identité visuelle</span><span class="mono">9 200 €</span></div>
+    <div class="row"><span>Déclinaisons print</span><span class="mono">1 800 €</span></div>
+    <div class="row" style="border:0"><span>TVA 20 %</span><span class="mono">2 200 €</span></div>
+    <div class="tot"><span class="k">Total TTC</span><b>13 200 €</b></div>
     <div class="stamp" id="stamp">IMPAYÉE</div>
   </div>
-  <div class="abs h" id="aq" style="left:72px;top:1240px;font-size:46px;letter-spacing:-.02em;font-weight:700;width:940px;line-height:1.2">
-    <span class="ln"><span>Relancer ? Quand ? Sur quel ton ?</span></span></div>
+  <div class="abs h" id="aq" style="left:72px;top:1256px;font-size:46px;letter-spacing:-.02em;font-weight:700;width:940px;line-height:1.2">
+    <span class="ln"><span>Relancer ? Quand ? Sur quel ton ?</span></span></div>
 </div>
 
 <div class="scene" id="B" style="z-index:2">
@@ -104,10 +104,10 @@ html,body{width:1080px;height:1350px;overflow:hidden;background:var(--cream);fon
     <span class="ln"><span>paie <em style="font-style:normal;color:var(--mint)">à sa façon.</em></span></span>
   </div>
   <div class="abs mono" id="bl" style="left:72px;top:440px;font-size:30px;color:var(--mint);font-weight:500;letter-spacing:.06em">3 FACTURES EN RETARD</div>
-  <div class="cl" id="c1" style="top:500px"><div class="r1"><div class="av" style="background:#FFB86B">AM</div><div class="nm">Atelier Morel</div><div class="am mono">12 400 €</div></div><div class="late mono">+23 jours de retard</div><div class="ai" id="a1"><i></i>Ton cordial · mar. 9 h 12 · e-mail</div></div>
-  <div class="cl" id="c2" style="top:744px"><div class="r1"><div class="av" style="background:#8CB7FF">GV</div><div class="nm">Groupe Vasseur</div><div class="am mono">8 750 €</div></div><div class="late mono">+41 jours de retard</div><div class="ai" id="a2"><i></i>Ton ferme · jeu. 14 h 05 · SMS</div></div>
-  <div class="cl" id="c3" style="top:988px"><div class="r1"><div class="av" style="background:#C9A7FF">SN</div><div class="nm">Studio Nacre</div><div class="am mono">3 200 €</div></div><div class="late mono">+9 jours de retard</div><div class="ai" id="a3"><i></i>Ton neutre · lun. 8 h 40 · e-mail</div></div>
-  <div class="abs" id="bnote" style="left:72px;top:1250px;font-size:34px;color:#aab6c8;font-weight:500;width:940px">Analyse de l’historique de paiement de chaque client.</div>
+  <div class="cl" id="c1" style="top:500px"><div class="r1"><div class="av" style="background:#FFB86B">AM</div><div class="nm">Atelier Morel</div><div class="am mono">13 200 €</div></div><div class="late mono">+23 jours de retard</div><div class="ai" id="a1"><i></i>Ton cordial · mar. 9 h 12 · e-mail</div></div>
+  <div class="cl" id="c2" style="top:752px"><div class="r1"><div class="av" style="background:#8CB7FF">GV</div><div class="nm">Groupe Vasseur</div><div class="am mono">8 750 €</div></div><div class="late mono">+41 jours de retard</div><div class="ai" id="a2"><i></i>Ton ferme · jeu. 14 h 05 · SMS</div></div>
+  <div class="cl" id="c3" style="top:1004px"><div class="r1"><div class="av" style="background:#C9A7FF">SN</div><div class="nm">Studio Nacre</div><div class="am mono">3 200 €</div></div><div class="late mono">+9 jours de retard</div><div class="ai" id="a3"><i></i>Ton neutre · lun. 8 h 40 · e-mail</div></div>
+  <div class="abs" id="bnote" style="left:72px;top:1262px;font-size:34px;color:#aab6c8;font-weight:500;width:940px">Analyse de l’historique de paiement de chaque client.</div>
 </div>
 
 <div class="scene" id="C" style="z-index:3">
@@ -129,13 +129,13 @@ html,body{width:1080px;height:1350px;overflow:hidden;background:var(--cream);fon
   <div class="abs logo" style="left:72px;top:64px"><svg><use href="#mark"/></svg>Ledgerly</div>
   <div class="abs mono" style="left:72px;top:190px;font-size:32px;font-weight:800;letter-spacing:.08em" id="dt">RÉSULTAT MOYEN DE NOS CLIENTS</div>
   <div class="abs" style="left:72px;top:290px;width:940px" id="d1">
-    <div class="num" id="n1">-0 %</div>
-    <div class="lbl" style="margin-top:6px">de retards de paiement</div></div>
+    <div class="num" id="n1">−0 %</div>
+    <div class="lbl" style="margin-top:20px">de retards de paiement</div></div>
   <div class="abs" style="left:72px;top:0;height:8px;background:var(--ink);width:0" id="dbar"></div>
-  <div class="abs" style="left:72px;top:800px;width:940px" id="d2">
-    <div class="num" id="n2">0 j</div>
-    <div class="lbl" style="margin-top:6px">gagnés sur le DSO</div></div>
-  <div class="abs" id="dn" style="left:72px;top:1230px;font-size:30px;font-weight:500;width:940px">DSO : délai moyen de paiement de vos clients.</div>
+  <div class="abs" style="left:72px;top:840px;width:940px" id="d2">
+    <div class="num" id="n2">0 j</div>
+    <div class="lbl" style="margin-top:26px">gagnés sur le DSO</div></div>
+  <div class="abs" id="dn" style="left:72px;top:1250px;font-size:30px;font-weight:500;width:940px">DSO : délai moyen de paiement de vos clients.</div>
 </div>
 
 <div class="scene" id="E" style="z-index:5">
@@ -147,7 +147,7 @@ html,body{width:1080px;height:1350px;overflow:hidden;background:var(--cream);fon
   </div>
   <div class="abs" id="e3" style="left:72px;top:800px"><span class="cta">Essai gratuit 14 jours</span></div>
   <div class="abs url" id="e4" style="left:72px;top:1000px">ledgerly.io</div>
-  <div class="abs" id="e5" style="left:72px;top:1130px;font-size:34px;font-weight:500;color:#4a566a;width:900px">Connecté à votre compta · relances e-mail et SMS · tableau de trésorerie</div>
+  <div class="abs" id="e5" style="left:72px;top:1130px;font-size:34px;font-weight:500;color:#4a566a;width:940px;line-height:1.4">Connecté à votre compta · relances e-mail et SMS<br>Tableau de bord de trésorerie</div>
 </div>
 
 <svg class="grain" width="1080" height="1350"><rect width="1080" height="1350" filter="url(#gr)"/></svg>
@@ -157,6 +157,7 @@ html,body{width:1080px;height:1350px;overflow:hidden;background:var(--cream);fon
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const tl=gsap.timeline({paused:true});
 const W=(sel,at,d=.7,ease='expo.out')=>tl.fromTo(sel+' .ln>span',{yPercent:112},{yPercent:0,duration:d,ease,stagger:.1},at);
+gsap.set('#aq .ln>span',{yPercent:112});
 gsap.set(['#B','#C','#D','#E'],{clipPath:'inset(100% 0 0 0)'});
 // wipe helper
 const wipe=(id,at)=>tl.fromTo(id,{clipPath:'inset(100% 0 0 0)'},{clipPath:'inset(0% 0 0 0)',duration:.75,ease:'power3.inOut'},at);
@@ -184,35 +185,35 @@ tl.to(['#c1','#c2','#c3'],{y:-8,duration:2,ease:'sine.inOut'},8.2);
 wipe('#C',10.1);
 tl.fromTo('#C .ln>span',{yPercent:112},{yPercent:0,duration:.7,ease:'expo.out',stagger:.12},10.7);
 tl.fromTo('#mail',{y:120,opacity:0},{y:0,opacity:1,duration:.8,ease:'expo.out'},11.0);
-const msg='Bonjour Claire, la facture 2024-0187 de 12 400 € est en attente de règlement. Un virement cette semaine vous convient ? Merci !';
+const msg='Bonjour Claire, la facture 2024-0187 de 13 200 € est en attente de règlement. Un virement cette semaine vous convient ? Merci !';
 const px={n:0};
-tl.fromTo(px,{n:0},{n:msg.length,duration:2.2,ease:'none',onUpdate(){ $('#mbody').textContent=msg.slice(0,Math.round(px.n))||' '; }},11.5);
-tl.fromTo('#knob',{left:'78%'},{left:'22%',duration:1.1,ease:'power3.inOut'},12.4);
-tl.fromTo('#fill',{width:'78%'},{width:'22%',duration:1.1,ease:'power3.inOut'},12.4);
-tl.fromTo('#week',{y:60,opacity:0},{y:0,opacity:1,duration:.7,ease:'expo.out'},13.7);
-tl.fromTo('#tue',{scale:1},{scale:1.08,duration:.35,ease:'back.out(3)'},14.3);
+tl.fromTo(px,{n:0},{n:msg.length,duration:1.4,ease:'none',onUpdate(){ $('#mbody').textContent=msg.slice(0,Math.round(px.n))||' '; }},11.3);
+tl.fromTo('#knob',{left:'78%'},{left:'22%',duration:1.1,ease:'power3.inOut'},11.6);
+tl.fromTo('#fill',{width:'78%'},{width:'22%',duration:1.1,ease:'power3.inOut'},11.6);
+tl.fromTo('#week',{y:60,opacity:0},{y:0,opacity:1,duration:.7,ease:'expo.out'},12.9);
+tl.fromTo('#tue',{scale:1},{scale:1.04,duration:.35,ease:'back.out(3)'},13.5);
 
 // ---- D 15.0-19.6
-wipe('#D',14.95);
+wipe('#D',15.6);
 const c1={v:0},c2={v:0};
-tl.fromTo('#dt',{opacity:0},{opacity:1,duration:.4},15.6);
-tl.fromTo('#d1',{y:80,opacity:0},{y:0,opacity:1,duration:.7,ease:'expo.out'},15.6);
-tl.fromTo(c1,{v:0},{v:38,duration:1.4,ease:'power3.out',onUpdate(){$('#n1').textContent='-'+Math.round(c1.v)+' %';}},15.7);
-tl.fromTo('#dbar',{width:0,top:765},{width:936,top:765,duration:.8,ease:'expo.inOut'},17.0);
-tl.fromTo('#d2',{y:80,opacity:0},{y:0,opacity:1,duration:.7,ease:'expo.out'},17.1);
-tl.fromTo(c2,{v:0},{v:11,duration:1.2,ease:'power3.out',onUpdate(){$('#n2').textContent=Math.round(c2.v)+' j';}},17.2);
-tl.fromTo('#dn',{opacity:0},{opacity:1,duration:.5},18.4);
+tl.fromTo('#dt',{opacity:0},{opacity:1,duration:.4},16.25);
+tl.fromTo('#d1',{y:80,opacity:0},{y:0,opacity:1,duration:.7,ease:'expo.out'},16.25);
+tl.fromTo(c1,{v:0},{v:38,duration:1.4,ease:'power3.out',onUpdate(){$('#n1').textContent='−'+Math.round(c1.v)+'\u202f%';}},16.35);
+tl.fromTo('#dbar',{width:0,top:800},{width:936,top:800,duration:.8,ease:'expo.inOut'},17.6);
+tl.fromTo('#d2',{y:80,opacity:0},{y:0,opacity:1,duration:.7,ease:'expo.out'},17.7);
+tl.fromTo(c2,{v:0},{v:11,duration:1.2,ease:'power3.out',onUpdate(){$('#n2').textContent=Math.round(c2.v)+'\u202fj';}},17.8);
+tl.fromTo('#dn',{opacity:0},{opacity:1,duration:.5},17.7);
 
 // ---- E 19.2-23
-wipe('#E',19.15);
-tl.fromTo('#e1',{y:40,opacity:0},{y:0,opacity:1,duration:.6,ease:'expo.out'},19.8);
-tl.fromTo('#e2',{scale:.8,opacity:0},{scale:1,opacity:1,duration:.5,ease:'back.out(2)'},20.0);
-tl.fromTo('#E .ln>span',{yPercent:112},{yPercent:0,duration:.8,ease:'expo.out',stagger:.12},20.2);
+wipe('#E',19.8);
+tl.fromTo('#e1',{y:40,opacity:0},{y:0,opacity:1,duration:.6,ease:'expo.out'},20.2);
+tl.fromTo('#e2',{scale:.8,opacity:0},{scale:1,opacity:1,duration:.5,ease:'back.out(2)'},20.35);
+tl.fromTo('#E .ln>span',{yPercent:112},{yPercent:0,duration:.8,ease:'expo.out',stagger:.12},20.5);
 tl.fromTo('#e3',{y:50,opacity:0},{y:0,opacity:1,duration:.6,ease:'expo.out'},20.9);
-tl.fromTo('#e4',{opacity:0,x:-30},{opacity:1,x:0,duration:.6,ease:'expo.out'},21.2);
-tl.fromTo('#e5',{opacity:0},{opacity:1,duration:.6},21.5);
-tl.to('#e3',{scale:1.04,duration:1,yoyo:true,repeat:1,ease:'sine.inOut',transformOrigin:'0 50%'},21.9);
-tl.to({}, {duration:.01},23);
+tl.fromTo('#e4',{opacity:0,x:-30},{opacity:1,x:0,duration:.6,ease:'expo.out'},21.1);
+tl.fromTo('#e5',{opacity:0},{opacity:1,duration:.6},21.3);
+tl.to('#e3',{scale:1.02,duration:1,yoyo:true,repeat:1,ease:'sine.inOut',transformOrigin:'0 50%'},22.4);
+tl.to({}, {duration:.01},24.5);
 
-window.KLIPT={width:1080,height:1350,fps:30,duration:23,render(t){tl.seek(t,false);}};
+window.KLIPT={width:1080,height:1350,fps:30,duration:24.5,render(t){tl.seek(t,false);}};
 </script></body></html>

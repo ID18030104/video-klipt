@@ -37,10 +37,11 @@ Rules:
 - **Give it texture** so it doesn't look like a flat template: SVG `feTurbulence` grain at 4–8 % opacity, subtle gradient mesh, paper, halftone, noise, soft shadows, light leaks — chosen to fit the register.
 - **Invent a brand mark**: a simple logo (wordmark + symbol built in SVG) and reuse it consistently.
 
-## 3. Write the copy (French unless told otherwise)
+## 3. Write the copy (French unless told otherwise; English when the brief says so)
 - **Hook in the first 1.0 s** (video) / first slide (carousel): a question, a bold claim, a number, a tension. Not the brand name.
 - Short lines. Spoken French, concrete, specific numbers ("-37 % de temps de relance", "Ouvert dès 7h"), no corporate filler ("solutions innovantes", "n'hésitez pas").
 - **French typography**: non-breaking space before `! ? : ;` and inside « guillemets » (use `&nbsp;` or U+202F), `’` not `'`, accents on capitals (É, À), "1 500 €" with a space. Proofread every string — a typo kills the piece.
+- **English copy** (when the brief asks for it): native, idiomatic marketing English — not translated French. Pick US or UK spelling to match the market and stay consistent (color/colour, center/centre); curly quotes “ ” and apostrophes ’; sentence case for most headlines; currency before the number ($48, £15.50, €42); en dash for ranges (9am–7pm).
 - End with a **clear CTA** + brand (handle, URL, address, phone — invented but plausible, e.g. `ledgerly.io`, `06 12 34 56 78`).
 
 ## 4. Build — video

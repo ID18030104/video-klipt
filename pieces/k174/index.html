@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080,initial-scale=1">
+<title>Maison Castel · rasage à l'ancienne</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/abril-fatface/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/chivo/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/chivo/700.css">
+<style>
+:root{
+  --leather:#4A1A1C; --leather-deep:#2C0E10; --lather:#F2EEE6;
+  --brass:#D1AE68; --cream:#F4EADB; --steel:#B9BFC3;
+  --display:"Abril Fatface", serif; --body:"Chivo", sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;margin:0;overflow:hidden;background:var(--leather-deep)}
+#stage{position:absolute;inset:0;overflow:hidden;
+  background:radial-gradient(120% 80% at 50% 45%, #5A2124 0%, var(--leather) 45%, var(--leather-deep) 100%);}
+.grain{position:absolute;inset:0;opacity:.22;mix-blend-mode:overlay;pointer-events:none}
+.layer{position:absolute;inset:0}
+.abs{position:absolute;left:0;right:0}
+.label{font-family:var(--body);font-weight:700;font-size:32px;letter-spacing:.2em;color:var(--brass);text-align:center}
+.disp{font-family:var(--display);font-weight:400;color:var(--cream);text-align:center;letter-spacing:-.01em}
+.step{font-family:var(--body);font-weight:700;font-size:34px;letter-spacing:.24em;text-align:center;color:var(--brass)}
+
+/* scene 1 */
+#s1-label{top:300px}
+#s1-step{top:560px}
+#s1-title{top:620px;font-size:142px;line-height:1}
+#towel{position:absolute;left:90px;top:1080px;width:900px;height:463px;overflow:visible}
+
+/* scene 2 caption */
+#s2{top:850px;color:var(--leather)}
+#s2-title{top:910px;font-size:150px;line-height:1;color:var(--leather)}
+
+/* scene 3 caption, on lather */
+#s3-step{top:850px;color:var(--leather)}
+#s3-title{top:910px;font-size:150px;line-height:1;color:var(--leather)}
+
+/* final */
+#f-label{top:300px}
+#f-t1{top:352px;font-size:268px;line-height:.9;letter-spacing:-.02em}
+#f-t2{top:612px;font-size:156px;line-height:1;letter-spacing:-.01em}
+#f-list{top:835px;font-family:var(--body);font-size:40px;color:var(--cream);text-align:center;letter-spacing:.02em}
+#f-list b{color:var(--brass);font-weight:700;padding:0 .35em}
+#f-price{top:945px;display:flex;justify-content:center;align-items:flex-end;gap:54px}
+#f-price .big{font-family:var(--display);font-size:236px;line-height:1;color:var(--brass);font-variant-numeric:lining-nums}
+#f-price .side{padding-bottom:36px;text-align:left}
+#f-price .side .n{font-family:var(--display);font-size:96px;line-height:1;color:var(--cream)}
+#f-price .side .s{font-family:var(--body);font-size:32px;color:var(--cream);opacity:.85;margin-top:8px}
+#f-cta{top:1245px;text-align:center}
+#f-cta .k{font-family:var(--body);font-weight:700;font-size:34px;letter-spacing:.2em;color:var(--brass)}
+#f-cta .url{display:inline-block;position:relative;font-family:var(--display);font-size:112px;line-height:1.05;color:var(--cream);margin-top:10px}
+#f-cta .url i{position:absolute;left:0;right:0;bottom:-6px;height:6px;background:var(--brass);transform-origin:left center;transform:scaleX(0)}
+#f-cta .info{font-family:var(--body);font-size:32px;color:var(--cream);margin-top:34px;line-height:1.45}
+#f-cta .info span{opacity:.8}
+
+canvas#lather{position:absolute;inset:0;width:1080px;height:1920px}
+#over{position:absolute;inset:0;pointer-events:none}
+#brush,#razor{position:absolute;left:0;top:0;overflow:visible}
+</style>
+</head><body>
+<div id="stage">
+  <svg class="grain" width="1080" height="1920"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .35  0 0 0 0 .3  0 0 0 .9 0"/></filter><rect width="1080" height="1920" filter="url(#g)"/></svg>
+
+  <!-- scene 1 : serviette chaude -->
+  <div id="scene1" class="layer">
+    <div id="s1-label" class="abs label">nouveau chez maison castel</div>
+    <div id="s1-step" class="abs step">1 / 3</div>
+    <div id="s1-title" class="abs disp">la serviette<br>chaude.</div>
+    <svg id="towel" viewBox="0 0 700 360">
+      <filter id="blur"><feGaussianBlur stdDeviation="4"/></filter><g id="steam" fill="none" stroke="#F4EADB" stroke-width="24" stroke-linecap="round" opacity=".9" filter="url(#blur)">
+        <path class="st" d="M230 150 C200 110 260 80 230 40 S250 -30 225 -70"/>
+        <path class="st" d="M350 140 C320 100 380 70 350 30 S370 -40 345 -80"/>
+        <path class="st" d="M470 150 C440 110 500 80 470 40 S490 -30 465 -70"/>
+      </g>
+      <!-- rolled towel -->
+      <rect x="90" y="170" width="520" height="170" rx="22" fill="#EDE3D1"/>
+      <g stroke="#D6C7AE" stroke-width="5">
+        <line x1="150" y1="178" x2="150" y2="332"/><line x1="210" y1="178" x2="210" y2="332"/>
+        <line x1="270" y1="178" x2="270" y2="332"/><line x1="330" y1="178" x2="330" y2="332"/>
+        <line x1="390" y1="178" x2="390" y2="332"/><line x1="450" y1="178" x2="450" y2="332"/>
+        <line x1="510" y1="178" x2="510" y2="332"/>
+      </g>
+      <rect x="90" y="300" width="520" height="16" fill="#C9A35B" opacity=".85"/>
+      <ellipse cx="610" cy="255" rx="62" ry="85" fill="#F4EADB"/>
+      <path d="M610 255 m-6 0 a10 12 0 1 1 20 0 a24 30 0 1 1 -44 0 a38 48 0 1 1 72 0 a52 66 0 1 1 -96 0" fill="none" stroke="#D6C7AE" stroke-width="6"/>
+    </svg>
+  </div>
+
+  <!-- final content, revealed by the razor -->
+  <div id="final" class="layer" style="opacity:0">
+    <div id="f-label" class="abs label">nouveau chez maison castel</div>
+    <div id="f-t1" class="abs disp">rasage</div>
+    <div id="f-t2" class="abs disp">à l’ancienne.</div>
+    <div id="f-list" class="abs">serviette chaude<b>·</b>blaireau<b>·</b>coupe-chou</div>
+    <div id="f-price" class="abs">
+      <div class="big">35&#8239;€</div>
+      <div class="side"><div class="n">40 min</div><div class="s">de soin, au fauteuil</div></div>
+    </div>
+    <div id="f-cta" class="abs">
+      <div class="k">rendez-vous en ligne</div>
+      <div class="url">maisoncastel.fr<i></i></div>
+      <div class="info">12 rue d’austerlitz, 69004 lyon <span>·</span> mar.–sam. 9h–19h<br><span>barbier à la croix-rousse depuis 2011</span></div>
+    </div>
+  </div>
+
+  <canvas id="lather" width="1080" height="1920"></canvas>
+
+  <div id="over">
+    <div id="s2" class="abs step">2 / 3</div>
+    <div id="s2-title" class="abs disp">le blaireau.</div>
+    <div id="s3-step" class="abs step">3 / 3</div>
+    <div id="s3-title" class="abs disp">le coupe-chou.</div>
+
+    <!-- shaving brush, origin at knot centre bottom -->
+    <svg id="brush" width="1" height="1">
+      <g id="brushG">
+        <defs>
+          <linearGradient id="bh" x1="0" x2="1"><stop offset="0" stop-color="#1E0C0D"/><stop offset=".5" stop-color="#6B2A2D"/><stop offset="1" stop-color="#1E0C0D"/></linearGradient>
+          <linearGradient id="bk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2EEE6"/><stop offset=".55" stop-color="#8A7A68"/><stop offset="1" stop-color="#3C2C22"/></linearGradient>
+        </defs>
+        <path d="M-70 -20 C-80 -110 -40 -165 0 -170 C40 -165 80 -110 70 -20 Z" fill="url(#bk)"/>
+        <ellipse cx="0" cy="-18" rx="92" ry="34" fill="#F7F4EE"/>
+        <circle cx="-40" cy="-30" r="22" fill="#fff"/><circle cx="30" cy="-12" r="26" fill="#fff"/><circle cx="-5" cy="-6" r="20" fill="#fff"/>
+        <rect x="-56" y="-222" width="112" height="56" rx="8" fill="#C9A35B"/>
+        <path d="M-60 -226 C-72 -300 -44 -360 -48 -400 L48 -400 C44 -360 72 -300 60 -226 Z" fill="url(#bh)"/>
+        <rect x="-50" y="-412" width="100" height="18" rx="9" fill="#C9A35B"/>
+      </g>
+    </svg>
+
+    <!-- straight razor: blade edge on x=0, spans y 0..H -->
+    <svg id="razor" width="1" height="1">
+      <defs>
+        <linearGradient id="bl" x1="0" x2="1"><stop offset="0" stop-color="#7C8488"/><stop offset=".55" stop-color="#E7EBED"/><stop offset=".9" stop-color="#AEB4B8"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
+        <linearGradient id="tort" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#2A150D"/><stop offset=".3" stop-color="#7A4420"/><stop offset=".5" stop-color="#3A1E10"/><stop offset=".75" stop-color="#8C5226"/><stop offset="1" stop-color="#24110A"/></linearGradient>
+      </defs>
+      <g id="razorG">
+        <g id="handle">
+          <rect x="-112" y="-50" width="64" height="440" rx="30" fill="url(#tort)" transform="rotate(-150 -80 -20)"/>
+          <circle cx="-80" cy="-20" r="12" fill="#C9A35B"/><circle cx="-80" cy="-20" r="5" fill="#7A5A28"/>
+        </g>
+        <path id="blade" d="M-110 -34 L-50 -34 C-24 -20 0 10 0 40 L0 300 C0 322 -14 334 -40 334 L-110 322 Z" fill="url(#bl)" stroke="#6E767A" stroke-width="2"/>
+        <line x1="-2" y1="40" x2="-2" y2="300" stroke="#fff" stroke-width="3"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<script src="../../lib/klipt-kit.js"></script>
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+(function(){
+const W=1080,H=1920;
+const {rng,clamp,prog,ease}=KK;
+const R=rng(20110412);
+
+/* ---------- foam texture (once) ---------- */
+const foam=document.createElement('canvas'); foam.width=W; foam.height=H;
+(function(){
+  const c=foam.getContext('2d');
+  c.fillStyle='#ECE7DD'; c.fillRect(0,0,W,H);
+  // soft cloudy shading
+  for(let i=0;i<220;i++){
+    const x=R()*W,y=R()*H,r=60+R()*160;
+    const g=c.createRadialGradient(x,y,0,x,y,r);
+    const light=R()<.6;
+    g.addColorStop(0,light?'rgba(255,255,253,.55)':'rgba(205,196,182,.35)');
+    g.addColorStop(1,'rgba(255,255,255,0)');
+    c.fillStyle=g; c.beginPath(); c.arc(x,y,r,0,7); c.fill();
+  }
+  // bubbles
+  for(let i=0;i<9000;i++){
+    const x=R()*W,y=R()*H; const r=Math.pow(R(),2.2)*16+1.5;
+    c.fillStyle='rgba(250,248,243,.9)'; c.beginPath(); c.arc(x,y,r,0,7); c.fill();
+    c.strokeStyle='rgba(170,160,146,'+(.25+R()*.3)+')'; c.lineWidth=1.2; c.stroke();
+    c.fillStyle='rgba(255,255,255,.95)'; c.beginPath(); c.arc(x-r*.35,y-r*.35,Math.max(.8,r*.28),0,7); c.fill();
+  }
+})();
+
+const cv=document.getElementById('lather'); const ctx=cv.getContext('2d');
+const mask=document.createElement('canvas'); mask.width=W; mask.height=H;
+const m=mask.getContext('2d');
+const pat=m.createPattern(foam,'no-repeat');
+
+/* ---------- lather spiral (blaireau) ---------- */
+const L0=3.7, L1=6.6, LFULL0=6.2, LFULL1=6.9;
+const CX=540, CY=980;
+const spiral=[]; // points with arc length
+(function(){
+  let th=0, s=0, px=CX, py=CY; const b=150/(2*Math.PI);
+  while(true){
+    const r=18+b*th; const x=CX+Math.cos(th)*r*.62, y=CY+Math.sin(th)*r;
+    s+=Math.hypot(x-px,y-py); px=x; py=y;
+    spiral.push({x,y,s,r});
+    if(r>1080) break;
+    th+=0.04;
+  }
+})();
+const S=spiral[spiral.length-1].s;
+const blobs=[];
+(function(){
+  let next=0;
+  for(const p of spiral){
+    if(p.s>=next){
+      const bx=p.x+(R()-.5)*50, by=p.y+(R()-.5)*50, br=95+p.r*.12+R()*40, bt=L0+(p.s/S)*(L1-L0);
+      blobs.push({x:bx,y:by,r:br,t:bt});
+      for(let j=0;j<3;j++){const a=R()*6.283; blobs.push({x:bx+Math.cos(a)*br*.95,y:by+Math.sin(a)*br*.95,r:br*(.18+R()*.22),t:bt+.08+j*.04});}
+      next=p.s+55;
+    }
+  }
+})();
+function spiralAt(t){
+  const f=clamp((t-L0)/(L1-L0)); const target=f*S;
+  let lo=0,hi=spiral.length-1;
+  while(lo<hi){const mid=(lo+hi)>>1; if(spiral[mid].s<target) lo=mid+1; else hi=mid;}
+  return spiral[lo];
+}
+
+/* ---------- razor strokes ---------- */
+const strokes=[
+  {y0:268,y1:614,t0:8.5,t1:9.45,dir:1},
+  {y0:610,y1:806,t0:9.75,t1:10.6,dir:-1},
+  {y0:802,y1:930,t0:10.9,t1:11.6,dir:1},
+  {y0:924,y1:1214,t0:12.0,t1:12.95,dir:-1},
+  {y0:1210,y1:1600,t0:13.35,t1:14.35,dir:1},
+];
+for(const k of strokes){
+  const n=30; k.top=[];k.bot=[];
+  for(let i=0;i<=n;i++){k.top.push((R()-.5)*18);k.bot.push((R()-.5)*18);}
+  k.pile=[]; for(let i=0;i<16;i++) k.pile.push({v:R(),r:16+R()*26,dx:R()*34});
+}
+function frontX(k,t){
+  const p=ease.inOutCubic(prog(t,k.t0,k.t1-k.t0));
+  return {p, x: k.dir>0 ? -80+p*1260 : W+80-p*1260};
+}
+function clearBand(k,t){
+  if(t<k.t0) return;
+  const {x}=frontX(k,t); const n=k.top.length-1;
+  const a=k.dir>0?-100:W+100;
+  m.beginPath();
+  // top edge from a to x
+  for(let i=0;i<=n;i++){const xx=a+(x-a)*i/n; const yy=k.y0+k.top[i]; i?m.lineTo(xx,yy):m.moveTo(xx,yy);}
+  // front edge slight bulge
+  m.quadraticCurveTo(x+k.dir*14,(k.y0+k.y1)/2,x,k.y1+k.bot[n]);
+  for(let i=n;i>=0;i--){const xx=a+(x-a)*i/n; m.lineTo(xx,k.y1+k.bot[i]);}
+  m.closePath(); m.fill();
+}
+function drawPile(k,t){
+  if(t<k.t0||t>k.t1) return;
+  const {p,x}=frontX(k,t); const amt=Math.min(1,p*3);
+  m.fillStyle=pat;
+  for(const b of k.pile){
+    const y=k.y0+10+b.v*(k.y1-k.y0-20);
+    m.beginPath(); m.arc(x+k.dir*(b.dx*amt+6), y, b.r*(.5+.5*amt),0,7); m.fill();
+  }
+}
+
+/* ---------- DOM refs ---------- */
+const brush=document.getElementById('brush'), brushG=document.getElementById('brushG');
+const razor=document.getElementById('razor'), razorG=document.getElementById('razorG');
+
+function drawLather(t){
+  m.setTransform(1,0,0,1,0,0);
+  m.globalCompositeOperation='source-over';
+  m.clearRect(0,0,W,H);
+  if(t>=L0){
+    m.fillStyle=pat;
+    for(const b of blobs){
+      if(t<b.t) continue;
+      const g=ease.outCubic(clamp((t-b.t)/.35));
+      m.beginPath(); m.arc(b.x,b.y,b.r*g,0,7); m.fill();
+    }
+    const full=clamp((t-LFULL0)/(LFULL1-LFULL0));
+    if(full>0){ m.globalAlpha=full; m.fillRect(0,0,W,H); m.globalAlpha=1; }
+    m.globalCompositeOperation='destination-out'; m.fillStyle='#000';
+    for(const k of strokes) clearBand(k,t);
+    m.globalCompositeOperation='source-over';
+    for(const k of strokes) drawPile(k,t);
+  }
+  ctx.clearRect(0,0,W,H);
+  ctx.save();
+  ctx.shadowColor='rgba(20,5,6,.55)'; ctx.shadowBlur=26; ctx.shadowOffsetY=10;
+  ctx.drawImage(mask,0,0);
+  ctx.restore();
+}
+
+function placeBrush(t){
+  const vis=t>=L0-0.5 && t<=L1+0.6;
+  brush.style.display=vis?'block':'none';
+  if(!vis) return;
+  let x,y;
+  if(t<L0){ const q=ease.outCubic(prog(t,L0-0.5,0.5)); x=CX+(1-q)*500; y=CY+(1-q)*300; }
+  else if(t>L1){ const q=ease.inCubic(prog(t,L1,0.6)); const p=spiralAt(L1); x=p.x+q*700; y=p.y-q*500; }
+  else { const p=spiralAt(t); x=p.x; y=p.y; }
+  const wob=Math.sin(t*9)*8;
+  brushG.setAttribute('transform',`translate(${x.toFixed(1)} ${(y+40).toFixed(1)}) rotate(${(wob+12).toFixed(2)})`);
+}
+
+function placeRazor(t){
+  let k=null;
+  for(const s of strokes){ if(t>=s.t0-0.35 && t<=s.t1+0.2){k=s;break;} }
+  razor.style.display=k?'block':'none';
+  if(!k) return;
+  let x;
+  if(t<k.t0){ x = k.dir>0 ? -80 : W+80; }
+  else x=frontX(k,t).x;
+  const h=k.y1-k.y0; const sy=(h+10)/260;
+  // blade drawn for y 40..300 as the cutting edge
+  const y=k.y0-5-40*sy;
+  const lift = t<k.t0 ? (1-ease.outCubic(prog(t,k.t0-0.35,0.35)))*-60 : 0;
+  razorG.setAttribute('transform',`translate(${x.toFixed(1)} ${(y+lift).toFixed(1)}) scale(${k.dir} ${sy.toFixed(3)})`);
+  document.getElementById('handle').setAttribute('transform',`scale(1 ${(1/sy).toFixed(3)})`);
+}
+
+/* ---------- GSAP DOM timeline ---------- */
+const tl=gsap.timeline({paused:true});
+// scene 1
+tl.from('#s1-label',{opacity:0,y:20,duration:.6,ease:'power2.out'},0.1)
+  .from('#s1-step',{opacity:0,duration:.5},0.35)
+  .from('#s1-title',{opacity:0,y:40,duration:.9,ease:'power3.out'},0.3)
+  .from('#towel',{opacity:0,y:60,duration:.9,ease:'power3.out'},0.5)
+  .to('#s1-title,#s1-step,#s1-label',{opacity:0,y:-30,duration:.5,ease:'power2.in'},3.1);
+gsap.utils.toArray('.st').forEach((p,i)=>{
+  const len=260;
+  gsap.set(p,{strokeDasharray:"170 400",strokeDashoffset:len});
+  tl.to(p,{strokeDashoffset:-300,duration:1.6,ease:"none",repeat:3},0.05+i*0.4);
+});
+tl.set('#scene1',{opacity:0},6.9);
+// scene 2
+tl.fromTo('#s2',{opacity:0},{opacity:1,duration:.4},4.25)
+  .fromTo('#s2-title',{opacity:0,scale:.94},{opacity:1,scale:1,duration:.7,ease:'power3.out'},4.3)
+  .to('#s2,#s2-title',{opacity:0,duration:.35},6.45);
+// scene 3 on lather
+tl.fromTo('#s3-step',{opacity:0},{opacity:1,duration:.4},6.85)
+  .fromTo('#s3-title',{opacity:0,scale:.94},{opacity:1,scale:1,duration:.7,ease:'power3.out'},6.9)
+  .to('#s3-step,#s3-title',{opacity:0,duration:.35},8.3);
+// final
+tl.set('#final',{opacity:1},6.95)
+  .to('#f-cta .url i',{scaleX:1,duration:.8,ease:'power2.inOut'},14.7)
+  .fromTo('#f-price .big',{scale:1},{scale:1.04,duration:.5,yoyo:true,repeat:1,ease:'sine.inOut'},15.6)
+  .to({}, {duration:.1},21);
+
+window.KLIPT={width:W,height:H,fps:30,duration:21,
+  ready:document.fonts.ready,
+  render(t){ tl.seek(t,false); drawLather(t); placeBrush(t); placeRazor(t); }
+};
+})();
+</script>
+</body></html>

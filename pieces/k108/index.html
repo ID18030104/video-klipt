@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Ledgerly — Le bon moment</title>
+<!--
+DIRECTION — concept: « Le bon moment. » a ledger page becomes a 30-day timeline; a green playhead (the AI) drops a reminder
+exactly where each client is most likely to pay. Palette: paper #F4F1EA, ink #11221E, ledger green #16A36B, overdue coral #E4533A,
+rule grey #CFC9BC. Type: Manrope (UI/headlines) + JetBrains Mono (figures). Graphic language: accounting-paper rules, red margin,
+white client cards, UI mock-ups. Motion: precise, software-like, masks + one iris transition + ink wipe.
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/700.css">
+<style>
+:root{--paper:#F4F1EA;--ink:#11221E;--green:#16A36B;--coral:#E4533A;--rule:#CFC9BC;--muted:#5E6B66;--dy:0px}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1350px;overflow:hidden;background:var(--paper)}
+body{position:relative;font-family:Manrope,sans-serif;color:var(--ink);font-weight:500;-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+.mono{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums}
+.pg{position:absolute;inset:0;background:var(--paper);overflow:hidden}
+.pg::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0 53px,rgba(207,201,188,.55) 53px 54px);background-position:0 var(--dy)}
+.pg::after{content:'';position:absolute;top:0;bottom:0;left:119px;width:2px;background:rgba(228,83,58,.6)}
+.pg.vig{background:radial-gradient(ellipse at 50% 50%,var(--paper) 62%,#E9E5DA 100%)}
+#world{position:absolute;inset:0;z-index:1}
+#iris{position:absolute;left:0;top:0;width:2400px;height:2400px;border-radius:50%;background:var(--green);z-index:2;visibility:hidden}
+#s4{position:absolute;inset:0;z-index:3;visibility:hidden}
+#s6{position:absolute;inset:0;z-index:4;visibility:hidden}
+#ink{position:absolute;inset:0;z-index:5;visibility:hidden}
+.half{position:absolute;left:0;width:1080px;height:675px;background:var(--ink);overflow:hidden}
+.half svg{position:absolute;left:0;width:1080px;height:1350px;mix-blend-mode:screen;opacity:.08}
+#s5{position:absolute;inset:0}
+#s5 .rules{position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0 53px,rgba(244,241,234,.06) 53px 54px);background-position:0 var(--dy)}
+#hdr,#hdrL{position:absolute;left:0;top:0;width:1080px;height:140px;z-index:6}
+#hdrL{z-index:7;clip-path:inset(1350px 0 0 0);visibility:hidden}
+.lock{position:absolute;left:72px;top:64px;display:flex;align-items:center;gap:12px;height:40px}
+.lock .wm{font-weight:800;font-size:36px;letter-spacing:-.04em;line-height:40px;padding-bottom:4px}
+.hr{position:absolute;right:72px;top:72px;height:32px;display:flex;align-items:center;gap:12px;font:500 28px/32px 'JetBrains Mono',monospace;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.hr i{width:10px;height:10px;border-radius:50%;background:var(--green);display:block}
+#hdrL .wm,#hdrL .hr{color:var(--paper)}
+#hdrL .hr{color:rgba(244,241,234,.7)}
+#grain{position:absolute;inset:0;z-index:9;mix-blend-mode:multiply;opacity:.06;pointer-events:none}
+.h1{font-weight:800;font-size:92px;line-height:1.02;letter-spacing:-.035em}
+.h2{font-weight:800;font-size:64px;line-height:1.08;letter-spacing:-.03em}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:.12em 0 .16em;margin:-.12em 0 -.16em}
+.wi{display:inline-block}
+.coral{color:var(--coral)}
+/* cards */
+.card{position:absolute;left:0;top:0;background:#fff;border:1px solid #E3DED3;border-radius:20px;box-shadow:0 18px 40px -22px rgba(17,34,30,.28)}
+.card .nm{position:absolute;left:36px;top:18px;font-weight:700;font-size:36px;line-height:44px;white-space:nowrap}
+.card .num{position:absolute;left:36px;top:66px;font:400 26px/30px 'JetBrains Mono',monospace;color:var(--muted)}
+.card .tag{position:absolute;right:24px;top:20px;font:500 28px/1 'JetBrains Mono',monospace;color:var(--coral);background:rgba(228,83,58,.12);border-radius:10px;padding:8px 14px;white-space:nowrap;text-transform:uppercase}
+.card .amt{position:absolute;right:28px;bottom:20px;font:700 44px/1 'JetBrains Mono',monospace;letter-spacing:-.02em}
+.roll{display:inline-block;height:1.2em;overflow:hidden;vertical-align:top;line-height:1.2em;margin-top:-.1em}
+.roll span{display:block;height:1.2em}
+.card .sub{position:absolute;left:36px;top:68px;font-weight:500;font-size:30px;line-height:36px;color:var(--muted);white-space:nowrap}
+.tlw{position:absolute;left:0;top:0;width:100%;height:100%}
+.tline{position:absolute;left:36px;top:149px;width:864px;height:2px;background:rgba(17,34,30,.7);transform-origin:0 50%}
+.tick{position:absolute;top:145px;width:1px;height:10px;background:var(--rule)}
+.lbl{position:absolute;top:176px;font:500 28px/34px 'JetBrains Mono',monospace;color:var(--muted)}
+.dot{position:absolute;width:14px;height:14px;border-radius:50%;background:rgba(17,34,30,.35)}
+.dot.late{background:transparent;border:2px solid var(--coral)}
+.band{position:absolute;top:118px;height:64px;border-radius:32px;background:rgba(17,34,30,.09);transform-origin:0 50%}
+.ph{position:absolute;left:36px;top:0;width:0;height:0;visibility:hidden}
+.ph .ln{position:absolute;left:-1.5px;top:78px;width:3px;height:118px;background:var(--green);box-shadow:0 0 24px rgba(22,163,107,.45)}
+.ph .dt{position:absolute;left:-7px;top:71px;width:14px;height:14px;border-radius:50%;background:var(--green);box-shadow:0 0 24px rgba(22,163,107,.45)}
+.dt{position:absolute;border-radius:50%;background:var(--green);box-shadow:0 0 24px rgba(22,163,107,.45)}
+.ring{position:absolute;left:-40px;top:38px;width:80px;height:80px;border-radius:50%;border:2px solid var(--green);opacity:0}
+.mk{position:absolute;top:64px;display:flex;align-items:center;gap:12px;height:52px}
+.pill{height:52px;border-radius:26px;background:var(--green);color:#fff;display:flex;align-items:center;gap:10px;padding:0 20px 0 16px;font:700 28px/1 'JetBrains Mono',monospace;white-space:nowrap;transform-origin:0 50%}
+.chip{height:52px;border-radius:26px;border:2px solid var(--ink);display:flex;align-items:center;gap:10px;padding:0 20px;font-weight:700;font-size:28px;white-space:nowrap;background:rgba(255,255,255,.92)}
+.chip .mono{font-weight:500;font-size:26px}
+.ic{display:inline-block;line-height:0}
+.ic svg{display:block;width:100%;height:100%}
+/* s4 */
+.recap{position:absolute;left:72px;top:170px;display:flex;align-items:center;gap:14px}
+.recap .nm{font:500 28px 'JetBrains Mono',monospace;color:var(--muted);margin-left:6px}
+#mail{position:absolute;left:72px;top:280px;width:936px;height:650px;background:#fff;border:1px solid #E3DED3;border-radius:24px;box-shadow:0 18px 40px -22px rgba(17,34,30,.28);padding:0 48px}
+.mrow{border-bottom:1px solid #E3DED3;display:flex;align-items:center;gap:12px}
+.mrow.top{height:96px;font-weight:700;font-size:30px;color:var(--muted)}
+.mrow.f{height:76px;font-weight:600;font-size:32px}
+.mrow .k{color:var(--muted)}
+.body{padding-top:34px;font-weight:500;font-size:34px;line-height:1.4;width:840px}
+.body p+p{margin-top:20px}
+.body .mono{font-weight:500;font-size:31px}
+.tc{opacity:0}
+.tc.on{opacity:1}
+.caret{display:inline-block;width:0;height:1em;position:relative;vertical-align:-.1em}
+.caret::after{content:'';position:absolute;left:2px;top:.05em;width:3px;height:1em;background:var(--green)}
+#paybtn{position:absolute;left:48px;bottom:48px;height:76px;border-radius:38px;padding:0 40px;background:var(--green);color:#fff;font-weight:700;font-size:32px;display:flex;align-items:center;transform-origin:0 50%}
+#toast{position:absolute;left:72px;top:980px;height:72px;border-radius:36px;background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:14px;padding:0 34px 0 26px;font-weight:700;font-size:32px}
+#toast .ti{position:relative;width:34px;height:34px}
+#toast .ti .ic{position:absolute;inset:0}
+#toast .tt{position:relative;height:72px;width:372px;overflow:hidden}
+#toast .tt span{position:absolute;left:0;top:0;height:72px;line-height:72px;white-space:nowrap}
+/* s5 */
+.ctr{position:absolute;left:72px;white-space:nowrap}
+.bar{position:absolute;left:72px;height:52px;border-radius:26px}
+.bar{overflow:hidden}.bar b{white-space:nowrap;position:absolute;right:24px;top:0;line-height:52px;font:700 32px/52px 'JetBrains Mono',monospace}
+/* s6 */
+.c6{position:absolute;left:0;width:1080px;text-align:center}
+#cta{display:inline-flex;align-items:center;gap:20px;height:100px;border-radius:50px;padding:0 56px;background:var(--green);color:#fff;font-weight:800;font-size:40px;transform-origin:50% 50%}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><filter id="gf" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></svg>
+
+<div class="pg vig" id="base"></div>
+
+<div id="world">
+  <div class="abs h1" id="h1" style="left:72px;top:196px;width:936px">
+    <div id="h1a">Relancer trop tôt, ça&nbsp;froisse.</div>
+    <div id="h1b" style="margin-top:22px">Trop tard, <span class="coral">ça&nbsp;coûte.</span></div>
+  </div>
+  <div class="abs h2" id="h2b" style="left:72px;top:186px;width:900px">Chaque client paie à son&nbsp;rythme.</div>
+  <div class="abs" id="h3" style="left:72px;top:150px;width:936px">
+    <div id="kick3" class="mono" style="height:34px;display:flex;align-items:center;gap:10px;color:var(--green);font-weight:500;font-size:28px;letter-spacing:.08em;position:absolute;top:8px;left:0"><span class="ic" style="width:24px;height:24px" data-ic="sparkles"></span><span>NOUVEAU</span></div>
+    <div class="h2" id="h3t" style="position:absolute;top:54px;left:0;white-space:nowrap">Relances intelligentes</div>
+    <div id="h3s" style="position:absolute;top:140px;left:0;font-weight:600;font-size:36px;line-height:44px;color:var(--muted);white-space:nowrap">L’IA choisit le bon moment et le bon ton.</div>
+  </div>
+  <div id="cards"></div>
+</div>
+
+<div id="iris"></div>
+
+<div id="s4">
+  <div class="pg"></div>
+  <div id="rc" class="recap">
+    <div class="pill"><span class="ic" style="width:24px;height:24px" data-ic="send"></span><span>MAR. 9 H&#8239;40</span></div>
+    <div class="chip">Cordial</div>
+    <div class="nm">Boulangerie Marceau</div>
+  </div>
+  <div id="mail">
+    <div class="mrow top"><span class="ic" style="width:28px;height:28px" data-ic="mail"></span><span>Nouveau message</span></div>
+    <div class="mrow f" id="mto"><span class="k">À&#8239;:</span><span class="ty">Julie Marceau</span></div>
+    <div class="mrow f" id="msub"><span class="k">Objet&#8239;:</span><span class="ty">Facture <span class="mono">F-2026-0412</span> — petit rappel</span></div>
+    <div class="body">
+      <p id="p1">Bonjour Julie,</p>
+      <p id="p2">Petit rappel amical&#8239;: la facture <span class="mono">F-2026-0412</span> (<span class="mono">1&#8239;280,00&#8239;€</span>) était due le 12&nbsp;septembre.</p>
+      <p id="p3">Vous pouvez la régler en un clic ici. Belle journée&#8239;!</p>
+    </div>
+    <div id="paybtn">Payer la facture</div>
+  </div>
+  <div id="toast">
+    <div class="ti"><span class="ic" id="ic-send" data-ic="send"></span><span class="ic" id="ic-check" data-ic="check" style="opacity:0"></span></div>
+    <div class="tt"><span id="t-a">Envoyé · mardi 9&nbsp;h&nbsp;40</span><span id="t-b">Payée · mardi 11&nbsp;h&nbsp;02</span></div>
+  </div>
+</div>
+
+<div id="s6">
+  <div class="pg vig"></div>
+  <div class="c6" id="lg" style="top:380px;height:100px;display:flex;justify-content:center;align-items:center;gap:22px">
+    <span id="lgsvg"></span><span id="lgwm" style="font-weight:800;font-size:88px;letter-spacing:-.04em;line-height:96px;padding-bottom:8px;white-space:nowrap"></span>
+  </div>
+  <div class="c6 h1" id="e-h" style="top:556px;font-size:72px;line-height:1.08"><div style="width:900px;margin:0 auto">Soyez payé au&nbsp;bon&nbsp;moment.</div></div>
+  <div class="c6" id="e-s" style="top:752px;font-weight:600;font-size:34px;line-height:44px;color:var(--muted)"><div style="width:800px;margin:0 auto">Connecté à votre logiciel de compta.<br>E-mail et&nbsp;SMS.</div></div>
+  <div class="c6" style="top:900px;height:100px"><div id="cta"><span>Essai gratuit 14 jours</span><span class="ic" id="arr" style="width:36px;height:36px" data-ic="arrow-right"></span></div></div>
+  <div class="c6 mono" id="e-u" style="top:1040px;font-weight:500;font-size:40px;line-height:52px;height:52px">&nbsp;</div>
+  <div id="orn" class="abs" style="left:240px;top:1170px;width:600px;height:60px"></div>
+</div>
+
+<div id="ink">
+  <div class="half" id="hT" style="top:0"><svg viewBox="0 0 1080 1350" style="top:0"><rect width="1080" height="1350" filter="url(#gf)"/></svg></div>
+  <div class="half" id="hB" style="top:675px"><svg viewBox="0 0 1080 1350" style="top:-675px"><rect width="1080" height="1350" filter="url(#gf)"/></svg></div>
+  <div id="s5">
+    <div class="rules"></div>
+    <div class="ctr mono" id="k5" style="top:184px;font-weight:500;font-size:28px;letter-spacing:.08em;color:rgba(244,241,234,.7)"></div>
+    <div class="ctr mono" id="n1" style="top:232px;font-weight:700;font-size:260px;line-height:270px;letter-spacing:-.06em;color:var(--green)"><span id="n1v">−0&#8239;%</span></div>
+    <div class="ctr" id="l1" style="top:512px;font-weight:700;font-size:44px;line-height:56px;color:var(--paper)"><span class="w"><span class="wi" id="l1i">de retards de paiement</span></span></div>
+    <div class="abs" id="dv" style="left:72px;top:628px;width:936px;height:1px;background:rgba(244,241,234,.15);transform-origin:0 50%"></div>
+    <div class="ctr" id="n2" style="top:676px;font-weight:800;font-size:160px;line-height:176px;letter-spacing:-.035em;color:var(--paper)"><span class="mono" id="n2v" style="color:var(--green);font-weight:700;letter-spacing:-.06em">0</span> jours</div>
+    <div class="ctr" id="l2" style="top:872px;font-weight:700;font-size:44px;line-height:56px;color:rgba(244,241,234,.8)"><span class="w"><span class="wi" id="l2i">gagnés sur le DSO</span></span></div>
+    <div class="ctr mono" id="la" style="top:986px;font-weight:500;font-size:28px;color:rgba(244,241,234,.6)">DSO avant</div>
+    <div class="bar" id="ba" style="top:1030px;width:0;background:rgba(244,241,234,.18)"><b style="color:var(--paper)" id="bav">52 j</b></div>
+    <div class="ctr mono" id="lb" style="top:1104px;font-weight:500;font-size:28px;color:rgba(244,241,234,.6)">avec Ledgerly</div>
+    <div class="bar" id="bb" style="top:1148px;width:0;background:var(--green)"><b style="color:var(--ink)" id="bbv">41 j</b></div>
+    <div class="abs" id="gap" style="left:810px;top:1148px;width:198px;height:52px;border-radius:26px;border:2px dashed rgba(244,241,234,.45)"></div>
+    <div class="abs mono" id="gapl" style="left:810px;top:1104px;width:198px;text-align:center;font-weight:700;font-size:28px;color:var(--green)">−11&#8239;j</div>
+  </div>
+</div>
+
+<div id="hdr">
+  <div class="lock"><span class="logo" data-logo="dark"></span><span class="wm">ledgerly</span></div>
+  <div class="hr"><i></i><span>Relances intelligentes</span></div>
+</div>
+<div id="hdrL">
+  <div class="lock"><span class="logo" data-logo="light"></span><span class="wm">ledgerly</span></div>
+  <div class="hr"><i></i><span>Relances intelligentes</span></div>
+</div>
+<svg id="grain" width="1080" height="1350"><rect width="1080" height="1350" filter="url(#gf)"/></svg>
+
+<script src="icons.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../node_modules/gsap/dist/ScrambleTextPlugin.min.js"></script>
+<script>
+gsap.registerPlugin(ScrambleTextPlugin);
+const $ = s => document.querySelector(s);
+const NB = ' ';
+let tl = null;
+window.KLIPT = { width:1080, height:1350, fps:30, duration:23,
+  ready: null,
+  render(t){
+    if(!tl) return;
+    tl.seek(t,false);
+    const dy = t<20 ? -8*t : -160-4*(t-20);
+    document.documentElement.style.setProperty('--dy', dy+'px');
+    const on = Math.floor(t*2.5)%2===0;
+    document.querySelectorAll('.caret').forEach(c=>c.style.opacity = on?1:0.15);
+  } };
+
+function logoSVG(mode, size){
+  const tile = mode==='dark' ? '#11221E' : '#F4F1EA', bar = mode==='dark' ? '#F4F1EA' : '#11221E';
+  return `<svg viewBox="0 0 64 64" width="${size}" height="${size}" style="display:block;overflow:visible"><rect class="lt" width="64" height="64" rx="16" fill="${tile}"/><rect class="lb1" x="14" y="24" width="32" height="4" rx="2" fill="${bar}"/><rect class="lb2" x="14" y="38" width="20" height="4" rx="2" fill="${bar}"/><circle class="ld" cx="42" cy="40" r="5" fill="#16A36B"/></svg>`;
+}
+document.querySelectorAll('[data-logo]').forEach(e=>e.innerHTML=logoSVG(e.dataset.logo,40));
+document.querySelectorAll('[data-ic]').forEach(e=>e.innerHTML=ICONS[e.dataset.ic]);
+
+// word masks
+function splitWords(el){
+  const out=[];
+  (function walk(node){
+    [...node.childNodes].forEach(n=>{
+      if(n.nodeType===3){
+        const parts=n.textContent.split(' ');
+        const frag=document.createDocumentFragment();
+        parts.forEach((p,i)=>{
+          if(p!==''){ const w=document.createElement('span'); w.className='w'; const wi=document.createElement('span'); wi.className='wi'; wi.textContent=p; w.appendChild(wi); frag.appendChild(w); out.push(wi); }
+          if(i<parts.length-1) frag.appendChild(document.createTextNode(' '));
+        });
+        n.replaceWith(frag);
+      } else if(n.nodeType===1 && !n.classList.contains('w')) walk(n);
+    });
+  })(el);
+  return out;
+}
+// typer: per-char spans, reveal by count
+function typeify(el){
+  const chars=[];
+  (function walk(node){
+    [...node.childNodes].forEach(n=>{
+      if(n.nodeType===3){
+        const frag=document.createDocumentFragment();
+        [...n.textContent].forEach(ch=>{ const s=document.createElement('span'); s.className='tc'; s.textContent=ch; frag.appendChild(s); chars.push(s); });
+        n.replaceWith(frag);
+      } else if(n.nodeType===1) walk(n);
+    });
+  })(el);
+  const caret=document.createElement('span'); caret.className='caret'; caret.style.display='none';
+  return { chars, caret, N:chars.length, set(n){
+    chars.forEach((c,i)=>c.classList.toggle('on', i<n));
+    if(n>0 && n<chars.length){ chars[n-1].after(caret); caret.style.display=''; } else caret.style.display='none';
+  } };
+}
+function typeTween(ty, at, dur){
+  const p={n:0}; ty.set(0);
+  tl.to(p,{n:ty.N,duration:dur,ease:'none',onUpdate:()=>ty.set(Math.round(p.n))},at);
+}
+
+const CL = [
+  {name:'Boulangerie Marceau', inv:'F-2026-0412', amt:'1'+NB+'280,00'+NB+'€', late:18, sub:'paie souvent le 5 du mois', dots:[3,4,5,5,6], coral:[], pick:5, time:'MAR. 9 H'+NB+'40', tone:'Cordial'},
+  {name:'Atelier Brunet SARL', inv:'F-2026-0398', amt:'4'+NB+'950,00'+NB+'€', late:31, sub:'répond mieux par SMS', dots:[10,14,15,16,22], coral:[22], pick:15, time:'JEU. 14 H'+NB+'15', tone:'Direct', sms:true},
+  {name:'Groupe Lemaire', inv:'F-2026-0377', amt:'12'+NB+'400,00'+NB+'€', late:47, sub:'circuit de validation'+NB+': 3 personnes', dots:[19,21,24,26,27], coral:[26,27], pick:24, time:'LUN. 8 H'+NB+'30', tone:'Ferme'},
+];
+const TLX=36, TLW=864, dayX = d => TLX + d*TLW/29;
+const S1 = [ {x:140,y:760,rot:-6}, {x:140,y:868,rot:3}, {x:140,y:976,rot:-1.5} ];
+const ROWY = [430,690,950];
+
+function buildDOM(){
+  const host=$('#cards');
+  CL.forEach((c,i)=>{
+    const el=document.createElement('div'); el.className='card'; el.id='card'+i; el.style.zIndex=10+i;
+    let dots='', ticks='';
+    for(let d=0;d<30;d++) ticks+=`<i class="tick" style="left:${dayX(d)-.5}px"></i>`;
+    const seen={};
+    c.dots.forEach((d,k)=>{ const n=seen[d]||0; seen[d]=n+1; dots+=`<i class="dot${c.coral.includes(d)?' late':''}" style="left:${dayX(d)-7}px;top:${143-16*n}px"></i>`; });
+    const a=dayX(Math.min(...c.dots))-20, b=dayX(Math.max(...c.dots))+20;
+    el.innerHTML=`
+      <div class="nm">${c.name}</div>
+      <div class="num inv-only">${c.inv}</div>
+      <div class="tag inv-only">EN RETARD · <span class="roll"><div class="rc"><span>${c.late}</span><span>${c.late+1}</span></div></span> J</div>
+      <div class="amt inv-only">${c.amt}</div>
+      <div class="sub row-only">${c.sub}</div>
+      <div class="tlw row-only">
+        <div class="band" style="left:${a}px;width:${b-a}px"></div>
+        <div class="tline"></div>${ticks}
+        <div class="lbl" style="left:36px">J+0</div><div class="lbl" style="right:36px">J+30</div>
+        ${dots}
+        <div class="ph"><div class="ln"></div><div class="dt"></div><div class="ring"></div></div>
+        <div class="mk">
+          <div class="pill"><span class="ic" style="width:24px;height:24px">${ICONS.send}</span><span>${c.time}</span></div>
+          <div class="chip">${c.tone}</div>
+          ${c.sms?`<div class="chip" style="gap:8px;padding:0 18px 0 16px"><span class="ic" style="width:24px;height:24px">${ICONS['message-square']}</span><span class="mono">SMS</span></div>`:''}
+        </div>
+      </div>`;
+    host.appendChild(el);
+  });
+}
+
+function build(){
+  buildDOM();
+  // orn
+  let ot=''; for(let d=0;d<30;d++) ot+=`<i class="tick" style="left:${d*600/29}px;top:16px;height:18px;background:#9C9686"></i>`;
+  $('#orn').innerHTML=`<div class="tline" style="left:0;top:25px;width:600px" id="oline"></div>${ot}<div id="oph" style="position:absolute;left:0;top:26px;width:0;height:0"><div class="dt" style="left:-9px;top:-9px;width:18px;height:18px"></div><div class="ring" id="oring" style="left:-30px;top:-30px;width:60px;height:60px"></div></div>`;
+  // end logo
+  $('#lgsvg').innerHTML=logoSVG('dark',96);
+  const wm=$('#lgwm'); wm.innerHTML=[...'ledgerly'].map(ch=>`<span class="w" style="padding:.1em 0 .2em;margin:-.1em 0 -.2em"><span class="wi lc">${ch}</span></span>`).join('');
+  const h1a=splitWords($('#h1a')), h1b=splitWords($('#h1b'));
+  const h2b=splitWords($('#h2b')), h3t=splitWords($('#h3t')), h3s=splitWords($('#h3s')), eh=splitWords($('#e-h div'));
+  const cards=CL.map((c,i)=>$('#card'+i));
+  const ROW = {x:72,w:936,h:230,rot:0};
+  // measure marker groups
+  cards.forEach((el,i)=>{
+    const mk=el.querySelector('.mk'); const gw=mk.offsetWidth; const px=dayX(CL[i].pick);
+    const left=Math.min(px-7, 936-24-gw); mk.style.left=left+'px'; mk.dataset.left=left;
+  });
+
+  tl=gsap.timeline({paused:true});
+  gsap.set(['#s4','#s6','#ink','#iris'],{visibility:'visible'});
+  gsap.set('#s4',{autoAlpha:0}); gsap.set('#s6',{autoAlpha:0}); gsap.set('#ink',{yPercent:100,autoAlpha:1}); gsap.set('#iris',{autoAlpha:0});
+  gsap.set('.row-only',{opacity:0});
+  gsap.set('.mk .pill,.mk .chip',{scale:0,transformOrigin:'0% 50%'});
+  // ---------- SCENE 1
+  cards.forEach((el,i)=>{
+    const s=S1[i];
+    gsap.set(el,{x:s.x,y:s.y+120,width:800,height:190,rotation:s.rot});
+    tl.fromTo(el,{y:s.y+120},{y:s.y,duration:.9,ease:'expo.out'},i*.08);
+    const tag=el.querySelector('.tag');
+    tl.fromTo(tag,{scale:1.4,opacity:0,transformOrigin:'100% 50%'},{scale:1,opacity:1,duration:.3,ease:'back.out(2)'},.9+i*.1);
+    tl.fromTo(el,{x:s.x+3},{x:s.x,duration:.08,ease:'power1.out'},.9+i*.1+.12);
+    tl.to(el.querySelector('.rc'),{yPercent:-50,duration:.3,ease:'power3.inOut'},2.6+i*.03);
+  });
+  gsap.set(h1a.concat(h1b),{yPercent:150});
+  tl.to(h1a,{yPercent:0,duration:.6,stagger:.06,ease:'power3.out'},.1);
+  tl.to(h1b,{yPercent:0,duration:.5,stagger:.06,ease:'power3.out'},1.3);
+  // headline exit + fly to rows
+  tl.to(h1a.concat(h1b),{yPercent:-150,duration:.3,stagger:.02,ease:'power2.in'},3.2);
+  cards.forEach((el,i)=>{
+    const s=S1[i];
+    tl.fromTo(el,{x:s.x,y:s.y,width:800,height:190,rotation:s.rot},{x:ROW.x,y:ROWY[i],width:ROW.w,height:ROW.h,rotation:0,duration:.4,ease:'power3.inOut',immediateRender:false},3.2+i*.03);
+    tl.to(el.querySelectorAll('.inv-only'),{opacity:0,duration:.15,ease:'none'},3.3+i*.03);
+  });
+  // ---------- SCENE 2
+  gsap.set(h2b,{yPercent:150});
+  tl.to(h2b,{yPercent:0,duration:.55,stagger:.05,ease:'power3.out'},3.6);
+  cards.forEach((el,i)=>{
+    const r=.15*i;
+    tl.set(el.querySelectorAll('.row-only'),{opacity:1},3.75);
+    tl.set(el.querySelector('.sub'),{opacity:0},3.75);
+    tl.set(el.querySelectorAll('.tlw > *'),{opacity:1},0);
+    tl.fromTo(el.querySelector('.tline'),{scaleX:0},{scaleX:1,duration:.7,ease:'power3.out'},3.8+r);
+    tl.fromTo(el.querySelectorAll('.tick'),{scaleY:0,opacity:0},{scaleY:1,opacity:1,duration:.25,stagger:.012,ease:'power2.out'},3.95+r);
+    tl.fromTo(el.querySelectorAll('.lbl'),{opacity:0,y:8},{opacity:1,y:0,duration:.35,ease:'power2.out'},4.3+r);
+    tl.fromTo(el.querySelectorAll('.dot'),{scale:0},{scale:1,duration:.4,stagger:.05,ease:'back.out(1.8)'},4.4+r);
+    tl.fromTo(el.querySelector('.sub'),{opacity:0,y:12},{opacity:1,y:0,duration:.4,ease:'power2.out'},4.6+i*.15);
+    tl.fromTo(el.querySelector('.band'),{scaleX:0,opacity:0},{scaleX:1,opacity:1,duration:.45,ease:'power3.out'},5.8+i*.08);
+  });
+  tl.to(h2b,{yPercent:-150,duration:.3,stagger:.03,ease:'power2.in'},7.2);
+  // ---------- SCENE 3
+  gsap.set($('#kick3'),{opacity:0}); gsap.set(h3t.concat(h3s),{yPercent:150});
+  tl.fromTo($('#kick3'),{opacity:0,y:14},{opacity:1,y:0,duration:.4,ease:'power3.out'},7.6);
+  tl.to(h3t,{yPercent:0,duration:.55,stagger:.1,ease:'power3.out'},7.7);
+  tl.to(h3s,{yPercent:0,duration:.5,stagger:.04,ease:'power3.out'},7.95);
+  cards.forEach((el,i)=>{
+    const s=8.3+i*.9, arr=s+.55, ph=el.querySelector('.ph'), px=dayX(CL[i].pick)-TLX;
+    tl.set(ph,{autoAlpha:1},s-.02);
+    tl.fromTo(ph,{x:0,opacity:1},{x:px,duration:.55,ease:'power2.inOut',immediateRender:false},s);
+    tl.to(el.querySelector('.sub'),{opacity:0,duration:.15},arr-.2);
+    tl.fromTo(el.querySelector('.ring'),{scale:0,opacity:.5},{scale:1,opacity:0,duration:.4,ease:'power2.out',immediateRender:false},arr);
+    const pill=el.querySelector('.pill'), chips=el.querySelectorAll('.chip');
+    tl.fromTo(pill,{scale:.6,opacity:0},{scale:1,opacity:1,duration:.3,ease:'back.out(2)',immediateRender:false},arr);
+    chips.forEach((c,k)=>{ tl.fromTo(c,{scale:1,x:-16,opacity:0},{x:0,opacity:1,duration:.3,ease:'power3.out',immediateRender:false},arr+.1+k*.1); });
+    tl.to(ph,{opacity:.4,duration:.3},arr+.25);
+    // breathing
+    tl.to(pill,{scale:1.02,duration:.8,yoyo:true,repeat:1,ease:'sine.inOut'},arr+.5+ (i*.05) > 11.0 ? 11.0+i*.05 : arr+.5);
+  });
+  // ---------- zoom-through
+  const pc = {x: 72+ parseFloat($('#card0 .mk').dataset.left)+ 120, y: ROWY[0]+64+26};
+  $('#world').style.transformOrigin = pc.x+'px '+pc.y+'px';
+  gsap.set('#iris',{left:pc.x-1200,top:pc.y-1200,scale:0});
+  tl.to('#world',{scale:3.2,duration:.4,ease:'power3.in'},12.2);
+  tl.set('#iris',{autoAlpha:1},12.3);
+  tl.fromTo('#iris',{scale:0},{scale:1,duration:.25,ease:'power2.in',immediateRender:false},12.3);
+  gsap.set('#s4',{clipPath:`circle(0px at ${pc.x}px ${pc.y}px)`});
+  tl.set('#s4',{autoAlpha:1},12.49);
+  tl.fromTo('#s4',{clipPath:`circle(0px at ${pc.x}px ${pc.y}px)`},{clipPath:`circle(1500px at ${pc.x}px ${pc.y}px)`,duration:.4,ease:'power2.inOut',immediateRender:false},12.5);
+  tl.set(['#world','#iris'],{autoAlpha:0},12.95);
+  // ---------- SCENE 4
+  const tyTo=typeify($('#mto .ty')), tySub=typeify($('#msub .ty')), tyP1=typeify($('#p1')), tyP2=typeify($('#p2')), tyP3=typeify($('#p3'));
+  tl.fromTo('#mail',{y:40,opacity:0},{y:0,opacity:1,duration:.5,ease:'expo.out',immediateRender:false},12.6);
+  tl.fromTo('#rc',{y:16,opacity:0},{y:0,opacity:1,duration:.4,ease:'power3.out',immediateRender:false},12.65);
+  typeTween(tyTo,12.65,.25); typeTween(tySub,12.8,.3);
+  typeTween(tyP1,13.05,.3); typeTween(tyP2,13.4,1.0); typeTween(tyP3,14.45,.5);
+  tl.fromTo('#paybtn',{scale:.9,opacity:0},{scale:1,opacity:1,duration:.3,ease:'back.out(2)',immediateRender:false},14.9);
+  gsap.set('#paybtn',{opacity:0});
+  gsap.set('#toast',{opacity:0});
+  tl.fromTo('#toast',{y:40,opacity:0},{y:0,opacity:1,duration:.4,ease:'power3.out',immediateRender:false},15.3);
+  gsap.set('#t-b',{yPercent:100});
+  tl.to('#toast',{backgroundColor:'#16A36B',duration:.3,ease:'power2.inOut'},15.9);
+  tl.to('#toast',{color:'#fff',duration:.3},15.9);
+  tl.to('#t-a',{yPercent:-100,duration:.3,ease:'power3.inOut'},15.9);
+  tl.to('#t-b',{yPercent:0,duration:.3,ease:'power3.inOut'},15.9);
+  tl.to('#ic-send',{opacity:0,rotation:-20,duration:.25},15.9);
+  tl.to('#ic-check',{opacity:1,duration:.25},16.0);
+  // ---------- transition to proof
+  gsap.set('#s6',{autoAlpha:0});
+  tl.to('#ink',{yPercent:0,duration:.35,ease:'power4.inOut'},16.3);
+  gsap.set('#hdrL',{autoAlpha:1});
+  const hp={p:0};
+  tl.to(hp,{p:1,duration:.35,ease:'power4.inOut',onUpdate:()=>{ $('#hdrL').style.clipPath=`inset(${Math.round(1350*(1-hp.p))}px 0 0 0)`; }},16.3);
+  tl.set('#hdr',{autoAlpha:0},16.62);
+  tl.set('#s4',{autoAlpha:0},16.62);
+  tl.set('#s6',{autoAlpha:1},16.62);
+  // ---------- SCENE 5
+  const k5=$('#k5'); k5.textContent='';
+  tl.to(k5,{duration:.45,scrambleText:{text:'EN MOYENNE, CHEZ NOS CLIENTS',chars:'0123456789',speed:.5}},16.7);
+  const n1={v:0}, n2={v:0};
+  const w1=[$('#l1i')], w2=[$('#l2i')];
+  gsap.set(w1.concat(w2),{yPercent:150});
+  gsap.set('#n1',{opacity:0}); gsap.set('#n2',{opacity:0});
+  tl.fromTo('#n1',{y:60,opacity:0},{y:0,opacity:1,duration:.5,ease:'power3.out',immediateRender:false},16.8);
+  tl.to(n1,{v:38,duration:.8,ease:'power2.out',onUpdate:()=>{$('#n1v').textContent='−'+Math.round(n1.v)+NB+'%';}},16.8);
+  tl.to(w1,{yPercent:0,duration:.5,ease:'power3.out'},17.2);
+  tl.fromTo('#dv',{scaleX:0},{scaleX:1,duration:.5,ease:'power3.out',immediateRender:false},17.5);
+  tl.fromTo('#n2',{y:60,opacity:0},{y:0,opacity:1,duration:.5,ease:'power3.out',immediateRender:false},17.7);
+  tl.to(n2,{v:11,duration:.8,ease:'power2.out',onUpdate:()=>{$('#n2v').textContent=Math.round(n2.v);}},17.7);
+  tl.to(w2,{yPercent:0,duration:.5,ease:'power3.out'},18.1);
+  gsap.set(['#la','#lb'],{opacity:0}); gsap.set(['#gap','#gapl'],{opacity:0});
+  tl.fromTo(['#la','#lb'],{opacity:0,y:10},{opacity:1,y:0,duration:.35,stagger:.1,ease:'power2.out',immediateRender:false},18.3);
+  tl.fromTo('#ba',{width:0},{width:936,duration:.5,ease:'power3.out',immediateRender:false},18.4);
+  tl.fromTo('#bb',{width:0},{width:936,duration:.35,ease:'power3.out',immediateRender:false},18.55);
+  tl.to('#bb',{width:738,duration:.4,ease:'power3.inOut'},18.95);
+  tl.fromTo(['#gap','#gapl'],{opacity:0},{opacity:1,duration:.3,ease:'power2.out',immediateRender:false},19.15);
+  // split
+  tl.to('#s5',{y:-60,opacity:0,duration:.3,ease:'power2.in'},19.7);
+  tl.to('#hdrL',{opacity:0,duration:.25},19.6);
+  tl.to('#hT',{y:-675,duration:.3,ease:'power4.inOut'},19.72);
+  tl.to('#hB',{y:675,duration:.3,ease:'power4.inOut'},19.72);
+  tl.set('#ink',{autoAlpha:0},20.05);
+  // ---------- SCENE 6
+  const lt=$('#lgsvg .lt'), lb1=$('#lgsvg .lb1'), lb2=$('#lgsvg .lb2'), ld=$('#lgsvg .ld'), lcs=[...document.querySelectorAll('.lc')];
+  gsap.set(lb1,{transformOrigin:'0% 50%',scaleX:0}); gsap.set(lb2,{transformOrigin:'0% 50%',scaleX:0}); gsap.set(ld,{transformOrigin:'50% 50%',scale:0});
+  gsap.set(lt,{transformOrigin:'50% 50%'}); gsap.set(lcs,{yPercent:150});
+  tl.fromTo(lt,{scale:.8},{scale:1,duration:.5,ease:'back.out(1.6)',immediateRender:false},20.0);
+  tl.to(lb1,{scaleX:1,duration:.3,ease:'power3.out'},20.15);
+  tl.to(lb2,{scaleX:1,duration:.3,ease:'power3.out'},20.25);
+  tl.to(ld,{scale:1,duration:.3,ease:'back.out(3)'},20.45);
+  tl.to(lcs,{yPercent:0,duration:.45,stagger:.025,ease:'power3.out'},20.05);
+  gsap.set(eh,{yPercent:150});
+  tl.to(eh,{yPercent:0,duration:.5,stagger:.05,ease:'power3.out'},20.4);
+  gsap.set('#e-s',{opacity:0});
+  tl.fromTo('#e-s',{opacity:0,y:14},{opacity:1,y:0,duration:.45,ease:'power3.out',immediateRender:false},20.8);
+  gsap.set('#cta',{opacity:0});
+  tl.fromTo('#cta',{scale:.92,opacity:0},{scale:1,opacity:1,duration:.45,ease:'back.out(1.6)',immediateRender:false},21.0);
+  tl.to('#arr',{x:8,duration:.2,ease:'sine.inOut',yoyo:true,repeat:1},21.4);
+  const tyU=typeify($('#e-u')); $('#e-u').innerHTML='';
+  $('#e-u').textContent='ledgerly.io'; const tyU2=typeify($('#e-u')); typeTween(tyU2,21.1,.3);
+  tl.fromTo('#oline',{scaleX:0},{scaleX:1,duration:.5,ease:'power3.out',immediateRender:false},21.0);
+  const oticks=[...document.querySelectorAll('#orn .tick')];
+  tl.fromTo(oticks,{opacity:0,scaleY:0},{opacity:1,scaleY:1,duration:.25,stagger:.01,ease:'power2.out',immediateRender:false},21.05);
+  gsap.set('#oph',{autoAlpha:0});
+  tl.set('#oph',{autoAlpha:1},21.4);
+  tl.fromTo('#oph',{x:0},{x:5*600/29,duration:.4,ease:'power3.inOut',immediateRender:false},21.5);
+  for(let k=0;k<3;k++) tl.fromTo('#oring',{scale:0,opacity:.6},{scale:1,opacity:0,duration:.8,ease:'power2.out',immediateRender:false},21.95+k*1.0);
+}
+const ready = Promise.all([
+  document.fonts.load('800 92px Manrope'),document.fonts.load('700 36px Manrope'),document.fonts.load('500 30px Manrope'),
+  document.fonts.load('400 26px "JetBrains Mono"'),document.fonts.load('500 28px "JetBrains Mono"'),document.fonts.load('700 44px "JetBrains Mono"'),
+  document.fonts.ready ]).then(()=>{ build(); });
+KLIPT.ready = ready;
+</script>
+</body>
+</html>

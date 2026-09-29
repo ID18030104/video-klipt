@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Ledgerly · Relances intelligentes</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/700.css">
+<style>
+:root{
+  --bg:#0C0E17; --ink:#F3EEE2; --dim:#8E93A9; --slate:#5E6378; --line:#20243A;
+  --doux:#7FD4C1; --ferme:#FFB23F; --lime:#D4F53C;
+  --display:"Bricolage Grotesque", sans-serif; --mono:"JetBrains Mono", monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1350px;margin:0;overflow:hidden;background:var(--bg)}
+body{color:var(--ink);font-family:var(--display);position:relative;-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+.scene{position:absolute;inset:0;opacity:0}
+.mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em}
+
+/* screen glow */
+#glow{position:absolute;inset:0;background:radial-gradient(900px 700px at 50% 42%, rgba(60,70,120,.22), transparent 70%);}
+#scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 4px);pointer-events:none}
+
+/* top bar */
+#top{position:absolute;left:64px;right:64px;top:52px;height:60px;display:flex;align-items:center;justify-content:space-between;z-index:5}
+.brand{font-family:var(--display);font-weight:800;font-size:40px;letter-spacing:-.02em;display:flex;align-items:center;gap:14px}
+.brand i{width:18px;height:18px;border-radius:50%;background:var(--lime);display:inline-block;box-shadow:0 0 18px rgba(212,245,60,.6)}
+#top .mono{font-size:24px;color:var(--dim)}
+
+/* bottom track bar */
+#bottom{position:absolute;left:64px;right:64px;bottom:56px;z-index:5}
+#bottom .row{display:flex;justify-content:space-between;font-size:24px;color:var(--dim);margin-bottom:16px}
+#bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+#barFill{height:100%;width:0;background:var(--ink);border-radius:3px}
+
+/* lyrics */
+.lyrics{position:absolute;left:64px;right:64px;display:flex;flex-wrap:wrap;column-gap:.26em;row-gap:4px;font-weight:800;letter-spacing:-.025em;line-height:1.08}
+.w{position:relative;display:inline-block;white-space:nowrap;color:var(--slate)}
+.w .f{position:absolute;left:0;top:0;color:var(--c,var(--ink));clip-path:inset(0 100% 0 0)}
+
+/* intro */
+#intro .kick{left:64px;top:300px;font-size:28px;color:var(--lime)}
+#intro .lyrics{top:370px;font-size:104px}
+#dots{left:64px;top:1010px;display:flex;gap:22px}
+#dots b{width:34px;height:34px;border-radius:50%;background:var(--ink);display:block}
+
+/* verse */
+.head{left:64px;right:64px;top:168px;display:flex;align-items:baseline;justify-content:space-between}
+.head .who{font-size:52px;font-weight:700;letter-spacing:-.02em}
+.head .mono{font-size:24px;color:var(--dim)}
+.meta{left:64px;right:64px;top:240px;font-size:27px;color:var(--dim);letter-spacing:.04em}
+.lane{left:64px;top:345px;width:952px;height:250px;border-top:2px solid var(--line);border-bottom:2px solid var(--line)}
+.lane svg{display:block;overflow:hidden}
+.lane .tag{position:absolute;left:0;top:-2px;transform:translateY(-100%);font-size:20px;color:var(--dim);padding-bottom:10px}
+.chips{left:64px;right:64px;top:640px;display:flex;gap:18px;align-items:stretch}
+.chip{border:2px solid var(--line);border-radius:18px;padding:16px 22px 14px;min-width:0}
+.chip .k{font-family:var(--mono);font-size:20px;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.chip .v{font-size:44px;font-weight:800;letter-spacing:-.02em;margin-top:4px;white-space:nowrap}
+.chip.ai .k svg{width:22px;height:22px}
+.chip.tone{flex:0 0 300px}
+.chip.when{flex:1 1 auto}
+.chip.chan{flex:0 0 190px}
+.verse .lyrics{top:820px;font-size:72px}
+.juste{right:64px;top:380px;font-size:120px;font-weight:800;letter-spacing:-.04em;transform-origin:100% 50%}
+
+/* score */
+#score .mono.k{left:64px;top:190px;font-size:28px;color:var(--dim)}
+.big{font-weight:800;letter-spacing:-.05em;line-height:.9;font-variant-numeric:tabular-nums}
+#s1{left:52px;top:250px;font-size:300px;color:var(--lime)}
+#s1l{left:64px;top:545px;font-size:56px;font-weight:700;letter-spacing:-.02em}
+#rule{left:64px;right:64px;top:668px;height:2px;background:var(--line)}
+#s2{left:52px;top:740px;font-size:250px;color:var(--ink)}
+#s2l{left:64px;top:1015px;font-size:56px;font-weight:700;letter-spacing:-.02em}
+#score .note{left:64px;top:1100px;font-size:24px;color:var(--dim)}
+
+/* cta */
+#cta .kick{left:64px;top:250px;font-size:28px;color:var(--lime)}
+#cta h1{left:60px;right:64px;top:305px;font-size:132px;font-weight:800;letter-spacing:-.045em;line-height:.92}
+#cta p{left:64px;right:120px;top:600px;font-size:44px;font-weight:500;line-height:1.22;color:var(--ink);letter-spacing:-.01em}
+#cta p em{font-style:normal;color:var(--lime)}
+#btn{left:64px;top:840px;background:var(--lime);color:#11140A;border-radius:999px;padding:30px 50px 32px;font-size:50px;font-weight:800;letter-spacing:-.02em}
+#url{left:64px;top:1000px;font-size:40px;color:var(--ink);letter-spacing:.02em;text-transform:none}
+</style>
+</head>
+<body>
+<div id="glow"></div>
+
+<div id="top">
+  <div class="brand"><i></i>Ledgerly</div>
+  <div class="mono" id="topR">Relances intelligentes</div>
+</div>
+
+<!-- INTRO -->
+<section class="scene" id="intro">
+  <div class="abs mono kick">Nouveau · Relances intelligentes</div>
+  <div class="lyrics" id="lyI"></div>
+  <div class="abs" id="dots"><b></b><b></b><b></b><b></b></div>
+</section>
+
+<!-- VERSE 1 -->
+<section class="scene verse" id="v1" style="--c:var(--doux)">
+  <div class="abs head"><div class="who">Atelier Morel</div><div class="mono">Piste 1/2</div></div>
+  <div class="abs meta mono">Facture F‑1182 · échue depuis 6 jours</div>
+  <div class="abs lane"><div class="mono tag">Hauteur = ton · tête de lecture = moment d’envoi</div><svg width="952" height="250"></svg></div>
+  <div class="abs chips">
+    <div class="chip tone ai"><div class="k">Ton · IA</div><div class="v" style="color:var(--doux)" data-cycle="Sec|Neutre|Pressant|Doux">Doux</div></div>
+    <div class="chip when ai"><div class="k">Envoi · IA</div><div class="v" data-cycle="Ven. 18 h 05|Lun. 7 h 40|Mer. 12 h 15|Mardi 9 h 10">Mardi 9 h 10</div></div>
+    <div class="chip chan"><div class="k">Canal</div><div class="v">E‑mail</div></div>
+  </div>
+  <div class="lyrics"></div>
+  <div class="abs juste" style="color:var(--doux)">Juste.</div>
+</section>
+
+<!-- VERSE 2 -->
+<section class="scene verse" id="v2" style="--c:var(--ferme)">
+  <div class="abs head"><div class="who">Groupe Vasseur</div><div class="mono">Piste 2/2</div></div>
+  <div class="abs meta mono">Facture F‑0937 · échue depuis 32 jours · 3ᵉ relance</div>
+  <div class="abs lane"><div class="mono tag">Hauteur = ton · tête de lecture = moment d’envoi</div><svg width="952" height="250"></svg></div>
+  <div class="abs chips">
+    <div class="chip tone ai"><div class="k">Ton · IA</div><div class="v" style="color:var(--ferme)" data-cycle="Doux|Neutre|Sec|Ferme">Ferme</div></div>
+    <div class="chip when ai"><div class="k">Envoi · IA</div><div class="v" data-cycle="Lun. 8 h 00|Ven. 17 h 50|Mar. 19 h 30|Jeudi 14 h 30">Jeudi 14 h 30</div></div>
+    <div class="chip chan"><div class="k">Canal</div><div class="v">SMS</div></div>
+  </div>
+  <div class="lyrics"></div>
+  <div class="abs juste" style="color:var(--ferme)">Juste.</div>
+</section>
+
+<!-- SCORE -->
+<section class="scene" id="score">
+  <div class="abs mono k">Score · en moyenne</div>
+  <div class="abs big" id="s1">−38&#8239;%</div>
+  <div class="abs" id="s1l">de retards de paiement</div>
+  <div class="abs" id="rule"></div>
+  <div class="abs big" id="s2">11 jours</div>
+  <div class="abs" id="s2l">gagnés sur le DSO</div>
+</section>
+
+<!-- CTA -->
+<section class="scene" id="cta">
+  <div class="abs mono kick">Nouveau sur Ledgerly</div>
+  <h1 class="abs">Relances intelligentes</h1>
+  <p class="abs">L’IA choisit <em>le bon moment</em> et <em>le bon ton</em> pour chaque client. Connecté à votre compta, par e‑mail et SMS.</p>
+  <div class="abs" id="btn">Essai gratuit 14 jours</div>
+  <div class="abs mono" id="url">ledgerly.io</div>
+</section>
+
+<div id="bottom">
+  <div class="row mono"><span id="trk">♪ Intro</span><span id="clock">00:00 / 00:23</span></div>
+  <div id="bar"><div id="barFill"></div></div>
+</div>
+<div id="scan"></div>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+const NB = ' ', NNB = ' ';
+const D = 23;
+const { prog, ease, clamp, lerp, rng } = KK;
+
+// ---------- lyrics builder: words with timings ----------
+function buildLyrics(el, text, t0, t1, color) {
+  const words = text.split(' ');
+  const weights = words.map(w => w.length + 2.2);
+  const total = weights.reduce((a, b) => a + b, 0);
+  let acc = t0; const out = [];
+  words.forEach((w, i) => {
+    const span = document.createElement('span'); span.className = 'w';
+    const txt = w.replace(/_/g, NB);
+    span.textContent = txt;
+    const f = document.createElement('span'); f.className = 'f'; f.textContent = txt;
+    if (color) f.style.color = color;
+    span.appendChild(f); el.appendChild(span);
+    const d = weights[i] / total * (t1 - t0);
+    out.push({ f, s: acc, d: d * 0.86 });
+    acc += d;
+  });
+  return out;
+}
+function sweep(list, t) {
+  list.forEach(o => {
+    const p = clamp((t - o.s) / o.d);
+    o.f.style.clipPath = `inset(0 ${(1 - p) * 100}% 0 0)`;
+  });
+}
+
+// intro
+const lyI = buildLyrics(document.getElementById('lyI'),
+  'Relancer un impayé, tout est question de_moment et de_ton.', 0.35, 3.0, 'var(--lime)');
+document.getElementById('lyI').querySelectorAll('.w').forEach(w => w.style.color = '#4A4F66');
+
+// verses
+const VERSES = [
+  { id: 'v1', text: 'Bonjour Claire, petit rappel' + NB + ': la facture F‑1182 est échue depuis 6_jours. Belle journée' + NNB + '!',
+    t0: 5.0, t1: 8.8, base: .28, amp: .2, seed: 7, staccato: false },
+  { id: 'v2', text: 'Monsieur Vasseur, la facture F‑0937 reste impayée depuis 32_jours. Merci de la régler avant vendredi.',
+    t0: 11.0, t1: 14.8, base: .72, amp: .2, seed: 21, staccato: true },
+];
+const PX = 250, PLAY = 170, LH = 250;
+VERSES.forEach(v => {
+  const sec = document.getElementById(v.id);
+  v.words = buildLyrics(sec.querySelector('.lyrics'), v.text, v.t0, v.t1);
+  const r = rng(v.seed);
+  v.notes = v.words.map((w, i) => {
+    const wave = Math.sin(i * (v.staccato ? 1.9 : 0.8)) * v.amp;
+    const p = clamp(v.base + wave + (r() - .5) * v.amp * .6, .06, .94);
+    return { s: w.s, d: v.staccato ? w.d * .72 : w.d * .96, p };
+  });
+  const svg = sec.querySelector('svg'), NS = 'http://www.w3.org/2000/svg';
+  for (let k = 1; k < 5; k++) {
+    const l = document.createElementNS(NS, 'line');
+    l.setAttribute('x1', 0); l.setAttribute('x2', 952); l.setAttribute('y1', k * LH / 5); l.setAttribute('y2', k * LH / 5);
+    l.setAttribute('stroke', '#181C2C'); l.setAttribute('stroke-width', 2); svg.appendChild(l);
+  }
+  const g = document.createElementNS(NS, 'g'); svg.appendChild(g);
+  v.notes.forEach(n => {
+    const rc = document.createElementNS(NS, 'rect');
+    rc.setAttribute('height', 26); rc.setAttribute('rx', 13);
+    rc.setAttribute('y', (1 - n.p) * (LH - 26));
+    g.appendChild(rc); n.el = rc;
+    const fill = document.createElementNS(NS, 'rect');
+    fill.setAttribute('height', 26); fill.setAttribute('rx', 13);
+    fill.setAttribute('y', (1 - n.p) * (LH - 26));
+    fill.setAttribute('fill', getComputedStyle(sec).getPropertyValue('--c') ? (v.id === 'v1' ? '#7FD4C1' : '#FFB23F') : '#fff');
+    g.appendChild(fill); n.fill = fill;
+  });
+  v.g = g;
+  const head = document.createElementNS(NS, 'line');
+  head.setAttribute('x1', PLAY); head.setAttribute('x2', PLAY); head.setAttribute('y1', -14); head.setAttribute('y2', LH + 14);
+  head.setAttribute('stroke', '#F3EEE2'); head.setAttribute('stroke-width', 3); head.setAttribute('opacity', .8);
+  svg.appendChild(head);
+  const ball = document.createElementNS(NS, 'circle');
+  ball.setAttribute('r', 20); ball.setAttribute('cx', PLAY);
+  ball.setAttribute('fill', v.id === 'v1' ? '#7FD4C1' : '#FFB23F');
+  ball.style.filter = `drop-shadow(0 0 16px ${v.id === 'v1' ? '#7FD4C1' : '#FFB23F'})`;
+  svg.appendChild(ball); v.ball = ball;
+  v.cycles = [...sec.querySelectorAll('[data-cycle]')].map(el => ({ el, opts: el.dataset.cycle.split('|') }));
+});
+
+function drawLane(v, t) {
+  v.notes.forEach(n => {
+    const x = PLAY + (n.s - t) * PX, w = Math.max(26, n.d * PX);
+    n.el.setAttribute('x', x); n.el.setAttribute('width', w);
+    n.el.setAttribute('fill', 'none'); n.el.setAttribute('stroke', '#3A4058'); n.el.setAttribute('stroke-width', 3);
+    const sung = clamp((t - n.s) / n.d);
+    n.fill.setAttribute('x', x); n.fill.setAttribute('width', Math.max(0, sung * w));
+    n.fill.setAttribute('opacity', sung > 0 ? 1 : 0);
+  });
+  // ball height: interpolate current pitch
+  const ns = v.notes; let p = ns[0].p;
+  if (t >= ns[ns.length - 1].s) p = ns[ns.length - 1].p;
+  else for (let i = 0; i < ns.length; i++) {
+    if (t < ns[i].s) { const prev = ns[i - 1]; if (!prev) { p = ns[i].p; break; }
+      const endPrev = prev.s + prev.d; const k = ease.inOutCubic(clamp((t - endPrev) / Math.max(.05, ns[i].s - endPrev)));
+      p = lerp(prev.p, ns[i].p, k); break; }
+    if (t < ns[i].s + ns[i].d) { p = ns[i].p; break; }
+  }
+  const active = t >= v.t0 - .05 && t <= v.t1 + .2;
+  const bounce = active ? Math.abs(Math.sin((t - v.t0) * Math.PI * 2.4)) * 8 : 0;
+  v.ball.setAttribute('cy', (1 - p) * (LH - 26) + 13 - bounce);
+}
+function cycleChips(v, t, start) {
+  v.cycles.forEach((c, i) => {
+    const s = start + i * .25, n = c.opts.length;
+    const k = clamp((t - s) / 1.1);
+    const idx = Math.min(n - 1, Math.floor(ease.outCubic(k) * n));
+    c.el.textContent = c.opts[idx];
+    c.el.style.opacity = idx === n - 1 ? 1 : .45;
+  });
+}
+
+// ---------- GSAP timeline for scene choreography ----------
+const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out' } });
+const q = s => document.querySelector(s);
+// intro
+tl.set('#intro', { opacity: 1 }, 0)
+  .from('#intro .kick', { opacity: 0, y: 16, duration: .5 }, 0.05)
+  .from('#dots b', { scale: 0, duration: .35, stagger: .06, ease: 'back.out(2)' }, 2.7)
+  .to('#dots b', { opacity: .15, duration: .08, stagger: .25, ease: 'none' }, 3.1)
+  .to('#intro', { opacity: 0, y: -30, duration: .35, ease: 'power2.in' }, 3.95);
+// verses
+[['#v1', 4.1, 10.0], ['#v2', 10.1, 16.0]].forEach(([id, a, b]) => {
+  tl.set(id, { opacity: 1 }, a)
+    .from(`${id} .head`, { opacity: 0, y: 24, duration: .5 }, a)
+    .from(`${id} .meta`, { opacity: 0, y: 18, duration: .5 }, a + .1)
+    .from(`${id} .lane`, { opacity: 0, duration: .5 }, a + .15)
+    .from(`${id} .chip`, { opacity: 0, y: 24, duration: .5, stagger: .1 }, a + .2)
+    .from(`${id} .lyrics .w`, { opacity: 0, y: 20, duration: .4, stagger: .02 }, a + .35)
+    .fromTo(`${id} .juste`, { opacity: 0, scale: .6, rotate: -8 }, { opacity: 1, scale: 1, rotate: -4, duration: .5, ease: 'back.out(2.2)' }, b - 1.0)
+    .to(id, { opacity: 0, x: -60, duration: .3, ease: 'power2.in' }, b - .25);
+});
+// score
+tl.set('#score', { opacity: 1 }, 16.05)
+  .from('#score .k', { opacity: 0, y: 16, duration: .5 }, 16.05)
+  .from('#s1', { opacity: 0, y: 60, duration: .7 }, 16.15)
+  .from('#s1l', { opacity: 0, y: 24, duration: .5 }, 16.45)
+  .from('#rule', { scaleX: 0, transformOrigin: '0 50%', duration: .7 }, 16.6)
+  .from('#s2', { opacity: 0, y: 60, duration: .7 }, 17.1)
+  .from('#s2l', { opacity: 0, y: 24, duration: .5 }, 17.4)
+  .to('#score', { opacity: 0, y: -30, duration: .35, ease: 'power2.in' }, 19.55);
+// cta
+tl.set('#cta', { opacity: 1 }, 19.9)
+  .from('#cta .kick', { opacity: 0, y: 16, duration: .5 }, 19.9)
+  .from('#cta h1', { opacity: 0, y: 50, duration: .7 }, 20.0)
+  .from('#cta p', { opacity: 0, y: 24, duration: .6 }, 20.35)
+  .from('#btn', { opacity: 0, scale: .85, transformOrigin: '0 50%', duration: .6, ease: 'back.out(1.8)' }, 20.7)
+  .from('#url', { opacity: 0, y: 16, duration: .5 }, 20.95)
+  .to({}, { duration: .01 }, D);
+
+const s1 = q('#s1'), s2 = q('#s2'), barFill = q('#barFill'), clock = q('#clock'), trk = q('#trk');
+const pad = n => String(n).padStart(2, '0');
+function render(t) {
+  tl.seek(t, false);
+  sweep(lyI, t);
+  VERSES.forEach((v, i) => { sweep(v.words, t); drawLane(v, t); cycleChips(v, t, i ? 10.4 : 4.4); });
+  // counters
+  const c1 = ease.outCubic(prog(t, 16.2, 1.2)), c2 = ease.outCubic(prog(t, 17.15, 1.1));
+  s1.textContent = '−' + Math.round(38 * c1) + NNB + '%';
+  s2.textContent = Math.round(11 * c2) + NB + 'jours';
+  barFill.style.width = (t / D * 100) + '%';
+  clock.textContent = `00:${pad(Math.floor(t))} / 00:${D}`;
+  trk.textContent = t < 4.05 ? '♪ Intro' : t < 10.05 ? '♪ Relance · 6 jours de retard' : t < 16.05 ? '♪ Relance · 32 jours de retard' : t < 19.85 ? '♪ Score' : '♪ Essai gratuit';
+}
+window.KLIPT = { width: 1080, height: 1350, fps: 30, duration: D, ready: document.fonts.ready, render };
+render(0);
+</script>
+</body>
+</html>

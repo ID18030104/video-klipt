@@ -1,0 +1,6 @@
+{ "id": "k198", "brand": "Ledgerly", "sector": "SaaS B2B (fintech)", "kind": "video",
+  "format": "1080x1350", "duration": 24.5, "slides": null,
+  "title": "Le distributeur de relances",
+  "concept": "Un distributeur automatique dont les 9 pochettes sont des relances (ton, canal, jour) : l'IA lit le client, choisit la bonne et la fait tomber dans le bac. La machine sort du cadre pour laisser les chiffres de preuve (-38 % de retards, 11 jours de DSO) puis le CTA.",
+  "techniques": ["gsap", "html-css-illustration", "lucide-icons"], "fonts": ["Bricolage Grotesque", "JetBrains Mono"],
+  "palette": ["#15110E", "#E9E3D2", "#8FE3B8", "#F4D468", "#F0805C", "#DDD8C6"], "copy_language": "fr" }

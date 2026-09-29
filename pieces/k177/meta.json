@@ -1,0 +1,8 @@
+{ "id": "k177", "brand": "Ledgerly", "sector": "SaaS B2B (fintech)", "kind": "video",
+  "format": "1080x1350", "duration": 23, "slides": null,
+  "title": "Le karaoké de la relance",
+  "concept": "Une relance réussie, c'est comme au karaoké : le bon moment (rythme) et le bon ton (hauteur). Deux relances se « chantent » sur un écran de karaoké, l'IA choisit ton et horaire pour chaque client, puis le score affiche -38 % de retards et 11 jours gagnés sur le DSO.",
+  "techniques": ["gsap", "svg-pitch-lane", "karaoke-word-sweep", "deterministic-counters", "ui-chips"],
+  "fonts": ["Bricolage Grotesque", "JetBrains Mono"],
+  "palette": ["#0C0E17", "#F3EEE2", "#8E93A9", "#7FD4C1", "#FFB23F", "#D4F53C"],
+  "copy_language": "fr" }
