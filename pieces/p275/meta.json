@@ -1,0 +1,7 @@
+{ "id": "p275", "brand": "Atelier Mèche", "sector": "Salon de coiffure (femmes)", "kind": "post",
+  "format": "1080x1080", "duration": null, "slides": 1,
+  "title": "Balayages -20 % en novembre",
+  "concept": "Une arche de salon remplie de mèches vectorielles qui passent du châtain profond au miel, comme un balayage peint, face à un -20 % en Gloock terracotta. Palette crème, brun, terracotta, miel, avec grain papier et sceau RDV.",
+  "techniques": ["svg-illustration", "seeded-rng", "svg-grain"], "fonts": ["Gloock", "Figtree"],
+  "palette": ["#F3EADB", "#2A1A13", "#B4533A", "#D8A25E", "#7F8C6C"],
+  "copy_language": "fr" }

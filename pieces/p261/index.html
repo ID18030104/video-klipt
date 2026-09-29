@@ -1,0 +1,70 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Lunettes garanties</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/800.css">
+<style>
+:root{--forest:#1F4D3F;--deep:#143528;--cream:#F6F0E4;--paper:#FFFBF3;--sun:#E8A33D;--ink:#22302A;--mute:#5E6B63;--line:#DCD3BF}
+*{box-sizing:border-box;margin:0}
+body{margin:0;overflow:hidden;width:1080px;background:var(--cream)}
+.slide{width:1080px;height:1080px;position:relative;overflow:hidden;background:var(--cream);font-family:Figtree,sans-serif;color:var(--ink);padding:56px 64px}
+.hills{position:absolute;left:0;right:0;top:0;height:300px;z-index:0}
+.top{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:22px;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+.top span:last-child{font-weight:600;letter-spacing:.08em;opacity:.85;font-size:20px}
+h1{position:relative;z-index:1;font-family:Fraunces,serif;font-weight:600;color:#fff;font-size:76px;line-height:1.02;margin-top:30px;letter-spacing:-.01em}
+h1 em{font-style:italic;color:var(--sun)}
+.cards{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:64px}
+.card{background:var(--paper);border-radius:28px;padding:32px 32px 30px;border:2px solid var(--line);position:relative;height:452px}
+.card.hs{border-color:var(--forest);border-width:3px;box-shadow:0 14px 0 -4px var(--forest)}
+.tag{display:inline-block;font-weight:800;font-size:18px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:99px;background:var(--forest);color:#fff}
+.free .tag{background:#EAE2D0;color:var(--ink)}
+.big{font-family:Fraunces,serif;font-weight:600;font-size:62px;line-height:1;margin:22px 0 4px;color:var(--forest)}
+.free .big{color:var(--ink);font-size:52px;margin-top:26px;line-height:1.05}
+.big small{font-size:.5em;font-weight:600}
+.sub{font-weight:600;font-size:23px;color:var(--mute);margin-bottom:20px}
+ul{list-style:none;padding:0}
+li{display:flex;gap:14px;font-size:25px;line-height:1.25;font-weight:600;margin-top:14px;align-items:flex-start}
+li i{flex:none;width:30px;height:30px;border-radius:50%;background:var(--forest);margin-top:1px;display:flex;align-items:center;justify-content:center}
+.free li i{background:var(--sun)}
+li i svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.glasses{position:absolute;right:22px;top:22px;width:92px}
+.bar{position:absolute;z-index:1;left:64px;right:64px;bottom:44px;height:92px;border-radius:24px;background:var(--deep);color:#fff;display:flex;align-items:center;padding:0 32px;gap:22px}
+.bar .n{font-family:Fraunces,serif;font-weight:600;font-size:56px;color:var(--sun);line-height:1;white-space:nowrap}
+.bar p{font-size:24px;line-height:1.22;font-weight:600}
+.bar p b{font-weight:800}
+.foot{position:absolute;z-index:1;left:64px;right:64px;bottom:14px;font-size:14px;color:var(--mute);text-align:center;opacity:.9}
+</style></head><body>
+<section class="slide">
+<svg class="hills" viewBox="0 0 1080 300" preserveAspectRatio="none"><rect width="1080" height="300" fill="#1F4D3F"/><path d="M0 300V190C120 120 240 120 360 180S600 240 760 160 980 90 1080 150V300Z" fill="#2A6151"/><path d="M0 300V240C160 190 300 200 440 240S760 270 900 220 1030 200 1080 210V300Z" fill="#F6F0E4"/><circle cx="960" cy="70" r="34" fill="#E8A33D"/></svg>
+<div class="top"><span>Mutuelle des Vallées</span><span>Conseil santé</span></div>
+<h1>Lunettes : vos garanties, <em>en 1 image</em></h1>
+<div class="cards">
+ <div class="card hs">
+  <svg class="glasses" viewBox="0 0 92 46" fill="none" stroke="#1F4D3F" stroke-width="5" stroke-linecap="round"><circle cx="24" cy="26" r="17"/><circle cx="68" cy="26" r="17"/><path d="M41 24c3-3 7-3 10 0M7 22L2 10M85 22l5-12"/></svg>
+  <span class="tag">100 % Santé</span>
+  <div class="big">0 €<small> à payer</small></div>
+  <div class="sub">Sans reste à charge</div>
+  <ul>
+   <li><i><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i>Monture et verres du panier 100 % Santé</li>
+   <li><i><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i>Remboursé intégralement, Sécu + mutuelle</li>
+   <li><i><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i>Vous n'avancez rien de plus</li>
+  </ul>
+ </div>
+ <div class="card free">
+  <svg class="glasses" viewBox="0 0 92 46" fill="none" stroke="#E8A33D" stroke-width="5" stroke-linecap="round"><rect x="7" y="9" width="32" height="30" rx="9"/><rect x="53" y="9" width="32" height="30" rx="9"/><path d="M39 21h14"/></svg>
+  <span class="tag">Équipement libre</span>
+  <div class="big">Votre choix</div>
+  <div class="sub">Remboursement selon votre contrat</div>
+  <ul>
+   <li><i><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i>Tous modèles, tous tarifs</li>
+   <li><i><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i>Un reste à charge est possible</li>
+   <li><i><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i>Vérifiez votre niveau de garantie avant d'acheter</li>
+  </ul>
+ </div>
+</div>
+<div class="bar"><div class="n">2 ans</div><p><b>Renouvellement pour les adultes.</b><br>Un an pour les moins de 16 ans.</p></div>
+<div class="foot">Informations générales : vos droits varient selon votre contrat. Renseignez-vous auprès de votre conseiller.</div>
+</section>
+<script>window.KLIPT={width:1080,height:1080};</script>
+</body></html>
