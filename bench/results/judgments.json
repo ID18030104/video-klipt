@@ -1257,6 +1257,90 @@
    ],
    "verdict": "The burgundy, cream and gold palette with a high-contrast Didone display face suits an old-school barbershop, and the shaving-foam wipe concept is clever. Execution is undermined by foam covering the titles, near-empty foam frames, a razor sprite clipping the text, a grey edge artifact, tear-shaped debris in the headline, lowercase proper nouns and tiny end-card info, so it is not postable as is.",
    "judge": "sonnet"
+  },
+  {
+   "id": "k174",
+   "brand_fit": 7,
+   "art_direction": 7,
+   "typography": 7,
+   "composition": 6,
+   "copy_quality": 6,
+   "storytelling": 5,
+   "technical_polish": 6,
+   "originality": 7,
+   "overall": 6,
+   "client_ready": false,
+   "defects": [
+    "Weak hook: at 0.4 s the frame is a mostly empty burgundy screen with a half-faded headline and a barely visible '1 / 3'. There is no motion, no image and no question to stop the scroll.",
+    "The blaireau beat has a foam blob covering the headline 'le blaireau.' mid-transition, so the text is illegible (sheet frame 3).",
+    "The coupe-chou beat is just text on a flat foam texture with no razor illustration, which is inconsistent with the illustrated towel in beat 1. Beats 2 and 3 (sheet frames 4-5) look like empty placeholder screens.",
+    "In sheet frame 4, dark ragged blobs from the transition show at the frame edges and the right side is clipped.",
+    "In sheet frame 6 the headline 'rasage' sits in a thin band at the top while the rest of the frame is empty foam.",
+    "The end card has stray white shard/sliver artifacts cutting across its bands, near 'à l'ancienne', under the list and beside '35 €'. They read as rendering glitches, not intentional razor strokes.",
+    "Proper nouns are forced to lowercase ('lyon', 'austerlitz', 'croix-rousse', 'maison castel'), which breaks French typographic conventions for place and brand names.",
+    "The end card stays static for roughly the last 40% of the video (sheet frames 8-12 are identical), which is dead time on Reels/TikTok.",
+    "The foam zones at the top and bottom of the end card are empty and do nothing.",
+    "The CTA 'rendez-vous en ligne' has no imperative verb such as 'Réservez', so it pushes booking weakly.",
+    "There are no people, faces or real barbershop atmosphere, so the warm, old-school neighbourhood feel from the brief is barely there."
+   ],
+   "verdict": "The concept holds together: burgundy and cream with a Didone serif gives the right old-school register, the three-step structure works, and the razor wipe that reveals the end card is a nice idea. But the hook is limp, beats 2-3 are empty foam screens with a legibility collision, and the end card has glitchy shards, lowercased proper nouns and a long static hold, so it needs another pass before posting.",
+   "judge": "opus"
+  },
+  {
+   "id": "k190",
+   "brand_fit": 7,
+   "art_direction": 7,
+   "typography": 7,
+   "composition": 5,
+   "copy_quality": 6,
+   "storytelling": 6,
+   "technical_polish": 6,
+   "originality": 7,
+   "overall": 6,
+   "client_ready": false,
+   "defects": [
+    "The hook is slow and abstract: at 0.5 s the screen shows only 'Une valse' in low-contrast grey-beige on dark green, plus stray staff lines. Nothing about shaving or a barber appears in the first second, so viewers will scroll past.",
+    "The product name 'Rasage à l'ancienne' never appears as a headline. It shows up only in a tiny uppercase kicker, so the service being launched is under-sold.",
+    "The kicker wraps badly, 'RASAGE À L'ANCIENNE · MAISON' then an orphaned 'CASTEL' on its own line, which splits the brand name.",
+    "The hot-towel illustration reads as a mug or a loaf of bread, not a towel. Because the steam lines sit above it, it looks like a hot drink.",
+    "The 'Temps 1/2/3' markers are brown ovals that read as coffee beans or footprints. The dance-step idea does not come across.",
+    "The bottom 35–40% of the frame is empty on every scene (steps, price, end card), so the layout feels top-heavy. The end card also leaves a large dead zone under the hours.",
+    "Transition frames fade to almost nothing. The sheet shows a washed-out grey frame with a ghost '1', and a near-blank beige frame with a faded 'La serviette chaude'.",
+    "The staff lines and giant numerals are cropped at the frame edges. The '1', '2' and '3' are cut off on the right, and the staff runs off the left. This looks intentional but gives an unfinished feel on the hook frame.",
+    "On the price scene the '40 min' counter spends most of its screen time on partial values (17, 19 min). A viewer who glances briefly may see a wrong duration, and the second row of ticks ends in an odd stub.",
+    "No real photos or signs of the shop (Croix-Rousse, the three chairs, a warm atmosphere). The illustrations are generic and could belong to any barber.",
+    "'Rendez-vous' is displayed with a Bodoni hyphen so thin it almost disappears at small size."
+   ],
+   "verdict": "The waltz-in-three-beats concept is a smart, distinctive fit for a three-step shave, and the palette and Bodoni typography suit an old-school neighbourhood barber well. But the hook is weak, the lower third is empty throughout, the towel illustration is ambiguous, and the new service's name is buried in a small kicker, so it needs another pass before posting.",
+   "judge": "opus"
+  },
+  {
+   "id": "k190",
+   "brand_fit": 7,
+   "art_direction": 7,
+   "typography": 7,
+   "composition": 5,
+   "copy_quality": 6,
+   "storytelling": 6,
+   "technical_polish": 5,
+   "originality": 7,
+   "overall": 6,
+   "client_ready": false,
+   "defects": [
+    "Factual error: the price card says '19 min' whereas the brief says the treatment lasts 40 min; the client would not post wrong information",
+    "The hook 'Une valse à trois temps.' with a musical staff does not mention barber, shave or Maison Castel; on a 1080x1920 vertical frame the bottom 60% of the first frames is empty green, so the hook is weak and unbalanced",
+    "The razor illustration is crude and hard to read (looks like a pruning knife or saw); it collides with and overlaps the giant '3', and the towel and shaving brush are simplistic",
+    "The header 'RASAGE À L'ANCIENNE · MAISON CASTEL' wraps awkwardly, leaving 'CASTEL' orphaned on the second line",
+    "The header is tiny and sits low, and the bottom 15-20% of the step frames is empty; content is bunched toward the top and middle while the reel UI covers the bottom",
+    "The giant step numbers (1, 2, 3) are cropped by the right edge; this is a deliberate bleed but it looks like clipping on the '1' and '2'",
+    "The 'Temps 1/2/3' notation strip is thin and its labels are very small and illegible on mobile; the dotted curve between the notes crosses the 'TEMPS 3' label",
+    "Several sampled frames show mid-transition ghosting: pale, half-faded title 'La serviette chaude' and 'Prenez' at low opacity, and a washed-out 1 with a faint towel. These may only be crossfades but they read as broken states",
+    "The 35 € card ('LE SOIN COMPLET') is mostly empty and does not name the service; the minute bar is an abstract graphic that fails to convey the duration",
+    "The end card has tiny address and hours text (about 20 px) with the lower half of the frame empty; no mention of the 12 rue d'Austerlitz neighborhood cue (Croix-Rousse) beyond the small tagline; the CTA button sits high, inside the area a reel keeps clear only at the top",
+    "There is no real product imagery or human touch (no face, chair or hands) for a warm, neighborhood old-school barber; the piece feels cold and graphic"
+   ],
+   "verdict": "The waltz-in-three-beats concept (temps 1-2-3 for towel, brush, razor) is a distinctive, coherent idea with a fitting bottle-green, burgundy and cream palette and good display serif typography. It is undermined by a wrong duration (19 min instead of 40), a hook that never says barber, crude razor art overlapping the numeral, tiny secondary text and unbalanced empty lower areas, so it is not postable as is.",
+   "judge": "sonnet"
   }
  ],
  "ranks": [
@@ -1285,6 +1369,19 @@
     "k108"
    ],
    "rationale": "I judged only the contact sheets. All eight pieces have French copy, a 4:5 layout, the -38 % and 11-day claims, and the 14-day trial CTA with ledgerly.io. What separates them is how well they tell the story, how polished they look and whether any frame is broken.\n\nk165 is first. It tells the clearest story: one overdue invoice (23 days, 13 200 €), then per-client tone and timing chips across three clients, then a tone slider with a best-time picker, the proof on a bold green field, and a CTA that sums up the benefit (\"L'IA relance. Vous encaissez.\"). The type is confident, the colour change from cream to navy to green has rhythm, and no frame is broken.\n\nk175 is a close second. Its hook is a receivables total that climbs from 33 962 € to 38 420 €, which a CFO will recognise. It shows the AI plan per client and an SMS being sent and marked paid. It is the only piece with a DSO curve (52 days down to 41). It loses a little for one half-wiped transition frame and a CTA end card that feels generic.\n\nk147 is third. It has the most refined editorial style: a serif-italic accent, invoice slips stamped \"IMPAYÉE\", a believable app UI with a message being written, and a before/after bar chart for DSO. One frame is fully blank.\n\nk177 is fourth. It has a distinctive dark \"music track\" idea where the tone and send time pick a note, and personalised messages are revealed word by word. It looks premium and has a clear timecode, but the metaphor is harder to read at a glance, and the dim text in the hook frames lowers legibility.\n\nk113 is fifth. It is solid and covers everything: a bold \"36 → 47 jours de retard\" hook, a dashboard with the best-time card, and a sequenced timeline of reminders. It is clean but more predictable, and one frame is empty.\n\nk198 is sixth. Its \"vending machine\" grid of tone and timing is original and memorable, but it is hard to understand without explanation. The palette is heavy, and the end card relies on the URL pill without much tie back to the product.\n\nk169 is seventh. It is competent but generic: dark cards, tone chips and a slider, with no strong hook image. It also has an empty frame and a faded CTA frame.\n\nk108 is last. The graph-paper idea and the per-client payment timelines are smart. However, it shows clear rendering defects: a huge green circle covering the content, text cropped at the left edge, a blank logo frame, and the DSO line cut off at the bottom of the frame. It also shows \"10 jours\" (the counter mid-count) where the brief says 11. These errors outweigh its good idea."
+  },
+  {
+   "ranking": [
+    "k184",
+    "k151",
+    "k174",
+    "k120",
+    "k110",
+    "k107",
+    "k142",
+    "k190"
+   ],
+   "rationale": "I judged each piece from its sheet.jpg and poster.jpg against the brief: a 9:16 Reel in French for the new 35 € / 40 min \"Rasage à l'ancienne\" (hot towel, shaving brush, straight razor), aimed at pushing online booking, with the address and opening hours included.\n\n1. k184 is the most polished and on-brand. The warm old-school dark and gold look fits the brief. The hook (\"Posez le rasoir jetable. Et offrez-vous 40 minutes\") is strong. The line icons of the three steps are clean and consistent. Price and duration are clear. The end card has the MC seal, the booking button for maisoncastel.fr, the address and the hours. Nothing is wrong or missing.\n\n2. k151 has a witty hook (\"On ne se rase pas. On se fait raser.\") and the barber pole. The step medallions are elegant and the ending is complete: 35 € / 40 min, the seal, \"Réservez votre fauteuil\", the website, address and hours. It adds a fourth step (a soothing balm) that the brief doesn't mention. A few frames catch text half-way through a mask reveal.\n\n3. k174 has the most original idea: shaving foam wipes across the screen and becomes the transition. Its deep burgundy and cream typography feel artisanal. The end card holds every piece of information. However, the opening frames are sparse, several frames are almost empty foam, and the last half of the video sits on the same static card.\n\n4. k120 has lively barber-stripe borders and a punchy hook (\"Ton dernier vrai rasage, c'était quand ?\"). The pacing is colourful, with a strong 35 € card and a complete end card. The informal \"tu\" is acceptable for this audience. The straight-razor illustration is clumsy, one frame is blank, and the small info text is faint.\n\n5. k110 uses the same hook and a similar structure to k120. The editorial layout is good and the end card is complete. It has more empty or transitional frames (a plain red flat frame, a partial razor), and one frame catches the text mid-animation.\n\n6. k107 has a clever idea: a 40-minute clock dial that fills step by step, and its ending is premium. But the hero object in the hook (\"On a ressorti le coupe-chou\") is drawn as a serrated table knife rather than a straight razor, which is a visible mistake for a barber. It also has several blank or transitional frames.\n\n7. k142 is correct and complete: barber pole, \"Et si vous preniez 40 min\", a card per step, 35 €, and a red booking button. But it is visually monotonous: the same brown background throughout, several fully empty frames, and small boxed step cards that read poorly on a phone.\n\n8. k190 has an appealing waltz-in-three-beats concept and a good palette. However, its price card says \"19 min\", which contradicts the brief's 40 minutes, and the 40-minute duration never appears anywhere else. It also has washed-out transition frames.\n\nWhat separates top from bottom: the top three combine a clear hook, a coherent premium old-school look and a complete, legible booking end card. The bottom candidates lose points for factual or visual mistakes (k190's wrong duration, k107's knife in place of a straight razor) or for flat, empty pacing (k142)."
   }
  ]
 }

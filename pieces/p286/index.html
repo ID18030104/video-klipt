@@ -26,7 +26,7 @@ canvas{position:absolute;left:0;top:0}
 .mask{overflow:hidden;display:block;padding:0 0 .14em;margin-bottom:-.14em}
 .mask>span{display:block;will-change:transform}
 #b1{left:0;width:1920px;top:250px;text-align:center}
-#b1 .h{font-size:132px;line-height:1.02;font-style:italic}
+#b1 .h{font-size:120px;line-height:1.02;font-style:italic}
 #b1 .caps{margin-bottom:44px;color:var(--amber)}
 #b2{left:200px;top:210px;width:900px}
 #b2 .caps{color:var(--amber);margin-bottom:46px}
@@ -104,7 +104,7 @@ function drawScene(t){
  const sa=KK.prog(t,9,9);
  for(const s of stars){const a=sa*(.45+.35*Math.sin(t*.8+s.p))*(1-s.y/520);if(a<=0)continue;g.fillStyle=`rgba(246,239,228,${a})`;g.beginPath();g.arc(s.x,s.y,s.r,0,6.283);g.fill();}
  // sun
- const sx=1560+t*3, sy=HZ-230+ Math.pow(t/D,1.5)*300;
+ const sx=1690+t*2, sy=HZ-230+ Math.pow(t/D,1.5)*300;
  const sr=88;
  let hg=g.createRadialGradient(sx,sy,0,sx,sy,760);
  const glow=1-0.35*KK.prog(t,10,10);
