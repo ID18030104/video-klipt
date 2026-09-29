@@ -1,0 +1,8 @@
+{ "id":"k120","brand":"Maison Castel — Barbier","sector":"Barbier / coiffeur de quartier","kind":"video",
+"format":"1080x1920","duration":21,"slides":null,
+"title":"Rasage à l’ancienne en 3 gestes",
+"concept":"Le rituel du rasage (serviette chaude, blaireau, coupe-chou) découpé en trois scènes-blocs qui balaient l’écran, sur une bande d’enseigne de barbier animée, jusqu’au prix et à la prise de RDV.",
+"techniques":["gsap","svg-illustration","drawsvg","clip-path wipes","css-grain"],
+"fonts":["DM Serif Display","Oswald"],
+"palette":["#14100d","#f1e6cf","#c19a4b","#6e1b1f","#b3262b"],
+"copy_language":"fr" }

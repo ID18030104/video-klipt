@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<!--
+  ART DIRECTION — Ledgerly · « Relances intelligentes » (LinkedIn 4:5, 23 s)
+  Concept : du tas de factures en retard à la relance parfaite — l'IA choisit le moment et le ton, preuve chiffrée, CTA essai.
+  Palette : encre #0F1E33 · papier #F4F1EA · vert grand-livre #19A974 · corail retard #E4573D · bleu brume #9FB3C8
+  Type : Manrope (UI, titres, 800) + Instrument Serif italique (voix humaine) + JetBrains Mono (chiffres, références)
+  Langage : maquette produit crédible, lignes de registre (ledger), tampons, grain papier. Motion : précis, expo.out, micro-interactions UI.
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/instrument-serif/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/instrument-serif/400-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/500.css">
+<style>
+:root{--ink:#0F1E33;--ink2:#1B2E4A;--paper:#F4F1EA;--green:#19A974;--coral:#E4573D;--mist:#9FB3C8;--line:#D9D3C6}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1350px;margin:0;overflow:hidden;background:var(--paper)}
+body{font-family:'Manrope',sans-serif;color:var(--ink);position:relative}
+.scene{position:absolute;inset:0;overflow:hidden}
+.mono{font-family:'JetBrains Mono',monospace}
+.serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400}
+.ln{display:block;overflow:hidden;padding-bottom:.08em}
+.ln>span{display:inline-block}
+/* ledger rules background */
+.rules{position:absolute;inset:-60px 0;background:repeating-linear-gradient(to bottom,transparent 0 89px,rgba(15,30,51,.07) 89px 90px)}
+.margin-rule{position:absolute;top:0;bottom:0;left:64px;width:2px;background:rgba(228,87,61,.25)}
+/* grain */
+.grain{position:absolute;inset:0;pointer-events:none;z-index:50;opacity:.07;mix-blend-mode:multiply}
+
+/* ---------- Scene 1 ---------- */
+#s1 .head{position:absolute;left:100px;top:110px;right:80px}
+#s1 h1{font-size:112px;line-height:1;font-weight:800;letter-spacing:-.035em}
+#s1 .q{font-size:84px;line-height:1.02;margin-top:14px;color:var(--ink2)}
+.inv{position:absolute;width:640px;height:160px;background:#fff;border-radius:22px;box-shadow:0 2px 0 rgba(15,30,51,.06),0 24px 50px -18px rgba(15,30,51,.28);padding:24px 32px;border:1px solid #E7E1D4}
+.inv .top{display:flex;justify-content:space-between;align-items:center}
+.inv .ref{font-size:24px;color:#6B7A8C;letter-spacing:.02em}
+.inv .who{font-size:36px;font-weight:700;margin-top:22px;letter-spacing:-.01em}
+.inv .amt{position:absolute;right:32px;bottom:22px;font-size:38px;font-weight:500;line-height:1}
+.inv .pill{font-size:22px;padding:6px 14px}
+.pill{display:inline-flex;align-items:center;gap:10px;font-size:24px;font-weight:700;padding:8px 16px;border-radius:999px}
+.pill.late{background:#FCE7E2;color:#B8361F}
+.pill.late i{width:10px;height:10px;border-radius:50%;background:var(--coral)}
+.inv .days{position:absolute;left:36px;bottom:34px;font-size:26px;color:#6B7A8C}
+.stamp{position:absolute;right:36px;top:36px;border:5px solid var(--coral);color:var(--coral);font-weight:800;font-size:34px;letter-spacing:.12em;padding:4px 16px;border-radius:10px;transform:rotate(-9deg);opacity:0}
+
+/* ---------- wipe panels ---------- */
+.wipe{position:absolute;left:0;right:0;height:1500px;z-index:40}
+
+/* ---------- Scene 2 (launch) ---------- */
+#s2{background:var(--ink);color:#fff;visibility:hidden}
+#s2 .glow{position:absolute;width:1200px;height:1200px;left:-60px;top:80px;border-radius:50%;background:radial-gradient(circle,rgba(25,169,116,.28),rgba(25,169,116,0) 60%)}
+#s2 .rules{background:repeating-linear-gradient(to bottom,transparent 0 89px,rgba(255,255,255,.05) 89px 90px)}
+#s2 .wrap{position:absolute;left:100px;right:90px;top:360px}
+.badge{display:inline-flex;align-items:center;gap:14px;background:rgba(25,169,116,.16);color:#5FE0AE;border:1.5px solid rgba(95,224,174,.45);font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase;padding:12px 26px;border-radius:999px}
+.badge svg{width:30px;height:30px}
+#s2 h2{font-size:132px;font-weight:800;line-height:.98;letter-spacing:-.04em;margin-top:40px}
+#s2 h2 .serif{font-size:150px;letter-spacing:-.01em;color:#5FE0AE}
+#s2 p{font-size:42px;line-height:1.3;color:#C9D6E4;margin-top:44px;max-width:840px;font-weight:500}
+#s2 p b{color:#fff;font-weight:700}
+
+/* ---------- Scene 3 (UI) ---------- */
+#s3{background:var(--ink);visibility:hidden}
+#s3 .rules{background:repeating-linear-gradient(to bottom,transparent 0 89px,rgba(255,255,255,.05) 89px 90px)}
+#s3 .cap{position:absolute;left:80px;right:80px;top:84px;color:#fff;font-size:76px;font-weight:800;letter-spacing:-.03em;line-height:1.02}
+#s3 .cap .serif{color:#5FE0AE;font-size:86px}
+.win{position:absolute;left:60px;top:300px;width:960px;height:980px;background:#FBFAF7;border-radius:28px;box-shadow:0 40px 90px -30px rgba(0,0,0,.6);overflow:hidden}
+.win .bar{height:64px;background:#EFEBE2;display:flex;align-items:center;padding:0 26px;gap:12px;border-bottom:1px solid #E1DACB}
+.win .bar i{width:16px;height:16px;border-radius:50%;background:#D5CDBD}
+.win .bar .t{margin-left:18px;font-size:24px;color:#6B7A8C;font-weight:600}
+.win .hd{display:flex;align-items:center;justify-content:space-between;padding:34px 44px 20px}
+.win .hd h3{font-size:40px;font-weight:800;letter-spacing:-.02em}
+.win .hd .ia{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#5FE0AE;font-size:24px;font-weight:700;padding:8px 16px;border-radius:10px}
+.win .hd .ia svg{width:24px;height:24px}
+.win .sub{padding:0 44px 18px;font-size:26px;color:#6B7A8C}
+.row{position:relative;margin:0 28px;padding:26px 20px;border-top:1px solid #E6E0D3;display:flex;gap:22px;align-items:flex-start;border-radius:18px}
+.row .av{flex:0 0 72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:28px;color:#fff}
+.row .main{flex:1}
+.row .nm{font-size:32px;font-weight:700;letter-spacing:-.01em}
+.row .meta{font-size:26px;color:#6B7A8C;margin-top:4px}
+.row .ai{display:inline-flex;align-items:center;gap:10px;margin-top:14px;background:#E6F6EF;color:#0E7A53;font-size:26px;font-weight:700;padding:8px 16px;border-radius:12px;white-space:pre}
+.row .ai svg{width:26px;height:26px;flex:0 0 auto}
+.row .st{position:absolute;right:20px;top:26px}
+.pill.paid{background:#DDF4EA;color:#0E7A53}
+.pill.paid i{width:10px;height:10px;border-radius:50%;background:var(--green)}
+.row.sel{background:#F1EDE3}
+.msg{position:absolute;left:28px;right:28px;bottom:28px;height:470px;background:#fff;border-radius:22px;border:1px solid #E1DACB;box-shadow:0 -20px 60px -20px rgba(15,30,51,.3);padding:30px 36px}
+.msg .f{font-size:24px;color:#6B7A8C;display:flex;justify-content:space-between}
+.msg .f b{color:var(--ink);font-weight:700}
+.msg .tone{display:flex;gap:10px;margin-top:16px}
+.msg .tone span{font-size:22px;font-weight:700;padding:6px 14px;border-radius:999px;background:#EFEBE2;color:#6B7A8C}
+.msg .tone span.on{background:var(--ink);color:#5FE0AE}
+.msg .body{font-size:30px;line-height:1.42;margin-top:20px;color:#23344D;min-height:210px}
+.msg .body .caret{display:inline-block;width:3px;height:32px;background:var(--green);vertical-align:-5px;margin-left:2px}
+.msg .send{position:absolute;right:36px;bottom:28px;background:var(--green);color:#fff;font-weight:800;font-size:28px;padding:16px 28px;border-radius:14px;display:flex;align-items:center;gap:12px}
+.msg .send svg{width:28px;height:28px}
+.msg .when{position:absolute;left:36px;bottom:40px;font-size:24px;color:#6B7A8C}
+.cursor{position:absolute;width:54px;height:54px;z-index:30;left:0;top:0}
+.ripple{position:absolute;width:90px;height:90px;border-radius:50%;border:4px solid var(--green);opacity:0;z-index:29}
+.toast{position:absolute;left:50%;top:1160px;transform:translateX(-50%);background:var(--green);color:#fff;font-weight:800;font-size:32px;padding:20px 34px;border-radius:18px;display:flex;align-items:center;gap:14px;box-shadow:0 20px 40px -12px rgba(0,0,0,.5);white-space:nowrap;z-index:31;opacity:0}
+.toast svg{width:34px;height:34px}
+
+/* ---------- Scene 4 (proof) ---------- */
+#s4{visibility:hidden;background:var(--paper)}
+#s4 .lab{position:absolute;left:100px;top:110px;font-size:26px;letter-spacing:.16em;text-transform:uppercase;color:#6B7A8C}
+#s4 .big{position:absolute;left:88px;top:150px;font-size:300px;font-weight:800;letter-spacing:-.06em;line-height:1;color:var(--ink)}
+#s4 .big .pc{font-size:180px;letter-spacing:-.02em;margin-left:14px}
+#s4 .l1{position:absolute;left:100px;top:455px;font-size:64px}
+#s4 .spark{position:absolute;left:100px;top:545px;width:880px;height:120px}
+#s4 .sep{position:absolute;left:100px;right:100px;top:700px;height:2px;background:var(--ink);transform-origin:left}
+#s4 .dso{position:absolute;left:100px;right:100px;top:750px}
+#s4 .dso h4{font-size:84px;font-weight:800;letter-spacing:-.035em;line-height:1}
+#s4 .dso h4 .serif{font-size:92px;color:var(--green)}
+.bar-row{margin-top:36px}
+.bar-row .lbl{display:flex;justify-content:space-between;font-size:30px;font-weight:700;margin-bottom:12px}
+.bar-row .lbl .mono{font-weight:500}
+.bar-track{height:44px;border-radius:12px;background:rgba(15,30,51,.06);overflow:hidden}
+.bar-fill{height:100%;border-radius:12px;transform-origin:left}
+#s4 .note{position:absolute;left:100px;bottom:60px;font-size:26px;color:#6B7A8C}
+
+/* ---------- Scene 5 (end) ---------- */
+#s5{background:var(--ink);color:#fff;visibility:hidden}
+#s5 .rules{background:repeating-linear-gradient(to bottom,transparent 0 89px,rgba(255,255,255,.05) 89px 90px)}
+#s5 .glow{position:absolute;width:1300px;height:1300px;left:-110px;top:-120px;border-radius:50%;background:radial-gradient(circle,rgba(25,169,116,.22),rgba(25,169,116,0) 60%)}
+.logo{display:flex;align-items:center;gap:26px}
+.logo svg{width:120px;height:120px}
+.logo .wm{font-size:104px;font-weight:800;letter-spacing:-.045em}
+#s5 .c{position:absolute;left:0;right:0;top:300px;display:flex;flex-direction:column;align-items:center;text-align:center}
+#s5 .tag{font-size:64px;margin-top:60px;color:#C9D6E4;line-height:1.1}
+#s5 .tag b{font-family:'Manrope';font-style:normal;font-weight:800;color:#fff;font-size:58px;letter-spacing:-.02em}
+#s5 .cta{margin-top:80px;background:var(--green);color:#fff;font-weight:800;font-size:46px;padding:30px 54px;border-radius:22px;letter-spacing:-.01em;box-shadow:0 20px 50px -16px rgba(25,169,116,.7)}
+#s5 .url{margin-top:40px;font-size:44px;color:#fff}
+#s5 .foot{position:absolute;left:0;right:0;bottom:90px;text-align:center;font-size:28px;color:#9FB3C8;letter-spacing:.02em}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="spark" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9.94 14.06 8 20l-1.94-5.94L0 12l6.06-1.94L8 4l1.94 6.06L16 12zM19 3v4M17 5h4M20 16v4M18 18h4"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+    <symbol id="mark" viewBox="0 0 120 120">
+      <rect x="4" y="4" width="112" height="112" rx="30" fill="#19A974"/>
+      <path d="M30 40h60M30 60h42" stroke="#0F1E33" stroke-width="9" stroke-linecap="round"/>
+      <path d="M30 80h14l8 8 20-22" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ===== Scene 1 : le tas de factures ===== -->
+<div class="scene" id="s1">
+  <div class="rules" id="s1rules"></div><div class="margin-rule"></div>
+  <div class="head">
+    <h1><span class="ln"><span>Relancer un</span></span><span class="ln"><span>client, oui.</span></span></h1>
+    <div class="q serif"><span class="ln"><span>Mais quand&#8239;?</span></span><span class="ln"><span>Et sur quel ton&#8239;?</span></span></div>
+  </div>
+  <div class="inv" id="inv1" style="left:380px;top:690px">
+    <div class="top"><span class="ref mono">F-2026-0402</span><span class="pill late"><i></i>En retard · 34 j</span></div>
+    <div class="who">Menuiserie Aubert</div><div class="amt mono">3 860 €</div>
+  </div>
+  <div class="inv" id="inv2" style="left:80px;top:850px">
+    <div class="top"><span class="ref mono">F-2026-0411</span><span class="pill late"><i></i>En retard · 21 j</span></div>
+    <div class="who">Cabinet Vidal</div><div class="amt mono">980 €</div>
+  </div>
+  <div class="inv" id="inv3" style="left:340px;top:1010px">
+    <div class="top"><span class="ref mono">F-2026-0418</span><span class="pill late"><i></i>En retard · 18 j</span></div>
+    <div class="who">Boulangerie Martin</div><div class="amt mono">1 240 €</div>
+  </div>
+  <div class="inv" id="inv4" style="left:120px;top:1165px">
+    <div class="top"><span class="ref mono">F-2026-0423</span><span class="pill late"><i></i>En retard · 12 j</span></div>
+    <div class="who">Atelier Roux</div><div class="amt mono">2 150 €</div>
+    <div class="stamp" id="stamp">IMPAYÉE</div>
+  </div>
+</div>
+
+<!-- ===== Scene 2 : lancement ===== -->
+<div class="scene" id="s2">
+  <div class="rules"></div><div class="glow" id="glow2"></div>
+  <div class="wrap">
+    <div class="badge" id="badge"><svg><use href="#spark"/></svg>Nouveau sur Ledgerly</div>
+    <h2><span class="ln"><span>Relances</span></span><span class="ln"><span class="serif">intelligentes</span></span></h2>
+    <p id="p2">L’IA choisit <b>le bon moment</b> et <b>le bon ton</b> pour chaque client.</p>
+  </div>
+</div>
+
+<!-- ===== Scene 3 : produit ===== -->
+<div class="scene" id="s3">
+  <div class="rules"></div>
+  <div class="cap"><span class="ln"><span>Le bon moment.</span></span><span class="ln"><span class="serif">Le bon ton.</span></span></div>
+  <div class="win" id="win">
+    <div class="bar"><i></i><i></i><i></i><span class="t">app.ledgerly.io — Relances</span></div>
+    <div class="hd"><h3>Relances à venir</h3><span class="ia"><svg><use href="#spark"/></svg>IA activée</span></div>
+    <div class="sub">3 factures en retard · 7 270 € à encaisser</div>
+    <div class="row" id="r1">
+      <div class="av" style="background:#C98A3D">BM</div>
+      <div class="main"><div class="nm">Boulangerie Martin</div><div class="meta"><span class="mono">F-2026-0418</span> · 1 240 €</div>
+        <div class="ai"><svg><use href="#spark"/></svg><span id="ai1">Mar. 9 h 10 · E-mail · cordial</span></div></div>
+      <div class="st"><span class="pill late" id="st1"><i></i>18 j</span></div>
+    </div>
+    <div class="row" id="r2">
+      <div class="av" style="background:#4F6D8F">AR</div>
+      <div class="main"><div class="nm">Atelier Roux</div><div class="meta"><span class="mono">F-2026-0423</span> · 2 150 €</div>
+        <div class="ai"><svg><use href="#spark"/></svg><span id="ai2">Jeu. 14 h 00 · E-mail · ferme</span></div></div>
+      <div class="st"><span class="pill late"><i></i>12 j</span></div>
+    </div>
+    <div class="row" id="r3">
+      <div class="av" style="background:#7A5C8C">CV</div>
+      <div class="main"><div class="nm">Cabinet Vidal</div><div class="meta"><span class="mono">F-2026-0411</span> · 980 €</div>
+        <div class="ai"><svg><use href="#spark"/></svg><span id="ai3">Lun. 8 h 45 · SMS · amical</span></div></div>
+      <div class="st"><span class="pill late"><i></i>21 j</span></div>
+    </div>
+    <div class="msg" id="msg">
+      <div class="f"><span>À&nbsp;: <b>claire@boulangerie-martin.fr</b></span><span class="mono">E-mail</span></div>
+      <div class="tone"><span>Amical</span><span class="on">Cordial</span><span>Ferme</span></div>
+      <div class="body" id="body"></div>
+      <div class="when" id="when"><svg width="24" height="24" style="vertical-align:-5px"><use href="#clock"/></svg> Envoi optimal&nbsp;: mardi 9 h 10</div>
+      <div class="send" id="send"><svg><use href="#check"/></svg>Programmer</div>
+    </div>
+  </div>
+  <div class="ripple" id="ripple"></div><div class="ripple" id="ripple2"></div>
+  <svg class="cursor" id="cursor" viewBox="0 0 24 24"><path d="M4 3l7 18 2.5-7.5L21 11z" fill="#0F1E33" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+  <div class="toast" id="toast"><svg><use href="#check"/></svg>Boulangerie Martin a payé · 1 240 €</div>
+</div>
+
+<!-- ===== Scene 4 : preuve ===== -->
+<div class="scene" id="s4">
+  <div class="rules"></div><div class="margin-rule"></div>
+  <div class="lab mono">Résultats moyens clients</div>
+  <div class="big"><span id="n38">−38</span><span class="pc">%</span></div>
+  <div class="l1 serif"><span class="ln"><span>de retards de paiement</span></span></div>
+  <svg class="spark" viewBox="0 0 880 120" id="sparksvg">
+    <path id="sparkline" d="M0 18 C 90 22, 140 10, 220 30 S 360 40, 420 58 S 560 72, 640 88 S 800 98, 880 102" fill="none" stroke="#19A974" stroke-width="6" stroke-linecap="round"/>
+    <circle id="sparkdot" cx="880" cy="102" r="12" fill="#19A974"/>
+  </svg>
+  <div class="sep" id="sep"></div>
+  <div class="dso">
+    <h4><span class="ln"><span><span id="n11">11</span> jours gagnés</span></span><span class="ln"><span class="serif">sur votre DSO</span></span></h4>
+    <div class="bar-row" id="b1"><div class="lbl"><span>Avant</span><span class="mono">52 j</span></div><div class="bar-track"><div class="bar-fill" id="f1" style="width:100%;background:var(--coral)"></div></div></div>
+    <div class="bar-row" id="b2"><div class="lbl"><span>Avec Ledgerly</span><span class="mono">41 j</span></div><div class="bar-track"><div class="bar-fill" id="f2" style="width:78.8%;background:var(--green)"></div></div></div>
+  </div>
+  <div class="note">Délai moyen de paiement, 6 premiers mois d’utilisation.</div>
+</div>
+
+<!-- ===== Scene 5 : end card ===== -->
+<div class="scene" id="s5">
+  <div class="rules"></div><div class="glow" id="glow5"></div>
+  <div class="c">
+    <div class="logo" id="logo"><svg><use href="#mark"/></svg><span class="wm">Ledgerly</span></div>
+    <div class="tag serif" id="tag">Vos relances, <b>au bon moment.</b></div>
+    <div class="cta" id="cta">Essai gratuit 14 jours</div>
+    <div class="url mono" id="url">ledgerly.io</div>
+  </div>
+  <div class="foot" id="foot">Connecté à votre logiciel comptable · E-mail &amp; SMS</div>
+</div>
+
+<!-- wipes -->
+<div class="wipe" id="wA" style="background:var(--ink);top:1350px"></div>
+<div class="wipe" id="wB" style="background:var(--green);top:1350px"></div>
+<div class="wipe" id="wC" style="background:var(--paper);top:1350px"></div>
+
+<svg class="grain" width="1080" height="1350"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../node_modules/gsap/dist/DrawSVGPlugin.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+gsap.registerPlugin(DrawSVGPlugin);
+const $ = s => document.querySelector(s);
+const {prog, ease, clamp, lerp} = KK;
+const tl = gsap.timeline({paused:true, defaults:{ease:'expo.out'}});
+
+/* ---------- Scene 1 (0 – 4.4) ---------- */
+tl.from('#s1 h1 .ln>span', {yPercent:110, duration:.9, stagger:.1}, 0.05);
+['#inv1','#inv2','#inv3','#inv4'].forEach((s,i)=>{
+  const rot=[4,-5,3,-3][i];
+  tl.fromTo(s,{y:700,rotation:rot*3,opacity:1},{y:0,rotation:rot,duration:1.0,ease:'power4.out'},0.15+i*0.14);
+});
+tl.from('#s1 .q .ln>span', {yPercent:110, duration:.8, stagger:.18}, 1.35);
+tl.fromTo('#stamp',{opacity:0,scale:2.4},{opacity:.95,scale:1,duration:.35,ease:'back.out(2)'},1.5);
+tl.to(['#inv1','#inv2','#inv3','#inv4'],{y:'-=18',duration:2.6,ease:'sine.inOut',stagger:.1},1.6);
+tl.to('#s1rules',{y:40,duration:4.4,ease:'none'},0);
+
+/* wipe to scene 2 */
+tl.to('#wB',{top:-150,duration:.55,ease:'power3.in'},3.95);
+tl.to('#wA',{top:-150,duration:.6,ease:'power3.inOut'},4.05);
+tl.set('#s2',{visibility:'visible'},4.5);
+tl.set('#s1',{visibility:'hidden'},4.5);
+tl.set(['#wA','#wB'],{top:1350},4.7);
+
+/* ---------- Scene 2 (4.5 – 7.6) ---------- */
+tl.from('#badge',{y:30,opacity:0,duration:.7},4.55);
+tl.from('#s2 h2 .ln>span',{yPercent:110,duration:1,stagger:.12},4.65);
+tl.from('#p2',{y:40,opacity:0,duration:.9},5.3);
+tl.fromTo('#glow2',{scale:.7,x:-100},{scale:1.1,x:60,duration:3.4,ease:'sine.inOut'},4.5);
+
+/* ---------- Scene 3 (7.6 – 14.0) ---------- */
+tl.to('#s2 .wrap',{y:-120,opacity:0,duration:.5,ease:'power2.in'},7.35);
+tl.set('#s3',{visibility:'visible'},7.8);
+tl.set('#s2',{visibility:'hidden'},7.85);
+tl.from('#s3 .cap .ln>span',{yPercent:110,duration:.8,stagger:.14},7.85);
+tl.from('#win',{y:900,duration:1,ease:'power4.out'},7.85);
+tl.from(['#r1','#r2','#r3'],{x:60,opacity:0,duration:.6,stagger:.1},8.3);
+tl.from('#msg',{y:560,duration:.7,ease:'power4.out'},10.6);
+tl.set('#r1',{className:'row sel'},10.35);
+tl.fromTo('#cursor',{x:1100,y:1200},{x:700,y:560,duration:.8,ease:'power3.inOut'},9.7);
+tl.to('#cursor',{scale:.85,duration:.08,yoyo:true,repeat:1,ease:'none'},10.35);
+tl.fromTo('#ripple',{x:680,y:540,scale:.3,opacity:.9},{scale:1.4,opacity:0,duration:.5,ease:'power2.out',immediateRender:false},10.37);
+tl.to('#cursor',{x:880,y:1225,duration:.7,ease:'power3.inOut'},12.55);
+tl.to('#cursor',{scale:.85,duration:.08,yoyo:true,repeat:1,ease:'none'},13.25);
+tl.fromTo('#ripple2',{x:862,y:1204,scale:.3,opacity:.9},{scale:1.4,opacity:0,duration:.5,ease:'power2.out',immediateRender:false},13.27);
+tl.to('#send',{scale:.94,duration:.1,yoyo:true,repeat:1},13.25);
+tl.to('#msg',{y:560,duration:.6,ease:'power3.in'},13.55);
+tl.to('#cursor',{opacity:0,duration:.2},13.6);
+tl.fromTo('#toast',{opacity:0,y:40,scale:.9},{opacity:1,y:0,scale:1,duration:.5,ease:'back.out(1.8)'},14.0);
+tl.set('#st1',{className:'pill paid',innerHTML:'<i></i>Payée'},14.0);
+tl.fromTo('#st1',{scale:1.3},{scale:1,duration:.4,ease:'back.out(3)'},14.0);
+tl.to('#win',{scale:.97,duration:1.6,ease:'sine.inOut'},13.6);
+
+/* wipe to scene 4 */
+tl.to('#wC',{top:-150,duration:.6,ease:'power3.inOut'},15.25);
+tl.set('#s4',{visibility:'visible'},15.75);
+tl.set('#s3',{visibility:'hidden'},15.75);
+tl.set('#wC',{top:1350},15.8);
+
+/* ---------- Scene 4 (15.8 – 20.4) ---------- */
+tl.from('#s4 .lab',{opacity:0,y:20,duration:.6},15.8);
+tl.from('#s4 .big',{yPercent:30,opacity:0,duration:.9},15.8);
+tl.from('#s4 .l1 .ln>span',{yPercent:110,duration:.8},16.1);
+tl.fromTo('#sparkline',{drawSVG:'0%'},{drawSVG:'100%',duration:1.3,ease:'power2.inOut'},16.1);
+tl.from('#sparkdot',{scale:0,transformOrigin:'50% 50%',duration:.4,ease:'back.out(3)'},17.3);
+tl.from('#sep',{scaleX:0,duration:.8,ease:'power3.inOut'},17.0);
+tl.from('.dso h4 .ln>span',{yPercent:110,duration:.8,stagger:.12},17.3);
+tl.from(['#b1','#b2'],{opacity:0,y:20,duration:.5,stagger:.2},17.7);
+tl.from('#f1',{scaleX:0,duration:.9,ease:'power3.out'},17.9);
+tl.from('#f2',{scaleX:0,duration:.9,ease:'power3.out'},18.1);
+tl.from('#s4 .note',{opacity:0,duration:.6},18.4);
+
+/* wipe to scene 5 */
+tl.to('#wB',{top:-150,duration:.5,ease:'power3.in'},20.3);
+tl.to('#wA',{top:-150,duration:.6,ease:'power3.inOut'},20.4);
+tl.set('#s5',{visibility:'visible'},20.85);
+tl.set('#s4',{visibility:'hidden'},20.85);
+tl.set(['#wA','#wB'],{top:1350},21.0);
+
+/* ---------- Scene 5 (20.85 – 25) ---------- */
+tl.from('#logo svg',{scale:0,rotation:-90,duration:.9,ease:'back.out(1.6)'},20.9);
+tl.from('#logo .wm',{x:-40,opacity:0,duration:.8},21.05);
+tl.from('#tag',{y:30,opacity:0,duration:.8},21.3);
+tl.from('#cta',{y:40,opacity:0,scale:.9,duration:.8,ease:'back.out(1.6)'},21.55);
+tl.from('#url',{opacity:0,duration:.6},21.8);
+tl.from('#foot',{opacity:0,duration:.6},22.0);
+tl.fromTo('#glow5',{scale:.85},{scale:1.08,duration:4.2,ease:'sine.inOut'},20.85);
+tl.to('#cta',{scale:1.035,duration:.7,yoyo:true,repeat:3,ease:'sine.inOut'},22.4);
+tl.set({}, {}, 25);
+
+/* ---------- procedural bits (driven by t) ---------- */
+const AI = [
+  {el:$('#ai1'), txt:'Mar. 9 h 10 · E-mail · cordial', t0:8.75},
+  {el:$('#ai2'), txt:'Jeu. 14 h 00 · E-mail · ferme', t0:9.0},
+  {el:$('#ai3'), txt:'Lun. 8 h 45 · SMS · amical',   t0:9.25},
+];
+const GLY = '0123456789·ABCDEFHJKLMNPRSTUVXZ';
+const R = KK.rng(147); const noiseTab = Array.from({length:4000},()=>Math.floor(R()*GLY.length));
+function scramble(txt, p, frame, salt){
+  const n = Math.floor(p*txt.length); let out='';
+  for(let i=0;i<txt.length;i++){
+    const c=txt[i];
+    if(i<n || c===' ' || c==='·') out+=c;
+    else out+=GLY[noiseTab[(frame*37+i*13+salt*101)%4000]];
+  }
+  return out;
+}
+const BODY = 'Bonjour Claire, j’espère que la semaine démarre bien&#8239;! Petit rappel pour la facture F-2026-0418 de 1 240&nbsp;€, échue le 11 septembre. Vous pouvez la régler en un clic ici&nbsp;: ledgerly.io/p/8KQ2';
+// tokenise so entities count as one char
+const TOK = BODY.match(/&[#a-z0-9]+;|./g);
+const bodyEl = $('#body'), n38=$('#n38'), n11=$('#n11');
+
+window.KLIPT = {
+  width:1080, height:1350, fps:30, duration:25,
+  ready: document.fonts.ready,
+  render(t){
+    tl.seek(t, false);
+    const frame = Math.floor(t*24);
+    AI.forEach((a,i)=>{
+      const p = prog(t, a.t0, 0.9);
+      a.el.textContent = t < a.t0-0.35 ? '' : scramble(a.txt, p, frame, i);
+      a.el.parentNode.style.opacity = t < a.t0-0.35 ? 0 : 1;
+    });
+    // typing
+    const tp = prog(t, 10.95, 1.55);
+    const k = Math.floor(tp*TOK.length);
+    const caret = (tp<1 || Math.floor(t*2.5)%2===0) && t<13.5 ? '<span class="caret"></span>' : '';
+    bodyEl.innerHTML = TOK.slice(0,k).join('') + caret;
+    // counters
+    const c1 = ease.outCubic(prog(t, 15.85, 1.3));
+    n38.textContent = '−' + Math.round(38*c1);
+    const c2 = ease.outCubic(prog(t, 17.35, 1.1));
+    n11.textContent = Math.round(11*c2);
+  }
+};
+</script>
+</body>
+</html>

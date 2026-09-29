@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<!--
+  DIRECTION — Maison Castel, Barbier (Croix-Rousse, depuis 2011)
+  Concept : « Posez le rasoir jetable. » — le rituel du rasage à l'ancienne raconté en 3 gestes
+            (serviette chaude, blaireau, coupe-chou), dessinés au trait comme une vieille enseigne.
+  Palette : encre #15110D · crème #EFE4CF · laiton #C0924A · bordeaux #7A2A22 (rayures de l'enseigne, rare)
+  Type    : Gloock (display serif, titres) + Barlow Condensed (capitales espacées, infos)
+  Langage : filet laiton double en cadre, illustrations au trait crème, grain papier, rayures d'enseigne en transition
+  Motion  : posé, élégant : masques qui montent, traits qui se dessinent, coupe nette au coupe-chou, fin calme.
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/gloock/index.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/600.css">
+<style>
+  :root{--ink:#15110D;--ink2:#221A14;--cream:#EFE4CF;--brass:#C0924A;--ox:#7A2A22;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1920px;margin:0;overflow:hidden;background:var(--ink)}
+  body{position:relative;color:var(--cream);font-family:'Barlow Condensed',sans-serif}
+  .bg{position:absolute;inset:0;background:
+      radial-gradient(ellipse 900px 1100px at 50% 42%, #2E231A 0%, #1B1510 55%, #0E0B08 100%);}
+  .grain{position:absolute;inset:0;opacity:.09;mix-blend-mode:screen;pointer-events:none;z-index:50}
+  .frame{position:absolute;inset:38px;border:2px solid var(--brass);opacity:.55;z-index:40;pointer-events:none}
+  .frame::after{content:"";position:absolute;inset:10px;border:1px solid var(--brass);opacity:.7}
+  .scene{position:absolute;inset:0;visibility:hidden}
+  .m{display:block;overflow:hidden;padding:0 10px 0.08em}
+  .m>.i{display:block}
+  .serif{font-family:'Gloock',serif;font-weight:400}
+  .caps{font-weight:600;text-transform:uppercase;letter-spacing:.22em}
+  .brass{color:var(--brass)}
+
+  /* ---------- top brand strip ---------- */
+  .strip{position:absolute;left:0;right:0;top:250px;text-align:center;font-size:34px;z-index:30}
+  .strip .rule{display:inline-block;width:70px;height:2px;background:var(--brass);vertical-align:middle;margin:0 22px}
+
+  /* ---------- hook ---------- */
+  #hook .txt{position:absolute;left:90px;right:90px;top:600px}
+  #hook h1{font-size:188px;line-height:.98;letter-spacing:-.01em}
+  .jet{position:relative;display:block;height:200px}
+  .jet span{position:absolute;left:10px;top:0;display:block}
+  .jet .top{clip-path:inset(0 0 48% 0)}
+  .jet .bot{clip-path:inset(52% 0 0 0)}
+  .cutline{position:absolute;left:0;top:96px;height:6px;width:900px;background:var(--brass);transform-origin:left center;box-shadow:0 0 18px rgba(192,146,74,.7)}
+  #hook .sub{position:absolute;left:100px;top:1300px;font-size:52px;font-weight:500;letter-spacing:.02em}
+  #hook .sub b{font-family:'Gloock',serif;font-weight:400;color:var(--brass);font-size:62px}
+
+  /* ---------- steps ---------- */
+  .step{position:absolute;inset:0;visibility:hidden}
+  .step .num{position:absolute;right:110px;top:360px;font-size:220px;color:var(--brass);opacity:.9;line-height:1}
+  .step .lab{position:absolute;left:110px;top:410px;font-size:34px}
+  .step svg.ill{position:absolute;left:90px;top:520px;width:900px;height:600px;overflow:visible}
+  .step .tb{position:absolute;left:100px;right:100px;bottom:470px;display:flex;flex-direction:column;gap:22px}
+  .step .ttl{font-size:112px;line-height:1}
+  .step .desc{font-size:46px;font-weight:500;line-height:1.25;opacity:.92;padding-left:2px}
+  .ill .ln{fill:none;stroke:var(--cream);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+  .ill .br{fill:none;stroke:var(--brass);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+  .ill .fl{fill:var(--ink2)}
+  .progress{position:absolute;left:110px;right:110px;top:1500px;height:2px;background:rgba(239,228,207,.18)}
+  .progress i{position:absolute;left:0;top:-1px;height:4px;width:100%;background:var(--brass);transform-origin:left;transform:scaleX(0)}
+
+  /* ---------- offer ---------- */
+  #offer{background:radial-gradient(ellipse 900px 1000px at 50% 45%, #33271C 0%, #1A140F 70%)}
+  #offer .new{position:absolute;left:0;right:0;top:420px;text-align:center;font-size:38px}
+  #offer .new span{display:inline-block;border:2px solid var(--brass);color:var(--brass);padding:10px 26px 8px 34px}
+  #offer h2{position:absolute;left:60px;right:60px;top:540px;text-align:center;font-size:170px;line-height:.98}
+  #offer h2 em{font-style:normal;color:var(--brass)}
+  .tix{position:absolute;left:130px;right:130px;top:1000px;display:flex;border-top:2px solid var(--brass);border-bottom:2px solid var(--brass)}
+  .tix>div{flex:1;text-align:center;padding:34px 0 30px}
+  .tix>div+div{border-left:2px solid var(--brass)}
+  .tix .big{font-family:'Gloock',serif;font-size:150px;line-height:1}
+  .tix .sm{font-size:32px;margin-top:10px;opacity:.8}
+  #offer .inc{position:absolute;left:0;right:0;top:1400px;text-align:center;font-size:40px;font-weight:500;opacity:.9}
+  .slice{position:absolute;left:0;top:959px;height:4px;width:1080px;background:var(--brass);transform-origin:left;box-shadow:0 0 22px rgba(192,146,74,.9);z-index:35;transform:scaleX(0)}
+
+  /* ---------- end ---------- */
+  #end .badge{position:absolute;left:340px;top:300px;width:400px;height:400px}
+  #end .word{position:absolute;left:0;right:0;top:735px;text-align:center;font-size:150px;line-height:.95}
+  #end .kind{position:absolute;left:0;right:0;top:1030px;text-align:center;font-size:34px;color:var(--brass)}
+  #end .cta{position:absolute;left:150px;right:150px;top:1120px;height:128px;background:var(--brass);color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:50px;font-weight:600;letter-spacing:.04em}
+  #end .cta small{display:block;font-size:30px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+  #end .info{position:absolute;left:0;right:0;top:1300px;text-align:center;font-size:40px;font-weight:500;line-height:1.45}
+  #end .info .dot{color:var(--brass);padding:0 12px}
+
+  /* ---------- barber-pole wipe ---------- */
+  .pole{position:absolute;left:-200px;width:1480px;height:2700px;top:1920px;z-index:45;
+    background:repeating-linear-gradient(-38deg,var(--cream) 0 70px,var(--ox) 70px 140px,var(--cream) 140px 210px,var(--ink) 210px 280px);
+    box-shadow:0 -30px 60px rgba(0,0,0,.6),0 30px 60px rgba(0,0,0,.6)}
+  #s2 svg.ill{top:470px}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<!-- HOOK -->
+<section class="scene" id="hook">
+  <div class="txt">
+    <h1 class="serif">
+      <span class="m"><span class="i">Posez</span></span>
+      <span class="m"><span class="i">le rasoir</span></span>
+      <span class="m" style="overflow:visible"><span class="i jet">
+        <span class="top">jetable.</span><span class="bot">jetable.</span>
+        <i class="cutline"></i>
+      </span></span>
+    </h1>
+  </div>
+  <div class="sub"><span class="m"><span class="i">Et offrez-vous <b>40&nbsp;minutes</b>.</span></span></div>
+</section>
+
+<!-- STEPS -->
+<section class="scene" id="steps">
+  <div class="strip caps brass"><span class="rule"></span>Le rituel Castel<span class="rule"></span></div>
+
+  <div class="step" id="s1">
+    <div class="lab caps">Étape</div>
+    <div class="num serif">01</div>
+    <svg class="ill" viewBox="0 0 600 460">
+      <line class="br d" x1="90" y1="410" x2="510" y2="410"/>
+      <path class="ln d fl" d="M190 262 H455 Q505 262 505 322 Q505 382 455 382 H190"/>
+      <circle class="ln d fl" cx="190" cy="322" r="60"/>
+      <path class="ln d" id="spiral"/>
+      <line class="br d" x1="420" y1="265" x2="420" y2="379"/>
+      <line class="br d" x1="438" y1="264" x2="438" y2="380"/>
+      <g class="steam">
+        <path class="ln st" style="stroke-width:6;opacity:.8" d="M250 225 C220 190 280 160 250 120 C220 80 280 50 250 10"/>
+        <path class="ln st" style="stroke-width:6;opacity:.8" d="M330 225 C300 190 360 160 330 120 C300 80 360 50 330 10"/>
+        <path class="ln st" style="stroke-width:6;opacity:.8" d="M410 225 C380 190 440 160 410 120 C380 80 440 50 410 10"/>
+      </g>
+    </svg>
+    <div class="tb"><h3 class="ttl serif"><span class="m"><span class="i">Serviette chaude</span></span></h3>
+    <p class="desc"><span class="m"><span class="i">Elle ouvre les pores et détend la barbe.</span></span></p></div>
+  </div>
+
+  <div class="step" id="s2">
+    <div class="lab caps">Étape</div>
+    <div class="num serif">02</div>
+    <svg class="ill" viewBox="0 0 600 460">
+      <line class="br d" x1="140" y1="445" x2="460" y2="445"/>
+      <path class="ln d fl" d="M245 440 H355 Q348 390 330 355 Q318 325 336 300 H264 Q282 325 270 355 Q252 390 245 440 Z"/>
+      <rect class="br d" x="255" y="276" width="90" height="24" rx="4"/>
+      <path class="ln d fl" d="M262 276 C232 210 246 150 300 140 C354 150 368 210 338 276"/>
+      <path class="ln d" style="stroke-width:4;opacity:.6" d="M282 270 C272 230 276 190 290 165 M318 270 C328 230 324 190 310 165 M300 272 V160"/>
+      <g class="foam">
+        <circle class="ln b" cx="300" cy="128" r="34"/>
+        <circle class="ln b" cx="258" cy="140" r="24"/>
+        <circle class="ln b" cx="344" cy="138" r="26"/>
+        <circle class="ln b" cx="278" cy="98" r="20"/>
+        <circle class="ln b" cx="326" cy="92" r="18"/>
+        <circle class="ln b" cx="300" cy="66" r="14"/>
+        <circle class="br b" cx="378" cy="100" r="9"/>
+        <circle class="br b" cx="226" cy="104" r="8"/>
+        <circle class="br b" cx="352" cy="52" r="6"/>
+        <circle class="br b" cx="246" cy="60" r="6"/>
+      </g>
+    </svg>
+    <div class="tb"><h3 class="ttl serif"><span class="m"><span class="i">Blaireau<br>&amp; mousse</span></span></h3>
+    <p class="desc"><span class="m"><span class="i">Une mousse montée à la main, bien chaude.</span></span></p></div>
+  </div>
+
+  <div class="step" id="s3">
+    <div class="lab caps">Étape</div>
+    <div class="num serif">03</div>
+    <svg class="ill" viewBox="0 0 600 460">
+      <g transform="translate(-60 0) scale(1.2)">
+        <path class="ln d fl" d="M232 216 C320 204 430 206 506 216 C540 220 548 236 530 244 C440 256 320 256 232 248 Z"/>
+        <line class="br d" x1="300" y1="231" x2="470" y2="231" style="stroke-width:4"/>
+        <circle class="br d" cx="470" cy="231" r="5" style="fill:#C0924A"/>
+        <circle class="br d" cx="300" cy="231" r="5" style="fill:#C0924A"/>
+        <g id="blade">
+          <path class="ln fl bl" d="M244 214 L250 206 C258 200 262 214 254 222 L238 222 L100 196 C62 190 38 218 48 250 C54 270 80 276 104 268 C160 252 200 248 238 244 Z"/>
+          <path class="br bl" d="M104 204 C150 212 200 220 236 226" style="stroke-width:4"/>
+          <path class="shine" d="M140 202 L170 208 L150 258 L120 262 Z" fill="#EFE4CF" opacity="0"/>
+        </g>
+        <circle class="br d" cx="236" cy="231" r="11" style="fill:#15110D"/>
+      </g>
+    </svg>
+    <div class="tb"><h3 class="ttl serif"><span class="m"><span class="i">Coupe-chou</span></span></h3>
+    <p class="desc"><span class="m"><span class="i">Deux passes, au fil du poil. Net.</span></span></p></div>
+  </div>
+
+  <div class="progress"><i></i></div>
+</section>
+
+<!-- OFFER -->
+<section class="scene" id="offer">
+  <div class="new caps"><span>Nouveau soin</span></div>
+  <h2 class="serif">
+    <span class="m"><span class="i">Rasage</span></span>
+    <span class="m"><span class="i"><em>à l’ancienne</em></span></span>
+  </h2>
+  <div class="tix">
+    <div><div class="big">40</div><div class="sm caps">minutes</div></div>
+    <div><div class="big">35&nbsp;€</div><div class="sm caps">le soin</div></div>
+  </div>
+  <div class="inc"><span class="m"><span class="i">Serviette chaude · blaireau · coupe-chou</span></span></div>
+</section>
+<i class="slice"></i>
+
+<!-- END -->
+<section class="scene" id="end">
+  <svg class="badge" viewBox="0 0 400 400">
+    <defs><path id="circ" d="M200 200 m-150 0 a150 150 0 1 1 300 0 a150 150 0 1 1 -300 0"/></defs>
+    <circle cx="200" cy="200" r="192" fill="none" stroke="#C0924A" stroke-width="3"/>
+    <circle cx="200" cy="200" r="118" fill="none" stroke="#C0924A" stroke-width="2"/>
+    <g id="ring">
+      <text font-family="Barlow Condensed" font-weight="600" font-size="34" letter-spacing="7.2" fill="#EFE4CF">
+        <textPath href="#circ">BARBIER · CROIX-ROUSSE · DEPUIS 2011 · </textPath>
+      </text>
+    </g>
+    <text x="200" y="232" text-anchor="middle" font-family="Gloock" font-size="104" fill="#C0924A">MC</text>
+  </svg>
+  <div class="word serif"><span class="m"><span class="i">Maison</span></span><span class="m"><span class="i">Castel</span></span></div>
+  <div class="kind caps">Barbier · Lyon 4<sup style="font-size:.6em">e</sup></div>
+  <div class="cta"><div style="text-align:center"><small>Réservez en ligne</small>maisoncastel.fr</div></div>
+  <div class="info">12 rue d’Austerlitz, 69004 Lyon<br>Mar.<span class="dot">–</span>sam. · 9h–19h</div>
+</section>
+
+<div class="pole" id="pole1"></div>
+<div class="pole" id="pole2"></div>
+<div class="frame"></div>
+<svg class="grain" width="1080" height="1920"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="7" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../node_modules/gsap/dist/DrawSVGPlugin.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+gsap.registerPlugin(DrawSVGPlugin);
+// towel spiral
+(function(){
+  let d='', cx=190, cy=322;
+  for(let k=0;k<=200;k++){ const a=k/200*Math.PI*2*2.6, r=6+k/200*44; const x=cx+Math.cos(a)*r, y=cy+Math.sin(a)*r; d+=(k?'L':'M')+x.toFixed(1)+' '+y.toFixed(1); }
+  document.getElementById('spiral').setAttribute('d',d);
+})();
+
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const tl=gsap.timeline({paused:true});
+const up=(els,at,st=.08,dur=.8)=>tl.fromTo(els,{yPercent:110},{yPercent:0,duration:dur,ease:'expo.out',stagger:st},at);
+
+// ---------------- HOOK 0 – 3.4 ----------------
+tl.set('#hook',{visibility:'visible'},0);
+gsap.set('#hook .i',{yPercent:110});
+tl.fromTo('#hook h1 .i',{yPercent:110},{yPercent:0,duration:.75,ease:'expo.out',stagger:.14},0);
+tl.fromTo('#hook .txt',{scale:1.06},{scale:1,duration:3.4,ease:'power1.out',transformOrigin:'left center'},0);
+tl.fromTo('.cutline',{scaleX:0},{scaleX:1,duration:.32,ease:'power3.in'},1.25);
+tl.to('.cutline',{opacity:0,duration:.3},1.7);
+tl.to('.jet .bot',{y:70,x:26,rotation:5,opacity:0,duration:.9,ease:'power2.in'},1.6);
+tl.to('.jet .top',{x:-8,rotation:-1.2,duration:.9,ease:'power2.out'},1.6);
+tl.fromTo('#hook .sub .i',{yPercent:110},{yPercent:0,duration:.8,ease:'expo.out'},1.95);
+
+// pole wipe 1  (covers 3.05–3.55)
+tl.fromTo('#pole1',{top:1920},{top:-2800,duration:1.1,ease:'power2.inOut'},2.8);
+tl.set('#hook',{visibility:'hidden'},3.3);
+tl.set('#steps',{visibility:'visible'},3.3);
+
+// ---------------- STEPS 3.4 – 13.6 ----------------
+const stepT=[3.45,6.85,10.25], stepD=3.4;
+tl.fromTo('.strip',{opacity:0,y:-20},{opacity:1,y:0,duration:.6,ease:'power3.out'},3.5);
+tl.fromTo('.progress i',{scaleX:0},{scaleX:1,duration:10.1,ease:'none'},3.5);
+['#s1','#s2','#s3'].forEach((id,k)=>{
+  const t=stepT[k];
+  tl.set(id,{visibility:'visible'},t-.05);
+  gsap.set(id+' .i',{yPercent:110});
+  tl.fromTo(id+' .num',{yPercent:60,opacity:0},{yPercent:0,opacity:.9,duration:.8,ease:'expo.out'},t);
+  tl.fromTo(id+' .lab',{opacity:0,x:-30},{opacity:1,x:0,duration:.6,ease:'power3.out'},t+.05);
+  tl.fromTo(id+' .d',{drawSVG:'0%'},{drawSVG:'100%',duration:1.1,ease:'power2.inOut',stagger:.08},t+.05);
+  up(id+' .ttl .i',t+.25,0,.85);
+  up(id+' .desc .i',t+.5,0,.8);
+  tl.fromTo(id+' svg.ill',{y:20},{y:-14,duration:stepD,ease:'none'},t);
+  if(k<2){ // exit: slide left
+    tl.to(id+' > *:not(.lab)',{x:-120,opacity:0,duration:.4,ease:'power2.in',stagger:.03},t+stepD-.45);
+    tl.to(id+' .lab',{opacity:0,duration:.3},t+stepD-.4);
+  }
+});
+// step 1 steam
+$$('#s1 .st').forEach((p,i)=>{
+  const t0=stepT[0]+.6+i*.18;
+  tl.fromTo(p,{drawSVG:'0% 0%',y:20},{drawSVG:'0% 100%',y:-10,duration:1.0,ease:'power2.out'},t0);
+  tl.to(p,{drawSVG:'100% 100%',y:-40,duration:1.1,ease:'power1.in'},t0+1.0);
+  tl.fromTo(p,{drawSVG:'0% 0%',y:20},{drawSVG:'0% 100%',y:-10,duration:1.0,ease:'power2.out',immediateRender:false},t0+1.6);
+});
+// step 2 foam
+tl.fromTo('#s2 .b',{scale:0,transformOrigin:'50% 50%'},{scale:1,duration:.55,ease:'back.out(2.2)',stagger:{each:.07,from:'center'}},stepT[1]+.7);
+tl.to('#s2 .foam',{y:-8,duration:1.6,ease:'sine.inOut',yoyo:true,repeat:1},stepT[1]+1.2);
+// step 3 razor opens
+gsap.set('#blade',{svgOrigin:'236 231'});
+tl.fromTo('#blade',{rotation:-176,opacity:0},{opacity:1,duration:.2},stepT[2]+.3);
+tl.fromTo('#blade',{rotation:-176},{rotation:0,duration:1.1,ease:'expo.out'},stepT[2]+.45);
+tl.fromTo('#s3 .shine',{opacity:0,x:-60},{opacity:.35,x:40,duration:.5,ease:'power1.inOut'},stepT[2]+1.6);
+tl.to('#s3 .shine',{opacity:0,x:80,duration:.3},stepT[2]+2.1);
+
+// razor slice transition → offer (13.3)
+tl.to('.slice',{scaleX:1,duration:.35,ease:'power4.in'},13.05);
+tl.to('#steps',{opacity:0,duration:.3},13.4);
+tl.set('#offer',{visibility:'visible'},13.4);
+tl.fromTo('#offer',{clipPath:'inset(50% 0% 50% 0%)'},{clipPath:'inset(0% 0% 0% 0%)',duration:.7,ease:'expo.out'},13.4);
+tl.to('.slice',{opacity:0,duration:.4},13.55);
+
+// ---------------- OFFER 13.4 – 17.4 ----------------
+gsap.set('#offer .i',{yPercent:110});
+tl.fromTo('#offer .new span',{opacity:0,letterSpacing:'.5em'},{opacity:1,letterSpacing:'.22em',duration:.8,ease:'power3.out'},13.5);
+up('#offer h2 .i',13.55,.12,.9);
+tl.fromTo('.tix',{clipPath:'inset(0 50% 0 50%)'},{clipPath:'inset(0 0% 0 0%)',duration:.8,ease:'expo.out'},14.05);
+tl.fromTo('.tix .big',{yPercent:40,opacity:0},{yPercent:0,opacity:1,duration:.7,ease:'expo.out',stagger:.12},14.2);
+tl.fromTo('.tix .sm',{opacity:0},{opacity:.8,duration:.5,stagger:.12},14.45);
+up('#offer .inc .i',14.6,0,.8);
+tl.fromTo('#offer h2',{scale:1},{scale:1.035,duration:3.6,ease:'none'},13.6);
+
+// pole wipe 2 (covers ~17.2)
+tl.fromTo('#pole2',{top:1920},{top:-2800,duration:1.1,ease:'power2.inOut'},16.7);
+tl.set('#offer',{visibility:'hidden'},17.2);
+tl.set('#end',{visibility:'visible'},17.2);
+
+// ---------------- END 17.2 – 21 ----------------
+gsap.set('#end .i',{yPercent:110});
+tl.fromTo('#end .badge',{scale:.6,opacity:0,rotation:-40},{scale:1,opacity:1,rotation:0,duration:1,ease:'expo.out'},17.35);
+tl.fromTo('#ring',{rotation:0,svgOrigin:'200 200'},{rotation:40,duration:3.7,ease:'none',svgOrigin:'200 200'},17.3);
+up('#end .word .i',17.5,.1,.9);
+tl.fromTo('#end .kind',{opacity:0},{opacity:1,duration:.6},17.9);
+tl.fromTo('#end .cta',{scaleX:0,transformOrigin:'center'},{scaleX:1,duration:.7,ease:'expo.out'},18.0);
+tl.fromTo('#end .cta > div',{opacity:0,y:14},{opacity:1,y:0,duration:.5,ease:'power3.out'},18.35);
+tl.fromTo('#end .info',{opacity:0,y:20},{opacity:1,y:0,duration:.6,ease:'power3.out'},18.5);
+tl.set({}, {}, 21);
+
+window.KLIPT={width:1080,height:1920,fps:30,duration:21,
+  ready:document.fonts.ready,
+  render(t){ tl.seek(t,false); }};
+</script>
+</body>
+</html>

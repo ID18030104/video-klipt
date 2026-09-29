@@ -1,0 +1,357 @@
+<!doctype html>
+<!--
+  LEDGERLY — « Relances intelligentes » launch (LinkedIn 4:5, 24.5 s)
+  Concept : du stress de l'impayé (38 420 € en attente) au pilote automatique : l'IA planifie chaque relance
+            (moment + ton), la facture est payée, preuve chiffrée, essai gratuit.
+  Palette : papier #F3F1EC · encre #0E1B2C · vert Ledgerly #0F7A4F / menthe #7CE0A8 · forêt #0B3D2E · rouge retard #C8382F (rare)
+  Type    : Manrope (700/800) + JetBrains Mono pour montants, dates et factures
+  Langage : UI produit crédible (lignes de grand livre, badges, chips), filets fins, grain papier, marque "lignes de registre"
+  Motion  : précis, snappy (expo/power3.out), wipes verticaux entre les temps, micro-interactions UI, fin calme
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/700.css">
+<style>
+:root{
+  --paper:#F3F1EC; --ink:#0E1B2C; --muted:#5B6576; --line:#DEDAD0;
+  --green:#0F7A4F; --mint:#7CE0A8; --forest:#0B3D2E; --red:#C8382F; --redbg:#FBE4E1;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1350px;margin:0;overflow:hidden;background:var(--paper)}
+body{font-family:Manrope,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.mono{font-family:"JetBrains Mono",monospace}
+.scene{position:absolute;inset:0;overflow:hidden}
+.m{overflow:hidden;display:block;padding-bottom:.08em;margin-bottom:-.08em}
+.m>.i{display:block;will-change:transform}
+svg.ic{width:1em;height:1em;vertical-align:-.12em}
+
+/* logo */
+.logo{position:absolute;top:64px;left:72px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:40px;letter-spacing:-.02em}
+.mark{width:52px;height:52px;border-radius:13px;background:var(--ink);position:relative}
+.mark i{position:absolute;left:12px;height:6px;border-radius:3px;background:#fff}
+.mark i:nth-child(1){top:14px;width:28px}
+.mark i:nth-child(2){top:23px;width:20px}
+.mark i:nth-child(3){top:32px;width:13px;background:var(--mint)}
+.logo.inv .mark{background:#fff}
+.logo.inv .mark i{background:var(--ink)}
+.logo.inv .mark i:nth-child(3){background:var(--green)}
+.logo.inv{color:#fff}
+.tag{position:absolute;top:74px;right:72px;font-size:28px;font-weight:700;color:var(--muted)}
+
+/* S1 */
+#s1 .kicker{position:absolute;left:72px;top:190px;font-size:60px;font-weight:700;letter-spacing:-.02em}
+#s1 .big{position:absolute;left:66px;top:262px;font-size:196px;font-weight:800;letter-spacing:-.05em;line-height:1}
+#s1 .big .cur{color:var(--red)}
+#s1 .sub{position:absolute;left:72px;top:478px;font-size:40px;font-weight:600;color:var(--muted)}
+.card{position:absolute;background:#fff;border-radius:28px;box-shadow:0 2px 0 rgba(14,27,44,.04),0 30px 60px -20px rgba(14,27,44,.22);border:1px solid #E7E3DA}
+#s1 .card{left:56px;right:56px;top:600px;height:620px;padding:34px 40px}
+.cardhead{display:flex;justify-content:space-between;align-items:center;font-size:28px;font-weight:700;color:var(--muted);padding-bottom:18px;border-bottom:2px solid #EEEBE4}
+.row{display:flex;align-items:center;height:128px;border-bottom:2px solid #F1EEE8;gap:24px}
+.row:last-child{border-bottom:none}
+.av{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:28px;flex:none}
+.who{flex:1;min-width:0}
+.who b{display:block;font-size:34px;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+.who span{font-size:26px;color:var(--muted)}
+.amt{font-size:34px;font-weight:700;white-space:nowrap}
+.badge{font-size:26px;font-weight:700;padding:10px 18px;border-radius:40px;white-space:nowrap}
+.badge.late{background:var(--redbg);color:var(--red)}
+.badge.paid{background:#DDF3E7;color:var(--green)}
+
+/* S2 */
+#s2{background:var(--ink);color:#fff}
+#s2 .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.05) 2px,transparent 2px);background-size:90px 90px;background-position:-2px -2px}
+#s2 .glow{position:absolute;width:900px;height:900px;border-radius:50%;left:420px;top:-120px;background:radial-gradient(circle,rgba(124,224,168,.28),rgba(124,224,168,0) 65%)}
+#s2 .pill{position:absolute;left:72px;top:250px;display:flex;align-items:center;gap:14px;background:var(--mint);color:var(--forest);font-weight:800;font-size:32px;padding:14px 26px;border-radius:50px}
+#s2 h1{position:absolute;left:66px;top:360px;font-size:138px;font-weight:800;letter-spacing:-.045em;line-height:.98}
+#s2 h1 .g{color:var(--mint)}
+#s2 .sub{position:absolute;left:72px;top:680px;width:900px;font-size:44px;font-weight:600;line-height:1.3;color:#C3CCD8}
+#s2 .sub b{color:#fff}
+.week{position:absolute;left:72px;right:72px;top:960px;height:230px}
+.week .days{display:flex;justify-content:space-between;border-top:2px solid rgba(255,255,255,.18);padding-top:22px}
+.week .days span{width:150px;text-align:center;font-size:30px;font-weight:700;color:#8793A6}
+.week .days span.on{color:#fff}
+.week .pin{position:absolute;top:-94px;left:0;width:150px;display:flex;flex-direction:column;align-items:center}
+.week .pin .lab{background:#fff;color:var(--ink);font-weight:700;font-size:28px;padding:10px 18px;border-radius:14px;white-space:nowrap}
+.week .pin .stem{width:3px;height:22px;background:#fff}
+.week .pin .dot{width:22px;height:22px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 8px rgba(124,224,168,.25);margin-top:-2px}
+.week .ticks{position:absolute;left:0;right:0;top:112px;display:flex;justify-content:space-between}
+.week .ticks i{width:150px;height:74px;border-radius:14px;background:rgba(255,255,255,.06)}
+
+/* S3 */
+#s3{background:var(--paper)}
+#s3 h2{position:absolute;left:72px;top:170px;font-size:84px;font-weight:800;letter-spacing:-.04em;line-height:1}
+#s3 h2 .g{color:var(--green)}
+#s3 .card{left:56px;right:56px;top:390px;height:560px;padding:30px 38px}
+.plan .row{height:160px;gap:22px}
+.plan .who b{font-size:33px}
+.chips{display:flex;gap:12px;margin-top:12px;height:50px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:10px;font-size:26px;font-weight:700;padding:8px 16px;border-radius:12px;background:#F1EFEA;white-space:nowrap}
+.chip.t1{background:#DDF3E7;color:var(--green)}
+.chip.t2{background:#E3EAF7;color:#2B4C8C}
+.chip.t3{background:#FBEBD2;color:#8A5300}
+.skel{position:absolute;left:0;top:14px;width:420px;height:26px;border-radius:13px;background:linear-gradient(90deg,#EEEBE4 0%,#F8F6F1 40%,#EEEBE4 80%);background-size:300% 100%;animation:sh 1s linear infinite}
+@keyframes sh{from{background-position:100% 0}to{background-position:-50% 0}}
+.chipwrap{position:relative}
+.ai{font-size:26px;font-weight:700;color:var(--green);display:flex;align-items:center;gap:8px}
+.state{flex:none;width:190px;display:flex;justify-content:flex-end;position:relative;height:56px}
+.state .badge{position:absolute;right:0;top:4px}
+.bubble{position:absolute;left:170px;right:56px;top:990px;background:var(--ink);color:#fff;border-radius:30px 30px 30px 8px;padding:30px 36px;font-size:32px;line-height:1.38;font-weight:500;box-shadow:0 30px 60px -20px rgba(14,27,44,.4)}
+.bubble .meta{font-size:24px;color:#9AA6B8;font-weight:700;margin-bottom:10px;display:flex;gap:12px;align-items:center}
+.bubble .lnk{color:var(--mint)}
+.toast{position:absolute;left:56px;top:1030px;width:112px;height:112px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:56px;box-shadow:0 20px 40px -12px rgba(15,122,79,.6)}
+
+/* S4 */
+#s4{background:var(--forest);color:#fff}
+#s4 .lbl{position:absolute;left:72px;top:176px;font-size:30px;font-weight:700;color:var(--mint);letter-spacing:.06em;text-transform:uppercase}
+#s4 .n1{position:absolute;left:60px;top:220px;font-size:250px;font-weight:800;letter-spacing:-.06em;line-height:1;color:#fff}
+#s4 .c1{position:absolute;left:72px;top:478px;font-size:46px;font-weight:700;color:#CFE9DC}
+#s4 .rule{position:absolute;left:72px;right:72px;top:580px;height:2px;background:rgba(255,255,255,.2);transform-origin:left}
+#s4 .n2{position:absolute;left:66px;top:630px;font-size:170px;font-weight:800;letter-spacing:-.05em;line-height:1;color:var(--mint)}
+#s4 .c2{position:absolute;left:72px;top:808px;font-size:46px;font-weight:700;color:#CFE9DC}
+#s4 .chart{position:absolute;left:72px;top:900px;width:936px;height:300px}
+#s4 .src{position:absolute;left:72px;bottom:56px;font-size:24px;color:#8DB7A4}
+
+/* S5 */
+#s5{background:var(--paper)}
+#s5 .center{position:absolute;left:0;right:0;top:300px;display:flex;flex-direction:column;align-items:center;text-align:center}
+#s5 .biglogo{display:flex;align-items:center;gap:30px;font-size:118px;font-weight:800;letter-spacing:-.045em}
+#s5 .biglogo .mark{width:132px;height:132px;border-radius:32px}
+#s5 .biglogo .mark i{left:30px;height:15px;border-radius:8px}
+#s5 .biglogo .mark i:nth-child(1){top:36px;width:72px}
+#s5 .biglogo .mark i:nth-child(2){top:59px;width:50px}
+#s5 .biglogo .mark i:nth-child(3){top:82px;width:32px}
+#s5 .tl{margin-top:44px;font-size:48px;font-weight:700;letter-spacing:-.02em;line-height:1.25}
+#s5 .tl .g{color:var(--green)}
+#s5 .cta{margin-top:70px;background:var(--green);color:#fff;font-size:46px;font-weight:800;padding:30px 56px;border-radius:24px;box-shadow:0 24px 48px -18px rgba(15,122,79,.55)}
+#s5 .url{margin-top:34px;font-size:44px;font-weight:700}
+#s5 .foot{position:absolute;left:72px;right:72px;bottom:80px;display:flex;justify-content:center;gap:40px;font-size:30px;font-weight:700;color:var(--muted);border-top:2px solid var(--line);padding-top:34px}
+#s5 .foot span{display:flex;align-items:center;gap:10px}
+#s5 .foot svg{color:var(--green)}
+
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.07;mix-blend-mode:multiply;z-index:50}
+.grain.l{mix-blend-mode:screen;opacity:.05}
+</style>
+</head>
+<body>
+
+<!-- ============ S1 : hook ============ -->
+<div class="scene" id="s1">
+  <div class="logo"><div class="mark"><i></i><i></i><i></i></div>ledgerly</div>
+  <div class="tag">Tableau de bord · Trésorerie</div>
+  <div class="kicker"><span class="m"><span class="i">Vos clients vous doivent</span></span></div>
+  <div class="big"><span class="m"><span class="i"><span id="count" class="mono" style="font-family:Manrope">0</span>&nbsp;<span class="cur">€</span></span></span></div>
+  <div class="sub"><span class="m"><span class="i">Et vous passez vos vendredis à relancer.</span></span></div>
+  <div class="card" id="c1">
+    <div class="cardhead"><span>Factures échues</span><span class="mono">4 clients</span></div>
+    <div class="row r1"><div class="av" style="background:#E8E2F5;color:#4B3A8C">AB</div><div class="who"><b>Atelier Brun SARL</b><span class="mono">F-2026-1187</span></div><div class="amt mono">12 480 €</div><div class="badge late">+41 j</div></div>
+    <div class="row r1"><div class="av" style="background:#E3EAF7;color:#2B4C8C">CR</div><div class="who"><b>Cabinet Roy &amp; Associés</b><span class="mono">F-2026-1203</span></div><div class="amt mono">8 900 €</div><div class="badge late">+27 j</div></div>
+    <div class="row r1"><div class="av" style="background:#FBEBD2;color:#8A5300">TL</div><div class="who"><b>Transports Lefèvre</b><span class="mono">F-2026-1210</span></div><div class="amt mono">15 800 €</div><div class="badge late">+19 j</div></div>
+    <div class="row r1"><div class="av" style="background:#DDF3E7;color:#0F7A4F">BM</div><div class="who"><b>Boulangerie Marcel</b><span class="mono">F-2026-1192</span></div><div class="amt mono">1 240 €</div><div class="badge late">+12 j</div></div>
+  </div>
+</div>
+
+<!-- ============ S2 : launch ============ -->
+<div class="scene" id="s2">
+  <div class="grid"></div>
+  <div class="glow"></div>
+  <div class="logo inv"><div class="mark"><i></i><i></i><i></i></div>ledgerly</div>
+  <div class="pill"><span class="spk"></span>Nouveau</div>
+  <h1><span class="m"><span class="i">Relances</span></span><span class="m"><span class="i g">intelligentes</span></span></h1>
+  <div class="sub"><span class="m"><span class="i">L’IA choisit <b>le bon moment</b></span></span><span class="m"><span class="i">et <b>le bon ton</b> pour chaque client.</span></span></div>
+  <div class="week">
+    <div class="days"><span>Lun.</span><span class="on">Mar.</span><span>Mer.</span><span>Jeu.</span><span>Ven.</span></div>
+    <div class="ticks"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="pin" id="pin"><div class="lab mono" id="pinlab">Mar. 9 h 12</div><div class="stem"></div><div class="dot"></div></div>
+  </div>
+</div>
+
+<!-- ============ S3 : product ============ -->
+<div class="scene" id="s3">
+  <div class="logo"><div class="mark"><i></i><i></i><i></i></div>ledgerly</div>
+  <div class="tag">Plan de relance · S40</div>
+  <h2><span class="m"><span class="i">Le bon moment.</span></span><span class="m"><span class="i g">Le bon ton.</span></span></h2>
+  <div class="card plan" id="c3">
+    <div class="cardhead"><span class="ai"><span class="spk"></span>Planifié par l’IA</span><span class="mono">3 relances</span></div>
+    <div class="row p" id="rBM"><div class="av" style="background:#DDF3E7;color:#0F7A4F">BM</div>
+      <div class="who"><b>Boulangerie Marcel</b><div class="chipwrap"><div class="skel"></div><div class="chips"><span class="chip"><span class="ic-sms"></span>SMS</span><span class="chip mono">Mar. 9 h 12</span><span class="chip t1">Cordial</span></div></div></div>
+      <div class="state"><span class="badge late s-late">+12 j</span><span class="badge paid s-paid"><span class="ic-check"></span> Payée</span></div></div>
+    <div class="row p"><div class="av" style="background:#E3EAF7;color:#2B4C8C">CR</div>
+      <div class="who"><b>Cabinet Roy &amp; Associés</b><div class="chipwrap"><div class="skel"></div><div class="chips"><span class="chip"><span class="ic-mail"></span>E-mail</span><span class="chip mono">Jeu. 14 h 30</span><span class="chip t2">Courtois</span></div></div></div>
+      <div class="state"><span class="badge late">+27 j</span></div></div>
+    <div class="row p"><div class="av" style="background:#E8E2F5;color:#4B3A8C">AB</div>
+      <div class="who"><b>Atelier Brun SARL</b><div class="chipwrap"><div class="skel"></div><div class="chips"><span class="chip"><span class="ic-mail"></span>E-mail + SMS</span><span class="chip mono">Lun. 8 h 45</span><span class="chip t3">Ferme</span></div></div></div>
+      <div class="state"><span class="badge late">+41 j</span></div></div>
+  </div>
+  <div class="bubble" id="bub">
+    <div class="meta"><span class="ic-sms"></span>SMS · Mar. 9 h 12 · à Julie Marcel</div>
+    <div id="smstext"></div>
+  </div>
+  <div class="toast" id="toast"><span class="ic-check"></span></div>
+</div>
+
+<!-- ============ S4 : proof ============ -->
+<div class="scene" id="s4">
+  <div class="logo inv"><div class="mark"><i></i><i></i><i></i></div>ledgerly</div>
+  <div class="lbl">En moyenne chez nos clients</div>
+  <div class="n1"><span class="m"><span class="i">−<span id="n38">0</span>&nbsp;%</span></span></div>
+  <div class="c1"><span class="m"><span class="i">de retards de paiement</span></span></div>
+  <div class="rule"></div>
+  <div class="n2"><span class="m"><span class="i"><span id="n11">0</span> jours</span></span></div>
+  <div class="c2"><span class="m"><span class="i">gagnés sur votre DSO</span></span></div>
+  <svg class="chart" viewBox="0 0 936 300">
+    <g font-family="JetBrains Mono" font-size="24" font-weight="700">
+      <line x1="0" y1="250" x2="936" y2="250" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
+      <path id="dso" d="M10 60 C 140 64, 220 72, 300 96 S 470 170, 560 190 S 760 212, 900 214" fill="none" stroke="#7CE0A8" stroke-width="7" stroke-linecap="round"/>
+      <path id="dsoFill" d="M10 60 C 140 64, 220 72, 300 96 S 470 170, 560 190 S 760 212, 900 214 L900 250 L10 250 Z" fill="url(#fg)" opacity=".0"/>
+      <defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7CE0A8" stop-opacity=".35"/><stop offset="1" stop-color="#7CE0A8" stop-opacity="0"/></linearGradient></defs>
+      <circle id="d0" cx="10" cy="60" r="12" fill="#fff"/>
+      <circle id="d1" cx="900" cy="214" r="14" fill="#7CE0A8" stroke="#0B3D2E" stroke-width="5"/>
+      <text id="t0" x="10" y="30" fill="#CFE9DC">DSO 52 j</text>
+      <text id="t1" x="900" y="180" fill="#7CE0A8" text-anchor="end">41 j</text>
+      <text x="10" y="290" fill="#8DB7A4">Avant Ledgerly</text>
+      <text x="926" y="290" fill="#8DB7A4" text-anchor="end">Après 6 mois</text>
+    </g>
+  </svg>
+</div>
+
+<!-- ============ S5 : end card ============ -->
+<div class="scene" id="s5">
+  <div class="center">
+    <div class="biglogo"><div class="mark"><i></i><i></i><i></i></div><span>ledgerly</span></div>
+    <div class="tl"><span class="m"><span class="i">Relances intelligentes,</span></span><span class="m"><span class="i g">trésorerie sereine.</span></span></div>
+    <div class="cta">Essai gratuit 14 jours</div>
+    <div class="url mono">ledgerly.io</div>
+  </div>
+  <div class="foot"><span><span class="ic-check"></span>Connecté à votre compta</span><span><span class="ic-check"></span>Sans carte bancaire</span></div>
+</div>
+
+<svg width="0" height="0" style="position:absolute"><filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="7"/><feColorMatrix type="saturate" values="0"/></filter></svg>
+<svg class="grain" width="1080" height="1350"><rect width="1080" height="1350" filter="url(#gr)"/></svg>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../node_modules/gsap/dist/TextPlugin.min.js"></script>
+<script src="../../node_modules/gsap/dist/DrawSVGPlugin.min.js"></script>
+<script>
+gsap.registerPlugin(TextPlugin, DrawSVGPlugin);
+const ICONS = {
+  spk:'<svg class="ic" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4" fill="none"/><path d="M22 4h-4" fill="none"/></svg>',
+  'ic-sms':'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></svg>',
+  'ic-mail':'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>',
+  'ic-check':'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+};
+for (const k in ICONS) document.querySelectorAll('.'+k).forEach(el => el.innerHTML = ICONS[k]);
+
+const NB = ' ';
+const fmt = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, NB);
+const $ = s => document.querySelector(s), $$ = s => document.querySelectorAll(s);
+
+const tl = gsap.timeline({paused:true, defaults:{ease:'power3.out'}});
+const S = { s2:4.4, s3:8.9, s4:15.9, s5:20.7 };
+
+// initial states
+gsap.set(['#s2','#s3','#s4','#s5'], {clipPath:'inset(100% 0% 0% 0%)'});
+gsap.set('#s3', {clipPath:'inset(0% 0% 0% 100%)'});
+gsap.set('.m>.i', {yPercent:110});
+gsap.set('#s1 .row', {y:40, opacity:0});
+gsap.set('#c1', {y:80, opacity:0});
+gsap.set('.plan .chips', {opacity:0});
+gsap.set('.s-paid', {scale:.4, opacity:0});
+gsap.set('#bub', {y:60, opacity:0, scale:.96, transformOrigin:'0% 100%'});
+gsap.set('#toast', {scale:0});
+gsap.set('#c3', {y:70, opacity:0});
+gsap.set('#dso', {drawSVG:'0%'});
+gsap.set(['#d1','#t1','#t0','#d0'], {opacity:0});
+gsap.set('#s4 .rule', {scaleX:0});
+
+const up = (sel, at, stag=0.08, d=0.8) => tl.to(sel, {yPercent:0, duration:d, stagger:stag, ease:'expo.out'}, at);
+
+/* ---------- S1 : hook (0 → 4.4) ---------- */
+up('#s1 .kicker .i', 0.0, 0, 0.7);
+up('#s1 .big .i', 0.12, 0, 0.8);
+const c = {v:0};
+tl.to(c, {v:38420, duration:1.7, ease:'power2.out', onUpdate(){ $('#count').textContent = fmt(c.v); }}, 0.15);
+tl.to('#c1', {y:0, opacity:1, duration:0.9}, 0.35);
+tl.to('#s1 .row', {y:0, opacity:1, duration:0.6, stagger:0.11}, 0.55);
+up('#s1 .sub .i', 1.5, 0, 0.7);
+tl.fromTo('#s1 .badge.late', {scale:1}, {scale:1.08, duration:0.35, yoyo:true, repeat:3, stagger:0.06, ease:'sine.inOut'}, 2.2);
+tl.to('#c1', {y:-18, duration:2.2, ease:'none'}, 2.2);
+
+/* ---------- S2 : launch (4.4 → 8.9) ---------- */
+tl.to('#s2', {clipPath:'inset(0% 0% 0% 0%)', duration:0.75, ease:'expo.inOut'}, S.s2 - 0.2);
+tl.to('#s1 .card', {y:-160, duration:0.75, ease:'expo.inOut'}, S.s2 - 0.2);
+tl.from('#s2 .pill', {scale:0.5, opacity:0, duration:0.6, ease:'back.out(2)'}, S.s2 + 0.35);
+tl.from('#s2 .pill .ic', {rotate:-120, duration:0.9}, S.s2 + 0.35);
+up('#s2 h1 .i', S.s2 + 0.45, 0.1, 0.9);
+up('#s2 .sub .i', S.s2 + 1.0, 0.1, 0.8);
+tl.from('#s2 .week', {opacity:0, y:40, duration:0.7}, S.s2 + 1.2);
+// pin searches the week then lands on Tuesday
+tl.fromTo('#pin', {x:0}, {x:620, duration:1.0, ease:'power2.inOut'}, S.s2 + 1.6);
+tl.set('#pinlab', {text:'Ven. 17 h 50'}, S.s2 + 1.62);
+tl.set('#pinlab', {text:'Jeu. 11 h 05'}, S.s2 + 2.3);
+tl.to('#pin', {x:(936-150)/4, duration:0.9, ease:'expo.out'}, S.s2 + 2.65);
+tl.set('#pinlab', {text:'Mar. 9 h 12'}, S.s2 + 2.9);
+tl.fromTo('#pin .dot', {scale:1}, {scale:1.5, duration:0.25, yoyo:true, repeat:1, ease:'sine.inOut'}, S.s2 + 3.2);
+tl.fromTo('#s2 .glow', {x:0, y:0}, {x:-160, y:60, duration:5, ease:'none'}, S.s2 - 0.2);
+
+/* ---------- S3 : product (8.9 → 15.9) ---------- */
+tl.to('#s3', {clipPath:'inset(0% 0% 0% 0%)', duration:0.8, ease:'expo.inOut'}, S.s3 - 0.2);
+up('#s3 h2 .i', S.s3 + 0.35, 0.12, 0.8);
+tl.to('#c3', {y:0, opacity:1, duration:0.9}, S.s3 + 0.4);
+$$('.plan .row').forEach((r, i) => {
+  const at = S.s3 + 1.25 + i * 0.5;
+  tl.to(r.querySelector('.skel'), {opacity:0, duration:0.2}, at);
+  tl.fromTo(r.querySelectorAll('.chip'), {opacity:0, y:14, scale:.9}, {opacity:1, y:0, scale:1, duration:0.45, stagger:0.08, ease:'back.out(1.8)'}, at);
+  tl.set(r.querySelector('.chips'), {opacity:1}, at);
+});
+// SMS preview typed
+tl.to('#bub', {y:0, opacity:1, scale:1, duration:0.7}, S.s3 + 3.0);
+tl.to('#smstext', {duration:1.6, ease:'none',
+  text:{value:'Bonjour Julie, petit rappel pour la facture F-2026-1192 (1' + NB + '240' + NB + '€). Réglez-la en un clic' + NB + ': <span class="lnk">ledgerly.io/p/7XK2</span> Bonne journée' + NB + '!'}}, S.s3 + 3.35);
+// paid
+tl.to('.s-late', {scale:.4, opacity:0, duration:0.25, ease:'power2.in'}, S.s3 + 5.25);
+tl.to('.s-paid', {scale:1, opacity:1, duration:0.5, ease:'back.out(2.2)'}, S.s3 + 5.4);
+tl.to('#toast', {scale:1, duration:0.55, ease:'back.out(2.2)'}, S.s3 + 5.3);
+tl.to('#rBM', {backgroundColor:'rgba(221,243,231,.6)', duration:0.4}, S.s3 + 5.4);
+tl.to('#c3', {y:-12, duration:3, ease:'none'}, S.s3 + 3);
+
+/* ---------- S4 : proof (15.9 → 20.7) ---------- */
+tl.to('#s4', {clipPath:'inset(0% 0% 0% 0%)', duration:0.75, ease:'expo.inOut'}, S.s4 - 0.2);
+tl.from('#s4 .lbl', {opacity:0, y:16, duration:0.5}, S.s4 + 0.3);
+up('#s4 .n1 .i', S.s4 + 0.35, 0, 0.8);
+const a = {v:0}; tl.to(a, {v:38, duration:1.1, ease:'power2.out', onUpdate(){ $('#n38').textContent = Math.round(a.v); }}, S.s4 + 0.4);
+up('#s4 .c1 .i', S.s4 + 0.7, 0, 0.7);
+tl.to('#s4 .rule', {scaleX:1, duration:0.8, ease:'expo.inOut'}, S.s4 + 1.2);
+up('#s4 .n2 .i', S.s4 + 1.5, 0, 0.8);
+const b = {v:0}; tl.to(b, {v:11, duration:1.0, ease:'power2.out', onUpdate(){ $('#n11').textContent = Math.round(b.v); }}, S.s4 + 1.55);
+up('#s4 .c2 .i', S.s4 + 1.85, 0, 0.7);
+tl.to(['#d0','#t0'], {opacity:1, duration:0.3}, S.s4 + 2.0);
+tl.to('#dso', {drawSVG:'100%', duration:1.4, ease:'power2.inOut'}, S.s4 + 2.1);
+tl.to('#dsoFill', {opacity:1, duration:0.8}, S.s4 + 2.9);
+tl.to(['#d1','#t1'], {opacity:1, duration:0.35}, S.s4 + 3.35);
+tl.fromTo('#d1', {scale:0.3, transformOrigin:'50% 50%'}, {scale:1, duration:0.5, ease:'back.out(3)'}, S.s4 + 3.35);
+
+/* ---------- S5 : end card (20.7 → 24.5) ---------- */
+tl.to('#s5', {clipPath:'inset(0% 0% 0% 0%)', duration:0.75, ease:'expo.inOut'}, S.s5 - 0.2);
+tl.from('#s5 .biglogo .mark', {scale:0.3, rotate:-20, opacity:0, duration:0.8, ease:'back.out(1.8)'}, S.s5 + 0.3);
+tl.from('#s5 .biglogo .mark i', {scaleX:0, transformOrigin:'0 50%', duration:0.6, stagger:0.08, ease:'expo.out'}, S.s5 + 0.5);
+tl.from('#s5 .biglogo span', {x:-30, opacity:0, duration:0.7}, S.s5 + 0.45);
+up('#s5 .tl .i', S.s5 + 0.7, 0.1, 0.8);
+tl.from('#s5 .cta', {y:30, opacity:0, scale:.95, duration:0.7}, S.s5 + 1.05);
+tl.from('#s5 .url', {y:20, opacity:0, duration:0.6}, S.s5 + 1.25);
+tl.from('#s5 .foot', {opacity:0, y:20, duration:0.6}, S.s5 + 1.4);
+tl.fromTo('#s5 .center', {scale:1}, {scale:1.025, duration:3.8, ease:'none'}, S.s5);
+tl.to({}, {duration:0.01}, 24.5);
+
+window.KLIPT = {
+  width:1080, height:1350, fps:30, duration:24.5,
+  ready: document.fonts.ready,
+  render(t){ tl.seek(t, false); }
+};
+</script>
+</body>
+</html>

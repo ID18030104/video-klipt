@@ -1,0 +1,8 @@
+{ "id": "k113", "brand": "Ledgerly", "sector": "SaaS B2B (fintech)", "kind": "video",
+  "format": "1080x1350", "duration": 24, "slides": null,
+  "title": "Relances intelligentes : 47 jours de retard",
+  "concept": "Le retard de paiement comme compteur qui tourne, puis maquette UI où l'IA choisit moment et ton, timeline de relances cordial/ferme/dernier avis, preuve chiffrée (-38 %, 11 jours de DSO) et CTA. Direction encre/menthe avec accents ambre et corail, style registre comptable.",
+  "techniques": ["gsap", "svg-illustration", "ui-mockup", "count-up", "clip-path-transitions", "feTurbulence-grain"],
+  "fonts": ["Manrope", "JetBrains Mono"],
+  "palette": ["#0B1220", "#F4F1EA", "#38E0A0", "#FFB020", "#FF5A4E"],
+  "copy_language": "fr" }
