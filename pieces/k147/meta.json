@@ -1,0 +1,8 @@
+{ "id": "k147", "brand": "Ledgerly", "sector": "SaaS B2B (fintech)", "kind": "video",
+  "format": "1080x1350", "duration": 25, "slides": null,
+  "title": "Relances intelligentes — lancement produit",
+  "concept": "Du tas de factures en retard tamponnées « IMPAYÉE » à la relance parfaite : maquette produit crédible où l'IA calcule moment, canal et ton, rédige l'e-mail et la facture passe en « Payée », puis preuve chiffrée (-38 % de retards, -11 jours de DSO) et CTA essai 14 jours. Direction papier de grand-livre / encre marine / vert comptable, Manrope + Instrument Serif italique pour la voix humaine.",
+  "techniques": ["gsap", "ui-mockup", "text-mask-reveal", "scramble-text", "typewriter", "drawsvg", "counter", "wipe-transitions", "svg-grain"],
+  "fonts": ["Manrope", "Instrument Serif", "JetBrains Mono"],
+  "palette": ["#0F1E33", "#F4F1EA", "#19A974", "#E4573D", "#9FB3C8"],
+  "copy_language": "fr" }

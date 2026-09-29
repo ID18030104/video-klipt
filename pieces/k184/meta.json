@@ -1,0 +1,7 @@
+{ "id": "k184", "brand": "Maison Castel — Barbier", "sector": "Barbier / coiffeur de quartier", "kind": "video",
+  "format": "1080x1920", "duration": 21, "slides": null,
+  "title": "Rasage à l’ancienne — le rituel en 3 gestes",
+  "concept": "Hook « Posez le rasoir jetable. » tranché net par un trait de laiton, puis le rituel en 3 gestes (serviette chaude, blaireau, coupe-chou) dessinés au trait façon vieille enseigne, offre 40 min / 35 € révélée par une coupe de rasoir et end card avec badge et RDV en ligne. Direction old-school chaleureuse : encre, crème, laiton, cadre à double filet, grain et rayures de l’enseigne de barbier en transitions.",
+  "techniques": ["gsap", "drawsvg", "svg-illustration", "text-mask-reveal", "clip-path-transitions", "svg-textpath", "feTurbulence-grain"],
+  "fonts": ["Gloock", "Barlow Condensed"], "palette": ["#15110D", "#EFE4CF", "#C0924A", "#7A2A22"],
+  "copy_language": "fr" }

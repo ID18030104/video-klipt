@@ -1,0 +1,8 @@
+{ "id": "k151", "brand": "Maison Castel — Barbier", "sector": "Barbier / coiffeur de quartier",
+  "kind": "video", "format": "1080x1920", "duration": 21.8, "slides": null,
+  "title": "Rasage à l’ancienne — le rituel en 4 temps",
+  "concept": "Hook contradictoire « On ne se rase pas. On se fait raser. » avec enseigne de barbier tournante, puis le soin présenté comme une planche de catalogue d’autrefois : 4 gravures au trait dessinées dans un médaillon cranté, carte du soin encadrée laiton (35 €, 40 min) et carte finale tampon MC + RDV maisoncastel.fr. Direction old-school chaleureuse : encre/crème/laiton, accent sang-de-bœuf, grain papier, transitions en balayage rayé d’enseigne.",
+  "techniques": ["gsap", "DrawSVGPlugin", "svg-illustration", "mask-text-reveals", "css-barber-pole", "svg-textPath-logo", "feTurbulence-grain"],
+  "fonts": ["DM Serif Display", "Barlow Condensed"],
+  "palette": ["#16110E", "#EFE4CF", "#C0924F", "#7C1F1C", "#1F2C44"],
+  "copy_language": "fr" }
