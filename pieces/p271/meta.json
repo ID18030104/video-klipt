@@ -1,0 +1,7 @@
+{ "id":"p271","brand":"Fleurs de Lune","sector":"Fleuriste","kind":"video","format":"1080x1920","duration":15,"slides":null,
+"title":"Fête des grands-mères : le bouquet qui éclot",
+"concept":"Des fleurs illustrées en SVG éclosent une à une sous une lune pastel et composent un bouquet emballé de papier et noeud lilas, puis trois cartes en arche présentent les bouquets à 35, 55 et 80 € et l'appel à précommander avant jeudi.",
+"techniques":["gsap","svg-illustration","procedural-petals","seeded-rng"],
+"fonts":["Cormorant Garamond","Figtree"],
+"palette":["#F7F0E8","#3B2A45","#E58FA6","#C9587A","#F0765F","#B79AD6","#6E8C62","#F6C94A"],
+"copy_language":"fr" }

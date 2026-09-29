@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<title>Fleurs de Lune</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/cormorant-garamond/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/cormorant-garamond/500-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/cormorant-garamond/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/600.css">
+<style>
+:root{--cream:#F7F0E8;--plum:#3B2A45;--pink:#E58FA6;--moon:#EADCF0;--green:#6E8C62}
+html,body{margin:0;padding:0}
+body{width:1080px;height:1920px;overflow:hidden;background:var(--cream);position:relative;font-family:'Figtree',sans-serif;color:var(--plum)}
+svg#art{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.abs{position:absolute;left:0;width:1080px;text-align:center}
+#brand{top:118px;font-size:26px;letter-spacing:.42em;font-weight:600;text-transform:uppercase}
+#brand i{font-style:normal;color:var(--pink)}
+#h1{top:210px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:132px;line-height:1.02;letter-spacing:-.01em}
+#h1 span{display:block;overflow:hidden;padding:40px 0 14px;margin-top:-40px}
+#h1 span b{display:block;font-weight:500}
+#h1 em{color:#C9587A}
+#cards{position:absolute;left:60px;top:1070px;width:960px;display:flex;gap:30px}
+.card{flex:1;height:270px;border-radius:150px 150px 28px 28px;background:#fff9f2;border:2px solid #d9c3d8;box-shadow:0 18px 40px rgba(90,50,90,.12);text-align:center;padding-top:62px;box-sizing:border-box;position:relative}
+.card .n{font-size:20px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#8c6a93}
+.card .p{font-variant-numeric:lining-nums;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:118px;line-height:1.05;margin-top:6px}
+.card .p small{font-size:64px;font-weight:500;margin-left:6px}
+.card .d{font-size:22px;color:#7d6a84;margin-top:8px}
+.card.big{background:#3B2A45;border-color:#3B2A45;color:#fff}
+.card.big .n{color:#F2B8C8}.card.big .d{color:#d9c8e2}
+#cta{top:1430px}
+#cta .a{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:84px;line-height:1.05}
+#cta .a em{color:#C9587A}
+#cta .b{font-size:32px;margin-top:22px;font-weight:600;letter-spacing:.04em}
+#cta .c{margin-top:26px;display:inline-block;font-size:26px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;background:#3B2A45;color:#fff;padding:20px 40px;border-radius:60px}
+</style></head><body>
+<svg id="art" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <radialGradient id="moonG" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F1E6F5"/><stop offset=".7" stop-color="#EADCF0"/><stop offset="1" stop-color="#EADCF0" stop-opacity="0"/></radialGradient>
+ </defs>
+ <g id="bg"></g>
+ <circle id="moon" cx="540" cy="900" r="520" fill="url(#moonG)"/>
+ <g id="pos"><g id="bq"><g id="sway">
+   <g id="foliage"></g><g id="stems"></g><g id="heads"></g>
+   <g id="paper">
+    <path d="M230,1210 Q540,1140 850,1210 L600,1655 Q540,1678 480,1655 Z" fill="#F0BFCB"/>
+    <path d="M245,1225 Q400,1305 540,1348 Q700,1295 835,1225 L610,1662 Q540,1688 470,1662 Z" fill="#FCF5EA"/>
+    <path d="M540,1348 L540,1672" stroke="#e6d6c2" stroke-width="3" fill="none"/>
+    <path d="M400,1290 L500,1640 M690,1285 L585,1640" stroke="#eadbc8" stroke-width="3" fill="none"/>
+    <g id="paperDots" fill="#D8B8E0"></g>
+   </g>
+   <g id="ribbon">
+    <path d="M540,1372 C440,1300 380,1400 470,1438 C505,1450 528,1410 540,1372 Z" fill="#B79AD6"/>
+    <path d="M540,1372 C640,1300 700,1400 610,1438 C575,1450 552,1410 540,1372 Z" fill="#B79AD6"/>
+    <path d="M540,1385 L490,1520 L530,1500 L545,1540 Z" fill="#9B7CC0"/>
+    <path d="M540,1385 L590,1520 L550,1500 L535,1540 Z" fill="#A78BCB"/>
+    <circle cx="540" cy="1385" r="22" fill="#8663B0"/>
+   </g>
+ </g></g></g>
+ <g id="fall"></g>
+</svg>
+<div class="abs" id="brand">Fleurs de Lune <i>&#9790;</i> Montmartre</div>
+<div class="abs" id="h1"><span><b>Fête des</b></span><span><b><em>grands-mères</em></b></span></div>
+<div id="cards">
+ <div class="card"><div class="n">Douceur</div><div class="p">35<small>€</small></div><div class="d">petit bouquet</div></div>
+ <div class="card big"><div class="n">Tendresse</div><div class="p">55<small>€</small></div><div class="d">le préféré</div></div>
+ <div class="card"><div class="n">Grand jardin</div><div class="p">80<small>€</small></div><div class="d">généreux</div></div>
+</div>
+<div class="abs" id="cta">
+ <div class="a">Précommandez <em>avant jeudi</em></div>
+ <div class="b">Retrait ou livraison · Paris 18<sup style="font-size:.6em">e</sup></div>
+ <div class="c">Fleurs françaises de saison</div>
+</div>
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+const NS='http://www.w3.org/2000/svg', R=KK.rng(271);
+const el=(tag,attrs,parent)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e;};
+const petalD=(L,w)=>`M0,0 C${-w*.6},${-L*.1} ${-w*1.15},${-L*.6} ${-w*.5},${-L*.92} Q0,${-L*1.1} ${w*.5},${-L*.92} C${w*1.15},${-L*.6} ${w*.6},${-L*.1} 0,0Z`;
+const pt=(p,t)=>{const u=1-t;return [u*u*p[0][0]+2*u*t*p[1][0]+t*t*p[2][0],u*u*p[0][1]+2*u*t*p[1][1]+t*t*p[2][1]];};
+
+// background: stars + moon crescent details
+const bg=document.getElementById('bg');
+for(let i=0;i<26;i++){const x=R()*1080,y=R()*1900,s=3+R()*6;
+  el('circle',{cx:x,cy:y,r:s/2,fill:i%3?'#E2CFE8':'#F2C9D3',opacity:.8},bg);}
+const dots=document.getElementById('paperDots');
+for(let i=0;i<9;i++){const y=1350+ (i%3)*90+ (i>5?40:0);const x=430+ (i*61)%240;el('circle',{cx:x,cy:y,r:5},dots);}
+
+// FOLIAGE
+const foliage=document.getElementById('foliage'); const fol=[];
+const sprays=[[[540,1380],[330,1000],[190,700]],[[540,1380],[760,990],[890,690]],[[540,1380],[280,1150],[120,930]],[[540,1380],[800,1150],[960,940]],[[540,1380],[470,900],[420,540]],[[540,1380],[620,900],[665,545]],[[540,1380],[540,850],[540,600]]];
+sprays.forEach((s,i)=>{
+  const g=el('g',{},foliage);
+  const path=el('path',{d:`M${s[0]} Q${s[1]} ${s[2]}`,fill:'none',stroke:'#587A52','stroke-width':5,'stroke-linecap':'round',pathLength:1},g);
+  const leaves=[];
+  const n=11;
+  for(let k=0;k<n;k++){
+    const t=0.3+0.7*k/(n-1); const [x,y]=pt(s,t); const [x2,y2]=pt(s,Math.min(1,t+.02));
+    const ang=Math.atan2(y2-y,x2-x)*180/Math.PI+90;
+    [-1,1].forEach(side=>{
+      const lg=el('g',{transform:`translate(${x},${y}) rotate(${ang+side*(48+R()*14)})`},g);
+      const L=(70-t*22)*(0.9+R()*.3);
+      const p=el('path',{d:petalD(L,L*.32),fill:(k+i)%2?'#7FA173':'#93B383',stroke:'#587A52','stroke-width':1.5,'stroke-opacity':.5},lg);
+      leaves.push(p);
+    });
+  }
+  fol.push({path,leaves});
+});
+// MIMOSA
+const mimosa=[[[540,1380],[300,1100],[205,860]],[[540,1380],[800,1000],[885,770]]]; const mim=[];
+mimosa.forEach(s=>{
+  const g=el('g',{},foliage);
+  const path=el('path',{d:`M${s[0]} Q${s[1]} ${s[2]}`,fill:'none',stroke:'#587A52','stroke-width':4,pathLength:1,'stroke-linecap':'round'},g);
+  const ds=[];
+  for(let k=0;k<26;k++){const t=.6+.4*R();const [x,y]=pt(s,t);
+    const c=el('circle',{cx:x+(R()-.5)*90,cy:y+(R()-.5)*90-10,r:10+R()*9,fill:R()>.5?'#F6C94A':'#F9D96E'},g);ds.push(c);}
+  mim.push({path,ds});
+});
+
+// FLOWERS
+const heads=document.getElementById('heads'), stemsG=document.getElementById('stems');
+const P=(n,L,w,rot,fill,stroke,parent,start=0)=>{const out=[];for(let i=0;i<n;i++){
+  const g=el('g',{transform:`rotate(${start+i*360/n+rot})`},parent);
+  out.push(el('path',{d:petalD(L,w),fill,stroke,'stroke-width':1.6,'stroke-opacity':.55},g));}return out;};
+const defs={
+ peony(g,r){const a=[];
+  a.push(...P(11,r,r*.42,0,'#F4B0C1','#C9587A',g)); a.push(...P(9,r*.8,r*.4,16,'#EE97AE','#C9587A',g));
+  a.push(...P(7,r*.58,r*.36,8,'#E67F9F','#B84468',g)); a.push(...P(5,r*.34,r*.28,30,'#D4587F','#9E3557',g));
+  a.push(el('circle',{r:r*.09,fill:'#F6C94A'},g)); return a;},
+ rose(g,r){const a=[];
+  a.push(...P(8,r,r*.4,0,'#F9C7AC','#D9825F',g)); a.push(...P(7,r*.75,r*.36,20,'#F5B090','#D9825F',g));
+  a.push(...P(6,r*.52,r*.3,10,'#EE9C7B','#C46A48',g)); a.push(...P(4,r*.3,r*.25,40,'#E3835F','#B8543A',g)); return a;},
+ poppy(g,r){const a=[];
+  a.push(...P(5,r,r*.68,0,'#F0765F','#C2452F',g)); a.push(...P(5,r*.66,r*.5,36,'#F58D77','#C2452F',g));
+  a.push(el('circle',{r:r*.16,fill:'#3B2A45'},g));
+  for(let i=0;i<12;i++){const an=i*30*Math.PI/180;a.push(el('circle',{cx:Math.cos(an)*r*.26,cy:Math.sin(an)*r*.26,r:r*.035,fill:'#3B2A45'},g));}
+  return a;},
+ daisy(g,r){const a=[];
+  a.push(...P(18,r,r*.13,0,'#FFFFFF','#B79AD6',g)); a.push(...P(14,r*.82,r*.12,9,'#FBF3FF','#B79AD6',g));
+  a.push(el('circle',{r:r*.2,fill:'#F6C94A',stroke:'#D9A21F','stroke-width':2},g)); return a;},
+ lilac(g,r){const a=[];
+  a.push(...P(6,r,r*.5,0,'#C4A7E0','#8663B0',g)); a.push(...P(6,r*.6,r*.36,30,'#DCC8EE','#8663B0',g));
+  a.push(el('circle',{r:r*.08,fill:'#F6C94A'},g)); return a;}
+};
+const fl=[ // type, x,y,r, spawn time, rot
+ ['daisy',255,1015,88,2.6],['daisy',830,1030,92,3.0],['lilac',450,985,105,3.4],['rose',630,975,112,3.8],
+ ['rose',362,830,118,4.2],['poppy',728,815,125,4.6],['lilac',395,640,80,5.0],['daisy',690,655,78,5.3],['peony',540,720,158,5.6]
+];
+const flw=[];
+fl.forEach(([type,x,y,r,t0])=>{
+  const d=`M540,1400 C${540+(x-540)*.1},${1150} ${x+(540-x)*.15},${y+260} ${x},${y}`;
+  const stem=el('path',{d,fill:'none',stroke:'#5C7F55','stroke-width':7,'stroke-linecap':'round',pathLength:1},stemsG);
+  const g=el('g',{},heads); gsap.set(g,{x,y});
+  const inner=el('g',{},g);
+  const petals=defs[type](inner,r);
+  flw.push({g,inner,petals,stem,t0,r});
+});
+
+// FALLING PETALS
+const fall=document.getElementById('fall'); const fp=[];
+for(let i=0;i<16;i++){const c=['#F4B0C1','#F9C7AC','#DCC8EE','#FFFFFF'][i%4];
+  const g=el('g',{},fall); const p=el('path',{d:petalD(30,10),fill:c,stroke:'#d8a9bd','stroke-width':1},g); fp.push({g,p,x:R()*1080,ph:R()*360,s:.6+R()*.8,d:5+R()*5});}
+
+// TIMELINE
+const tl=gsap.timeline({paused:true});
+gsap.set('#h1 span b',{yPercent:110}); gsap.set('#brand',{opacity:0});
+gsap.set('.card',{y:80,opacity:0,scale:.9}); gsap.set('#cta .a,#cta .b,#cta .c',{opacity:0,y:30});
+gsap.set('#paper,#ribbon',{opacity:0,y:120});
+gsap.set('#ribbon',{scale:.2,svgOrigin:'540 1385'});
+gsap.set('#moon',{scale:.6,opacity:0,svgOrigin:'540 900'});
+tl.to('#moon',{scale:1,opacity:1,duration:2.5,ease:'power2.out'},0);
+tl.to('#brand',{opacity:1,duration:.8},.2);
+tl.to('#h1 span b',{yPercent:0,duration:1,ease:'power3.out',stagger:.25},.5);
+fol.forEach((f,i)=>{const t=1+i*.15;
+  tl.fromTo(f.path,{strokeDasharray:1,strokeDashoffset:1},{strokeDashoffset:0,duration:1.1,ease:'power2.out'},t);
+  tl.from(f.leaves,{scale:0,transformOrigin:'0px 0px',duration:.5,ease:'back.out(2)',stagger:.04},t+.35);});
+mim.forEach((m,i)=>{const t=1.9+i*.3;
+  tl.fromTo(m.path,{strokeDasharray:1,strokeDashoffset:1},{strokeDashoffset:0,duration:.9,ease:'power2.out'},t);
+  tl.from(m.ds,{scale:0,transformOrigin:'center',transformBox:'fill-box',duration:.4,ease:'back.out(3)',stagger:.03},t+.5);});
+flw.forEach(f=>{const t=f.t0-1.0;
+  tl.fromTo(f.stem,{strokeDasharray:1,strokeDashoffset:1},{strokeDashoffset:0,duration:.9,ease:'power2.out'},t);
+  tl.from(f.g,{scale:.1,duration:1.3,ease:'power2.out'},f.t0-.3);
+  tl.from(f.inner,{rotation:-50,duration:1.5,ease:'power2.out'},f.t0-.3);
+  tl.from(f.petals,{scale:0,transformOrigin:'0px 0px',duration:.9,ease:'back.out(1.6)',stagger:.035},f.t0);
+});
+tl.to('#paper',{opacity:1,y:0,duration:.9,ease:'power3.out'},6.4);
+tl.to('#ribbon',{opacity:1,y:0,scale:1,duration:.9,ease:'back.out(2)'},7.0);
+// gentle sway
+tl.to('#sway',{rotation:1.6,svgOrigin:'540 1550',duration:3.75,ease:'sine.inOut',repeat:3,yoyo:true},0);
+// phase 2
+tl.to('#h1 span b',{yPercent:-200,opacity:0,duration:.7,ease:'power3.in',stagger:.1},7.6);
+tl.to('#bq',{scale:.66,svgOrigin:'540 550',duration:1.2,ease:'power3.inOut'},7.9);
+tl.to('#pos',{y:-250,duration:1.2,ease:'power3.inOut'},7.9);
+tl.to('#moon',{y:-360,scale:.8,svgOrigin:'540 900',duration:1.2,ease:'power3.inOut'},7.9);
+tl.to('.card',{y:0,opacity:1,scale:1,duration:.8,ease:'back.out(1.5)',stagger:.28},9.0);
+tl.to('#cta .a',{opacity:1,y:0,duration:.7,ease:'power2.out'},11.6);
+tl.to('#cta .b',{opacity:1,y:0,duration:.7,ease:'power2.out'},12.1);
+tl.to('#cta .c',{opacity:1,y:0,duration:.7,ease:'back.out(1.6)'},12.6);
+// falling petals
+fp.forEach((f,i)=>{const st=.5+ (i*0.9)%9;
+  gsap.set(f.g,{x:f.x,y:-60,scale:f.s,rotation:f.ph});
+  tl.to(f.g,{y:1980,duration:f.d,ease:'none'},st);
+  tl.to(f.g,{x:f.x+(i%2?90:-90),rotation:f.ph+220,duration:f.d,ease:'sine.inOut'},st);
+});
+window.KLIPT={width:1080,height:1920,fps:30,duration:15,render(t){tl.seek(t,false);}};
+</script>
+</body></html>

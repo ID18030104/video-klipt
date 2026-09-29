@@ -1,0 +1,8 @@
+{ "id": "p243", "brand": "CodeCraft Academy", "sector": "Coding bootcamp", "kind": "video",
+  "format": "1080x1920", "duration": 25, "slides": null,
+  "title": "Priya: nurse to developer",
+  "concept": "Kinetic-type testimonial of Priya, ex-NHS nurse turned front-end developer: before/after cards, a self-typing code snippet, then the 89% hired stat and a CTA. Dark ink with electric lime and coral accents, grotesque plus italic serif type.",
+  "techniques": ["gsap", "kinetic-typography", "svg-icons", "typing-code-animation", "svg-progress-ring"],
+  "fonts": ["Bricolage Grotesque", "Instrument Serif", "JetBrains Mono"],
+  "palette": ["#0D1017", "#F5F0E6", "#C8FF3D", "#FF6A47", "#8B93A3"],
+  "copy_language": "en" }

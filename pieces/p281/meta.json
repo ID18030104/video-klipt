@@ -1,0 +1,8 @@
+{ "id": "p281", "brand": "Kiddo", "sector": "Eco-friendly wooden toys",
+  "kind": "video", "format": "1080x1920", "duration": 22, "slides": null,
+  "title": "The gift that keeps rolling",
+  "concept": "Paper cut-out stop-motion launch ad for the Modular Marble Run: torn-paper pieces snap together on twos with boiling edges and 'click!' bursts, then the marble races down the run on ones before a mustard values sheet and a Christmas end card ('The gift that keeps rolling.', £45, ages 3–8).",
+  "techniques": ["gsap", "stop-motion-stepping", "svg-displacement-filter", "css-cutout-illustration", "procedural-marble-path", "mask-text-reveals", "grain-texture"],
+  "fonts": ["Fraunces", "Figtree"],
+  "palette": ["#F3EADB", "#2A211C", "#E0533D", "#F2B33D", "#2F6B4F", "#E6C08D", "#6FA3C0"],
+  "copy_language": "en" }

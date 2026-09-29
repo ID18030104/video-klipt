@@ -1,0 +1,5 @@
+{"id":"p210","brand":"Nuage HR","sector":"HR software (SaaS)","kind":"carousel","format":"1080x1350","duration":null,"slides":8,
+"title":"Onboarding: the Day -7 to Day 90 checklist",
+"concept":"A LinkedIn carousel that turns onboarding into a tickable checklist, with a cloud-themed navy/coral identity, a persistent Day -7 to Day 90 timeline, one framed stat (1 in 5, flagged as a commonly cited estimate) and a free-template CTA.",
+"techniques":["html-css","inline-svg","css-layout"],"fonts":["Bricolage Grotesque","Inter"],
+"palette":["#14213D","#1E3157","#7CC4FA","#F6F2EA","#FF6B4A"],"copy_language":"en"}

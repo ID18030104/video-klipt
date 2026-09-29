@@ -13,19 +13,19 @@ html,body{margin:0;background:var(--paper)}
 body{width:1080px;overflow-x:hidden;font-family:Figtree,sans-serif;color:var(--ink)}
 .slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--paper)}
 .slide svg.view{position:absolute;inset:0}
-.txt{position:absolute;left:72px;right:72px;top:96px}
+.txt{position:absolute;left:72px;right:72px;top:80px}
 .kick{font:500 27px/1 "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--terra)}
 h1,h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;margin:22px 0 0;letter-spacing:-.035em;line-height:.94}
 h1{font-size:118px}
 h2{font-size:92px}
 p.body{font-size:34px;line-height:1.28;font-weight:500;margin:22px 0 0;max-width:800px;letter-spacing:-.005em}
-.foot{position:absolute;left:72px;right:72px;bottom:64px;font:500 26px/1.2 "IBM Plex Mono",monospace;letter-spacing:.04em;display:flex;justify-content:space-between;align-items:flex-end}
+.foot{position:absolute;left:72px;right:72px;bottom:48px;font:500 26px/1.2 "IBM Plex Mono",monospace;letter-spacing:.04em;display:flex;justify-content:space-between;align-items:flex-end}
 .brand{font-weight:600;font-family:"Bricolage Grotesque";font-size:30px;letter-spacing:-.01em}
 .swipe{background:var(--ink);color:var(--paper);padding:16px 26px;border-radius:999px;font:700 30px Figtree;letter-spacing:0}
 .figs{display:flex;gap:56px;margin-top:22px}
 .fig b{display:block;font:800 96px/.95 "Bricolage Grotesque";letter-spacing:-.04em;font-variant-numeric:tabular-nums}
 .fig i{font:500 25px "IBM Plex Mono";font-style:normal;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
-.cta{margin-top:30px;background:var(--ink);color:var(--paper);border-radius:18px;padding:30px 36px}
+.cta{margin-top:14px;background:var(--ink);color:var(--paper);border-radius:18px;padding:20px 36px}
 .cta strong{display:block;font:800 46px/1 "Bricolage Grotesque";letter-spacing:-.03em}
 .cta span{display:block;margin-top:12px;font:500 32px Figtree}
 .pg{font-weight:500}
@@ -74,7 +74,7 @@ p.body{font-size:34px;line-height:1.28;font-weight:500;margin:22px 0 0;max-width
 window.KLIPT={width:1080,height:1350};
 (function(){
 const NS='http://www.w3.org/2000/svg';
-const X0=100,Sx=270,Dx=110,Dy=60,Sz=135,Yf=1215,L=20,D=7.25,H=2.0;
+const X0=100,Sx=270,Dx=110,Dy=60,Sz=135,Yf=1160,L=20,D=7.25,H=2.0;
 const P=(x,y,z)=>[X0+Sx*x+Dx*y, Yf-Dy*y-Sz*z];
 const pts=a=>a.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
 const poly=(a,att)=>`<polygon points="${pts(a)}" ${att||''}/>`;
@@ -143,7 +143,7 @@ bx.forEach(x=>{const top=[P(x,0,H),P(x+.22,0,H),P(x+.22,D,H),P(x,D,H)];
 // annotations
 const T=(x,y,s,txt,att)=>`<text x="${x}" y="${y}" font-family="IBM Plex Mono" font-weight="500" font-size="${s}" ${att||''}>${txt}</text>`;
 let ann='';
-ghosts.forEach((x,i)=>{const q=P(x,0,H);if(i<4)ann+=T(q[0]+22,q[1]-22,24,'cloison déposée','fill="#2F63A8" letter-spacing="1"');});
+ghosts.forEach((x,i)=>{const q=P(x,0,H);if(i<4)ann+=`<rect x="${q[0]+14}" y="${q[1]+14}" width="268" height="40" rx="20" fill="#EEE7D6" stroke="#2F63A8" stroke-width="2"/>`+T(q[0]+32,q[1]+41,24,'cloison déposée','fill="#2F63A8" letter-spacing="1"');});
 
 // callouts
 const call=(x,y,tx,ty,label,col)=>`<path d="M${x} ${y}L${tx} ${ty}" stroke="${col}" stroke-width="3"/><circle cx="${x}" cy="${y}" r="8" fill="${col}"/>`+T(tx+14,ty+8,28,label,`fill="${col}" letter-spacing="1"`);

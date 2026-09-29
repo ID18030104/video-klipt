@@ -1,0 +1,8 @@
+{ "id": "p263", "brand": "Studio Linéa", "sector": "Architecte d’intérieur", "kind": "carousel",
+  "format": "1080x1350", "duration": null, "slides": 6,
+  "title": "Longère de 1890 : avant / après",
+  "concept": "Une seule axonométrie panoramique de la longère court sous les six slides : chaque swipe fait tomber une cloison (traits pleins hachurés puis pointillés bleus de démolition) et remplit un matériau (chaux, chêne, tomettes), sur papier calque.",
+  "techniques": ["svg-illustration", "axonometric projection", "svg patterns and masks", "panorama strip"],
+  "fonts": ["Bricolage Grotesque", "IBM Plex Mono", "Figtree"],
+  "palette": ["#EEE7D6", "#1E2A33", "#B4532E", "#C08F58", "#FBF8F0", "#2F63A8"],
+  "copy_language": "fr" }
