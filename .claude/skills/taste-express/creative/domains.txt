@@ -1,0 +1,275 @@
+herbarium sheet
+weather forecast map
+tide table
+star chart
+anatomy atlas
+chess notation
+sheet music
+knitting pattern
+recipe card
+cocktail menu
+wine label
+perfume bottle label
+pharmacy label
+museum wall label
+auction catalogue
+real estate listing
+classified ads page
+crossword puzzle
+scratch card
+bingo card
+horoscope column
+road signs
+railway timetable
+airport departures board
+metro map
+boarding pass
+passport stamps
+postcard
+postage stamp
+telegram
+typewritten letter
+school exercise book
+school report card
+exam paper
+library card
+dictionary entry
+encyclopedia plate
+comic strip
+manga page
+film poster
+film end credits
+TV test card
+teletext page
+arcade game screen
+pinball playfield
+virtual pet toy
+8-bit video game
+sports scoreboard
+football tactics board
+horse racing form
+boxing fight poster
+marathon bib
+gym logbook
+yoga pose diagram
+dance step notation
+origami instructions
+building brick manual
+flat-pack furniture manual
+architectural blueprint
+construction site hoarding
+hazard warning label
+shipping container markings
+cargo manifest
+seed packet
+gardening calendar
+beekeeping frame
+fishing lure box
+surf forecast
+mountain trail sign
+topographic map
+rock strata cross-section
+fossil specimen card
+archaeological dig grid
+space mission checklist
+lab notebook
+periodic table
+microscope slide
+x-ray film
+eye test chart
+hospital wristband
+pill organiser
+vending machine
+jukebox selection card
+cassette tape insert
+vinyl record label
+concert ticket
+festival wristband
+club flyer
+wheatpaste street poster
+protest placard
+election poster
+ballot paper
+tax form
+receipt
+invoice
+bank cheque
+banknote
+coin collection album
+stock market ticker
+casino chips
+playing cards
+dice
+board game box
+dominoes
+fortune cookie slip
+takeaway menu
+conveyor-belt sushi
+bento box
+bakery paper bag
+pizza box lid
+coffee cup sleeve
+milk carton
+cereal box back
+candy wrapper
+fruit sticker
+butcher price label
+fish market chalkboard
+farmers market sign
+flea market price tag
+barcode
+shopping list
+sticky notes
+wall calendar
+day planner
+alarm clock
+sundial
+hourglass
+weather vane
+compass rose
+treasure map
+coat of arms
+sports medal
+trophy engraving
+diploma
+scout badge
+embroidered patch
+quilt
+tapestry
+stained glass
+mosaic
+glazed tiles
+woodblock print
+paper cut banner
+hand-painted truck art
+hand-painted cinema poster
+woodcut pamphlet
+Swiss railway clock
+enamel street sign
+1960s space age design
+1980s Memphis design
+1990s rave flyer
+Y2K chrome
+early homemade website
+retro desktop operating system
+handheld game console
+paint program doodle
+spreadsheet
+slide presentation clip art
+email thread
+text message bubbles
+phone notifications
+loading screen
+error message dialog
+captcha
+terms and conditions
+nutrition facts panel
+clothing care label
+shoe box
+luggage tag
+hotel key card
+do not disturb door hanger
+room service menu
+in-flight safety card
+weather radar
+seismograph
+heart rate monitor
+fingerprint card
+lost cat poster
+lost and found box
+garage sale sign
+bumper sticker
+licence plate
+car dashboard
+speedometer
+GPS directions
+parking ticket
+traffic lights
+pedestrian crossing
+bus stop timetable
+bike lane markings
+ski resort map
+ski lift pass
+swimming pool rules sign
+beach flags
+campsite map
+tent pitching instructions
+picnic tablecloth
+restaurant bill
+magic trick kit
+circus poster
+fairground ride sign
+cinema seat plan
+theatre programme
+orchestra seating plan
+radio dial
+audio waveform
+synthesizer patch sheet
+drum machine grid
+DJ mixer
+karaoke lyrics screen
+haiku
+handwritten letter
+wedding invitation
+birth announcement card
+tattoo flash sheet
+barbershop pole and price board
+nail polish colour wheel
+makeup palette
+paint colour swatches
+printer test page
+print registration marks
+photography contact sheet
+darkroom test strip
+instant photo
+photo booth strip
+ID photo
+name badge
+conference lanyard
+business card
+letterhead
+wax seal
+rubber stamp
+notary seal
+dot-matrix printout
+fax transmission
+Morse code
+semaphore flags
+maritime signal flags
+lighthouse
+ship's logbook
+knot-tying diagram
+nautical chart
+weather station readout
+tree rings
+mushroom field guide
+bird field guide
+insect specimen box
+aquarium label
+zoo map
+dog show rosette
+supermarket aisle sign
+shopping trolley
+checkout conveyor
+cash register
+safe deposit box
+locker room
+keyring
+padlock
+secret cipher
+riddle
+escape room clue
+detective case file
+redacted document
+fantasy world map
+role-playing character sheet
+dungeon map
+trading card
+sticker album
+school yearbook
+cafeteria tray
+chalkboard
+science fair poster
+planetarium show
+moon phase calendar
+farmer's almanac
