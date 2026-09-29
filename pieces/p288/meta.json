@@ -1,0 +1,8 @@
+{ "id": "p288", "brand": "Bloc Party", "sector": "Bouldering gym", "kind": "story",
+  "format": "1080x1920", "duration": null, "slides": 1,
+  "title": "Night Session — Friday 9pm to 1am",
+  "concept": "The climbing wall becomes the dancefloor: a glowing UV-lime problem climbs the right edge up to a mirror-ball top hold, with event details set as route-setter tape strips over a dark plywood wall with T-nut grid.",
+  "techniques": ["svg-illustration", "procedural-holds", "seeded-rng", "css-typography", "svg-filters"],
+  "fonts": ["Anton", "Space Mono", "Permanent Marker"],
+  "palette": ["#07070f", "#11111f", "#c8ff2e", "#ff3d9a", "#3f6bff", "#ff7a1f", "#f4f1ea"],
+  "copy_language": "en" }

@@ -1,0 +1,8 @@
+{ "id": "p295", "brand": "Max Leroy Coaching", "sector": "Personal trainer", "kind": "carousel",
+  "format": "1080x1350", "duration": null, "slides": 6,
+  "title": "4 weeks back into exercise, injury-free",
+  "concept": "The plan as a staircase: one orange progress line runs along the bottom of the whole carousel and steps up each week, so swiping literally climbs you back to fitness. Training-log cards (frequency, duration, effort, four exercises with reps, a coach's rule) on chalk paper, bookended by deep pine hook and CTA slides.",
+  "techniques": ["html-css-layout", "svg-illustration", "continuous-cross-slide-graphic", "svg-grain-texture", "js-templated-slides"],
+  "fonts": ["Barlow Condensed", "Figtree"],
+  "palette": ["#123028", "#F1ECE2", "#FF6A2B", "#0E231D", "#9DB3A6"],
+  "copy_language": "en" }

@@ -1,0 +1,8 @@
+{ "id": "p294", "brand": "Clinique vétérinaire des Tilleuls", "sector": "Santé animale", "kind": "video",
+  "format": "1080x1920", "duration": 15, "slides": null,
+  "title": "Leurs vaccins, on y pense pour vous",
+  "concept": "Campagne de rappel vaccinal douce et rassurante : un chien et un chat illustrés tout en rondeurs, un carnet de vaccination qui se tamponne « FAIT », puis une prise de RDV en ligne sur calendrier et le SMS de rappel offert, avant un end card vert tilleul avec site et téléphone.",
+  "techniques": ["gsap", "svg-illustration", "css-ui-mockup", "clip-path-reveal"],
+  "fonts": ["Fraunces", "Nunito"],
+  "palette": ["#FBF3E6", "#2E4B3C", "#7FAE8A", "#D2643F", "#F3AE86", "#EAC08C", "#A3AEC0"],
+  "copy_language": "fr" }

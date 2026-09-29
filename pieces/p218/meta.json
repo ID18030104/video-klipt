@@ -1,0 +1,8 @@
+{ "id": "p218", "brand": "Pharmacie du Marché", "sector": "Pharmacie", "kind": "carousel",
+  "format": "1080x1350", "duration": null, "slides": 7,
+  "title": "Allergies de printemps : 6 réflexes pour mieux respirer",
+  "concept": "Un bulletin radar pollen : une carte en pixels continue d'une slide à l'autre, où chaque réflexe creuse une zone dégagée qui grandit jusqu'au dernier conseil. Palette radar pollen (jaune à brique) sur carte sauge, vert pharmacie pour l'air sain, typographie d'écran météo.",
+  "techniques": ["canvas-procedural-noise", "continuous-panorama", "lucide-icons", "css-layout"],
+  "fonts": ["Unbounded", "Figtree", "Space Mono"],
+  "palette": ["#E6ECE4", "#F3DC5A", "#EBAE3C", "#DE6F3F", "#B8432E", "#FBFCF8", "#0F2B25", "#17835A"],
+  "copy_language": "fr" }

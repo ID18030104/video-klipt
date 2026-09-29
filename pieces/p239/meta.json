@@ -1,0 +1,8 @@
+{ "id": "p239", "brand": "Olfa", "sector": "Online deli (olive oil)", "kind": "video",
+  "format": "1080x1920", "duration": 21, "slides": null,
+  "title": "It's not just olive oil: 3 reasons, printed from woodblocks",
+  "concept": "Each reason is a fresh sheet laid on a print run and inked by a roller: a one-colour woodblock world (olive tree cut in reverse, a monumental Koroneiki olive, a 0.2% acidity numeral bleeding off the sheet). The opening lie 'It's just olive oil.' is gouged out and corrected on the final sheet beside the £35 discovery box.",
+  "techniques": ["procedural-svg-illustration", "woodblock gouge marks", "canvas-generated ink mask (grain + pinholes)", "brayer ink-roll reveal via clip-path", "sheet stack transitions", "deterministic render(t)"],
+  "fonts": ["Fraunces 900", "Fraunces 600 italic", "Familjen Grotesk 500/700"],
+  "palette": ["#EFE6CE", "#22361A", "#CFC2A0"],
+  "copy_language": "en" }

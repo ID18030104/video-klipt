@@ -1,0 +1,8 @@
+{ "id": "p250", "brand": "Taco Loco", "sector": "Food truck", "kind": "story",
+  "format": "1080x1920", "duration": null, "slides": 3,
+  "title": "Birria is here + this week’s route",
+  "concept": "Three-frame Instagram Story styled like a hand-painted Tex-Mex truck sign under papel picado: frame 1 drops the new Birria taco with price sticker and consommé cup, frame 2 is a Mon–Sat route board (Sep 28 – Oct 3) with Austin spots and times, frame 3 dunks the taco and pushes an order-ahead link sticker.",
+  "techniques": ["svg-illustration", "papel-picado-svg-masks", "seeded-canvas-grain", "sunburst", "sticker-layout"],
+  "fonts": ["Shrikhand", "Barlow Condensed"],
+  "palette": ["#C4301C", "#F7E9CC", "#F4A822", "#2E6B45", "#2A1510"],
+  "copy_language": "en" }

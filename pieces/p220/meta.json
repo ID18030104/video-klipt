@@ -1,0 +1,8 @@
+{ "id": "p220", "brand": "Domaine des Trois Chênes", "sector": "Vin (domaine viticole)", "kind": "video",
+  "format": "1080x1920", "duration": 20, "slides": null,
+  "title": "Portes ouvertes, littéralement",
+  "concept": "Une étiquette de Vouvray se grave trait par trait sur la bouteille : trois chênes sur le coteau, rangs de chenin, voûte de tuffeau. Puis la gravure elle-même devient la porte du chai et s’ouvre en 3D sur la cave éclairée : 7 & 8 novembre, dégustation gratuite.",
+  "techniques": ["gsap", "svg-illustration", "procedural-engraving", "stroke-draw", "css-3d", "svg-turbulence-paper", "gold-foil-text"],
+  "fonts": ["Gloock", "Instrument Serif Italic", "Manrope 600"],
+  "palette": ["#0F1A15", "#F1EADA", "#1D2A22", "#9C7426", "#2A2118", "#E8C47A"],
+  "copy_language": "fr" }

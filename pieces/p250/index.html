@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--
+  TACO LOCO — Instagram Story (3 frames, 1080×1920)
+  Concept : the truck’s weekly “where are we” story, led by the new Birria taco. Frame 1 = the drop (Birria is here),
+            frame 2 = the route board Mon–Sat (a dashed road the truck drives down), frame 3 = dunk + order-ahead CTA.
+  Palette : chile red #C4301C · masa cream #F7E9CC · marigold #F4A822 · nopal green #2E6B45 · adobo ink #2A1510
+  Type    : Shrikhand (hand-painted truck-sign display) + Barlow Condensed (menu-board info, times)
+  Graphic : papel picado banner, illustrated birria taco + consommé cup, rubber stamps, sticker tags, paper grain
+  Motion  : stills (story frames) — energy from tilt, stickers and overlap
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/shrikhand/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/800.css">
+<script src="../../lib/klipt-kit.js"></script>
+<style>
+  :root{
+    --red:#C4301C; --red-d:#9A2213; --cream:#F7E9CC; --gold:#F4A822; --green:#2E6B45; --ink:#2A1510;
+  }
+  html,body{margin:0;padding:0;background:#111;}
+  body{width:1080px;overflow:hidden;}
+  .slide{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:"Barlow Condensed",sans-serif;color:var(--ink);}
+  .grain{position:absolute;inset:0;pointer-events:none;opacity:.22;mix-blend-mode:multiply;z-index:50;}
+  .vignette{position:absolute;inset:0;pointer-events:none;z-index:49;
+    background:radial-gradient(120% 80% at 50% 45%, transparent 55%, rgba(42,21,16,.35) 100%);}
+  .picado{position:absolute;left:0;top:0;width:1080px;height:230px;z-index:5;}
+  .disp{font-family:"Shrikhand",serif;font-weight:400;line-height:.9;margin:0;}
+
+  /* ---------- logo ---------- */
+  .logo{display:flex;align-items:center;gap:18px;}
+  .logo svg{width:92px;height:92px;flex:none;}
+  .logo .wm{font-family:"Shrikhand",serif;font-size:50px;line-height:1;letter-spacing:.5px;}
+  .logo .sub{font-weight:700;font-size:26px;letter-spacing:5px;text-transform:uppercase;margin-top:4px;}
+
+  /* ---------- slide 1 ---------- */
+  .s1{background:var(--red);color:var(--cream);}
+  .s1 .burst{position:absolute;left:50%;top:1010px;width:1500px;height:1500px;margin:-750px 0 0 -750px;z-index:1;opacity:.5;}
+  .s1 .top{position:absolute;left:80px;right:80px;top:262px;display:flex;justify-content:space-between;align-items:center;z-index:6;}
+  .stamp{border:6px solid var(--gold);color:var(--gold);border-radius:14px;padding:8px 22px 4px;font-weight:800;font-size:40px;letter-spacing:6px;text-transform:uppercase;transform:rotate(6deg);line-height:1.1;text-align:center;}
+  .stamp small{display:block;font-size:24px;letter-spacing:4px;font-weight:700;}
+  .s1 h1{position:absolute;left:0;right:0;top:420px;text-align:center;z-index:6;font-size:300px;color:var(--cream);
+    text-shadow:0 12px 0 var(--red-d), 0 14px 0 var(--ink);transform:rotate(-4deg);}
+  .s1 .h1b{position:absolute;left:0;right:0;top:668px;text-align:center;z-index:6;font-size:120px;color:var(--gold);
+    transform:rotate(-4deg);text-shadow:0 8px 0 var(--ink);}
+  .s1 .hero{position:absolute;left:40px;top:790px;width:1000px;height:600px;z-index:4;}
+  .s1 .desc{position:absolute;left:80px;right:80px;top:1368px;text-align:center;z-index:6;font-weight:600;font-size:42px;line-height:1.18;}
+  .s1 .desc b{color:var(--gold);font-weight:800;}
+  .price{position:absolute;right:58px;top:760px;z-index:7;width:250px;height:250px;border-radius:50%;background:var(--gold);color:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(12deg);box-shadow:0 10px 0 var(--ink);}
+  .price .p{font-family:"Shrikhand",serif;font-size:84px;line-height:1;}
+  .price .p sup{font-size:44px;vertical-align:28px;margin-right:2px;}
+  .price .l{font-weight:800;font-size:30px;letter-spacing:3px;text-transform:uppercase;margin-top:6px;}
+  .price .l2{font-weight:700;font-size:28px;letter-spacing:1px;margin-top:2px;}
+  .tapcue{position:absolute;left:0;right:0;top:1545px;text-align:center;z-index:6;font-weight:800;font-size:36px;letter-spacing:6px;text-transform:uppercase;color:var(--cream);opacity:.92;}
+  .tapcue span{display:inline-block;background:var(--ink);padding:14px 30px 10px;border-radius:60px;}
+
+  /* ---------- slide 2 ---------- */
+  .s2{background:var(--cream);}
+  .s2 .head{position:absolute;left:80px;right:80px;top:250px;z-index:6;}
+  .s2 .kicker{font-weight:800;font-size:34px;letter-spacing:7px;text-transform:uppercase;color:var(--green);}
+  .s2 h2{font-size:150px;color:var(--red);margin-top:10px;text-shadow:0 8px 0 var(--ink);}
+  .s2 .dates{display:inline-block;margin-top:26px;background:var(--ink);color:var(--cream);font-weight:700;font-size:38px;letter-spacing:3px;padding:10px 24px 6px;border-radius:10px;text-transform:uppercase;}
+  .route{position:absolute;left:80px;right:80px;top:692px;z-index:6;}
+  .road{position:absolute;left:62px;top:40px;bottom:40px;width:0;border-left:8px dashed var(--ink);opacity:.35;}
+  .row{position:relative;display:flex;align-items:center;height:128px;border-bottom:3px solid rgba(42,21,16,.14);}
+  .row:last-child{border-bottom:none;}
+  .day{flex:none;width:132px;height:112px;border-radius:18px;background:var(--red);color:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 6px 0 var(--ink);}
+  .day .d{font-weight:800;font-size:40px;letter-spacing:4px;line-height:1;}
+  .day .n{font-family:"Shrikhand",serif;font-size:40px;line-height:1;margin-top:6px;}
+  .spot{flex:1;margin-left:30px;min-width:0;}
+  .spot .name{font-weight:800;font-size:50px;line-height:1.02;}
+  .spot .area{font-weight:600;font-size:32px;color:#6B4A3C;margin-top:4px;letter-spacing:.5px;}
+  .time{flex:none;text-align:right;font-weight:800;font-size:44px;line-height:1;}
+  .row.hot .day{background:var(--gold);color:var(--ink);}
+  .row.hot .area{color:var(--red);font-weight:700;}
+  .hottag{display:inline-block;background:var(--red);color:var(--cream);font-size:24px;font-weight:800;letter-spacing:3px;padding:4px 12px 2px;border-radius:6px;margin-left:10px;vertical-align:6px;text-transform:uppercase;}
+  .s2 .sunday{position:absolute;left:80px;right:80px;top:1478px;z-index:6;display:flex;align-items:center;gap:22px;font-weight:600;font-size:36px;color:#6B4A3C;}
+  .s2 .sunday b{color:var(--ink);font-weight:800;}
+  .s2 .truckdeco{position:absolute;right:62px;top:268px;width:260px;z-index:5;transform:rotate(-6deg);}
+  .s2 .band{position:absolute;left:0;right:0;bottom:0;height:300px;background:var(--red);z-index:2;}
+  .s2 .band .scal{position:absolute;left:0;top:-38px;width:1080px;height:40px;}
+  .s2 .foot{position:absolute;left:80px;right:80px;top:1650px;z-index:6;color:var(--cream);display:flex;justify-content:space-between;align-items:center;}
+  .s2 .foot .h{font-weight:800;font-size:34px;letter-spacing:4px;text-transform:uppercase;}
+
+  /* ---------- slide 3 ---------- */
+  .s3{background:var(--gold);}
+  .s3 .burst{position:absolute;left:50%;top:880px;width:1600px;height:1600px;margin:-800px 0 0 -800px;z-index:1;opacity:.45;}
+  .s3 h2{position:absolute;left:0;right:0;text-align:center;white-space:nowrap;top:280px;z-index:6;font-size:122px;line-height:1;color:var(--red);text-shadow:0 10px 0 var(--ink);transform:rotate(-3deg);}
+  .s3 .kick{position:absolute;left:80px;right:80px;top:560px;text-align:center;z-index:6;font-weight:700;font-size:44px;line-height:1.2;transform:rotate(-3deg);}
+  .s3 .dunk{position:absolute;left:90px;top:640px;width:900px;height:640px;z-index:4;}
+  .linksticker{position:absolute;left:50%;top:1330px;transform:translateX(-50%) rotate(-2deg);z-index:8;background:#fff;border-radius:22px;padding:24px 40px;display:flex;align-items:center;gap:20px;
+    box-shadow:0 10px 0 var(--ink);white-space:nowrap;}
+  .linksticker svg{width:54px;height:54px;color:#2B6CE0;}
+  .linksticker .t{font-weight:800;font-size:52px;letter-spacing:2px;color:#2B6CE0;text-transform:uppercase;line-height:1;}
+  .s3 .note{position:absolute;left:80px;right:80px;top:1478px;text-align:center;z-index:6;font-weight:600;font-size:36px;line-height:1.25;}
+  .s3 .band{position:absolute;left:0;right:0;bottom:0;height:320px;background:var(--ink);z-index:2;}
+  .s3 .band .scal{position:absolute;left:0;top:-38px;width:1080px;height:40px;}
+  .s3 .foot{position:absolute;left:80px;right:80px;top:1628px;z-index:6;color:var(--cream);display:flex;justify-content:space-between;align-items:center;}
+  .s3 .foot .h{text-align:right;font-weight:700;font-size:34px;line-height:1.3;letter-spacing:1px;}
+  .s3 .foot .h b{color:var(--gold);font-weight:800;}
+</style>
+</head>
+<body>
+
+<!-- shared symbols -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <clipPath id="tacoClip"><path d="M40 300 A260 205 0 0 0 560 300 Z"/></clipPath>
+    <!-- logo mark: taco half-moon with crazy spiral eye -->
+    <symbol id="mark" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="48" fill="#F4A822" stroke="#2A1510" stroke-width="4"/>
+      <path d="M14 46 Q20 32 32 36 Q40 26 52 32 Q62 24 72 32 Q84 30 86 46 Z" fill="#9A2213"/>
+      <circle cx="30" cy="38" r="3.4" fill="#2E6B45"/><circle cx="58" cy="33" r="3.4" fill="#2E6B45"/><circle cx="76" cy="38" r="3" fill="#F7E9CC"/>
+      <path d="M12 46 A38 38 0 0 0 88 46 Z" fill="#E0662E" stroke="#2A1510" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="38" cy="60" r="8" fill="#F7E9CC" stroke="#2A1510" stroke-width="3"/><circle cx="40" cy="61" r="3" fill="#2A1510"/>
+      <circle cx="62" cy="60" r="8" fill="#F7E9CC" stroke="#2A1510" stroke-width="3"/><circle cx="59" cy="58" r="3" fill="#2A1510"/>
+      <path d="M40 74 Q50 80 60 74" fill="none" stroke="#2A1510" stroke-width="3.5" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- birria taco, side view, viewBox 0 0 600 600 -->
+    <symbol id="taco" viewBox="0 0 600 600">
+      <!-- frico wings -->
+      <path d="M40 300 L6 290 L22 316 L0 330 L30 336 L20 356 L52 346 Z" fill="#E9A437" stroke="#2A1510" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M560 300 L596 286 L580 312 L600 328 L570 334 L584 356 L548 344 Z" fill="#E9A437" stroke="#2A1510" stroke-width="6" stroke-linejoin="round"/>
+      <!-- back shell -->
+      <path d="M36 304 Q300 30 564 304 Z" fill="#C8471F" stroke="#2A1510" stroke-width="7" stroke-linejoin="round"/>
+      <path d="M96 270 Q300 90 504 270" fill="none" stroke="#9A2213" stroke-width="10" opacity=".5"/>
+      <!-- meat -->
+      <path d="M52 304 Q60 250 104 262 Q118 214 170 232 Q196 190 244 214 Q282 180 320 210 Q360 184 392 216 Q438 196 460 238 Q510 226 520 270 Q556 270 552 304 Z"
+            fill="#7A2412" stroke="#2A1510" stroke-width="6" stroke-linejoin="round"/>
+      <g fill="#5A170A" opacity=".9">
+        <path d="M120 270 q20 -14 40 0 q-20 10 -40 0z"/><path d="M230 236 q24 -14 46 2 q-22 10 -46 -2z"/>
+        <path d="M350 232 q22 -12 40 2 q-18 10 -40 -2z"/><path d="M450 262 q18 -10 36 4 q-18 8 -36 -4z"/>
+      </g>
+      <g fill="#A63A1E" opacity=".9">
+        <path d="M170 250 q18 -16 36 -4 q-16 12 -36 4z"/><path d="M300 222 q16 -12 32 0 q-14 10 -32 0z"/><path d="M400 240 q16 -10 30 2 q-14 8 -30 -2z"/>
+      </g>
+      <!-- cheese pull -->
+      <path d="M90 300 Q96 272 124 282 Q150 262 176 286 L178 300 Z" fill="#F6D36A" stroke="#2A1510" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M420 300 Q430 270 462 282 Q486 270 504 300 Z" fill="#F6D36A" stroke="#2A1510" stroke-width="5" stroke-linejoin="round"/>
+      <!-- onion + cilantro -->
+      <g id="toppings"></g>
+      <!-- tortilla -->
+      <path d="M40 300 A260 205 0 0 0 560 300 Z" fill="#D9542A"/>
+      <g clip-path="url(#tacoClip)">
+        <g id="spots"></g>
+        <path d="M76 330 A232 180 0 0 0 300 478" fill="none" stroke="#F08A4B" stroke-width="16" stroke-linecap="round" opacity=".7"/>
+        <path d="M40 300 Q170 322 300 306 Q430 290 560 300" fill="none" stroke="#F08A4B" stroke-width="10" opacity=".6"/>
+      </g>
+      <path d="M40 300 A260 205 0 0 0 560 300 Z" fill="none" stroke="#2A1510" stroke-width="8" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- consommé cup, viewBox 0 0 300 360 -->
+    <symbol id="cup" viewBox="0 0 300 360">
+      <g fill="none" stroke="#F7E9CC" stroke-width="10" stroke-linecap="round" opacity=".85">
+        <path d="M100 96 q-24 -26 0 -52 q24 -26 0 -52"/>
+        <path d="M150 90 q-24 -26 0 -52 q24 -26 0 -52"/>
+        <path d="M200 96 q-24 -26 0 -52 q24 -26 0 -52"/>
+      </g>
+      <path d="M30 140 L60 340 Q150 362 240 340 L270 140 Z" fill="#FFF6E6" stroke="#2A1510" stroke-width="8" stroke-linejoin="round"/>
+      <path d="M40 205 L260 205 L253 255 L47 255 Z" fill="#C4301C"/>
+      <path d="M40 205 L260 205 M47 255 L253 255" stroke="#2A1510" stroke-width="5"/>
+      <text x="150" y="243" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="34" letter-spacing="4" fill="#F7E9CC">CONSOMMÉ</text>
+      <ellipse cx="150" cy="140" rx="120" ry="30" fill="#6E1A0C" stroke="#2A1510" stroke-width="8"/>
+      <ellipse cx="120" cy="134" rx="46" ry="8" fill="#B8462A" opacity=".8"/>
+      <circle cx="170" cy="142" r="6" fill="#2E6B45"/><circle cx="196" cy="134" r="5" fill="#2E6B45"/><rect x="140" y="146" width="10" height="8" rx="2" fill="#F7E9CC"/><rect x="206" y="146" width="9" height="7" rx="2" fill="#F7E9CC"/>
+    </symbol>
+
+    <!-- lime wedge -->
+    <symbol id="lime" viewBox="0 0 200 120">
+      <path d="M10 20 A90 90 0 0 0 190 20 Z" fill="#8DBA3B" stroke="#2A1510" stroke-width="7" stroke-linejoin="round"/>
+      <path d="M28 26 A72 72 0 0 0 172 26 Z" fill="#D8EB8C"/>
+      <g stroke="#8DBA3B" stroke-width="5"><path d="M100 26 L100 94"/><path d="M100 26 L52 82"/><path d="M100 26 L148 82"/><path d="M100 26 L34 50"/><path d="M100 26 L166 50"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= FRAME 1 — the drop ================= -->
+<section class="slide s1">
+  <svg class="burst" viewBox="-100 -100 200 200" data-burst="#D8452C"></svg>
+  <svg class="picado" viewBox="0 0 1080 230" data-picado="s1"></svg>
+
+  <div class="top">
+    <div class="logo">
+      <svg viewBox="0 0 100 100"><use href="#mark"/></svg>
+      <div><div class="wm">Taco Loco</div><div class="sub">Austin, TX</div></div>
+    </div>
+    <div class="stamp">New<small>on the menu</small></div>
+  </div>
+
+  <h1 class="disp">Birria</h1>
+  <div class="disp h1b">is here.</div>
+
+  <svg class="hero" viewBox="0 0 1000 600">
+    <ellipse cx="470" cy="560" rx="420" ry="26" fill="#2A1510" opacity=".35"/>
+    <use href="#lime" x="-10" y="440" width="220" height="132" transform="rotate(-14 100 500)"/>
+    <use href="#cup" x="640" y="200" width="300" height="360"/>
+    <use href="#taco" x="10" y="-40" width="720" height="720" transform="rotate(-7 380 340)"/>
+  </svg>
+
+  <div class="price">
+    <div class="p"><sup>$</sup>4.50</div>
+    <div class="l">each</div>
+    <div class="l2">3 for $12</div>
+  </div>
+
+  <p class="desc">Beef braised 8 hours in guajillo &amp; ancho, melty Oaxaca cheese, a crispy griddled tortilla. <b>Dunk it in the consommé.</b></p>
+
+  <div class="tapcue"><span>Tap for this week’s spots &nbsp;→</span></div>
+  <canvas class="grain" width="540" height="960"></canvas>
+  <div class="vignette"></div>
+</section>
+
+<!-- ================= FRAME 2 — the route ================= -->
+<section class="slide s2">
+  <svg class="picado" viewBox="0 0 1080 230" data-picado="s2"></svg>
+  <div class="head">
+    <div class="kicker">This week’s route</div>
+    <h2 class="disp">Find<br>the truck</h2>
+    <div class="dates">Mon Sep 28 – Sat Oct 3</div>
+  </div>
+  <svg class="truckdeco" viewBox="0 0 260 180" data-truck></svg>
+
+  <div class="route">
+    <div class="road"></div>
+    <div class="row"><div class="day"><div class="d">MON</div><div class="n">28</div></div>
+      <div class="spot"><div class="name">E 6th &amp; Chicon</div><div class="area">East Austin · lunch</div></div>
+      <div class="time">11am–3pm</div></div>
+    <div class="row"><div class="day"><div class="d">TUE</div><div class="n">29</div></div>
+      <div class="spot"><div class="name">Rock Rose Ave</div><div class="area">The Domain · lunch</div></div>
+      <div class="time">11am–2:30pm</div></div>
+    <div class="row"><div class="day"><div class="d">WED</div><div class="n">30</div></div>
+      <div class="spot"><div class="name">S Congress &amp; Mary St</div><div class="area">SoCo · dinner</div></div>
+      <div class="time">5pm–10pm</div></div>
+    <div class="row"><div class="day"><div class="d">THU</div><div class="n">1</div></div>
+      <div class="spot"><div class="name">Mueller Lake Park</div><div class="area">Mueller · night market</div></div>
+      <div class="time">4pm–9pm</div></div>
+    <div class="row hot"><div class="day"><div class="d">FRI</div><div class="n">2</div></div>
+      <div class="spot"><div class="name">Rainey Street<span class="hottag">Late</span></div><div class="area">Birria till 2am</div></div>
+      <div class="time">7pm–2am</div></div>
+    <div class="row"><div class="day"><div class="d">SAT</div><div class="n">3</div></div>
+      <div class="spot"><div class="name">Barton Springs Rd</div><div class="area">Zilker · brunch tacos</div></div>
+      <div class="time">10am–4pm</div></div>
+  </div>
+
+  <div class="sunday"><svg width="46" height="46" viewBox="0 0 100 100"><use href="#mark"/></svg><div><b>Sunday:</b> we rest. So does the birria.</div></div>
+
+  <div class="band"><svg class="scal" viewBox="0 0 1080 40" data-scallop="#C4301C"></svg></div>
+  <div class="foot">
+    <div class="logo" style="color:var(--cream)">
+      <svg viewBox="0 0 100 100"><use href="#mark"/></svg>
+      <div><div class="wm">Taco Loco</div><div class="sub">@tacolocoatx</div></div>
+    </div>
+    <div class="h">Screenshot<br>this ↓</div>
+  </div>
+  <canvas class="grain" width="540" height="960"></canvas>
+  <div class="vignette" style="opacity:.6"></div>
+</section>
+
+<!-- ================= FRAME 3 — dunk + order ================= -->
+<section class="slide s3">
+  <svg class="burst" viewBox="-100 -100 200 200" data-burst="#F7BE4A"></svg>
+  <svg class="picado" viewBox="0 0 1080 230" data-picado="s3"></svg>
+  <h2 class="disp">Come hungry.<br>Bring napkins.</h2>
+  <div class="kick">Birria runs every stop until it sells out.</div>
+
+  <svg class="dunk" viewBox="0 0 900 640">
+    <ellipse cx="450" cy="610" rx="330" ry="22" fill="#2A1510" opacity=".3"/>
+    <use href="#cup" x="300" y="200" width="330" height="396"/>
+    <use href="#taco" x="210" y="-20" width="440" height="440" transform="rotate(38 430 200)"/>
+    <!-- drips back into the cup -->
+    <g fill="#6E1A0C" stroke="#2A1510" stroke-width="4">
+      <path d="M470 300 q-10 22 0 32 q10 -10 0 -32z"/>
+      <path d="M506 316 q-8 18 0 26 q8 -8 0 -26z"/>
+    </g>
+    <use href="#lime" x="640" y="480" width="190" height="114" transform="rotate(10 735 537)"/>
+    <use href="#lime" x="70" y="470" width="170" height="102" transform="rotate(-20 155 521)"/>
+  </svg>
+
+  <div class="linksticker">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+    <div class="t">Order ahead</div>
+  </div>
+  <div class="note">Skip the line — pick up at the window.</div>
+
+  <div class="band"><svg class="scal" viewBox="0 0 1080 40" data-scallop="#2A1510"></svg></div>
+  <div class="foot">
+    <div class="logo" style="color:var(--cream)">
+      <svg viewBox="0 0 100 100"><use href="#mark"/></svg>
+      <div><div class="wm">Taco Loco</div><div class="sub" style="color:var(--gold)">Austin, TX</div></div>
+    </div>
+    <div class="h"><b>tacolocoatx.com</b><br>@tacolocoatx</div>
+  </div>
+  <canvas class="grain" width="540" height="960"></canvas>
+  <div class="vignette" style="opacity:.7"></div>
+</section>
+
+<script>
+window.KLIPT = { width: 1080, height: 1920 };
+const NS = ["http:", "", "www.w3.org", "2000", "svg"].join("/"); // SVG namespace id only, never fetched
+const r = KK.rng(250);
+const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+
+// griddle spots on the tortilla
+const spots = document.getElementById('spots');
+for (let i = 0; i < 46; i++) {
+  const a = Math.PI * r(), d = 50 + r() * 150;
+  el('ellipse', { cx: 300 + Math.cos(a) * d, cy: 300 + Math.sin(a) * d, rx: 6 + r() * 16, ry: 4 + r() * 9,
+    fill: r() < .7 ? '#9A2213' : '#5A170A', opacity: .35 + r() * .4, transform: `rotate(${r()*180} ${300 + Math.cos(a) * d} ${300 + Math.sin(a) * d})` }, spots);
+}
+// onion + cilantro on the meat
+const tops = document.getElementById('toppings');
+for (let i = 0; i < 26; i++) {
+  const x = 90 + r() * 420, y = 222 + (Math.abs(x - 300) / 260) * 52 + r() * 22;
+  if (r() < .5) el('rect', { x, y, width: 9 + r() * 6, height: 8 + r() * 5, rx: 2, fill: '#FBF3E0', stroke: '#2A1510', 'stroke-width': 2, transform: `rotate(${r()*60} ${x} ${y})` }, tops);
+  else el('ellipse', { cx: x, cy: y, rx: 9, ry: 5, fill: '#3F8A4E', stroke: '#1F4A2C', 'stroke-width': 2, transform: `rotate(${r()*180} ${x} ${y})` }, tops);
+}
+
+// sunburst behind hero
+document.querySelectorAll('[data-burst]').forEach(svg => {
+  const c = svg.dataset.burst, n = 22;
+  for (let i = 0; i < n; i++) {
+    const a0 = (i / n) * Math.PI * 2, a1 = a0 + Math.PI / n;
+    el('path', { d: `M0 0 L${Math.cos(a0)*100} ${Math.sin(a0)*100} L${Math.cos(a1)*100} ${Math.sin(a1)*100} Z`, fill: c }, svg);
+  }
+});
+
+// papel picado banner
+const PCOL = { s1: ['#F4A822', '#F7E9CC', '#2E6B45', '#F4A822', '#F7E9CC', '#2E6B45'],
+               s2: ['#C4301C', '#F4A822', '#2E6B45', '#C4301C', '#F4A822', '#2E6B45'],
+               s3: ['#C4301C', '#2E6B45', '#F7E9CC', '#C4301C', '#2E6B45', '#F7E9CC'] };
+document.querySelectorAll('[data-picado]').forEach((svg, si) => {
+  const cols = PCOL[svg.dataset.picado];
+  const n = 6, w = 1080 / n;
+  const sag = x => 40 + 26 * Math.sin((x / 1080) * Math.PI);
+  el('path', { d: `M0 40 Q540 92 1080 40`, fill: 'none', stroke: '#2A1510', 'stroke-width': 4 }, svg);
+  const defs = el('defs', {}, svg);
+  for (let i = 0; i < n; i++) {
+    const x0 = i * w + 8, x1 = (i + 1) * w - 8, y0 = sag((x0 + x1) / 2), h = 150;
+    const id = `pm${si}_${i}`;
+    const m = el('mask', { id }, defs);
+    el('rect', { x: 0, y: 0, width: 1080, height: 230, fill: '#fff' }, m);
+    const cx = (x0 + x1) / 2, cy = y0 + 66;
+    // cut-outs: central flower, diamonds, dots
+    for (let k = 0; k < 8; k++) { const a = k * Math.PI / 4; el('ellipse', { cx: cx + Math.cos(a) * 22, cy: cy + Math.sin(a) * 22, rx: 11, ry: 6, transform: `rotate(${k*45} ${cx + Math.cos(a) * 22} ${cy + Math.sin(a) * 22})`, fill: '#000' }, m); }
+    el('circle', { cx, cy, r: 8, fill: '#000' }, m);
+    [[-52, -40], [52, -40], [-52, 44], [52, 44]].forEach(([dx, dy]) => el('path', { d: `M${cx+dx} ${cy+dy-12} l10 12 l-10 12 l-10 -12z`, fill: '#000' }, m));
+    for (let k = 0; k < 7; k++) el('circle', { cx: x0 + 16 + k * ((x1 - x0 - 32) / 6), cy: y0 + h - 22, r: 5, fill: '#000' }, m);
+    // flag with zigzag bottom
+    let d = `M${x0} ${y0} L${x1} ${y0} L${x1} ${y0 + h}`;
+    const teeth = 8;
+    for (let k = teeth; k > 0; k--) { const xa = x0 + (k - .5) * (x1 - x0) / teeth, xb = x0 + (k - 1) * (x1 - x0) / teeth; d += ` L${xa} ${y0 + h - 14} L${xb} ${y0 + h}`; }
+    d += ' Z';
+    const g = el('g', { transform: `rotate(${(r() - .5) * 5} ${cx} ${y0})` }, svg);
+    el('path', { d, fill: cols[i % cols.length], mask: `url(#${id})`, stroke: 'rgba(42,21,16,.35)', 'stroke-width': 2 }, g);
+  }
+});
+
+// scalloped awning edge
+document.querySelectorAll('[data-scallop]').forEach(svg => {
+  let d = 'M0 40'; const n = 18, w = 1080 / n;
+  for (let i = 0; i < n; i++) d += ` L${i*w} 40 A${w/2} ${w/2 - 6} 0 0 1 ${(i+1)*w} 40`;
+  d += ' L1080 42 L0 42 Z';
+  el('path', { d, fill: svg.dataset.scallop }, svg);
+});
+
+// little truck illustration (frame 2)
+(() => {
+  const s = document.querySelector('[data-truck]');
+  s.innerHTML = `
+   <path d="M20 40 Q20 24 36 24 L170 24 Q180 24 184 34 L184 140 L20 140 Z" fill="#C4301C" stroke="#2A1510" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M184 70 L222 70 Q234 70 240 84 L252 112 L252 140 L184 140 Z" fill="#F4A822" stroke="#2A1510" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M196 80 L224 80 L236 106 L196 106 Z" fill="#BFE0E6" stroke="#2A1510" stroke-width="5" stroke-linejoin="round"/>
+   <rect x="40" y="46" width="122" height="54" rx="6" fill="#2A1510"/>
+   <path d="M34 46 L168 46 L168 58 L34 58 Z" fill="#F7E9CC" stroke="#2A1510" stroke-width="4"/>
+   <text x="101" y="89" text-anchor="middle" font-family="Shrikhand" font-size="26" fill="#F4A822">Taco Loco</text>
+   <rect x="36" y="100" width="130" height="10" fill="#F7E9CC" stroke="#2A1510" stroke-width="4"/>
+   <circle cx="64" cy="146" r="22" fill="#2A1510"/><circle cx="64" cy="146" r="8" fill="#F7E9CC"/>
+   <circle cx="210" cy="146" r="22" fill="#2A1510"/><circle cx="210" cy="146" r="8" fill="#F7E9CC"/>`;
+})();
+
+// paper grain (seeded canvas noise)
+document.querySelectorAll('canvas.grain').forEach((cv, idx) => {
+  const g = cv.getContext('2d'), W = cv.width, H = cv.height, img = g.createImageData(W, H), rr = KK.rng(900 + idx);
+  for (let i = 0; i < W * H; i++) { const v = 150 + rr() * 105; img.data[i*4] = v; img.data[i*4+1] = v * .96; img.data[i*4+2] = v * .9; img.data[i*4+3] = 255; }
+  g.putImageData(img, 0, 0);
+  cv.style.width = '1080px'; cv.style.height = '1920px';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>CodeCraft Priya</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/instrument-serif/400-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/700.css">
+<style>
+:root{--bg:#0D1017;--cream:#F5F0E6;--lime:#C8FF3D;--coral:#FF6A47;--mut:#8B93A3;--card:#171C27}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);color:var(--cream);font-family:'Bricolage Grotesque',sans-serif;font-weight:800}
+#bgdots{position:absolute;inset:0;background-image:radial-gradient(rgba(245,240,230,.09) 2px,transparent 2.5px);background-size:54px 54px}
+#glow{position:absolute;width:1100px;height:1100px;border-radius:50%;left:-100px;top:400px;background:radial-gradient(circle,rgba(200,255,61,.16),transparent 65%)}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden}
+.abs{position:absolute}
+#prog{position:absolute;top:56px;left:60px;right:60px;display:flex;gap:10px;z-index:50}
+#prog i{flex:1;height:6px;border-radius:3px;background:rgba(245,240,230,.2);overflow:hidden;display:block}
+#prog b{display:block;height:100%;width:0;background:var(--cream)}
+#tag{position:absolute;top:108px;left:60px;right:60px;z-index:50;display:flex;align-items:center;gap:16px;font-size:26px;font-weight:700;letter-spacing:.06em}
+#tag .dot{width:16px;height:16px;border-radius:50%;background:var(--lime)}
+#tag .r{margin-left:auto;color:var(--mut);font-family:'JetBrains Mono';font-weight:500;font-size:22px}
+.mask{overflow:hidden;display:block;padding:0 0 .12em}
+.w{display:inline-block;will-change:transform}
+.big{font-size:190px;line-height:.92;letter-spacing:-.045em}
+.serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
+.lime{color:var(--lime)}.coral{color:var(--coral)}
+/* s2 */
+.panel{position:absolute;left:70px;width:940px;height:590px;border-radius:44px;padding:56px 60px}
+#pb{top:250px;background:#1C222E;border:3px solid #2a3242;color:var(--cream)}
+#pa{top:960px;background:var(--lime);color:#0D1017}
+.panel .lab{font-family:'JetBrains Mono';font-weight:700;font-size:30px;letter-spacing:.18em}
+.panel h3{font-size:104px;line-height:.95;letter-spacing:-.04em;margin-top:34px}
+.panel p{font-family:'JetBrains Mono';font-weight:500;font-size:34px;margin-top:38px;line-height:1.45}
+.panel svg{position:absolute;right:56px;top:50px;width:150px;height:150px;stroke-width:1.6}
+.chip{display:inline-block;padding:10px 22px;border-radius:40px;font-family:'JetBrains Mono';font-weight:700;font-size:28px;margin:22px 14px 0 0}
+#arrow{position:absolute;left:465px;top:800px;width:150px;height:150px;border-radius:50%;background:var(--coral);z-index:5;display:flex;align-items:center;justify-content:center;border:10px solid var(--bg)}
+#arrow svg{width:70px;height:70px;stroke:#0D1017;stroke-width:2.6;fill:none}
+/* s3 */
+#editor{position:absolute;left:60px;top:840px;width:960px;height:610px;border-radius:36px;background:#10141D;border:3px solid #2a3242;overflow:hidden}
+#editor .bar{height:76px;background:#171C27;display:flex;align-items:center;gap:14px;padding:0 30px;font-family:'JetBrains Mono';font-weight:500;font-size:24px;color:var(--mut)}
+#editor .bar i{width:20px;height:20px;border-radius:50%;display:block}
+#code{font-family:'JetBrains Mono';font-weight:500;font-size:40px;line-height:1.6;padding:34px 44px;white-space:pre;color:var(--cream)}
+.k{color:#FF6A47}.s{color:var(--lime)}.f{color:#7CC4FF}.p{color:#8B93A3}.c{color:#6c7588}
+.caret{display:inline-block;width:20px;height:44px;background:var(--lime);vertical-align:-8px;margin-left:2px}
+#deploy{position:absolute;left:60px;top:1490px;width:960px;height:200px;border-radius:36px;background:var(--lime);color:#0D1017;display:flex;align-items:center;padding:0 54px;gap:38px;opacity:0}
+#deploy .ck{width:92px;height:92px;border-radius:50%;background:#0D1017;display:flex;align-items:center;justify-content:center}
+#deploy .ck svg{width:52px;height:52px;stroke:var(--lime);stroke-width:3.4;fill:none}
+#deploy .t1{font-size:58px;letter-spacing:-.03em;line-height:1}
+#deploy .t2{font-family:'JetBrains Mono';font-weight:700;font-size:26px;margin-top:10px}
+/* s4 */
+#ring{position:absolute;left:150px;top:420px;width:780px;height:780px}
+#pct{position:absolute;left:0;width:1080px;top:560px;text-align:center;font-size:330px;letter-spacing:-.06em;line-height:1}
+#pct small{font-size:150px;color:var(--lime);letter-spacing:-.04em}
+/* s5 */
+.btn{position:absolute;left:110px;width:860px;height:150px;border-radius:75px;background:var(--lime);color:#0D1017;font-size:54px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center;gap:24px}
+.btn svg{width:60px;height:60px;stroke:#0D1017;stroke-width:3;fill:none}
+.logo{display:flex;align-items:center;gap:20px;font-size:56px;letter-spacing:-.03em}
+.logo .m{width:84px;height:84px;border-radius:24px;background:var(--lime);display:flex;align-items:center;justify-content:center}
+.logo .m svg{width:52px;height:52px;stroke:#0D1017;stroke-width:2.8;fill:none}
+</style></head>
+<body>
+<div id="bgdots"></div><div id="glow"></div>
+<div id="prog"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+<div id="tag"><span class="dot"></span><span id="tagtxt">PRIYA, 34</span><span class="r">CodeCraft Academy</span></div>
+
+<!-- S1 -->
+<div class="scene" id="s1">
+  <div class="abs" style="left:60px;top:560px;width:960px" id="s1a">
+    <span class="mask"><span class="w big">Ten</span></span>
+    <span class="mask"><span class="w big">years a</span></span>
+    <span class="mask"><span class="w big serif" style="font-size:250px;color:var(--coral)">nurse.</span></span>
+  </div>
+  <div class="abs" style="left:60px;top:520px;width:960px" id="s1b">
+    <span class="mask"><span class="w big" style="font-size:150px">Then I typed</span></span>
+    <span class="mask"><span class="w big lime" style="font-size:280px">my first</span></span>
+    <span class="mask"><span class="w big serif" style="font-size:300px">line.</span></span>
+  </div>
+  <div class="abs" style="left:60px;top:1500px;font-family:'JetBrains Mono';font-weight:500;font-size:34px;color:var(--mut);line-height:1.5" id="s1c">Former NHS ward nurse.<br>Career changer. Front-end developer.</div>
+</div>
+
+<!-- S2 -->
+<div class="scene" id="s2">
+  <div class="panel" id="pb">
+    <div class="lab">BEFORE</div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="#8B93A3" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></svg>
+    <h3>NHS ward nurse</h3>
+    <p>12-hour shifts.<br>Zero lines of code.</p>
+  </div>
+  <div id="arrow"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></div>
+  <div class="panel" id="pa">
+    <div class="lab">AFTER · 12 WEEKS</div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0D1017" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+    <h3>Front-end developer</h3>
+    <span class="chip" style="background:#0D1017;color:var(--lime)">HTML</span><span class="chip" style="background:#0D1017;color:var(--lime)">CSS</span><span class="chip" style="background:#0D1017;color:var(--lime)">JavaScript</span><span class="chip" style="background:#0D1017;color:var(--lime)">React</span>
+    <p style="margin-top:26px">Hired. Shipping real products.</p>
+  </div>
+  <div class="abs" style="left:70px;top:1640px;width:940px;font-size:64px;letter-spacing:-.03em;line-height:1.05" id="s2q">Same person. <span class="serif lime" style="font-size:78px">New career.</span></div>
+</div>
+
+<!-- S3 -->
+<div class="scene" id="s3">
+  <div class="abs" style="left:60px;top:250px;width:960px" id="s3q">
+    <span class="mask"><span class="w serif" style="font-size:118px;line-height:1.02;display:inline-block">&ldquo;Week nine.</span></span>
+    <span class="mask"><span class="w serif" style="font-size:118px;line-height:1.02;display:inline-block">My first component</span></span>
+    <span class="mask"><span class="w serif" style="font-size:118px;line-height:1.02;display:inline-block">rendered.</span></span>
+    <span class="mask"><span class="w serif lime" style="font-size:150px;line-height:1.02;display:inline-block">I actually cried.&rdquo;</span></span>
+  </div>
+  <div id="editor"><div class="bar"><i style="background:#FF6A47"></i><i style="background:#FFD24A"></i><i style="background:#C8FF3D"></i><span style="margin-left:18px">priya.js</span></div><div id="code"></div></div>
+  <div id="deploy"><div class="ck"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div><div><div class="t1">Deployed. Live.</div><div class="t2">priya.dev &middot; first commit, week 9</div></div></div>
+</div>
+
+<!-- S4 -->
+<div class="scene" id="s4">
+  <svg id="ring" viewBox="0 0 780 780"><circle cx="390" cy="390" r="350" fill="none" stroke="#1C222E" stroke-width="46"/><circle id="arc" cx="390" cy="390" r="350" fill="none" stroke="#C8FF3D" stroke-width="46" stroke-linecap="round" transform="rotate(-90 390 390)" stroke-dasharray="2199.1" stroke-dashoffset="2199.1"/></svg>
+  <div id="pct"><span id="num">0</span><small>%</small></div>
+  <div class="abs" style="left:0;width:1080px;top:1300px;text-align:center;font-size:76px;letter-spacing:-.035em;line-height:1.05" id="s4t">of graduates hired<br><span class="serif lime" style="font-size:96px">within 6 months.</span></div>
+  <div class="abs" style="left:0;width:1080px;top:1620px;text-align:center;font-family:'JetBrains Mono';font-weight:500;font-size:28px;color:var(--mut)" id="s4s">Priya was one of them.</div>
+</div>
+
+<!-- S5 -->
+<div class="scene" id="s5">
+  <div class="abs" style="left:60px;top:300px;width:960px">
+    <span class="mask"><span class="w big" style="font-size:172px">Your next</span></span>
+    <span class="mask"><span class="w big serif lime" style="font-size:250px">chapter</span></span>
+    <span class="mask"><span class="w big" style="font-size:172px">is code.</span></span>
+  </div>
+  <div class="abs" style="left:70px;top:1000px;width:940px;font-family:'JetBrains Mono';font-weight:500;font-size:38px;line-height:1.6;color:var(--cream)" id="s5i">12 weeks &middot; London &amp; online<br>Built for career changers.<br><span style="color:var(--mut)">No degree. No experience needed.</span></div>
+  <div class="btn" id="s5b" style="top:1290px">Apply for the next cohort <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+  <div class="abs logo" style="left:110px;top:1560px" id="s5l"><div class="m"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></div><div>CodeCraft <span class="serif" style="font-size:64px;font-weight:400">Academy</span></div></div>
+</div>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const D=25;
+const tl=gsap.timeline({paused:true});
+// progress bar segments
+const seg=[[0,5],[5,10.5],[10.5,17],[17,21],[21,25]];
+$$('#prog b').forEach((b,i)=>tl.fromTo(b,{width:'0%'},{width:'100%',duration:seg[i][1]-seg[i][0],ease:'none'},seg[i][0]));
+// scene visibility
+const show=(id,a,b)=>{tl.set(id,{autoAlpha:1},a);tl.set(id,{autoAlpha:0},b);};
+show('#s1',0,5.05);show('#s2',5,10.55);show('#s3',10.5,17.05);show('#s4',17,21.05);show('#s5',21,25.1);
+const up=(sel,t,d=.7,stg=.12)=>tl.from(sel,{yPercent:115,duration:d,ease:'power4.out',stagger:stg},t);
+const down=(sel,t,d=.45,stg=.05)=>tl.to(sel,{yPercent:-115,duration:d,ease:'power3.in',stagger:stg},t);
+// S1
+tl.set('#s1b',{autoAlpha:0},0);
+up('#s1a .w',.25,.8,.16);
+tl.from('#s1a .w:last-child',{rotation:-4,duration:.8,ease:'back.out(2)'},.55);
+tl.from('#s1c',{opacity:0,y:30,duration:.6},1.4);
+down('#s1a .w',2.5,.45,.07);
+tl.to('#s1c',{opacity:0,duration:.3},2.6);
+tl.set('#s1a',{autoAlpha:0},3.2);
+tl.set('#s1b',{autoAlpha:1},2.95);
+up('#s1b .w',3.0,.7,.14);
+tl.fromTo('#s1c',{opacity:0},{opacity:1,duration:.4},3.8);
+tl.to('#s1b',{opacity:0,x:-80,duration:.4,ease:'power2.in'},4.55);
+tl.to('#s1c',{opacity:0,duration:.3},4.6);
+// S2
+tl.set('#s2',{clipPath:'inset(0 0 0 0)'},0);
+tl.from('#pb',{x:-1100,duration:.8,ease:'power4.out'},5.1);
+tl.from('#pa',{x:1100,duration:.8,ease:'power4.out'},5.6);
+tl.from('#arrow',{scale:0,rotation:-180,duration:.6,ease:'back.out(2)'},6.2);
+tl.from('#pa h3, #pa .chip, #pa p',{y:30,opacity:0,duration:.4,stagger:.08},6.3);
+tl.to('#pb',{scale:.94,opacity:.45,duration:.6,ease:'power2.inOut'},7.2);
+tl.to('#pa',{scale:1.04,duration:.6,ease:'power2.inOut'},7.2);
+tl.from('#s2q',{opacity:0,y:40,duration:.6,ease:'power3.out'},7.9);
+tl.to('#s2',{opacity:0,duration:.4},10.1);
+// S3
+up('#s3q .w',10.6,.7,.28);
+const code=`const priya = {
+  was: "NHS nurse",
+  now: "front-end dev",
+  hired: true,
+};
+
+ship(priya);`;
+const toks=[];const re=/(\/\/.*)|("[^"]*")|\b(const|true)\b|(ship)|([{}();=,:])|(\s+|\w+)/g;let m;
+while((m=re.exec(code))){const c=m[1]?'c':m[2]?'s':m[3]?'k':m[4]?'f':m[5]?'p':'';toks.push([m[0],c]);}
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const ty={n:0};
+function paint(){let n=Math.floor(ty.n),h='';for(const[t,c]of toks){if(n<=0)break;const p=t.slice(0,n);n-=t.length;h+=c?`<span class="${c}">${esc(p)}</span>`:esc(p);}
+ $('#code').innerHTML=h+'<span class="caret"></span>';}
+paint();
+tl.from('#editor',{y:200,opacity:0,duration:.6,ease:'power3.out'},11.0);
+tl.to(ty,{n:code.length,duration:3.6,ease:'none',onUpdate:paint},11.9);
+tl.fromTo('#deploy',{opacity:0,y:60,scale:.94},{opacity:1,y:0,scale:1,duration:.5,ease:'back.out(1.6)'},15.6);
+tl.to('#s3',{opacity:0,duration:.4},16.6);
+// S4
+const cn={v:0};
+tl.from('#ring',{scale:.6,opacity:0,duration:.6,ease:'back.out(1.6)'},17.1);
+tl.to('#arc',{strokeDashoffset:2199.1*(1-.89),duration:1.6,ease:'power3.out'},17.3);
+tl.to(cn,{v:89,duration:1.6,ease:'power3.out',onUpdate(){$('#num').textContent=Math.round(cn.v)}},17.3);
+tl.from('#s4t',{opacity:0,y:40,duration:.6,ease:'power3.out'},18.2);
+tl.from('#s4s',{opacity:0,duration:.5},19.2);
+tl.to('#s4',{opacity:0,duration:.4},20.6);
+// S5
+up('#s5 .w',21.1,.75,.16);
+tl.from('#s5i',{opacity:0,y:40,duration:.6},22.0);
+tl.from('#s5b',{scale:.7,opacity:0,duration:.6,ease:'back.out(2)'},22.7);
+tl.to('#s5b',{scale:1.04,duration:.45,yoyo:true,repeat:1,ease:'sine.inOut'},23.5);
+tl.from('#s5l',{opacity:0,y:30,duration:.5},23.1);
+// tag text
+tl.set('#tagtxt',{textContent:'PRIYA, 34 · EX-NHS NURSE'},0);
+tl.set('#tagtxt',{textContent:'CODECRAFT ACADEMY · GRADUATE OUTCOMES'},17);
+tl.set('#tagtxt',{textContent:'12-WEEK WEB DEV BOOTCAMP'},21);
+window.KLIPT={width:1080,height:1920,fps:30,duration:D,render(t){tl.seek(t,false);}};
+</script></body></html>

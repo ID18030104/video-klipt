@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/400-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/700.css">
+<style>
+:root{
+  --cream:#F5EEE2; --paper:#FBF7F0; --green:#1E3B2F; --green2:#2C5243;
+  --terra:#C65F32; --mustard:#E3A63A; --sage:#B9C8A7; --ink:#1E2A24; --blush:#EFC9B0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{margin:0;overflow:hidden;width:1080px;background:var(--cream)}
+.slide{width:1080px;height:1350px;position:relative;overflow:hidden;font-family:'Figtree',sans-serif;color:var(--ink);background:var(--cream)}
+.serif{font-family:'Fraunces',serif}
+.top{position:absolute;left:80px;right:80px;top:72px;display:flex;justify-content:space-between;align-items:center;font-size:24px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.logo{display:flex;align-items:center;gap:14px;letter-spacing:.02em;text-transform:none;font-family:'Fraunces',serif;font-size:30px;font-weight:600}
+.logo i{font-style:italic;font-weight:400}
+.logo .mk{width:44px;height:44px;border-radius:50%;background:var(--terra);display:grid;place-items:center;color:var(--paper);font-size:24px;font-style:italic;font-weight:400}
+.count{font-variant-numeric:tabular-nums;opacity:.7}
+.foot{position:absolute;left:80px;right:80px;bottom:64px;display:flex;justify-content:space-between;align-items:center;font-size:24px;font-weight:600}
+.dots{display:flex;gap:10px}
+.dots b{width:12px;height:12px;border-radius:6px;background:currentColor;opacity:.25}
+.dots b.on{width:40px;opacity:1}
+.swipe{display:flex;align-items:center;gap:12px}
+.swipe svg{width:34px;height:34px}
+
+/* cover */
+.s1{background:var(--green);color:var(--cream)}
+.s1 .kick{position:absolute;left:80px;top:250px;font-size:28px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mustard)}
+.s1 h1{position:absolute;left:76px;top:310px;font-family:'Fraunces',serif;font-weight:400;font-size:148px;line-height:.96;letter-spacing:-.02em}
+.s1 h1 em{font-style:italic;color:var(--blush)}
+.s1 .sub{position:absolute;left:80px;top:790px;width:470px;font-size:32px;line-height:1.4;opacity:.88}
+.s1 .cloche{position:absolute;right:10px;bottom:150px;width:500px}
+.s1 .tags{position:absolute;left:80px;top:990px;display:flex;flex-direction:column;gap:14px}
+.s1 .tags span{display:inline-flex;align-items:center;gap:14px;font-size:27px;font-weight:600}
+.s1 .tags span::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--mustard)}
+
+/* formula slides */
+.f .time{position:absolute;left:80px;top:196px;display:inline-flex;align-items:center;gap:14px;padding:14px 26px;border-radius:40px;font-size:28px;font-weight:700;letter-spacing:.04em}
+.f .time svg{width:30px;height:30px}
+.f .label{position:absolute;left:80px;top:300px;font-size:28px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.f h2{position:absolute;left:74px;top:346px;font-family:'Fraunces',serif;font-weight:400;font-size:120px;line-height:.98;letter-spacing:-.02em}
+.f h2 em{font-style:italic}
+.f .price{position:absolute;left:80px;top:610px;display:flex;flex-direction:column;gap:6px}
+.f .price .n{font-family:'Fraunces',serif;font-weight:600;font-size:190px;line-height:1;letter-spacing:-.03em}
+.f .price .u{font-size:30px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.75}
+.f ul{position:absolute;left:80px;top:930px;list-style:none;display:flex;flex-direction:column;gap:20px;width:540px}
+.f li{font-size:32px;line-height:1.25;display:flex;gap:18px;align-items:flex-start;padding-bottom:18px;border-bottom:2px solid currentColor;border-color:rgba(30,42,36,.15)}
+.f li::before{content:"";flex:none;width:12px;height:12px;margin-top:13px;border-radius:50%;background:var(--dot)}
+.f .plate{position:absolute;right:-150px;top:500px;width:600px;height:600px}
+
+.s2{background:#F6E7C8;--dot:var(--terra)}
+.s2 .time{background:var(--ink);color:#F6E7C8}
+.s3{background:#DCE4CF;--dot:var(--terra)}
+.s3 .time{background:var(--green);color:#DCE4CF}
+.s4{background:var(--green);color:var(--cream);--dot:var(--mustard)}
+.s4 .time{background:var(--mustard);color:var(--green)}
+.s4 li{border-color:rgba(245,238,226,.2)}
+.s4 h2 em{color:var(--blush)}
+
+/* engagements */
+.s5{background:var(--paper)}
+.s5 .label{position:absolute;left:80px;top:196px;font-size:28px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)}
+.s5 h2{position:absolute;left:74px;top:244px;font-family:'Fraunces',serif;font-weight:400;font-size:86px;line-height:1;letter-spacing:-.02em}
+.s5 h2 em{font-style:italic;color:var(--terra)}
+.card{position:absolute;left:80px;right:80px;height:330px;border-radius:36px;padding:52px 56px;display:flex;gap:44px}
+.card .ic{flex:none;width:130px;height:130px;border-radius:50%;display:grid;place-items:center}
+.card .ic svg{width:66px;height:66px}
+.card h3{font-family:'Fraunces',serif;font-weight:600;font-size:54px;line-height:1.05;margin-bottom:20px}
+.card p{font-size:30px;line-height:1.4}
+.c1{top:470px;background:#DCE4CF}
+.c1 .ic{background:var(--green);color:#DCE4CF}
+.c2{top:830px;background:var(--green);color:var(--cream)}
+.c2 .ic{background:var(--mustard);color:var(--green)}
+.c2 p{opacity:.88}
+
+/* CTA */
+.s6{background:var(--terra);color:var(--paper)}
+.s6 .label{position:absolute;left:80px;top:240px;font-size:28px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+.s6 h2{position:absolute;left:74px;top:290px;font-family:'Fraunces',serif;font-weight:400;font-size:132px;line-height:.98;letter-spacing:-.02em}
+.s6 h2 em{font-style:italic;color:var(--green)}
+.s6 .big24{position:absolute;right:40px;top:170px;font-family:'Fraunces',serif;font-style:italic;font-size:560px;line-height:1;color:rgba(255,255,255,.08);letter-spacing:-.05em}
+.s6 .steps{position:absolute;left:80px;top:690px;right:80px;display:flex;flex-direction:column;gap:0}
+.s6 .step{display:flex;gap:30px;align-items:baseline;padding:24px 0;border-top:2px solid rgba(251,247,240,.3);font-size:32px;line-height:1.3}
+.s6 .step b{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:40px;color:var(--green);width:50px;flex:none}
+.s6 .btn{position:absolute;left:80px;top:1080px;display:inline-flex;align-items:center;gap:22px;background:var(--paper);color:var(--green);padding:30px 44px;border-radius:60px;font-size:34px;font-weight:700}
+.s6 .btn svg{width:36px;height:36px}
+.s6 .foot{color:var(--paper)}
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<section class="slide s1">
+  <div class="top"><div class="logo"><span class="mk">&amp;</span>Saveurs <i>&amp;</i> Co</div><div class="count">Traiteur · Lille</div></div>
+  <div class="kick">Séminaires d'entreprise</div>
+  <h1>Votre<br>séminaire,<br><em>clé en main.</em></h1>
+  <p class="sub">Du premier café au dernier toast, on régale vos équipes. Vous, vous gérez l'ordre du jour.</p>
+  <div class="tags"><span>3 formules, du matin au soir</span><span>Produits des Hauts-de-France</span><span>Zéro gaspillage</span></div>
+  <svg class="cloche" viewBox="0 0 620 560" fill="none">
+    <ellipse cx="330" cy="470" rx="270" ry="36" fill="#15291F"/>
+    <path d="M90 440 Q90 190 330 170 Q570 190 570 440 Z" fill="#E3A63A"/>
+    <path d="M140 420 Q150 240 300 205" stroke="#F5EEE2" stroke-width="16" stroke-linecap="round" opacity=".55"/>
+    <rect x="60" y="430" width="540" height="34" rx="17" fill="#F5EEE2"/>
+    <circle cx="330" cy="150" r="30" fill="#E3A63A"/>
+    <rect x="316" y="160" width="28" height="22" fill="#C98F2A"/>
+    <!-- key -->
+    <g transform="translate(270 320) rotate(-14) scale(.85)">
+      <circle cx="0" cy="0" r="46" fill="none" stroke="#1E3B2F" stroke-width="20"/>
+      <rect x="40" y="-10" width="150" height="20" rx="6" fill="#1E3B2F"/>
+      <rect x="150" y="6" width="18" height="36" rx="4" fill="#1E3B2F"/>
+      <rect x="120" y="6" width="18" height="26" rx="4" fill="#1E3B2F"/>
+    </g>
+    <g fill="#EFC9B0"><circle cx="560" cy="120" r="8"/><circle cx="600" cy="200" r="5"/><circle cx="80" cy="220" r="6"/></g>
+  </svg>
+  <div class="foot"><div class="dots"><b class="on"></b><b></b><b></b><b></b><b></b><b></b></div><div class="swipe">Le programme<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div>
+</section>
+
+<!-- 2 PETIT-DEJ -->
+<section class="slide f s2">
+  <div class="top"><div class="logo"><span class="mk">&amp;</span>Saveurs <i>&amp;</i> Co</div><div class="count">02 / 06</div></div>
+  <div class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>8 h 30 · Accueil</div>
+  <div class="label">Formule 1</div>
+  <h2>Le petit-<br><em>déjeuner</em></h2>
+  <div class="price"><span class="n">9 €</span><span class="u">par personne</span></div>
+  <ul><li>Viennoiseries d'artisan boulanger</li><li>Fruits frais &amp; jus pressés</li><li>Café, thés &amp; chocolat chaud</li></ul>
+  <svg class="plate" viewBox="0 0 720 720">
+    <circle cx="360" cy="360" r="340" fill="#FBF7F0"/>
+    <circle cx="360" cy="360" r="340" fill="none" stroke="#E7D3AE" stroke-width="4"/>
+    <circle cx="360" cy="360" r="270" fill="none" stroke="#EADCC2" stroke-width="3"/>
+    <!-- croissant -->
+    <g transform="translate(250 330) rotate(-12)"><ellipse cx="-132.4" cy="19.6" rx="32" ry="52" transform="rotate(-62 -132.4 19.6)" fill="#D98B3A" stroke="#A85E22" stroke-width="6"/><ellipse cx="-136.4" cy="11.6" rx="14.4" ry="28.6" transform="rotate(-62 -132.4 19.6)" fill="#EDB06A" opacity=".7"/><ellipse cx="132.4" cy="19.6" rx="32" ry="52" transform="rotate(62 132.4 19.6)" fill="#D98B3A" stroke="#A85E22" stroke-width="6"/><ellipse cx="128.4" cy="11.6" rx="14.4" ry="28.6" transform="rotate(62 132.4 19.6)" fill="#EDB06A" opacity=".7"/><ellipse cx="-83.9" cy="-34.4" rx="40" ry="64" transform="rotate(-34 -83.9 -34.4)" fill="#D98B3A" stroke="#A85E22" stroke-width="6"/><ellipse cx="-87.9" cy="-42.4" rx="18.0" ry="35.2" transform="rotate(-34 -83.9 -34.4)" fill="#EDB06A" opacity=".7"/><ellipse cx="83.9" cy="-34.4" rx="40" ry="64" transform="rotate(34 83.9 -34.4)" fill="#D98B3A" stroke="#A85E22" stroke-width="6"/><ellipse cx="79.9" cy="-42.4" rx="18.0" ry="35.2" transform="rotate(34 83.9 -34.4)" fill="#EDB06A" opacity=".7"/><ellipse cx="0.0" cy="-60.0" rx="46" ry="74" transform="rotate(0 0.0 -60.0)" fill="#D98B3A" stroke="#A85E22" stroke-width="6"/><ellipse cx="-4.0" cy="-68.0" rx="20.7" ry="40.7" transform="rotate(0 0.0 -60.0)" fill="#EDB06A" opacity=".7"/></g>
+    <!-- cup -->
+    <circle cx="400" cy="500" r="110" fill="#FBF7F0" stroke="#1E2A24" stroke-width="10"/>
+    <circle cx="400" cy="500" r="84" fill="#5B3420"/>
+    <path d="M362 482 Q400 452 438 490 Q400 518 372 504" stroke="#C99467" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <rect x="500" y="486" width="56" height="28" rx="14" fill="#1E2A24"/>
+    <!-- orange slices -->
+    <g transform="translate(180 520)"><circle r="58" fill="#E3A63A"/><circle r="46" fill="#F2C470"/>
+      <g stroke="#E3A63A" stroke-width="5"><path d="M0 0 L0 -44"/><path d="M0 0 L38 -22"/><path d="M0 0 L38 22"/><path d="M0 0 L0 44"/><path d="M0 0 L-38 22"/><path d="M0 0 L-38 -22"/></g></g>
+    <g transform="translate(250 600)"><circle r="40" fill="#E3A63A"/><circle r="31" fill="#F2C470"/></g>
+  </svg>
+  <div class="foot"><div class="dots"><b></b><b class="on"></b><b></b><b></b><b></b><b></b></div><div class="swipe">Midi<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div>
+</section>
+
+<!-- 3 BUFFET -->
+<section class="slide f s3">
+  <div class="top"><div class="logo"><span class="mk">&amp;</span>Saveurs <i>&amp;</i> Co</div><div class="count">03 / 06</div></div>
+  <div class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6"/></svg>12 h 30 · Pause déjeuner</div>
+  <div class="label">Formule 2</div>
+  <h2>Le déjeuner<br><em>buffet</em></h2>
+  <div class="price"><span class="n">24 €</span><span class="u">par personne</span></div>
+  <ul><li>Entrées &amp; salades de saison</li><li>Plats chauds cuisinés du jour</li><li>Fromages de la région &amp; desserts</li></ul>
+  <svg class="plate" viewBox="0 0 720 720">
+    <circle cx="360" cy="360" r="340" fill="#FBF7F0"/>
+    <circle cx="360" cy="360" r="340" fill="none" stroke="#C6D2B5" stroke-width="4"/>
+    <circle cx="360" cy="360" r="270" fill="none" stroke="#E4E9DA" stroke-width="3"/>
+    <!-- salad leaves -->
+    <g transform="translate(250 260)">
+      <ellipse rx="110" ry="60" transform="rotate(-30)" fill="#6E9B55"/>
+      <ellipse cx="50" cy="40" rx="100" ry="52" transform="rotate(20 50 40)" fill="#8DB56B"/>
+      <ellipse cx="-40" cy="60" rx="80" ry="44" transform="rotate(-60 -40 60)" fill="#4F7A3E"/>
+      <circle cx="10" cy="10" r="26" fill="#D9482B"/><circle cx="70" cy="-20" r="20" fill="#D9482B"/><circle cx="-50" cy="-10" r="16" fill="#E3A63A"/>
+    </g>
+    <!-- cheese wedge -->
+    <g transform="translate(420 330) rotate(12)">
+      <path d="M-80 60 L90 60 L90 -10 Z" fill="#F2C470"/>
+      <path d="M-80 60 L90 -10 L90 -30 L-80 40Z" fill="#C8632F"/>
+      <circle cx="40" cy="36" r="10" fill="#E3A63A"/><circle cx="5" cy="46" r="7" fill="#E3A63A"/>
+    </g>
+    <!-- main: stew bowl -->
+    <circle cx="380" cy="520" r="120" fill="#1E3B2F"/>
+    <circle cx="380" cy="520" r="96" fill="#8A3B1E"/>
+    <g fill="#C8632F"><circle cx="350" cy="500" r="22"/><circle cx="410" cy="540" r="24"/><circle cx="400" cy="480" r="16"/></g>
+    <g fill="#E3A63A"><circle cx="340" cy="560" r="12"/><circle cx="430" cy="500" r="10"/></g>
+    <g fill="#8DB56B"><circle cx="370" cy="530" r="7"/><circle cx="330" cy="530" r="6"/><circle cx="420" cy="570" r="6"/></g>
+  </svg>
+  <div class="foot"><div class="dots"><b></b><b></b><b class="on"></b><b></b><b></b><b></b></div><div class="swipe">Le soir<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div>
+</section>
+
+<!-- 4 COCKTAIL -->
+<section class="slide f s4">
+  <div class="top"><div class="logo"><span class="mk">&amp;</span>Saveurs <i>&amp;</i> Co</div><div class="count">04 / 06</div></div>
+  <div class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l-3 4"/></svg>18 h 30 · Fin de journée</div>
+  <div class="label">Formule 3</div>
+  <h2>Le cocktail<br><em>dînatoire</em></h2>
+  <div class="price"><span class="n">32 €</span><span class="u">par personne</span></div>
+  <ul><li>Pièces salées chaudes &amp; froides</li><li>Verrines &amp; bouchées de saison</li><li>Mignardises pour finir en douceur</li></ul>
+  <svg class="plate" viewBox="0 0 720 720">
+    <circle cx="360" cy="360" r="340" fill="#2C5243"/>
+    <circle cx="360" cy="360" r="340" fill="none" stroke="#E3A63A" stroke-width="6"/>
+    <circle cx="360" cy="360" r="310" fill="none" stroke="#3B6554" stroke-width="3"/>
+    <!-- bites in rows -->
+    <g id="bites">
+      <g transform="translate(200 220)"><rect x="-44" y="-30" width="88" height="60" rx="12" fill="#F5EEE2"/><rect x="-36" y="-40" width="72" height="22" rx="10" fill="#C8632F"/><circle cx="0" cy="-44" r="8" fill="#8DB56B"/></g>
+      <g transform="translate(340 190)"><circle r="46" fill="#F2C470"/><circle r="30" fill="#D9482B"/><circle cx="-6" cy="-6" r="8" fill="#F5EEE2"/></g>
+      <g transform="translate(480 220)"><rect x="-44" y="-30" width="88" height="60" rx="12" fill="#F5EEE2"/><rect x="-36" y="-40" width="72" height="22" rx="10" fill="#C8632F"/><circle cx="0" cy="-44" r="8" fill="#8DB56B"/></g>
+      <g transform="translate(200 370)"><circle r="46" fill="#F2C470"/><circle r="30" fill="#D9482B"/><circle cx="-6" cy="-6" r="8" fill="#F5EEE2"/></g>
+      <!-- verrine -->
+      <g transform="translate(350 360)"><circle r="58" fill="#EFC9B0" opacity=".35"/><circle r="50" fill="#F5EEE2"/><circle r="36" fill="#8DB56B"/><circle r="16" fill="#E3A63A"/></g>
+      <g transform="translate(500 370)"><circle r="46" fill="#F2C470"/><circle r="30" fill="#D9482B"/><circle cx="-6" cy="-6" r="8" fill="#F5EEE2"/></g>
+      <g transform="translate(230 520)"><circle r="40" fill="#EFC9B0"/><circle r="28" fill="#C65F32"/><circle r="8" fill="#F5EEE2"/></g>
+      <g transform="translate(370 530)"><rect x="-44" y="-30" width="88" height="60" rx="12" fill="#F5EEE2"/><rect x="-36" y="-40" width="72" height="22" rx="10" fill="#C8632F"/><circle cx="0" cy="-44" r="8" fill="#8DB56B"/></g>
+      <g transform="translate(510 510)"><circle r="40" fill="#EFC9B0"/><circle r="28" fill="#C65F32"/><circle r="8" fill="#F5EEE2"/></g>
+    </g>
+    <!-- toothpick accent -->
+    <path d="M330 160 L370 120" stroke="#F5EEE2" stroke-width="5" stroke-linecap="round"/>
+  </svg>
+  <div class="foot"><div class="dots"><b></b><b></b><b></b><b class="on"></b><b></b><b></b></div><div class="swipe">Nos engagements<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div>
+</section>
+
+<!-- 5 ENGAGEMENTS -->
+<section class="slide s5">
+  <div class="top"><div class="logo"><span class="mk">&amp;</span>Saveurs <i>&amp;</i> Co</div><div class="count">05 / 06</div></div>
+  <div class="label">Dans chaque formule</div>
+  <h2>Bon pour vos équipes,<br><em>bon pour la région.</em></h2>
+  <div class="card c1">
+    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
+    <div><h3>Produits régionaux</h3><p>Fromages, légumes, pains et bières : nous travaillons avec des producteurs des <span style="white-space:nowrap">Hauts-de-France</span>. Le goût du Nord, en direct.</p></div>
+  </div>
+  <div class="card c2">
+    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"/><path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 15 6 6"/><path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.73 2.73 0 0 0 16 4a2.78 2.78 0 0 0-5 1.8c0 1.2.8 2 1.5 2.8L16 12Z"/></svg></div>
+    <div><h3>Zéro gaspillage</h3><p>Quantités ajustées au nombre de convives, et les surplus sont donnés à des associations solidaires. Rien ne part à la poubelle.</p></div>
+  </div>
+  <div class="foot"><div class="dots"><b></b><b></b><b></b><b></b><b class="on"></b><b></b></div><div class="swipe">Votre devis<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div>
+</section>
+
+<!-- 6 CTA -->
+<section class="slide s6">
+  <div class="big24">24</div>
+  <div class="top"><div class="logo"><span class="mk" style="background:var(--green)">&amp;</span>Saveurs <i>&amp;</i> Co</div><div class="count">06 / 06</div></div>
+  <div class="label">On s'occupe de tout</div>
+  <h2>Votre devis<br><em>en 24 h.</em></h2>
+  <div class="steps">
+    <div class="step"><b>1</b><span>Donnez-nous la date, le lieu et le nombre de convives.</span></div>
+    <div class="step"><b>2</b><span>Choisissez vos formules : une, deux… ou les trois.</span></div>
+    <div class="step"><b>3</b><span>Recevez votre devis détaillé sous 24 h, sans engagement.</span></div>
+  </div>
+  <div class="btn">Demander mon devis<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+  <div class="foot"><div class="dots"><b></b><b></b><b></b><b></b><b></b><b class="on"></b></div><div>Traiteur à Lille · Métropole lilloise</div></div>
+</section>
+
+<script>window.KLIPT={width:1080,height:1350};</script>
+</body>
+</html>

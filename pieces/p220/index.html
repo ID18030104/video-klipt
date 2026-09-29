@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Domaine des Trois Chênes · Portes ouvertes</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/gloock/index.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/instrument-serif/400-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/600.css">
+<style>
+:root{
+  --glass:#0F1A15; --paper:#F1EADA; --ink:#1D2A22; --gold:#9C7426; --goldhi:#E9CB82;
+  --cellar:#2A2118; --candle:#E8C47A;
+}
+html,body{margin:0;padding:0;}
+body{width:1080px;height:1920px;overflow:hidden;background:var(--glass);}
+#stage{position:absolute;inset:0;transform-origin:540px 860px;}
+/* bottle glass */
+.glass{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 60% at 50% 45%, #1c2c23 0%, #0F1A15 55%, #08100c 100%);}
+.glass::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg, transparent 0 5%, rgba(190,220,200,.07) 7%, transparent 10% 88%, rgba(190,220,200,.05) 91%, transparent 94%);}
+.glass::after{content:"";position:absolute;left:0;right:0;top:0;height:160px;
+  background:linear-gradient(180deg, rgba(0,0,0,.45), transparent);}
+
+/* label */
+.label{position:absolute;left:110px;top:200px;width:860px;height:1440px;background:var(--paper);
+  box-shadow:0 30px 60px rgba(0,0,0,.45), 0 4px 10px rgba(0,0,0,.35);overflow:hidden;}
+.label .laid{position:absolute;inset:0;pointer-events:none;
+  background:
+    repeating-linear-gradient(90deg, rgba(90,70,40,.05) 0 1px, transparent 1px 88px),
+    repeating-linear-gradient(0deg, rgba(90,70,40,.035) 0 1px, transparent 1px 4px);}
+.label .grain{position:absolute;inset:0;pointer-events:none;opacity:.8;}
+.label .curve{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg, rgba(40,30,15,.22), rgba(40,30,15,0) 14%, rgba(255,255,255,.10) 42%, rgba(40,30,15,0) 70%, rgba(40,30,15,.25));}
+.frame{position:absolute;inset:0;}
+
+.caps{font-family:"Manrope",sans-serif;font-weight:600;text-transform:uppercase;color:var(--ink);
+  font-size:30px;letter-spacing:.2em;text-align:center;position:absolute;left:0;right:0;}
+.aoc{top:80px;}
+.name1{position:absolute;left:0;right:0;top:936px;text-align:center;font-family:"Instrument Serif",serif;font-style:italic;
+  font-size:60px;line-height:1;color:var(--ink);}
+.name2{position:absolute;left:0;right:0;top:1000px;text-align:center;font-family:"Gloock",serif;font-size:120px;line-height:1.08;
+  letter-spacing:-.01em;color:var(--ink);}
+.name2 span{display:inline-block;}
+.orn{position:absolute;left:0;top:1138px;width:860px;height:70px;}
+.spec1{top:1214px;} .spec2{top:1258px;}
+.vint{position:absolute;left:0;right:0;top:1300px;text-align:center;font-family:"Instrument Serif",serif;font-style:italic;font-size:62px;line-height:1.1;
+  background:linear-gradient(100deg, var(--gold) 0 40%, #f3dc9c 48%, var(--gold) 56% 100%);background-size:300% 100%;background-position:100% 0;
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+
+/* the doorway */
+.door-wrap{position:absolute;left:130px;top:150px;width:600px;height:750px;perspective:1300px;
+  clip-path:path("M0,750 L0,300 A300,300 0 0 1 600,300 L600,750 Z");}
+.inside{position:absolute;inset:0;background:radial-gradient(70% 55% at 50% 58%, #6b4d27 0%, #3a2b1b 45%, #150f0a 100%);}
+.inside svg{position:absolute;inset:0;}
+.inside .txt{position:absolute;left:0;right:0;text-align:center;}
+.in1{top:150px;font-family:"Instrument Serif",serif;font-style:italic;font-size:62px;line-height:1;color:var(--candle);}
+.in2{top:300px;font-family:"Gloock",serif;font-size:176px;line-height:1;color:var(--paper);letter-spacing:-.02em;}
+.in3{top:486px;font-family:"Gloock",serif;font-size:80px;line-height:1;color:var(--paper);}
+.in4{top:596px;font-family:"Manrope",sans-serif;font-weight:600;font-size:30px;line-height:1.35;letter-spacing:.16em;text-transform:uppercase;color:var(--candle);}
+.leaf-door{position:absolute;top:0;width:300px;height:750px;overflow:hidden;background:var(--paper);backface-visibility:hidden;}
+.leaf-door.l{left:0;transform-origin:0 50%;}
+.leaf-door.r{left:300px;transform-origin:100% 50%;}
+.leaf-door svg{position:absolute;top:0;width:600px;height:750px;}
+.leaf-door.l svg{left:0;} .leaf-door.r svg{left:-300px;}
+.leaf-door .shade{position:absolute;inset:0;background:#0d0906;opacity:0;}
+.leaf-door .laid{position:absolute;inset:0;background:repeating-linear-gradient(90deg, rgba(90,70,40,.05) 0 1px, transparent 1px 88px);}
+.seam{position:absolute;left:295px;top:0;width:10px;height:750px;background:var(--candle);filter:blur(3px);opacity:0;}
+.spill{position:absolute;left:60px;top:860px;width:740px;height:140px;opacity:0;pointer-events:none;
+  background:radial-gradient(50% 50% at 50% 0%, rgba(232,196,122,.45), rgba(232,196,122,0));mix-blend-mode:multiply;}
+.ov{position:absolute;inset:0;pointer-events:none;}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="glass"></div>
+  <div class="label" id="label">
+    <canvas class="grain" id="grain" width="860" height="1440"></canvas>
+    <div class="laid"></div>
+    <svg class="frame" id="frame" width="860" height="1440"></svg>
+    <div class="caps aoc" id="aoc">AOC Vouvray · Touraine</div>
+
+    <div class="door-wrap" id="door">
+      <div class="inside">
+        <svg id="vault" width="600" height="750"></svg>
+        <div class="txt in1">Portes ouvertes<br>au chai</div>
+        <div class="txt in2">7 &amp; 8</div>
+        <div class="txt in3">novembre</div>
+        <div class="txt in4">Dégustation<br>gratuite</div>
+      </div>
+      <div class="leaf-door l"><div class="laid"></div><svg class="eng" viewBox="0 0 600 750"></svg><div class="shade"></div></div>
+      <div class="leaf-door r"><div class="laid"></div><svg class="eng" viewBox="0 0 600 750"></svg><div class="shade"></div></div>
+      <div class="seam"></div>
+    </div>
+    <div class="spill"></div>
+    <svg class="ov" id="arch" width="860" height="1440"></svg>
+
+    <div class="name1" id="name1">Domaine des</div>
+    <div class="name2" id="name2">Trois Chênes</div>
+    <svg class="orn" id="orn" viewBox="0 0 860 70"></svg>
+    <div class="caps spec1">Chenin blanc · 14 hectares</div>
+    <div class="caps spec2">Agriculture biologique</div>
+    <div class="vint" id="vint">Vendanges 2026 terminées</div>
+    <div class="curve"></div>
+  </div>
+</div>
+
+<script src="../../lib/klipt-kit.js"></script>
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+(function(){
+const R = KK.rng(2026);
+const INK = '#1D2A22';
+const f = n => n.toFixed(1);
+const P = (d, cls, w) => `<path class="${cls}" d="${d}" pathLength="1" stroke-width="${w}" />`;
+
+/* ---------- engraving: three oaks on the Vouvray slope ---------- */
+function archHalf(y){ // half width of arch opening at y (centre 300)
+  if (y >= 300) return 300; const dy = 300 - y; return Math.sqrt(Math.max(0, 300*300 - dy*dy));
+}
+const horizon = x => 470 - 26*Math.sin((x/600)*Math.PI) + 8*Math.sin(x/60);
+const sun = {x:462, y:248, r:40};
+let sky = '', hill = '', oaks = '', oakHatch = '', rows = '', stakes = '', sunG = '';
+// sky: horizontal engraved lines, sparser near horizon, broken around the sun
+for (let y = 24; y < 470; y += 9){
+  const hw = archHalf(y) - 4; if (hw < 20) continue;
+  let x0 = 300 - hw, x1 = 300 + hw;
+  const dens = y > 360 ? (y - 360)/110 : 0;
+  const segs = [];
+  const dy = y - sun.y;
+  if (Math.abs(dy) < sun.r + 12){
+    const hx = Math.sqrt((sun.r+12)**2 - dy*dy);
+    segs.push([x0, sun.x - hx], [sun.x + hx, x1]);
+  } else segs.push([x0, x1]);
+  for (const [a,b] of segs){
+    // cut where the hill rises above this line
+    let xa = a, pieces = [];
+    for (let x = a; x <= b; x += 6){
+      const under = y > horizon(x) - 2;
+      if (under && xa !== null){ if (x - xa > 8) pieces.push([xa, x]); xa = null; }
+      else if (!under && xa === null) xa = x;
+    }
+    if (xa !== null && b - xa > 8) pieces.push([xa, b]);
+    for (const [p,q] of pieces){
+      if (dens > 0 && R() < dens*0.6) continue;
+      const w = 1.3 + (1 - y/470)*0.9;
+      sky += P(`M${f(p)},${y + R()*0.6} L${f(q)},${y + R()*0.6}`, 'e-sky', w);
+    }
+  }
+}
+// sun rings
+for (let k = 0; k < 3; k++) sunG += P(`M${sun.x - sun.r + k*9},${sun.y} a${sun.r - k*9},${sun.r - k*9} 0 1 0 ${2*(sun.r - k*9)},0 a${sun.r - k*9},${sun.r - k*9} 0 1 0 ${-2*(sun.r - k*9)},0`, 'e-sun', 1.6);
+// horizon line
+let hd = 'M0,' + f(horizon(0));
+for (let x = 6; x <= 600; x += 6) hd += ` L${x},${f(horizon(x))}`;
+hill += P(hd, 'e-hill', 2.6);
+// vine rows: a fan of rows running down the slope toward the viewer, vines growing with proximity
+const NR = 17;
+for (let i = 0; i < NR; i++){
+  const xt = 40 + i*(520/(NR-1)), yt = horizon(xt) + 3;
+  const xb = 300 + (xt - 300)*3.4, yb = 790;
+  const pt = s => { const e = Math.pow(s, 1.25); return [xt + (xb - xt)*e, yt + (yb - yt)*s + 10*Math.sin(s*Math.PI)*(xt<300?-1:1)*0]; };
+  let d = '';
+  for (let k = 0; k <= 24; k++){ const [x,y] = pt(k/24); d += (k ? ' L' : 'M') + f(x) + ',' + f(y); }
+  rows += P(d, 'e-row', 1.3);
+  for (let k = 1; k < 14; k++){
+    const s = Math.pow(k/14, 1.5); const [x,y] = pt(s); if (y > 752) break;
+    const h = 3 + s*26, w = 1 + s*1.4;
+    stakes += P(`M${f(x)},${f(y)} L${f(x)},${f(y - h)} M${f(x)},${f(y - h*0.6)} Q${f(x - h*0.45)},${f(y - h*0.95)} ${f(x - h*0.55)},${f(y - h*0.7)} M${f(x)},${f(y - h*0.7)} Q${f(x + h*0.45)},${f(y - h*1.05)} ${f(x + h*0.55)},${f(y - h*0.8)}`, 'e-stake', w);
+  }
+}
+// light contour shading on the slope
+for (let j = 0; j < 7; j++){
+  const off = 30 + j*j*7; let d = '';
+  for (let x = 0; x <= 600; x += 12){ d += (x ? ' L' : 'M') + x + ',' + f(horizon(x) + off); }
+  rows += P(d, 'e-row', 0.9);
+}
+// oaks
+const trees = [{x:176, r:66}, {x:300, r:92}, {x:424, r:66}];
+for (const t of trees){
+  const base = horizon(t.x);
+  const trunkH = t.r*0.95;
+  const cy = base - trunkH - t.r*0.62, cx = t.x;
+  // scalloped crown outline
+  const n = 15; let d = '';
+  const pts = [];
+  for (let k = 0; k <= n; k++){
+    const a = Math.PI*0.5 + (k/n)*Math.PI*2;
+    const rr = t.r*(1 + 0.06*Math.sin(3*a) + (R()-0.5)*0.08);
+    pts.push([cx + Math.cos(a)*rr, cy + Math.sin(a)*rr*0.84]);
+  }
+  pts[n] = pts[0];
+  d = `M${f(pts[0][0])},${f(pts[0][1])}`;
+  for (let k = 1; k <= n; k++){
+    const [x0,y0] = pts[k-1], [x1,y1] = pts[k];
+    const mx = (x0+x1)/2, my = (y0+y1)/2; const nx = mx - cx, ny = my - cy; const L = Math.hypot(nx,ny);
+    const bulge = t.r*0.2;
+    d += ` Q${f(mx + nx/L*bulge)},${f(my + ny/L*bulge)} ${f(x1)},${f(y1)}`;
+  }
+  oaks += P(d, 'e-oak', 2.6);
+  // trunk + two branches
+  oaks += P(`M${cx - 7},${f(base)} C${cx - 5},${f(base - trunkH*0.5)} ${cx - 10},${f(base - trunkH*0.8)} ${cx - 22},${f(cy + t.r*0.3)}`, 'e-oak', 2.4);
+  oaks += P(`M${cx + 7},${f(base)} C${cx + 5},${f(base - trunkH*0.5)} ${cx + 9},${f(base - trunkH*0.8)} ${cx + 24},${f(cy + t.r*0.35)}`, 'e-oak', 2.4);
+  oaks += P(`M${cx},${f(base - trunkH*0.7)} L${cx + 2},${f(cy + t.r*0.1)}`, 'e-oak', 1.8);
+  // crown hatching: shadow side (away from the sun, lower left), cross-hatched in the core
+  for (let s = -t.r; s < t.r; s += 7){
+    // diagonal lines x - y = s  within ellipse, keep shaded half
+    const segs = [];
+    for (let u = -t.r; u <= t.r; u += 3){
+      const x = cx + (u + s)/2*1.2, y = cy + (u - s)/2*1.0;
+      const ex = (x - cx)/t.r, ey = (y - cy)/(t.r*0.84);
+      const inside = ex*ex + ey*ey < 0.86;
+      const shade = (-(ex)*0.55 + ey*0.8) > -0.25;
+      segs.push(inside && shade ? [x,y] : null);
+    }
+    let run = [];
+    const flush = () => { if (run.length > 2){ oakHatch += P(`M${f(run[0][0])},${f(run[0][1])} L${f(run[run.length-1][0])},${f(run[run.length-1][1])}`, 'e-hatch', 1.3); } run = []; };
+    for (const p of segs){ if (p) run.push(p); else flush(); } flush();
+  }
+  for (let s = -t.r*0.6; s < t.r*0.3; s += 8){ // cross-hatch core shadow
+    const x0 = cx - t.r*0.62, x1 = cx + t.r*0.05;
+    const y = cy + t.r*0.25 + s*0.5;
+    oakHatch += P(`M${f(x0)},${f(y + (x0-cx)*0.35)} L${f(x1)},${f(y + (x1-cx)*0.35)}`, 'e-hatch', 1.1);
+  }
+  // ground shadow ticks
+  for (let k = 0; k < 6; k++){ const x = cx - 40 + k*14; oaks += P(`M${x},${f(horizon(x) + 5)} l18,0`, 'e-oak', 1.4); }
+}
+const eng = `<g fill="none" stroke="${INK}" stroke-linecap="round">${sky}${sunG}${rows}${stakes}${hill}${oakHatch}${oaks}</g>`;
+document.querySelectorAll('svg.eng').forEach(s => s.innerHTML = eng);
+
+/* ---------- label frame & tuffeau arch ---------- */
+const fr = document.getElementById('frame');
+fr.innerHTML = `<g fill="none" stroke="${INK}">
+  ${P('M28,28 H832 V1412 H28 Z','e-frame',2.2)}
+  ${P('M40,40 H820 V1400 H40 Z','e-frame',1)}
+  ${P('M40,64 H820','e-frame',1)}
+</g>`;
+// voussoirs + jambs around the door opening (door at 130,150 size 600x750)
+let ar = '';
+const ox = 130, oy = 150, cxA = ox + 300, cyA = oy + 300;
+ar += P(`M${ox},${oy+750} L${ox},${oy+300} A300,300 0 0 1 ${ox+600},${oy+300} L${ox+600},${oy+750}`, 'e-arch', 2.6);
+ar += P(`M${ox-34},${oy+750} L${ox-34},${oy+300} A334,334 0 0 1 ${ox+634},${oy+300} L${ox+634},${oy+750}`, 'e-arch', 2);
+for (let k = 0; k <= 12; k++){
+  const a = Math.PI + (k/12)*Math.PI;
+  ar += P(`M${f(cxA + Math.cos(a)*300)},${f(cyA + Math.sin(a)*300)} L${f(cxA + Math.cos(a)*334)},${f(cyA + Math.sin(a)*334)}`, 'e-arch', 1.6);
+}
+for (let y = oy + 340; y < oy + 750; y += 56){
+  ar += P(`M${ox-34},${y} L${ox},${y}`, 'e-arch', 1.6);
+  ar += P(`M${ox+600},${y} L${ox+634},${y}`, 'e-arch', 1.6);
+}
+ar += P(`M${ox-60},${oy+750} L${ox+660},${oy+750}`, 'e-arch', 2.6);
+ar += P(`M${ox-60},${oy+758} L${ox+660},${oy+758}`, 'e-arch', 1);
+// door seam + iron rings
+ar += P(`M${ox+300},${oy+ 4} L${ox+300},${oy+750}`, 'e-seam', 1.4);
+ar += P(`M${ox+284},${oy+560} a13,13 0 1 0 0.1,0`, 'e-ring', 2.4);
+ar += P(`M${ox+316},${oy+560} a13,13 0 1 0 0.1,0`, 'e-ring', 2.4);
+document.getElementById('arch').innerHTML = `<g fill="none" stroke="${INK}" stroke-linecap="round">${ar}</g>`;
+
+/* ---------- vine leaf ornament ---------- */
+function vineLeaf(cx, cy, Rr, rot){
+  const lobes = [0, 0.95, -0.95, 1.9, -1.9];
+  let d = '';
+  const N = 140;
+  for (let i = 0; i <= N; i++){
+    const th = -Math.PI + (i/N)*Math.PI*2; // 0 = up
+    let r = 0.38;
+    for (const L of lobes){ const w = L === 0 ? 0.42 : 0.36; r += (L===0?0.62:0.5)*Math.exp(-((th-L)**2)/(2*w*w)); }
+    r *= 1 + 0.05*Math.sin(th*22);
+    const sin = Math.abs(Math.abs(th) - Math.PI); if (sin < 0.35) r *= 0.35 + sin*1.8;
+    const a = th + rot;
+    const x = cx + Math.sin(a)*r*Rr, y = cy - Math.cos(a)*r*Rr;
+    d += (i ? ' L' : 'M') + f(x) + ',' + f(y);
+  }
+  let veins = '';
+  for (const L of lobes){ const a = L + rot; const k = L === 0 ? 0.92 : 0.78; veins += P(`M${f(cx)},${f(cy)} L${f(cx + Math.sin(a)*k*Rr)},${f(cy - Math.cos(a)*k*Rr)}`, 'e-vein', 1.2); }
+  const stem = P(`M${f(cx)},${f(cy)} l${f(-Math.sin(rot)*Rr*0.5)},${f(Math.cos(rot)*Rr*0.5)}`, 'e-vein', 1.6);
+  return P(d + ' Z', 'e-leaf', 1.8) + veins + stem;
+}
+document.getElementById('orn').innerHTML = `<g fill="none" stroke="${INK}" stroke-linecap="round">
+  ${P('M170,36 L380,36','e-rule',1.4)} ${P('M480,36 L690,36','e-rule',1.4)}
+  ${vineLeaf(430, 38, 30, 0)}
+  ${P('M150,36 a4,4 0 1 0 0.1,0','e-rule',1.4)} ${P('M710,36 a4,4 0 1 0 0.1,0','e-rule',1.4)}
+</g>`;
+
+/* ---------- inside the chai: receding vaults ---------- */
+let v = '';
+for (let k = 0; k < 7; k++){
+  const s = Math.pow(0.8, k + 1), w = 600*s, h = 750*s, x = 300 - w/2, y = 470 - h*0.52;
+  v += `<path d="M${f(x)},${f(y+h)} L${f(x)},${f(y+w/2)} A${f(w/2)},${f(w/2)} 0 0 1 ${f(x+w)},${f(y+w/2)} L${f(x+w)},${f(y+h)}" stroke="rgba(232,196,122,${(0.22 - k*0.025).toFixed(3)})" stroke-width="${f(2.2*s+0.6)}" fill="none"/>`;
+}
+for (let k = 0; k < 9; k++){ const x = 40 + k*65; v += `<path d="M${x},750 L${f(300 + (x-300)*0.2)},560" stroke="rgba(232,196,122,.10)" stroke-width="1.2"/>`; }
+document.getElementById('vault').innerHTML = v;
+
+/* ---------- paper grain, baked once ---------- */
+(function(){
+  const c = document.getElementById('grain'), g = c.getContext('2d');
+  const img = g.createImageData(860, 1440), r = KK.rng(77);
+  for (let i = 0; i < img.data.length; i += 4){
+    const v = r(); const fib = r() < 0.004 ? 0.5 : 0;
+    img.data[i] = 115; img.data[i+1] = 97; img.data[i+2] = 69; img.data[i+3] = Math.floor((v*v*0.16 + fib) * 255);
+  }
+  g.putImageData(img, 0, 0);
+})();
+/* ---------- timeline ---------- */
+const dash = sel => gsap.set(sel, {strokeDasharray: 1, strokeDashoffset: 1});
+['.e-frame','.e-sky','.e-sun','.e-hill','.e-row','.e-stake','.e-oak','.e-hatch','.e-arch','.e-seam','.e-ring','.e-rule','.e-leaf','.e-vein'].forEach(dash);
+const name2 = document.getElementById('name2');
+name2.innerHTML = [...name2.textContent].map(c => c === ' ' ? ' ' : `<span>${c}</span>`).join('');
+
+const tl = gsap.timeline({paused:true, defaults:{ease:'power2.out'}});
+const draw = (sel, at, dur, each, ease='power1.inOut') => {
+  const engs = document.querySelectorAll('svg.eng');
+  const inEng = engs[0].querySelector(sel);
+  if (inEng) engs.forEach(e => tl.to(e.querySelectorAll(sel), {strokeDashoffset:0, duration:dur, ease, stagger:each}, at));
+  else tl.to(sel, {strokeDashoffset:0, duration:dur, ease, stagger:each}, at);
+};
+
+tl.fromTo('#stage', {scale:1.0}, {scale:1.055, duration:20, ease:'none'}, 0);
+tl.from('#label', {y:70, opacity:0, duration:1.4, ease:'power3.out'}, 0.1);
+draw('.e-frame', 0.7, 1.6, 0.12);
+tl.from('#aoc', {opacity:0, letterSpacing:'0.5em', duration:1.4, ease:'power2.out'}, 1.1);
+draw('.e-arch', 1.4, 1.3, 0.035);
+draw('.e-hill', 2.2, 1.0, 0);
+draw('.e-sky', 2.3, 0.7, {each:0.03, from:'start'});
+draw('.e-sun', 2.8, 0.9, 0.15);
+draw('.e-oak', 3.2, 1.1, {each:0.04});
+draw('.e-row', 3.6, 1.0, {each:0.07});
+draw('.e-stake', 4.2, 0.25, {amount:1.8});
+draw('.e-hatch', 4.4, 0.35, {amount:2.0});
+// name: pressed into the paper
+tl.from('#name1', {opacity:0, y:14, duration:1.0}, 6.4);
+tl.from('#name2 span', {opacity:0, y:30, filter:'blur(6px)', duration:1.0, stagger:0.05}, 6.6);
+draw('.e-rule', 7.6, 0.9, 0.05);
+draw('.e-leaf', 7.8, 1.4, 0, 'power1.inOut');
+draw('.e-vein', 8.4, 0.6, 0.06);
+tl.from('.spec1, .spec2', {opacity:0, y:10, duration:0.9, stagger:0.15}, 8.4);
+tl.from('#vint', {opacity:0, y:12, duration:1.0}, 9.2);
+tl.to('#vint', {backgroundPosition:'0% 0', duration:1.6, ease:'power1.inOut'}, 9.8);
+// the door
+draw('.e-seam', 10.8, 0.8, 0);
+draw('.e-ring', 11.2, 0.6, 0.1);
+tl.to('.seam', {opacity:0.9, duration:0.6, ease:'power1.in'}, 11.6);
+tl.to('.leaf-door.l', {rotateY:4, duration:0.5, ease:'power1.inOut'}, 11.9);
+tl.to('.leaf-door.r', {rotateY:-4, duration:0.5, ease:'power1.inOut'}, 11.9);
+tl.to('#arch .e-seam, #arch .e-ring', {opacity:0, duration:0.3}, 12.3);
+tl.to('.leaf-door.l', {rotateY:84, duration:2.3, ease:'power2.inOut'}, 12.4);
+tl.to('.leaf-door.r', {rotateY:-84, duration:2.3, ease:'power2.inOut'}, 12.4);
+tl.to('.leaf-door .shade', {opacity:0.78, duration:2.3, ease:'power1.in'}, 12.4);
+tl.to('.seam', {opacity:0, duration:0.8}, 13.2);
+tl.to('.spill', {opacity:1, duration:2, ease:'power1.inOut'}, 12.6);
+tl.from('.inside', {filter:'brightness(0.75)', duration:2.4, ease:'power1.out'}, 12.2);
+tl.from('.in1', {opacity:0, y:16, duration:1.0}, 13.6);
+tl.from('.in2', {opacity:0, scale:0.92, duration:1.3, ease:'power3.out'}, 14.0);
+tl.from('.in3', {opacity:0, y:14, duration:1.0}, 14.5);
+tl.from('.in4', {opacity:0, letterSpacing:'0.4em', duration:1.2}, 15.0);
+tl.to('#vint', {backgroundPosition:'100% 0', duration:1.8, ease:'power1.inOut'}, 16.6);
+tl.to({}, {duration:0.1}, 20);
+
+window.KLIPT = { width:1080, height:1920, fps:30, duration:20, render: t => { tl.seek(t, false); } };
+})();
+</script>
+</body>
+</html>

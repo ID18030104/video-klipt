@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Une journée chez Les Petits Pas</title>
+<!--
+DIRECTION
+Concept: la journée d'un enfant racontée comme un sentier — une trace de petits pas continue traverse les 6 slides, une frise horaire 7h30 → 17h suit la journée.
+Palette: crème #FBF3E4, vert forêt #2F5D46, terracotta #E0714A, soleil #F2B84B, sauge #CFE0C3, encre #2A2A24
+Type: Fraunces (titres, chiffres) + Nunito (texte)
+Graphic: illustrations SVG gouachées à plat, formes organiques, grain papier
+Motion: n/a (carrousel statique)
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/nunito/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/nunito/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/nunito/800.css">
+<style>
+:root{--cream:#FBF3E4;--green:#2F5D46;--terra:#E0714A;--sun:#F2B84B;--sage:#CFE0C3;--ink:#2A2A24}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;background:#222}
+body{font-family:Nunito,sans-serif;color:var(--ink)}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--cream)}
+.slide.dark{background:var(--green);color:var(--cream)}
+.slide.warm{background:#F6E2C0}
+.grain{position:absolute;inset:0;opacity:.09;mix-blend-mode:multiply;pointer-events:none;z-index:50}
+.dark .grain{mix-blend-mode:screen;opacity:.07}
+.head{position:absolute;left:72px;right:72px;top:60px;display:flex;justify-content:space-between;align-items:center;z-index:10}
+.logo{display:flex;align-items:center;gap:14px;font-family:Fraunces;font-weight:800;font-size:31px;line-height:1;letter-spacing:-.3px}
+.logo small{display:block;font-family:Nunito;font-weight:700;font-size:17px;letter-spacing:2.4px;text-transform:uppercase;opacity:.7;margin-top:5px}
+.num{font-family:Fraunces;font-weight:600;font-size:30px;opacity:.75}
+.num b{font-weight:800;opacity:1}
+.time{position:absolute;left:72px;right:72px;top:150px;z-index:10}
+.time svg{display:block}
+.tag{font-family:Nunito;font-weight:800;font-size:30px;letter-spacing:3px;text-transform:uppercase;color:var(--terra)}
+.dark .tag{color:var(--sun)}
+.big{font-family:Fraunces;font-weight:800;letter-spacing:-6px;line-height:.85}
+h2{font-family:Fraunces;font-weight:800;font-size:92px;line-height:.98;letter-spacing:-2.5px}
+h2 em{font-style:italic;font-weight:600;color:var(--terra)}
+.dark h2 em{color:var(--sun)}
+p.b{font-size:38px;line-height:1.32;font-weight:400}
+p.b b{font-weight:800}
+.ill{position:absolute;z-index:5}
+.trail{position:absolute;left:0;top:1090px;width:1080px;height:200px;z-index:6;overflow:hidden}
+.trail svg{position:absolute;top:0}
+.swipe{position:absolute;right:72px;bottom:44px;z-index:10;display:flex;align-items:center;gap:14px;font-weight:800;font-size:28px;letter-spacing:1.5px;text-transform:uppercase}
+.swipe i{display:block;width:64px;height:64px;border-radius:50%;background:var(--terra);position:relative}
+.swipe i:after{content:"";position:absolute;left:19px;top:29px;width:24px;height:4px;background:#fff;border-radius:2px}
+.swipe i:before{content:"";position:absolute;left:33px;top:23px;width:14px;height:14px;border-right:4px solid #fff;border-top:4px solid #fff;transform:rotate(45deg) scale(.9);transform-origin:center;border-radius:2px}
+.foot{position:absolute;left:72px;bottom:52px;z-index:10;font-weight:700;font-size:28px;opacity:.75}
+.chip{display:inline-block;background:var(--green);color:var(--cream);font-weight:800;font-size:30px;padding:12px 26px;border-radius:99px}
+</style></head><body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+<filter id="paper" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="3" seed="4"/><feColorMatrix values="0 0 0 0 .3  0 0 0 0 .22  0 0 0 0 .12  0 0 0 1.1 -.35"/></filter>
+<symbol id="mark" viewBox="0 0 60 60"><circle cx="30" cy="30" r="30" fill="#E0714A"/><ellipse cx="21" cy="34" rx="6" ry="9" transform="rotate(-12 21 34)" fill="#FBF3E4"/><ellipse cx="40" cy="27" rx="6" ry="9" transform="rotate(12 40 27)" fill="#FBF3E4"/><circle cx="18" cy="21" r="2.6" fill="#FBF3E4"/><circle cx="23" cy="17" r="2.6" fill="#FBF3E4"/><circle cx="43" cy="14" r="2.6" fill="#FBF3E4"/><circle cx="38" cy="10.5" r="2.6" fill="#FBF3E4"/></symbol>
+</defs></svg>
+
+<div id="deck"></div>
+
+<script>
+window.KLIPT={width:1080,height:1350};
+const W=1080;
+const stops=[["7h30",0],["9h30",1],["10h30",2],["12h",3],["13h",4],["16h30",5]];
+function head(i,dark){
+  return `<div class="head"><div class="logo"><svg width="54" height="54"><use href="#mark"/></svg><div>Les Petits Pas<small>Micro-crèche · Rouen</small></div></div><div class="num"><b>0${i}</b> / 06</div></div>`;
+}
+// timeline: 6 stops, active index a (0..5) or -1
+function timeline(active,dark){
+  const c=dark?'#FBF3E4':'#2F5D46', acc=dark?'#F2B84B':'#E0714A';
+  const labels=["7h30","9h30","10h30","12h","13h","16h30"];
+  let s=`<svg width="936" height="90" viewBox="0 0 936 90"><line x1="40" y1="24" x2="896" y2="24" stroke="${c}" stroke-opacity=".28" stroke-width="4" stroke-linecap="round"/>`;
+  if(active>0)s+=`<line x1="40" y1="24" x2="${40+active*171.2}" y2="24" stroke="${acc}" stroke-width="6" stroke-linecap="round"/>`;
+  labels.forEach((l,k)=>{const x=40+k*171.2;const on=k===active,past=k<active;
+    s+=`<circle cx="${x}" cy="24" r="${on?16:9}" fill="${on||past?acc:(dark?'#2F5D46':'#FBF3E4')}" stroke="${on||past?acc:c}" stroke-opacity="${on||past?1:.4}" stroke-width="3"/>`;
+    s+=`<text x="${x}" y="78" text-anchor="middle" font-family="Nunito" font-weight="${on?800:700}" font-size="24" fill="${on?acc:c}" fill-opacity="${on?1:.6}">${l}</text>`;});
+  return s+`</svg>`;
+}
+// footprint trail continuous across slides
+function trailSVG(i,dark){
+  const col=dark?'#F2B84B':'#E0714A';
+  const total=6*W; let out='';
+  const step=84;
+  for(let k=0;k*step<total+step;k++){
+    const x=k*step+20;
+    const y=110+Math.sin(x/W*Math.PI*2*1.3)*34;
+    const dy=Math.cos(x/W*Math.PI*2*1.3)*34*Math.PI*2*1.3/W;
+    const ang=Math.atan2(dy,1)*180/Math.PI+90;
+    const side=k%2?1:-1;
+    const px=x-Math.sin(ang*Math.PI/180)*0, off=side*13;
+    // foot: oval + 4 toes, pointing along direction (rotate around origin, direction = +x → foot points +x)
+    const a=Math.atan2(dy,1)*180/Math.PI;
+    out+=`<g transform="translate(${x} ${y+off*1.4}) rotate(${a}) scale(1.35)" opacity="${.35+((k%6)/6)*0.0+0.55}"><ellipse cx="0" cy="0" rx="17" ry="10.5" fill="${col}"/><circle cx="23" cy="-7" r="3.8" fill="${col}"/><circle cx="26.5" cy="-1.5" r="3.6" fill="${col}"/><circle cx="26.5" cy="4.5" r="3.4" fill="${col}"/><circle cx="23" cy="9.5" r="3" fill="${col}"/></g>`;
+  }
+  return `<div class="trail"><svg width="${total}" height="200" style="left:${-i*W}px" viewBox="0 0 ${total} 200">${out}</svg></div>`;
+}
+const grain=`<svg class="grain" width="1080" height="1350"><rect width="1080" height="1350" filter="url(#paper)"/></svg>`;
+
+// ---------- illustrations ----------
+const ILL={
+cover:`<svg width="760" height="640" viewBox="0 0 760 640">
+ <circle cx="560" cy="150" r="96" fill="#F2B84B"/>
+ <g stroke="#F2B84B" stroke-width="12" stroke-linecap="round">${Array.from({length:12},(_,k)=>{const a=k*30*Math.PI/180;return `<line x1="${560+Math.cos(a)*125}" y1="${150+Math.sin(a)*125}" x2="${560+Math.cos(a)*150}" y2="${150+Math.sin(a)*150}"/>`}).join('')}</g>
+ <ellipse cx="380" cy="590" rx="360" ry="46" fill="#CFE0C3"/>
+ <path d="M120 590 L120 330 L380 190 L640 330 L640 590 Z" fill="#E0714A"/>
+ <path d="M90 340 L380 170 L670 340" fill="none" stroke="#2F5D46" stroke-width="30" stroke-linejoin="round" stroke-linecap="round"/>
+ <rect x="470" y="205" width="44" height="90" fill="#2F5D46"/>
+ <path d="M300 590 V470 a80 80 0 0 1 160 0 V590Z" fill="#FBF3E4"/>
+ <circle cx="435" cy="500" r="9" fill="#2F5D46"/>
+ <rect x="165" y="400" width="90" height="90" rx="45" fill="#FBF3E4"/><path d="M210 400v90M165 445h90" stroke="#2F5D46" stroke-width="7"/>
+ <rect x="505" y="400" width="90" height="90" rx="45" fill="#FBF3E4"/><path d="M550 400v90M505 445h90" stroke="#2F5D46" stroke-width="7"/>
+ <g><rect x="40" y="440" width="14" height="150" fill="#8a5a3a"/><circle cx="47" cy="410" r="62" fill="#2F5D46"/><circle cx="12" cy="450" r="38" fill="#3f7a5c"/><circle cx="88" cy="452" r="34" fill="#3f7a5c"/></g>
+ <g><rect x="700" y="500" width="10" height="90" fill="#8a5a3a"/><circle cx="705" cy="480" r="44" fill="#3f7a5c"/></g>
+ <path d="M240 600c0-30 20-30 20-60M560 600c0-20 12-30 12-52" stroke="#2F5D46" stroke-width="6" fill="none"/>
+</svg>`,
+
+accueil:`<svg width="470" height="470" viewBox="0 0 470 470">
+ <circle cx="235" cy="235" r="215" fill="#FBF3E4" stroke="#2F5D46" stroke-width="14"/>
+ ${Array.from({length:12},(_,k)=>{const a=k*30*Math.PI/180;const r1=k%3?178:166;return `<line x1="${235+Math.cos(a)*r1}" y1="${235+Math.sin(a)*r1}" x2="${235+Math.cos(a)*192}" y2="${235+Math.sin(a)*192}" stroke="#2F5D46" stroke-width="${k%3?5:9}" stroke-linecap="round"/>`}).join('')}
+ <line x1="235" y1="235" x2="${235+Math.cos((7.5*30-90)*Math.PI/180)*100}" y2="${235+Math.sin((7.5*30-90)*Math.PI/180)*100}" stroke="#2A2A24" stroke-width="16" stroke-linecap="round"/>
+ <line x1="235" y1="235" x2="235" y2="${235+150}" stroke="#E0714A" stroke-width="10" stroke-linecap="round"/>
+ <circle cx="235" cy="235" r="16" fill="#2A2A24"/>
+ <circle cx="180" cy="150" r="10" fill="#2F5D46"/><circle cx="290" cy="150" r="10" fill="#2F5D46"/>
+ <path d="M170 310c40 34 90 34 130 0" fill="none" stroke="#2F5D46" stroke-width="0"/>
+</svg>`,
+
+musique:`<svg width="470" height="470" viewBox="0 0 470 470">
+ ${[["#E0714A",300],["#F2B84B",260],["#CFE0C3",222],["#2F5D46",184],["#8fb59b",150]].map(([c,h],k)=>`<rect x="${34+k*82}" y="${400-h}" width="66" height="${h}" rx="16" fill="${c}"/><circle cx="${67+k*82}" cy="${400-h+24}" r="7" fill="#FBF3E4"/><circle cx="${67+k*82}" cy="376" r="7" fill="#FBF3E4"/>`).join('')}
+ <rect x="18" y="330" width="440" height="20" rx="10" fill="#8a5a3a" opacity="0"/>
+ <g transform="rotate(28 380 60)"><rect x="372" y="-30" width="12" height="150" rx="6" fill="#8a5a3a"/><circle cx="378" cy="128" r="22" fill="#E0714A"/></g>
+ <g fill="#2A2A24"><ellipse cx="60" cy="70" rx="20" ry="15" transform="rotate(-20 60 70)"/><rect x="74" y="0" width="7" height="72"/><path d="M81 0c26 8 30 26 26 42-4-14-14-20-26-22z"/>
+ <ellipse cx="200" cy="40" rx="17" ry="13" transform="rotate(-20 200 40)"/><rect x="212" y="-20" width="6" height="58"/></g>
+</svg>`,
+
+jardin:`<svg width="470" height="470" viewBox="0 0 470 470">
+ <rect x="10" y="300" width="450" height="130" rx="24" fill="#8a5a3a"/>
+ <rect x="10" y="300" width="450" height="34" rx="17" fill="#a06d47"/>
+ ${[70,170,270,370].map((x,k)=>`<path d="M${x} 300 L${x-16} 210 M${x} 300 L${x} 190 M${x} 300 L${x+16} 210" stroke="#3f7a5c" stroke-width="12" stroke-linecap="round" fill="none"/>`).join('')}
+ ${[70,270].map(x=>`<path d="M${x-30} 328 L${x+30} 328 L${x} 400Z" fill="#E0714A" transform="translate(0 -6)"/>`).join('')}
+ <circle cx="170" cy="160" r="46" fill="#D9482F"/><path d="M150 122q20 14 40 0" stroke="#2F5D46" stroke-width="10" fill="none" stroke-linecap="round"/>
+ <circle cx="370" cy="150" r="40" fill="#D9482F"/><path d="M352 116q18 12 36 0" stroke="#2F5D46" stroke-width="10" fill="none" stroke-linecap="round"/>
+ <g transform="translate(300 40) rotate(-14)"><path d="M0 40h100l-10 90H10z" fill="#F2B84B"/><path d="M100 60l60-30" stroke="#F2B84B" stroke-width="14" stroke-linecap="round"/><path d="M8 50c-30-6-32 40 0 40" stroke="#F2B84B" stroke-width="10" fill="none"/></g>
+ <g fill="#5aa6d6" opacity=".9"><ellipse cx="410" cy="76" rx="5" ry="9"/><ellipse cx="428" cy="98" rx="5" ry="9"/><ellipse cx="404" cy="108" rx="5" ry="9"/></g>
+</svg>`,
+
+repas:`<svg width="470" height="470" viewBox="0 0 470 470">
+ <ellipse cx="235" cy="400" rx="200" ry="26" fill="#000" opacity=".12"/>
+ <circle cx="235" cy="230" r="200" fill="#FBF3E4"/><circle cx="235" cy="230" r="200" fill="none" stroke="#F2B84B" stroke-width="14"/>
+ <circle cx="235" cy="230" r="150" fill="#F4E9D2"/>
+ <path d="M150 240q85-140 170 0z" fill="#E0714A"/><path d="M166 240q70-100 138 0z" fill="#e88a66"/>
+ <path d="M130 260h210v30q-105 46-210 0z" fill="#CFE0C3"/>
+ <circle cx="180" cy="278" r="16" fill="#2F5D46"/><circle cx="222" cy="288" r="16" fill="#3f7a5c"/><circle cx="264" cy="288" r="16" fill="#2F5D46"/><circle cx="306" cy="276" r="14" fill="#3f7a5c"/>
+ <circle cx="205" cy="200" r="16" fill="#F2B84B"/><circle cx="262" cy="186" r="14" fill="#F2B84B"/>
+ <g transform="translate(410 260) rotate(20)"><rect x="-8" y="30" width="16" height="170" rx="8" fill="#8a5a3a"/><ellipse cx="0" cy="0" rx="30" ry="46" fill="#a06d47"/></g>
+ <g transform="translate(410 70)"><path d="M0 40C-30 10-10-20 0 0 10-20 30 10 0 40z" fill="#E0714A" transform="scale(1.2)"/></g>
+</svg>`,
+
+sieste:`<svg width="470" height="470" viewBox="0 0 470 470">
+ <path d="M300 30a120 120 0 1 0 60 200 100 100 0 0 1-60-200z" fill="#F2B84B"/>
+ ${[[60,60,14],[150,150,9],[420,120,12],[400,220,8],[70,190,8]].map(([x,y,r])=>`<path d="M${x} ${y-r*1.5}L${x+r*.4} ${y-r*.4}L${x+r*1.5} ${y}L${x+r*.4} ${y+r*.4}L${x} ${y+r*1.5}L${x-r*.4} ${y+r*.4}L${x-r*1.5} ${y}L${x-r*.4} ${y-r*.4}Z" fill="#FBF3E4"/>`).join('')}
+ <rect x="30" y="290" width="410" height="26" rx="10" fill="#8a5a3a"/>
+ <rect x="30" y="316" width="16" height="90" fill="#8a5a3a"/><rect x="424" y="316" width="16" height="90" fill="#8a5a3a"/>
+ <g stroke="#a06d47" stroke-width="8">${Array.from({length:9},(_,k)=>`<line x1="${58+k*44}" y1="250" x2="${58+k*44}" y2="292"/>`).join('')}</g>
+ <path d="M30 280q100-50 205-14t205-14v44H30z" fill="#E0714A"/>
+ <path d="M30 300q100-30 205-6t205-6v30H30z" fill="#c95a36"/>
+ <circle cx="110" cy="264" r="34" fill="#F6D2B0"/><path d="M84 254q20-30 52-8" fill="#8a5a3a"/>
+ <path d="M96 268q8 7 16 0M118 268q8 7 16 0" stroke="#2A2A24" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>`,
+
+retrouv:`<svg width="470" height="470" viewBox="0 0 470 470">
+ <ellipse cx="235" cy="420" rx="200" ry="24" fill="#000" opacity=".12"/>
+ <path d="M235 380C60 270 70 120 150 100c50-10 75 25 85 50 10-25 35-60 85-50 80 20 90 170-85 280z" fill="#E0714A"/>
+ <path d="M235 380C60 270 70 120 150 100" fill="none" stroke="#c95a36" stroke-width="0"/>
+ <!-- big and small figure -->
+ <g><circle cx="165" cy="150" r="30" fill="#F6D2B0"/><path d="M110 340q0-140 55-140t55 140z" fill="#2F5D46"/></g>
+ <g><circle cx="305" cy="220" r="24" fill="#F6D2B0"/><path d="M262 340q0-95 43-95t43 95z" fill="#F2B84B"/></g>
+ <path d="M205 260q30 20 62 0" stroke="#F6D2B0" stroke-width="14" fill="none" stroke-linecap="round"/>
+</svg>`,
+};
+
+const slides=[];
+
+// 1 cover
+slides.push(`<section class="slide warm">
+ ${head(1)}
+ <div class="ill" style="left:-380px;top:380px;width:1100px;height:1100px;border-radius:50%;background:#F2B84B;opacity:.28"></div>
+ <div class="ill" style="left:72px;top:170px;right:72px">
+  <div class="tag">Rouen · 12 berceaux · nature</div>
+  <h2 style="font-size:132px;margin-top:22px;letter-spacing:-4px">Une journée<br>chez <em>Les Petits Pas</em></h2>
+ </div>
+ <div class="ill" style="right:-30px;top:640px;transform:scale(.8);transform-origin:top right">${ILL.cover}</div>
+ <div class="ill" style="left:72px;top:690px;width:470px"><p class="b">De 7h30 à 17h, minute par minute. Pour savoir à quoi ressemble le quotidien de votre enfant.</p></div>
+ ${trailSVG(0)}
+ <div class="swipe">Glissez<i></i></div>
+ ${grain}</section>`);
+
+// 2 accueil + éveil musical
+slides.push(`<section class="slide">
+ ${head(2)}
+ <div class="time">${timeline(0)}</div>
+ <div class="ill" style="left:72px;top:290px"><div class="tag">Accueil</div>
+   <div class="big" style="font-size:176px;margin-top:20px;color:var(--green)">7h30</div>
+   <h2 style="font-size:64px;margin-top:22px;width:520px">On arrive <em>en douceur</em></h2>
+   <p class="b" style="margin-top:20px;width:520px;font-size:34px">Un câlin, une histoire, le temps de se dire au revoir. Pas de course au portique.</p></div>
+ <div class="ill" style="right:60px;top:320px;transform:rotate(-3deg) scale(.82);transform-origin:top right">${ILL.accueil}</div>
+ <div class="ill" style="left:72px;right:72px;top:860px;height:210px;background:var(--sage);border-radius:36px;padding:32px 40px 0 40px;display:flex;gap:30px;align-items:center">
+   <div class="big" style="font-size:96px;letter-spacing:-3px;color:var(--terra)">9h30</div>
+   <div><div class="tag" style="color:var(--green)">Éveil musical</div><p class="b" style="font-size:34px;margin-top:6px">Xylophone, maracas, comptines.<br>Chacun son rythme.</p></div>
+ </div>
+ ${trailSVG(1)}
+ <div class="swipe">Suite<i></i></div>
+ ${grain}</section>`);
+
+// 3 jardin
+slides.push(`<section class="slide dark">
+ ${head(3)}
+ <div class="time">${timeline(2,true)}</div>
+ <div class="ill" style="left:72px;top:300px;width:600px"><div class="tag">Jardin potager</div>
+   <div class="big" style="font-size:176px;margin-top:20px;color:var(--sun)">10h30</div>
+   </div><div class="ill" style="left:72px;top:520px;width:470px"><h2 style="font-size:82px">Les mains <em>dans la terre</em></h2></div>
+ <div class="ill" style="right:40px;top:470px;transform:rotate(3deg) scale(1.02);transform-origin:top right">${ILL.jardin}</div>
+ <div class="ill" style="left:72px;top:900px;width:900px"><p class="b" style="width:760px">Semer, arroser, goûter la première tomate. Le potager est la salle de classe préférée des enfants.</p></div>
+ ${trailSVG(2,true)}
+ <div class="swipe" style="color:var(--cream)">Suite<i></i></div>
+ ${grain}</section>`);
+
+// 4 repas
+slides.push(`<section class="slide warm">
+ ${head(4)}
+ <div class="time">${timeline(3)}</div>
+ <div class="ill" style="left:72px;top:300px"><div class="tag">Déjeuner</div>
+   <div class="big" style="font-size:176px;margin-top:20px;color:var(--terra)">12h</div></div>
+ <div class="ill" style="right:50px;top:450px;transform:scale(1);transform-origin:top right">${ILL.repas}</div>
+ <div class="ill" style="left:72px;top:520px;width:470px"><h2 style="font-size:82px">Bio, local et <em>fait maison</em></h2></div>
+ <div class="ill" style="left:72px;top:960px;width:930px;display:flex;gap:16px;flex-wrap:wrap"><span class="chip">Légumes du potager</span><span class="chip" style="background:var(--terra)">Cuisinés sur place</span><span class="chip" style="background:#8a5a3a">Menus adaptés</span></div>
+ ${trailSVG(3)}
+ <div class="swipe">Suite<i></i></div>
+ ${grain}</section>`);
+
+// 5 sieste + retrouvailles
+slides.push(`<section class="slide dark">
+ ${head(5)}
+ <div class="time">${timeline(4,true)}</div>
+ <div class="ill" style="left:72px;top:300px"><div class="tag">Sieste</div>
+   <div class="big" style="font-size:176px;margin-top:20px;color:var(--sun)">13h</div>
+   </div><div class="ill" style="left:72px;top:520px;width:470px"><h2 style="font-size:66px">Chacun son <em>doudou</em>, sa lumière tamisée</h2></div>
+ <div class="ill" style="right:50px;top:420px;transform:scale(.92);transform-origin:top right">${ILL.sieste}</div>
+ <div class="ill" style="left:72px;right:72px;top:900px;height:210px;background:var(--cream);color:var(--ink);border-radius:36px;padding:0 36px;display:flex;gap:26px;align-items:center;overflow:hidden">
+   <div class="big" style="font-size:96px;letter-spacing:-3px;color:var(--terra)">16h30</div>
+   <div><div class="tag" style="color:var(--green)">Retrouvailles</div><p class="b" style="font-size:34px;margin-top:6px">Vous arrivez, il court vers vous.<br>On vous raconte sa journée.</p></div>
+ </div>
+ ${trailSVG(4,true)}
+ <div class="swipe" style="color:var(--cream)">Dernière<i></i></div>
+ ${grain}</section>`);
+
+// 6 CTA
+slides.push(`<section class="slide warm">
+ ${head(6)}
+ <div class="time">${timeline(5)}</div>
+ <div class="ill" style="left:72px;top:290px;width:936px"><div class="tag">Places en janvier</div>
+   <h2 style="font-size:118px;margin-top:20px;letter-spacing:-3.5px">Venez voir <em>nos petits pas</em></h2>
+   <p class="b" style="margin-top:26px;width:600px">Il reste des places dès janvier. Visitez la crèche, rencontrez l’équipe, prenez le temps.</p></div>
+ <div class="ill" style="right:30px;top:780px;transform:scale(1);transform-origin:top right">${ILL.retrouv}</div>
+ <div class="ill" style="left:72px;top:830px;width:500px;background:var(--green);color:var(--cream);border-radius:36px;padding:36px 40px">
+   <div style="font-weight:800;font-size:26px;letter-spacing:2.5px;text-transform:uppercase;color:var(--sun)">Réservez une visite</div>
+   <div style="font-family:Fraunces;font-weight:800;font-size:50px;letter-spacing:-1px;margin-top:10px">02 35 00 42 12</div>
+   <div style="font-weight:700;font-size:32px;margin-top:10px;opacity:.92">lespetitspas-rouen.fr</div>
+   <div style="font-weight:400;font-size:28px;margin-top:6px;opacity:.75">14 rue des Tilleuls, 76000 Rouen</div>
+ </div>
+ ${trailSVG(5)}
+ ${grain}</section>`);
+
+document.getElementById('deck').innerHTML=slides.join('');
+</script></body></html>

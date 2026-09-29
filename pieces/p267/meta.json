@@ -1,0 +1,8 @@
+{ "id": "p267", "brand": "Auto-École Feu Vert", "sector": "Auto-école", "kind": "video",
+  "format": "1080x1920", "duration": 22, "slides": null,
+  "title": "Le feu est vert pour ton permis",
+  "concept": "Illustration ludique de route vue du dessus : la voiture d'auto-école passe du rouge au vert puis roule sous des portiques routiers qui révèlent 87 % de réussite, la conduite accompagnée dès 15 ans et le forfait 1 290 € en 4 fois, avant de se garer à l'agence.",
+  "techniques": ["gsap", "html-css-illustration", "canvas-noise-grain", "deterministic-scroll"],
+  "fonts": ["Bricolage Grotesque", "Figtree"],
+  "palette": ["#0d2233", "#12a05f", "#e5383b", "#ffc233", "#3d434c", "#efe8d8"],
+  "copy_language": "fr" }

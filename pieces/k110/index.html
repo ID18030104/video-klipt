@@ -34,10 +34,12 @@ html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--i
 #sweep:after{content:"";position:absolute;left:0;right:0;top:0;height:14px;background:var(--brass)}
 #grain{position:absolute;inset:0;width:1080px;height:1920px;z-index:60;pointer-events:none;mix-blend-mode:overlay;opacity:.55}
 .num{font-family:Gloock;font-size:190px;line-height:1;position:absolute;left:100px;top:250px}
-.step-t{position:absolute;left:100px;right:70px;top:1200px;font-size:92px;white-space:nowrap}
-.step-s{position:absolute;left:100px;right:70px;top:1400px;font-size:46px;letter-spacing:.06em;text-transform:none;font-weight:400}
+.step-t{position:absolute;left:100px;right:70px;top:1260px;font-size:92px;white-space:nowrap}
+.step-s{position:absolute;left:100px;right:70px;top:1420px;font-size:46px;letter-spacing:.06em;text-transform:none;font-weight:400}
 .ill{position:absolute;left:100px;top:470px;width:900px;height:640px}
 svg{overflow:visible}
+#brush{top:560px}
+.dur{position:absolute;left:100px;top:1500px;font-size:30px;color:var(--brass)}
 </style></head><body>
 <div id="stage">
 <div class="pole"><i id="poleI"></i></div>
@@ -47,9 +49,8 @@ svg{overflow:visible}
   <svg class="abs" style="left:60px;top:1130px" width="960" height="330" viewBox="0 0 960 330"><path id="hookLine" d="M60 260 C 260 250, 520 120, 900 70" stroke="#b98b3e" stroke-width="3" fill="none" stroke-linecap="round"/><path id="hookLine2" d="M60 290 C 300 280, 560 160, 900 105" stroke="#b98b3e" stroke-width="1.5" fill="none" opacity=".6"/></svg>
   <div class="abs caps" id="s1k" style="left:100px;top:370px;font-size:30px;color:var(--brass)">Maison Castel · Barbier</div>
   <div class="abs serif" style="left:100px;top:520px;font-size:112px;width:900px">
-    <div class="ln"><span>La dernière fois</span></div>
-    <div class="ln"><span>que vous avez été</span></div>
-    <div class="ln"><span class="it" style="color:var(--brass);font-size:1.22em">vraiment rasé,</span></div>
+    <div class="ln"><span>Votre dernier</span></div>
+    <div class="ln"><span class="it" style="color:var(--brass);font-size:1.3em">vrai rasage,</span></div>
     <div class="ln"><span>c’était quand&nbsp;?</span></div>
   </div>
 </div>
@@ -59,15 +60,16 @@ svg{overflow:visible}
   <div class="abs" id="stamp" style="left:690px;top:300px;width:250px;height:250px;border:4px solid var(--cream);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;transform:rotate(-12deg)">
     <div style="position:absolute;inset:10px;border:1.5px solid var(--cream);border-radius:50%"></div>
     <div class="caps" style="font-size:24px;letter-spacing:.3em">Nouveau</div>
-    <div class="serif" style="font-size:64px">2025</div>
+    <div class="serif" style="font-size:64px">soin</div>
   </div>
-  <div class="abs caps" id="s2k" style="left:100px;top:640px;font-size:32px;color:var(--brass)">Le soin signature</div>
+  <div class="abs caps" id="s2k" style="left:100px;top:640px;font-size:32px;color:var(--cream)">Le soin signature</div>
   <div class="abs serif" style="left:100px;top:730px;font-size:172px;width:900px">
     <div class="ln"><span>Le rasage</span></div>
     <div class="ln"><span class="it" style="font-size:1.08em">à l’ancienne</span></div>
   </div>
   <div class="abs" id="s2rule" style="left:100px;top:1250px;width:880px;height:2px;background:var(--cream);transform-origin:left"></div>
   <div class="abs" id="s2s" style="left:100px;top:1290px;font-size:44px;letter-spacing:.05em;font-weight:400">Serviette chaude, blaireau, coupe-chou.</div>
+  <div class="abs caps" id="s2p" style="left:100px;top:1400px;font-size:44px">40&nbsp;min · 35&nbsp;€</div>
 </div>
 
 <!-- S3 towel -->
@@ -88,6 +90,7 @@ svg{overflow:visible}
     </g>
   </svg>
   <div class="abs serif step-t"><div class="ln"><span id="t3">La serviette chaude</span></div></div>
+  <div class="abs caps dur" id="u3" style="">Durée · 10&nbsp;min</div>
   <div class="abs step-s"><div class="ln"><span id="d3">Pores ouverts, barbe assouplie.</span></div></div>
 </div>
 
@@ -109,6 +112,7 @@ svg{overflow:visible}
     <g id="bubbles" fill="none" stroke="#14100d" stroke-width="3"><circle cx="330" cy="120" r="12"/><circle cx="355" cy="80" r="7"/><circle cx="60" cy="90" r="9"/><circle cx="90" cy="45" r="5"/></g>
   </svg>
   <div class="abs serif step-t"><div class="ln"><span id="t4">Le blaireau</span></div></div>
+  <div class="abs caps dur" id="u4" style="color:var(--red)">Durée · 10&nbsp;min</div>
   <div class="abs step-s"><div class="ln"><span id="d4">Mousse riche, peau protégée.</span></div></div>
 </div>
 
@@ -134,6 +138,7 @@ svg{overflow:visible}
     </g>
   </svg>
   <div class="abs serif step-t"><div class="ln"><span id="t5">Le coupe-chou</span></div></div>
+  <div class="abs caps dur" id="u5" style="">Durée · 20&nbsp;min</div>
   <div class="abs step-s"><div class="ln"><span id="d5">Lame nue, geste précis.</span></div></div>
 </div>
 
@@ -151,7 +156,7 @@ svg{overflow:visible}
   <svg class="abs" style="left:100px;top:270px" width="170" height="170" viewBox="0 0 170 170" id="logo">
     <circle cx="85" cy="85" r="80" fill="none" stroke="#b98b3e" stroke-width="3"/>
     <circle cx="85" cy="85" r="70" fill="none" stroke="#b98b3e" stroke-width="1.2"/>
-    <text x="85" y="106" text-anchor="middle" font-family="Gloock" font-size="62" fill="#efe4cf">MC</text>
+    <text x="85" y="106" text-anchor="middle" font-family="Gloock" font-size="54" fill="#efe4cf">MC</text>
     <path d="M40 60 L130 60" stroke="#b98b3e" stroke-width="1.5"/>
   </svg>
   <div class="abs serif" style="left:100px;top:490px;font-size:118px;width:900px">
@@ -163,7 +168,9 @@ svg{overflow:visible}
     <div class="caps" style="font-size:26px;color:var(--red)">Rasage à l’ancienne · 35&nbsp;€</div>
     <div class="serif" style="font-size:78px;margin-top:14px">Réservez sur<br><span style="color:var(--red)">maisoncastel.fr</span></div>
   </div>
-  <div class="abs" id="e4" style="left:100px;top:1200px;font-size:44px;line-height:1.35;font-weight:400;letter-spacing:.03em">12 rue d’Austerlitz, 69004 Lyon<br><span style="color:var(--brass)">Mar.–sam.</span> 9h–19h</div>
+  <div class="abs" id="btn" style="left:100px;top:1110px;background:var(--red);color:var(--cream);border-radius:6px;padding:22px 40px;font-size:40px" ><span class="caps" style="letter-spacing:.16em">Prendre RDV <span id="arr" style="display:inline-block">→</span></span></div>
+  <div class="abs" id="e4" style="left:100px;top:1260px;font-size:44px;line-height:1.35;font-weight:400;letter-spacing:.03em">12 rue d’Austerlitz, 69004 Lyon<br><span style="color:var(--brass)">Mar.–sam.</span> 9h–19h</div>
+  <div class="abs caps" id="e5" style="left:100px;top:1440px;font-size:30px;color:var(--brass)">RDV en ligne en 30&nbsp;s</div>
 </div>
 
 <div id="sweep"></div>
@@ -180,7 +187,7 @@ const gc=$('#grain'),gx=gc.getContext('2d');const R=KK.rng(7);
 const frames=[];for(let f=0;f<6;f++){const im=gx.createImageData(360,640);for(let i=0;i<im.data.length;i+=4){const v=R()*255|0;im.data[i]=im.data[i+1]=im.data[i+2]=v;im.data[i+3]=55}frames.push(im)}
 const DUR=22, tl=gsap.timeline({paused:true});
 // scene switching
-const S=[[ '#s1',0,3.4],['#s2',3.4,7],['#s3',7,10],['#s4',10,13],['#s5',13,16],['#s6',16,18.6],['#s7',18.6,DUR]];
+const S=[['#s1',0,4.2],['#s2',4.2,7.6],['#s3',7.6,10.4],['#s4',10.4,13.2],['#s5',13.2,16],['#s6',16,19.2],['#s7',19.2,DUR]];
 S.forEach(([id,a,b],i)=>{
   tl.set(id,{visibility:'visible'},a); if(i) tl.set(S[i-1][0],{visibility:'hidden'},a);
   if(i){ tl.fromTo('#sweep',{y:1920},{y:0,duration:.3,ease:'power2.in'},a-.3).to('#sweep',{y:-1920,duration:.4,ease:'power2.out'},a); }
@@ -190,40 +197,42 @@ tl.set('#s1',{visibility:'visible'},0);
 tl.to('#poleI',{y:240,duration:DUR,ease:'none'},0);
 const up=(sel,at,d=.9,st=.1)=>tl.from(sel,{yPercent:115,duration:d,stagger:st,ease:'power4.out'},at);
 // S1
-up('#s1 .ln>span',.05,.95,.16);
+up('#s1 .ln>span',.05,.8,.1);
 tl.from('#s1k',{opacity:0,x:-30,duration:.7,ease:'power3.out'},.1);
 tl.from('#hookLine',{drawSVG:'0%',duration:2.4,ease:'power2.inOut'},.2).from('#hookLine2',{drawSVG:'0%',duration:2.4,ease:'power2.inOut'},.4);
-tl.fromTo('#s1',{scale:1},{scale:1.04,duration:3.4,ease:'none',transformOrigin:'50% 50%'},0);
+tl.fromTo('#s1',{scale:1},{scale:1.04,duration:4.2,ease:'none',transformOrigin:'50% 50%'},0);
 // S2
-const a2=3.4;
+const a2=4.2;
 tl.from('#stamp',{scale:2.6,opacity:0,rotation:20,duration:.5,ease:'back.out(1.5)'},a2+.9);
 tl.from('#s2k',{opacity:0,x:-30,duration:.6,ease:'power3.out'},a2+.15);
 up('#s2 .serif .ln>span',a2+.25,1,.15);
 tl.from('#s2rule',{scaleX:0,duration:.8,ease:'expo.out'},a2+1.2);
 tl.from('#s2s',{opacity:0,y:30,duration:.7,ease:'power3.out'},a2+1.5);
-tl.fromTo('#s2 .serif',{x:0},{x:-24,duration:3.6,ease:'none'},a2);
+tl.from('#s2p',{opacity:0,y:30,duration:.7,ease:'power3.out'},a2+1.9);
+tl.fromTo('#s2 .serif',{x:0},{x:-8,duration:3.4,ease:'none'},a2);
 // step scene helper
 function step(a,n,t,d,extra){
   tl.from(n,{opacity:0,x:-60,duration:.7,ease:'power3.out'},a+.1);
   tl.from(t,{yPercent:115,duration:.85,ease:'power4.out'},a+.35);
   tl.from(d,{yPercent:115,duration:.7,ease:'power4.out'},a+.75);
+  tl.from(d.replace('#d','#u'),{opacity:0,duration:.6},a+1.1);
   extra(a);
 }
-step(7,'#n3','#t3','#d3',a=>{
+step(7.6,'#n3','#t3','#d3',a=>{
   tl.from('#towelBody rect',{y:-260,opacity:0,duration:.7,stagger:.12,ease:'bounce.out'},a+.2);
   tl.from('#towelBody g',{opacity:0,duration:.4},a+.8);
   tl.from('.st',{drawSVG:'0%',duration:1,stagger:.18,ease:'power2.out'},a+.9);
   tl.to('.st',{y:-24,opacity:.15,duration:1.2,stagger:.15,ease:'sine.in'},a+1.8);
   tl.fromTo('#towel',{scale:1},{scale:1.05,duration:3,ease:'none'},a);
 });
-step(10,'#n4','#t4','#d4',a=>{
+step(10.4,'#n4','#t4','#d4',a=>{
   tl.from('#brushG',{y:-120,opacity:0,rotation:-50,transformOrigin:'200px 150px',duration:.8,ease:'power4.out'},a+.2);
   tl.from('#foam circle',{scale:0,transformOrigin:'50% 50%',duration:.5,stagger:.1,ease:'back.out(2)'},a+.9);
   tl.to('#brushG',{x:16,rotation:-20,duration:1.6,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'200px 150px'},a+1.1);
   tl.from('#bubbles circle',{scale:0,opacity:0,transformOrigin:'50% 50%',duration:.4,stagger:.15,ease:'back.out(3)'},a+1.2);
   tl.to('#bubbles',{y:-30,duration:1.6,ease:'sine.out'},a+1.2);
 });
-step(13,'#n5','#t5','#d5',a=>{
+step(13.2,'#n5','#t5','#d5',a=>{
   tl.from('.rd',{drawSVG:'0%',duration:1.1,stagger:.2,ease:'power2.inOut'},a+.15);
   tl.from('#razorFill',{opacity:0,duration:.5},a+1.2);
   tl.fromTo('#shine',{x:0},{x:620,duration:1,ease:'power2.inOut'},a+1.7);
@@ -238,7 +247,7 @@ tl.from('#p2',{yPercent:115,duration:.8,ease:'power4.out'},a6+.9);
 tl.from('#p3',{opacity:0,y:24,duration:.6,ease:'power3.out'},a6+1.5);
 tl.fromTo('#p1',{scale:1},{scale:1.03,duration:2.6,ease:'none',transformOrigin:'0 50%'},a6);
 // S7
-const a7=18.6;
+const a7=19.2;
 tl.from('#logo',{scale:.4,opacity:0,rotation:-40,duration:.8,ease:'back.out(1.6)',transformOrigin:'50% 50%'},a7+.1);
 tl.from('#logo circle',{drawSVG:'0%',duration:1,stagger:.15},a7+.1);
 tl.from('#e1',{yPercent:115,duration:.9,ease:'power4.out'},a7+.35);
@@ -246,6 +255,9 @@ tl.from('#e2',{opacity:0,duration:.6},a7+.7);
 tl.from('#e3rule',{scaleX:0,duration:.8,ease:'expo.out'},a7+.8);
 tl.from('#cta',{y:60,opacity:0,duration:.8,ease:'power4.out'},a7+1.0);
 tl.from('#e4',{opacity:0,y:20,duration:.7,ease:'power3.out'},a7+1.5);
+tl.from('#btn',{opacity:0,y:30,duration:.6,ease:'power3.out'},a7+1.3);
+tl.from('#e5',{opacity:0,duration:.6},a7+1.8);
+for(let k=0;k<2;k++) tl.to('#arr',{x:10,duration:.6,ease:'sine.inOut',yoyo:true,repeat:1},a7+1.6+k*1.2);
 tl.fromTo('#cta',{scale:1},{scale:1.015,duration:1.6,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 50%'},a7+2.0);
 tl.to({}, {duration:.01}, DUR);
 window.KLIPT={width:1080,height:1920,fps:30,duration:DUR,

@@ -75,6 +75,28 @@ async function sheet(pattern, start, n, cols, out) {
     '-vf', `scale=360:-2,pad=iw+8:ih+8:4:4:color=0x222222,tile=${cols}x${rows}:color=0x111111`, '-frames:v', '1', '-q:v', '3', out]);
 }
 
+// Machine-wide render slots: parallel agents share 4 CPUs, and too many concurrent
+// Chromium captures crash ("browser closed"). Full renders queue for a free slot.
+const SLOTS = +(process.env.KLIPT_RENDER_SLOTS || 2);
+function alive(pid) { try { process.kill(pid, 0); return true; } catch { return false; } }
+async function acquireSlot() {
+  if (mode === 'frame') return null;
+  const waitStart = Date.now(); let told = false;
+  for (;;) {
+    for (let i = 0; i < SLOTS; i++) {
+      const f = `/tmp/klipt-render-slot-${i}.lock`;
+      try { fs.writeFileSync(f, String(process.pid), { flag: 'wx' }); return f; }
+      catch { const pid = +fs.readFileSync(f, 'utf8'); if (!alive(pid)) fs.rmSync(f, { force: true }); }
+    }
+    if (!told && Date.now() - waitStart > 3000) { console.log('waiting for a free render slot…'); told = true; }
+    await new Promise(r => setTimeout(r, 1000));
+  }
+}
+const slot = await acquireSlot();
+const releaseSlot = () => { if (slot) fs.rmSync(slot, { force: true }); };
+process.on('exit', releaseSlot);
+for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => { releaseSlot(); process.exit(130); });
+
 const t0 = Date.now();
 const { browser, page, meta, errors } = await open();
 try {

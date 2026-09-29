@@ -1,0 +1,129 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/space-mono/400.css">
+<style>
+:root{--night:#15183A;--night2:#232759;--cream:#FFF1DC;--sun:#FF7A3D;--brass:#F2B84B;--mint:#7FE3B8;--font:'Bricolage Grotesque',sans-serif}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--night);font-family:var(--font);color:var(--cream)}
+#stage{position:absolute;inset:0;background:linear-gradient(180deg,#15183A 0%,#1d2150 55%,#3a2a58 85%,#7a3d4f 100%)}
+#sun{position:absolute;left:-200px;top:1500px;width:1480px;height:1480px;border-radius:50%;background:radial-gradient(circle,rgba(255,122,61,.35),rgba(255,122,61,0) 60%)}
+#head{position:absolute;left:60px;right:60px;top:250px;height:110px;display:flex;align-items:center;gap:26px}
+.av{width:92px;height:92px;border-radius:50%;background:var(--sun);color:var(--night);font-weight:800;font-size:46px;display:flex;align-items:center;justify-content:center}
+#head .n{font-weight:800;font-size:44px;line-height:1}
+#head .s{font-size:30px;color:var(--mint);margin-top:8px;font-weight:500}
+#head .t{margin-left:auto;font-family:'Space Mono',monospace;font-size:44px;color:var(--brass)}
+#win{position:absolute;left:0;top:385px;width:1080px;height:790px;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 70px);mask-image:linear-gradient(180deg,transparent 0,#000 70px)}
+#chat{position:absolute;left:0;top:0;width:1080px}
+.b{position:absolute;max-width:800px;padding:26px 36px 28px;border-radius:44px;font-size:46px;line-height:1.16;font-weight:500;letter-spacing:-.01em;opacity:0}
+.b.in{left:60px;background:var(--night2);color:var(--cream);border-bottom-left-radius:12px;border:2px solid rgba(255,241,220,.14)}
+.b.out{right:60px;background:var(--cream);color:var(--night);border-bottom-right-radius:12px}
+.b strong{font-weight:800;color:var(--sun)}
+.b.out strong{color:#C9451A}
+.dots{position:absolute;left:60px;width:150px;height:92px;border-radius:46px;border-bottom-left-radius:12px;background:var(--night2);border:2px solid rgba(255,241,220,.14);opacity:0;display:flex;gap:12px;align-items:center;justify-content:center}
+.dots i{width:16px;height:16px;border-radius:50%;background:var(--cream)}
+#jar{position:absolute;left:0;top:1190px;width:1080px;height:400px}
+#jar svg{position:absolute;left:70px;top:0}
+.coin{position:absolute;width:120px;height:42px;border-radius:50%;background:radial-gradient(ellipse at 50% 35%,#FFE39A,#F2B84B 60%,#D6952B);box-shadow:0 9px 0 #A86E17;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;color:#8a5610;opacity:0;z-index:3}
+#num{position:absolute;left:560px;top:20px;width:490px}
+#num .l{font-size:34px;font-weight:500;color:var(--cream);opacity:.9;line-height:1.2}
+#num .v{font-weight:800;font-size:164px;line-height:1;letter-spacing:-.05em;color:var(--brass);margin-top:6px;font-variant-numeric:tabular-nums;white-space:nowrap}
+#num .v small{font-size:100px;letter-spacing:0}
+#num .u{font-size:34px;font-weight:500;color:var(--mint);margin-top:14px}
+#note{position:absolute;left:40px;right:40px;top:80px;height:150px;border-radius:38px;background:rgba(255,241,220,.96);color:var(--night);display:flex;align-items:center;gap:26px;padding:0 34px;box-shadow:0 20px 60px rgba(0,0,0,.45);opacity:0;z-index:10}
+#note .ic{width:90px;height:90px;border-radius:26px;background:var(--sun);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:60px;color:var(--night);flex:none}
+#note .k{font-size:28px;font-weight:700;letter-spacing:.08em;color:#C9451A}
+#note .m{font-size:38px;font-weight:700;line-height:1.12;margin-top:4px}
+#cta{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;background:var(--sun);z-index:20;overflow:hidden}
+#cta .in{position:absolute;left:70px;right:70px;top:470px}
+#cta .k{font-family:'Space Mono',monospace;font-size:34px;color:var(--night);letter-spacing:.08em}
+#cta h2{font-weight:800;font-size:136px;line-height:.95;letter-spacing:-.045em;color:var(--night);margin-top:26px}
+#cta p{font-size:50px;font-weight:700;color:var(--night);margin-top:48px;line-height:1.15}
+#cta .btn{position:absolute;left:70px;right:70px;top:1220px;height:150px;border-radius:75px;background:var(--night);color:var(--cream);font-weight:800;font-size:60px;display:flex;align-items:center;justify-content:center;gap:24px}
+#cta .btn svg{width:64px;height:64px}
+#cta .logo{position:absolute;left:70px;top:290px;font-weight:800;font-size:96px;letter-spacing:-.05em;color:var(--night);display:flex;align-items:center;gap:18px}
+#cta .logo svg{width:96px;height:96px}
+#cta .seat{position:absolute;right:-60px;top:1440px;font-size:0}
+</style></head><body>
+<div id="stage"><div id="sun"></div>
+<div id="head"><div class="av">J</div><div><div class="n">Julie</div><div class="s">en ligne</div></div><div class="t">7:12</div></div>
+<div id="win"><div id="chat"></div></div>
+<div id="jar">
+ <svg width="470" height="400" viewBox="0 0 470 400"><path d="M70 18h330M84 18v22q-44 30-44 84v226q0 36 36 36h318q36 0 36-36V124q0-54-44-84V18" fill="rgba(255,241,220,.07)" stroke="#FFF1DC" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div id="coins"></div>
+ <div id="num"><div class="l">Économies du mois</div><div class="v"><span id="cnt">0</span><small>&#8239;€</small></div><div class="u">jusqu’à, en covoiturant</div></div>
+</div>
+<div id="note"><div class="ic">H</div><div><div class="k">HOPLA · MAINTENANT</div><div class="m">Julie vous propose un trajet demain matin</div></div></div>
+</div>
+<div id="cta">
+ <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#15183A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>Hopla</div>
+ <div class="in"><div class="k">COVOITURAGE DOMICILE-TRAVAIL · ALSACE</div>
+ <h2>Un collègue.<br>Un voisin.<br>Une place.</h2>
+ <p>Jusqu’à 150&#8239;€ d’économies par mois. Trajets pris en charge par votre employeur.</p></div>
+ <div class="btn">Télécharger Hopla</div>
+</div>
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+const M=[
+ {w:'in',t:1.9,d:0.9,h:'Tu viens encore seul en voiture ?'},
+ {w:'out',t:3.4,h:'Oui… le plein, les bouchons, le parking.'},
+ {w:'in',t:5.6,d:1.0,h:'Ma voisine covoiture avec Hopla. <strong>Jusqu’à 150&#8239;€</strong> économisés par mois.'},
+ {w:'out',t:8.6,h:'Avec qui ?'},
+ {w:'in',t:10.2,d:0.9,h:'Hopla te met en lien avec des <strong>collègues</strong> ou des <strong>voisins</strong> du même trajet.'},
+ {w:'out',t:12.3,h:'Et mon employeur ?'},
+ {w:'in',t:13.9,d:0.9,h:'Il peut <strong>prendre en charge</strong> les trajets.'},
+];
+const chat=document.getElementById('chat'),WIN=790,GAP=26;
+let y=40;const els=[];
+M.forEach(m=>{const b=document.createElement('div');b.className='b '+m.w;b.innerHTML=m.h;chat.appendChild(b);
+ m.b=b;m.top=y;b.style.top=y+'px';y+=b.offsetHeight+GAP;m.bot=y-GAP;
+ if(m.d){const d=document.createElement('div');d.className='dots';d.innerHTML='<i></i><i></i><i></i>';d.style.top=m.top+'px';chat.appendChild(d);m.dots=d;}});
+const tl=gsap.timeline({paused:true});
+// header
+tl.from('#head',{y:-30,opacity:0,duration:.7,ease:'power3.out'},0.2);
+// scroll offset per message
+let off=0;
+M.forEach((m,i)=>{
+ const need=Math.min(0,WIN-30-m.bot);
+ const t0=m.t-(m.d||0);
+ if(m.dots){
+  tl.set(m.dots,{opacity:1,scale:.6,transformOrigin:'0% 100%'},t0);
+  tl.to(m.dots,{scale:1,duration:.3,ease:'back.out(2)'},t0);
+  m.dots.querySelectorAll('i').forEach((c,k)=>{for(let r=0;r<3;r++)tl.to(c,{y:-10,duration:.18,yoyo:true,repeat:1,ease:'sine.inOut'},t0+.2+r*.3+k*.08);});
+  tl.set(m.dots,{opacity:0},m.t);
+ }
+ tl.set(m.b,{opacity:1,transformOrigin:m.w==='in'?'0% 100%':'100% 100%'},m.t);
+ tl.from(m.b,{scale:.6,y:24,duration:.45,ease:'back.out(1.6)'},m.t);
+ if(need<off){tl.to(chat,{y:need,duration:.6,ease:'power3.out'},t0>0?Math.max(0,m.t-.05):0);off=need;}
+});
+// coins
+const coins=document.getElementById('coins');
+const rows=[[0,1,2],[0,1,2],[0,1,2],[0,1,2],[0,1,2]];
+let n=0;
+for(let r=0;r<5;r++)for(let c=0;c<3;c++){
+ const e=document.createElement('div');e.className='coin';e.textContent='10';
+ const cx=305+(c-1)*112+(r%2?18:-6);
+ e.style.left=(cx-60)+'px';
+ e.style.top=(318-r*36)+'px';
+ coins.appendChild(e);
+ const t=5.8+n*0.14;
+ tl.set(e,{opacity:1},t);
+ tl.fromTo(e,{y:-560,rotation:(n%2?-8:8)},{y:0,rotation:0,duration:.5,ease:'bounce.out'},t);
+ n++;
+}
+const o={v:0};
+tl.to(o,{v:150,duration:2.1,ease:'none',onUpdate(){document.getElementById('cnt').textContent=Math.round(o.v/10)*10;}},5.8);
+tl.fromTo('#num .v',{scale:1},{scale:1.08,transformOrigin:'0 50%',duration:.25,yoyo:true,repeat:1,ease:'power2.out'},7.95);
+// notification
+tl.fromTo('#note',{y:-260,opacity:1},{y:0,duration:.6,ease:'back.out(1.4)'},15.0);
+tl.to('#note',{y:-260,duration:.4,ease:'power2.in'},17.0);
+// CTA
+tl.fromTo('#cta',{clipPath:'circle(0% at 50% 100%)',opacity:1},{clipPath:'circle(150% at 50% 100%)',duration:.9,ease:'power3.inOut'},17.3);
+tl.from('#cta .logo,#cta .k',{y:30,opacity:0,duration:.5,stagger:.1,ease:'power3.out'},18.0);
+tl.from('#cta h2',{y:50,opacity:0,duration:.6,ease:'power3.out'},18.1);
+tl.from('#cta p',{y:30,opacity:0,duration:.5,ease:'power3.out'},18.6);
+tl.from('#cta .btn',{y:60,opacity:0,scale:.9,duration:.5,ease:'back.out(1.6)'},19.0);
+tl.to({}, {duration:.1},19.95);
+window.KLIPT={width:1080,height:1920,fps:30,duration:20,render:t=>{tl.seek(t,false);}};
+</script></body></html>

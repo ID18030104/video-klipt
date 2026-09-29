@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<title>Garage Moreau – Pneus hiver</title>
+<!--
+DIRECTION
+Concept: compte à rebours jusqu'au 1er novembre, un pneu qui roule dans la neige, offre claire et solide.
+Palette: asphalte #10161d, jaune sécurité #ffc21a, glace #dcecf4, rouge atelier #e2402a, crème #f6f1e6.
+Type: Anton (titres, chiffres) + Barlow Condensed (texte).
+Langage graphique: panneau routier, pictos, badges, pneu SVG, flocons, grain.
+Mouvement: net et lourd, wipes de couleur entre les scènes, tic-tac du compte à rebours.
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/anton/index.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/700.css">
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<style>
+:root{--ink:#10161d;--ink2:#1b2530;--yel:#ffc21a;--ice:#dcecf4;--red:#e2402a;--cream:#f6f1e6}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ink)}
+body{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--cream)}
+#stage{position:absolute;inset:0;overflow:hidden;background:radial-gradient(900px 900px at 50% 30%,#22303f,#10161d 70%)}
+.scene{position:absolute;inset:0}
+.a{font-family:Anton,sans-serif;font-weight:400;text-transform:uppercase}
+.mask{overflow:hidden;display:block;padding-top:.2em;margin-top:-.2em}
+.mask>span{display:block;will-change:transform}
+.abs{position:absolute}
+canvas{position:absolute;inset:0;pointer-events:none}
+.grain{position:absolute;inset:0;opacity:.09;pointer-events:none}
+.sweep{position:absolute;left:0;top:0;width:1080px;height:1920px;transform:translateY(100%);pointer-events:none}
+.chip{display:inline-block;background:var(--yel);color:var(--ink);font-family:Anton;font-size:40px;letter-spacing:4px;padding:10px 26px 8px;text-transform:uppercase}
+#logo{position:absolute;left:70px;top:236px;display:flex;align-items:center;gap:16px;z-index:5}
+#logo .w{font-family:Anton;font-size:38px;letter-spacing:3px;line-height:1}
+#logo .w small{display:block;font-family:'Barlow Condensed';font-weight:500;font-size:26px;letter-spacing:2px;opacity:.75;margin-top:4px}
+</style></head><body>
+<div id="stage">
+
+<!-- SCENE 1 : compte à rebours -->
+<div class="scene" id="s1">
+  <div class="abs" style="left:70px;right:70px;top:470px;text-align:center"><span class="chip" id="s1chip">Compte à rebours</span></div>
+  <div class="abs a" id="cnt" style="left:0;width:1080px;top:580px;text-align:center;font-size:640px;line-height:700px;color:var(--yel);text-shadow:0 14px 0 #7a5a00">10</div>
+  <div class="abs" id="s1lbl" style="left:0;width:1080px;top:1310px;text-align:center;font-size:76px;line-height:80px;text-transform:uppercase;letter-spacing:2px">
+    <span class="mask"><span id="s1l1">jours avant le 1<sup style="font-size:.5em">er</sup> novembre</span></span>
+  </div>
+  <div class="abs" style="left:70px;right:70px;top:1420px;text-align:center;font-weight:500;font-size:48px;line-height:52px;color:var(--ice)"><span class="mask"><span id="s1l2">Et vos pneus, ils sont prêts&nbsp;?</span></span></div>
+</div>
+
+<!-- SCENE 2 : obligatoire -->
+<div class="scene" id="s2" style="visibility:hidden">
+  <div class="abs a" id="h2" style="left:70px;top:330px;font-size:108px;line-height:114px;">
+    <span class="mask"><span>En montagne,</span></span>
+    <span class="mask"><span style="color:var(--yel)">dès le 1<sup style="font-size:.5em;vertical-align:.7em">er</sup> novembre,</span></span>
+    <span class="mask"><span>pneus hiver</span></span>
+    <span class="mask"><span>obligatoires.</span></span>
+  </div>
+  <div class="abs" id="ground" style="left:0;top:1240px;width:1080px;height:130px;background:linear-gradient(#eef6fa,#c9dde8);box-shadow:0 -8px 0 #fff"></div>
+  <div class="abs" id="track" style="left:0;top:1242px;width:0;height:26px;background:repeating-linear-gradient(90deg,#6f8797 0 14px,#9db4c2 14px 22px,#6f8797 22px 30px);opacity:.75"></div>
+  <svg class="abs" id="tire" style="left:0;top:0;width:460px;height:460px" viewBox="0 0 500 500">
+    <defs><radialGradient id="rg" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#f4f6f8"/><stop offset="1" stop-color="#8b97a3"/></radialGradient></defs>
+    <g id="tg"></g>
+  </svg>
+  <div class="abs" id="bar" style="left:70px;right:70px;top:1400px;height:140px">
+    <div style="display:flex;justify-content:space-between;font-family:Anton;font-size:42px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px"><span style="color:var(--yel)">1<sup style="font-size:.55em">er</sup> nov.</span><span style="color:var(--yel)">31 mars</span></div>
+    <div style="position:relative;height:36px;background:#2b3846;border-radius:18px;overflow:hidden"><div id="barf" style="position:absolute;left:0;top:0;bottom:0;width:0;background:var(--yel)"></div></div>
+    <div style="display:flex;justify-content:space-between;font-weight:500;font-size:34px;margin-top:12px;color:var(--ice)"><span>Nov.</span><span>Déc.</span><span>Janv.</span><span>Févr.</span><span>Mars</span></div>
+  </div>
+</div>
+
+<!-- SCENE 3 : offre -->
+<div class="scene" id="s3" style="visibility:hidden;background:var(--yel);color:var(--ink)">
+  <div class="abs" style="left:70px;top:330px"><span class="chip" style="background:var(--ink);color:var(--yel)" id="s3chip">Offre hiver</span></div>
+  <div class="abs a" style="left:70px;top:430px;font-size:190px;line-height:184px" id="s3t">
+    <span class="mask"><span>4 pneus</span></span>
+    <span class="mask"><span>achetés,</span></span>
+  </div>
+  <div class="abs a" style="left:70px;top:830px;font-size:82px;line-height:92px" id="s3u">
+    <span class="mask"><span>montage +</span></span>
+    <span class="mask"><span>équilibrage</span></span>
+  </div>
+  <div class="abs a" id="stamp" style="left:560px;top:790px;width:420px;height:190px;border:12px solid var(--red);color:var(--red);font-size:112px;line-height:170px;text-align:center;transform:rotate(-7deg);letter-spacing:4px;background:rgba(255,255,255,.35);border-radius:10px">offerts</div>
+  <div class="abs" id="rows" style="left:70px;right:70px;top:1090px">
+    <div class="row" style="display:flex;align-items:center;gap:28px;background:var(--ink);color:var(--cream);padding:24px 30px;margin-bottom:22px">
+      <svg width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="#ffc21a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="16" height="10" rx="2"/><path d="M22 11v2M6 7V5M14 7V5M9 10l-2 2h3l-2 2"/></svg>
+      <div><div class="a" style="font-size:58px;line-height:62px">Contrôle batterie</div><div style="font-weight:500;font-size:38px;color:var(--yel)">gratuit</div></div>
+    </div>
+    <div class="row" style="display:flex;align-items:center;gap:28px;background:var(--ink);color:var(--cream);padding:24px 30px">
+      <svg width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="#ffc21a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19a9 9 0 0 1 18 0"/><path d="M4 18L18 6"/><circle cx="4" cy="18" r="1"/><path d="M8 19a5 5 0 0 1 8 0" opacity=".5"/></svg>
+      <div><div class="a" style="font-size:58px;line-height:62px">Contrôle essuie-glaces</div><div style="font-weight:500;font-size:38px;color:var(--yel)">gratuit</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENE 4 : fin -->
+<div class="scene" id="s4" style="visibility:hidden">
+  <div class="abs" id="lg" style="left:0;width:1080px;top:330px;text-align:center">
+    <svg width="230" height="230" viewBox="0 0 100 100"><path d="M50 4 L92 20 V52 C92 74 74 90 50 97 C26 90 8 74 8 52 V20 Z" fill="#ffc21a"/><path d="M50 12 L84 25 V52 C84 69 70 82 50 89 C30 82 16 69 16 52 V25 Z" fill="none" stroke="#10161d" stroke-width="3"/><text x="50" y="62" text-anchor="middle" font-family="Anton" font-size="38" fill="#10161d">GM</text></svg>
+    <div class="a" style="font-size:120px;line-height:124px;letter-spacing:4px;margin-top:18px">Garage Moreau</div>
+    <div style="font-weight:500;font-size:44px;letter-spacing:5px;color:var(--yel);text-transform:uppercase;margin-top:6px">Toutes marques</div>
+  </div>
+  <div class="abs" id="cta" style="left:70px;right:70px;top:1000px;text-align:center">
+    <div style="font-size:52px;font-weight:500;color:var(--ice)">Prenez rendez-vous</div>
+    <div class="a" id="tel" style="display:inline-block;background:var(--yel);color:var(--ink);font-size:110px;line-height:120px;padding:18px 40px 8px;margin-top:20px;letter-spacing:2px">04 73 00 11 22</div>
+    <div style="font-size:44px;font-weight:500;margin-top:34px;line-height:52px">Clermont-Ferrand<br><span style="color:var(--ice)">Offre du 1<sup style="font-size:.55em">er</sup> novembre au 31 mars</span></div>
+  </div>
+</div>
+
+<canvas id="snow" width="1080" height="1920"></canvas>
+<div id="logo" style="opacity:0">
+  <svg width="64" height="64" viewBox="0 0 100 100"><path d="M50 4 L92 20 V52 C92 74 74 90 50 97 C26 90 8 74 8 52 V20 Z" fill="#ffc21a"/><text x="50" y="62" text-anchor="middle" font-family="Anton" font-size="38" fill="#10161d">GM</text></svg>
+  <div class="w">GARAGE MOREAU<small>Clermont-Ferrand</small></div>
+</div>
+<div class="sweep" id="sw1" style="background:var(--yel)"></div>
+<div class="sweep" id="sw2" style="background:var(--ice)"></div>
+<div class="sweep" id="sw3" style="background:var(--ink)"></div>
+<canvas class="grain" id="gr" width="270" height="480" style="width:1080px;height:1920px;opacity:.07"></canvas>
+</div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+// tire
+(function(){
+  let h='';
+  for(let i=0;i<28;i++){h+=`<rect x="238" y="4" width="24" height="40" rx="5" fill="#0a0d10" transform="rotate(${i*360/28} 250 250)"/>`}
+  h+=`<circle cx="250" cy="250" r="232" fill="#0e1216"/><circle cx="250" cy="250" r="196" fill="#1a2027"/><circle cx="250" cy="250" r="190" fill="none" stroke="#2c353f" stroke-width="3"/>`;
+  for(let i=0;i<28;i++){h+=`<rect x="243" y="20" width="14" height="22" rx="3" fill="#232b33" transform="rotate(${i*360/28+6} 250 250)"/>`}
+  // snowflake on sidewall
+  h+=`<g stroke="#dcecf4" stroke-width="7" stroke-linecap="round" transform="translate(250 100)">`+[0,60,120].map(a=>`<line x1="0" y1="-30" x2="0" y2="30" transform="rotate(${a})"/>`).join('')+`</g>`;
+  h+=`<circle cx="250" cy="250" r="128" fill="url(#rg)"/><circle cx="250" cy="250" r="112" fill="#66727e"/>`;
+  for(let i=0;i<5;i++){h+=`<path d="M250 250 L232 150 Q250 138 268 150 Z" fill="url(#rg)" transform="rotate(${i*72} 250 250)"/>`}
+  h+=`<circle cx="250" cy="250" r="34" fill="#c3ccd4"/><circle cx="250" cy="250" r="12" fill="#3b444d"/>`;
+  for(let i=0;i<5;i++){h+=`<circle cx="250" cy="${250-62}" r="6" fill="#3b444d" transform="rotate(${i*72+36} 250 250)"/>`}
+  $('#tg').innerHTML=h;
+})();
+
+// neige
+const r=KK.rng(289), flakes=[];
+for(let i=0;i<110;i++)flakes.push({x:r()*1080,y:r()*1980,s:40+r()*90,z:1.5+r()*5.5,ph:r()*6.28,f:.5+r()*1.2,a:20+r()*50});
+const cv=$('#snow'),cx=cv.getContext('2d');
+function snow(t){
+  cx.clearRect(0,0,1080,1920);
+  const onY=t>8.55&&t<12.65;
+  for(const f of flakes){
+    const y=((f.y+f.s*t)%1980+1980)%1980-30, x=f.x+Math.sin(t*f.f+f.ph)*f.a;
+    cx.globalAlpha=.35+f.z/10; cx.fillStyle=onY?'#ffffff':'#eaf6fb';
+    cx.beginPath();cx.arc(x,y,f.z,0,6.283);cx.fill();
+  }
+}
+
+// grain
+(function(){const g=$('#gr').getContext('2d'),d=g.createImageData(270,480),q=KK.rng(7);for(let i=0;i<d.data.length;i+=4){const v=q()*255;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255}g.putImageData(d,0,0)})();
+// timeline
+const tl=gsap.timeline({paused:true});
+const E='power3.out',X='expo.out';
+// sweeps
+function sweep(id,at,swap){
+  tl.fromTo(id,{yPercent:0,y:1920},{y:0,duration:.34,ease:'power3.in'},at)
+    .set(swap.hide,{visibility:'hidden'},at+.34).set(swap.show,{visibility:'visible'},at+.34)
+    .to(id,{y:-1920,duration:.4,ease:'power3.out'},at+.34);
+}
+// scene 1
+tl.fromTo('#logo',{x:-60,opacity:0},{x:0,opacity:1,duration:.5,ease:E},.2);
+tl.from('#s1chip',{scaleX:0,transformOrigin:'50% 50%',duration:.4,ease:X},0);
+tl.from('#s1l1',{yPercent:110,duration:.6,ease:X},.3);
+tl.from('#s1l2',{yPercent:110,duration:.6,ease:X},1.0);
+tl.to('#cnt',{scale:1.06,duration:3.2,ease:'none'},0);
+// scene 2
+sweep('#sw1',3.35,{hide:'#s1',show:'#s2'});
+tl.from('#h2 .mask>span',{yPercent:115,duration:.7,stagger:.14,ease:X},3.9);
+tl.from('#ground',{yPercent:100,duration:.5,ease:E},4.1);
+tl.fromTo('#tire',{x:-520},{x:1060,duration:3.6,ease:'power1.inOut'},4.3);
+tl.from('#bar',{y:80,opacity:0,duration:.6,ease:E},5.0);
+tl.fromTo('#barf',{width:0},{width:'100%',duration:2.6,ease:'power2.inOut'},5.4);
+// scene 3
+sweep('#sw2',8.2,{hide:'#s2',show:'#s3'});
+tl.from('#s3chip',{scaleX:0,transformOrigin:'0 50%',duration:.4,ease:X},8.75);
+tl.from('#s3t .mask>span',{yPercent:115,duration:.6,stagger:.12,ease:X},8.85);
+tl.from('#s3u .mask>span',{yPercent:115,duration:.5,stagger:.1,ease:X},9.5);
+tl.from('#stamp',{scale:2.6,opacity:0,rotation:-25,duration:.35,ease:'power4.in'},10.0);
+tl.to('#stamp',{x:5,y:-4,duration:.05,yoyo:true,repeat:3},10.35);
+tl.from('.row',{x:1100,duration:.6,stagger:.25,ease:X},10.5);
+// scene 4
+sweep('#sw3',12.05,{hide:'#s3',show:'#s4'});
+tl.set('#logo',{opacity:0},12.3);
+tl.from('#lg',{y:50,opacity:0,duration:.6,ease:E},12.6);
+tl.from('#cta > div:first-child',{opacity:0,y:30,duration:.4,ease:E},13.1);
+tl.from('#tel',{scale:.7,opacity:0,duration:.5,ease:'back.out(2)'},13.25);
+tl.from('#cta > div:last-child',{opacity:0,y:30,duration:.5,ease:E},13.6);
+tl.to('#tel',{scale:1.03,duration:1.2,ease:'sine.inOut',yoyo:true,repeat:1},13.9);
+tl.set({},{},15);
+
+window.KLIPT={width:1080,height:1920,fps:30,duration:15,
+ render(t){
+  tl.seek(t,false); snow(t);
+  // compte à rebours
+  const k=Math.min(9,Math.floor(Math.max(0,t)/0.3)), n=10-k, f=(t/0.3)%1;
+  $('#cnt').textContent=(t<3.0)?n:1;
+  if(t<3.0){$('#cnt').style.transform=`scale(${1+.09*Math.pow(1-f,3)+.02*t/3})`}
+  // pneu : rotation + traces
+  const tx=gsap.getProperty('#tire','x');
+  const p=KK.prog(t,4.3,3.6), e=gsap.parseEase('power1.inOut')(p);
+  $('#tire').style.top=(1240-440+6)+'px';
+  $('#logo').style.color=(t>8.3&&t<12.3)?'#10161d':'';
+  $('#tg').setAttribute('transform',`rotate(${tx*180/(Math.PI*213)} 250 250)`);
+  $('#track').style.width=Math.max(0,tx+230)+'px';
+ }};
+</script>
+</body></html>

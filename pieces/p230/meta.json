@@ -1,0 +1,8 @@
+{ "id": "p230", "brand": "Transports Lacroix", "sector": "Transport routier (recrutement)", "kind": "video",
+  "format": "1080x1920", "duration": 20, "slides": null,
+  "title": "Les avantages tombent comme des panneaux",
+  "concept": "Tout le message est écrit sur de vrais panneaux routiers français qui s'abattent du ciel sur leurs poteaux pendant que le camion Lacroix roule ; le ciel passe du matin au soir jusqu'au panneau « Maison, retour chaque soir », puis le panneau Postulez.",
+  "techniques": ["svg-illustration", "css", "procedural-parallax", "deterministic-js-render", "camera-shake"],
+  "fonts": ["Oswald", "Work Sans"],
+  "palette": ["#1F55A6", "#F7F6F1", "#D52B2B", "#F4C230", "#2A2C31", "#16171B", "#8CC3E8", "#F08A4B", "#22224A"],
+  "copy_language": "fr" }

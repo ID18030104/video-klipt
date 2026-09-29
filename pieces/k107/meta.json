@@ -1,0 +1,8 @@
+{ "id": "k107", "brand": "Maison Castel — Barbier", "sector": "Barbier / coiffeur de quartier",
+  "kind": "video", "format": "1080x1920", "duration": 22, "slides": null,
+  "title": "Le cadran du rasage à l’ancienne",
+  "concept": "Le coupe-chou s’ouvre puis devient l’aiguille d’un cadran de 40 minutes qui égrène les 4 gestes du rituel, avant un prix façon plaque émaillée et une carte de fin balayée par un poteau de barbier. Encre, crème, laiton, bordeaux.",
+  "techniques": ["gsap", "svg-illustration", "drawsvg", "masks", "canvas-grain"],
+  "fonts": ["DM Serif Display", "Barlow Condensed"],
+  "palette": ["#17120F", "#EFE3CC", "#C0924A", "#7A1E22", "#3A2A20"],
+  "copy_language": "fr" }

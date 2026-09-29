@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8">
+<!--
+  KIDDO — Modular Marble Run launch (p281)
+  Concept: a paper cut-out stop-motion ad. Pieces "snap" in on twos (15 fps steps, boiling torn edges,
+           tiny per-frame jitter), then the marble races down on ones for contrast. "The gift that keeps rolling."
+  Palette: cream paper #F3EADB, ink #2A211C, tomato #E0533D, mustard #F2B33D, forest #2F6B4F (+ beech #E6C08D, sky #6FA3C0 as toy paint)
+  Type: Fraunces 900 / 900 italic (warm, crafted display) + Figtree 700/800 (readable sans)
+  Graphic language: torn construction paper, drop shadows, tape, stickers, grain; motion: stop-motion snaps, overshoot, hand-made.
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/900.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/900-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/800.css">
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<style>
+:root{--cream:#F3EADB;--ink:#2A211C;--tomato:#E0533D;--mustard:#F2B33D;--forest:#2F6B4F;--beech:#E6C08D;--sky:#6FA3C0;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;margin:0;overflow:hidden;background:var(--cream)}
+#stage{position:absolute;inset:0;overflow:hidden;background:
+  radial-gradient(900px 700px at 30% 30%, #F8F1E4 0%, rgba(248,241,228,0) 70%),
+  radial-gradient(900px 900px at 80% 90%, #EADCC4 0%, rgba(234,220,196,0) 70%), var(--cream);
+  font-family:'Figtree',sans-serif;color:var(--ink)}
+.abs{position:absolute}
+.paper{filter:url(#rough) drop-shadow(0 5px 0 rgba(70,45,20,.20)) drop-shadow(0 14px 14px rgba(70,45,20,.16))}
+.paperS{filter:url(#rough) drop-shadow(0 3px 0 rgba(70,45,20,.20)) drop-shadow(0 8px 8px rgba(70,45,20,.14))}
+.fr{font-family:'Fraunces',serif;font-weight:900}
+/* stars */
+.star{position:absolute;width:70px;height:70px;background:var(--mustard);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+/* hook */
+.label{position:absolute;left:50%;padding:18px 54px 34px;font-size:188px;line-height:1;letter-spacing:-4px;white-space:nowrap}
+.block{position:absolute}
+/* tower */
+#tower{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 1085px}
+#floor{position:absolute;left:-700px;top:1600px;width:2480px;height:1500px;background:var(--forest)}
+.post{position:absolute;width:46px;background:linear-gradient(90deg,#D9AE74,#EDCB98 45%,#D6A96C);border-radius:6px}
+.rw{position:absolute;width:0;height:0}
+.ramp{position:absolute;left:0;top:0;height:48px;transform-origin:0 0;border-radius:6px;overflow:hidden}
+.ramp .top{position:absolute;left:0;right:0;top:0;height:14px;background:repeating-linear-gradient(90deg,#EFCF9E 0 38px,#E4BD84 38px 44px,#EDCB98 44px 90px)}
+.ramp .groove{position:absolute;left:0;right:0;top:14px;height:5px;background:rgba(0,0,0,.18)}
+.cup{position:absolute}
+#marble{position:absolute;left:0;top:0;width:50px;height:50px;margin:-25px 0 0 -25px;border-radius:50%;overflow:hidden;
+  background:radial-gradient(circle at 34% 30%,#FF9C84 0,#E0533D 38%,#A8321F 100%)}
+#marble .band{position:absolute;left:-5px;right:-5px;top:19px;height:12px;background:rgba(243,234,219,.85)}
+#marble .hi{position:absolute;left:9px;top:7px;width:14px;height:10px;border-radius:50%;background:rgba(255,255,255,.75)}
+.strip{position:absolute;height:9px;border-radius:5px;background:var(--mustard);transform-origin:100% 50%}
+.burst{position:absolute;width:0;height:0}
+.burst i{position:absolute;left:-7px;top:-58px;width:14px;height:34px;background:var(--ink);clip-path:polygon(50% 100%,0 0,100% 0);transform-origin:7px 58px}
+.click{position:absolute;font-family:'Fraunces',serif;font-style:italic;font-weight:900;font-size:50px;color:var(--ink);white-space:nowrap}
+/* heads */
+.head{position:absolute;left:80px;right:80px;top:300px;font-family:'Fraunces',serif;font-weight:900;font-size:98px;line-height:1.02;letter-spacing:-2px}
+.line{display:block;overflow:hidden;padding-bottom:10px;margin-bottom:-10px}
+.line>span{display:inline-block}
+em.hl{font-style:italic;color:var(--tomato)}
+#logo{position:absolute;left:80px;top:222px}
+/* sheet */
+#sheet{position:absolute;left:-60px;width:1200px;top:0;height:2300px;background:var(--mustard)}
+.card{position:absolute;left:190px;width:820px;height:200px;background:#FFF8EC;display:flex;align-items:center;gap:36px;padding:0 44px}
+.card .ic{width:110px;height:110px;flex:none}
+.card .tx{font-family:'Fraunces',serif;font-weight:900;font-size:57px;white-space:nowrap;line-height:1;letter-spacing:-1px}
+.tape{position:absolute;top:-22px;left:50%;width:150px;height:46px;margin-left:-75px;background:rgba(255,250,235,.72);box-shadow:0 1px 2px rgba(0,0,0,.1)}
+/* end */
+#sticker{position:absolute;left:760px;top:640px;width:230px;height:230px;border-radius:50%;background:var(--tomato);color:var(--cream);text-align:center}
+#sticker .p{font-family:'Fraunces',serif;font-weight:900;font-size:92px;line-height:1;margin-top:52px;letter-spacing:-2px}
+#sticker .a{font-weight:800;font-size:32px;margin-top:6px}
+#endLogo{position:absolute;left:0;right:0;top:1282px;text-align:center}
+#endSub{position:absolute;left:0;right:0;top:1392px;text-align:center;color:var(--cream);font-weight:700;font-size:38px}
+#cta{position:absolute;left:50%;top:1456px;height:84px;padding:0 44px;background:var(--mustard);color:var(--ink);border-radius:42px;font-weight:800;font-size:40px;line-height:84px;white-space:nowrap}
+#grain{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.13}
+</style></head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence id="turb" type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="1" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="6" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="grainF"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7"/><feColorMatrix type="saturate" values="0"/></filter>
+</svg>
+<div id="stage">
+  <div id="stars"></div>
+
+  <!-- TOWER (product) -->
+  <div id="tower">
+    <div id="floor" class="paper"></div>
+    <div id="base" class="abs paper jit" style="left:120px;top:1556px;width:840px;height:52px;background:linear-gradient(#EDCB98,#D6A96C);border-radius:8px"></div>
+    <div id="postL" class="post paper jit" style="left:170px;top:600px;height:960px;transform-origin:50% 100%"></div>
+    <div id="postR" class="post paper jit" style="left:866px;top:760px;height:800px;transform-origin:50% 100%"></div>
+    <div id="rampHost"></div>
+    <!-- start tray -->
+    <div id="cupTop" class="cup paper jit" style="left:206px;top:630px;width:118px;height:34px">
+      <div style="position:absolute;inset:0;background:var(--sky);border-radius:0 0 18px 18px"></div>
+      <div style="position:absolute;left:0;top:-26px;width:16px;height:30px;background:var(--sky);border-radius:6px 6px 0 0"></div>
+      <div style="position:absolute;right:0;top:-26px;width:16px;height:30px;background:var(--sky);border-radius:6px 6px 0 0"></div>
+    </div>
+    <!-- finish cup / bell -->
+    <div id="cupBot" class="cup paper jit" style="left:220px;top:1470px;width:112px;height:88px">
+      <div style="position:absolute;inset:0;background:var(--mustard);border-radius:0 0 56px 56px;clip-path:polygon(0 0,14% 0,14% 50%,86% 50%,86% 0,100% 0,100% 100%,0 100%)"></div>
+    </div>
+    <div id="strips"><div class="strip" id="s1"></div><div class="strip" id="s2"></div><div class="strip" id="s3"></div></div>
+    <div id="marble" class="paperS"><div class="band"></div><div class="hi"></div></div>
+    <div id="bursts"></div>
+  </div>
+
+  <!-- HOOK -->
+  <div id="hook">
+    <div id="b1" class="block paper" style="left:96px;top:470px;width:120px;height:120px;background:var(--sky);border-radius:14px"></div>
+    <div id="b2" class="block paper" style="left:850px;top:560px;width:110px;height:110px;background:var(--forest);border-radius:50%"></div>
+    <div id="b3" class="block paper" style="left:120px;top:1370px;width:190px;height:70px;background:var(--beech);border-radius:10px"></div>
+    <div id="b4" class="block paper" style="left:820px;top:1330px;width:120px;height:120px;background:var(--tomato);clip-path:polygon(50% 0,100% 100%,0 100%)"></div>
+    <div id="w1" class="label fr paper" style="top:600px;background:var(--tomato);color:var(--cream)">Snap.</div>
+    <div id="w2" class="label fr paper" style="top:846px;background:var(--mustard);color:var(--ink)">Stack.</div>
+    <div id="w3" class="label fr paper" style="top:1092px;background:var(--forest);color:var(--cream)">Whoosh.</div>
+    <div id="hm" class="abs paperS" style="left:0;top:1480px;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 34% 30%,#FF9C84 0,#E0533D 38%,#A8321F 100%)"></div>
+    <div id="hs" class="abs" style="left:0;top:1503px;width:300px;height:18px">
+      <div class="abs" style="left:0;top:0;width:300px;height:7px;border-radius:4px;background:var(--ink)"></div>
+      <div class="abs" style="left:80px;top:13px;width:200px;height:7px;border-radius:4px;background:var(--ink)"></div>
+    </div>
+  </div>
+
+  <!-- HEADLINES -->
+  <div id="h1" class="head"><span class="line"><span>32 wooden pieces.</span></span><span class="line"><span>Endless <em class="hl">builds.</em></span></span></div>
+  <div id="h2" class="head"><span class="line"><span>And then…</span></span><span class="line"><span>let it <em class="hl">roll.</em></span></span></div>
+
+  <!-- VALUES SHEET -->
+  <div id="sheet" class="paper">
+    <div id="h3" class="head" style="left:140px;top:470px"><span class="line"><span>Made to be</span></span><span class="line"><span>handed down.</span></span></div>
+    <div id="c1" class="card paperS jit" style="top:800px"><div class="tape"></div>
+      <svg class="ic" viewBox="0 0 100 100"><path d="M50 6 C78 22 88 52 72 76 C62 90 38 90 28 76 C12 52 22 22 50 6Z" fill="#2F6B4F"/><path d="M50 22 L50 96" stroke="#FFF8EC" stroke-width="5" stroke-linecap="round"/><path d="M50 50 L66 38 M50 66 L34 54" stroke="#FFF8EC" stroke-width="4" stroke-linecap="round"/></svg>
+      <div class="tx">Solid beech wood</div></div>
+    <div id="c2" class="card paperS jit" style="top:1070px"><div class="tape"></div>
+      <svg class="ic" viewBox="0 0 100 100"><path d="M50 6 C62 30 80 46 80 66 A30 30 0 0 1 20 66 C20 46 38 30 50 6Z" fill="#E0533D"/><ellipse cx="38" cy="64" rx="7" ry="11" fill="#FFF8EC" opacity=".7"/></svg>
+      <div class="tx">Water-based paints</div></div>
+    <div id="c3" class="card paperS jit" style="top:1340px"><div class="tape"></div>
+      <svg class="ic" viewBox="0 0 100 100" id="euIc"><circle cx="50" cy="50" r="48" fill="#6FA3C0"/></svg>
+      <div class="tx">Made in Europe</div></div>
+  </div>
+
+  <!-- END CARD -->
+  <div id="h4" class="head" style="text-align:center;left:40px;right:40px;font-size:104px"><span class="line"><span>The gift that</span></span><span class="line"><span>keeps <em class="hl">rolling.</em></span></span></div>
+  <div id="sticker" class="paper jit"><div class="p">£45</div><div class="a">Ages 3–8</div></div>
+  <div id="endLogo" class="jit"></div>
+  <div id="endSub" class="jit">The Modular Marble Run</div>
+  <div id="cta" class="paperS jit">Shop now · kiddotoys.co.uk</div>
+
+  <div id="logo"></div>
+  <svg id="grain" width="1080" height="1920"><rect width="1080" height="1920" filter="url(#grainF)"/></svg>
+</div>
+
+<script>
+const R = KK.rng(281);
+const $ = s => document.querySelector(s);
+
+/* ---------- logo: "kidd" + marble "o" ---------- */
+function logoHTML(size, ink, marble, band){
+  return `<span style="display:inline-flex;align-items:baseline;font-family:Fraunces;font-weight:900;font-size:${size}px;line-height:1;letter-spacing:-.02em;color:${ink}">kidd<span style="position:relative;display:inline-block;width:.5em;height:.5em;margin-left:.03em;border-radius:50%;overflow:hidden;background:${marble}"><span style="position:absolute;left:18%;top:14%;width:26%;height:20%;border-radius:50%;background:#fff;opacity:.7"></span></span></span>`;
+}
+$('#logo').innerHTML = logoHTML(64,'#2A211C','#E0533D','#F3EADB');
+$('#endLogo').innerHTML = logoHTML(118,'#F3EADB','#F2B33D','#2F6B4F');
+
+/* EU ring of stars */
+{ let s=''; for(let i=0;i<12;i++){const a=i/12*Math.PI*2; s+=`<circle cx="${50+30*Math.cos(a)}" cy="${50+30*Math.sin(a)}" r="5.5" fill="#F2B33D"/>`;} $('#euIc').innerHTML += s; }
+
+/* background paper stars */
+{ const host=$('#stars'); const pos=[[40,640,.6],[960,420,.8],[930,1180,.5],[60,1080,.7],[520,180,.45]];
+  pos.forEach((p,i)=>{const d=document.createElement('div');d.className='star paperS';d.style.left=p[0]+'px';d.style.top=p[1]+'px';
+    d.style.transform=`scale(${p[2]}) rotate(${i*17}deg)`;d.style.opacity=.9;host.appendChild(d);});
+}
+
+/* torn edges */
+function torn(el, side, amp, n, seed){
+  const r=KK.rng(seed); const pts=[];
+  if(side==='top'){ for(let i=0;i<=n;i++) pts.push(`${(i/n*100).toFixed(2)}% ${(r()*amp).toFixed(1)}px`); pts.push('100% 100%','0% 100%'); }
+  if(side==='both'){ for(let i=0;i<=n;i++) pts.push(`${(i/n*100).toFixed(2)}% ${(r()*amp).toFixed(1)}px`);
+    for(let i=n;i>=0;i--) pts.push(`${(i/n*100).toFixed(2)}% calc(100% - ${(r()*amp).toFixed(1)}px)`); }
+  el.style.clipPath=`polygon(${pts.join(',')})`;
+}
+torn($('#floor'),'top',22,90,11);
+torn($('#sheet'),'both',34,70,12);
+document.querySelectorAll('.label').forEach((el,i)=>torn(el,'both',10,24,20+i));
+
+/* ---------- ramps ---------- */
+const RAMPS = [
+  {a:[214,700], b:[800,790], c:'#E0533D', from:-900},
+  {a:[866,880], b:[280,970], c:'#F2B33D', from: 900},
+  {a:[214,1060],b:[800,1150],c:'#2F6B4F', from:-900},
+  {a:[866,1240],b:[280,1330],c:'#6FA3C0', from: 900},
+];
+RAMPS.forEach((r,i)=>{
+  const w=document.createElement('div'); w.className='rw paper jit'; w.id='rw'+i;
+  const x1=Math.min(r.a[0],r.b[0]), dx=r.b[0]-r.a[0], dy=r.b[1]-r.a[1];
+  const L=Math.hypot(dx,dy); const left = dx>0 ? r.a : r.b; const right = dx>0 ? r.b : r.a;
+  const ang=Math.atan2(right[1]-left[1], right[0]-left[0])*180/Math.PI;
+  w.style.left=left[0]+'px'; w.style.top=left[1]+'px';
+  w.innerHTML=`<div class="ramp" style="width:${L}px;transform:rotate(${ang}deg);background:${r.c}"><div class="top"></div><div class="groove"></div></div>`;
+  $('#rampHost').appendChild(w);
+  r.slope=dy/dx;
+});
+const surfY=(r,x)=>r.a[1]+(x-r.a[0])*r.slope;
+
+/* bursts + clicks at joins */
+const JOINS=[[214,700,'click!',-1],[866,880,'click!',1],[214,1060,'click!',-1],[866,1240,'click!',1]];
+JOINS.forEach((j,i)=>{
+  const b=document.createElement('div'); b.className='burst'; b.id='bu'+i; b.style.left=j[0]+'px'; b.style.top=(j[1]+10)+'px';
+  let s=''; for(let k=0;k<6;k++) s+=`<i style="transform:rotate(${(j[3]<0? 200:20)+k*28}deg)"></i>`; b.innerHTML=s;
+  $('#bursts').appendChild(b);
+  const c=document.createElement('div'); c.className='click'; c.id='ck'+i; c.textContent=j[2];
+  c.style.top=(j[1]-120)+'px'; if(j[3]<0){c.style.left=(j[0]+60)+'px';} else {c.style.left=(j[0]-240)+'px';}
+  $('#bursts').appendChild(c);
+});
+{ // ding burst at bottom cup
+  const b=document.createElement('div'); b.className='burst'; b.id='buD'; b.style.left='276px'; b.style.top='1470px';
+  let s=''; for(let k=0;k<7;k++) s+=`<i style="transform:rotate(${-90+(k-3)*26}deg);background:#2A211C"></i>`; b.innerHTML=s; $('#bursts').appendChild(b);
+  const c=document.createElement('div'); c.className='click'; c.id='ckD'; c.textContent='ding!'; c.style.left='360px'; c.style.top='1380px'; c.style.fontSize='64px';
+  $('#bursts').appendChild(c);
+}
+
+/* ---------- marble path (on ones) ---------- */
+const MR=25;
+const onR=(i,x)=>[x, surfY(RAMPS[i],x)-MR-1];
+const SEG=[ // [type, from, to, dur]
+  ['drop',[262,605],onR(0,262),.26],
+  ['roll',0,262,800,.85],
+  ['drop',onR(0,800),onR(1,818),.2],
+  ['roll',1,818,282,.72],
+  ['drop',onR(1,282),onR(2,262),.2],
+  ['roll',2,262,800,.66],
+  ['drop',onR(2,800),onR(3,818),.18],
+  ['roll',3,818,282,.6],
+  ['drop',onR(3,282),[276,1513],.3],
+];
+const RACE0=8.5;
+let segT=[]; { let acc=0; SEG.forEach(s=>{segT.push(acc); acc+=s[s.length-1];}); var RACE_DUR=acc; }
+function marbleAt(tt){ // returns [x,y,vx,vy]
+  if(tt<=0) return [262,605,0,0];
+  let d=0;
+  for(let i=0;i<SEG.length;i++){
+    const s=SEG[i], dur=s[s.length-1];
+    if(tt<=segT[i]+dur || i===SEG.length-1){
+      const p=KK.clamp((tt-segT[i])/dur);
+      if(s[0]==='drop'){ const e=p*p; const x=KK.lerp(s[1][0],s[2][0],p), y=KK.lerp(s[1][1],s[2][1],e);
+        return [x,y,(s[2][0]-s[1][0])/dur,(s[2][1]-s[1][1])*2*p/dur, i]; }
+      const e=0.35*p+0.65*p*p; const x=KK.lerp(s[2],s[3],e); const y=onR(s[1],x)[1];
+      const v=(s[3]-s[2])*(0.35+1.3*p)/dur; return [x,y,v,v*RAMPS[s[1]].slope,i];
+    }
+  }
+}
+function rollDist(tt){ // approximate cumulative travelled distance for spin
+  let last=marbleAt(0), d=0; const N=Math.max(1,Math.floor(tt*60));
+  for(let k=1;k<=N;k++){const m=marbleAt(tt*k/N); d+=Math.hypot(m[0]-last[0],m[1]-last[1])*Math.sign(m[2]||1); last=m;} return d;
+}
+
+/* ---------- timeline (on twos) ---------- */
+gsap.defaults({overwrite:false});
+const tl=gsap.timeline({paused:true});
+const lab=['#w1','#w2','#w3'];
+gsap.set(lab,{xPercent:-50});
+gsap.set('#w1',{rotation:-4}); gsap.set('#w2',{rotation:3}); gsap.set('#w3',{rotation:-2});
+// hook blocks tumbling in from frame 0
+tl.from('#b1',{y:-700,rotation:-80,duration:.7,ease:'bounce.out'},0)
+  .from('#b2',{y:-800,rotation:120,duration:.8,ease:'bounce.out'},0.05)
+  .from('#b3',{x:-500,rotation:40,duration:.6,ease:'back.out(2)'},0.25)
+  .from('#b4',{x:500,rotation:-60,duration:.6,ease:'back.out(2)'},0.4);
+[0,0.75,1.5].forEach((at,i)=>{
+  tl.fromTo(lab[i],{scale:1.5,opacity:0},{scale:1,opacity:1,duration:.3,ease:'back.out(2.5)', immediateRender:false},at);
+});
+gsap.set(lab,{scale:1.5,opacity:0});
+tl.set('#w1',{opacity:1},0); // visible from frame 0 while stamping
+tl.fromTo('#hm',{x:-120},{x:1200,duration:.7,ease:'power2.in'},1.55)
+  .fromTo('#hs',{x:-520},{x:1100,duration:.8,ease:'power2.in'},1.55);
+// hook exit
+tl.to('#w1',{x:-1200,rotation:-25,duration:.4,ease:'power2.in'},2.95)
+  .to('#w2',{x:1200,rotation:25,duration:.4,ease:'power2.in'},3.0)
+  .to('#w3',{x:-1200,rotation:-20,duration:.4,ease:'power2.in'},3.05)
+  .to(['#b1','#b3'],{x:-600,duration:.4,ease:'power2.in'},3.0)
+  .to(['#b2','#b4'],{x:600,duration:.4,ease:'power2.in'},3.0);
+
+// build
+gsap.set('#floor',{y:420}); gsap.set('#base',{y:500});
+gsap.set(['#postL','#postR'],{scaleY:0});
+gsap.set(['#cupTop','#cupBot'],{scale:0});
+gsap.set('#logo',{y:-320});
+tl.to('#floor',{y:0,duration:.45,ease:'back.out(1.6)'},3.1)
+  .to('#base',{y:0,duration:.45,ease:'back.out(1.8)'},3.2)
+  .to('#postL',{scaleY:1,duration:.4,ease:'back.out(1.5)'},3.4)
+  .to('#postR',{scaleY:1,duration:.4,ease:'back.out(1.5)'},3.5)
+  .to('#logo',{y:0,duration:.4,ease:'back.out(2)'},3.3);
+function heading(sel, at, out){
+  const spans=document.querySelectorAll(sel+' .line>span');
+  gsap.set(spans,{yPercent:115});
+  tl.to(spans,{yPercent:0,duration:.5,ease:'power3.out',stagger:.12},at);
+  if(out!=null) tl.to(spans,{yPercent:-115,duration:.35,ease:'power2.in',stagger:.06},out);
+}
+heading('#h1',3.6,8.0);
+RAMPS.forEach((r,i)=>{
+  const at=4.0+i*.45;
+  gsap.set('#rw'+i,{x:r.from, rotation:r.from<0?-18:18});
+  tl.to('#rw'+i,{x:0,rotation:0,duration:.38,ease:'back.out(1.4)'},at);
+  gsap.set(['#bu'+i],{scale:0}); gsap.set('#ck'+i,{opacity:0,scale:.4});
+  tl.to('#bu'+i,{scale:1,duration:.15,ease:'power2.out'},at+.3).to('#bu'+i,{scale:0,opacity:0,duration:.2,ease:'power2.in'},at+.5)
+    .to('#ck'+i,{opacity:1,scale:1,duration:.15,ease:'back.out(3)'},at+.3).to('#ck'+i,{opacity:0,y:-30,duration:.25,ease:'power2.in'},at+.95);
+});
+tl.to('#cupBot',{scale:1,duration:.3,ease:'back.out(2.5)'},5.9)
+  .to('#cupTop',{scale:1,duration:.3,ease:'back.out(2.5)'},6.15);
+// race
+heading('#h2',8.25,12.55);
+tl.to('#tower',{scale:1.04,duration:4,ease:'sine.inOut'},8.3);
+gsap.set('#buD',{scale:0}); gsap.set('#ckD',{opacity:0,scale:.4});
+const LAND=RACE0+RACE_DUR;
+tl.to('#buD',{scale:1.1,duration:.15,ease:'power2.out'},LAND).to('#buD',{scale:0,opacity:0,duration:.25,ease:'power2.in'},LAND+.35)
+  .to('#ckD',{opacity:1,scale:1,duration:.15,ease:'back.out(3)'},LAND).to('#ckD',{opacity:0,duration:.2},LAND+.8);
+
+// values sheet
+const SHEET_IN=12.75;
+gsap.set('#sheet',{y:2000});
+tl.to('#sheet',{y:-160,duration:.5,ease:'power3.out'},SHEET_IN);
+tl.set('#logo',{opacity:0},SHEET_IN+.5);
+heading('#h3',SHEET_IN+.35,null);
+[['#c1',-2],['#c2',1.5],['#c3',-1]].forEach(([c,rot],i)=>{
+  gsap.set(c,{x:i%2?1100:-1100,rotation:rot*6});
+  tl.to(c,{x:0,rotation:rot,duration:.4,ease:'back.out(1.3)'},SHEET_IN+.8+i*.35);
+});
+// behind the sheet: re-stage product for end card
+tl.set('#tower',{scale:.58,y:-150},SHEET_IN+.6);
+// end card
+const END=17.6;
+tl.to('#sheet',{y:-2400,duration:.55,ease:'power3.inOut'},END);
+heading('#h4',END+.3,null);
+gsap.set('#sticker',{scale:0,rotation:-40});
+tl.to('#sticker',{scale:1,rotation:10,duration:.4,ease:'back.out(2.4)'},END+.75);
+gsap.set(['#endLogo','#endSub','#cta'],{y:60,opacity:0});
+tl.to(['#endLogo','#endSub','#cta'],{y:0,opacity:1,duration:.4,ease:'back.out(1.7)',stagger:.12},END+.55);
+gsap.set('#cta',{xPercent:-50});
+tl.to('#stars',{y:-30,duration:22,ease:'none'},0);
+tl.to({}, {duration:.01}, 22);
+
+/* ---------- stop-motion jitter + boil ---------- */
+const jitEls=[...document.querySelectorAll('.jit, .label, .block, .star')];
+const J=[]; for(let s=0;s<400;s++){ J.push(jitEls.map(()=>[(R()-.5)*3.2,(R()-.5)*3.2,(R()-.5)*.8])); }
+const turb=document.getElementById('turb');
+
+const M=$('#marble'), S=[$('#s1'),$('#s2'),$('#s3')];
+window.KLIPT={
+  width:1080,height:1920,fps:30,duration:22,
+  ready: document.fonts.ready,
+  render(t){
+    const step=Math.floor(t*15+1e-6), tq=step/15;
+    tl.seek(tq,false);
+    const jj=J[step%400];
+    jitEls.forEach((el,i)=>{el.style.translate=`${jj[i][0].toFixed(2)}px ${jj[i][1].toFixed(2)}px`; el.style.rotate=`${jj[i][2].toFixed(2)}deg`;});
+    turb.setAttribute('seed', String(1+(step%3)));
+    // marble
+    let x,y,vis=1,vx=0,vy=0,spin=0;
+    if(tq<6.45){ // drops into top tray on twos
+      const p=KK.clamp((tq-6.45+0.5)/0.5); vis=p>0?1:0; x=262; y=KK.lerp(-80,605,KK.ease.outCubic(p)); if(p>=1) y=605;
+      const bp=KK.clamp((tq-6.3)/0.15); if(bp>0&&bp<1) y=605-Math.sin(bp*Math.PI)*18;
+    } else if(t<RACE0){ x=262;y=605; }
+    else { const tt=Math.min(t-RACE0,RACE_DUR); const m=marbleAt(tt); x=m[0];y=m[1];vx=m[2];vy=m[3]; spin=rollDist(tt)/MR*180/Math.PI;
+      if(t-RACE0>RACE_DUR){ const bp=KK.clamp((t-RACE0-RACE_DUR)/0.3); y-=Math.sin(bp*Math.PI)*22*(1-bp); }
+    }
+    M.style.opacity=vis; M.style.transform=`translate(${x}px,${y}px) rotate(${spin}deg)`;
+    const sp=Math.hypot(vx,vy); const racing=t>RACE0 && t<RACE0+RACE_DUR && sp>250;
+    S.forEach((s,k)=>{ if(!racing){s.style.opacity=0;return;}
+      const ang=Math.atan2(vy,vx); const len=Math.min(160,sp*0.12)*(1-k*.25);
+      const off=[0,-14,14][k];
+      s.style.opacity=1; s.style.width=len+'px';
+      s.style.transform=`translate(${x-len-28*Math.cos(ang)-off*Math.sin(ang)*0}px,${y-4+off}px) rotate(${ang*180/Math.PI}deg)`;
+      s.style.transformOrigin='100% 50%';
+      s.style.background=k===1?'#2A211C':'#F2B33D';
+    });
+  }
+};
+</script>
+</body></html>

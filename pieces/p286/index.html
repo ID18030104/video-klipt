@@ -1,0 +1,182 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Maison Ondine Winter Escape</title>
+<!--
+DIRECTION
+Concept: one slow sunset over the Bay of Biscay; the sky and sea carry the whole film, the type barely speaks.
+Palette: night indigo #0A1428, dusk plum #3A2A4F, ember coral #E9825B, amber #F5C98E, ivory #F6EFE4.
+Type: Cormorant Garamond (light italic display) + Figtree (tracked caps, small).
+Graphic language: horizon line, hairline generative waves, sun glitter path, fine rules, wave-ring monogram.
+Motion: slow, masked line reveals, long holds, sun sinks continuously across 20 s.
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/cormorant-garamond/300.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/cormorant-garamond/300-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/cormorant-garamond/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/500.css">
+<style>
+:root{--ivory:#F6EFE4;--amber:#F5C98E;--coral:#E9825B;--night:#0A1428}
+*{box-sizing:border-box}
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:var(--night);color:var(--ivory)}
+canvas{position:absolute;left:0;top:0}
+.abs{position:absolute}
+.grain{position:absolute;inset:0;opacity:.09;mix-blend-mode:overlay;pointer-events:none}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,transparent 55%,rgba(5,10,24,.55) 100%)}
+.serif{font-family:'Cormorant Garamond',serif;font-weight:300}
+.caps{font-family:'Figtree',sans-serif;font-weight:500;letter-spacing:.34em;text-transform:uppercase;font-size:26px}
+.mask{overflow:hidden;display:block;padding:0 0 .14em;margin-bottom:-.14em}
+.mask>span{display:block;will-change:transform}
+#b1{left:0;width:1920px;top:250px;text-align:center}
+#b1 .h{font-size:132px;line-height:1.02;font-style:italic}
+#b1 .caps{margin-bottom:44px;color:var(--amber)}
+#b2{left:200px;top:210px;width:900px}
+#b2 .caps{color:var(--amber);margin-bottom:46px}
+.row{display:flex;align-items:baseline;gap:34px;padding:22px 0;position:relative}
+.row .n{font-family:'Figtree';font-size:26px;letter-spacing:.2em;color:var(--amber);width:52px}
+.row .t{font-size:78px;line-height:1;font-style:italic}
+.rule{position:absolute;left:0;bottom:0;height:1px;width:100%;background:rgba(246,239,228,.45);transform-origin:left}
+#b3{left:0;width:1920px;top:120px;text-align:center}
+#b3 .from{font-size:44px;font-style:italic;margin-bottom:-6px}
+#b3 .price{font-size:330px;line-height:1;font-weight:300;letter-spacing:-.02em}
+#b3 .sub{margin-top:22px;font-size:30px}
+#b4{left:0;width:1920px;top:120px;text-align:center}
+#b4 svg{width:150px;height:150px;display:block;margin:0 auto 26px}
+#b4 .name{font-size:36px;letter-spacing:.5em;margin-right:-.5em}
+#b4 .h{font-size:104px;font-style:italic;margin-top:38px;line-height:1}
+#b4 .cta{margin-top:44px;font-family:'Figtree';font-weight:500;font-size:38px;letter-spacing:.06em}
+#b4 .cta b{font-weight:500;border-bottom:1px solid var(--amber);padding-bottom:6px}
+#b4 .addr{margin-top:30px;font-family:'Figtree';font-size:30px;opacity:.85;letter-spacing:.06em}
+</style></head><body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<div class="vig"></div>
+
+
+<svg width="0" height="0" style="position:absolute"><defs>
+<g id="mark" fill="none" stroke="#F6EFE4" stroke-linecap="round">
+<circle cx="50" cy="50" r="44" stroke-width="1.6"/>
+<path d="M18 46 Q34 36 50 46 T82 46" stroke-width="2"/>
+<path d="M18 58 Q34 48 50 58 T82 58" stroke-width="2" opacity=".75"/>
+<path d="M18 70 Q34 60 50 70 T82 70" stroke-width="2" opacity=".5"/>
+<circle cx="50" cy="30" r="6" stroke="#F5C98E" stroke-width="2"/></g>
+</defs></svg>
+
+<div id="b1" class="abs"><div class="caps mask"><span>Biarritz · Winter</span></div>
+<div class="serif h"><span class="mask"><span>The ocean is most honest</span></span><span class="mask"><span>in winter.</span></span></div></div>
+
+<div id="b2" class="abs"><div class="caps mask"><span>The Winter Escape</span></div>
+<div class="row"><div class="n">01</div><div class="serif t mask"><span>Two nights by the sea</span></div><div class="rule"></div></div>
+<div class="row"><div class="n">02</div><div class="serif t mask"><span>Full access to the spa</span></div><div class="rule"></div></div>
+<div class="row"><div class="n">03</div><div class="serif t mask"><span>A 60-minute treatment</span></div><div class="rule"></div></div></div>
+
+<div id="b3" class="abs"><div class="serif from mask"><span>from</span></div>
+<div class="serif price mask"><span>€420</span></div>
+<div class="caps sub mask"><span>for two · November to March</span></div></div>
+
+<div id="b4" class="abs"><svg viewBox="0 0 100 100"><use href="#mark"/></svg>
+<div class="caps name mask"><span>Maison Ondine</span></div>
+<div class="serif h mask"><span>Winter Escape</span></div>
+<div class="cta mask"><span>Book at <b>maisonondine.com</b></span></div>
+<div class="addr mask"><span>Ocean front · Biarritz, France</span></div></div>
+
+<svg class="grain" width="1920" height="1080"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.1 -.2"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+const W=1920,H=1080,D=20;
+const cv=document.getElementById('c'),g=cv.getContext('2d');
+const mix=(a,b,t)=>a.map((v,i)=>Math.round(v+(b[i]-v)*t));
+const rgb=a=>`rgb(${a[0]},${a[1]},${a[2]})`;
+const hx=h=>[1,3,5].map(i=>parseInt(h.substr(i,2),16));
+// sky keyframes: [t, top, mid, horizon]
+const K=[[0,'#2B2A4A','#B4587A','#F5B27A'],[7,'#231F45','#A24A6E','#F2905F'],[13,'#151B3C','#5A3560','#D56A55'],[20,'#0A1428','#1B1F45','#7A3C5E']].map(k=>[k[0],hx(k[1]),hx(k[2]),hx(k[3])]);
+function sky(t){let i=0;while(i<K.length-2&&t>K[i+1][0])i++;const a=K[i],b=K[i+1],u=KK.ease.inOutCubic(KK.clamp((t-a[0])/(b[0]-a[0])));return[1,2,3].map(j=>mix(a[j],b[j],u));}
+const R=KK.rng(7);
+const stars=Array.from({length:150},()=>({x:R()*W,y:R()*470,r:.5+R()*1.2,p:R()*6.28}));
+const HZ=650;
+const NL=26, layers=[];
+for(let i=0;i<NL;i++){const f=i/(NL-1);layers.push({f,y:HZ+ Math.pow(f,1.7)*(H-HZ+40)+2,amp:1.2+f*f*30,k:0.012-f*0.007,ph:R()*10,sp:.25+f*.5,ph2:R()*10});}
+function drawScene(t){
+ const [top,mid,hor]=sky(t);
+ let gr=g.createLinearGradient(0,0,0,HZ);
+ gr.addColorStop(0,rgb(top));gr.addColorStop(.55,rgb(mid));gr.addColorStop(1,rgb(hor));
+ g.fillStyle=gr;g.fillRect(0,0,W,HZ+2);
+ // stars fade in late
+ const sa=KK.prog(t,9,9);
+ for(const s of stars){const a=sa*(.45+.35*Math.sin(t*.8+s.p))*(1-s.y/520);if(a<=0)continue;g.fillStyle=`rgba(246,239,228,${a})`;g.beginPath();g.arc(s.x,s.y,s.r,0,6.283);g.fill();}
+ // sun
+ const sx=1560+t*3, sy=HZ-230+ Math.pow(t/D,1.5)*300;
+ const sr=88;
+ let hg=g.createRadialGradient(sx,sy,0,sx,sy,760);
+ const glow=1-0.35*KK.prog(t,10,10);
+ hg.addColorStop(0,`rgba(255,200,140,${.6*glow})`);hg.addColorStop(.25,`rgba(240,130,90,${.28*glow})`);hg.addColorStop(1,'rgba(240,130,90,0)');
+ g.fillStyle=hg;g.fillRect(0,0,W,HZ);
+ g.save();g.beginPath();g.rect(0,0,W,HZ);g.clip();
+ const sg=g.createRadialGradient(sx,sy,sr*.2,sx,sy,sr);sg.addColorStop(0,'#FFF1D6');sg.addColorStop(1,'#F9BE84');
+ g.fillStyle=sg;g.beginPath();g.arc(sx,sy,sr,0,6.283);g.fill();
+ // thin cloud bands
+ g.restore();
+ // sea base
+ const sea=g.createLinearGradient(0,HZ,0,H);
+ sea.addColorStop(0,rgb(mix(hor,[20,30,60],.55)));sea.addColorStop(.35,'#16203F');sea.addColorStop(1,'#080F22');
+ g.fillStyle=sea;g.fillRect(0,HZ,W,H-HZ);
+ // reflection column
+ const rg=g.createLinearGradient(0,HZ,0,H);rg.addColorStop(0,`rgba(255,190,130,${.5*glow})`);rg.addColorStop(1,'rgba(255,170,110,0)');
+ // wave lines
+ for(const L of layers){
+  const y0=L.y;
+  g.beginPath();
+  const step=8;
+  for(let x=-10;x<=W+10;x+=step){
+   const y=y0+L.amp*(Math.sin(x*L.k+t*L.sp+L.ph)*.6+Math.sin(x*L.k*2.3-t*L.sp*.8+L.ph2)*.3+Math.sin(x*L.k*.5+t*.2+L.ph2)*.4);
+   x===-10?g.moveTo(x,y):g.lineTo(x,y);
+  }
+  g.lineTo(W+10,H+50);g.lineTo(-10,H+50);g.closePath();
+  const dark=mix([22,32,64],[8,15,34],L.f);
+  g.fillStyle=`rgba(${dark[0]},${dark[1]},${dark[2]},.82)`;g.fill();
+  // highlight stroke: glitter near sun path, faint elsewhere
+  const spread=90+L.f*260;
+  for(let x=0;x<=W;x+=6){
+   const y=y0+L.amp*(Math.sin(x*L.k+t*L.sp+L.ph)*.6+Math.sin(x*L.k*2.3-t*L.sp*.8+L.ph2)*.3+Math.sin(x*L.k*.5+t*.2+L.ph2)*.4);
+   const dx=(x-sx-(L.f*(sx-W/2))*.15)/spread;
+   const gl=Math.exp(-dx*dx);
+   const tw=.5+.5*Math.sin(x*.21+t*(2+L.f*3)+L.ph*3);
+   const a=(.09+gl*(.4+.7*tw*tw))*glow*(1-.35*L.f);
+   g.fillStyle=`rgba(255,${200-gl*20|0},${150-gl*20|0},${a})`;
+   g.fillRect(x,y-.5,6,1.6+L.f*2.2);
+  }
+ }
+ // horizon line glint
+ const hl=g.createLinearGradient(0,0,W,0);hl.addColorStop(0,'rgba(246,200,150,0)');hl.addColorStop(.5,`rgba(255,215,170,${.5*glow})`);hl.addColorStop(1,'rgba(246,200,150,0)');
+ g.fillStyle=hl;g.fillRect(0,HZ-1,W,2);
+ // bottom darken for legibility
+}
+// timeline
+const tl=gsap.timeline({paused:true});
+const up=(sel,at,d=1.1)=>tl.fromTo(sel,{yPercent:110},{yPercent:0,duration:d,ease:'expo.out'},at);
+const dn=(sel,at,d=.7)=>tl.to(sel,{yPercent:-115,duration:d,ease:'power2.in'},at);
+// b1
+tl.fromTo('#b1 .caps>span',{yPercent:110},{yPercent:0,duration:1,ease:'expo.out'},.2);
+tl.fromTo('#b1 .h .mask>span',{yPercent:110},{yPercent:0,duration:1.4,ease:'expo.out',stagger:.22},.5);
+tl.fromTo('#b1',{scale:1.05,transformOrigin:'50% 50%'},{scale:1,duration:5,ease:'power1.out'},0);
+dn('#b1 .caps>span',4.5);tl.to('#b1 .h .mask>span',{yPercent:-115,duration:.7,ease:'power2.in',stagger:.12},4.5);
+// b2
+up('#b2 .caps>span',5.5,1);
+['.row:nth-of-type(2)','.row:nth-of-type(3)','.row:nth-of-type(4)'].forEach((r,i)=>{
+ const a=6+i*.9;
+ tl.fromTo(`#b2 ${r} .rule`,{scaleX:0},{scaleX:1,duration:1.2,ease:'power3.inOut'},a);
+ up(`#b2 ${r} .t>span`,a+.1,1.1);
+ tl.fromTo(`#b2 ${r} .n`,{opacity:0},{opacity:1,duration:.8},a+.3);
+});
+tl.to('#b2',{opacity:0,x:-40,duration:.8,ease:'power2.in'},9.6);
+// b3
+up('#b3 .from>span',10.3,.9);up('#b3 .price>span',10.5,1.4);up('#b3 .sub>span',11.2,1);
+tl.fromTo('#b3',{scale:.97,transformOrigin:'50% 50%'},{scale:1.03,duration:4.2,ease:'none'},10.3);
+tl.to('#b3',{opacity:0,y:-30,duration:.8,ease:'power2.in'},14.1);
+// b4
+tl.set('#b4',{y:0});
+up('#b4 svg',15.1,1.2);
+tl.fromTo('#b4 svg',{opacity:0,rotation:-20},{opacity:1,rotation:0,duration:1.4,ease:'power3.out'},15.1);
+up('#b4 .name>span',15.6,1);up('#b4 .h>span',15.9,1.3);up('#b4 .cta>span',16.6,1);up('#b4 .addr>span',17,1);
+tl.fromTo('#b4',{scale:1.02,transformOrigin:'50% 50%'},{scale:1,duration:5,ease:'none'},15.1);
+window.KLIPT={width:W,height:H,fps:30,duration:D,render(t){drawScene(t);tl.seek(t,false);}};
+</script></body></html>

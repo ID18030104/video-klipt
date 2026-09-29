@@ -1,0 +1,8 @@
+{ "id": "p290", "brand": "Pixel Brew", "sector": "Coffee roaster", "kind": "video",
+  "format": "1080x1080", "duration": 14.5, "slides": null,
+  "title": "Bean Quest: Ethiopia Guji Edition",
+  "concept": "A 16-bit platformer ad: a coffee-bean hero runs past Mt. Rainier and the Seattle skyline, collects the peach and jasmine tasting notes, stomps the Bitter Boss, levels up to LV 99 (shades on), and unlocks the 12 oz Ethiopia Guji bag for $18. Everything is hand-built pixel art on a 180px canvas scaled 6x, with a CRT scanline finish, Press Start 2P HUD text and RPG dialogue boxes.",
+  "techniques": ["canvas-pixel-art", "procedural-sprites", "parallax", "imagedata-rays", "pixel-transitions", "dom-typewriter", "crt-scanlines"],
+  "fonts": ["Press Start 2P"],
+  "palette": ["#120c26", "#2d1b4e", "#5b3a8c", "#b8527a", "#ffb38a", "#f07f5a", "#ffd23f", "#fff3dc", "#8a5431", "#3fae5a"],
+  "copy_language": "en" }

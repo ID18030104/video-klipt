@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Açores, l’île aux baleines</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/400-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/700.css">
+<!-- DIRECTION
+Concept: coucher de soleil sur l'Atlantique, queue de baleine qui sort de l'eau, gravure-affiche de voyage.
+Palette: #0B2F3A (océan profond), #12606B (teal), #F4E9D6 (crème), #FF7A59 (corail, rare), #F6B26B (soleil)
+Type: Fraunces (titres) + Figtree (infos)
+Langage: aplats en couches, soleil, vagues, grain, cartouche crème type billet
+Mouvement: aucun (post fixe)
+-->
+<style>
+*{box-sizing:border-box;margin:0}
+body{margin:0;overflow:hidden;width:1080px;background:#0B2F3A}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;font-family:Figtree,sans-serif;color:#F4E9D6;background:linear-gradient(180deg,#F6B26B 0%,#FF9D6B 22%,#E56B6F 40%,#12606B 62%,#0B2F3A 100%)}
+svg.art{position:absolute;inset:0}
+.top{position:absolute;left:70px;right:70px;top:64px;display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:16px;font-weight:700;font-size:32px;letter-spacing:.04em;color:#0B2F3A}
+.brand small{display:block;font-weight:500;font-size:22px;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
+.tag{font-weight:700;font-size:26px;letter-spacing:.14em;text-transform:uppercase;color:#0B2F3A;border:3px solid #0B2F3A;border-radius:60px;padding:12px 26px}
+h1{position:absolute;left:70px;top:178px;font-family:Fraunces,serif;font-weight:600;font-size:150px;line-height:.92;letter-spacing:-.02em;color:#0B2F3A}
+h1 em{font-family:Fraunces,serif;font-style:italic;font-weight:400;display:block;font-size:104px;letter-spacing:-.01em;margin-top:14px;color:#FFF3E0}
+.card{position:absolute;left:50px;right:50px;bottom:50px;height:410px;background:#F4E9D6;border-radius:34px;color:#0B2F3A;padding:44px 50px;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+.card:before{content:"";position:absolute;left:-16px;top:50%;width:32px;height:32px;margin-top:-16px;border-radius:50%;background:#0B2F3A}
+.card:after{content:"";position:absolute;right:-16px;top:50%;width:32px;height:32px;margin-top:-16px;border-radius:50%;background:#0B2F3A}
+.row1{height:220px;display:flex;justify-content:space-between;align-items:flex-start}
+.dur{white-space:nowrap;font-family:Fraunces,serif;font-weight:600;font-size:50px;line-height:1}
+.dur span{color:#FF7A59;font-style:italic;font-weight:400}
+.inc{margin-top:22px;font-size:32px;font-weight:500;line-height:1.35}
+.inc b{font-weight:700}
+.price{text-align:right}
+.price small{display:block;font-size:28px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#12606B}
+.price strong{font-family:Fraunces,serif;font-weight:600;font-size:96px;line-height:.95;letter-spacing:-.02em;white-space:nowrap}
+.price strong i{font-size:40px;font-style:normal;font-family:Figtree;font-weight:700;letter-spacing:0}
+.cta{position:absolute;left:50px;right:50px;bottom:40px;display:flex;justify-content:space-between;align-items:center;border-top:2px dashed rgba(11,47,58,.4);padding-top:26px;font-size:32px;font-weight:700}
+.cta .btn{background:#FF7A59;color:#0B2F3A;border-radius:50px;padding:16px 34px}
+</style></head><body>
+<section class="slide">
+<svg class="art" viewBox="0 0 1080 1350" width="1080" height="1350">
+<defs>
+<filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0"/></filter>
+<radialGradient id="sun"><stop offset="0" stop-color="#FFF3D0"/><stop offset="1" stop-color="#FFC27A"/></radialGradient>
+<linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A7A80"/><stop offset="1" stop-color="#0B2F3A"/></linearGradient>
+<linearGradient id="refl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD9A0" stop-opacity=".8"/><stop offset="1" stop-color="#FFD9A0" stop-opacity="0"/></linearGradient>
+</defs>
+<circle cx="740" cy="640" r="230" fill="url(#sun)"/>
+<circle cx="740" cy="640" r="300" fill="none" stroke="#FFF3D0" stroke-opacity=".35" stroke-width="3"/>
+<circle cx="740" cy="640" r="370" fill="none" stroke="#FFF3D0" stroke-opacity=".2" stroke-width="3"/>
+<!-- islands -->
+<path d="M0 760 L120 700 L190 735 L260 660 L340 745 L420 760 Z" fill="#12606B" opacity=".9"/>
+<path d="M-10 790 L80 745 L140 770 L230 720 L330 790 Z" fill="#0F4C57"/>
+<!-- sea -->
+<rect x="0" y="760" width="1080" height="600" fill="url(#sea)"/>
+<path d="M640 760 h200 l60 400 h-320z" fill="url(#refl)" opacity=".5"/>
+<g stroke="#FFE7BF" stroke-opacity=".55" stroke-width="5" stroke-linecap="round" fill="none">
+<path d="M600 790h90M760 800h110M660 830h60M800 850h120M620 880h150M700 920h90"/></g>
+<!-- whale tail -->
+<g transform="translate(160 430) scale(1.6)">
+<path d="M172 420 C178 350 184 300 178 262 C120 250 50 170 12 50 C50 100 100 128 150 132 C176 134 190 146 200 168 C210 146 224 134 250 132 C300 128 350 100 388 50 C350 170 280 250 222 262 C216 300 222 350 228 420 Z" fill="#0B2F3A"/>
+<path d="M60 105 C100 128 140 136 180 140" fill="none" stroke="#F4E9D6" stroke-opacity=".3" stroke-width="3"/>
+</g>
+<!-- water rings & drops -->
+<ellipse cx="540" cy="960" rx="230" ry="26" fill="none" stroke="#F4E9D6" stroke-opacity=".55" stroke-width="5"/>
+<ellipse cx="540" cy="960" rx="320" ry="38" fill="none" stroke="#F4E9D6" stroke-opacity=".28" stroke-width="4"/>
+<g fill="#F4E9D6"><circle cx="300" cy="650" r="9"/><circle cx="345" cy="600" r="6"/><circle cx="790" cy="640" r="8"/><circle cx="830" cy="700" r="6"/><circle cx="270" cy="700" r="5"/></g>
+<!-- waves -->
+<path d="M0 1010 Q135 970 270 1010 T540 1010 T810 1010 T1080 1010 V1350 H0Z" fill="#0F4C57" opacity=".85"/>
+<path d="M0 1070 Q135 1030 270 1070 T540 1070 T810 1070 T1080 1070 V1350 H0Z" fill="#0B2F3A"/>
+<rect width="1080" height="1350" filter="url(#g)" opacity=".16" style="mix-blend-mode:overlay"/>
+</svg>
+<div class="top">
+<div class="brand">
+<svg width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="27" fill="none" stroke="#0B2F3A" stroke-width="4"/><path d="M30 8 L38 30 L30 52 L22 30Z" fill="#0B2F3A"/><path d="M8 30 L30 22 L52 30 L30 38Z" fill="#FF7A59"/><circle cx="30" cy="30" r="4" fill="#F4E9D6"/></svg>
+<div>Cap Horizon<small>Voyages · Lyon</small></div></div>
+<div class="tag">Mars – juin</div>
+</div>
+<h1>Açores,<em>l’île aux baleines</em></h1>
+<div class="card">
+<div class="row1">
+<div><div class="dur">8 jours<span> / </span>7 nuits</div>
+<div class="inc"><b>Vols</b> + <b>hébergement</b><br>+ <b>sortie en mer</b><br>observation des baleines</div></div>
+<div class="price"><small>dès</small><strong>1 390 €<i> /pers</i></strong></div>
+</div>
+<div class="cta"><span>Départs de Lyon · capho.fr/acores</span><span class="btn">Réservez</span></div>
+</div>
+</section>
+<script>window.KLIPT={width:1080,height:1350};</script>
+</body></html>

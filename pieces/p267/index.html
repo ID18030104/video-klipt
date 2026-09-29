@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Feu Vert - Le feu est vert</title>
+<!--
+DIRECTION
+Concept: a playful top-down city drawn as an illustration. The Feu Vert driving-school car rolls up a road; every
+piece of info hangs on a road gantry that the car drives under (87 %, conduite accompagnée, 1 290 €), then it parks at the agency.
+Palette: navy #0d2233, feu vert #12a05f, feu rouge #e5383b, amber #ffc233, asphalt #3d434c, cream #efe8d8.
+Type: Bricolage Grotesque 800 (display) + Figtree (text).
+Graphic language: top view, long drop shadows for height, road markings, roofs, trees, traffic-light logo.
+Motion: snappy mask reveals on gantries, continuous forward scroll with easing at start/stop, red to green hook.
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/800.css">
+<style>
+:root{--navy:#0d2233;--green:#12a05f;--green2:#19c37a;--red:#e5383b;--amber:#ffc233;--asph:#3d434c;--cream:#efe8d8}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#e6dfcd;font-family:'Figtree',sans-serif;color:var(--navy)}
+.abs{position:absolute}
+.disp{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:-.02em;line-height:.92}
+#stage{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden}
+#world,#world2{position:absolute;left:0;top:0;width:1080px;height:1920px;}
+.road{background:var(--asph);left:290px;width:500px}
+.edge{width:8px;background:#f4f1e6;opacity:.85}
+.dash{left:534px;width:12px;background:repeating-linear-gradient(to bottom,#f4f1e6 0 64px,transparent 64px 150px);opacity:.9}
+.side{width:40px;background:#cfd1d3}
+.curb{width:6px;background:#a8abb0}
+.bld{border-radius:10px;box-shadow:16px 22px 0 rgba(20,25,30,.16)}
+.bld i{position:absolute;display:block}
+.tree{border-radius:50%;box-shadow:12px 16px 0 rgba(10,25,15,.20)}
+.zebra{background:repeating-linear-gradient(to right,#f4f1e6 0 34px,transparent 34px 68px);left:300px;width:480px;height:80px;opacity:.92}
+.inter{left:0;width:1080px;height:230px;background:var(--asph)}
+.interdash{height:10px;background:repeating-linear-gradient(to right,#f4f1e6 0 50px,transparent 50px 120px);opacity:.9}
+/* gantry */
+.gantry{position:absolute;left:40px;width:1000px}
+.panel{position:relative;width:100%;height:100%;border-radius:36px;padding:46px 54px;box-shadow:0 78px 46px -14px rgba(8,16,24,.34)}
+.panel:before{content:"";position:absolute;inset:14px;border-radius:26px;border:6px solid rgba(255,255,255,.85);pointer-events:none}
+.leg{position:absolute;bottom:-14px;width:40px;height:40px;border-radius:10px;background:#252a31;box-shadow:0 30px 0 rgba(0,0,0,.2)}
+
+.pill{display:inline-block;font-weight:800;font-size:36px;letter-spacing:.09em;text-transform:uppercase;padding:10px 24px;border-radius:99px}
+/* hook */
+#hook{position:absolute;left:70px;top:322px;width:940px}
+.mask{overflow:hidden;display:block;margin-bottom:12px;width:max-content;border-radius:26px}
+.mask span{display:block;padding:14px 38px 20px;font-size:134px;color:#fff;background:var(--navy)}
+#brand{position:absolute;left:70px;top:236px;display:flex;align-items:center;gap:16px;background:var(--navy);color:#fff;padding:10px 26px 10px 12px;border-radius:99px;font-weight:800;font-size:34px;box-shadow:0 8px 0 rgba(0,0,0,.18)}
+#end{position:absolute;inset:0;background:var(--navy);visibility:hidden;overflow:hidden}
+#sw{position:absolute;inset:0;background:var(--green);transform:translateX(-1080px)}
+.chip{display:inline-block;font-weight:800;font-size:36px;padding:14px 26px;border-radius:99px;border:4px solid rgba(255,255,255,.35);color:#fff}
+</style></head><body>
+<div id="stage">
+  <div id="world"></div>
+  <div id="traffic" class="abs" style="left:0;top:0;width:1080px;height:1920px"></div>
+  <div id="car" class="abs" style="left:0;top:0;width:170px;height:330px"></div>
+  <div id="world2"></div>
+  <div id="conf" class="abs" style="left:0;top:0;width:1080px;height:1920px"></div>
+
+  <div id="hook">
+    <div class="mask"><span class="disp" id="h1" style="transform:rotate(0)">Le permis</span></div>
+    <div class="mask" style="margin-left:34px"><span class="disp" id="h2">du premier</span></div>
+    <div class="mask" style="margin-left:6px"><span class="disp" id="h3" style="background:var(--red)">coup&nbsp;?</span></div>
+  </div>
+
+  <div id="brand">
+    <svg width="46" height="46" viewBox="0 0 46 46"><rect x="0" y="0" width="46" height="46" rx="12" fill="#12a05f"/><rect x="14" y="7" width="18" height="32" rx="7" fill="#0d2233"/><circle cx="23" cy="15" r="3.6" fill="#5a2b30"/><circle cx="23" cy="23" r="3.6" fill="#5b4d2a"/><circle cx="23" cy="31" r="4" fill="#3fe38f"/></svg>
+    Feu Vert<span style="font-weight:600;opacity:.7;font-size:28px">&nbsp;· Auto-école</span>
+  </div>
+
+  <div id="end">
+    <div class="abs" style="inset:0;background:repeating-linear-gradient(90deg,transparent 0 538px,rgba(255,255,255,.07) 538px 542px);opacity:.9"></div>
+    <div class="abs" style="left:0;top:0;width:1080px;height:1920px;background:radial-gradient(ellipse at 50% 30%,rgba(25,195,122,.22),transparent 60%)"></div>
+    <div id="e1" class="abs r" style="left:70px;top:300px;width:940px">
+      <svg width="210" height="210" viewBox="0 0 210 210"><rect x="35" y="0" width="140" height="210" rx="46" fill="#08151f" stroke="#1d3a4f" stroke-width="6"/><circle cx="105" cy="45" r="27" fill="#3a1d22"/><circle cx="105" cy="105" r="27" fill="#3a3220"/><circle id="lg" cx="105" cy="165" r="27" fill="#19c37a"/><circle cx="105" cy="165" r="44" fill="#19c37a" opacity=".25"/></svg>
+    </div>
+    <div id="e2" class="abs disp r" style="left:70px;top:540px;color:#fff;font-size:190px;line-height:.9">Feu<br>Vert</div>
+    <div id="e3" class="abs r" style="left:74px;top:934px;color:var(--amber);font-weight:800;font-size:40px;letter-spacing:.2em;text-transform:uppercase">Auto-école · Toulouse</div>
+    <div id="e4" class="abs disp r" style="left:70px;top:1030px;width:940px;color:#fff;font-size:88px;line-height:1">Le feu est vert pour ton&nbsp;permis.</div>
+    <div id="e5" class="abs r" style="left:70px;top:1268px;width:940px">
+      <div style="display:inline-block;background:var(--green);color:#fff;font-weight:800;font-size:46px;padding:26px 44px;border-radius:99px;box-shadow:0 10px 0 #0a7444">Inscription en 5&nbsp;min &rarr;</div>
+      <div style="margin-top:34px;color:#fff;font-weight:700;font-size:44px">feuvert-toulouse.fr <span style="opacity:.5">&nbsp;|&nbsp;</span> 05&nbsp;61&nbsp;42&nbsp;18&nbsp;76</div>
+      <div style="margin-top:26px;display:flex;gap:12px;flex-wrap:nowrap"><span class="chip" style="font-size:30px;padding:12px 20px">Capitole</span><span class="chip" style="font-size:30px;padding:12px 20px">Saint-Cyprien</span><span class="chip" style="font-size:30px;padding:12px 20px">Balma</span></div>
+    </div>
+  </div>
+  <div id="sw"></div>
+  <div id="grain" class="abs" style="left:0;top:0;width:1080px;height:1920px;pointer-events:none;opacity:.09"></div>
+</div>
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+(function(){const c=document.createElement('canvas');c.width=c.height=256;const x=c.getContext('2d'),im=x.createImageData(256,256),r=KK.rng(9);
+for(let i=0;i<65536;i++){const v=r()*255;im.data[i*4]=im.data[i*4+1]=im.data[i*4+2]=v;im.data[i*4+3]=255}x.putImageData(im,0,0);document.getElementById('grain').style.backgroundImage='url('+c.toDataURL()+')'})();
+const CY=1300, NB=' ';
+const rnd=KK.rng(267);
+/* forward distance d(t) */
+function D(t){
+  if(t<1.8)return 0;
+  if(t<3)return 0.5*330/1.2*(t-1.8)**2;
+  if(t<16.6)return 198+330*(t-3);
+  const b=198+330*13.6;
+  if(t<18){const x=t-16.6;return b+330*(x-x*x/2.8)}
+  return b+330*1.4/2;
+}
+const world=document.getElementById('world'),world2=document.getElementById('world2');
+function el(parent,cls,css,html){const e=document.createElement('div');e.className=cls||'';if(css)e.style.cssText=css;if(html)e.innerHTML=html;parent.appendChild(e);return e}
+const ty=d=>CY-d; // screen y of world distance d at d(t)=0
+/* road */
+const H0=ty(7000),HT=7900;
+el(world,'abs road',`top:${H0}px;height:${HT}px`);
+el(world,'abs side',`left:250px;top:${H0}px;height:${HT}px`);el(world,'abs side',`left:790px;top:${H0}px;height:${HT}px`);
+el(world,'abs curb',`left:244px;top:${H0}px;height:${HT}px`);el(world,'abs curb',`left:830px;top:${H0}px;height:${HT}px`);
+el(world,'abs edge',`left:302px;top:${H0}px;height:${HT}px`);el(world,'abs edge',`left:770px;top:${H0}px;height:${HT}px`);
+el(world,'abs dash',`top:${H0}px;height:${HT}px`);
+/* intersections */
+const INTS=[2150,3450,4450];
+INTS.forEach(di=>{
+  el(world,'abs inter',`top:${ty(di)-115}px`);
+  el(world,'abs interdash',`left:0;width:290px;top:${ty(di)-5}px`);
+  el(world,'abs interdash',`left:790px;width:290px;top:${ty(di)-5}px`);
+  el(world,'abs zebra',`top:${ty(di)+125}px`);
+  el(world,'abs zebra',`top:${ty(di)-205}px`);
+  el(world,'abs',`left:545px;width:235px;height:20px;background:#f4f1e6;top:${ty(di)+250}px`);
+});
+/* stop line at start */
+el(world,'abs',`left:545px;width:235px;height:22px;background:#f4f1e6;top:${ty(200)}px`);
+/* painted arrow */
+[[665,650],[665,1200],[665,2650],[665,3900],[665,3050]].forEach(([x,dd])=>{
+  el(world,'abs',`left:${x-30}px;top:${ty(dd)-60}px;width:60px;height:120px`,`<svg width="60" height="120" viewBox="0 0 60 120"><path d="M30 0 L60 46 H40 V120 H20 V46 H0 Z" fill="#f4f1e6" opacity=".85"/></svg>`);
+});
+/* scenery */
+const roofs=['#c8553d','#e0a458','#7b8fa1','#a9b8a0','#d9cbb0','#8a5a44','#5b7c99','#c98f8f'];
+function block(side,d0,h,w){
+  const c=roofs[Math.floor(rnd()*roofs.length)];
+  const x=side<0?(235-w-Math.floor(rnd()*8)):(845+Math.floor(rnd()*8));
+  const b=el(world,'abs bld',`left:${x}px;top:${ty(d0+h)}px;width:${w}px;height:${h}px;background:linear-gradient(90deg,${c} 0 50%,color-mix(in srgb,${c} 82%,#000) 50%)`);
+  el(b,'abs',`left:50%;top:0;bottom:0;width:4px;margin-left:-2px;background:rgba(0,0,0,.15)`);
+  const n=1+Math.floor(rnd()*3);
+  for(let i=0;i<n;i++){el(b,'abs',`left:${14+rnd()*(w-70)}px;top:${14+rnd()*(h-60)}px;width:${28+rnd()*18}px;height:${24+rnd()*14}px;background:#e9e9e6;border-radius:5px;box-shadow:5px 6px 0 rgba(0,0,0,.18)`)}
+}
+[-1,1].forEach(side=>{
+  let d0=-760;
+  while(d0<6700){
+    const h=210+Math.floor(rnd()*140),w=170+Math.floor(rnd()*62);
+    const bad=INTS.some(di=>d0+h>di-190&&d0<di+190)||(side>0&&d0+h>4780&&d0<6000);
+    if(bad){d0+=60;continue}
+    block(side,d0,h,w);d0+=h+34+Math.floor(rnd()*30);
+  }
+  for(let dd=-700;dd<6700;dd+=170+Math.floor(rnd()*80)){
+    if(INTS.some(di=>Math.abs(dd-di)<170))continue;
+    if(side>0&&dd>4780&&dd<5400)continue;
+    const s=64+Math.floor(rnd()*26),cx=side<0?272:808;
+    el(world,'abs tree',`left:${cx-s/2}px;top:${ty(dd)-s/2}px;width:${s}px;height:${s}px;background:radial-gradient(circle at 35% 30%,#5dbb63,#2f8a4a 70%,#1f6b3a)`);
+  }
+});
+/* agency + bay */
+el(world,'abs',`left:840px;top:${ty(5330)}px;width:240px;height:${5330-4800}px;background:#cfd1d3`);
+const ag=el(world,'abs bld',`left:850px;top:${ty(6050)}px;width:260px;height:600px;background:linear-gradient(90deg,#12a05f 0 50%,#0e8a52 50%);border-radius:14px`);
+el(ag,'abs',`left:50%;top:0;bottom:0;width:6px;margin-left:-3px;background:rgba(0,0,0,.2)`);
+el(ag,'abs disp',`left:20px;top:300px;width:560px;transform-origin:0 0;transform:rotate(-90deg) translateX(-80px);font-size:110px;color:#fff;white-space:nowrap`,'FEU VERT');
+el(ag,'abs',`left:26px;top:34px;width:60px;height:46px;background:#e9e9e6;border-radius:6px;box-shadow:5px 6px 0 rgba(0,0,0,.2)`);
+el(world,'abs',`left:838px;top:${ty(5560)}px;width:14px;height:${5560-5330}px;background:#e9e9e6;opacity:.0`);
+// bay lines
+el(world,'abs',`left:846px;top:${ty(5320)}px;width:6px;height:340px;background:#f4f1e6`);
+el(world,'abs',`left:1068px;top:${ty(5320)}px;width:6px;height:340px;background:#f4f1e6`);
+el(world,'abs',`left:846px;top:${ty(4980)}px;width:228px;height:6px;background:#f4f1e6`);
+el(world,'abs',`left:902px;top:${ty(5240)}px;width:120px;height:120px;border-radius:50%;background:#1466b8;opacity:.9`,'<div style="width:100%;height:100%;display:grid;place-items:center;color:#fff;font:800 74px Bricolage Grotesque">P</div>');
+
+/* car svg */
+function carSVG(body,roof,brake){return `<svg width="170" height="330" viewBox="0 0 170 330">
+<rect x="22" y="22" width="140" height="308" rx="58" fill="rgba(20,20,20,.26)"/>
+<rect x="2" y="62" width="20" height="52" rx="7" fill="#15181c"/><rect x="148" y="62" width="20" height="52" rx="7" fill="#15181c"/>
+<rect x="2" y="218" width="20" height="52" rx="7" fill="#15181c"/><rect x="148" y="218" width="20" height="52" rx="7" fill="#15181c"/>
+<rect x="15" y="0" width="140" height="322" rx="58" fill="${body}"/>
+<rect x="30" y="18" width="110" height="80" rx="40" fill="#fff" opacity=".13"/>
+<path d="M36 106 Q85 92 134 106 L128 152 Q85 142 42 152 Z" fill="#1b2b3a"/>
+<path d="M44 112 Q85 102 110 108 L104 118 Q80 112 48 122Z" fill="#fff" opacity=".18"/>
+<rect x="38" y="150" width="94" height="82" rx="18" fill="${roof}"/>
+<path d="M42 232 Q85 244 128 232 L134 264 Q85 276 36 264 Z" fill="#1b2b3a"/>
+<rect x="34" y="6" width="28" height="13" rx="6" fill="#fff6c8"/><rect x="108" y="6" width="28" height="13" rx="6" fill="#fff6c8"/>
+<rect class="brake" x="32" y="304" width="32" height="12" rx="5" fill="${brake}"/><rect class="brake" x="106" y="304" width="32" height="12" rx="5" fill="${brake}"/>
+<rect x="3" y="118" width="16" height="22" rx="7" fill="${body}"/><rect x="151" y="118" width="16" height="22" rx="7" fill="${body}"/>
+${body==='#12a05f'?'<rect x="63" y="176" width="44" height="26" rx="7" fill="#fff"/><text x="85" y="197" text-anchor="middle" font-family="Bricolage Grotesque" font-weight="800" font-size="24" fill="#e5383b">A</text>':''}
+</svg>`}
+const car=document.getElementById('car');car.innerHTML=carSVG('#12a05f','#19c37a','#e5383b');
+const brakes=[...car.querySelectorAll('.brake')];
+const traffic=document.getElementById('traffic');
+const TR=[[3.2,'#e5383b','#f26a6d'],[5.6,'#ffc233','#ffd97a'],[8.0,'#1466b8','#4a8fd8'],[10.4,'#f4f1e6','#ffffff'],[12.6,'#7b3fa0','#a56cc8'],[14.6,'#e5383b','#f26a6d'],[16.4,'#1466b8','#4a8fd8']].map(([ta,b,r])=>{
+  const e=el(traffic,'abs',`left:0;top:0;width:170px;height:330px`,carSVG(b,r,'#f4f1e6'));return{e,ta};
+});
+
+/* traffic light + beam (world2) */
+const LD=450;
+el(world2,'abs',`left:40px;width:1000px;height:34px;top:${ty(LD)-17}px;background:#252a31;border-radius:10px;box-shadow:0 40px 26px -6px rgba(8,16,24,.32)`);
+el(world2,'abs',`left:20px;width:50px;height:70px;top:${ty(LD)-35}px;background:#252a31;border-radius:12px`);
+const LH=el(world2,'abs',`left:520px;top:${ty(LD)-62}px;width:300px;height:124px;background:#0b1620;border-radius:34px;box-shadow:0 60px 34px -10px rgba(8,16,24,.36)`,
+ `<div class="abs" id="lr" style="left:22px;top:22px;width:80px;height:80px;border-radius:50%;background:#3a1d22"></div><div class="abs" id="la" style="left:110px;top:22px;width:80px;height:80px;border-radius:50%;background:#3a3220"></div><div class="abs" id="lgreen" style="left:198px;top:22px;width:80px;height:80px;border-radius:50%;background:#123d29"></div>
+ <div class="abs" id="lrL" style="left:22px;top:22px;width:80px;height:80px;border-radius:50%;background:#ff4d50;box-shadow:0 0 50px 16px rgba(255,77,80,.6)"></div><div class="abs" id="laL" style="left:110px;top:22px;width:80px;height:80px;border-radius:50%;background:#ffc233;box-shadow:0 0 50px 16px rgba(255,194,51,.6);opacity:0"></div><div class="abs" id="lgL" style="left:198px;top:22px;width:80px;height:80px;border-radius:50%;background:#3fe38f;box-shadow:0 0 50px 16px rgba(63,227,143,.7);opacity:0"></div>`);
+
+/* gantries */
+const TP=[6.9,10.9,14.7];
+const G=[];
+function gantry(id,dpass,h,bg,inner){
+  const g=el(world2,'gantry',`top:${ty(dpass)-h/2}px;height:${h}px`,`<div class="leg" style="left:-6px"></div><div class="leg" style="right:-6px"></div><div class="panel" id="${id}" style="background:${bg}">${inner}</div>`);
+  return g;
+}
+const d=t=>D(t);
+gantry('g1',D(TP[0]),660,'#0e7a4b',`
+ <div class="r"><span class="pill" style="background:#fff;color:#0e7a4b">Permis B · 2025</span></div>
+ <div class="r abs disp" id="big" style="left:54px;top:128px;font-size:250px;color:var(--amber);line-height:1">0${NB}%</div>
+ <div class="r abs" style="left:680px;top:158px;width:270px;color:#fff;font-weight:800;font-size:46px;line-height:1.08">de réussite du premier coup</div>
+ <div class="r abs" style="left:54px;top:434px;width:892px;color:#fff">
+  <div style="display:flex;justify-content:space-between;font-weight:800;font-size:36px"><span>Feu Vert</span><span>87${NB}%</span></div>
+  <div style="height:42px;background:rgba(0,0,0,.25);border-radius:21px;margin:6px 0 16px;overflow:hidden"><div id="b1" style="height:100%;width:87%;background:var(--amber);border-radius:21px;transform-origin:0 0"></div></div>
+  <div style="display:flex;justify-content:space-between;font-weight:700;font-size:34px;opacity:.95"><span>Moyenne nationale</span><span>≈${NB}60${NB}%</span></div>
+  <div style="height:42px;background:rgba(0,0,0,.25);border-radius:21px;margin-top:6px;overflow:hidden"><div id="b2" style="height:100%;width:60%;background:#e9efe9;border-radius:21px;transform-origin:0 0"></div></div>
+ </div>`);
+gantry('g2',D(TP[1]),560,'#1466b8',`
+ <div class="r"><span class="pill" style="background:#fff;color:#1466b8">Conduite accompagnée</span></div>
+ <div class="r abs" id="abadge" style="right:64px;top:34px;width:180px;height:180px;background:#fff;border-radius:26px;transform:rotate(6deg);box-shadow:0 8px 0 rgba(0,0,0,.2);display:grid;place-items:center;font:800 150px/1 'Bricolage Grotesque';color:var(--red)">A</div>
+ <div class="r abs disp" style="left:54px;top:132px;font-size:176px;color:var(--amber);line-height:1;white-space:nowrap">dès 15${NB}ans</div>
+ <div class="r abs" style="left:54px;top:340px;width:880px;color:#fff;font-weight:800;font-size:54px;line-height:1.1">Tes parents à côté, la confiance en plus.</div>`);
+gantry('g3',D(TP[2]),700,'#ffc233',`
+ <div class="r"><span class="pill" style="background:var(--navy);color:#fff">Forfait 20${NB}h</span></div>
+ <div class="r abs disp" style="left:54px;top:112px;font-size:230px;color:var(--navy);line-height:1;white-space:nowrap">1${NB}290${NB}€</div>
+ <div class="r abs" style="left:54px;top:370px;font-weight:800;font-size:64px;color:var(--navy);line-height:1">payable en 4${NB}fois</div>
+ <div class="abs" style="left:54px;top:474px;width:892px;display:flex;gap:16px">
+  ${[1,2,3,4].map(i=>`<div class="coin r" style="flex:1;height:120px;border-radius:60px;background:var(--navy);color:#fff;display:grid;place-items:center;text-align:center;font-weight:800;font-size:38px;line-height:1.05"><span>322,50${NB}€</span></div>`).join('')}
+ </div>`);
+
+/* confetti */
+const conf=document.getElementById('conf');
+const CC=['#12a05f','#ffc233','#e5383b','#1466b8','#fff'];
+const cp=[];
+for(let i=0;i<44;i++){const a=rnd()*Math.PI*2,r=180+rnd()*420;
+  cp.push(el(conf,'abs',`left:960px;top:1170px;width:${14+rnd()*14}px;height:${9+rnd()*10}px;background:${CC[i%5]};opacity:0;border-radius:3px`));
+  cp[i]._v={dx:Math.cos(a)*r,dy:Math.sin(a)*r-160,rot:(rnd()-.5)*900};
+}
+
+/* timeline */
+const P={x:665,r:0,s:1};
+const tl=gsap.timeline({paused:true});
+// hook
+tl.from('#h1',{yPercent:115,duration:.6,ease:'power4.out'},.1)
+  .from('#h2',{yPercent:115,duration:.6,ease:'power4.out'},.28)
+  .from('#h3',{yPercent:115,duration:.6,ease:'power4.out'},.46)
+  .from('#brand',{x:-500,duration:.7,ease:'power3.out'},.2)
+  .to('#h3',{backgroundColor:'#0f9d58',duration:.2},1.8)
+  .fromTo('#h3',{scale:1},{scale:1.08,duration:.18,yoyo:true,repeat:1,ease:'power2.out',transformOrigin:'0 50%'},1.8)
+  .to('#hook',{y:-1000,duration:.7,ease:'power3.in'},2.9)
+  .set('#lrL',{opacity:0},1.5).set('#laL',{opacity:1},1.5).set('#laL',{opacity:0},1.8).set('#lgL',{opacity:1},1.8);
+// gantry reveals
+TP.forEach((tp,i)=>{
+  const id='#g'+(i+1);
+  tl.from(id+' .r:not(.coin)',{y:60,opacity:0,duration:.7,ease:'power3.out',stagger:.11},tp-3.0);
+});
+tl.from('#b1',{scaleX:0,duration:.9,ease:'power3.out'},TP[0]-2.3)
+  .from('#b2',{scaleX:0,duration:.9,ease:'power3.out'},TP[0]-2.05)
+  .from('#abadge',{scale:0,rotation:-40,duration:.6,ease:'back.out(2)'},TP[1]-2.55)
+  .from('#g3 .coin',{scale:0,duration:.5,ease:'back.out(2.2)',stagger:.16,transformOrigin:'50% 50%'},TP[2]-2.2)
+  .to('#brand',{x:-700,duration:.4,ease:'power2.in'},3.0);
+// parking
+tl.to(P,{x:955,duration:1.5,ease:'power2.inOut'},16.6)
+  .to(P,{r:26,duration:.7,ease:'power2.inOut'},16.6)
+  .to(P,{r:0,duration:.8,ease:'power2.inOut'},17.3);
+cp.forEach((c,i)=>{
+  tl.set(c,{opacity:1},18.0+i*.004)
+    .fromTo(c,{x:0,y:0,rotation:0,scale:1},{x:c._v.dx,y:c._v.dy,rotation:c._v.rot,duration:.7,ease:'power3.out'},18.0)
+    .to(c,{y:c._v.dy+340,opacity:0,duration:.9,ease:'power1.in'},18.65);
+});
+// end card
+tl.to('#sw',{x:0,duration:.5,ease:'power3.inOut'},18.35)
+  .set('#end',{visibility:'visible'},18.85)
+  .to('#sw',{x:1080,duration:.5,ease:'power3.inOut'},18.85)
+  .from('#e1',{y:120,opacity:0,duration:.7,ease:'back.out(1.6)'},19.15)
+  .from('#e2',{y:100,opacity:0,duration:.7,ease:'power3.out'},19.3)
+  .from('#e3',{y:50,opacity:0,duration:.6,ease:'power3.out'},19.5)
+  .from('#e4',{y:70,opacity:0,duration:.7,ease:'power3.out'},19.65)
+  .from('#e5',{y:70,opacity:0,duration:.7,ease:'power3.out'},19.9)
+  .to('#end',{scale:1.03,duration:3,ease:'none',transformOrigin:'50% 40%'},19.2);
+
+const big=document.getElementById('big');
+window.KLIPT={width:1080,height:1920,fps:30,duration:22,
+ render(t){
+  tl.seek(t,false);
+  const dd=D(t);
+  const tf=`translate3d(0,${dd}px,0)`;world.style.transform=tf;world2.style.transform=tf;
+  const v=(D(t+.01)-D(t))/.01;const sp=v/330;
+  const sway=Math.sin(t*2.2)*5*sp, jig=(sp<.05&&t<18.6)?Math.sin(t*46)*.35:0;
+  const cx=P.x+sway, rot=P.r+Math.sin(t*1.6)*1.1*sp+jig;
+  car.style.transform=`translate(${cx-85}px,${CY-165}px) rotate(${rot}deg)`;
+  const br=(t<1.8||t>17.6)?1:(v<330&&t>16.6?1:0);
+  brakes.forEach(b=>b.setAttribute('fill',br?'#ff4d50':'#8a1f22'));
+  TR.forEach(o=>{const y=-380+380*(t-o.ta)+(D(t)-D(o.ta));
+    o.e.style.transform=`translate(${415-85}px,${y-165}px) rotate(180deg)`;
+    o.e.style.visibility=(y<-380||y>2300)?'hidden':'visible';});
+  const n=Math.round(87*KK.ease.outCubic(KK.prog(t,TP[0]-2.3,1.1)));
+  big.innerHTML=n+NB+'%';
+ }};
+</script></body></html>

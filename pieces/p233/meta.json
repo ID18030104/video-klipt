@@ -1,0 +1,8 @@
+{ "id": "p233", "brand": "Ville de Saint-Aubin-sur-Loire", "sector": "Collectivité (mairie)", "kind": "video",
+  "format": "1920x1080", "duration": 21, "slides": null,
+  "title": "Nouvelle collecte des déchets verts",
+  "concept": "Infographie municipale en trois étapes numérotées (Quand ? / Période / Les sacs) : camion de collecte illustré, calendrier type avec les 1er et 3e lundis entourés, frise des mois d'avril à novembre et sac kraft biodégradable tamponné « Gratuit », puis un récapitulatif en trois cartes. Palette crème, vert jardin et orange signal, typographie Outfit très lisible pour écrans d'accueil et réseaux.",
+  "techniques": ["gsap", "svg-illustration", "css-grid-infographic", "seeded-rng"],
+  "fonts": ["Outfit", "Figtree"],
+  "palette": ["#F4EFE2", "#16322A", "#2E7A4C", "#9CCB6B", "#EC8430", "#C99B62", "#1E3A5A"],
+  "copy_language": "fr" }

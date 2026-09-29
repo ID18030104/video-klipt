@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Nuage HR onboarding checklist</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/bricolage-grotesque/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/inter/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/inter/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/inter/600.css">
+<style>
+:root{--navy:#14213D;--navy2:#1E3157;--sky:#7CC4FA;--cream:#F6F2EA;--paper:#FFFFFF;--coral:#FF6B4A;--ink:#14213D;--mut:#5B6780}
+*{box-sizing:border-box;margin:0;padding:0}
+body{margin:0;background:#888;font-family:Inter,sans-serif}
+.slide{width:1080px;height:1350px;position:relative;overflow:hidden;background:var(--cream);color:var(--ink);padding:88px 84px}
+.dark{background:var(--navy);color:#fff}
+.top{position:absolute;left:84px;right:84px;top:64px;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:26px}
+.logo{display:flex;align-items:center;gap:12px;font-family:'Bricolage Grotesque';font-weight:800;font-size:32px;letter-spacing:-.5px}
+.logo svg{width:44px;height:44px}
+.pg{opacity:.55;letter-spacing:2px;font-size:22px}
+h1,h2,.big{font-family:'Bricolage Grotesque';font-weight:800;letter-spacing:-2px;line-height:.98}
+.blob{position:absolute;border-radius:50%}
+/* timeline */
+.tl{position:absolute;left:84px;right:84px;bottom:70px;height:70px}
+.tl .line{position:absolute;left:0;right:0;top:18px;height:4px;background:rgba(20,33,61,.15);border-radius:2px}
+.tl .fill{position:absolute;left:0;top:18px;height:4px;background:var(--coral);border-radius:2px}
+.tl .n{position:absolute;top:8px;width:24px;height:24px;margin-left:-12px;border-radius:50%;background:var(--cream);border:4px solid rgba(20,33,61,.25)}
+.tl .n.on{background:var(--coral);border-color:var(--coral)}
+.tl .n.cur{transform:scale(1.5);box-shadow:0 0 0 8px rgba(255,107,74,.2)}
+.tl .l{position:absolute;top:44px;transform:translateX(-50%);font-size:20px;font-weight:600;color:var(--mut);white-space:nowrap}
+.tl .l.cur{color:var(--coral)}
+/* phase slides */
+.tag{display:inline-block;background:var(--navy);color:#fff;font-weight:600;font-size:24px;letter-spacing:1.5px;padding:10px 22px;border-radius:40px;text-transform:uppercase}
+.phase h2{font-size:132px;margin:26px 0 8px}
+.phase .sub{font-size:34px;color:var(--mut);font-weight:500;margin-bottom:44px}
+.items{display:flex;flex-direction:column;gap:20px}
+.it{display:flex;gap:26px;align-items:center;background:var(--paper);border-radius:28px;padding:28px 32px;box-shadow:0 6px 0 rgba(20,33,61,.08)}
+.it .cb{flex:none;width:56px;height:56px;border-radius:16px;background:var(--coral);display:flex;align-items:center;justify-content:center}
+.it .cb svg{width:34px;height:34px;stroke:#fff;fill:none;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.it b{display:block;font-size:34px;font-weight:600;letter-spacing:-.4px;line-height:1.15}
+.it span{display:block;font-size:26px;color:var(--mut);margin-top:4px;line-height:1.25}
+.swipe{position:absolute;right:84px;top:64px}
+</style></head><body>
+<script>
+window.KLIPT={width:1080,height:1350};
+const CLOUD='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>';
+const CHECK='<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>';
+const ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:40px;height:40px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+const N=8;
+const topbar=(i,dark)=>`<div class="top"><div class="logo"><span style="color:${dark?'var(--sky)':'var(--coral)'};display:flex">${CLOUD}</span>Nuage HR</div><div class="pg">${String(i).padStart(2,'0')} / 0${N}</div></div>`;
+const stops=[['-7',0],['Day 1',22],['Wk 1',42],['Day 30',66],['Day 90',100]];
+function tl(cur){ // cur index in stops
+  const pct=stops[cur][1];
+  return `<div class="tl"><div class="line"></div><div class="fill" style="width:${pct}%"></div>`+
+  stops.map((s,i)=>`<div class="n ${i<=cur?'on':''} ${i==cur?'cur':''}" style="left:${s[1]}%"></div><div class="l ${i==cur?'cur':''}" style="left:${s[1]}%">${s[0]==='-7'?'Day -7':s[0]}</div>`).join('')+`</div>`;
+}
+function phase(i,cur,tag,title,sub,items){
+  return `<section class="slide phase">${topbar(i)}
+  <div style="margin-top:96px"><span class="tag">${tag}</span></div>
+  <h2>${title}</h2><div class="sub">${sub}</div>
+  <div class="items">${items.map(x=>`<div class="it"><div class="cb">${CHECK}</div><div><b>${x[0]}</b><span>${x[1]}</span></div></div>`).join('')}</div>
+  ${tl(cur)}</section>`;
+}
+const person=(hot)=>`<svg viewBox="0 0 60 120" style="width:112px;height:224px"><circle cx="30" cy="22" r="18" fill="${hot?'#FF6B4A':'rgba(255,255,255,.22)'}"/><path d="M4 118V78a26 26 0 0 1 52 0v40z" fill="${hot?'#FF6B4A':'rgba(255,255,255,.22)'}"/></svg>`;
+const S=[];
+// 1 cover
+S.push(`<section class="slide dark">${topbar(1,true)}
+ <div class="blob" style="width:900px;height:900px;right:-330px;top:520px;background:var(--navy2)"></div>
+ <div class="blob" style="width:520px;height:520px;right:-120px;top:760px;background:#2A4477"></div>
+ <div style="position:absolute;right:-30px;top:830px;width:560px;color:var(--sky);opacity:.95">${CLOUD.replace('stroke-width="2"','stroke-width="1.2"')}</div>
+ <div style="position:absolute;left:84px;top:230px;right:84px">
+  <span class="tag" style="background:var(--coral)">Free checklist</span>
+  <h1 style="font-size:150px;margin-top:40px">Onboarding:<br>Day <span style="color:var(--coral)">-7</span><br>to Day <span style="color:var(--sky)">90</span></h1>
+  <div style="font-size:38px;line-height:1.3;margin-top:44px;max-width:640px;color:rgba(255,255,255,.85)">The checklist that turns a new hire into a team member.</div>
+ </div>
+ <div style="position:absolute;left:84px;bottom:84px;display:flex;align-items:center;gap:18px;font-weight:600;font-size:30px;color:#fff">Swipe ${ARROW}</div></section>`);
+// 2 stat
+S.push(`<section class="slide dark">${topbar(2,true)}
+ <div style="position:absolute;left:84px;right:84px;top:200px">
+  <div style="font-size:30px;font-weight:600;letter-spacing:2px;color:var(--sky);text-transform:uppercase">Why it matters</div>
+  <div class="big" style="font-size:250px;margin-top:20px;letter-spacing:-8px">1 in 5</div>
+  <div style="font-family:'Bricolage Grotesque';font-weight:600;font-size:58px;line-height:1.1;letter-spacing:-1px;margin-top:10px">new hires may leave within 90 days when onboarding goes wrong.</div>
+  <div style="display:flex;gap:26px;margin-top:70px">${[0,0,0,0,1].map(person).join('')}</div>
+ </div>
+ <div style="position:absolute;left:84px;right:84px;bottom:84px;font-size:24px;line-height:1.4;color:rgba(255,255,255,.6)">Commonly cited estimate, "up to" figure. Actual turnover varies by industry and company.<br><b style="color:#fff;font-weight:600;font-size:30px;display:block;margin-top:14px">Good news: the first 90 days are fixable.</b></div></section>`);
+S.push(phase(3,0,'Pre-boarding','Day -7 to -1','Before they even start. Zero surprises.',[
+ ['Send the welcome email','Start time, dress code, who to ask for, and the Day 1 plan.'],
+ ['Ship the laptop, set up accounts','Email, chat and HR profile ready before they walk in.'],
+ ['Collect the paperwork online','Contract, payroll and bank details signed in one place.'],
+ ['Announce them and name a buddy','The team knows their name. They know a friendly one.']]));
+S.push(phase(4,1,'First day','Day 1','Make it smooth, make it human.',[
+ ['Be there to greet them','Same person, same time, on site or on video.'],
+ ['Everything works at 9:00','Logins, tools and access tested. Nothing to chase.'],
+ ['Walk through the 30-60-90 plan','Clear goals for what success looks like.'],
+ ['Lunch with the team','Belonging starts with a table, not a slide deck.']]));
+S.push(phase(5,2,'First week','Week 1','Small wins, fast answers.',[
+ ['Daily 10-minute buddy check-in','Questions asked early are questions solved early.'],
+ ['Meet 5 key colleagues','Short intros with the people they will work with most.'],
+ ['Ship one small real task','A first win by Friday builds confidence.'],
+ ['Friday 1:1 with the manager','Ask: "What was confusing this week?"']]));
+S.push(phase(6,3,'First month','Day 30','Check in while there is time to adjust.',[
+ ['Review the 30-day goals','Done, in progress, blocked. Reset if needed.'],
+ ['Two-way feedback survey','Ask about the role, the team and the process.'],
+ ['Complete required training','Compliance and tools, tracked automatically.'],
+ ['Confirm time off and benefits','They know how to request leave, and when.']]));
+S.push(phase(7,4,'Settling in','Day 60 to 90','From new hire to teammate.',[
+ ['Day 60: growth conversation','Skills, interests and what to learn next.'],
+ ['Day 90: first performance review','Recognise wins, agree on clear next steps.'],
+ ['Set goals for the next quarter','Ownership of something real and visible.'],
+ ['Ask: "Would you recommend us?"','Their honest answer is your best onboarding data.']]));
+// 8 CTA
+S.push(`<section class="slide dark">${topbar(8,true)}
+ <div class="blob" style="width:820px;height:820px;left:-260px;bottom:-380px;background:var(--navy2)"></div>
+ <div style="position:absolute;left:84px;right:84px;top:220px">
+  <span class="tag" style="background:var(--coral)">Free template</span>
+  <h1 style="font-size:128px;margin-top:40px">Your Day -7 to Day 90 checklist, <span style="color:var(--sky)">ready to use.</span></h1>
+  <div style="font-size:36px;line-height:1.35;margin-top:44px;color:rgba(255,255,255,.85);max-width:800px">Copy it, adapt it, and make every first day a good one. Nuage HR automates onboarding, time off and reviews for growing teams.</div>
+ </div>
+ <div style="position:absolute;left:84px;right:84px;bottom:100px;background:var(--coral);color:#fff;border-radius:34px;padding:38px 44px;display:flex;justify-content:space-between;align-items:center">
+  <div><div style="font-size:26px;font-weight:600;opacity:.9">Download it free at</div><div style="font-family:'Bricolage Grotesque';font-weight:800;font-size:64px;letter-spacing:-1.5px">nuagehr.com</div></div>
+  <div style="width:84px;height:84px;border-radius:50%;background:#fff;color:var(--coral);display:flex;align-items:center;justify-content:center"><div style="transform:scale(1.6)">${ARROW}</div></div>
+ </div></section>`);
+document.body.insertAdjacentHTML('beforeend',S.join(''));
+</script></body></html>

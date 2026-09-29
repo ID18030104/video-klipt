@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Collecte des déchets verts</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/outfit/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/outfit/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/700.css">
+<style>
+:root{
+  --bg:#F4EFE2; --ink:#16322A; --green:#2E7A4C; --lime:#9CCB6B; --pale:#E6E4CF;
+  --orange:#EC8430; --kraft:#C99B62; --navy:#1E3A5A; --white:#FFFDF8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;margin:0;overflow:hidden;background:var(--bg);}
+body{font-family:'Figtree',sans-serif;color:var(--ink);position:relative}
+.abs{position:absolute}
+#bgleaves{position:absolute;inset:0}
+/* header */
+#header{position:absolute;left:140px;top:60px;display:flex;align-items:center;gap:20px}
+#header .t1{font:500 22px 'Figtree';letter-spacing:.14em;text-transform:uppercase;color:#4c6158}
+#header .t2{font:800 34px 'Outfit';letter-spacing:-.01em;color:var(--ink);line-height:1}
+#steps{position:absolute;right:140px;top:76px;display:flex;gap:12px}
+.step{font:700 22px 'Figtree';padding:10px 22px;border-radius:40px;border:2px solid #cfd2bd;color:#7b8a80;background:transparent;display:flex;gap:10px;align-items:center}
+.step b{font:800 20px 'Outfit';width:30px;height:30px;border-radius:50%;background:#dcdcc6;color:var(--ink);display:grid;place-items:center}
+.step.on{background:var(--green);border-color:var(--green);color:#fff}
+.step.on b{background:#fff;color:var(--green)}
+.scene{position:absolute;inset:0}
+.kicker{display:inline-flex;align-items:center;gap:12px;font:800 26px 'Outfit';letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+.kicker i{display:inline-block;width:44px;height:6px;border-radius:3px;background:var(--orange)}
+.pill{display:inline-block;font:800 26px 'Outfit';letter-spacing:.12em;color:#fff;background:var(--orange);padding:10px 24px;border-radius:40px}
+h1,h2{font-family:'Outfit';font-weight:800;letter-spacing:-.025em;color:var(--ink)}
+h1{font-size:94px;line-height:1.02}
+h2{font-size:92px;line-height:1.02}
+.hl{color:var(--green)}
+.or{color:var(--orange)}
+.sub{font:500 38px/1.3 'Figtree';color:#3c554b}
+.sub strong{font-weight:700;color:var(--ink)}
+.line{display:block;overflow:hidden;padding-bottom:6px}
+.line>span{display:inline-block}
+.textcol{position:absolute;left:140px;width:860px}
+/* calendar */
+#cal{position:absolute;left:1060px;top:200px;width:720px;background:var(--white);border-radius:32px;box-shadow:0 24px 60px rgba(22,50,42,.14);overflow:hidden}
+#cal .head{background:var(--green);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:26px 36px;font:800 32px 'Outfit'}
+#cal .head span{font:500 24px 'Figtree';opacity:.85}
+#legend{display:flex;align-items:center;gap:14px;padding:0 36px 30px;font:700 26px 'Figtree';color:var(--ink)}
+#legend .dot{width:26px;height:26px;border-radius:50%;background:var(--orange)}
+#legend em{font-style:normal;font-weight:500;color:#6d7d74;margin-left:auto}
+#calgrid{display:grid;grid-template-columns:repeat(7,1fr);padding:18px 26px 28px;gap:8px;position:relative}
+.dn{font:700 22px 'Figtree';text-align:center;color:#6d7d74;padding:6px 0 10px;text-transform:uppercase;letter-spacing:.06em}
+.dn.mon{color:var(--orange)}
+.cell{height:72px;display:grid;place-items:center;font:600 30px 'Outfit';color:var(--ink);border-radius:18px;position:relative}
+.cell.empty{visibility:hidden}
+.cell.we{color:#9aa69d}
+.cell.hit{color:#fff}
+.cell .ring{position:absolute;inset:4px;border-radius:50%;background:var(--orange);z-index:0;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px}
+.cell .num{position:relative;z-index:1}
+#moncol{position:absolute;top:14px;left:26px;width:calc((100% - 52px - 48px)/7);bottom:20px;background:rgba(236,132,48,.12);border-radius:20px;border:3px dashed rgba(236,132,48,.55)}
+.tag{position:absolute;font:800 22px 'Outfit';background:var(--ink);color:#fff;padding:8px 16px;border-radius:12px;white-space:nowrap}
+.tag:after{content:"";position:absolute;left:-10px;top:50%;margin-top:-8px;border:8px solid transparent;border-right-color:var(--ink);border-left:0}
+/* months */
+#months{position:absolute;left:152px;top:600px;width:1616px;height:260px}
+.m{position:absolute;top:70px;width:120px;height:150px;border-radius:24px;background:#E4E1CC;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;overflow:hidden}
+.m .fill{position:absolute;inset:0;background:var(--green);transform-origin:left center}
+.m .lbl{position:relative;font:800 30px 'Outfit';color:#8b9489}
+.m .ic{position:relative;width:36px;height:36px;color:#c3c4ad}
+.m.act .lbl{color:#fff}
+.m.act .ic{color:var(--lime)}
+#bracket{position:absolute;top:0;height:50px;border:4px solid var(--green);border-bottom:0;border-radius:14px 14px 0 0}
+#bracket span{position:absolute;left:50%;top:-30px;transform:translateX(-50%);background:var(--bg);padding:0 18px;font:800 30px 'Outfit';color:var(--green);white-space:nowrap}
+#pause1,#pause2{position:absolute;top:240px;font:700 22px 'Figtree';color:#8b9489;letter-spacing:.06em;text-transform:uppercase}
+/* recap */
+.card{position:absolute;top:400px;width:500px;height:300px;background:var(--white);border-radius:30px;box-shadow:0 18px 50px rgba(22,50,42,.12);padding:40px 40px;display:flex;flex-direction:column;gap:20px}
+.card .icb{width:84px;height:84px;border-radius:22px;background:var(--green);display:grid;place-items:center;color:#fff}
+.card .icb svg{width:48px;height:48px}
+.card .ct{font:800 44px/1.05 'Outfit';letter-spacing:-.02em}
+.card .cs{font:500 28px/1.25 'Figtree';color:#4c6158}
+#road{position:absolute;left:0;right:0;top:950px;height:8px;background:#d9d5bf}
+#footer{position:absolute;left:140px;right:140px;bottom:40px;display:flex;justify-content:space-between;font:700 26px 'Figtree';color:#4c6158}
+svg{overflow:visible}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="leafS" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M11 20a10 10 0 0010-10 25.9 25.9 0 00-1.04-7.281 1 1 0 00-1.755-.325C15.833 5.5 13 5.5 9.8 6.1A7 7 0 0011 20"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M2 21a5 5 0 012.911-4.544C7.613 15.212 8.351 15.24 11 13"/></symbol>
+    <symbol id="leafFill" viewBox="0 0 100 100"><path d="M50 4C78 18 92 44 84 70 76 92 50 98 50 98S24 92 16 70C8 44 22 18 50 4Z"/><path d="M50 16V94" stroke="rgba(22,50,42,.07)" stroke-width="3" fill="none"/></symbol>
+    <!-- kraft bag, 300x380 -->
+    <symbol id="bag" viewBox="0 0 300 380">
+      <g>
+        <path d="M58 70 C40 50 60 20 90 36 C96 6 140 0 150 30 C164 -2 214 6 206 40 C236 22 262 52 240 74 Z" fill="#5FA052"/>
+        <path d="M92 60 C100 30 130 28 138 58Z M170 58 C180 24 214 30 212 62Z" fill="#3E8446"/>
+        <path d="M120 64 C112 20 150 10 156 40 C168 10 196 30 180 64Z" fill="#9CCB6B"/>
+        <path d="M50 64 L250 64 L270 360 Q270 372 258 372 L42 372 Q30 372 30 360 Z" fill="#C99B62"/>
+        <path d="M50 64 L250 64 L252 96 L48 96 Z" fill="#B3844D"/>
+        <path d="M48 96 L252 96" stroke="#9c7040" stroke-width="3"/>
+        <path d="M80 110 L70 356 M220 110 L230 356" stroke="#b8894f" stroke-width="3" opacity=".6"/>
+        <rect x="80" y="170" width="140" height="130" rx="18" fill="#FFFDF8"/>
+        <g transform="translate(118 184) scale(2.7)" color="#2E7A4C"><use href="#leafS" width="24" height="24"/></g>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<svg id="bgleaves" width="1920" height="1080"></svg>
+
+<div id="header">
+  <svg width="72" height="84" viewBox="0 0 72 84">
+    <path d="M6 6 H66 V44 C66 64 50 76 36 82 C22 76 6 64 6 44 Z" fill="#1E3A5A"/>
+    <path d="M12 52 C22 46 30 58 40 52 S58 46 62 50" stroke="#8fc0e0" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M12 62 C22 56 30 68 40 62 S56 58 58 60" stroke="#8fc0e0" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/>
+    <g transform="translate(20 10) scale(1.35)" color="#9CCB6B"><use href="#leafS" width="24" height="24"/></g>
+  </svg>
+  <div><div class="t1">Ville de</div><div class="t2">Saint-Aubin-sur-Loire</div></div>
+</div>
+<div id="steps">
+  <div class="step" id="st1"><b>1</b>Quand ?</div>
+  <div class="step" id="st2"><b>2</b>Période</div>
+  <div class="step" id="st3"><b>3</b>Les sacs</div>
+</div>
+
+<!-- SCENE 1 -->
+<div class="scene" id="s1">
+  <div class="textcol" style="top:290px;width:960px">
+    <div class="pill" id="s1pill">NOUVEAU</div>
+    <h1 style="margin-top:34px"><span class="line"><span>La collecte</span></span><span class="line"><span>des <span class="hl">déchets verts</span></span></span><span class="line"><span>passe à votre porte.</span></span></h1>
+    <p class="sub" id="s1sub" style="margin-top:34px">Tontes, feuilles, tailles de haies :<br>on vient les chercher chez vous.</p>
+  </div>
+  <svg class="abs" id="s1ill" style="left:1000px;top:260px" width="880" height="640" viewBox="0 0 880 640">
+    <!-- hedge + tree -->
+    <g id="tree">
+      <rect x="780" y="330" width="22" height="250" rx="6" fill="#7a5a3a"/>
+      <circle cx="790" cy="300" r="90" fill="#3E8446"/><circle cx="740" cy="340" r="60" fill="#5FA052"/><circle cx="840" cy="350" r="56" fill="#4d9249"/>
+    </g>
+    <g id="hedge"><rect x="-10" y="470" width="890" height="110" rx="55" fill="#4d9249"/><rect x="-10" y="500" width="890" height="80" rx="30" fill="#3E8446"/></g>
+    <rect id="ground" x="-40" y="578" width="960" height="10" rx="5" fill="#16322A"/>
+    <g id="sacks">
+      <use href="#bag" x="40" y="390" width="150" height="190" class="sk"/>
+      <use href="#bag" x="150" y="400" width="140" height="180" class="sk"/>
+      <use href="#bag" x="90" y="440" width="112" height="140" class="sk"/>
+    </g>
+    <g id="truck1"><use href="#truckSym" x="330" y="310" width="520" height="280"/></g>
+  </svg>
+</div>
+
+<!-- SCENE 2 -->
+<div class="scene" id="s2">
+  <div class="textcol" style="top:290px;width:840px">
+    <div class="kicker"><i></i>Quand ?</div>
+    <h2 style="margin-top:28px"><span class="line"><span>Chaque <span class="or">1<sup style="font-size:.5em">er</sup></span></span></span><span class="line"><span>et <span class="or">3<sup style="font-size:.5em">e</sup> lundi</span></span></span><span class="line"><span>du mois.</span></span></h2>
+    <p class="sub" id="s2sub" style="margin-top:34px">Déposez vos sacs <strong>devant votre domicile</strong>, le camion passe dans toutes les rues.</p>
+  </div>
+  <div id="cal">
+    <div class="head">Calendrier type <span>2 passages par mois</span></div>
+    <div id="calgrid"><div id="moncol"></div></div>
+    <div id="legend"><span class="dot"></span>Jour de collecte <em>1<sup>er</sup> lundi · 3<sup>e</sup> lundi</em></div>
+  </div>
+</div>
+
+<!-- SCENE 3 -->
+<div class="scene" id="s3">
+  <div class="textcol" style="top:250px;width:1500px">
+    <div class="kicker"><i></i>Période</div>
+    <h2 style="margin-top:28px"><span class="line"><span>D’<span class="hl">avril</span> à <span class="hl">novembre</span>.</span></span></h2>
+    <p class="sub" id="s3sub" style="margin-top:24px"><strong>8 mois de collecte</strong>, en pleine saison des jardins.</p>
+  </div>
+  <div id="months">
+    <div id="bracket"><span>Collecte en porte-à-porte</span></div>
+    <div id="pause1">Pause</div><div id="pause2">Pause</div>
+  </div>
+</div>
+
+<!-- SCENE 4 -->
+<div class="scene" id="s4">
+  <div class="textcol" style="top:280px;width:880px">
+    <div class="kicker"><i></i>Les sacs</div>
+    <h2 style="margin-top:28px"><span class="line"><span>Sacs <span class="hl">biodégradables</span></span></span><span class="line"><span><span class="or">gratuits</span>,</span></span><span class="line"><span>à retirer en mairie.</span></span></h2>
+    <p class="sub" id="s4sub" style="margin-top:34px">Ils se compostent avec vos végétaux :<br><strong>zéro plastique</strong> dans la filière.</p>
+  </div>
+  <svg class="abs" id="s4ill" style="left:1060px;top:200px" width="760" height="760" viewBox="0 0 760 760">
+    <circle id="s4disc" cx="360" cy="400" r="300" fill="#E6E4CF"/>
+    <g id="bigbag"><use href="#bag" x="190" y="170" width="340" height="430"/></g>
+    <g id="flyleaves"></g>
+    <g id="stamp" transform="translate(610 190)">
+      <circle r="100" fill="#EC8430"/>
+      <circle r="86" fill="none" stroke="#fff" stroke-width="4" stroke-dasharray="6 8"/>
+      <text y="14" text-anchor="middle" font-family="Outfit" font-weight="800" font-size="40" fill="#fff" letter-spacing="1">GRATUIT</text>
+    </g>
+    <g id="mairie" transform="translate(40 560)">
+      <rect x="0" y="0" width="300" height="120" rx="26" fill="#1E3A5A"/>
+      <g transform="translate(26 24) scale(3)" color="#fff"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M10 18v-7M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949zM14 18v-7M18 18v-7M3 22h18M6 18v-7"/></g>
+      <text x="118" y="54" font-family="Outfit" font-weight="800" font-size="34" fill="#fff">En mairie</text>
+      <text x="118" y="88" font-family="Figtree" font-weight="500" font-size="24" fill="#bcd3e6">à l’accueil</text>
+    </g>
+  </svg>
+</div>
+
+<!-- SCENE 5 -->
+<div class="scene" id="s5">
+  <div class="textcol" style="top:220px;width:1600px">
+    <div class="kicker"><i></i>À retenir</div>
+    <h2 style="margin-top:20px;font-size:84px"><span class="line"><span>Vos déchets verts, <span class="hl">collectés chez vous.</span></span></span></h2>
+  </div>
+  <div class="card" id="c1" style="left:140px">
+    <div class="icb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v3M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01M16 17h.01"/></svg></div>
+    <div class="ct">1<sup style="font-size:.5em">er</sup> et 3<sup style="font-size:.5em">e</sup> lundi</div>
+    <div class="cs">du mois, en porte-à-porte</div>
+  </div>
+  <div class="card" id="c2" style="left:710px">
+    <div class="icb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3"/><path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4"/><path d="M5 21h14"/></svg></div>
+    <div class="ct">D’avril à novembre</div>
+    <div class="cs">8 mois de collecte</div>
+  </div>
+  <div class="card" id="c3" style="left:1280px">
+    <div class="icb" style="background:var(--orange)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18v-7M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949zM14 18v-7M18 18v-7M3 22h18M6 18v-7"/></svg></div>
+    <div class="ct">Sacs gratuits</div>
+    <div class="cs">biodégradables, en mairie</div>
+  </div>
+  <div id="road"></div>
+  <svg class="abs" id="truck5wrap" style="left:0;top:790px" width="1920" height="170" viewBox="0 0 1920 170">
+    <g id="truck5"><use href="#truckSym" x="0" y="0" width="300" height="162"/></g>
+  </svg>
+  <div id="footer"><span>Ville de Saint-Aubin-sur-Loire</span><span>Renseignements à l’accueil de la mairie</span></div>
+</div>
+
+<!-- truck symbol (cab on the left, drives leftward), 520x280 -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="truckSym" viewBox="0 0 520 280">
+      <rect x="150" y="30" width="360" height="190" rx="22" fill="#2E7A4C"/>
+      <rect x="150" y="170" width="360" height="22" fill="#256840"/>
+      <path d="M150 150 H510" stroke="#9CCB6B" stroke-width="10"/>
+      <g transform="translate(186 58) scale(3.2)" color="#fff"><use href="#leafS" width="24" height="24"/></g>
+      <text x="274" y="96" font-family="Outfit" font-weight="800" font-size="36" fill="#fff">DÉCHETS</text>
+      <text x="274" y="132" font-family="Outfit" font-weight="800" font-size="36" fill="#9CCB6B">VERTS</text>
+      <path d="M20 220 V150 Q20 120 44 104 L78 82 Q92 74 110 74 H160 V220 Z" fill="#FFFDF8"/>
+      <path d="M46 138 L80 100 Q88 94 98 94 H138 V138 Z" fill="#8fc0e0"/>
+      <rect x="10" y="196" width="40" height="22" rx="8" fill="#16322A"/>
+      <rect x="22" y="160" width="20" height="12" rx="4" fill="#EC8430"/>
+      <rect x="20" y="214" width="490" height="16" rx="6" fill="#16322A"/>
+      <g class="wheel"><circle cx="100" cy="232" r="40" fill="#16322A"/><circle cx="100" cy="232" r="18" fill="#d9d5bf"/><rect x="96" y="200" width="8" height="64" fill="#16322A"/></g>
+      <g class="wheel"><circle cx="420" cy="232" r="40" fill="#16322A"/><circle cx="420" cy="232" r="18" fill="#d9d5bf"/><rect x="416" y="200" width="8" height="64" fill="#16322A"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+const NS='http://www.w3.org/2000/svg';
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
+// background leaves (seeded)
+const R=KK.rng(233), bg=$('#bgleaves'), bgl=[];
+for(let i=0;i<14;i++){
+  const u=document.createElementNS(NS,'use'); u.setAttribute('href','#leafFill');
+  const s=60+R()*110; u.setAttribute('width',s); u.setAttribute('height',s);
+  u.setAttribute('fill', R()<.5?'#ECE7D6':'#E8E6D2');
+  const g=document.createElementNS(NS,'g'); g.appendChild(u); bg.appendChild(g);
+  let px=R()*1920,py=R()*1080; if(px<760&&py<280){py+=320;}
+  bgl.push({g,x:px,y:py,r:R()*360,s,v:(R()-.5)*20});
+}
+
+// calendar grid: month starting on Wednesday -> 1st Monday=6, 3rd Monday=20
+const grid=$('#calgrid');
+['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'].forEach((d,i)=>{const e=document.createElement('div');e.className='dn'+(i===0?' mon':'');e.textContent=d;grid.appendChild(e);});
+const cells={};
+for(let i=0;i<35;i++){
+  const day=i-1; const e=document.createElement('div'); e.className='cell';
+  if(day<1||day>31){e.classList.add('empty');}
+  else{ if(i%7>=5)e.classList.add('we'); e.innerHTML=(day===6||day===20?'<span class="ring"></span>':'')+'<span class="num">'+day+'</span>'; cells[day]=e;}
+  grid.appendChild(e);
+}
+
+
+// months
+const MN=['Janv.','Févr.','Mars','Avr.','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'];
+const months=$('#months'), mEls=[];
+MN.forEach((n,i)=>{
+  const e=document.createElement('div'); e.className='m'+(i>=3&&i<=10?' act':''); e.style.left=(i*136)+'px';
+  e.innerHTML=(i>=3&&i<=10?'<div class="fill"></div>':'')+'<svg class="ic" viewBox="0 0 24 24"><use href="#leafS" width="24" height="24"/></svg><div class="lbl">'+n+'</div>';
+  months.appendChild(e); mEls.push(e);
+});
+$('#bracket').style.left=(3*136)+'px'; $('#bracket').style.width=(7*136+120)+'px';
+$('#pause1').style.left='0px'; $('#pause1').style.width=(2*136+120)+'px'; $('#pause1').style.textAlign='center';
+$('#pause2').style.left=(11*136-20)+'px'; $('#pause2').style.width='160px'; $('#pause2').style.textAlign='center';
+
+// flying leaves for scene 4
+const fl=$('#flyleaves'), flys=[];
+const R2=KK.rng(9);
+for(let i=0;i<7;i++){
+  const u=document.createElementNS(NS,'use'); u.setAttribute('href','#leafFill');
+  const s=34+R2()*30; u.setAttribute('width',s);u.setAttribute('height',s); u.setAttribute('x',-s/2);u.setAttribute('y',-s/2);
+  u.setAttribute('fill',['#5FA052','#9CCB6B','#3E8446'][i%3]);
+  const g=document.createElementNS(NS,'g'); g.appendChild(u); fl.appendChild(g);
+  flys.push({g,a:-2.6+i*0.55+R2()*0.2,d:170+R2()*90,r:R2()*360});
+}
+
+// ---------- timeline ----------
+const tl=gsap.timeline({paused:true,defaults:{ease:'power3.out'}});
+const D=21;
+// bg drift
+tl.to({},{duration:D});
+bgl.forEach(b=>{ gsap.set(b.g,{x:b.x,y:b.y,rotation:b.r,transformOrigin:'50% 50%'}); tl.to(b.g,{x:b.x+b.v*4,y:b.y-30,rotation:b.r+b.v,duration:D,ease:'none'},0); });
+
+const wheels=$$('#truck1 .wheel'); // wheels inside <use> aren't reachable -> animate whole truck bounce instead
+// header
+tl.from('#header',{y:-30,opacity:0,duration:.7},0.1);
+tl.from('.step',{y:-20,opacity:0,stagger:.08,duration:.5},0.3);
+
+// SCENE 1 (0 - 4.3)
+tl.from('#s1pill',{scale:.6,opacity:0,duration:.5,ease:'back.out(2)'},0.3);
+tl.from('#s1 .line>span',{yPercent:110,duration:.8,stagger:.12},0.45);
+tl.from('#s1sub',{y:24,opacity:0,duration:.7},1.2);
+tl.from('#ground',{scaleX:0,transformOrigin:'0 50%',duration:1,ease:'power2.inOut'},0.2);
+tl.from('#hedge',{y:120,opacity:0,duration:.8},0.4);
+tl.from('#tree',{scale:0,transformOrigin:'790px 580px',duration:.8,ease:'back.out(1.5)'},0.6);
+tl.from('#sacks .sk',{y:-60,opacity:0,stagger:.12,duration:.5,ease:'bounce.out'},0.8);
+tl.fromTo('#truck1',{x:1000},{x:0,duration:1.8,ease:'power2.out'},1.0);
+tl.to('#truck1',{y:-4,duration:.12,yoyo:true,repeat:9,ease:'sine.inOut'},1.0);
+tl.to('#truck1',{rotation:-1.2,svgOrigin:'590 590',duration:.2,yoyo:true,repeat:1,ease:'sine.inOut'},2.8);
+tl.to('#s1 .textcol',{y:-40,opacity:0,duration:.45,ease:'power2.in'},3.9);
+tl.to('#truck1',{x:-2400,duration:1.0,ease:'power2.in'},3.6);
+tl.set('#s1',{autoAlpha:0},4.6);
+tl.to(['#hedge','#tree','#sacks','#ground'],{opacity:0,duration:.4},4.0);
+
+// SCENE 2 (4.3 - 8.9)
+tl.set('#s2',{autoAlpha:1},4.3);
+tl.set('#st1',{backgroundColor:'#2E7A4C',borderColor:'#2E7A4C',color:'#fff'},4.3);tl.set('#st1 b',{backgroundColor:'#fff',color:'#2E7A4C'},4.3);
+tl.from('#s2 .kicker',{x:-30,opacity:0,duration:.5},4.35);
+tl.from('#s2 .line>span',{yPercent:110,duration:.8,stagger:.12},4.45);
+tl.from('#s2sub',{y:24,opacity:0,duration:.7},5.1);
+tl.from('#cal',{y:80,opacity:0,duration:.8},4.4);
+tl.from('#calgrid .cell:not(.empty)',{opacity:0,scale:.6,duration:.35,stagger:.018,ease:'back.out(2)'},4.8);
+tl.from('#moncol',{scaleY:0,transformOrigin:'50% 0',opacity:0,duration:.6,ease:'power2.inOut'},5.7);
+tl.from(cells[6].querySelector('.ring'),{scale:0,duration:.5,ease:'back.out(2.5)'},6.1);
+tl.to(cells[6],{color:'#fff',duration:.2},6.15);
+
+tl.from(cells[20].querySelector('.ring'),{scale:0,duration:.5,ease:'back.out(2.5)'},6.6);
+tl.to(cells[20],{color:'#fff',duration:.2},6.65);
+tl.from('#legend',{y:20,opacity:0,duration:.5},6.9);
+tl.to(['#s2 .textcol','#cal'],{y:-40,opacity:0,duration:.45,ease:'power2.in',stagger:.05},8.5);
+tl.set('#st1',{backgroundColor:'rgba(0,0,0,0)',borderColor:'#cfd2bd',color:'#7b8a80'},8.9);tl.set('#st1 b',{backgroundColor:'#dcdcc6',color:'#16322A'},8.9);
+
+// SCENE 3 (8.9 - 13)
+tl.set('#s3',{autoAlpha:1},8.9);
+tl.set('#st2',{backgroundColor:'#2E7A4C',borderColor:'#2E7A4C',color:'#fff'},8.9);tl.set('#st2 b',{backgroundColor:'#fff',color:'#2E7A4C'},8.9);
+tl.from('#s3 .kicker',{x:-30,opacity:0,duration:.5},8.95);
+tl.from('#s3 .line>span',{yPercent:110,duration:.8},9.05);
+tl.from('#s3sub',{y:24,opacity:0,duration:.7},9.5);
+tl.from(mEls,{y:60,opacity:0,duration:.5,stagger:.05,ease:'back.out(1.6)'},9.2);
+tl.from('#months .fill',{scaleX:0,duration:.28,stagger:.14,ease:'power1.inOut'},10.0);
+tl.fromTo('#months .m.act .lbl',{color:'#8b9489'},{color:'#fff',duration:.2,stagger:.14},10.08);
+tl.fromTo('#months .m.act .ic',{color:'#c3c4ad'},{color:'#9CCB6B',duration:.2,stagger:.14},10.08);
+tl.from('#bracket',{opacity:0,y:20,duration:.6},11.3);
+tl.from(['#pause1','#pause2'],{opacity:0,duration:.5},11.5);
+tl.to(['#s3 .textcol','#months'],{y:-40,opacity:0,duration:.45,ease:'power2.in',stagger:.05},12.6);
+tl.set('#st2',{backgroundColor:'rgba(0,0,0,0)',borderColor:'#cfd2bd',color:'#7b8a80'},13.0);tl.set('#st2 b',{backgroundColor:'#dcdcc6',color:'#16322A'},13.0);
+
+// SCENE 4 (13 - 17)
+tl.set('#s4',{autoAlpha:1},13.0);
+tl.set('#st3',{backgroundColor:'#2E7A4C',borderColor:'#2E7A4C',color:'#fff'},13.0);tl.set('#st3 b',{backgroundColor:'#fff',color:'#2E7A4C'},13.0);
+tl.from('#s4 .kicker',{x:-30,opacity:0,duration:.5},13.05);
+tl.from('#s4 .line>span',{yPercent:110,duration:.8,stagger:.12},13.15);
+tl.from('#s4sub',{y:24,opacity:0,duration:.7},13.8);
+tl.from('#s4disc',{scale:0,transformOrigin:'360px 400px',duration:.8,ease:'back.out(1.4)'},13.1);
+tl.from('#bigbag',{y:-420,opacity:0,duration:.9,ease:'bounce.out'},13.3);
+flys.forEach((f,i)=>{
+  tl.fromTo(f.g,{x:360,y:220,scale:0,rotation:f.r},{x:360+Math.cos(f.a)*f.d,y:220+Math.sin(f.a)*f.d*0.8,scale:1,rotation:f.r+120,duration:1.1,ease:'power2.out'},14.0+i*0.04);
+  tl.to(f.g,{y:'+=40',rotation:'+=40',duration:2,ease:'sine.inOut'},15.1);
+});
+tl.from('#stamp',{scale:2.4,opacity:0,rotation:-40,svgOrigin:'610 190',duration:.5,ease:'back.out(1.6)'},14.5);
+tl.to('#stamp',{rotation:-10,svgOrigin:'610 190',duration:.3},15.0);
+tl.from('#mairie',{x:-60,opacity:0,duration:.6},15.0);
+tl.to(['#s4 .textcol','#s4ill'],{y:-40,opacity:0,duration:.45,ease:'power2.in',stagger:.05},16.6);
+tl.set('#st3',{backgroundColor:'rgba(0,0,0,0)',borderColor:'#cfd2bd',color:'#7b8a80'},17.0);tl.set('#st3 b',{backgroundColor:'#dcdcc6',color:'#16322A'},17.0);
+
+// SCENE 5 (17 - 21)
+tl.set('#s5',{autoAlpha:1},17.0);
+tl.from('#s5 .kicker',{x:-30,opacity:0,duration:.5},17.05);
+tl.from('#s5 .line>span',{yPercent:110,duration:.8},17.15);
+tl.from('.card',{y:70,opacity:0,duration:.7,stagger:.15,ease:'back.out(1.4)'},17.4);
+tl.from('#road',{scaleX:0,transformOrigin:'100% 50%',duration:.8},17.3);
+tl.from('#footer',{opacity:0,y:20,duration:.6},18.2);
+tl.fromTo('#truck5',{x:1960},{x:-360,duration:3.6,ease:'none'},17.4);
+tl.to('#truck5',{y:-3,duration:.15,yoyo:true,repeat:23,ease:'sine.inOut'},17.4);
+
+gsap.set(['#s2','#s3','#s4','#s5'],{autoAlpha:0});
+
+window.KLIPT={width:1920,height:1080,fps:30,duration:D,
+  ready:document.fonts.ready,
+  render(t){ tl.seek(t,false); }};
+</script>
+</body>
+</html>

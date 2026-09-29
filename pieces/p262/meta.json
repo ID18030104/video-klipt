@@ -1,0 +1,8 @@
+{ "id": "p262", "brand": "Orbitr", "sector": "Project management SaaS", "kind": "post",
+  "format": "1080x1080", "duration": null, "slides": 1,
+  "title": "Orbitr Timeline view launch",
+  "concept": "A believable Timeline view caught mid-drag: the 'Logo concepts' bar is lifted and pushed three days, its dependencies re-flow in orange, and the team workload strip flags the designer who's over capacity. Warm paper background, ink UI and a single orbit-orange accent echo the ring-and-moon logo.",
+  "techniques": ["html-css-ui-mockup", "inline-svg", "svg-grain-texture", "js-generated-gantt"],
+  "fonts": ["Manrope", "JetBrains Mono"],
+  "palette": ["#F2EFE8", "#14161F", "#FF5A1F", "#3D5AFE", "#12A388"],
+  "copy_language": "en" }

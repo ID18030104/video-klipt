@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080,initial-scale=1">
+<title>Transports Lacroix · On recrute</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/oswald/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/oswald/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/oswald/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/work-sans/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/work-sans/600.css">
+<style>
+:root{
+  --blue:#1F55A6; --white:#F7F6F1; --red:#D52B2B; --yellow:#F4C230;
+  --asphalt:#2A2C31; --ink:#16171B;
+  --sign:'Oswald',sans-serif; --body:'Work Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;margin:0;overflow:hidden;background:#22224A}
+#scene{position:absolute;inset:0;overflow:hidden}
+.abs{position:absolute}
+#sky{inset:0}
+#sun{width:240px;height:240px;border-radius:50%;left:720px}
+#stars{inset:0 0 900px 0}
+#stars i{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff}
+#land{inset:0}
+#hills,#trees{left:0;right:0;background-repeat:repeat-x}
+#hills{top:1060px;height:380px}
+#trees{top:1150px;height:280px}
+#verge{left:0;right:0;top:1380px;height:60px;background:#6C8F3A}
+#world{left:0;top:0;width:1px;height:1920px}
+.post{position:absolute}
+.pole{position:absolute;width:22px;background:linear-gradient(90deg,#8E959C,#D7DCE0 45%,#8E959C);border:3px solid var(--ink);border-radius:3px}
+.panel{position:absolute;left:50%;transform-origin:50% 100%}
+.panel .face{position:relative;border:5px solid var(--ink);box-shadow:0 14px 0 rgba(0,0,0,.18)}
+.fill{position:absolute;inset:14px;border:6px solid var(--white);border-radius:14px}
+.blue .face{background:var(--blue);color:var(--white);border-radius:26px}
+.t{font-family:var(--sign);text-transform:uppercase;line-height:.9;text-align:center;position:relative}
+#road{left:0;right:0;top:1430px;height:250px;background:var(--asphalt)}
+#road:before,#road:after{content:"";position:absolute;left:0;right:0;height:10px;background:#E9E7DF}
+#road:before{top:14px}#road:after{bottom:16px}
+#dash{position:absolute;left:0;right:0;top:92px;height:12px;background:repeating-linear-gradient(90deg,#E9E7DF 0 150px,transparent 150px 300px)}
+#grass{left:0;right:0;top:1680px;bottom:0;background:#557A2C}
+#truck{left:70px;top:1236px;width:760px;height:370px}
+#beam{left:780px;top:1420px;width:420px;height:170px;background:radial-gradient(ellipse at 0% 50%,rgba(255,236,170,.85),rgba(255,236,170,0) 70%);mix-blend-mode:screen}
+#head{left:0;right:0;top:118px;display:flex;justify-content:center}
+.chip{background:var(--ink);color:var(--white);padding:14px 30px 16px;border-radius:14px;display:flex;align-items:baseline;gap:22px;box-shadow:0 6px 0 rgba(0,0,0,.25)}
+.chip b{font-family:var(--sign);font-weight:600;font-size:46px;letter-spacing:.1em;text-transform:uppercase}
+.chip span{font-family:var(--body);font-weight:500;font-size:32px;color:#C9CCD2}
+.dust{position:absolute;border-radius:50%;background:#D8CDB8}
+</style>
+</head>
+<body>
+<div id="scene">
+  <div id="sky" class="abs"></div>
+  <div id="stars" class="abs"></div>
+  <div id="sun" class="abs"></div>
+  <div id="land" class="abs">
+    <div id="hills" class="abs"></div>
+    <div id="trees" class="abs"></div>
+    <div id="verge" class="abs"></div>
+  </div>
+  <div id="world" class="abs"></div>
+  <div id="roadwrap" class="abs" style="inset:0">
+    <div id="road" class="abs"><div id="dash"></div></div>
+    <div id="grass" class="abs"></div>
+  </div>
+  <div id="beam" class="abs"></div>
+  <svg id="truck" class="abs" viewBox="0 0 760 370" aria-label="Camion Transports Lacroix">
+    <g id="body" stroke="#16171B" stroke-width="6" stroke-linejoin="round">
+      <!-- trailer -->
+      <rect x="6" y="8" width="520" height="262" rx="10" fill="#F7F6F1"/>
+      <rect x="6" y="226" width="520" height="16" fill="#D52B2B" stroke="none"/>
+      <rect x="6" y="8" width="520" height="262" rx="10" fill="none"/>
+      <text x="266" y="118" text-anchor="middle" font-family="Oswald" font-weight="700" font-size="74" letter-spacing="3" fill="#1F55A6" stroke="none">TRANSPORTS</text>
+      <text x="266" y="196" text-anchor="middle" font-family="Oswald" font-weight="700" font-size="74" letter-spacing="3" fill="#D52B2B" stroke="none">LACROIX</text>
+      <!-- chassis -->
+      <rect x="30" y="270" width="700" height="26" fill="#2E3036"/>
+      <!-- cab -->
+      <path d="M552 296 V96 Q552 70 580 70 H664 Q690 70 700 96 L740 196 Q748 214 748 236 V296 Z" fill="#D52B2B"/>
+      <path d="M660 88 H592 Q580 88 580 100 V176 H720 L690 100 Q686 88 674 88 Z" fill="#9DC6E4"/>
+      <line x1="636" y1="92" x2="636" y2="176"/>
+      <rect x="560" y="200" width="44" height="10" rx="4" fill="#16171B" stroke="none"/>
+      <rect x="728" y="226" width="22" height="30" rx="4" fill="#F4C230"/>
+      <rect x="532" y="120" width="20" height="176" fill="#2E3036"/>
+      <!-- fenders -->
+      <path d="M538 296 a56 56 0 0 1 112 0 M644 296 a56 56 0 0 1 112 0" fill="none" stroke-width="10"/>
+    </g>
+    <g id="wheels"></g>
+  </svg>
+  <div id="head" class="abs"><div class="chip"><b>Transports Lacroix</b><span>Orléans</span></div></div>
+</div>
+
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+(function(){
+const {rng, prog, lerp, clamp, ease} = KK;
+const $ = s => document.querySelector(s);
+const NB = ' ';
+
+/* ---------- world timing ---------- */
+const T = [2.6, 5.0, 7.4, 9.8, 12.2, 14.6];   // step starts
+const STEP = 0.9, V = 50;
+const D = 1080 - V*2.4;
+function W(t){
+  let w = V*Math.min(t,15) + V*(()=>{const u=prog(t,15,1);return u-u*u/2;})();
+  for (const s of T) w += D*ease.inOutCubic(prog(t,s,STEP));
+  return w;
+}
+const holdMid = [1.4, ...T.map((s,i)=> i<T.length-1 ? (s+STEP+T[i+1])/2 : 17)];
+const drops   = [0.15, ...T.map(s=> s+0.6)];
+
+/* ---------- signs ---------- */
+const truckIcon = `<svg viewBox="0 0 24 24" width="230" height="230" fill="none" stroke="#F7F6F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>`;
+const houseIcon = `<svg viewBox="0 0 24 24" width="150" height="150" fill="none" stroke="#16171B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>`;
+const phoneIcon = `<svg viewBox="0 0 24 24" width="74" height="74" fill="none" stroke="#16171B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>`;
+
+const SIGNS = [
+ { w:880, poles:[-250,250], html:`
+   <div class="face" style="width:880px;height:720px;background:var(--blue);color:var(--white);border-radius:30px"><div class="fill"></div>
+     <div class="t" style="font-weight:600;font-size:74px;letter-spacing:.14em;padding-top:62px">On recrute</div>
+     <div class="t" style="font-weight:700;font-size:340px;letter-spacing:-.02em;line-height:.86;margin-top:8px">12</div>
+     <div class="t" style="font-weight:600;font-size:76px;letter-spacing:.02em;line-height:1;margin-top:10px">conducteurs<br>poids lourds</div>
+   </div>`},
+ { w:660, poles:[-180,180], html:`
+   <div class="face" style="width:660px;height:600px;background:var(--blue);color:var(--white);border-radius:30px"><div class="fill"></div>
+     <div class="t" style="font-weight:700;font-size:300px;letter-spacing:.01em;padding-top:70px;line-height:.9">CDI</div>
+     <div class="t" style="font-weight:500;font-size:62px;letter-spacing:.06em;margin-top:34px">pour les 12 postes</div>
+   </div>`},
+ { w:840, poles:[-240,240], html:`
+   <div class="face" style="width:840px;height:560px;background:var(--blue);color:var(--white);border-radius:30px"><div class="fill"></div>
+     <div style="display:flex;justify-content:center;padding-top:44px">${truckIcon}</div>
+     <div class="t" style="font-weight:700;font-size:124px;letter-spacing:.01em;margin-top:18px">Camions récents</div>
+   </div>`},
+ { w:600, poles:[0], html:`
+   <div style="width:600px;display:flex;flex-direction:column;align-items:center">
+     <div style="width:580px;height:580px;border-radius:50%;background:var(--white);border:5px solid var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 0 rgba(0,0,0,.18)">
+       <div style="width:540px;height:540px;border-radius:50%;border:74px solid var(--red);display:flex;align-items:center;justify-content:center;outline:4px solid var(--ink);outline-offset:-4px">
+         <div class="t" style="font-weight:700;font-size:250px;color:var(--ink);letter-spacing:-.03em;line-height:1;text-transform:none;margin-top:-10px">13<span style="font-size:120px;vertical-align:top;position:relative;top:16px;margin-left:4px">e</span></div>
+       </div>
+     </div>
+     <div style="width:420px;height:150px;margin-top:22px;background:var(--white);border:5px solid var(--ink);border-radius:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 0 rgba(0,0,0,.18)">
+       <div style="position:absolute;width:396px;height:126px;border:5px solid var(--ink);border-radius:12px"></div>
+       <div class="t" style="font-weight:700;font-size:96px;color:var(--ink);letter-spacing:.06em">mois</div>
+     </div>
+   </div>`},
+ { w:880, poles:[-250,250], html:`
+   <div class="face" style="width:880px;height:640px;background:var(--yellow);color:var(--ink);border-radius:30px"><div class="fill" style="border-color:var(--ink)"></div>
+     <div class="t" style="font-weight:600;font-size:92px;letter-spacing:.16em;padding-top:62px">Prime</div>
+     <div class="t" style="font-weight:700;font-size:250px;letter-spacing:-.01em;line-height:.95;margin-top:8px">1${NB}500${NB}€</div>
+     <div class="t" style="font-weight:600;font-size:80px;letter-spacing:.03em;margin-top:22px">à l’embauche</div>
+   </div>`},
+ { w:900, poles:[-260,220], html:`
+   <div style="width:900px;display:flex;flex-direction:column;align-items:center">
+     <div style="position:relative;width:900px;height:300px;filter:drop-shadow(0 14px 0 rgba(0,0,0,.18))">
+       <svg width="900" height="300" viewBox="0 0 900 300" style="position:absolute;inset:0"><path d="M24 4 H736 L896 150 L736 296 H24 Q4 296 4 276 V24 Q4 4 24 4Z" fill="#F7F6F1" stroke="#16171B" stroke-width="6"/><path d="M36 22 H728 L870 150 L728 278 H36 Q22 278 22 264 V36 Q22 22 36 22Z" fill="none" stroke="#16171B" stroke-width="5"/></svg>
+       <div style="position:absolute;left:60px;top:0;height:300px;display:flex;align-items:center;gap:30px">${houseIcon}<div class="t" style="font-weight:700;font-size:170px;color:var(--ink);letter-spacing:.01em;margin-top:6px">Maison</div></div>
+     </div>
+     <div style="width:760px;height:250px;margin-top:22px;background:var(--blue);color:var(--white);border:5px solid var(--ink);border-radius:26px;position:relative;box-shadow:0 12px 0 rgba(0,0,0,.18)"><div class="fill" style="inset:12px"></div>
+       <div class="t" style="font-weight:500;font-size:58px;letter-spacing:.08em;padding-top:38px">retour</div>
+       <div class="t" style="font-weight:700;font-size:112px;letter-spacing:.01em;margin-top:8px">chaque soir</div>
+     </div>
+   </div>`},
+ { w:900, poles:[-260,260], html:`
+   <div class="face" style="width:900px;height:800px;background:var(--blue);color:var(--white);border-radius:30px"><div class="fill"></div>
+     <div class="t" style="font-weight:700;font-size:170px;letter-spacing:.01em;padding-top:66px">Postulez</div>
+     <div class="t" style="font-weight:500;font-size:74px;text-transform:none;letter-spacing:.01em;line-height:1.05;margin-top:30px">lacroix-transports.fr<br>/recrutement</div>
+     <div style="margin:44px auto 0;width:740px;height:150px;background:var(--white);border-radius:18px;display:flex;align-items:center;justify-content:center;gap:26px;border:5px solid var(--ink)">
+       ${phoneIcon}<div class="t" style="font-weight:700;font-size:100px;color:var(--ink);letter-spacing:.02em;margin-top:4px">02${NB}38${NB}00${NB}45${NB}67</div>
+     </div>
+     <div style="font-family:var(--body);font-weight:500;font-size:34px;text-align:center;margin-top:34px;color:#DCE6F5">140 salariés · CDI · Orléans</div>
+   </div>`},
+];
+const PANEL_BOTTOM = 1110, POLE_BASE = 1440;
+const world = $('#world');
+const posts = SIGNS.map((s,k)=>{
+  const el = document.createElement('div'); el.className='post';
+  el.style.left = (540 + W(holdMid[k])) + 'px'; el.style.top = '0px';
+  s.poles.forEach(px=>{
+    const p = document.createElement('div'); p.className='pole';
+    p.style.left = (px-11)+'px'; p.style.top = (PANEL_BOTTOM-60)+'px'; p.style.height = (POLE_BASE-PANEL_BOTTOM+60)+'px';
+    el.appendChild(p);
+  });
+  const pan = document.createElement('div'); pan.className='panel';
+  pan.innerHTML = s.html;
+  pan.style.width = s.w+'px'; pan.style.marginLeft = (-s.w/2)+'px'; pan.style.left='0px';
+  el.appendChild(pan);
+  // dust
+  const r = rng(40+k); const dust=[];
+  for (let i=0;i<14;i++){ const d=document.createElement('div'); d.className='dust';
+    const sz = 26+r()*44; d.style.width=d.style.height=sz+'px';
+    dust.push({el:d, dx:(r()-.5)*2, sz, dy:r(), px: s.poles[i%s.poles.length]}); el.appendChild(d); }
+  world.appendChild(el);
+  return {el, pan, dust, s};
+});
+posts.forEach(p=>{ const h = p.pan.offsetHeight; p.h = h; p.pan.style.top = (PANEL_BOTTOM - h)+'px'; });
+
+// house beside the "Maison" arrow
+const house = document.createElement('div');
+house.style.cssText='position:absolute;top:1090px;width:300px;height:350px';
+house.style.left = (540 + W(holdMid[5]) + 330) + 'px';
+house.innerHTML = `<svg width="300" height="350" viewBox="0 0 300 350"><path d="M20 150 L150 40 L280 150 V346 H20Z" fill="#E8DCC4" stroke="#16171B" stroke-width="6" stroke-linejoin="round"/><path d="M4 160 L150 30 L296 160" fill="none" stroke="#9E3B2A" stroke-width="22" stroke-linejoin="round"/><rect x="200" y="50" width="34" height="70" fill="#8C8F96" stroke="#16171B" stroke-width="5"/><rect id="win1" x="52" y="190" width="80" height="74" rx="4" fill="#5E6A78" stroke="#16171B" stroke-width="6"/><rect x="170" y="210" width="70" height="136" rx="4" fill="#6B4A36" stroke="#16171B" stroke-width="6"/></svg>`;
+world.insertBefore(house, world.firstChild);
+const win1 = house.querySelector('#win1');
+
+/* ---------- landscape textures ---------- */
+function svgURI(s){ return `url("data:image/svg+xml;utf8,${encodeURIComponent(s)}")`; }
+const hillsSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="380"><path d="M0 260 C200 170 360 150 560 210 C720 258 860 150 1060 140 C1260 130 1420 230 1600 260 V380 H0Z" fill="#7FA66A"/><path d="M0 320 C240 260 420 300 640 280 C880 258 1100 300 1320 280 C1440 270 1520 290 1600 320 V380 H0Z" fill="#6A9352"/><g fill="#8E959C" stroke="#4A5058" stroke-width="3"><rect x="1180" y="150" width="14" height="110"/><ellipse cx="1187" cy="140" rx="46" ry="30"/></g></svg>`;
+const r2 = rng(7); let tr='';
+for(let x=20;x<1800;x+=90+r2()*120){ const h=150+r2()*110, w=36+r2()*18;
+  tr += `<ellipse cx="${x}" cy="${280-h/2-20}" rx="${w}" ry="${h/2}" fill="#3F6A34" stroke="#16171B" stroke-width="4"/><rect x="${x-5}" y="${260-10}" width="10" height="30" fill="#4A3A2A"/>`; }
+const treesSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="280">${tr}</svg>`;
+$('#hills').style.backgroundImage = svgURI(hillsSVG);
+$('#trees').style.backgroundImage = svgURI(treesSVG);
+const vergeSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="360" height="60"><rect x="170" y="2" width="20" height="56" rx="3" fill="#F7F6F1" stroke="#16171B" stroke-width="3"/><rect x="171" y="12" width="18" height="12" fill="#16171B"/></svg>`;
+$('#verge').style.backgroundImage = svgURI(vergeSVG) + ', linear-gradient(#6C8F3A,#5E8132)';
+$('#verge').style.backgroundRepeat = 'repeat-x';
+
+// stars
+const r3 = rng(99); const stars=[];
+for(let i=0;i<40;i++){ const s=document.createElement('i'); s.style.left=(r3()*1080)+'px'; s.style.top=(260+r3()*650)+'px'; const k=.6+r3()*.8; s.style.transform=`scale(${k})`; $('#stars').appendChild(s); stars.push(s); }
+
+/* ---------- truck wheels ---------- */
+const wheelsG = $('#wheels');
+const WX = [74, 184, 594, 700];
+const wheelEls = WX.map(x=>{
+  const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+  g.innerHTML = `<circle cx="0" cy="0" r="50" fill="#1E1F23" stroke="#16171B" stroke-width="6"/><circle cx="0" cy="0" r="28" fill="#B9C0C6" stroke="#16171B" stroke-width="5"/><g class="spin"><rect x="-4" y="-26" width="8" height="52" fill="#16171B"/><rect x="-26" y="-4" width="52" height="8" fill="#16171B"/></g><circle r="8" fill="#16171B"/>`;
+  g.setAttribute('transform',`translate(${x} 314)`);
+  wheelsG.appendChild(g); return g.querySelector('.spin');
+});
+
+/* ---------- colour helpers ---------- */
+const hex = h => [1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+function mix(stops, p){
+  for(let i=0;i<stops.length-1;i++){ const [a,ca]=stops[i],[b,cb]=stops[i+1];
+    if(p<=b){ const u=clamp((p-a)/(b-a)); const A=hex(ca),B=hex(cb); return `rgb(${A.map((v,j)=>Math.round(lerp(v,B[j],u))).join(',')})`; } }
+  return stops[stops.length-1][1];
+}
+const SKY_TOP = [[0,'#5FA6DE'],[.45,'#6C8CC4'],[.72,'#4A4680'],[1,'#1C1D42']];
+const SKY_BOT = [[0,'#CBE6F6'],[.45,'#F7C98A'],[.72,'#F08A4B'],[1,'#6B3F66']];
+
+/* ---------- render ---------- */
+function render(t){
+  const w = W(t);
+  const ph = ease.inOutCubic(prog(t, 3.0, 13.0));
+  $('#sky').style.background = `linear-gradient(${mix(SKY_TOP,ph)}, ${mix(SKY_BOT,ph)} 62%)`;
+  const sunY = lerp(330, 1230, ease.inCubic(ph)); const sp = ph;
+  const sun = $('#sun'); sun.style.top = sunY+'px';
+  sun.style.background = mix([[0,'#FFF1B8'],[.5,'#FFC766'],[1,'#FF6A3D']], sp);
+  sun.style.boxShadow = `0 0 120px 40px ${mix([[0,'#FFF6D0'],[1,'#FF8A4F']],sp)}`;
+  sun.style.opacity = 1 - prog(ph,.85,.15);
+  $('#stars').style.opacity = prog(ph,.8,.2);
+  const dark = lerp(1, .42, prog(ph,.35,.65));
+  $('#land').style.filter = `brightness(${dark}) saturate(${lerp(1,.8,ph)})`;
+  $('#roadwrap').style.filter = `brightness(${lerp(1,.55,prog(ph,.35,.65))})`;
+  $('#hills').style.backgroundPositionX = (-w*0.15)+'px';
+  $('#trees').style.backgroundPositionX = (-w*0.45)+'px';
+  $('#verge').style.backgroundPositionX = (-w)+'px';
+  $('#dash').style.backgroundPositionX = (-w)+'px';
+  world.style.transform = `translateX(${-w}px)`;
+  win1.setAttribute('fill', mix([[0,'#5E6A78'],[.6,'#5E6A78'],[.8,'#FFD36B'],[1,'#FFC24A']], ph));
+  house.style.filter = `brightness(${lerp(1,.55,prog(ph,.35,.65))})`;
+
+  // signs
+  let shake = 0;
+  posts.forEach((p,k)=>{
+    const td = drops[k], fall = 0.42;
+    const s = t - td - fall;
+    let y, sy = 1;
+    if (t < td) { y = -2200; }
+    else if (s < 0) { const u = prog(t, td, fall); y = -2000*(1-u*u); }
+    else { y = -Math.abs(Math.sin(s*11))*46*Math.exp(-7*s); sy = 1 - .05*Math.exp(-14*s);
+      if (s < .8) shake += 18*Math.exp(-9*s)*Math.sin(s*48); }
+    const rot = s>0 ? 1.6*Math.exp(-5*s)*Math.sin(s*16) : 0;
+    p.pan.style.transform = `translateY(${y}px) rotate(${rot}deg) scaleY(${sy})`;
+    p.pan.style.visibility = t < td ? 'hidden' : 'visible';
+    p.dust.forEach(d=>{
+      const u = s>0 ? prog(s,0,1.1) : 0;
+      const e = ease.outCubic(u);
+      d.el.style.opacity = s>0 ? (1-u)*.85 : 0;
+      d.el.style.left = (d.px + d.dx*220*e - d.sz/2)+'px';
+      d.el.style.top = (POLE_BASE - d.sz*.6 - d.dy*90*e)+'px';
+      d.el.style.transform = `scale(${.4+e*1.1})`;
+    });
+  });
+  $('#scene').style.transform = `translateY(${shake}px)`;
+
+  // truck
+  const enter = ease.outCubic(prog(t, 0, 1.5));
+  const speed = (W(t+0.02)-W(t))/0.02;
+  const bob = Math.sin(t*23)*Math.min(speed/400,1)*2.2;
+  $('#truck').style.transform = `translate(${lerp(-900,0,enter)}px, ${bob}px)`;
+  const ang = (w/50)*180/Math.PI + (1-enter)*-400;
+  wheelEls.forEach(el=> el.setAttribute('transform',`rotate(${ang})`));
+  $('#beam').style.opacity = prog(ph,.55,.3);
+  $('#beam').style.transform = `translate(${lerp(-900,0,enter)}px,0)`;
+}
+
+window.KLIPT = { width:1080, height:1920, fps:30, duration:20,
+  ready: document.fonts.ready.then(()=>{ posts.forEach(p=>{ const h=p.pan.offsetHeight; p.pan.style.top=(PANEL_BOTTOM-h)+'px'; }); }),
+  render };
+render(0);
+})();
+</script>
+</body></html>

@@ -1,0 +1,8 @@
+{ "id": "p292", "brand": "Crèche Les Petits Pas", "sector": "Crèche", "kind": "carousel",
+  "format": "1080x1350", "duration": null, "slides": 6,
+  "title": "Une journée chez Les Petits Pas",
+  "concept": "La journée d'un enfant racontée comme un sentier : une trace de petits pas continue traverse les six slides et une frise horaire 7h30 à 16h30 rythme le parcours, avec des illustrations SVG gouachées et une CTA places en janvier.",
+  "techniques": ["svg-illustration", "css-grid-layout", "paper-grain", "cross-slide-continuity"],
+  "fonts": ["Fraunces", "Nunito"],
+  "palette": ["#FBF3E4", "#2F5D46", "#E0714A", "#F2B84B", "#CFE0C3", "#2A2A24"],
+  "copy_language": "fr" }

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bloc Party — Night Session</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/anton/index.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/space-mono/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/space-mono/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/permanent-marker/index.css">
+<script src="../../lib/klipt-kit.js"></script>
+<style>
+  :root{
+    --ink:#07070f; --wall:#11111f; --lime:#c8ff2e; --pink:#ff3d9a; --blue:#3f6bff; --orange:#ff7a1f; --chalk:#f4f1ea;
+  }
+  html,body{margin:0;padding:0;overflow:hidden;background:var(--ink);}
+  .slide{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--ink);color:var(--chalk);}
+  svg.wall{position:absolute;inset:0;}
+  .layer{position:absolute;inset:0;}
+  .top{position:absolute;left:72px;top:128px;display:flex;align-items:center;gap:22px;}
+  .logo{font-family:Anton;font-size:52px;letter-spacing:.06em;line-height:1;color:var(--chalk);}
+  .logo i{font-style:normal;color:var(--lime);}
+  .chip{font-family:'Space Mono';font-weight:700;font-size:22px;letter-spacing:.14em;text-transform:uppercase;
+        border:2px solid rgba(244,241,234,.55);border-radius:40px;padding:8px 18px 7px;color:rgba(244,241,234,.9);}
+  .kicker{position:absolute;left:76px;top:236px;font-family:'Space Mono';font-weight:700;font-size:28px;letter-spacing:.3em;color:var(--pink);text-transform:uppercase;}
+  .h1{position:absolute;left:62px;top:292px;font-family:Anton;line-height:.86;text-transform:uppercase;margin:0;}
+  .h1 .a{display:block;font-size:326px;color:var(--lime);text-shadow:0 0 40px rgba(200,255,46,.35), 0 0 120px rgba(200,255,46,.18);letter-spacing:-.005em;}
+  .h1 .b{display:block;font-size:236px;color:var(--chalk);letter-spacing:.005em;margin-top:8px;}
+  .when{position:absolute;left:72px;top:950px;}
+  .when .day{font-family:'Space Mono';font-weight:700;font-size:30px;letter-spacing:.28em;color:rgba(244,241,234,.75);text-transform:uppercase;}
+  .when .time{font-family:Anton;font-size:168px;line-height:1;margin-top:6px;color:var(--chalk);letter-spacing:.01em;display:flex;align-items:center;gap:26px;}
+  .when .time svg{width:100px;height:100px;}
+  .tapes{position:absolute;left:58px;top:1230px;display:flex;flex-direction:column;align-items:flex-start;gap:26px;}
+  .tape{position:relative;font-family:'Space Mono';font-weight:700;font-size:40px;letter-spacing:.04em;text-transform:uppercase;color:#0b0b12;
+        padding:16px 34px 14px 30px;line-height:1;
+        clip-path:polygon(0 6%,3% 0,97% 4%,100% 0,99% 52%,100% 100%,96% 95%,2% 100%,0 94%,1% 48%);}
+  .tape::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 3px,transparent 3px 9px);mix-blend-mode:overlay;}
+  .tape .n{font-family:'Permanent Marker';font-weight:400;font-size:40px;letter-spacing:0;margin-right:18px;opacity:.8;}
+  .t1{background:var(--pink);transform:rotate(-2.2deg);}
+  .t2{background:var(--blue);color:var(--chalk);transform:rotate(1.4deg);margin-left:26px;}
+  .t3{background:var(--lime);transform:rotate(-1deg);margin-left:8px;}
+  .t3 b{font-family:Anton;font-weight:400;font-size:56px;letter-spacing:.01em;vertical-align:-3px;margin-left:6px;}
+  .cta{position:absolute;left:76px;top:1530px;right:72px;}
+  .cta .m{font-family:'Permanent Marker';font-size:62px;color:var(--chalk);transform:rotate(-2deg);transform-origin:left;display:inline-block;}
+  .cta .s{margin-top:18px;font-family:'Space Mono';font-weight:400;font-size:26px;letter-spacing:.12em;color:rgba(244,241,234,.7);text-transform:uppercase;}
+  .cta .s b{color:var(--lime);font-weight:700;}
+</style>
+</head>
+<body>
+<section class="slide" id="s">
+  <svg class="wall" id="wall" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+
+  <div class="top">
+    <div class="logo">BLOC<i>/</i>PARTY</div>
+    <div class="chip">East London</div>
+  </div>
+
+  <div class="kicker">After-hours bouldering</div>
+  <h1 class="h1"><span class="a">Night</span><span class="b">Session</span></h1>
+
+  <div class="when">
+    <div class="day">This Friday</div>
+    <div class="time">9PM
+      <svg viewBox="0 0 100 100"><path d="M8 50 H84 M60 24 L88 50 L60 76" fill="none" stroke="#c8ff2e" stroke-width="11" stroke-linecap="square"/></svg>
+      1AM</div>
+  </div>
+
+  <div class="tapes">
+    <div class="tape t1"><span class="n">01</span>Fresh problems set</div>
+    <div class="tape t2"><span class="n">02</span>DJ on the decks</div>
+    <div class="tape t3"><span class="n">03</span>Entry <b>£16</b></div>
+  </div>
+
+  <div class="cta">
+    <div class="m">Chalk up. Stay late.</div>
+    <div class="s">Book your slot · <b>link in bio</b></div>
+  </div>
+</section>
+
+<script>
+window.KLIPT = { width: 1080, height: 1920 };
+(function(){
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('wall');
+  const R = KK.rng(288);
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (parent||svg).appendChild(e); return e; };
+
+  // ---------- defs ----------
+  const defs = el('defs', {});
+  defs.innerHTML = `
+    <radialGradient id="uvA" cx="0.9" cy="0.35" r="0.7"><stop offset="0" stop-color="#3f2bff" stop-opacity=".40"/><stop offset="1" stop-color="#3f2bff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="uvB" cx="0.05" cy="0.85" r="0.75"><stop offset="0" stop-color="#ff2d8f" stop-opacity=".30"/><stop offset="1" stop-color="#ff2d8f" stop-opacity="0"/></radialGradient>
+    <radialGradient id="uvC" cx="0.8" cy="0.2" r="0.35"><stop offset="0" stop-color="#c8ff2e" stop-opacity=".14"/><stop offset="1" stop-color="#c8ff2e" stop-opacity="0"/></radialGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#16162a"/><stop offset="1" stop-color="#0c0c18"/></linearGradient>
+    <radialGradient id="shine" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></radialGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="1.2"/></filter>
+    <radialGradient id="ballG" cx="0.38" cy="0.32" r="0.75"><stop offset="0" stop-color="#ffffff"/><stop offset=".35" stop-color="#b9bccb"/><stop offset="1" stop-color="#2a2b3a"/></radialGradient>
+    <radialGradient id="ballHalo" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#e9e6ff" stop-opacity=".35"/><stop offset="1" stop-color="#e9e6ff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  `;
+
+  // ---------- wall panels (angled plywood sheets) ----------
+  el('rect', {x:0,y:0,width:1080,height:1920,fill:'#0a0a14'});
+  const panels = [
+    [[0,0],[560,0],[520,640],[0,700]],
+    [[560,0],[1080,0],[1080,560],[520,640]],
+    [[0,700],[520,640],[600,1260],[0,1320]],
+    [[520,640],[1080,560],[1080,1200],[600,1260]],
+    [[0,1320],[600,1260],[540,1920],[0,1920]],
+    [[600,1260],[1080,1200],[1080,1920],[540,1920]],
+  ];
+  panels.forEach((p,i)=>{
+    el('polygon',{points:p.map(q=>q.join(',')).join(' '),fill:'url(#panel)',opacity:(0.55+0.45*((i*37)%5)/5).toFixed(2),stroke:'#05050b','stroke-width':6});
+  });
+  // T-nut grid
+  const g = el('g',{fill:'#000',opacity:.55});
+  for (let y=40;y<1920;y+=64) for (let x=((y/64)%2?20:52);x<1080;x+=64) {
+    el('circle',{cx:x,cy:y,r:4.2},g);
+  }
+  const g2 = el('g',{fill:'none',stroke:'#2a2a44','stroke-width':1.4,opacity:.7});
+  for (let y=40;y<1920;y+=64) for (let x=((y/64)%2?20:52);x<1080;x+=64) {
+    el('circle',{cx:x,cy:y,r:7},g2);
+  }
+  // UV wash
+  el('rect',{x:0,y:0,width:1080,height:1920,fill:'url(#uvA)'});
+  el('rect',{x:0,y:0,width:1080,height:1920,fill:'url(#uvB)'});
+  el('rect',{x:0,y:0,width:1080,height:1920,fill:'url(#uvC)'});
+
+  // ---------- hold shape ----------
+  function blob(cx, cy, r, n, jag, rot){
+    const pts=[];
+    for(let i=0;i<n;i++){
+      const a = rot + i/n*Math.PI*2;
+      const rr = r*(1-jag/2 + jag*R());
+      pts.push([cx+Math.cos(a)*rr*1.12, cy+Math.sin(a)*rr*0.9]);
+    }
+    // catmull-rom -> bezier, closed
+    let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+    for(let i=0;i<n;i++){
+      const p0=pts[(i-1+n)%n],p1=pts[i],p2=pts[(i+1)%n],p3=pts[(i+2)%n];
+      const c1=[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6];
+      const c2=[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6];
+      d+=` C${c1[0].toFixed(1)},${c1[1].toFixed(1)} ${c2[0].toFixed(1)},${c2[1].toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
+    }
+    return d+'Z';
+  }
+  function hold(parent, cx, cy, r, color, opts={}){
+    const grp = el('g',{},parent);
+    const d = blob(cx,cy,r, opts.n||7, opts.jag||0.45, R()*Math.PI*2);
+    el('path',{d, fill:'#000', opacity:.55, transform:`translate(${r*0.12},${r*0.18})`, filter:'url(#soft)'},grp); // shadow
+    el('path',{d, fill:color},grp);
+    el('path',{d, fill:'url(#shine)', opacity: opts.shine ?? .8},grp);
+    if (opts.chalk){ // chalk dusting on top edge
+      const cg = el('g',{fill:'#fff',opacity:.55},grp);
+      for(let i=0;i<opts.chalk;i++){ const a=-Math.PI*(0.15+0.7*R()); const rr=r*(0.2+0.6*R());
+        el('circle',{cx:cx+Math.cos(a)*rr, cy:cy+Math.sin(a)*rr*0.8, r:(0.8+R()*2.2).toFixed(1)},cg); }
+    }
+    el('circle',{cx:cx+r*0.05,cy:cy+r*0.02,r:Math.max(5,r*0.14),fill:'#0b0b10'},grp);
+    el('circle',{cx:cx+r*0.05,cy:cy+r*0.02,r:Math.max(2.5,r*0.07),fill:'#3a3a48'},grp);
+    return grp;
+  }
+
+  // ---------- background holds (dim, other problems) ----------
+  const bg = el('g',{opacity:.34});
+  const bgCols=['#ff3d9a','#3f6bff','#ff7a1f','#8a5cff','#2fe0c8','#ffd23a'];
+  const route = [ // lime problem, bottom -> top (behind text on right side)
+    [930,1760,46],[800,1600,40],[975,1440,38],[850,1270,44],[990,1090,34],[880,930,40],[1000,770,32],[905,640,36]
+  ];
+  const avoid = (x,y)=> route.some(([rx,ry,rr])=>Math.hypot(rx-x,ry-y)<rr+70) || Math.hypot(880-x,410-y)<190;
+  let placed=0, tries=0;
+  while(placed<46 && tries<2000){ tries++;
+    const x = 30+R()*1020, y = 60+R()*1840;
+    if (avoid(x,y)) continue;
+    hold(bg, x, y, 14+R()*30, bgCols[Math.floor(R()*bgCols.length)], {shine:.6});
+    placed++;
+  }
+  // a few big volumes (triangular) in the background
+  const vol = el('g',{opacity:.22});
+  el('polygon',{points:'-20,880 260,820 150,1080',fill:'#2a2a55'},vol);
+  el('polygon',{points:'700,1500 1100,1420 1100,1700',fill:'#3a2250'},vol);
+
+  // ---------- light beams from mirror ball ----------
+  const beams = el('g',{opacity:.9});
+  const BX=880, BY=410;
+  [[-160,1920,40],[-420,1500,30],[180,1920,26],[-700,1100,22],[260,1300,18]].forEach(([dx,ty,w])=>{
+    const tx = BX+dx;
+    el('polygon',{points:`${BX},${BY} ${tx-w},${ty} ${tx+w},${ty}`,fill:'url(#beam)'},beams);
+  });
+
+  // ---------- the route: glowing lime problem ----------
+  const rt = el('g',{filter:'url(#glow)'});
+  route.forEach(([x,y,r],i)=> hold(rt, x, y, r, '#c8ff2e', {chalk: 14, n: 8, jag:.5}));
+  // start tape under first hold
+  const tape = el('g',{transform:'translate(930 1760) rotate(-12)'});
+  el('rect',{x:-70,y:44,width:140,height:26,fill:'#c8ff2e',opacity:.95},tape);
+  el('text',{x:0,y:64,'text-anchor':'middle','font-family':'Permanent Marker','font-size':22,fill:'#0b0b12'},tape).textContent='START';
+
+  // ---------- mirror ball (the top hold) ----------
+  el('line',{x1:BX,y1:0,x2:BX,y2:BY-110,stroke:'#8d8fa3','stroke-width':3});
+  el('circle',{cx:BX,cy:BY,r:240,fill:'url(#ballHalo)'});
+  const ball = el('g',{});
+  el('circle',{cx:BX,cy:BY,r:112,fill:'url(#ballG)'},ball);
+  const clip = el('clipPath',{id:'bc'},defs); el('circle',{cx:BX,cy:BY,r:112},clip);
+  const facets = el('g',{'clip-path':'url(#bc)'},ball);
+  const FR = KK.rng(9);
+  for(let row=-7; row<=7; row++){
+    const lat = row/7*Math.PI/2*0.98;
+    const y = BY + Math.sin(lat)*112;
+    const rowR = Math.cos(lat)*112;
+    const h = 112*Math.PI/15;
+    const cols = Math.max(4, Math.round(rowR*2/15));
+    for(let c=0;c<cols;c++){
+      const u = (c+0.5)/cols*2-1; // -1..1
+      const x = BX + Math.sin(u*Math.PI/2)*rowR;
+      const w = Math.cos(u*Math.PI/2)*rowR*Math.PI/cols*0.95 + 1;
+      const b = FR();
+      const lightness = Math.max(0, 1 - Math.hypot((x-BX+40)/112,(y-BY+36)/112));
+      const col = b>0.94 ? '#ffffff' : b>0.91 ? '#c8ff2e' : b>0.88 ? '#ff3d9a' : `rgba(255,255,255,${(0.08+lightness*0.55*b).toFixed(2)})`;
+      el('rect',{x:(x-w/2).toFixed(1),y:(y-h/2).toFixed(1),width:Math.max(1,w-2).toFixed(1),height:(h-2).toFixed(1),fill:col,opacity:b>0.88?0.85:1},facets);
+    }
+  }
+  el('circle',{cx:BX,cy:BY,r:112,fill:'none',stroke:'#000','stroke-opacity':.35,'stroke-width':4},ball);
+  // sparkles
+  const sp = (x,y,s,c)=>{ const gg=el('g',{transform:`translate(${x} ${y}) scale(${s})`,fill:c});
+    el('path',{d:'M0,-40 C4,-6 6,-4 40,0 C6,4 4,6 0,40 C-4,6 -6,4 -40,0 C-6,-4 -4,-6 0,-40Z'},gg); };
+  sp(BX-58,BY-60,0.9,'#ffffff'); sp(BX+130,BY+100,0.55,'#c8ff2e'); sp(BX+96,BY-150,0.4,'#ff3d9a'); sp(690,870,0.35,'#ffffff');
+
+  // ---------- grain ----------
+  const gr = el('g',{fill:'#fff',opacity:.05});
+  const GR = KK.rng(77);
+  for(let i=0;i<1400;i++) el('circle',{cx:(GR()*1080).toFixed(0),cy:(GR()*1920).toFixed(0),r:(0.6+GR()*1.2).toFixed(1)},gr);
+})();
+</script>
+</body>
+</html>

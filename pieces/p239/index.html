@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Olfa · 3 reasons</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/900.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/familjen-grotesk/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/familjen-grotesk/700.css">
+<style>
+:root{
+  --paper:#EFE6CE; --paper-2:#E3D8BB; --ink:#22361A; --shadow:rgba(60,50,20,.38);
+  --display:'Fraunces', serif; --body:'Familjen Grotesk', sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;margin:0;overflow:hidden;background:#CFC2A0}
+#stage{position:absolute;inset:0;overflow:hidden;background:#CFC2A0}
+.sheet{position:absolute;inset:0;background:var(--paper);will-change:transform;transform-origin:50% 100%}
+.sheet .fibre{position:absolute;inset:0;pointer-events:none}
+.ink,.clean{position:absolute;inset:0;color:var(--ink)}
+.ink{-webkit-mask-image:var(--inkmask);mask-image:var(--inkmask);-webkit-mask-size:1080px 1920px;mask-size:1080px 1920px}
+.ink svg.art{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.brayer{position:absolute;left:-30px;top:0;width:1140px;height:260px;display:none;z-index:5}
+.t{position:absolute;left:84px;right:84px}
+.kick{font:700 30px/1 var(--body);letter-spacing:.16em;text-transform:uppercase}
+.kick b{display:inline-block;border:3px solid var(--ink);border-radius:50%;width:54px;height:54px;line-height:48px;text-align:center;margin-right:18px;letter-spacing:0;font-size:28px;vertical-align:middle}
+.title{font:900 118px/.93 var(--display);letter-spacing:-.025em;font-variation-settings:"SOFT" 100,"WONK" 1}
+.body{font:500 40px/1.3 var(--body);letter-spacing:-.005em;max-width:880px}
+.hook{font:900 196px/.88 var(--display);letter-spacing:-.035em}
+.it{font:italic 600 92px/1 var(--display);letter-spacing:-.02em}
+.press{opacity:0}
+.grainall{position:absolute;inset:0;pointer-events:none;z-index:20;mix-blend-mode:multiply;opacity:.55}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+  </defs>
+</svg>
+
+<div id="stage">
+  <!-- 0 · the mistake -->
+  <div class="sheet" id="s0">
+    <div class="ink">
+      <svg class="art" viewBox="0 0 1080 1920" id="art0"></svg>
+      <div class="t" style="top:292px"><div class="kick">Olfa · Cretan olive oil</div></div>
+      <div class="t hook" style="top:820px">It’s just<br>olive oil.</div>
+      <svg class="art" viewBox="0 0 1080 1920" id="strike"></svg>
+    </div>
+    <div class="clean">
+      <div class="t it press" data-at="2.35" style="top:1240px">3 reasons to switch.</div>
+      <div class="t body press" data-at="2.6" style="top:1360px">From a grower on Crete to your kitchen in the UK.</div>
+    </div>
+  </div>
+
+  <!-- 1 · grower -->
+  <div class="sheet" id="s1">
+    <div class="ink">
+      <svg class="art" viewBox="0 0 1080 1920" id="art1"></svg>
+      <div class="t kick" style="top:1184px"><b>1</b>Reason one · Origin</div>
+      <div class="t title" style="top:1268px">Straight from<br>the grower.</div>
+    </div>
+    <div class="clean">
+      <div class="t body press" data-at="5.3" style="top:1514px">Direct from Cretan growers, shipped to your door anywhere in the UK.</div>
+    </div>
+  </div>
+
+  <!-- 2 · koroneiki -->
+  <div class="sheet" id="s2">
+    <div class="ink">
+      <svg class="art" viewBox="0 0 1080 1920" id="art2"></svg>
+      <div class="t kick" style="top:1184px"><b>2</b>Reason two · Harvest</div>
+      <div class="t title" style="top:1268px">Picked early,<br>picked green.</div>
+    </div>
+    <div class="clean">
+      <div class="t body press" data-at="9.6" style="top:1514px">Early-harvest Koroneiki, the small olive of Crete, picked before it ripens.</div>
+    </div>
+  </div>
+
+  <!-- 3 · acidity -->
+  <div class="sheet" id="s3">
+    <div class="ink">
+      <svg class="art" viewBox="0 0 1080 1920" id="art3"></svg>
+      <div class="t kick" style="top:1184px"><b>3</b>Reason three · Acidity</div>
+      <div class="t title" style="top:1268px">A number<br>you can check.</div>
+    </div>
+    <div class="clean">
+      <div class="t body press" data-at="13.9" style="top:1514px">0.2% acidity. Low acidity is the sign of fresh, carefully handled olives.</div>
+    </div>
+  </div>
+
+  <!-- 4 · offer, the correction -->
+  <div class="sheet" id="s4">
+    <div class="ink">
+      <svg class="art" viewBox="0 0 1080 1920" id="art4"></svg>
+      <div class="t" style="top:262px"><div class="kick">Olfa · Cretan olive oil</div></div>
+      <div class="t title" style="top:330px;font-size:132px">Not just<br>olive oil.</div>
+    </div>
+    <div class="clean">
+      <div class="press" data-at="18.1" style="position:absolute;left:84px;top:1224px;font:900 240px/1 var(--display);letter-spacing:-.04em">£35</div>
+      <div class="press" data-at="18.3" style="position:absolute;left:548px;top:1256px;width:460px">
+        <div class="kick" style="margin-bottom:18px">Discovery box</div>
+        <div style="font:700 44px/1.18 var(--body);letter-spacing:-.01em">3 × 250 ml<br>Delivered across the UK</div>
+      </div>
+      <div class="press" data-at="18.7" style="position:absolute;left:84px;right:84px;top:1484px;height:100px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:space-between;padding:0 44px;font:700 44px/1 var(--body);letter-spacing:-.005em">
+        <span>Order your discovery box</span>
+        <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- the brayer, shared -->
+  <svg class="brayer" id="brayer" viewBox="0 0 1140 260">
+    <defs>
+      <linearGradient id="rol" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#3C5530"/><stop offset=".35" stop-color="#22361A"/><stop offset=".8" stop-color="#101A0B"/><stop offset="1" stop-color="#22361A"/>
+      </linearGradient>
+      <linearGradient id="wood" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#8A6A3E"/><stop offset=".5" stop-color="#B38D58"/><stop offset="1" stop-color="#7A5C33"/>
+      </linearGradient>
+    </defs>
+    <path d="M40 200 L40 150 Q40 120 90 110 L520 70" fill="none" stroke="#6B6B66" stroke-width="12" stroke-linecap="round"/>
+    <path d="M1100 200 L1100 150 Q1100 120 1050 110 L620 70" fill="none" stroke="#6B6B66" stroke-width="12" stroke-linecap="round"/>
+    <rect x="515" y="0" width="110" height="80" rx="24" fill="url(#wood)"/>
+    <rect x="30" y="168" width="1080" height="84" rx="42" fill="url(#rol)"/>
+    <rect x="60" y="180" width="1020" height="8" rx="4" fill="#fff" opacity=".18"/>
+    <circle cx="40" cy="210" r="16" fill="#6B6B66"/><circle cx="1100" cy="210" r="16" fill="#6B6B66"/>
+  </svg>
+
+  <canvas class="grainall" id="grainall" width="1080" height="1920"></canvas>
+</div>
+
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const INK = '#22361A', PAPER = '#EFE6CE';
+const R = KK.rng(239);
+const f = n => n.toFixed(1);
+
+// tapered gouge cut from (x0,y0) to (x1,y1), max width w
+function gouge(x0, y0, x1, y1, w, bend = 0) {
+  const dx = x1 - x0, dy = y1 - y0, L = Math.hypot(dx, dy) || 1;
+  const nx = -dy / L, ny = dx / L;
+  const mx = (x0 + x1) / 2 + nx * bend, my = (y0 + y1) / 2 + ny * bend;
+  return `M${f(x0)} ${f(y0)} Q${f(mx + nx * w)} ${f(my + ny * w)} ${f(x1)} ${f(y1)} Q${f(mx - nx * w * .6)} ${f(my - ny * w * .6)} ${f(x0)} ${f(y0)}Z`;
+}
+// olive leaf: base at (x,y), angle a (rad), length l, width w; returns [leafPath, veinPath]
+function leaf(x, y, a, l, w) {
+  const c = Math.cos(a), s = Math.sin(a);
+  const P = (u, v) => `${f(x + u * c - v * s)} ${f(y + u * s + v * c)}`;
+  const body = `M${P(0, 0)} C${P(l * .25, -w)} ${P(l * .7, -w * .8)} ${P(l, 0)} C${P(l * .7, w * .8)} ${P(l * .25, w)} ${P(0, 0)}Z`;
+  const vein = gouge(x + l * .12 * c, y + l * .12 * s, x + l * .82 * c, y + l * .82 * s, Math.max(1.4, w * .16));
+  return [body, vein];
+}
+function el(svg, tag, attrs) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); svg.appendChild(e); return e; }
+function path(svg, d, fill) { return el(svg, 'path', { d, fill }); }
+
+/* ---------- sheet 0: olive branch ---------- */
+(function () {
+  const s = document.getElementById('art0');
+  // branch
+  path(s, 'M-20 610 C 200 560, 420 520, 640 470 C 800 432, 950 380, 1100 300 L1100 322 C 950 404, 800 458, 640 496 C 420 548, 200 590, -20 640Z', INK);
+  const tw = [[180,578,-1.9],[300,552,1.2],[420,528,-2.0],[520,506,1.1],[640,484,-1.7],[760,452,1.3],[870,414,-1.6],[980,360,1.0],[240,566,1.9],[700,470,-2.6]];
+  tw.forEach(([x, y, a], i) => {
+    const l = 150 + R() * 50, w = 26 + R() * 6;
+    const [b, v] = leaf(x, y, a + (R() - .5) * .3, l, w);
+    path(s, b, INK); path(s, v, PAPER);
+  });
+  // three olives hanging
+  [[470, 600, 58, 76], [560, 590, 50, 66], [860, 520, 56, 72]].forEach(([x, y, rx, ry], i) => {
+    path(s, `M${x} ${y - ry - 40} Q ${x + 6} ${y - ry - 12} ${x} ${y - ry + 4}`, 'none').setAttribute('stroke', INK);
+    s.lastChild.setAttribute('stroke-width', 9);
+    el(s, 'ellipse', { cx: x, cy: y, rx, ry, fill: INK, transform: `rotate(${-12 + i * 9} ${x} ${y})` });
+    for (let k = 0; k < 3; k++) path(s, gouge(x - rx * .55, y - ry * .2 + k * 16, x - rx * .1, y - ry * .7 + k * 16, 5, -8), PAPER);
+  });
+})();
+
+/* strike: two gouges through the lie */
+(function () {
+  const s = document.getElementById('strike');
+  const g1 = el(s, 'g', { id: 'st1' }), g2 = el(s, 'g', { id: 'st2' });
+  path(g1, gouge(62, 930, 830, 912, 30, 4), PAPER);
+  path(g2, gouge(62, 1096, 1000, 1084, 30, -4), PAPER);
+})();
+
+/* ---------- sheet 1: tree cut in reverse from a solid block ---------- */
+(function () {
+  const s = document.getElementById('art1');
+  const X = 64, Y = 222, W = 952, H = 900;
+  el(s, 'rect', { x: X, y: Y, width: W, height: H, fill: INK });
+  // sun
+  el(s, 'circle', { cx: 820, cy: 382, r: 92, fill: PAPER });
+  for (let r = 118; r < 250; r += 26) el(s, 'circle', { cx: 820, cy: 382, r, fill: 'none', stroke: PAPER, 'stroke-width': 5, 'stroke-dasharray': `${10 + r / 8} ${14 + r / 10}` });
+  // sky gouges
+  for (let i = 0; i < 26; i++) {
+    const y = Y + 40 + R() * 300, x = X + 30 + R() * 520, l = 40 + R() * 90;
+    path(s, gouge(x, y, x + l, y + (R() - .5) * 6, 3 + R() * 2), PAPER);
+  }
+  // hills: carved stripes
+  for (let k = 0; k < 6; k++) {
+    const y0 = 930 + k * 22;
+    let d = `M ${X} ${y0}`;
+    for (let x = X; x <= X + W; x += 60) d += ` L ${x} ${f(y0 + Math.sin(x / 140 + k * .7) * 14 - (k < 3 ? Math.cos(x / 260) * 30 : 0))}`;
+    const p = path(s, d, 'none'); p.setAttribute('stroke', PAPER); p.setAttribute('stroke-width', 7 - k * .4); p.setAttribute('stroke-linecap', 'round');
+  }
+  // trunk
+  path(s, 'M420 1110 C 470 1020, 420 950, 486 870 C 530 815, 500 760, 455 700 L 492 684 C 540 742, 568 790, 552 846 C 600 790, 618 742, 632 688 L 676 700 C 660 772, 616 832, 606 900 C 596 968, 640 1040, 690 1110 Z', PAPER);
+  for (let i = 0; i < 9; i++) path(s, gouge(500 + i * 12, 1090 - i * 8, 520 + i * 6 + (R() - .5) * 20, 880 - i * 10, 4, 14 * (i % 2 ? 1 : -1)), INK);
+  // canopy: clusters of paper leaves
+  const clusters = [[330, 610, 150], [470, 520, 170], [640, 470, 170], [790, 560, 150], [560, 640, 150], [250, 700, 100], [860, 690, 100], [400, 690, 120], [700, 650, 130]];
+  clusters.forEach(([cx, cy, rad]) => {
+    const n = Math.round(rad / 5.5);
+    for (let i = 0; i < n; i++) {
+      const a = R() * Math.PI * 2, d = Math.sqrt(R()) * rad;
+      const x = cx + Math.cos(a) * d, y = cy + Math.sin(a) * d * .72;
+      const [b, v] = leaf(x, y, a + (R() - .5) * 1.2, 46 + R() * 22, 9 + R() * 3);
+      path(s, b, PAPER); path(s, v, INK);
+    }
+  });
+  // olives in canopy
+  for (let i = 0; i < 14; i++) {
+    const x = 260 + R() * 600, y = 470 + R() * 260;
+    el(s, 'ellipse', { cx: f(x), cy: f(y), rx: 11, ry: 15, fill: INK, stroke: PAPER, 'stroke-width': 4 });
+  }
+  // carved caption in the block
+  const tx = el(s, 'text', { x: X + 40, y: Y + H - 40, fill: PAPER, 'font-family': 'Familjen Grotesk', 'font-weight': 700, 'font-size': 30, 'letter-spacing': 5 });
+  tx.textContent = 'CRETE';
+  const tx2 = el(s, 'text', { x: X + W - 40, y: Y + H - 40, fill: PAPER, 'font-family': 'Familjen Grotesk', 'font-weight': 700, 'font-size': 30, 'letter-spacing': 5, 'text-anchor': 'end' });
+  tx2.textContent = 'OLIVE GROVES';
+})();
+
+/* ---------- sheet 2: one olive, monumental ---------- */
+(function () {
+  const s = document.getElementById('art2');
+  const cx = 700, cy = 690, rx = 335, ry = 430, rot = -24;
+  // stem + leaves
+  const st = path(s, 'M 872 262 C 890 210, 900 180, 915 140', 'none'); st.setAttribute('stroke', INK); st.setAttribute('stroke-width', 26); st.setAttribute('stroke-linecap', 'round');
+  let [b, v] = leaf(912, 150, Math.PI + .2, 540, 104); path(s, b, INK); path(s, v, PAPER);
+  [b, v] = leaf(914, 146, -1.15, 360, 80); path(s, b, INK); path(s, v, PAPER);
+  const g = el(s, 'g', { transform: `rotate(${rot} ${cx} ${cy})` });
+  el(g, 'ellipse', { cx, cy, rx, ry, fill: INK });
+  // carved highlights following the curve
+  for (let k = 0; k < 7; k++) {
+    const r0 = .78 - k * .07;
+    const a0 = Math.PI * (1.08 + k * .015), a1 = Math.PI * (1.42 - k * .01);
+    const x0 = cx + Math.cos(a0) * rx * r0, y0 = cy + Math.sin(a0) * ry * r0;
+    const x1 = cx + Math.cos(a1) * rx * r0, y1 = cy + Math.sin(a1) * ry * r0;
+    path(g, gouge(x0, y0, x1, y1, 12 - k * 1.2, -rx * .14 * r0), PAPER);
+  }
+  // stipple on the shadow side
+  for (let i = 0; i < 70; i++) {
+    const a = Math.PI * (.05 + R() * .7), d = .55 + R() * .35;
+    el(g, 'circle', { cx: f(cx + Math.cos(a) * rx * d), cy: f(cy + Math.sin(a) * ry * d), r: f(2 + R() * 3), fill: PAPER });
+  }
+  // stem scar
+  el(g, 'ellipse', { cx, cy: cy - ry + 26, rx: 30, ry: 14, fill: PAPER });
+  el(g, 'ellipse', { cx, cy: cy - ry + 26, rx: 14, ry: 6, fill: INK });
+  // small tag set in the paper
+  const t = el(s, 'text', { x: 84, y: 1140, fill: INK, 'font-family': 'Familjen Grotesk', 'font-weight': 700, 'font-size': 30, 'letter-spacing': 5 });
+  t.textContent = '';
+  const kt = el(g, 'text', { x: cx + 20, y: cy + 60, fill: PAPER, 'font-family': 'Familjen Grotesk', 'font-weight': 700, 'font-size': 40, 'letter-spacing': 12, 'text-anchor': 'middle' });
+  kt.textContent = 'KORONEIKI';
+  // tiny actual-size olive for scale (rescale joke kept silent)
+  el(s, 'ellipse', { cx: 104, cy: 1040, rx: 16, ry: 22, fill: INK, transform: 'rotate(-24 104 1040)' });
+  const t2 = el(s, 'text', { x: 134, y: 1050, fill: INK, 'font-family': 'Familjen Grotesk', 'font-weight': 500, 'font-size': 28 });
+  t2.textContent = 'actual size';
+})();
+
+/* ---------- sheet 3: a drop and a monumental 0.2% ---------- */
+(function () {
+  const s = document.getElementById('art3');
+  const dx = 250, dy = 250;
+  path(s, `M${dx} ${dy} C ${dx + 40} ${dy + 90}, ${dx + 120} ${dy + 150}, ${dx + 120} ${dy + 240} C ${dx + 120} ${dy + 310}, ${dx + 66} ${dy + 360}, ${dx} ${dy + 360} C ${dx - 66} ${dy + 360}, ${dx - 120} ${dy + 310}, ${dx - 120} ${dy + 240} C ${dx - 120} ${dy + 150}, ${dx - 40} ${dy + 90}, ${dx} ${dy}Z`, INK);
+  for (let k = 0; k < 4; k++) path(s, gouge(dx - 80 + k * 10, dy + 250 - k * 14, dx - 40 + k * 6, dy + 150 - k * 22, 6 - k, 10), PAPER);
+  // ruler: 0.0 to 1.0, marker at 0.2
+  const rx0 = 440, rx1 = 1000, ry = 520;
+  el(s, 'rect', { x: rx0, y: ry, width: rx1 - rx0, height: 6, fill: INK });
+  for (let i = 0; i <= 10; i++) {
+    const x = rx0 + (rx1 - rx0) * i / 10;
+    el(s, 'rect', { x: x - 2.5, y: ry - (i % 5 ? 22 : 40), width: 5, height: i % 5 ? 22 : 40, fill: INK });
+  }
+  [['0', 0], ['0.5', 5], ['1.0%', 10]].forEach(([l, i]) => {
+    const t = el(s, 'text', { x: rx0 + (rx1 - rx0) * i / 10, y: ry + 52, fill: INK, 'font-family': 'Familjen Grotesk', 'font-weight': 500, 'font-size': 28, 'text-anchor': i === 10 ? 'end' : i ? 'middle' : 'start' });
+    t.textContent = l;
+  });
+  const mx = rx0 + (rx1 - rx0) * .2;
+  path(s, `M${mx} ${ry - 50} l -26 -46 h 52 z`, INK);
+  const lab = el(s, 'text', { x: mx, y: ry - 118, fill: INK, 'font-family': 'Familjen Grotesk', 'font-weight': 700, 'font-size': 30, 'letter-spacing': 4, 'text-anchor': 'middle' });
+  lab.textContent = 'OLFA';
+  // the monumental number
+  const n = el(s, 'text', { x: 40, y: 1100, fill: INK, 'font-family': 'Fraunces', 'font-weight': 900, 'font-size': 520, 'letter-spacing': -26 });
+  n.textContent = '0.2%';
+})();
+
+/* ---------- sheet 4: the discovery box ---------- */
+(function () {
+  const s = document.getElementById('art4');
+  const bx = 190, by = 940, bw = 700, bh = 250;
+  // open flaps
+  path(s, `M${bx} ${by} L${bx - 70} ${by - 120} L${bx + 250} ${by - 120} L${bx + 300} ${by}Z`, INK);
+  path(s, `M${bx + bw} ${by} L${bx + bw + 70} ${by - 120} L${bx + bw - 250} ${by - 120} L${bx + bw - 300} ${by}Z`, INK);
+  for (let k = 0; k < 4; k++) {
+    path(s, gouge(bx - 40 + k * 70, by - 96 + k * 4, bx + 20 + k * 70, by - 20, 4), PAPER);
+    path(s, gouge(bx + bw + 40 - k * 70, by - 96 + k * 4, bx + bw - 20 - k * 70, by - 20, 4), PAPER);
+  }
+  // three bottles
+  [0, 1, 2].forEach(i => {
+    const cx = bx + 175 + i * 175, top = 640;
+    const bd = `M${cx - 18} ${top} h36 v60 C ${cx + 18} ${top + 100}, ${cx + 70} ${top + 110}, ${cx + 70} ${top + 170} V ${by + 20} H ${cx - 70} V ${top + 170} C ${cx - 70} ${top + 110}, ${cx - 18} ${top + 100}, ${cx - 18} ${top + 60}Z`;
+    path(s, bd, INK);
+    el(s, 'rect', { x: cx - 24, y: top - 34, width: 48, height: 40, rx: 6, fill: INK });
+    el(s, 'rect', { x: cx - 54, y: top + 184, width: 108, height: 100, rx: 4, fill: PAPER });
+    const t = el(s, 'text', { x: cx, y: top + 228, fill: INK, 'font-family': 'Fraunces', 'font-weight': 900, 'font-size': 34, 'text-anchor': 'middle' });
+    t.textContent = '250';
+    const t2 = el(s, 'text', { x: cx, y: top + 266, fill: INK, 'font-family': 'Familjen Grotesk', 'font-weight': 700, 'font-size': 24, 'text-anchor': 'middle', 'letter-spacing': 3 });
+    t2.textContent = 'ML';
+    path(s, gouge(cx - 52, top + 180, cx - 40, top + 150, 3), PAPER);
+  });
+  // box front
+  el(s, 'rect', { x: bx - 6, y: by - 6, width: bw + 12, height: 12, fill: PAPER });
+  el(s, 'rect', { x: bx, y: by, width: bw, height: bh, fill: INK });
+  for (let i = 0; i < 18; i++) {
+    const y = by + 30 + R() * (bh - 60), x = bx + 20 + R() * (bw - 160);
+    if (y > by + 60 && y < by + 190) continue;
+    path(s, gouge(x, y, x + 60 + R() * 80, y + (R() - .5) * 4, 2.6), PAPER);
+  }
+  const w = el(s, 'text', { x: bx + bw / 2, y: by + 160, fill: PAPER, 'font-family': 'Fraunces', 'font-weight': 900, 'font-size': 120, 'text-anchor': 'middle', 'letter-spacing': -2 });
+  w.textContent = 'Olfa';
+  // small branch on the box corner
+  let [b, v] = leaf(bx + bw - 40, by + bh - 36, -2.6, 120, 22); path(s, b, PAPER); path(s, v, INK);
+  [b, v] = leaf(bx + bw - 40, by + bh - 36, -2.0, 100, 18); path(s, b, PAPER); path(s, v, INK);
+})();
+
+/* ---------- paper fibre per sheet (static) ---------- */
+document.querySelectorAll('.sheet').forEach((sh, i) => {
+  const d = document.createElement('div'); d.className = 'fibre';
+  d.style.background = `radial-gradient(120% 90% at ${30 + i * 13}% ${20 + i * 11}%, rgba(255,250,235,.35), rgba(170,150,100,.10) 70%, rgba(120,100,60,.16))`;
+  sh.prepend(d);
+});
+
+/* ---------- textures, generated once: ink mask (pinholes + wood grain) and paper fibre ---------- */
+(function () {
+  const W = 1080, H = 1920, r = KK.rng(1239);
+  function vnoise(gx, gy) { // value-noise grid
+    const g = new Float32Array((gx + 2) * (gy + 2)); for (let i = 0; i < g.length; i++) g[i] = r();
+    return (x, y) => { const i = Math.floor(x), j = Math.floor(y), u = x - i, v = y - j;
+      const a = g[j * (gx + 2) + i], b = g[j * (gx + 2) + i + 1], c = g[(j + 1) * (gx + 2) + i], d = g[(j + 1) * (gx + 2) + i + 1];
+      const su = u * u * (3 - 2 * u), sv = v * v * (3 - 2 * v); return a + (b - a) * su + (c - a) * sv + (a - b - c + d) * su * sv; };
+  }
+  const n1 = vnoise(12, 520), n2 = vnoise(40, 1100), n3 = vnoise(60, 110);
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  const cx = cv.getContext('2d'), im = cx.createImageData(W, H), D = im.data;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const k = (y * W + x) * 4;
+    // wood grain: long horizontal streaks where the ink thins
+    const gr = n1(x / W * 12, y / H * 520) * .6 + n2(x / W * 40, y / H * 1100) * .4;
+    const patch = n3(x / W * 60, y / H * 110);
+    let a = 1;
+    if (gr > .74 && patch > .45) a = Math.max(0, 1 - (gr - .74) * 9);
+    if (r() < .006) a = 0; // pinholes
+    D[k] = D[k + 1] = D[k + 2] = 0; D[k + 3] = Math.round(a * 255);
+  }
+  cx.putImageData(im, 0, 0);
+  document.documentElement.style.setProperty('--inkmask', `url(${cv.toDataURL('image/png')})`);
+  // paper fibre overlay
+  const g = document.getElementById('grainall').getContext('2d'), gi = g.createImageData(W, H), G = gi.data;
+  for (let i = 0; i < W * H; i++) { const v = r(); const k = i * 4; G[k] = 150; G[k + 1] = 130; G[k + 2] = 90; G[k + 3] = v < .5 ? Math.round(v * 28) : 0; }
+  g.putImageData(gi, 0, 0);
+  for (let i = 0; i < 900; i++) { const x = r() * W, y = r() * H, l = 6 + r() * 22, a = r() * Math.PI;
+    g.strokeStyle = `rgba(120,100,60,${(.08 + r() * .12).toFixed(2)})`; g.lineWidth = .8 + r(); g.beginPath(); g.moveTo(x, y);
+    g.quadraticCurveTo(x + Math.cos(a) * l * .5 + (r() - .5) * 6, y + Math.sin(a) * l * .5, x + Math.cos(a) * l, y + Math.sin(a) * l); g.stroke(); }
+})();
+
+/* ---------- timeline ---------- */
+const S = [
+  { el: s0, slide: null, ink: 0.15 },
+  { el: s1, slide: 3.7, ink: 4.25 },
+  { el: s2, slide: 8.0, ink: 8.55 },
+  { el: s3, slide: 12.3, ink: 12.85 },
+  { el: s4, slide: 16.6, ink: 17.15 },
+];
+const INKDUR = 0.95;
+const brayer = document.getElementById('brayer');
+const presses = [...document.querySelectorAll('.press')].map(e => ({ e, at: +e.dataset.at }));
+const st1 = document.getElementById('st1'), st2 = document.getElementById('st2');
+const { prog, ease, lerp } = KK;
+
+function render(t) {
+  let bray = null;
+  S.forEach((sc, i) => {
+    // slide in: a fresh sheet laid over the stack
+    if (sc.slide === null) sc.el.style.transform = `scale(${lerp(1, 1.012, prog(t, 0, 3.7))})`;
+    else {
+      const p = ease.outExpo(prog(t, sc.slide, 0.75));
+      const next = S[i + 1];
+      const hold = next ? prog(t, sc.slide + .75, next.slide - sc.slide - .75) : prog(t, sc.slide + .75, 4);
+      sc.el.style.transform = `translateX(${f((1 - p) * 1160)}px) rotate(${f((1 - p) * 5)}deg) scale(${f(1 + hold * .012)})`;
+      sc.el.style.boxShadow = p < 1 ? `-30px 0 60px rgba(60,50,20,${f(.45 * (1 - p) + .05)})` : 'none';
+    }
+    // ink pass
+    const q = ease.inOutCubic(prog(t, sc.ink, INKDUR));
+    const edge = lerp(-40, 1980, q);
+    const clip = `inset(0 0 ${f(Math.max(0, 1920 - edge))}px 0)`;
+    sc.el.querySelector('.ink').style.clipPath = clip;
+    if (q > 0 && q < 1) bray = edge;
+    // hide sheets fully covered by the next one (perf)
+    const nx = S[i + 1];
+    sc.el.style.visibility = ((sc.slide === null || t >= sc.slide) && !(nx && t > nx.slide + .8)) ? 'visible' : 'hidden';
+  });
+  if (bray !== null) { brayer.style.display = 'block'; brayer.style.transform = `translateY(${f(bray - 210)}px)`; }
+  else brayer.style.display = 'none';
+  // strike the lie
+  const a = ease.outCubic(prog(t, 1.65, .38)), b = ease.outCubic(prog(t, 1.85, .42));
+  st1.setAttribute('transform', `translate(70 0) scale(${f(Math.max(a, .0001))} 1) translate(-70 0)`);
+  st2.setAttribute('transform', `translate(70 0) scale(${f(Math.max(b, .0001))} 1) translate(-70 0)`);
+  // pressed-in text
+  presses.forEach(({ e, at }) => {
+    const p = prog(t, at, .35);
+    e.style.opacity = f(p);
+    e.style.transform = `scale(${f(lerp(1.035, 1, ease.outCubic(p)))})`;
+    e.style.transformOrigin = '0 50%';
+  });
+}
+
+window.KLIPT = { width: 1080, height: 1920, fps: 30, duration: 21, ready: document.fonts.ready, render };
+render(0);
+</script>
+</body>
+</html>

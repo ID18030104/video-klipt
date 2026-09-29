@@ -1,0 +1,8 @@
+{ "id": "p207", "brand": "Saveurs & Co", "sector": "Traiteur événementiel",
+  "kind": "carousel", "format": "1080x1350", "duration": null, "slides": 6,
+  "title": "Votre séminaire clé en main",
+  "concept": "Le carrousel suit la journée d'un séminaire, de 8 h 30 à 18 h 30 : chaque formule a son créneau horaire, sa couleur et son assiette illustrée en vue de dessus, avant les engagements (local, zéro gaspillage) et un CTA « devis en 24 h ». Direction éditoriale chaleureuse : serif Fraunces avec italiques, vert profond, crème, moutarde et terracotta.",
+  "techniques": ["html-css-layout", "svg-illustration", "editorial-typography", "lucide-icons"],
+  "fonts": ["Fraunces", "Figtree"],
+  "palette": ["#1E3B2F", "#F5EEE2", "#C65F32", "#E3A63A", "#DCE4CF", "#F6E7C8", "#EFC9B0"],
+  "copy_language": "fr" }

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--
+  ART DIRECTION — Max Leroy Coaching, "4 weeks back into exercise"
+  Concept: the plan as a staircase. One orange progress line runs along the bottom of the whole
+           carousel and steps up once per week, so swiping literally climbs you back to fitness.
+  Palette: pine #123028 (dominant, hook + CTA), chalk #F1ECE2 (week slides), signal orange #FF6A2B (accent, rare),
+           moss #5E7A6B (secondary text on dark), ink #0E231D.
+  Type: Barlow Condensed 800/900 (athletic, training-log headlines) + Figtree 500/700 (clear coaching copy).
+  Graphic language: training-log cards, giant outline week numerals, step glyph logo, fine rules, paper grain.
+  Tone: calm expert, first-person coach voice, Canadian English (Toronto).
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/900.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/700.css">
+<style>
+:root{--pine:#123028;--ink:#0E231D;--chalk:#F1ECE2;--orange:#FF6A2B;--moss:#9DB3A6;--rule:rgba(18,48,40,.16)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;margin:0;overflow:hidden;background:var(--pine)}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;font-family:'Figtree',sans-serif}
+.dark{background:radial-gradient(120% 80% at 80% 10%,#1B4034 0%,var(--pine) 55%,#0D251F 100%);color:var(--chalk)}
+.light{background:radial-gradient(110% 80% at 20% 0%,#F7F3EB 0%,var(--chalk) 60%,#E7E0D3 100%);color:var(--pine)}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.07;mix-blend-mode:multiply;z-index:20}
+.dark .grain{mix-blend-mode:screen;opacity:.06}
+.cond{font-family:'Barlow Condensed',sans-serif}
+
+/* header */
+.hdr{position:absolute;left:72px;right:72px;top:64px;display:flex;align-items:center;justify-content:space-between;z-index:5}
+.logo{display:flex;align-items:center;gap:18px}
+.logo .wm{font-family:'Barlow Condensed';font-weight:800;font-size:34px;letter-spacing:.14em;line-height:.9}
+.logo .wm small{display:block;font-weight:700;font-size:20px;letter-spacing:.42em;opacity:.7;margin-top:6px}
+.count{font-family:'Barlow Condensed';font-weight:700;font-size:32px;letter-spacing:.08em}
+.count b{font-weight:800}
+
+/* progress strip */
+.strip{position:absolute;left:0;bottom:0;width:6480px;height:200px;z-index:4}
+.strip .lbl{font-family:'Barlow Condensed';font-weight:800;font-size:30px;letter-spacing:.1em}
+
+/* hook */
+.hook .kicker{position:absolute;left:72px;top:212px;font-family:'Barlow Condensed';font-weight:700;font-size:34px;letter-spacing:.22em;color:var(--orange)}
+.hook .big{position:absolute;left:60px;top:268px;font-family:'Barlow Condensed';font-weight:900;font-size:300px;line-height:.86;letter-spacing:-.005em;color:var(--chalk);white-space:nowrap;text-transform:uppercase}
+.hook .big span{color:var(--orange)}
+.hook h1{position:absolute;left:72px;right:72px;top:560px;font-family:'Barlow Condensed';font-weight:800;font-size:100px;line-height:.95;text-transform:uppercase;letter-spacing:.005em}
+.hook h1 em{font-style:normal;color:var(--orange)}
+.hook .sub{position:absolute;left:72px;width:640px;top:885px;font-size:34px;line-height:1.35;color:#C9D6CE;font-weight:500}
+.hook .swipe{position:absolute;right:72px;top:1044px;display:flex;align-items:center;gap:14px;font-family:'Barlow Condensed';font-weight:800;font-size:34px;letter-spacing:.12em;text-transform:uppercase}
+.hook .chips{position:absolute;left:72px;top:1044px;display:flex;gap:12px}
+.hook .chips span{font-family:'Barlow Condensed';font-weight:700;font-size:30px;letter-spacing:.06em;text-transform:uppercase;border:2px solid rgba(241,236,226,.35);border-radius:999px;padding:10px 20px 8px}
+.hook .swipe i{display:inline-flex;width:64px;height:64px;border-radius:50%;background:var(--orange);align-items:center;justify-content:center}
+
+/* week slides */
+.ghost{position:absolute;right:-60px;top:70px;font-family:'Barlow Condensed';font-weight:900;font-size:1000px;line-height:1;color:transparent;-webkit-text-stroke:3px rgba(18,48,40,.12);z-index:0}
+.wk{position:absolute;left:72px;top:196px;display:flex;align-items:center;gap:16px;font-family:'Barlow Condensed';font-weight:800;font-size:36px;letter-spacing:.2em;z-index:2}
+.wk .pill{background:var(--orange);color:var(--ink);padding:6px 16px 4px;border-radius:6px}
+.wk .phase{opacity:.65}
+.ttl{position:absolute;left:66px;top:246px;white-space:nowrap;font-family:'Barlow Condensed';font-weight:900;font-size:140px;line-height:1;text-transform:uppercase;letter-spacing:-.005em;z-index:2}
+.stats{position:absolute;left:72px;right:72px;top:420px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;z-index:2}
+.stat{background:var(--pine);color:var(--chalk);border-radius:18px;padding:22px 26px 20px}
+.stat .v{font-family:'Barlow Condensed';font-weight:800;font-size:66px;line-height:1}
+.stat .v small{font-size:40px;font-weight:700;opacity:.8}
+.stat .k{font-size:28px;font-weight:600;color:var(--moss);margin-top:4px}
+.stat.hi{background:var(--orange);color:var(--ink)}
+.stat.hi .k{color:rgba(14,35,29,.72)}
+.list{position:absolute;left:72px;right:72px;top:600px;z-index:2}
+.row{display:flex;align-items:center;gap:24px;padding:19px 0;border-bottom:2px solid var(--rule)}
+.row:first-child{border-top:2px solid var(--rule)}
+.row .n{font-family:'Barlow Condensed';font-weight:800;font-size:34px;width:44px;color:var(--orange);-webkit-text-stroke:0}
+.row .t{flex:1}
+.row .t b{display:block;font-weight:700;font-size:38px;line-height:1.1}
+.row .t span{display:block;font-size:30px;line-height:1.25;opacity:.72;margin-top:3px;font-weight:500}
+.row .r{font-family:'Barlow Condensed';font-weight:800;font-size:46px;white-space:nowrap}
+.tip{position:absolute;left:72px;right:72px;top:1086px;display:flex;gap:20px;align-items:flex-start;z-index:2}
+.tip .tag{flex:none;font-family:'Barlow Condensed';font-weight:800;font-size:28px;letter-spacing:.16em;background:var(--pine);color:var(--chalk);padding:7px 14px 5px;border-radius:6px;margin-top:2px}
+.tip p{font-size:31px;line-height:1.3;font-weight:600}
+
+/* cta */
+.cta .kicker{position:absolute;left:72px;top:210px;font-family:'Barlow Condensed';font-weight:700;font-size:34px;letter-spacing:.22em;color:var(--orange)}
+.cta h2{position:absolute;left:66px;right:60px;top:262px;font-family:'Barlow Condensed';font-weight:900;font-size:128px;line-height:.9;text-transform:uppercase}
+.cta h2 span{color:var(--orange)}
+.cta .inc{position:absolute;left:72px;right:72px;top:640px}
+.cta .inc li{list-style:none;display:flex;align-items:center;gap:22px;font-size:36px;font-weight:600;padding:16px 0;border-bottom:2px solid rgba(241,236,226,.14)}
+.cta .inc li:first-child{border-top:2px solid rgba(241,236,226,.14)}
+.cta .inc svg{flex:none}
+.cta .where{position:absolute;left:72px;right:72px;top:908px;font-size:31px;line-height:1.35;color:#C9D6CE;font-weight:500}
+.cta .btn{position:absolute;left:72px;top:990px;display:flex;align-items:center;gap:22px;background:var(--orange);color:var(--ink);border-radius:999px;padding:22px 40px 22px 44px;font-family:'Barlow Condensed';font-weight:800;font-size:50px;letter-spacing:.04em;text-transform:uppercase}
+.cta .contact{position:absolute;left:76px;top:1122px;font-size:31px;font-weight:600;color:var(--chalk);opacity:.85}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="grainF" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <symbol id="mark" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="3"/>
+      <path d="M15 44 H25 V36 H33 V28 H41 V20 H49" fill="none" stroke="#FF6A2B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div id="deck"></div>
+
+<script>
+window.KLIPT = { width: 1080, height: 1350 };
+
+const TOTAL = 6;
+const grain = `<svg class="grain" width="1080" height="1350"><rect width="100%" height="100%" filter="url(#grainF)"/></svg>`;
+const header = (i, dark) => `
+  <div class="hdr">
+    <div class="logo"><svg width="64" height="64" style="color:${dark ? '#F1ECE2' : '#123028'}"><use href="#mark"/></svg>
+      <div class="wm">MAX LEROY<small>COACHING</small></div></div>
+    <div class="count"><b>0${i + 1}</b> / 0${TOTAL}</div>
+  </div>`;
+
+/* One continuous staircase across all 6 slides (6480px wide), windowed per slide. */
+const LV = [192, 167, 142, 117, 94, 94]; // y level per slide
+function strip(i, dark) {
+  let d = `M -10 ${LV[0]}`;
+  for (let s = 1; s < TOTAL; s++) {
+    const x = s * 1080 + 150;
+    d += ` H ${x} V ${LV[s]}`;
+  }
+  d += ` H ${5 * 1080 + 760}`;
+  const col = dark ? '#F1ECE2' : '#123028';
+  let marks = '';
+  for (let s = 1; s <= 4; s++) {
+    const cx = s * 1080 + 540, cy = LV[s];
+    const cur = s === i;
+    marks += `<circle cx="${cx}" cy="${cy}" r="${cur ? 15 : 9}" fill="${cur ? '#FF6A2B' : col}" ${cur ? 'stroke="' + col + '" stroke-width="5"' : ''}/>`;
+    marks += `<text class="lbl" x="${cx}" y="${cy - 28}" text-anchor="middle" fill="${col}" opacity="${cur ? 1 : .55}">WEEK ${s}</text>`;
+  }
+  // start + finish
+  marks += `<text class="lbl" x="540" y="${LV[0] - 28}" text-anchor="middle" fill="${col}" opacity=".55">TODAY</text>`;
+  marks += `<circle cx="540" cy="${LV[0]}" r="9" fill="${col}"/>`;
+  marks += `<path d="M ${5 * 1080 + 744} ${LV[5] - 16} L ${5 * 1080 + 772} ${LV[5]} L ${5 * 1080 + 744} ${LV[5] + 16}" fill="none" stroke="#FF6A2B" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>`;
+  marks += `<text class="lbl" x="${5 * 1080 + 800}" y="${LV[5] + 11}" fill="${col}">BACK FOR GOOD</text>`;
+  return `<svg class="strip" viewBox="0 0 6480 200" style="transform:translateX(${-i * 1080}px)">
+    <path d="${d}" fill="none" stroke="#FF6A2B" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>${marks}</svg>`;
+}
+
+const WEEKS = [
+  { phase: 'Wake it up', title: 'Wake it up', ghost: '1', freq: '3×', dur: '20', effort: '4',
+    ex: [['Brisk walk', 'Pace where you can still chat', '10 min'],
+         ['Chair squats', 'Tap the seat, stand up tall', '2 × 10'],
+         ['Wall push-ups', 'Body straight, like a plank', '2 × 10'],
+         ['Dead bug', 'Low back stays on the floor', '2 × 8/side']],
+    tip: 'Finish every session feeling you could do more. That’s the point this week.' },
+  { title: 'Build the base', ghost: '2', freq: '3×', dur: '30', effort: '5',
+    ex: [['Glute bridge', 'Squeeze and hold 2 sec at the top', '3 × 12'],
+         ['Incline push-ups', 'Hands on a counter or bench', '3 × 8'],
+         ['Bird dog', 'Slow, hips level, no rocking', '3 × 6/side'],
+         ['Step-ups', 'Low step, drive through the heel', '3 × 8/side']],
+    tip: 'Sore for 24–48 hours is normal. Sharp or joint pain means stop and get it checked.' },
+  { title: 'Add some load', ghost: '3', freq: '3×', dur: '35', effort: '6',
+    ex: [['Goblet squat', 'Kettlebell or a loaded backpack', '3 × 10'],
+         ['Band row', 'Elbows back, shoulders down', '3 × 12'],
+         ['Reverse lunge', 'Hold a railing if you need to', '3 × 8/side'],
+         ['Side plank', 'Knees down is completely fine', '3 × 20 s']],
+    tip: 'Add weight only when your last two reps still look as clean as your first.' },
+  { title: 'Find your pace', ghost: '4', freq: '4×', dur: '40', effort: '7',
+    ex: [['Walk–jog intervals', '1 min easy jog, 2 min walk', '× 6'],
+         ['Kettlebell deadlift', 'Hinge at the hips, flat back', '3 × 10'],
+         ['Push-ups', 'Floor or knees, full range', '3 × 8–12'],
+         ['Farmer carry', 'Tall posture, slow steps', '4 × 30 m']],
+    tip: 'Keep a full rest day between harder sessions. Recovery is part of the plan.' },
+];
+
+let html = '';
+// 01 — hook
+html += `<section class="slide dark hook">${grain}${header(0, true)}
+  <div class="kicker">THE RESTART PLAN · SAVE THIS</div>
+  <div class="big">4 <span>weeks</span></div>
+  <h1>to get back into<br>exercise without<br><em>getting injured.</em></h1>
+  <p class="sub">My week-by-week plan for restarting safely: how often, how long, and exactly what to do.</p>
+  <div class="chips"><span>No gym needed</span><span>20–40 min</span></div>
+  <div class="swipe">Swipe <i><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0E231D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></div>
+  ${strip(0, true)}</section>`;
+
+// 02–05 — weeks
+WEEKS.forEach((w, k) => {
+  const i = k + 1;
+  html += `<section class="slide light">${grain}
+    <div class="ghost">${w.ghost}</div>
+    ${header(i, false)}
+    <div class="wk"><span class="pill">WEEK ${i}</span><span class="phase">OF 4</span></div>
+    <div class="ttl">${w.title}</div>
+    <div class="stats">
+      <div class="stat"><div class="v">${w.freq}</div><div class="k">sessions a week</div></div>
+      <div class="stat"><div class="v">${w.dur}<small> min</small></div><div class="k">per session</div></div>
+      <div class="stat hi"><div class="v">${w.effort}<small>/10</small></div><div class="k">effort level</div></div>
+    </div>
+    <div class="list">${w.ex.map((e, j) => `<div class="row"><div class="n">0${j + 1}</div><div class="t"><b>${e[0]}</b><span>${e[1]}</span></div><div class="r">${e[2]}</div></div>`).join('')}</div>
+    <div class="tip"><div class="tag">MAX’S RULE</div><p>${w.tip}</p></div>
+    ${strip(i, false)}</section>`;
+});
+
+// 06 — CTA
+const check = `<svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="#FF6A2B"/><path d="M13 22.5l6 6 12-13" fill="none" stroke="#0E231D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+html += `<section class="slide dark cta">${grain}${header(5, true)}
+  <div class="kicker">NOT SURE WHERE TO START?</div>
+  <h2>Book your free <span>45-min</span> fitness assessment</h2>
+  <ul class="inc">
+    <li>${check}Movement and mobility screen</li>
+    <li>${check}Injury history and goals, talked through</li>
+    <li>${check}Your 4-week plan, adjusted to you</li>
+  </ul>
+  <p class="where">At your home or in a park near you, anywhere in Toronto.</p>
+  <div class="btn">Book at maxleroy.ca <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0E231D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+  <p class="contact">@maxleroycoaching · 647-382-1946</p>
+  ${strip(5, true)}</section>`;
+
+document.getElementById('deck').innerHTML = html;
+</script>
+</body>
+</html>
