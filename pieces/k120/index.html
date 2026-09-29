@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Maison Castel — Rasage à l’ancienne</title>
+<!--
+DIRECTION
+Concept: le rituel du rasage en 3 gestes (serviette, blaireau, coupe-chou), scènes-blocs de couleur qui balaient l’écran comme un coup de lame.
+Palette: noir chaud #14100d, crème #f1e6cf, laiton #c19a4b, bordeaux #6e1b1f, rouge enseigne #b3262b
+Type: DM Serif Display (titres, italique laiton) + Oswald (capitales espacées, chiffres)
+Graphisme: enseigne de barbier (bande rayée), illustrations SVG plates avec contours, grain papier
+Motion: masques qui montent, balayages de blocs, mousse retirée au coupe-chou, fin calme
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/dm-serif-display/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/dm-serif-display/400-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/oswald/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/oswald/600.css">
+<style>
+:root{--ink:#14100d;--cream:#f1e6cf;--brass:#c19a4b;--wine:#6e1b1f;--red:#b3262b}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ink)}
+body{position:relative;font-family:'Oswald',sans-serif}
+.scene{position:absolute;inset:0;overflow:hidden}
+.serif{font-family:'DM Serif Display',serif;font-weight:400}
+.ln{display:block;overflow:hidden;padding:0.06em 0 0.1em;margin:-0.06em 0 -0.1em}
+.ln>span{display:block;will-change:transform}
+.tag{position:absolute;left:110px;top:240px;display:flex;align-items:center;gap:18px;font-size:32px;letter-spacing:.28em;text-transform:uppercase;font-weight:600}
+.tag i{display:block;width:60px;height:3px;background:currentColor}
+.num{position:absolute;left:110px;top:400px;font-family:'Oswald';font-weight:600;font-size:40px;letter-spacing:.3em}
+.h{position:absolute;left:110px;width:900px;line-height:1.0}
+.cap{position:absolute;left:110px;width:860px;top:1410px;font-size:50px;line-height:1.3;letter-spacing:.02em;font-weight:400}
+.pole{position:absolute;left:0;top:0;width:46px;height:1920px;overflow:hidden;z-index:50;border-right:4px solid var(--ink)}
+.pole div{position:absolute;left:0;top:-200px;width:46px;height:3400px;background:repeating-linear-gradient(135deg,var(--red) 0 22px,var(--cream) 22px 44px,#1d2a44 44px 66px,var(--cream) 66px 88px)}
+.grain{position:absolute;left:-100px;top:-100px;width:1300px;height:2100px;z-index:60;opacity:.16;mix-blend-mode:multiply;pointer-events:none}
+.vig{position:absolute;inset:0;z-index:55;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(0,0,0,.35) 100%)}
+svg{display:block}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<linearGradient id="steel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef1f3"/><stop offset=".55" stop-color="#aab3b9"/><stop offset="1" stop-color="#6c757c"/></linearGradient>
+<linearGradient id="brassg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e2c274"/><stop offset="1" stop-color="#94702b"/></linearGradient>
+<filter id="noise"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 .3  0 0 0 0 .25  0 0 0 0 .2  0 0 0 1.1 -.2"/></filter>
+</defs></svg>
+
+<div class="pole"><div id="poleIn"></div></div>
+
+<!-- S1 hook -->
+<section class="scene" id="s1" style="background:var(--ink);color:var(--cream)">
+  <div class="tag" style="color:var(--brass)"><i></i>Maison Castel</div>
+  <div class="h serif" style="top:500px;font-size:134px">
+    <span class="ln"><span>Ton dernier</span></span>
+    <span class="ln"><span style="color:var(--brass);font-style:italic">vrai rasage,</span></span>
+    <span class="ln"><span>c’était quand&nbsp;?</span></span>
+  </div>
+  <div id="s1pill" style="position:absolute;left:110px;top:1120px;background:var(--red);color:var(--cream);font-size:38px;letter-spacing:.2em;padding:18px 34px;text-transform:uppercase;font-weight:600">Nouveau chez nous</div>
+  <div id="s1sub" class="serif" style="position:absolute;left:110px;top:1240px;font-size:76px;font-style:italic;color:var(--cream)">Le rasage à l’ancienne.</div>
+  <svg id="s1raz" style="position:absolute;left:640px;top:250px;opacity:.9" width="330" height="130" viewBox="0 0 380 140"><g transform="translate(380,0) scale(-1,1)"><path d="M20 60 L250 40 L262 72 Q150 98 20 92 Z" fill="none" stroke="#c19a4b" stroke-width="4"/><path d="M250 50 L372 102 L362 124 L244 74 Z" fill="none" stroke="#c19a4b" stroke-width="4"/></g></svg>
+</section>
+
+<!-- S2 towel -->
+<section class="scene" id="s2" style="background:var(--wine);color:var(--cream)">
+  <div class="tag" style="color:var(--brass)"><i></i>Maison Castel</div>
+  <div class="num" style="color:var(--brass)">01 / 03</div>
+  <div class="h serif" style="top:480px;font-size:158px"><span class="ln"><span>La serviette</span></span><span class="ln"><span style="font-style:italic;color:var(--brass)">chaude.</span></span></div>
+  <svg id="towel" style="position:absolute;left:190px;top:850px;transform:scale(1.15);transform-origin:50% 0" width="700" height="480" viewBox="0 0 700 480">
+    <g id="steam" fill="none" stroke="#f1e6cf" stroke-width="9" stroke-linecap="round">
+      <path class="st" d="M200 230 C160 180 250 150 205 90 C175 50 220 30 215 5"/>
+      <path class="st" d="M350 230 C310 170 400 140 355 80 C325 40 370 20 365 -5"/>
+      <path class="st" d="M500 230 C460 180 550 150 505 90 C475 50 520 30 515 5"/>
+    </g>
+    <g id="towelbody">
+      <rect x="60" y="330" width="580" height="60" rx="14" fill="#e6d8bb" stroke="#14100d" stroke-width="5"/>
+      <rect x="45" y="285" width="610" height="60" rx="14" fill="#f6eedb" stroke="#14100d" stroke-width="5"/>
+      <rect x="70" y="240" width="560" height="60" rx="14" fill="#fffaf0" stroke="#14100d" stroke-width="5"/>
+      <rect x="45" y="300" width="610" height="10" fill="#c19a4b"/><rect x="70" y="255" width="560" height="10" fill="#c19a4b"/>
+      <ellipse cx="350" cy="440" rx="290" ry="18" fill="#000" opacity=".3"/>
+    </g>
+  </svg>
+  <div class="cap" style="color:var(--cream)"><span class="ln"><span>Elle ouvre les pores et détend la barbe.</span></span></div>
+</section>
+
+<!-- S3 brush -->
+<section class="scene" id="s3" style="background:var(--cream);color:var(--ink)">
+  <div class="tag" style="color:var(--wine)"><i></i>Maison Castel</div>
+  <div class="num" style="color:var(--red)">02 / 03</div>
+  <div class="h serif" style="top:480px;font-size:158px"><span class="ln"><span>Le</span></span><span class="ln"><span style="font-style:italic;color:var(--red)">blaireau.</span></span></div>
+  <svg id="bowl" style="position:absolute;left:190px;top:850px;overflow:visible;transform:scale(1.15);transform-origin:50% 0" width="700" height="480" viewBox="0 0 700 480">
+    <path d="M110 250 Q110 430 350 430 Q590 430 590 250 Z" fill="#14100d"/>
+    <path d="M130 270 Q160 400 350 405" fill="none" stroke="#c19a4b" stroke-width="8" stroke-linecap="round"/>
+    <ellipse cx="350" cy="440" rx="270" ry="16" fill="#000" opacity=".2"/>
+    <g id="foam" stroke="#14100d" stroke-width="5" fill="#fffaf0"></g>
+    <g id="brush">
+      <g transform="rotate(-32 470 230)">
+        <path d="M420 230 Q470 160 520 230 Q520 265 470 270 Q420 265 420 230Z" fill="#e8dcc0" stroke="#14100d" stroke-width="5"/>
+        <path d="M440 240 Q470 262 500 240" fill="none" stroke="#14100d" stroke-width="3" opacity=".5"/>
+        <rect x="446" y="100" width="48" height="70" rx="8" fill="url(#brassg)" stroke="#14100d" stroke-width="5" transform="translate(0,72)"/>
+        <path d="M446 60 Q470 30 494 60 L488 190 L452 190Z" fill="#14100d" transform="translate(0,-10)"/>
+        <path d="M436 -110 Q470 -150 504 -110 L494 30 Q470 55 446 30 Z" fill="#14100d" stroke="#c19a4b" stroke-width="4"/>
+      </g>
+    </g>
+  </svg>
+  <div class="cap"><span class="ln"><span>Une mousse montée à la main,</span></span><span class="ln"><span>chaude et dense.</span></span></div>
+</section>
+
+<!-- S4 razor -->
+<section class="scene" id="s4" style="background:var(--ink);color:var(--cream)">
+  <div class="tag" style="color:var(--brass)"><i></i>Maison Castel</div>
+  <div class="num" style="color:var(--brass)">03 / 03</div>
+  <div class="h serif" style="top:480px;font-size:158px"><span class="ln"><span>Le</span></span><span class="ln"><span style="font-style:italic;color:var(--brass)">coupe-chou.</span></span></div>
+  <div id="panel" style="position:absolute;left:220px;top:900px;width:640px;height:450px;background:#c69a78;border:5px solid var(--brass);border-radius:30px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.5)">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(255,235,210,.35),transparent 60%)"></div>
+    <div class="fs" style="top:22px"></div><div class="fs" style="top:170px"></div><div class="fs" style="top:318px"></div>
+  </div>
+  <svg id="razor" style="position:absolute;left:220px;top:0;opacity:0;filter:drop-shadow(0 10px 12px rgba(0,0,0,.5))" width="380" height="140" viewBox="0 0 380 140"><g transform="translate(380,0) scale(-1,1)">
+    <path d="M20 60 L250 40 L262 72 Q150 98 20 92 Z" fill="url(#steel)" stroke="#14100d" stroke-width="4"/>
+    <path d="M20 60 L250 40 L254 52 L24 72Z" fill="#525a60"/>
+    <path d="M250 50 L372 102 L362 124 L244 74 Z" fill="url(#brassg)" stroke="#14100d" stroke-width="4"/>
+    <circle cx="252" cy="58" r="9" fill="#14100d"/></g></svg>
+  <div class="cap"><span class="ln"><span>Un geste lent. Une peau nette.</span></span></div>
+</section>
+
+<!-- S5 price -->
+<section class="scene" id="s5" style="background:var(--brass);color:var(--ink)">
+  <div class="tag" style="color:var(--ink)"><i></i>Maison Castel</div>
+  <div class="serif" style="position:absolute;left:110px;top:430px;font-size:76px;font-style:italic;line-height:1.05"><span class="ln"><span>Le rasage</span></span><span class="ln"><span>à l’ancienne</span></span></div>
+  <div class="serif" id="price" style="position:absolute;left:100px;top:700px;font-size:470px;line-height:1;letter-spacing:-.02em"><span class="ln"><span><b id="pn" style="font-weight:400">0</b>&nbsp;€</span></span></div>
+  <div id="chip" style="position:absolute;left:110px;top:1240px;background:var(--ink);color:var(--cream);font-size:64px;letter-spacing:.14em;padding:22px 48px;font-weight:600;text-transform:uppercase">40 min pour toi</div>
+  <div id="inc" style="position:absolute;left:110px;top:1400px;width:860px;font-size:42px;letter-spacing:.06em;line-height:1.35;text-transform:uppercase;font-weight:400">Serviette chaude · blaireau · coupe-chou</div>
+</section>
+
+<!-- S6 end -->
+<section class="scene" id="s6" style="background:var(--ink);color:var(--cream)">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(193,154,75,.22),transparent 65%)"></div>
+  <svg id="logo" style="position:absolute;left:400px;top:250px" width="280" height="280" viewBox="0 0 280 280">
+    <circle cx="140" cy="140" r="128" fill="none" stroke="#c19a4b" stroke-width="5"/>
+    <circle cx="140" cy="140" r="112" fill="none" stroke="#c19a4b" stroke-width="2"/>
+    <text x="140" y="172" text-anchor="middle" font-family="DM Serif Display" font-size="104" fill="#f1e6cf">MC</text>
+    <text x="140" y="80" text-anchor="middle" font-family="Oswald" font-weight="600" font-size="20" letter-spacing="6" fill="#c19a4b">DEPUIS 2011</text>
+    <path d="M95 205 L185 205" stroke="#c19a4b" stroke-width="3"/>
+  </svg>
+  <div id="wm" style="position:absolute;left:0;width:1080px;top:565px;text-align:center;font-size:58px;letter-spacing:.34em;font-weight:600;padding-left:.34em">MAISON CASTEL</div>
+  <div id="wm2" style="position:absolute;left:0;width:1080px;top:640px;text-align:center;font-size:30px;letter-spacing:.3em;color:var(--brass);padding-left:.3em">BARBIER · CROIX-ROUSSE</div>
+  <div class="serif" id="cta1" style="position:absolute;left:90px;width:900px;top:800px;text-align:center;font-size:118px;line-height:1.02"><span class="ln"><span>Ton fauteuil</span></span><span class="ln"><span style="font-style:italic;color:var(--brass)">t’attend.</span></span></div>
+  <div id="btn" style="position:absolute;left:170px;width:800px;top:1130px;background:var(--brass);color:var(--ink);text-align:center;font-size:60px;letter-spacing:.06em;font-weight:600;padding:30px 0">maisoncastel.fr</div>
+  <div id="info" style="position:absolute;left:90px;width:900px;top:1290px;text-align:center;font-size:38px;line-height:1.5;letter-spacing:.05em"><div>Prends RDV en ligne · 40 min</div><div style="color:var(--brass)">12 rue d’Austerlitz · 69004 Lyon</div><div>Mardi–samedi · 9h–19h</div></div>
+</section>
+
+<svg class="grain" id="grain"><rect width="100%" height="100%" filter="url(#noise)"/></svg>
+<div class="vig"></div>
+<style>.fs{position:absolute;left:0;width:100%;height:110px;background:#fffaf0;box-shadow:inset 0 -8px 0 #ded2b8;border-top:4px solid #14100d;border-bottom:4px solid #14100d;clip-path:inset(0 0 0 0)}</style>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../node_modules/gsap/dist/DrawSVGPlugin.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+gsap.registerPlugin(DrawSVGPlugin);
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const D=21, tl=gsap.timeline({paused:true});
+window.KLIPT={width:1080,height:1920,fps:30,duration:D,render(t){tl.seek(t,false)}};
+
+// foam bubbles
+const r=KK.rng(11), foam=$('#foam'), NS='http://www.w3.org/2000/svg', bubbles=[];
+for(let i=0;i<26;i++){const a=r()*Math.PI, rad=r()*200, cx=350+Math.cos(a)*rad*1.0, cy=255-Math.sin(a)*rad*.32-r()*20, R=34+r()*32;
+ const c=document.createElementNS(NS,'circle');c.setAttribute('cx',cx);c.setAttribute('cy',cy);c.setAttribute('r',R);foam.appendChild(c);bubbles.push(c);}
+gsap.set(bubbles,{scale:0,transformOrigin:'center bottom',transformBox:'fill-box'});
+
+// persistent
+tl.fromTo('#poleIn',{y:0},{y:-1100,duration:D,ease:'none'},0);
+tl.fromTo('#grain',{x:0,y:0},{x:-60,y:-50,duration:D,ease:'steps(84)'},0);
+
+// scene wipes: each next scene sweeps up over the previous one
+const starts={s2:3.5,s3:7.4,s4:11.3,s5:15.0,s6:17.9};
+Object.entries(starts).forEach(([id,t0],i)=>{
+  gsap.set('#'+id,{clipPath:'inset(100% 0 0 0)',zIndex:i+2});
+  tl.to('#'+id,{clipPath:'inset(0% 0 0 0)',duration:.6,ease:'expo.inOut'},t0);
+});
+gsap.set('#s1',{zIndex:1});
+
+const up=(sel,t0,st=.09,d=.85)=>tl.from(sel,{yPercent:115,duration:d,ease:'expo.out',stagger:st},t0);
+
+// S1 hook (motion from frame 0)
+tl.fromTo('#s1 .tag',{opacity:0,x:-30},{opacity:1,x:0,duration:.5,ease:'power3.out'},0);
+up('#s1 .h .ln>span',0.05,.16,.9);
+tl.from('#s1pill',{x:-60,opacity:0,duration:.6,ease:'expo.out'},1.5);
+tl.from('#s1sub',{y:30,opacity:0,duration:.7,ease:'power3.out'},2.0);
+tl.fromTo('#s1raz',{x:200,rotation:12,opacity:0},{x:0,rotation:0,opacity:.9,duration:1.1,ease:'expo.out'},.3);
+tl.to('#s1 .h',{scale:1.05,transformOrigin:'0 50%',duration:3.6,ease:'none'},0);
+
+function head(id,t0){
+  tl.from(id+' .tag',{opacity:0,x:-30,duration:.5,ease:'power3.out'},t0+.35);
+  tl.from(id+' .num',{opacity:0,x:-30,duration:.5,ease:'power3.out'},t0+.45);
+  up(id+' .h .ln>span',t0+.5,.12,.9);
+}
+// S2
+head('#s2',3.5);
+tl.from('#towelbody',{y:120,opacity:0,duration:.9,ease:'back.out(1.4)'},4.3);
+tl.fromTo('.st',{drawSVG:'0% 0%'},{drawSVG:'0% 100%',duration:.9,ease:'power2.out',stagger:.18},5.0);
+tl.to('.st',{drawSVG:'100% 100%',duration:.9,ease:'power2.in',stagger:.18},5.9);
+tl.to('#steam',{y:-40,duration:2.6,ease:'none'},4.9);
+tl.to('#towelbody',{scale:1.04,transformOrigin:'50% 100%',duration:3,ease:'none'},4.9);
+up('#s2 .cap .ln>span',5.6,.1,.8);
+
+// S3
+head('#s3',7.4);
+tl.from('#bowl>path,#bowl>ellipse',{y:80,opacity:0,duration:.8,ease:'expo.out',stagger:.05},8.1);
+tl.fromTo('#brush',{x:260,y:-140,opacity:0},{x:0,y:0,opacity:1,duration:.8,ease:'expo.out'},8.2);
+tl.to(bubbles,{scale:1,duration:.5,ease:'back.out(1.6)',stagger:.06},8.9);
+tl.to('#brush',{x:-70,duration:.45,ease:'sine.inOut',yoyo:true,repeat:5},9.0);
+tl.to('#brush',{y:26,duration:.3,ease:'sine.inOut',yoyo:true,repeat:7},9.0);
+up('#s3 .cap .ln>span',9.3,.12,.8);
+
+// S4
+head('#s4',11.3);
+tl.from('#panel',{y:100,opacity:0,duration:.8,ease:'expo.out'},12.0);
+const tops=[22,170,318];
+tops.forEach((y,i)=>{
+  const s=12.9+i*.75, fs=$$('.fs')[i];
+  tl.set('#razor',{y:900+y+8+ (5)-0-0,x:-360,opacity:1},s);
+  tl.to('#razor',{x:280,duration:.6,ease:'power1.inOut'},s);
+  tl.to(fs,{clipPath:'inset(0 0 0 100%)',duration:.6,ease:'power1.inOut'},s);
+  tl.set('#razor',{opacity:i==2?1:0},s+.62);
+});
+tl.to('#razor',{opacity:0,duration:.3},15.15);
+up('#s4 .cap .ln>span',14.0,.1,.8);
+
+// S5
+tl.from('#s5 .tag',{opacity:0,x:-30,duration:.5},15.4);
+up('#s5 .serif:not(#price) .ln>span',15.5,.1,.8);
+tl.from('#price .ln>span',{yPercent:110,duration:.9,ease:'expo.out'},15.7);
+const pv={v:0};
+tl.to(pv,{v:35,duration:1.0,ease:'power2.out',onUpdate(){$('#pn').textContent=Math.round(pv.v)}},15.7);
+tl.from('#chip',{x:-120,opacity:0,duration:.7,ease:'expo.out'},16.5);
+tl.from('#inc',{y:30,opacity:0,duration:.7,ease:'power3.out'},17.0);
+tl.to('#price',{scale:1.03,transformOrigin:'0 50%',duration:2.4,ease:'none'},15.7);
+
+// S6
+tl.from('#logo',{scale:.6,opacity:0,rotation:-20,transformOrigin:'50% 50%',duration:.9,ease:'back.out(1.5)'},18.3);
+tl.from('#wm,#wm2',{opacity:0,y:20,duration:.6,ease:'power3.out',stagger:.12},18.6);
+up('#cta1 .ln>span',18.9,.14,.9);
+tl.from('#btn',{scaleX:0,transformOrigin:'0 50%',duration:.7,ease:'expo.out'},19.5);
+tl.from('#info>div',{opacity:0,y:24,duration:.6,ease:'power3.out',stagger:.15},19.8);
+tl.to('#btn',{scale:1.03,transformOrigin:'50% 50%',duration:.6,ease:'sine.inOut',yoyo:true,repeat:1},20.2);
+tl.to({}, {duration:.01}, D);
+</script></body></html>

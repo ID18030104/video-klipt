@@ -1,0 +1,150 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../node_modules/@fontsource/sora/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/sora/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/inter/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/inter/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/400.css">
+<style>
+:root{--bg:#0B1220;--bg2:#121B30;--card:#18233D;--line:#26355A;--ink:#F3F6FC;--mute:#8FA0C4;--acc:#5BF0B5;--warn:#FF6B5B;--amb:#FFC24D;--blue:#6C8BFF}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1350px;margin:0;overflow:hidden;background:var(--bg);font-family:Inter,sans-serif;color:var(--ink)}
+#stage{position:absolute;inset:0;overflow:hidden;background:radial-gradient(900px 700px at 85% 0%,#1B2C57 0%,transparent 60%),radial-gradient(800px 600px at 0% 100%,#0F3B3A 0%,transparent 60%),var(--bg)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:60px 60px}
+.scene{position:absolute;inset:0;padding:90px 80px;opacity:0}
+h1,h2{font-family:Sora,sans-serif;font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.logo{position:absolute;left:80px;top:60px;display:flex;align-items:center;gap:14px;font-family:Sora;font-weight:800;font-size:34px;z-index:5}
+.logo i{width:38px;height:38px;border-radius:11px;background:var(--acc);display:grid;place-items:center}
+.logo i:after{content:"";width:16px;height:16px;border:5px solid var(--bg);border-top-color:transparent;border-radius:50%}
+.tag{position:absolute;right:80px;top:66px;font-family:'JetBrains Mono';font-size:22px;color:var(--mute);z-index:5}
+.mono{font-family:'JetBrains Mono'}
+/* scene 1 */
+#s1 h1{position:absolute;left:80px;top:190px;font-size:98px;width:920px}
+#s1 h1 em{font-style:normal;color:var(--warn)}
+.inv{position:absolute;left:80px;width:920px;height:118px;border-radius:22px;background:var(--card);border:2px solid var(--line);display:flex;align-items:center;padding:0 34px;gap:26px}
+.inv .n{font-family:'JetBrains Mono';font-size:26px;color:var(--mute);width:150px}
+.inv .c{font-family:Sora;font-weight:600;font-size:32px;flex:1}
+.inv .a{font-family:'JetBrains Mono';font-size:32px}
+.inv .b{font-family:'JetBrains Mono';font-size:22px;padding:10px 16px;border-radius:12px;background:#FF6B5B26;color:var(--warn)}
+/* scene 2 */
+#s2 h2{position:absolute;left:80px;top:180px;font-size:80px;width:920px}
+#s2 h2 span{color:var(--acc)}
+#s2 .sub{position:absolute;left:80px;top:400px;font-size:34px;color:var(--mute);width:900px;line-height:1.35}
+.row{position:absolute;left:80px;width:920px;height:190px;border-radius:26px;background:var(--card);border:2px solid var(--line);padding:26px 34px}
+.row .top{display:flex;justify-content:space-between;align-items:center}
+.row .cl{font-family:Sora;font-weight:600;font-size:34px}
+.row .am{font-family:'JetBrains Mono';font-size:30px;color:var(--mute)}
+.row .bt{display:flex;gap:16px;margin-top:26px;align-items:center}
+.chip{font-family:'JetBrains Mono';font-size:24px;padding:12px 20px;border-radius:14px;display:flex;align-items:center;gap:10px}
+.chip.t{background:#5BF0B520;color:var(--acc)}.chip.w{background:#6C8BFF25;color:#9DB2FF}.chip.z{background:#FFC24D22;color:var(--amb)}
+.ai{position:absolute;right:30px;top:30px}
+/* scene 3 */
+#s3 h2{position:absolute;left:80px;top:170px;font-size:72px;width:920px}
+.mail{position:absolute;left:80px;top:430px;width:920px;height:440px;border-radius:30px;background:#F3F6FC;color:#0B1220;padding:40px 44px;box-shadow:0 40px 100px #0008}
+.mail .h{font-family:'JetBrains Mono';font-size:22px;color:#5b6b8f;line-height:1.7;border-bottom:2px solid #dde4f2;padding-bottom:20px}
+.mail .body{font-size:33px;line-height:1.45;margin-top:26px;font-weight:400}
+.mail .body b{background:#5BF0B5;padding:0 8px;border-radius:8px}
+.tone{position:absolute;left:80px;top:960px;width:920px}
+.tone .lbl{display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:24px;color:var(--mute);margin-bottom:18px}
+.bar{height:16px;border-radius:8px;background:var(--line);position:relative}
+.knob{position:absolute;top:-14px;width:44px;height:44px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 10px #5BF0B530}
+.clock{position:absolute;left:80px;top:1090px;font-family:'JetBrains Mono';font-size:28px;color:var(--acc);display:flex;gap:14px;align-items:center}
+/* scene 4 */
+#s4 h2{position:absolute;left:80px;top:170px;font-size:70px}
+.kpi{position:absolute;left:80px;width:920px;border-radius:34px;padding:44px 50px;display:flex;align-items:center;gap:40px}
+.kpi .big{font-family:Sora;font-weight:800;font-size:190px;letter-spacing:-.05em;line-height:1}
+.kpi .tx{font-size:36px;line-height:1.3;color:var(--ink)}
+.kpi .tx small{display:block;color:var(--mute);font-size:26px;margin-top:10px}
+#k1{top:360px;height:380px;background:linear-gradient(135deg,#5BF0B5,#2FC08C);color:var(--bg)}
+#k1 .tx,#k1 .tx small{color:#0B1220}
+#k2{top:790px;height:380px;background:var(--card);border:2px solid var(--line)}
+#k2 .big{color:var(--acc)}
+/* scene 5 */
+#s5{text-align:center}
+#s5 h1{position:absolute;left:80px;top:300px;width:920px;font-size:104px}
+#s5 h1 span{color:var(--acc)}
+#s5 p{position:absolute;left:80px;top:700px;width:920px;font-size:38px;color:var(--mute)}
+.cta{position:absolute;left:190px;top:820px;width:700px;height:130px;border-radius:65px;background:var(--acc);color:var(--bg);font-family:Sora;font-weight:800;font-size:40px;display:grid;place-items:center}
+.url{position:absolute;left:0;width:1080px;top:1010px;font-family:'JetBrains Mono';font-size:36px;color:var(--ink)}
+.fine{position:absolute;left:0;width:1080px;top:1230px;font-size:24px;color:var(--mute)}
+</style></head><body>
+<div id="stage"><div class="grid"></div>
+<div class="logo"><i></i>Ledgerly</div><div class="tag">relances_intelligentes</div>
+
+<div class="scene" id="s1">
+ <h1>Vos factures impayées <em>dorment</em> dans la boîte mail.</h1>
+ <div class="inv" style="top:660px"><span class="n">#2024-118</span><span class="c">Atelier Morel</span><span class="a">4 800 €</span><span class="b">+34 j</span></div>
+ <div class="inv" style="top:800px"><span class="n">#2024-121</span><span class="c">Groupe Vasseur</span><span class="a">12 350 €</span><span class="b">+21 j</span></div>
+ <div class="inv" style="top:940px"><span class="n">#2024-127</span><span class="c">Boulangerie Lenoir</span><span class="a">960 €</span><span class="b">+12 j</span></div>
+ <div class="inv" style="top:1080px"><span class="n">#2024-130</span><span class="c">Studio Kaplan</span><span class="a">7 200 €</span><span class="b">+9 j</span></div>
+</div>
+
+<div class="scene" id="s2">
+ <h2>Relances <span>intelligentes</span></h2>
+ <p class="sub">L’IA choisit le bon moment et le bon ton pour chaque client.</p>
+ <div class="row" style="top:560px"><div class="top"><span class="cl">Atelier Morel</span><span class="am">4 800 €</span></div><div class="bt"><span class="chip t">ton : chaleureux</span><span class="chip w">mar. 9h12</span><span class="chip z">e-mail</span></div></div>
+ <div class="row" style="top:780px"><div class="top"><span class="cl">Groupe Vasseur</span><span class="am">12 350 €</span></div><div class="bt"><span class="chip t">ton : ferme</span><span class="chip w">jeu. 14h30</span><span class="chip z">e-mail + SMS</span></div></div>
+ <div class="row" style="top:1000px"><div class="top"><span class="cl">Boulangerie Lenoir</span><span class="am">960 €</span></div><div class="bt"><span class="chip t">ton : amical</span><span class="chip w">lun. 8h05</span><span class="chip z">SMS</span></div></div>
+</div>
+
+<div class="scene" id="s3">
+ <h2>Le bon message,<br>au bon moment.</h2>
+ <div class="mail"><div class="h">À : compta@atelier-morel.fr<br>Objet : Petit rappel pour la facture #2024-118</div>
+ <div class="body" id="mb"></div></div>
+ <div class="tone"><div class="lbl"><span>chaleureux</span><span>ferme</span></div><div class="bar"><div class="knob" id="kn"></div></div></div>
+ <div class="clock">● envoi programmé · mar. 9h12</div>
+</div>
+
+<div class="scene" id="s4">
+ <h2>Résultat moyen constaté</h2>
+ <div class="kpi" id="k1"><div class="big">−<span id="n1">0</span>%</div><div class="tx">de retards de paiement<small>moyenne clients Ledgerly</small></div></div>
+ <div class="kpi" id="k2"><div class="big"><span id="n2">0</span> j</div><div class="tx">gagnés sur le DSO<small>trésorerie encaissée plus tôt</small></div></div>
+</div>
+
+<div class="scene" id="s5">
+ <h1>Encaissez plus tôt.<br><span>Relancez moins.</span></h1>
+ <p>Connecté à votre compta. Prêt en quelques minutes.</p>
+ <div class="cta" id="cta">Essai gratuit 14 jours</div>
+ <div class="url">ledgerly.io</div>
+ <div class="fine">Sans carte bancaire</div>
+</div>
+</div>
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+const tl=gsap.timeline({paused:true});
+const E="power3.out";
+function scene(id,a,b){tl.fromTo(id,{opacity:0},{opacity:1,duration:.35},a);tl.to(id,{opacity:0,duration:.4,ease:"power2.in"},b-.4);}
+scene("#s1",0,4.6);scene("#s2",4.6,10);scene("#s3",10,15);scene("#s4",15,19.2);scene("#s5",19.2,23);
+// s1
+tl.from("#s1 h1",{y:60,opacity:0,duration:.8,ease:E},.2);
+tl.from("#s1 .inv",{x:140,opacity:0,duration:.6,stagger:.25,ease:E},1);
+tl.from("#s1 .b",{scale:0,duration:.4,stagger:.25,ease:"back.out(3)"},1.5);
+// s2
+tl.from("#s2 h2",{y:60,opacity:0,duration:.7,ease:E},4.8);
+tl.from("#s2 .sub",{y:30,opacity:0,duration:.6,ease:E},5.3);
+tl.from("#s2 .row",{y:80,opacity:0,duration:.6,stagger:.35,ease:E},6);
+tl.from("#s2 .chip",{scale:.6,opacity:0,duration:.35,stagger:.12,ease:"back.out(2)"},6.4);
+// s3
+tl.from("#s3 h2",{y:60,opacity:0,duration:.7,ease:E},10.2);
+tl.from("#s3 .mail",{y:100,opacity:0,duration:.7,ease:E},10.6);
+const txt="Bonjour, un petit rappel : la facture #2024-118 de 4 800 € est arrivée à échéance il y a 34 jours. Pourriez-vous nous confirmer la date de virement ? Merci !";
+const mb=document.getElementById("mb");const o={p:0};
+tl.to(o,{p:1,duration:2.6,ease:"none",onUpdate(){mb.textContent=txt.slice(0,Math.round(o.p*txt.length));}},11.2);
+tl.from(".tone",{opacity:0,y:30,duration:.5},11.4);
+tl.fromTo("#kn",{left:"90%"},{left:"14%",duration:1.6,ease:"power2.inOut"},12.4);
+tl.from(".clock",{opacity:0,x:-30,duration:.5},13.8);
+// s4
+tl.from("#s4 h2",{y:50,opacity:0,duration:.6,ease:E},15.1);
+tl.from("#k1",{y:100,opacity:0,duration:.7,ease:E},15.5);
+tl.from("#k2",{y:100,opacity:0,duration:.7,ease:E},16.4);
+const c1={v:0},c2={v:0};
+tl.to(c1,{v:38,duration:1.5,ease:"power2.out",onUpdate(){n1.textContent=Math.round(c1.v)}},15.7);
+tl.to(c2,{v:11,duration:1.4,ease:"power2.out",onUpdate(){n2.textContent=Math.round(c2.v)}},16.6);
+// s5
+tl.from("#s5 h1",{y:60,opacity:0,duration:.8,ease:E},19.4);
+tl.from("#s5 p",{opacity:0,y:30,duration:.6},20.1);
+tl.from("#cta",{scale:.6,opacity:0,duration:.6,ease:"back.out(2)"},20.6);
+tl.to("#cta",{scale:1.05,duration:.5,yoyo:true,repeat:3,ease:"sine.inOut"},21.3);
+tl.from(".url,.fine",{opacity:0,duration:.5,stagger:.2},21);
+window.KLIPT={width:1080,height:1350,fps:30,duration:23,render(t){tl.seek(t,false);}};
+</script></body></html>

@@ -1,0 +1,3 @@
+{"id":"k169","brand":"Ledgerly","sector":"SaaS B2B (fintech)","kind":"video","format":"1080x1350","duration":23,"slides":null,
+"title":"Relances intelligentes","concept":"Dark navy UI-driven explainer with mint accent: overdue invoices pile up, the AI picks tone and send time per client, a typed e-mail shows the tone slider, then -38% late payments and 11 days DSO proof and a 14-day trial CTA.",
+"techniques":["gsap","ui-mockup","counter-animation","typewriter"],"fonts":["Sora","Inter","JetBrains Mono"],"palette":["#0B1220","#18233D","#5BF0B5","#FF6B5B","#F3F6FC"],"copy_language":"fr"}

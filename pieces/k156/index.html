@@ -1,0 +1,395 @@
+<!doctype html>
+<!--
+DIRECTION — Garnier & Fils, carrousel « 5 signes »
+Concept : un guide d'atelier, clair et rassurant, comme une fiche technique d'artisan. Un même chauffe-eau
+  dessiné au trait revient de slide en slide ; un tuyau de cuivre continu traverse tout le carrousel (continuité au swipe).
+Palette : crème papier #F2EADB (dominant), bleu marine #15294A (texte, structure), cuivre #C56A2B (accent),
+  ocre #E2A63A (numéros, surlignage), brique #B23A2A (alerte, très rare).
+Typo : Archivo Black (titres, chiffres) + Figtree 500/700/800 (texte), tailles 150 / 84 / 44 / 34 / 30.
+Graphisme : illustrations techniques au trait marine, badges « depuis 1987 », encadrés « Pourquoi / À faire », grain papier.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../node_modules/@fontsource/archivo-black/index.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/800.css">
+<style>
+:root{--paper:#F2EADB;--paper2:#E9DEC9;--navy:#15294A;--navy2:#22395F;--cu:#C56A2B;--ochre:#E2A63A;--brick:#B23A2A;--ink:#15294A;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;margin:0;overflow:hidden;background:var(--paper)}
+body{font-family:'Figtree',sans-serif;font-weight:500;color:var(--ink);-webkit-font-smoothing:antialiased}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--paper)}
+.slide.dark{background:var(--navy);color:var(--paper)}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.07;mix-blend-mode:multiply;z-index:50}
+.dark .grain{opacity:.10;mix-blend-mode:screen}
+.grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(21,41,74,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(21,41,74,.045) 1px,transparent 1px);background-size:54px 54px;}
+.dark .grid{background-image:linear-gradient(rgba(242,234,219,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(242,234,219,.05) 1px,transparent 1px)}
+/* header */
+.hdr{position:absolute;top:56px;left:72px;right:72px;height:72px;display:flex;align-items:center;justify-content:space-between;z-index:5}
+.brand{display:flex;align-items:center;gap:18px}
+.brand .wm{font-family:'Archivo Black';font-size:31px;letter-spacing:-.3px;line-height:1}
+.brand .sub{font-weight:700;font-size:19px;letter-spacing:2.6px;text-transform:uppercase;opacity:.72;margin-top:6px}
+.pg{font-family:'Archivo Black';font-size:26px;letter-spacing:1px}
+.pg b{color:var(--cu);font-weight:400}
+.dark .pg b{color:var(--ochre)}
+/* pipe + footer */
+.pipe{position:absolute;left:0;top:1176px;width:1080px;height:60px;z-index:4}
+.ftr{position:absolute;left:72px;right:72px;top:1262px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:26px;z-index:5}
+.ftr .dots{display:flex;gap:10px}
+.ftr .dots i{display:block;width:12px;height:12px;border-radius:50%;background:currentColor;opacity:.22}
+.ftr .dots i.on{opacity:1;background:var(--cu);width:34px;border-radius:6px}
+.dark .ftr .dots i.on{background:var(--ochre)}
+/* signal slides */
+.kick{display:inline-flex;align-items:center;gap:14px;font-weight:800;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:var(--cu)}
+.kick:before{content:"";width:36px;height:4px;background:var(--cu);border-radius:2px}
+.num{position:absolute;font-family:'Archivo Black';font-size:260px;line-height:.8;color:transparent;-webkit-text-stroke:4px var(--ochre);letter-spacing:-8px}
+h1,h2{font-family:'Archivo Black';font-weight:400;letter-spacing:-1.5px;line-height:1.02}
+h2{font-size:76px}
+.hl{background:linear-gradient(transparent 62%,rgba(226,166,58,.55) 62%, rgba(226,166,58,.55) 92%,transparent 92%);padding:0 4px}
+.cards{position:absolute;left:72px;right:72px;display:flex;flex-direction:column;gap:22px}
+.card{border-radius:22px;padding:30px 36px 32px 36px;display:flex;gap:26px;align-items:flex-start}
+.card .ic{flex:0 0 64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.card .ic svg{width:34px;height:34px}
+.card .lb{font-weight:800;font-size:22px;letter-spacing:2.6px;text-transform:uppercase;margin-bottom:8px}
+.card p{font-size:32px;line-height:1.3}
+.card p strong{font-weight:800}
+.why{background:rgba(21,41,74,.06);border:2px solid rgba(21,41,74,.10)}
+.why .ic{background:var(--paper);border:3px solid var(--navy)}
+.why .lb{color:var(--navy2);opacity:.75}
+.todo{background:var(--navy);color:var(--paper);box-shadow:0 18px 40px -18px rgba(21,41,74,.55)}
+.todo .ic{background:var(--ochre)}
+.todo .lb{color:var(--ochre)}
+.ill{position:absolute}
+</style>
+</head>
+<body>
+
+<!-- ================= 01 HOOK ================= -->
+<section class="slide" data-n="1">
+  <div class="grid"></div>
+  <div style="position:absolute;left:72px;top:196px;width:610px">
+    <div class="kick">Guide pratique · Chauffe-eau</div>
+    <h1 style="font-size:92px;margin-top:30px;line-height:1">5&nbsp;signes que votre <span style="white-space:nowrap">chauffe-eau</span> va <span style="color:var(--cu)">lâcher</span></h1>
+    <p style="font-size:38px;font-weight:700;line-height:1.25;margin-top:28px;max-width:560px">…et quoi faire <span class="hl">avant la douche froide.</span></p>
+  </div>
+  <!-- heater with numbered callouts -->
+  <svg class="ill" style="left:600px;top:190px" width="440" height="960" viewBox="0 0 440 960">
+    <defs>
+      <linearGradient id="tankG" x1="0" x2="1"><stop offset="0" stop-color="#FFFDF8"/><stop offset=".55" stop-color="#F7F0E2"/><stop offset="1" stop-color="#E4D7BF"/></linearGradient>
+      <linearGradient id="cuG" x1="0" x2="1"><stop offset="0" stop-color="#9E4F1C"/><stop offset=".4" stop-color="#E08A45"/><stop offset="1" stop-color="#A5531F"/></linearGradient>
+    </defs>
+    <!-- shadow -->
+    <ellipse cx="200" cy="930" rx="150" ry="14" fill="#15294A" opacity=".12"/>
+    <!-- tank -->
+    <rect x="70" y="40" width="260" height="640" rx="90" fill="url(#tankG)" stroke="#15294A" stroke-width="7"/>
+    <path d="M86 150 H314" stroke="#15294A" stroke-width="3" opacity=".25"/>
+    <path d="M86 580 H314" stroke="#15294A" stroke-width="3" opacity=".25"/>
+    <!-- plaque signalétique -->
+    <rect x="140" y="200" width="120" height="84" rx="8" fill="#15294A"/>
+    <rect x="154" y="216" width="70" height="7" rx="3" fill="#F2EADB" opacity=".9"/>
+    <rect x="154" y="234" width="92" height="6" rx="3" fill="#F2EADB" opacity=".5"/>
+    <rect x="154" y="250" width="56" height="6" rx="3" fill="#F2EADB" opacity=".5"/>
+    <rect x="154" y="266" width="80" height="6" rx="3" fill="#E2A63A"/>
+    <!-- thermostat -->
+    <circle cx="200" cy="470" r="40" fill="#F2EADB" stroke="#15294A" stroke-width="6"/>
+    <path d="M200 470 L222 446" stroke="#C56A2B" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="200" cy="470" r="7" fill="#15294A"/>
+    <!-- pipes -->
+    <rect x="128" y="680" width="22" height="120" fill="url(#cuG)"/>
+    <rect x="250" y="680" width="22" height="160" fill="url(#cuG)"/>
+    <!-- robinet on hot (left) -->
+    <path d="M139 800 V830 Q139 850 119 850 H60" stroke="url(#cuG)" stroke-width="22" fill="none"/>
+    <rect x="30" y="834" width="34" height="34" rx="6" fill="#15294A"/>
+    <path d="M47 872 q-7 14 0 20 q7-6 0-20z" fill="#C56A2B"/>
+    <!-- groupe de sécurité on cold (right) -->
+    <rect x="232" y="740" width="58" height="56" rx="10" fill="#15294A"/>
+    <rect x="286" y="752" width="46" height="14" rx="7" fill="#E2A63A"/>
+    <path d="M261 796 V830" stroke="#15294A" stroke-width="10"/>
+    <path d="M241 830 H281 L271 866 H251Z" fill="#15294A" opacity=".85"/>
+    <path d="M261 876 q-8 15 0 22 q8-7 0-22z" fill="#5A8BC2"/>
+    <!-- meter/bolt for facture -->
+    <!-- callouts -->
+    <g font-family="Archivo Black" font-size="30" text-anchor="middle">
+      <g><line x1="46" y1="820" x2="20" y2="760" stroke="#15294A" stroke-width="3" stroke-dasharray="6 6"/><circle cx="20" cy="738" r="28" fill="#E2A63A" stroke="#15294A" stroke-width="4"/><text x="20" y="749" fill="#15294A">1</text></g>
+      <g><line x1="330" y1="580" x2="376" y2="580" stroke="#15294A" stroke-width="3" stroke-dasharray="6 6"/><circle cx="404" cy="580" r="28" fill="#E2A63A" stroke="#15294A" stroke-width="4"/><text x="404" y="591" fill="#15294A">2</text></g>
+      <g><line x1="332" y1="760" x2="380" y2="700" stroke="#15294A" stroke-width="3" stroke-dasharray="6 6"/><circle cx="398" cy="678" r="28" fill="#E2A63A" stroke="#15294A" stroke-width="4"/><text x="398" y="689" fill="#15294A">3</text></g>
+      <g><line x1="260" y1="242" x2="380" y2="242" stroke="#15294A" stroke-width="3" stroke-dasharray="6 6"/><circle cx="404" cy="242" r="28" fill="#E2A63A" stroke="#15294A" stroke-width="4"/><text x="404" y="253" fill="#15294A">4</text></g>
+      <g><line x1="240" y1="470" x2="376" y2="440" stroke="#15294A" stroke-width="3" stroke-dasharray="6 6"/><circle cx="404" cy="434" r="28" fill="#E2A63A" stroke="#15294A" stroke-width="4"/><text x="404" y="445" fill="#15294A">5</text></g>
+    </g>
+    <!-- sound marks -->
+    <path d="M55 540 q-14 18 0 36 M38 528 q-24 30 0 60" stroke="#C56A2B" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </svg>
+  <!-- badge -->
+  <div style="position:absolute;left:72px;top:930px;display:flex;align-items:center;gap:22px">
+    <svg width="150" height="150" viewBox="0 0 150 150">
+      <defs><path id="circ" d="M75 75 m-56 0 a56 56 0 1 1 112 0 a56 56 0 1 1 -112 0"/></defs>
+      <circle cx="75" cy="75" r="72" fill="#15294A"/>
+      <circle cx="75" cy="75" r="64" fill="none" stroke="#E2A63A" stroke-width="2" stroke-dasharray="3 5"/>
+      <text font-family="Figtree" font-weight="800" font-size="14.5" letter-spacing="3.2" fill="#F2EADB"><textPath href="#circ">PLOMBIERS À NANTES · 3 GÉNÉRATIONS ·</textPath></text>
+      <text x="75" y="70" text-anchor="middle" font-family="Figtree" font-weight="800" font-size="15" letter-spacing="2" fill="#E2A63A">DEPUIS</text>
+      <text x="75" y="100" text-anchor="middle" font-family="Archivo Black" font-size="31" fill="#F2EADB">1987</text>
+    </svg>
+    <p style="font-size:30px;line-height:1.3;font-weight:700;max-width:330px">Les conseils de nos 9&nbsp;techniciens, sur le terrain 7j/7.</p>
+  </div>
+  <div class="swipe" style="position:absolute;left:72px;top:1110px;font-weight:800;font-size:28px;letter-spacing:2px;text-transform:uppercase;color:var(--cu);display:flex;align-items:center;gap:14px;z-index:6">Glissez pour les voir <svg width="56" height="24" viewBox="0 0 56 24"><path d="M2 12 H50 M40 3 L51 12 L40 21" stroke="#C56A2B" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+</section>
+
+<!-- ================= 02 EAU TIEDE / ROUILLEE ================= -->
+<section class="slide" data-n="2">
+  <div class="grid"></div>
+  <div class="num" style="left:60px;top:176px">01</div>
+  <svg class="ill" style="left:640px;top:170px" width="380" height="420" viewBox="0 0 380 420">
+    <defs><linearGradient id="cuG2" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#E08A45"/><stop offset="1" stop-color="#9E4F1C"/></linearGradient>
+    <linearGradient id="rust" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#8FB7DE"/><stop offset=".5" stop-color="#C8905A"/><stop offset="1" stop-color="#9A4F22"/></linearGradient></defs>
+    <!-- wall pipe -->
+    <rect x="0" y="60" width="150" height="34" fill="url(#cuG2)"/>
+    <!-- tap body -->
+    <rect x="140" y="40" width="90" height="74" rx="18" fill="#15294A"/>
+    <rect x="160" y="10" width="50" height="34" rx="8" fill="#15294A"/>
+    <rect x="130" y="0" width="110" height="18" rx="9" fill="#C56A2B"/>
+    <path d="M230 64 H290 Q320 64 320 94 V130" stroke="#15294A" stroke-width="34" fill="none" stroke-linecap="round"/>
+    <!-- water stream -->
+    <path d="M308 150 Q320 190 312 250 Q306 300 322 340" stroke="url(#rust)" stroke-width="18" fill="none" stroke-linecap="round"/>
+    <path d="M300 370 q-12 22 0 30 q12-8 0-30z" fill="#9A4F22"/>
+    <path d="M338 350 q-9 16 0 22 q9-6 0-22z" fill="#C8905A"/>
+    <!-- thermometer -->
+    <g transform="translate(40 150)">
+      <rect x="0" y="0" width="150" height="250" rx="20" fill="#FFFDF8" stroke="#15294A" stroke-width="5"/>
+      <rect x="60" y="28" width="30" height="120" rx="15" fill="none" stroke="#15294A" stroke-width="5"/>
+      <rect x="68" y="98" width="14" height="50" rx="7" fill="#E2A63A"/>
+      <circle cx="75" cy="160" r="24" fill="#E2A63A" stroke="#15294A" stroke-width="5"/>
+      <text x="75" y="203" text-anchor="middle" font-family="Archivo Black" font-size="0" fill="#15294A"></text>
+      <path d="M100 50 h14 M100 80 h14 M100 110 h14 M100 140 h14" stroke="#15294A" stroke-width="4"/>
+      <text x="75" y="230" text-anchor="middle" font-family="Archivo Black" font-size="30" fill="#C56A2B">38&#8239;°C</text>
+    </g>
+  </svg>
+  <div style="position:absolute;left:72px;top:400px;width:580px">
+    <div class="kick">Signe n°1</div>
+    <h2 style="margin-top:20px;font-size:70px">L’eau sort tiède… <span style="color:var(--cu)">ou rousse</span></h2>
+  </div>
+  <div class="cards" style="top:724px">
+    <div class="card why"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15294A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div><div class="lb">Pourquoi</div><p>Eau tiède&nbsp;: résistance entartrée ou thermostat fatigué. Eau rousse&nbsp;: l’anode est usée, <strong>la cuve rouille.</strong></p></div></div>
+    <div class="card todo"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15294A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <div><div class="lb">À faire</div><p>Faites couler quelques litres d’eau chaude. Toujours rousse&nbsp;? <strong>Faites contrôler la cuve rapidement.</strong></p></div></div>
+  </div>
+</section>
+
+<!-- ================= 03 BRUITS ================= -->
+<section class="slide" data-n="3">
+  <div class="grid"></div>
+  <div class="num" style="left:60px;top:176px">02</div>
+  <svg class="ill" style="left:640px;top:150px" width="380" height="470" viewBox="0 0 380 470">
+    <defs><clipPath id="cut"><rect x="70" y="20" width="240" height="430" rx="80"/></clipPath></defs>
+    <rect x="70" y="20" width="240" height="430" rx="80" fill="#FFFDF8" stroke="#15294A" stroke-width="6"/>
+    <g clip-path="url(#cut)">
+      <rect x="70" y="120" width="240" height="330" fill="#CFE0EE"/>
+      <path d="M70 120 q30 -10 60 0 t60 0 t60 0 t60 0" fill="#CFE0EE"/>
+      <!-- tartre -->
+      <path d="M70 392 q20 -14 40 -4 q22 -16 44 -2 q20 -12 42 0 q24 -18 46 -2 q24 -10 70 -6 V460 H70Z" fill="#D9C7A4"/>
+      <path d="M70 410 q30 -8 60 0 q30 -10 60 -2 q40 -6 60 2 q30 6 60 -2 V460 H70Z" fill="#BFA67B"/>
+      <g fill="#FFFDF8" stroke="#15294A" stroke-width="3"><circle cx="130" cy="360" r="10"/><circle cx="182" cy="330" r="14"/><circle cx="240" cy="352" r="9"/><circle cx="160" cy="280" r="7"/><circle cx="214" cy="250" r="11"/><circle cx="252" cy="296" r="6"/></g>
+      <!-- résistance -->
+      <path d="M120 450 V300 q0 -14 14 -14 h0 q14 0 14 14 V420" stroke="#C56A2B" stroke-width="10" fill="none" stroke-linecap="round"/>
+    </g>
+    <rect x="70" y="20" width="240" height="430" rx="80" fill="none" stroke="#15294A" stroke-width="6"/>
+    <!-- sound waves -->
+    <g stroke="#C56A2B" stroke-width="7" fill="none" stroke-linecap="round">
+      <path d="M330 300 q18 24 0 48"/><path d="M352 280 q34 44 0 88"/>
+      <path d="M50 300 q-18 24 0 48"/><path d="M28 280 q-34 44 0 88"/>
+    </g>
+    <g font-family="Archivo Black" font-size="30" fill="#15294A">
+      
+    </g>
+    <line x1="310" y1="410" x2="360" y2="440" stroke="#15294A" stroke-width="3" stroke-dasharray="5 5"/>
+    <text x="250" y="468" font-family="Figtree" font-weight="800" font-size="22" letter-spacing="2" fill="#15294A">TARTRE</text>
+  </svg>
+  <div style="position:absolute;left:72px;top:400px;width:580px">
+    <div class="kick">Signe n°2</div>
+    <h2 style="margin-top:20px;font-size:70px">Il claque, siffle <span style="color:var(--cu)">ou gronde</span></h2>
+  </div>
+  <div class="cards" style="top:724px">
+    <div class="card why"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15294A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div><div class="lb">Pourquoi</div><p>Le tartre s’accumule au fond de la cuve. L’eau piégée dessous bout et <strong>fait « crépiter » l’appareil.</strong></p></div></div>
+    <div class="card todo"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15294A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <div><div class="lb">À faire</div><p>Moins de 8&nbsp;ans&nbsp;? <strong>Un détartrage peut suffire.</strong> Au-delà, on compare avec le coût d’un remplacement.</p></div></div>
+  </div>
+</section>
+
+<!-- ================= 04 GROUPE DE SECURITE ================= -->
+<section class="slide" data-n="4">
+  <div class="grid"></div>
+  <div class="num" style="left:60px;top:176px">03</div>
+  <div style="position:absolute;left:72px;top:430px;width:940px">
+    <div class="kick">Signe n°3</div>
+    <h2 style="margin-top:22px">Ça goutte sous le <span style="color:var(--cu)">groupe de sécurité</span></h2>
+  </div>
+  <!-- illustration of the valve -->
+  <svg class="ill" style="left:660px;top:150px" width="360" height="300" viewBox="0 0 360 300">
+    <defs><linearGradient id="cuG4" x1="0" x2="1"><stop offset="0" stop-color="#9E4F1C"/><stop offset=".4" stop-color="#E08A45"/><stop offset="1" stop-color="#A5531F"/></linearGradient></defs>
+    <rect x="150" y="0" width="30" height="60" fill="url(#cuG4)"/>
+    <rect x="150" y="190" width="30" height="40" fill="url(#cuG4)"/>
+    <rect x="110" y="56" width="110" height="136" rx="16" fill="#15294A"/>
+    <rect x="124" y="74" width="82" height="10" rx="5" fill="#F2EADB" opacity=".35"/>
+    <path d="M220 96 H320 q14 0 14 14 v0 q0 14 -14 14 H220Z" fill="#E2A63A" stroke="#15294A" stroke-width="4"/>
+    <text x="232" y="118" font-family="Figtree" font-weight="800" font-size="16" letter-spacing="1.5" fill="#15294A">MANETTE</text>
+    <rect x="72" y="118" width="40" height="30" rx="6" fill="#15294A"/>
+    <path d="M140 232 H190 L178 272 H152Z" fill="#15294A" opacity=".85"/>
+    <path d="M165 280 q-9 16 0 22 q9-6 0-22z" fill="#5A8BC2"/>
+  </svg>
+  <div style="position:absolute;left:72px;right:72px;top:640px;display:flex;gap:22px">
+    <div style="flex:1;border-radius:22px;padding:28px 30px;border:3px solid #3F7D58;background:rgba(63,125,88,.08)">
+      <div style="font-weight:800;font-size:22px;letter-spacing:2.6px;color:#2F6B47;text-transform:uppercase;display:flex;gap:10px;align-items:center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2F6B47" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Normal</div>
+      <p style="font-size:31px;line-height:1.28;margin-top:12px">Quelques gouttes <strong style="font-weight:800">pendant la chauffe</strong>&nbsp;: l’eau se dilate, le groupe évacue.</p>
+    </div>
+    <div style="flex:1;border-radius:22px;padding:28px 30px;border:3px solid var(--brick);background:rgba(178,58,42,.07)">
+      <div style="font-weight:800;font-size:22px;letter-spacing:2.6px;color:var(--brick);text-transform:uppercase;display:flex;gap:10px;align-items:center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#B23A2A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>Pas normal</div>
+      <p style="font-size:31px;line-height:1.28;margin-top:12px">Un filet <strong style="font-weight:800">en continu</strong>, même hors chauffe, ou une flaque au sol.</p>
+    </div>
+  </div>
+  <div class="cards" style="top:910px">
+    <div class="card todo"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15294A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <div><div class="lb">À faire</div><p>Actionnez la manette <strong>une fois par mois.</strong> Fuite continue&nbsp;? La pièce se change, appelez-nous.</p></div></div>
+  </div>
+</section>
+
+<!-- ================= 05 AGE ================= -->
+<section class="slide" data-n="5">
+  <div class="grid"></div>
+  <div class="num" style="left:60px;top:176px">04</div>
+  <div style="position:absolute;right:72px;top:190px;text-align:right">
+    <div style="font-family:'Archivo Black';font-size:250px;line-height:.85;letter-spacing:-10px;color:var(--navy)">10<span style="color:var(--cu)">+</span></div>
+    <div style="font-family:'Archivo Black';font-size:52px;letter-spacing:-1px;margin-top:4px">ans au compteur</div>
+  </div>
+  <div style="position:absolute;left:72px;top:470px;width:940px">
+    <div class="kick">Signe n°4</div>
+    <h2 style="margin-top:22px">Il a passé la <span style="color:var(--cu)">dizaine</span></h2>
+  </div>
+  <!-- lifespan bar -->
+  <div style="position:absolute;left:72px;right:72px;top:676px">
+    <div style="display:flex;height:34px;border-radius:17px;overflow:hidden;border:3px solid var(--navy)">
+      <div style="flex:10;background:#6F9E7E"></div><div style="flex:5;background:var(--ochre)"></div><div style="flex:3;background:var(--brick)"></div>
+    </div>
+    <div style="position:relative;height:40px;font-family:'Archivo Black';font-size:24px;margin-top:10px">
+      <span style="position:absolute;left:0">0</span>
+      <span style="position:absolute;left:55.5%;transform:translateX(-50%)">10&nbsp;ans</span>
+      <span style="position:absolute;left:83.3%;transform:translateX(-50%)">15&nbsp;ans</span>
+    </div>
+    <div style="position:absolute;left:55.5%;top:-18px;width:4px;height:70px;background:var(--navy);transform:translateX(-50%)"></div>
+  </div>
+  <div class="cards" style="top:772px">
+    <div class="card why" style="padding-top:24px;padding-bottom:26px"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15294A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div><div class="lb">Bon à savoir</div><p>Un ballon électrique dure <strong>10 à 15&nbsp;ans.</strong> Sa date est sur la plaque signalétique, sur le côté.</p></div></div>
+    <div class="card todo" style="padding-top:24px;padding-bottom:26px"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15294A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <div><div class="lb">À faire</div><p>Faites-le contrôler <strong>avant</strong> qu’il ne lâche un dimanche soir.</p></div></div>
+  </div>
+</section>
+
+<!-- ================= 06 FACTURE ================= -->
+<section class="slide" data-n="6">
+  <div class="grid"></div>
+  <div class="num" style="left:60px;top:176px">05</div>
+  <svg class="ill" style="left:620px;top:160px" width="400" height="330" viewBox="0 0 400 330">
+    <rect x="0" y="0" width="400" height="330" rx="22" fill="#FFFDF8" stroke="#15294A" stroke-width="5"/>
+    <text x="28" y="50" font-family="Figtree" font-weight="800" font-size="20" letter-spacing="2.4" fill="#15294A" opacity=".7">FACTURE D’ÉLECTRICITÉ</text>
+    <line x1="28" y1="276" x2="372" y2="276" stroke="#15294A" stroke-width="4"/>
+    <g>
+      <rect x="44" y="196" width="50" height="80" rx="6" fill="#15294A" opacity=".25"/>
+      <rect x="124" y="176" width="50" height="100" rx="6" fill="#15294A" opacity=".4"/>
+      <rect x="204" y="142" width="50" height="134" rx="6" fill="#15294A" opacity=".6"/>
+      <rect x="284" y="92" width="50" height="184" rx="6" fill="#C56A2B"/>
+    </g>
+    <path d="M60 180 L150 158 L230 122 L318 70" stroke="#E2A63A" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="2 12"/>
+    <path d="M300 64 L322 68 L316 90" stroke="#E2A63A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <g font-family="Figtree" font-weight="700" font-size="20" fill="#15294A" text-anchor="middle" opacity=".75"><text x="69" y="306">An 1</text><text x="149" y="306">An 2</text><text x="229" y="306">An 3</text><text x="309" y="306">An 4</text></g>
+  </svg>
+  <div style="position:absolute;left:72px;top:500px;width:940px">
+    <div class="kick">Signe n°5</div>
+    <h2 style="margin-top:22px">La facture grimpe, <span style="color:var(--cu)">sans raison</span></h2>
+  </div>
+  <div class="cards" style="top:708px">
+    <div class="card why"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15294A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div><div class="lb">Pourquoi</div><p>Le tartre isole la résistance&nbsp;: <strong>elle chauffe plus longtemps</strong> pour la même eau chaude.</p></div></div>
+    <div class="card todo"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15294A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <div><div class="lb">À faire</div><p>Comparez vos factures à usage égal et vérifiez le réglage&nbsp;: <strong>55 à 60&nbsp;°C suffisent.</strong></p></div></div>
+  </div>
+</section>
+
+<!-- ================= 07 OFFRE ================= -->
+<section class="slide dark" data-n="7">
+  <div class="grid"></div>
+  <div style="position:absolute;left:72px;top:190px;width:600px">
+    <div class="kick" style="color:var(--ochre)">Un doute&nbsp;? On vient vérifier.</div>
+    <h2 style="font-size:84px;margin-top:24px;color:var(--paper)">Diagnostic chauffe-eau complet</h2>
+  </div>
+  <!-- price tag -->
+  <div style="position:absolute;right:66px;top:176px;width:300px;height:300px;transform:rotate(6deg)">
+    <svg width="300" height="300" viewBox="0 0 300 300" style="position:absolute;inset:0">
+      <path id="star" d="" fill="#E2A63A"/>
+    </svg>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--navy);text-align:center">
+      <div style="font-family:'Archivo Black';font-size:98px;line-height:.9;letter-spacing:-4px">49&nbsp;€</div>
+      <div style="font-weight:800;font-size:23px;letter-spacing:1.5px;text-transform:uppercase;margin-top:12px;line-height:1.2">Offert<br>si remplacement</div>
+    </div>
+  </div>
+  <div style="position:absolute;left:72px;right:72px;top:560px;display:grid;grid-template-columns:1fr 1fr;gap:18px 34px">
+    <div class="chk">Groupe de sécurité</div>
+    <div class="chk">Anode et état de la cuve</div>
+    <div class="chk">Résistance et thermostat</div>
+    <div class="chk">Niveau de tartre</div>
+    <div class="chk" style="grid-column:1/3">Un avis clair&nbsp;: <b style="color:var(--ochre);font-weight:800">réparer ou remplacer</b></div>
+  </div>
+  <div style="position:absolute;left:72px;right:72px;top:790px;background:var(--paper);color:var(--navy);border-radius:26px;padding:34px 40px;display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-weight:800;font-size:22px;letter-spacing:2.6px;text-transform:uppercase;color:var(--cu)">Appelez-nous · 7j/7</div>
+      <div style="font-family:'Archivo Black';font-size:72px;letter-spacing:-1px;line-height:1.05;margin-top:6px">02 40 12 34 56</div>
+      <div style="font-weight:700;font-size:32px;margin-top:6px">garnier-plomberie.fr</div>
+    </div>
+    <div style="width:108px;height:108px;border-radius:50%;background:var(--cu);display:flex;align-items:center;justify-content:center;flex:0 0 108px">
+      <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#F2EADB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+    </div>
+  </div>
+  <div style="position:absolute;left:72px;right:72px;top:1060px;display:flex;justify-content:space-between;font-weight:700;font-size:26px;opacity:.85">
+    <span>Depuis 1987</span><span style="color:var(--ochre)">•</span><span>3 générations</span><span style="color:var(--ochre)">•</span><span>9 techniciens</span><span style="color:var(--ochre)">•</span><span>Nantes et agglo</span>
+  </div>
+</section>
+
+<style>
+.chk{font-size:31px;font-weight:700;display:flex;align-items:center;gap:16px;line-height:1.2}
+.chk:before{content:"";flex:0 0 38px;height:38px;border-radius:10px;background:var(--ochre) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2315294A' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6 9 17l-5-5'/></svg>") center/26px no-repeat}
+</style>
+
+<script>
+window.KLIPT = { width: 1080, height: 1350 };
+(function(){
+  const N = 7;
+  const logo = (dark)=>`<svg width="68" height="68" viewBox="0 0 68 68">
+    <rect x="2" y="2" width="64" height="64" rx="16" fill="${dark?'#F2EADB':'#15294A'}"/>
+    <path d="M34 11 C34 11 16 32 16 43 a18 18 0 0 0 36 0 C52 32 34 11 34 11Z" fill="#E2A63A"/>
+    <path d="M34 30 c5 6 9 10 9 15 a9 9 0 0 1-18 0 c0-3 2-6 4-8 c0 3 2 5 4 5 c-2-4-1-8 1-12z" fill="${dark?'#F2EADB':'#15294A'}"/>
+  </svg>`;
+  const grainSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1.1 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>`;
+  // couplings positions per slide, pipe is continuous across the swipe
+  const joints = [[260,820],[180,700],[420,940],[120,600],[330,860],[240,780],[150,640]];
+  document.querySelectorAll('.slide').forEach((s,i)=>{
+    const dark = s.classList.contains('dark');
+    const n = i+1;
+    s.insertAdjacentHTML('afterbegin', `<div class="hdr"><div class="brand">${logo(dark)}<div><div class="wm">Garnier&nbsp;&amp;&nbsp;Fils</div><div class="sub">Plomberie · Chauffage</div></div></div><div class="pg"><b>${String(n).padStart(2,'0')}</b> / ${String(N).padStart(2,'0')}</div></div>`);
+    const js = joints[i].map(x=>`<rect x="${x}" y="10" width="46" height="40" rx="6" fill="url(#pj${n})" stroke="#6E3310" stroke-width="2"/><line x1="${x+8}" y1="10" x2="${x+8}" y2="50" stroke="#6E3310" stroke-width="2" opacity=".5"/><line x1="${x+38}" y1="10" x2="${x+38}" y2="50" stroke="#6E3310" stroke-width="2" opacity=".5"/>`).join('');
+    // bracket clamps
+    const clamps = [joints[i][0]+180].map(x=>`<rect x="${x}" y="4" width="16" height="52" rx="3" fill="${dark?'#F2EADB':'#15294A'}" opacity=".85"/>`).join('');
+    s.insertAdjacentHTML('beforeend', `<svg class="pipe" viewBox="0 0 1080 60"><defs><linearGradient id="pg${n}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#8E4418"/><stop offset=".3" stop-color="#F0A060"/><stop offset=".55" stop-color="#C56A2B"/><stop offset="1" stop-color="#7A3812"/></linearGradient><linearGradient id="pj${n}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#9A4B1B"/><stop offset=".3" stop-color="#F6B07A"/><stop offset=".6" stop-color="#C9722F"/><stop offset="1" stop-color="#6E3310"/></linearGradient></defs><rect x="0" y="17" width="1080" height="26" fill="url(#pg${n})"/>${js}${clamps}</svg>`);
+    const dots = Array.from({length:N},(_,k)=>`<i class="${k===i?'on':''}"></i>`).join('');
+    const left = n===N ? 'Diagnostic à 49&nbsp;€' : 'Dépannage 7j/7 · Nantes';
+    s.insertAdjacentHTML('beforeend', `<div class="ftr"><span>${left}</span><div class="dots">${dots}</div><span>garnier-plomberie.fr</span></div>`);
+    s.insertAdjacentHTML('beforeend', `<img class="grain" src="data:image/svg+xml;utf8,${encodeURIComponent(grainSVG)}">`);
+  });
+  // price star burst
+  const st = document.getElementById('star');
+  if(st){ let d=''; const P=22, R=150, r=132; for(let k=0;k<P*2;k++){const a=Math.PI*k/P - Math.PI/2; const rr=k%2?r:R; d+=(k?'L':'M')+(150+rr*Math.cos(a)).toFixed(1)+' '+(150+rr*Math.sin(a)).toFixed(1);} st.setAttribute('d',d+'Z'); }
+})();
+</script>
+</body>
+</html>

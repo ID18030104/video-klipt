@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<title>Ledgerly - Relances intelligentes</title>
+<!--
+DIRECTION
+Concept: le retard de paiement comme compteur qui tourne -> l'IA qui choisit moment + ton -> preuve chiffree -> CTA.
+Palette: encre #0B1220, papier #F4F1EA, menthe #38E0A0 (accent), ambre #FFB020 (alerte), corail #FF5A4E (retard).
+Type: Manrope (titres/UI) + JetBrains Mono (chiffres, references).
+Graphisme: maquettes UI realistes, factures papier, grille de registre comptable, grain.
+Motion: precise, snappy (expo/power3), volets de couleur entre scenes, curseur.
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/700.css">
+<style>
+:root{--ink:#0B1220;--ink2:#151E33;--paper:#F4F1EA;--mint:#38E0A0;--amber:#FFB020;--coral:#FF5A4E;--mut:#8792A8}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1350px;overflow:hidden;background:var(--ink);font-family:'Manrope',sans-serif;color:var(--ink)}
+.scene{position:absolute;inset:0;overflow:hidden}
+.mono{font-family:'JetBrains Mono',monospace;font-weight:500}
+.mask{overflow:hidden;display:block}
+.mask>span{display:block}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 2px,transparent 2px);background-size:100% 54px}
+.grid.l{background-image:linear-gradient(rgba(11,18,32,.07) 2px,transparent 2px)}
+.brandbar{position:absolute;left:70px;top:64px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:38px;letter-spacing:-.02em}
+.brandbar svg{width:48px;height:48px}
+.pg{position:absolute;right:70px;top:74px;font-size:26px;letter-spacing:.06em}
+/* S1 */
+#s1{background:var(--ink);color:var(--paper)}
+#s1 .brandbar{color:var(--paper)}
+.inv{position:absolute;width:420px;height:540px;background:var(--paper);border-radius:10px;padding:34px;color:var(--ink);box-shadow:0 30px 60px rgba(0,0,0,.45)}
+.inv i{display:block;height:12px;background:rgba(11,18,32,.14);border-radius:6px;margin-bottom:18px}
+.inv .t{font-size:26px;font-weight:700;margin-bottom:28px}
+.inv .stamp{position:absolute;right:26px;bottom:56px;border:6px solid var(--coral);color:var(--coral);font-weight:800;font-size:46px;padding:4px 18px;border-radius:8px;transform:rotate(-12deg);letter-spacing:.04em}
+#s1 .ref{position:absolute;left:70px;top:190px;font-size:32px;color:var(--mut)}
+#bigN{position:absolute;left:62px;top:250px;font-size:400px;font-weight:800;letter-spacing:-.06em;line-height:1;color:var(--coral);font-variant-numeric:tabular-nums}
+#s1 .h1{position:absolute;left:70px;top:640px;font-size:112px;font-weight:800;line-height:1;letter-spacing:-.04em}
+#s1 .h2{position:absolute;left:70px;top:1020px;font-size:56px;font-weight:700;line-height:1.15;letter-spacing:-.02em;width:800px}
+#s1 .h2 em{font-style:normal;color:var(--amber)}
+/* S2 */
+#s2{background:var(--paper)}
+.chip{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:var(--mint);font-weight:800;font-size:30px;padding:12px 26px;border-radius:40px;letter-spacing:.02em}
+#s2 .chip{position:absolute;left:70px;top:150px}
+#s2 h2{position:absolute;left:70px;top:240px;font-size:88px;line-height:1;font-weight:800;letter-spacing:-.04em;width:940px}
+#s2 h2 u{text-decoration:none;background:linear-gradient(transparent 62%,var(--mint) 62%,var(--mint) 92%,transparent 92%)}
+.app{position:absolute;left:70px;top:590px;width:940px;height:690px;background:#fff;border-radius:28px;box-shadow:0 40px 80px rgba(11,18,32,.18),0 0 0 2px rgba(11,18,32,.06);overflow:hidden}
+.app .bar{height:72px;background:var(--ink);display:flex;align-items:center;padding:0 28px;gap:12px;color:#fff;font-weight:700;font-size:28px}
+.app .bar b{width:16px;height:16px;border-radius:50%;background:#2B3650}
+.row{position:absolute;left:24px;right:24px;height:120px;border-radius:18px;background:#fff;border:2px solid rgba(11,18,32,.09);display:flex;align-items:center;padding:0 24px;gap:22px}
+.av{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:26px;flex:none}
+.row .n{font-weight:800;font-size:32px;letter-spacing:-.02em}
+.row .s{font-size:26px;color:#5B667C;margin-top:2px}
+.row .am{margin-left:auto;text-align:right;font-size:32px;font-weight:700}
+.pill{display:inline-block;font-size:24px;font-weight:800;padding:5px 16px;border-radius:20px;background:rgba(255,90,78,.14);color:#D63B2F;margin-top:4px}
+.ai{position:absolute;left:24px;right:24px;top:0;background:var(--ink);color:#fff;border-radius:18px;padding:24px 28px;display:flex;gap:22px;align-items:center;box-shadow:0 20px 40px rgba(11,18,32,.3)}
+.ai .k{font-size:22px;color:var(--mut);letter-spacing:.08em;text-transform:uppercase}
+.ai .v{font-size:34px;font-weight:800;letter-spacing:-.02em;margin-top:2px}
+.ai .v em{font-style:normal;color:var(--mint)}
+.ai>div{flex:1}
+.cursor{position:absolute;width:44px;height:44px;left:0;top:0;z-index:20;filter:drop-shadow(0 6px 8px rgba(0,0,0,.35))}
+/* S3 */
+#s3{background:var(--ink);color:var(--paper)}
+#s3 .brandbar{color:var(--paper)}
+#s3 h2{position:absolute;left:70px;top:180px;font-size:88px;line-height:1;font-weight:800;letter-spacing:-.04em;width:940px}
+#s3 h2 em{font-style:normal;color:var(--mint)}
+.tl{position:absolute;left:70px;top:480px;width:940px}
+.line{position:absolute;left:34px;top:30px;width:6px;height:700px;background:#22304D;border-radius:3px}
+.lineF{position:absolute;left:34px;top:30px;width:6px;height:0;background:var(--mint);border-radius:3px}
+.st{position:absolute;left:0;width:940px;height:230px}
+.dot{position:absolute;left:0;top:0;width:74px;height:74px;border-radius:50%;background:var(--ink2);border:6px solid #22304D;display:grid;place-items:center;font-weight:800;font-size:22px}
+.card{position:absolute;left:112px;top:-8px;width:828px;border-radius:22px;padding:26px 30px;background:var(--ink2);border:2px solid #22304D}
+.card .top{display:flex;align-items:center;gap:14px;font-size:24px}
+.tag{font-weight:800;padding:5px 16px;border-radius:20px;font-size:24px}
+.card p{font-size:34px;line-height:1.28;margin-top:14px;font-weight:500;color:#DDE3EF}
+/* S4 */
+#s4{background:var(--mint)}
+#s4 .brandbar{color:var(--ink)}
+.big{position:absolute;left:62px;font-weight:800;letter-spacing:-.06em;line-height:.9;color:var(--ink);font-variant-numeric:tabular-nums}
+.lab{position:absolute;left:70px;font-size:54px;font-weight:800;letter-spacing:-.03em;line-height:1.05;color:var(--ink)}
+.src{position:absolute;left:70px;bottom:70px;font-size:26px;color:rgba(11,18,32,.7)}
+.rule{position:absolute;left:70px;width:940px;height:6px;background:var(--ink);transform-origin:left}
+/* S5 */
+#s5{background:var(--ink);color:var(--paper)}
+#s5 .logo{position:absolute;left:0;right:0;top:250px;display:flex;flex-direction:column;align-items:center;gap:26px}
+#s5 .logo svg{width:170px;height:170px}
+#s5 .logo b{font-size:110px;font-weight:800;letter-spacing:-.04em}
+#s5 .tag2{position:absolute;left:0;right:0;top:640px;text-align:center;font-size:64px;font-weight:800;line-height:1.08;letter-spacing:-.03em}
+#s5 .tag2 em{font-style:normal;color:var(--mint)}
+#s5 .cta{position:absolute;left:120px;right:120px;top:930px;height:130px;border-radius:70px;background:var(--mint);color:var(--ink);display:flex;align-items:center;justify-content:center;gap:20px;font-size:48px;font-weight:800;letter-spacing:-.02em}
+#s5 .url{position:absolute;left:0;right:0;top:1120px;text-align:center;font-size:52px;font-weight:700}
+#s5 .fine{position:absolute;left:0;right:0;top:1210px;text-align:center;font-size:30px;color:var(--mut)}
+#wipe{position:absolute;inset:0;background:var(--mint);z-index:50;transform:translateX(-101%)}
+.grain{position:absolute;inset:0;z-index:60;pointer-events:none;opacity:.07;mix-blend-mode:overlay}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="mark" viewBox="0 0 48 48"><rect width="48" height="48" rx="12" fill="#38E0A0"/><path d="M14 11v20h12" stroke="#0B1220" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M14 38h22" stroke="#0B1220" stroke-width="5" stroke-linecap="round"/><circle cx="33" cy="17" r="4.5" fill="#0B1220"/></symbol>
+<symbol id="markD" viewBox="0 0 48 48"><rect width="48" height="48" rx="12" fill="#0B1220"/><path d="M14 11v20h12" stroke="#38E0A0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M14 38h22" stroke="#38E0A0" stroke-width="5" stroke-linecap="round"/><circle cx="33" cy="17" r="4.5" fill="#38E0A0"/></symbol>
+<filter id="nz"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.2 0"/></filter>
+</defs></svg>
+
+<!-- S1 -->
+<div class="scene" id="s1">
+  <div class="grid"></div>
+  <div class="inv" id="i1" style="left:640px;top:130px;"><div class="t mono">FAC-2024-0187</div><i style="width:80%"></i><i style="width:60%"></i><i style="width:90%"></i><i style="width:45%"></i><i style="width:70%"></i><div class="stamp">IMPAYÉE</div></div>
+  <div class="inv" id="i2" style="left:520px;top:210px;opacity:.9"><div class="t mono">FAC-2024-0175</div><i style="width:70%"></i><i style="width:85%"></i><i style="width:50%"></i><div class="stamp">EN RETARD</div></div>
+  <div class="brandbar"><svg><use href="#mark"/></svg>Ledgerly</div>
+  <div class="ref mono" id="ref" style="position:absolute;left:70px;top:190px;font-size:32px;color:#8792A8">Facture n° 0187 · Atelier Morel</div>
+  <div id="bigN" class="mono" style="font-weight:700">0</div>
+  <div class="h1"><span class="mask"><span id="h1a">jours de retard.</span></span></div>
+  <div class="h2"><span class="mask"><span id="h2a">Relancer, ça prend du temps.</span></span><span class="mask"><span id="h2b">Et ça met <em>mal à l’aise.</em></span></span></div>
+</div>
+
+<!-- S2 -->
+<div class="scene" id="s2">
+  <div class="grid l"></div>
+  <div class="brandbar" style="color:var(--ink)"><svg><use href="#markD"/></svg>Ledgerly</div>
+  <div class="chip" id="chip"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#38E0A0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></svg>NOUVEAU · Relances intelligentes</div>
+  <h2><span class="mask"><span class="l">L’IA choisit</span></span><span class="mask"><span class="l">le bon <u>moment.</u></span></span><span class="mask"><span class="l">Et le bon <u>ton.</u></span></span></h2>
+  <div class="app" id="app">
+    <div class="bar"><b></b><b></b><b></b><span style="margin-left:16px">Créances · 3 factures à relancer</span></div>
+    <div class="row" id="r1" style="top:96px"><div class="av" style="background:#4C6FFF">AM</div><div><div class="n">Atelier Morel</div><div class="s mono">FAC-0187 · échue le 12 sept.</div></div><div class="am">4 280 €<br><span class="pill">+47 j</span></div></div>
+    <div class="row" id="r2" style="top:236px"><div class="av" style="background:#E5773A">BD</div><div><div class="n">Boulangerie Dupuis</div><div class="s mono">FAC-0192 · échue le 28 sept.</div></div><div class="am">960 €<br><span class="pill">+31 j</span></div></div>
+    <div class="row" id="r3" style="top:376px"><div class="av" style="background:#7A4CFF">NT</div><div><div class="n">Nord Toitures</div><div class="s mono">FAC-0201 · échue le 9 oct.</div></div><div class="am">12 750 €<br><span class="pill">+20 j</span></div></div>
+    <div class="ai" id="ai1" style="top:516px"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#38E0A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><div class="k">Meilleur moment</div><div class="v">Mardi <em>9 h 12</em></div></div><div><div class="k">Ton conseillé</div><div class="v"><em>Cordial</em> · e-mail</div></div></div>
+  </div>
+  <svg class="cursor" id="cur" viewBox="0 0 24 24"><path d="M4 3l16 8-7 2-3 7z" fill="#0B1220" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+</div>
+
+<!-- S3 -->
+<div class="scene" id="s3">
+  <div class="grid"></div>
+  <div class="brandbar"><svg><use href="#mark"/></svg>Ledgerly</div>
+  <h2><span class="mask"><span class="l">Chaque client,</span></span><span class="mask"><span class="l"><em>sa</em> relance.</span></span></h2>
+  <div class="tl">
+    <div class="line"></div><div class="lineF" id="lf"></div>
+    <div class="st" id="t1" style="top:0"><div class="dot mono" style="color:var(--mint)">J+3</div><div class="card"><div class="top"><span class="tag" style="background:rgba(56,224,160,.16);color:var(--mint)">Cordial</span><span class="mono" style="color:var(--mut)">e-mail · mar. 9 h 12</span></div><p>Bonjour Marie, un petit rappel pour la facture 0187. Le lien de paiement est ici.</p></div></div>
+    <div class="st" id="t2" style="top:240px"><div class="dot mono" style="color:var(--amber)">J+12</div><div class="card"><div class="top"><span class="tag" style="background:rgba(255,176,32,.16);color:var(--amber)">Ferme</span><span class="mono" style="color:var(--mut)">SMS · jeu. 17 h 40</span></div><p>Marie, la facture 0187 est échue depuis 12 jours. Pouvez-vous régler cette semaine ?</p></div></div>
+    <div class="st" id="t3" style="top:480px"><div class="dot mono" style="color:var(--coral)">J+30</div><div class="card"><div class="top"><span class="tag" style="background:rgba(255,90,78,.16);color:var(--coral)">Dernier avis</span><span class="mono" style="color:var(--mut)">e-mail + appel</span></div><p>Sans règlement sous 48 h, nous engagerons la procédure de recouvrement.</p></div></div>
+  </div>
+</div>
+
+<!-- S4 -->
+<div class="scene" id="s4">
+  <div class="grid l"></div>
+  <div class="brandbar"><svg><use href="#markD"/></svg>Ledgerly</div>
+  <div class="big mono" id="n1" style="top:170px;font-size:330px;font-weight:700">-0&nbsp;%</div>
+  <div class="lab" id="l1" style="top:520px"><span class="mask"><span>de retards de paiement</span></span></div>
+  <div class="rule" id="rl" style="top:690px"></div>
+  <div class="big mono" id="n2" style="top:760px;font-size:330px;font-weight:700">0&nbsp;j</div>
+  <div class="lab" id="l2" style="top:1090px"><span class="mask"><span>gagnés sur votre DSO</span></span></div>
+  <div class="src" id="src">Moyenne constatée chez les clients Ledgerly.</div>
+</div>
+
+<!-- S5 -->
+<div class="scene" id="s5">
+  <div class="grid"></div>
+  <div class="logo" id="lg"><svg><use href="#mark"/></svg><b>Ledgerly</b></div>
+  <div class="tag2" id="tg">Relances intelligentes.<br><em>Encaissez plus tôt.</em></div>
+  <div class="cta" id="cta">Essai gratuit 14 jours <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#0B1220" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+  <div class="url mono" id="url">ledgerly.io</div>
+  <div class="fine" id="fine">Sans carte bancaire · connecté à votre compta</div>
+</div>
+
+<svg class="grain" width="1080" height="1350"><rect width="100%" height="100%" filter="url(#nz)"/></svg>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+const fmt=n=>String(Math.round(n));
+const tl=gsap.timeline({paused:true});
+const E='expo.out',P='power3.out';
+// scene stacking / reveal
+['s2','s3','s4','s5'].forEach((id,i)=>gsap.set('#'+id,{clipPath:'inset(0 0 0 100%)',zIndex:i+2}));
+gsap.set('#s1',{zIndex:1});
+function reveal(id,at,dir){tl.fromTo('#'+id,{clipPath:dir||'inset(0 0 0 100%)'},{clipPath:'inset(0 0 0 0%)',duration:.7,ease:'expo.inOut'},at);}
+
+// S1 0-4.4
+const c={v:0};
+tl.to(c,{v:47,duration:2.6,ease:'power2.out',onUpdate(){document.getElementById('bigN').textContent=fmt(c.v)}},0);
+tl.from('#bigN',{y:60,opacity:0,duration:.5,ease:P},0);
+tl.from('#ref',{opacity:0,x:-30,duration:.5,ease:P},0.1);
+tl.from('#h1a',{yPercent:110,duration:.7,ease:E},0.5);
+tl.from('#i1',{x:500,rotation:14,duration:1.1,ease:E},0.1).to('#i1',{rotation:5,duration:4,ease:'none'},1.2);
+gsap.set('#i1',{rotation:0});
+tl.from('#i2',{x:600,rotation:-10,duration:1.2,ease:E},0.3).to('#i2',{rotation:-4,duration:4,ease:'none'},1.5);
+tl.from('#i1 .stamp',{scale:2.6,opacity:0,duration:.35,ease:'power4.in'},1.3);
+tl.from('#i2 .stamp',{scale:2.6,opacity:0,duration:.35,ease:'power4.in'},1.6);
+tl.from('#h2a',{yPercent:110,duration:.6,ease:E},1.9);
+tl.from('#h2b',{yPercent:110,duration:.6,ease:E},2.3);
+tl.to('#bigN',{scale:1.03,duration:3,ease:'none',transformOrigin:'0 50%'},1.5);
+
+// S2 4.4-10
+reveal('s2',4.4);
+tl.from('#chip',{y:40,opacity:0,duration:.6,ease:P},4.9);
+tl.from('#s2 h2 .l',{yPercent:110,duration:.7,ease:E,stagger:.14},5.0);
+tl.from('#app',{y:260,opacity:0,duration:.9,ease:E},5.3);
+tl.from('#r1,#r2,#r3',{x:60,opacity:0,duration:.5,ease:P,stagger:.12},5.9);
+// cursor
+gsap.set('#cur',{x:900,y:1300,opacity:0});
+tl.set('#cur',{opacity:1},6.6);
+tl.to('#cur',{x:330,y:800,duration:.9,ease:'power2.inOut'},6.6);
+tl.to('#r1',{scale:.98,duration:.1},7.5).to('#r1',{scale:1,borderColor:'#38E0A0',duration:.2},7.6);
+tl.from('#ai1',{y:40,opacity:0,scale:.96,duration:.6,ease:E},7.8);
+tl.to('#cur',{x:600,y:1080,duration:.8,ease:'power2.inOut'},8.0);
+tl.to('#app',{scale:1.03,duration:2.5,ease:'none',transformOrigin:'50% 80%'},7.5);
+tl.to('#chip',{opacity:1},9.9);
+
+// S3 9.9-15.4
+reveal('s3',9.7,'inset(100% 0 0 0)');
+tl.from('#s3 h2 .l',{yPercent:110,duration:.7,ease:E,stagger:.14},10.2);
+[['t1',10.9],['t2',12.2],['t3',13.5]].forEach(([id,at])=>{
+  tl.from('#'+id+' .dot',{scale:0,duration:.4,ease:'back.out(2)'},at);
+  tl.from('#'+id+' .card',{x:120,opacity:0,duration:.6,ease:E},at+.1);
+});
+tl.fromTo('#lf',{height:0},{height:640,duration:3.2,ease:'power1.inOut'},10.9);
+
+// S4 15.4-19.6
+reveal('s4',15.2,'inset(0 100% 0 0)');
+const a={v:0},b={v:0};
+tl.from('#n1',{y:80,opacity:0,duration:.6,ease:P},15.7);
+tl.to(a,{v:38,duration:1.4,ease:'power3.out',onUpdate(){document.getElementById('n1').innerHTML='-'+fmt(a.v)+'&nbsp;%'}},15.7);
+tl.from('#l1 span span',{yPercent:110,duration:.6,ease:E},16.3);
+tl.from('#rl',{scaleX:0,duration:.8,ease:E},16.8);
+tl.from('#n2',{y:80,opacity:0,duration:.6,ease:P},17.1);
+tl.to(b,{v:11,duration:1.3,ease:'power3.out',onUpdate(){document.getElementById('n2').innerHTML=fmt(b.v)+'&nbsp;j'}},17.1);
+tl.from('#l2 span span',{yPercent:110,duration:.6,ease:E},17.7);
+tl.from('#src',{opacity:0,duration:.6},18.4);
+tl.to('#n1,#n2',{scale:1.02,duration:3,ease:'none',transformOrigin:'0 50%'},16.5);
+
+// S5 19.6-24
+reveal('s5',19.4,'inset(100% 0 0 0)');
+tl.from('#lg',{y:50,opacity:0,scale:.9,duration:.8,ease:E},19.9);
+tl.from('#tg',{y:40,opacity:0,duration:.7,ease:P},20.4);
+tl.from('#cta',{scale:.8,opacity:0,duration:.6,ease:'back.out(1.6)'},20.9);
+tl.from('#url',{opacity:0,y:20,duration:.5,ease:P},21.3);
+tl.from('#fine',{opacity:0,duration:.6},21.7);
+tl.to('#cta',{scale:1.03,duration:.9,ease:'sine.inOut',yoyo:true,repeat:1},22.3);
+tl.to('#lg svg',{rotation:0,duration:24-19.9},19.9);
+tl.to({}, {duration:.01},24);
+
+window.KLIPT={width:1080,height:1350,fps:30,duration:24,render(t){tl.seek(t,false);}};
+</script></body></html>

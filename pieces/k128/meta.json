@@ -1,0 +1,6 @@
+{ "id": "k128", "brand": "Garnier & Fils - Plomberie Chauffage", "sector": "PME artisan (plomberie / chauffage)", "kind": "carousel",
+  "format": "1080x1350", "duration": null, "slides": 7,
+  "title": "5 signes que votre chauffe-eau va lâcher",
+  "concept": "Carrousel éducatif au ton artisan-fiable : bleu nuit, cuivre et crème, typo condensée robuste, un signe par slide avec illustration SVG et encart « Que faire ? », puis offre diagnostic à 49 €.",
+  "techniques": ["html-css", "svg-illustration", "carousel-progress-bar"], "fonts": ["Barlow Condensed", "Figtree"], "palette": ["#12263A", "#D9642B", "#F6EFE3", "#3FA7D6", "#F2B33D"],
+  "copy_language": "fr" }

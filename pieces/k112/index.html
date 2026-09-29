@@ -1,0 +1,359 @@
+<!doctype html>
+<!--
+  ART DIRECTION — Garnier & Fils, Plomberie Chauffage (Nantes, depuis 1987)
+  Concept   : "Le carnet du plombier" — un conseil de pro, franc et utile, signé par une maison de famille.
+              Un tuyau cuivre court en bas de chaque slide et se raccorde d'une slide à l'autre (continuité du swipe),
+              pour finir sur un robinet au dernier visuel, là où est l'offre.
+  Palette   : bleu marine #13264A (dominant), crème papier #F3EADB, cuivre #C4652B (accent), rouille #8E3B1C, vert d'eau #5E8C7E (rare)
+  Type      : Archivo Black (titres, chiffres) + Manrope 500/700/800 (texte)
+  Graphique : illustrations SVG techniques au trait (cumulus, groupe de sécurité, robinet), badges, grain papier.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../node_modules/@fontsource/archivo-black/index.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/manrope/800.css">
+<style>
+:root{
+  --navy:#13264A; --navy2:#1C3563; --cream:#F3EADB; --cream2:#E9DCC6; --copper:#C4652B; --copper2:#E08A4C;
+  --rust:#8E3B1C; --sage:#4F7F71; --ink:#13264A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;margin:0;overflow:hidden;background:var(--cream)}
+body{font-family:Manrope,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--cream)}
+.slide.dark{background:var(--navy);color:var(--cream)}
+.grain{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");background-size:240px 240px;pointer-events:none;opacity:.10;mix-blend-mode:multiply;z-index:50}
+.dark .grain{opacity:.16;mix-blend-mode:screen}
+/* faint blueprint grid on cream slides */
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(19,38,74,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(19,38,74,.05) 1px,transparent 1px);background-size:54px 54px}
+.dark .grid{background-image:linear-gradient(rgba(243,234,219,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(243,234,219,.045) 1px,transparent 1px)}
+
+/* header */
+.hdr{position:absolute;top:60px;left:80px;right:80px;height:72px;display:flex;align-items:center;justify-content:space-between;z-index:10}
+.brand{display:flex;align-items:center;gap:18px}
+.brand svg{width:64px;height:64px;flex:none}
+.wm{line-height:1}
+.wm b{display:block;font-family:'Archivo Black';font-weight:400;font-size:30px;letter-spacing:.5px}
+.wm span{display:block;font-weight:700;font-size:17px;letter-spacing:2.6px;text-transform:uppercase;margin-top:7px;opacity:.72}
+.count{font-family:'Archivo Black';font-size:26px;letter-spacing:2px}
+.count i{font-style:normal;opacity:.4}
+
+/* footer + pipe */
+.foot{position:absolute;left:80px;right:80px;top:1188px;display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:24px;letter-spacing:1px;z-index:10}
+.foot .swipe{display:flex;align-items:center;gap:12px;color:var(--copper)}
+.dark .foot .swipe{color:var(--copper2)}
+.foot .swipe svg{width:34px;height:34px}
+.pipe{position:absolute;left:0;top:1236px;width:1080px;height:114px;z-index:5}
+
+/* sign slides */
+.tag{position:absolute;left:80px;top:196px;display:inline-flex;align-items:center;gap:14px;background:var(--navy);color:var(--cream);font-weight:800;font-size:22px;letter-spacing:3px;text-transform:uppercase;padding:12px 22px 12px 16px;border-radius:40px}
+.tag .dot{width:14px;height:14px;border-radius:50%;background:var(--copper2)}
+.dark .tag{background:var(--copper);}
+.dark .tag .dot{background:var(--cream)}
+.bignum{position:absolute;left:72px;top:262px;font-family:'Archivo Black';font-size:170px;line-height:1;color:var(--copper);letter-spacing:-4px}
+.title{position:absolute;left:80px;top:446px;width:560px;font-family:'Archivo Black';font-size:66px;line-height:1.04;letter-spacing:-.5px}
+.illo{position:absolute;right:64px;top:176px;width:400px;height:420px}
+.cards{position:absolute;left:80px;right:80px;top:680px;display:flex;flex-direction:column;gap:22px}
+.card{border-radius:26px;padding:32px 38px 34px;background:var(--cream2);position:relative}
+.card h4{display:flex;align-items:center;gap:12px;font-weight:800;font-size:22px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;color:var(--rust)}
+.card p{font-weight:500;font-size:32px;line-height:1.3}
+.card p strong{font-weight:800}
+.card.do{background:var(--navy);color:var(--cream)}
+.card.do h4{color:var(--copper2)}
+.card.do h4 svg{width:28px;height:28px}
+.dark .card{background:var(--navy2)}
+.dark .card h4{color:var(--copper2)}
+.dark .card.do{background:var(--cream);color:var(--navy)}
+.dark .card.do h4{color:var(--copper)}
+.row{display:flex;gap:22px}
+.row .card{flex:1}
+.card.ok h4{color:var(--sage)}
+
+/* slide 1 */
+.s1 .kicker{position:absolute;left:80px;top:212px;font-weight:800;font-size:24px;letter-spacing:3.5px;text-transform:uppercase;color:var(--copper2)}
+.s1 h1{position:absolute;left:80px;top:262px;width:640px;font-family:'Archivo Black';font-weight:400;font-size:96px;line-height:.98;letter-spacing:-1.5px}
+.s1 h1 em{font-style:normal;color:var(--copper2)}
+.s1 .sub{position:absolute;left:80px;top:700px;width:600px;font-weight:700;font-size:38px;line-height:1.25}
+.s1 .sub span{color:var(--copper2)}
+.s1 .tank{position:absolute;right:-24px;top:400px;width:360px;height:720px}
+.s1 .sig{position:absolute;left:80px;top:1060px;display:flex;align-items:center;gap:16px;font-weight:700;font-size:26px;opacity:.85}
+.s1 .sig .line{width:48px;height:3px;background:var(--copper2)}
+
+/* slide 5 */
+.s5 .huge{position:absolute;left:66px;top:236px;font-family:'Archivo Black';font-size:330px;line-height:.9;letter-spacing:-10px;color:var(--cream)}
+.s5 .huge sup{font-size:190px;color:var(--copper2);vertical-align:top;position:relative;top:-6px;letter-spacing:0}
+.s5 .unit{position:absolute;left:620px;top:282px;font-family:'Archivo Black';font-size:110px;line-height:1;color:var(--copper2)}
+.s5 .title{top:560px;width:900px;font-size:66px}
+.timeline{position:absolute;left:80px;right:80px;top:680px;height:150px}
+.s5 .cards{top:846px}
+
+/* slide 7 */
+.s7 .eyebrow{position:absolute;left:80px;top:196px;font-family:'Archivo Black';font-size:60px;line-height:1.05;width:920px}
+.s7 .eyebrow span{color:var(--copper)}
+.offer{position:absolute;left:80px;right:80px;top:366px;height:452px;border-radius:30px;background:var(--navy);color:var(--cream);overflow:hidden}
+.offer .lbl{position:absolute;left:48px;top:44px;font-weight:800;font-size:24px;letter-spacing:3.5px;text-transform:uppercase;color:var(--copper2)}
+.offer .name{position:absolute;left:48px;top:86px;font-family:'Archivo Black';font-size:52px;line-height:1.05;width:500px}
+.offer .price{position:absolute;right:52px;top:40px;font-family:'Archivo Black';font-size:210px;line-height:1;letter-spacing:-6px;color:var(--cream)}
+.offer .price small{font-size:110px;color:var(--copper2);letter-spacing:0}
+.offer ul{position:absolute;left:48px;top:264px;list-style:none}
+.offer li{display:flex;align-items:center;gap:14px;font-weight:700;font-size:28px;margin-bottom:16px}
+.offer li svg{width:30px;height:30px;flex:none}
+.stamp{position:absolute;right:44px;top:292px;width:220px;height:112px;border:4px solid var(--copper2);border-radius:14px;transform:rotate(-5deg);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--copper2)}
+.stamp b{font-family:'Archivo Black';font-weight:400;font-size:38px;line-height:1}
+.stamp span{font-weight:800;font-size:18px;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+.trust{position:absolute;left:80px;right:80px;top:850px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.trust div{border-top:4px solid var(--navy);padding-top:14px}
+.trust b{display:block;font-family:'Archivo Black';font-weight:400;font-size:44px;line-height:1;color:var(--navy)}
+.trust span{display:block;font-weight:700;font-size:22px;line-height:1.25;margin-top:8px}
+.call{position:absolute;left:80px;right:80px;top:1010px;display:flex;align-items:center;gap:26px}
+.call .ph{width:104px;height:104px;border-radius:50%;background:var(--copper);display:flex;align-items:center;justify-content:center;flex:none}
+.call .ph svg{width:52px;height:52px}
+.call .num{font-family:'Archivo Black';font-size:84px;line-height:1;letter-spacing:-1px}
+.call .url{font-weight:800;font-size:30px;margin-top:10px;color:var(--rust)}
+</style>
+</head>
+<body>
+
+<!-- shared SVG defs -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="noise" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="7" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <linearGradient id="cu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8E3B1C"/><stop offset=".22" stop-color="#E9A06A"/><stop offset=".42" stop-color="#F6C79C"/>
+      <stop offset=".62" stop-color="#C4652B"/><stop offset="1" stop-color="#6E2C13"/>
+    </linearGradient>
+    <linearGradient id="cuV" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8E3B1C"/><stop offset=".22" stop-color="#E9A06A"/><stop offset=".42" stop-color="#F6C79C"/>
+      <stop offset=".62" stop-color="#C4652B"/><stop offset="1" stop-color="#6E2C13"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a2410"/><stop offset=".35" stop-color="#C98050"/><stop offset=".5" stop-color="#E8B48A"/><stop offset="1" stop-color="#4a1d0c"/>
+    </linearGradient>
+    <symbol id="mark" viewBox="0 0 64 64">
+      <rect x="2" y="2" width="60" height="60" rx="14" fill="#C4652B"/>
+      <path d="M32 11c-7 10-15 17.5-15 27a15 15 0 0 0 30 0c0-9.5-8-17-15-27z" fill="#F3EADB"/>
+      <path d="M32 29c-3 4.2-7 7.5-7 11.8a7 7 0 0 0 14 0c0-4.3-4-7.6-7-11.8z" fill="#C4652B"/>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="m12 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <!-- straight pipe segment 1080 wide, pipe centre y=40 -->
+    <symbol id="pipeRun" viewBox="0 0 1080 114">
+      <rect x="0" y="22" width="1080" height="36" fill="url(#cu)"/>
+      <rect x="0" y="58" width="1080" height="6" fill="#000" opacity=".12"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ SLIDE 1 — HOOK ============ -->
+<section class="slide dark s1">
+  <div class="grid"></div>
+  <header class="hdr">
+    <div class="brand"><svg><use href="#mark"/></svg><div class="wm"><b>GARNIER &amp; FILS</b><span>Plomberie · Chauffage</span></div></div>
+    <div class="count">01<i> / 07</i></div>
+  </header>
+  <div class="kicker">Le conseil du plombier</div>
+  <h1><em>5</em> signes que votre chauffe&#8209;eau va lâcher</h1>
+  <p class="sub">(et quoi faire <span>avant</span> la douche froide)</p>
+  <div class="sig"><div class="line"></div>Par les Garnier, plombiers à Nantes depuis 1987</div>
+
+  <!-- water heater illustration -->
+  <svg class="tank" viewBox="0 0 400 800">
+    <!-- wall bracket -->
+    <rect x="96" y="40" width="16" height="560" rx="4" fill="#0c1a35"/>
+    <!-- tank shadow -->
+    <ellipse cx="206" cy="592" rx="150" ry="16" fill="#000" opacity=".22"/>
+    <!-- tank body -->
+    <rect x="70" y="60" width="270" height="500" rx="118" fill="#F3EADB"/>
+    <rect x="70" y="60" width="270" height="500" rx="118" fill="none" stroke="#0c1a35" stroke-width="6"/>
+    <path d="M106 150 v320" stroke="#fff" stroke-width="18" stroke-linecap="round" opacity=".7"/>
+    <path d="M300 170 v290" stroke="#13264A" stroke-width="10" stroke-linecap="round" opacity=".08"/>
+    <!-- rust streak -->
+    <path d="M250 330 c6 40 -4 70 4 120 c3 20 -2 40 2 60" stroke="#8E3B1C" stroke-width="9" fill="none" stroke-linecap="round" opacity=".75"/>
+    <path d="M262 360 c3 30 -2 50 2 80" stroke="#C4652B" stroke-width="5" fill="none" stroke-linecap="round" opacity=".6"/>
+    <!-- label plate -->
+    <rect x="150" y="190" width="110" height="70" rx="10" fill="#13264A"/>
+    <rect x="164" y="206" width="60" height="8" rx="4" fill="#E08A4C"/>
+    <rect x="164" y="224" width="82" height="6" rx="3" fill="#F3EADB" opacity=".5"/>
+    <rect x="164" y="238" width="70" height="6" rx="3" fill="#F3EADB" opacity=".5"/>
+    <!-- thermometer dial -->
+    <circle cx="205" cy="360" r="42" fill="#fff" stroke="#0c1a35" stroke-width="6"/>
+    <path d="M178 360 a27 27 0 0 1 54 0" fill="none" stroke="#E9DCC6" stroke-width="8"/>
+    <path d="M178 360 a27 27 0 0 1 12 -22" fill="none" stroke="#4F7F71" stroke-width="8"/>
+    <line x1="205" y1="360" x2="186" y2="342" stroke="#8E3B1C" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="205" cy="360" r="6" fill="#0c1a35"/>
+    <!-- pipes out the bottom -->
+    <rect x="150" y="555" width="26" height="140" fill="url(#cuV)"/>
+    <rect x="234" y="555" width="26" height="80" fill="url(#cuV)"/>
+    <!-- groupe de sécurité -->
+    <rect x="222" y="630" width="50" height="62" rx="8" fill="#9aa4b4" stroke="#0c1a35" stroke-width="5"/>
+    <rect x="266" y="646" width="56" height="14" rx="7" fill="#C4652B" stroke="#0c1a35" stroke-width="4"/>
+    <rect x="236" y="690" width="22" height="30" fill="#6b7482" stroke="#0c1a35" stroke-width="4"/>
+    <!-- drops -->
+    <path d="M247 736 c-6 9 -10 14 -10 19 a10 10 0 0 0 20 0 c0 -5 -4 -10 -10 -19z" fill="#7FB6D6"/>
+    <path d="M247 782 c-5 7 -8 11 -8 15 a8 8 0 0 0 16 0 c0 -4 -3 -8 -8 -15z" fill="#7FB6D6" opacity=".7"/>
+    <rect x="150" y="690" width="26" height="12" fill="url(#ring)"/>
+    <!-- warning badge -->
+    <g transform="translate(300 90)">
+      <circle r="58" fill="#C4652B"/>
+      <circle r="58" fill="none" stroke="#13264A" stroke-width="6"/>
+      <path d="M0 -28 L28 22 H-28 Z" fill="none" stroke="#F3EADB" stroke-width="7" stroke-linejoin="round"/>
+      <line x1="0" y1="-8" x2="0" y2="6" stroke="#F3EADB" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="0" cy="15" r="4" fill="#F3EADB"/>
+    </g>
+  </svg>
+
+  <div class="foot"><span>garnier-plomberie.fr</span><span class="swipe">Glissez <svg><use href="#arrow"/></svg></span></div>
+  <svg class="pipe" viewBox="0 0 1080 114">
+    <!-- starts with an end cap -->
+    <rect x="80" y="22" width="1000" height="36" fill="url(#cu)"/>
+    <rect x="80" y="58" width="1000" height="6" fill="#000" opacity=".15"/>
+    <rect x="58" y="12" width="30" height="56" rx="6" fill="url(#ring)"/>
+    <rect x="420" y="16" width="22" height="48" rx="3" fill="url(#ring)"/>
+  </svg>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ SLIDE 2 — SIGNE 1 ============ -->
+<section class="slide">
+  <div class="grid"></div>
+  <header class="hdr">
+    <div class="brand"><svg><use href="#mark"/></svg><div class="wm"><b>GARNIER &amp; FILS</b><span>Plomberie · Chauffage</span></div></div>
+    <div class="count">02<i> / 07</i></div>
+  </header>
+  <div class="tag"><span class="dot"></span>Signe n°1</div>
+  <div class="bignum">01</div>
+  <h2 class="title">L’eau sort tiède… ou rouillée</h2>
+  <svg class="illo" viewBox="0 0 400 420">
+    <!-- wall + tap -->
+    <rect x="0" y="40" width="80" height="120" rx="10" fill="#13264A"/>
+    <rect x="70" y="78" width="170" height="44" rx="10" fill="#9aa4b4" stroke="#13264A" stroke-width="6"/>
+    <path d="M220 100 h40 a40 40 0 0 1 40 40 v44" fill="none" stroke="#13264A" stroke-width="50" stroke-linecap="butt"/>
+    <path d="M220 100 h40 a40 40 0 0 1 40 40 v44" fill="none" stroke="#b9c1cd" stroke-width="36"/>
+    <rect x="270" y="180" width="60" height="18" rx="4" fill="#13264A"/>
+    <rect x="150" y="30" width="30" height="50" fill="#13264A"/>
+    <rect x="110" y="16" width="110" height="24" rx="12" fill="#C4652B" stroke="#13264A" stroke-width="6"/>
+    <!-- rusty stream -->
+    <path d="M288 198 C284 260 292 300 286 360 L314 360 C308 300 316 260 312 198 Z" fill="#B0602F" opacity=".85"/>
+    <path d="M296 205 C294 260 300 300 297 355" stroke="#E6A06A" stroke-width="5" fill="none" opacity=".8"/>
+    <!-- glass -->
+    <path d="M232 300 L368 300 L354 414 L246 414 Z" fill="#fff" fill-opacity=".6" stroke="#13264A" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M240 344 L360 344 L354 408 L247 408 Z" fill="#B0602F" opacity=".75"/>
+    <path d="M258 318 L262 396" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".8"/>
+    <!-- thermometer -->
+    <g transform="translate(40 210)">
+      <rect x="0" y="0" width="44" height="160" rx="22" fill="#fff" stroke="#13264A" stroke-width="6"/>
+      <circle cx="22" cy="170" r="32" fill="#E08A4C" stroke="#13264A" stroke-width="6"/>
+      <rect x="14" y="96" width="16" height="80" rx="8" fill="#E08A4C"/>
+      <g stroke="#13264A" stroke-width="4"><line x1="44" y1="30" x2="60" y2="30"/><line x1="44" y1="60" x2="60" y2="60"/><line x1="44" y1="90" x2="60" y2="90"/><line x1="44" y1="120" x2="60" y2="120"/></g>
+      <text x="70" y="104" font-family="Manrope" font-weight="800" font-size="26" fill="#8E3B1C">32 °C</text>
+    </g>
+  </svg>
+  <div class="cards">
+    <div class="card"><h4>Pourquoi&nbsp;?</h4><p>Résistance fatiguée, thermostat déréglé ou cuve qui rouille de l’intérieur. <strong>Une eau rousse, c’est une alerte.</strong></p></div>
+    <div class="card do"><h4><svg><use href="#wrench"/></svg>Quoi faire</h4><p>Réglez le thermostat entre 55 et 60&nbsp;°C. Si l’eau reste tiède ou brunâtre, faites contrôler l’anode et la cuve.</p></div>
+  </div>
+  <div class="foot"><span>garnier-plomberie.fr</span><span class="swipe">Glissez <svg><use href="#arrow"/></svg></span></div>
+  <svg class="pipe" viewBox="0 0 1080 114"><use href="#pipeRun"/><rect x="300" y="16" width="22" height="48" rx="3" fill="url(#ring)"/><rect x="780" y="16" width="22" height="48" rx="3" fill="url(#ring)"/></svg>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ SLIDE 3 — SIGNE 2 ============ -->
+<section class="slide">
+  <div class="grid"></div>
+  <header class="hdr">
+    <div class="brand"><svg><use href="#mark"/></svg><div class="wm"><b>GARNIER &amp; FILS</b><span>Plomberie · Chauffage</span></div></div>
+    <div class="count">03<i> / 07</i></div>
+  </header>
+  <div class="tag"><span class="dot"></span>Signe n°2</div>
+  <div class="bignum">02</div>
+  <h2 class="title">Il claque, siffle ou gronde</h2>
+  <svg class="illo" viewBox="0 0 400 420">
+    <!-- cut-away tank showing scale -->
+    <rect x="110" y="20" width="200" height="380" rx="90" fill="#fff" stroke="#13264A" stroke-width="6"/>
+    <clipPath id="tk2"><rect x="113" y="23" width="194" height="374" rx="87"/></clipPath>
+    <g clip-path="url(#tk2)">
+      <rect x="100" y="80" width="220" height="330" fill="#CFE3EE"/>
+      <!-- scale layer at bottom -->
+      <path d="M100 330 q20 -14 40 -4 t40 -6 t40 4 t40 -8 t40 6 v100 h-200z" fill="#D8CBB3"/>
+      <g fill="#b5a48a"><circle cx="140" cy="352" r="7"/><circle cx="176" cy="366" r="5"/><circle cx="220" cy="348" r="8"/><circle cx="262" cy="370" r="6"/><circle cx="286" cy="344" r="5"/><circle cx="198" cy="382" r="6"/></g>
+      <!-- heating element -->
+      <path d="M150 400 V250 q0 -20 20 -20 q20 0 20 20 V330 q0 20 20 20 q20 0 20 -20 V250" fill="none" stroke="#C4652B" stroke-width="12" stroke-linecap="round"/>
+      <!-- bubbles -->
+      <g fill="none" stroke="#13264A" stroke-width="4" opacity=".55"><circle cx="175" cy="200" r="9"/><circle cx="215" cy="160" r="6"/><circle cx="250" cy="215" r="11"/><circle cx="235" cy="120" r="5"/></g>
+    </g>
+    <line x1="110" y1="80" x2="310" y2="80" stroke="#13264A" stroke-width="4" stroke-dasharray="10 8" opacity=".35"/>
+    <!-- label arrow to scale -->
+    <path d="M350 282 q2 40 -38 58" fill="none" stroke="#8E3B1C" stroke-width="4" stroke-linecap="round"/>
+    <text x="316" y="270" font-family="Manrope" font-weight="800" font-size="24" fill="#8E3B1C">tartre</text>
+    <!-- sound waves -->
+    <g fill="none" stroke="#C4652B" stroke-width="9" stroke-linecap="round" transform="translate(0 -40)">
+      <path d="M78 170 q-22 40 0 80"/><path d="M48 150 q-34 60 0 120" opacity=".6"/><path d="M18 130 q-46 80 0 160" opacity=".3"/>
+    </g>
+    <text x="0" y="320" font-family="Archivo Black" font-size="30" fill="#13264A" transform="rotate(-8 0 320)">CLAC&#8239;!</text>
+  </svg>
+  <div class="cards">
+    <div class="card"><h4>Pourquoi&nbsp;?</h4><p>Le calcaire s’accumule au fond de la cuve et autour de la résistance. L’eau «&nbsp;bout&nbsp;» sous la couche de tartre.</p></div>
+    <div class="card do"><h4><svg><use href="#wrench"/></svg>Quoi faire</h4><p><strong>Un détartrage tous les 2 à 3 ans</strong> prolonge sa vie. Plus on attend, plus la résistance souffre.</p></div>
+  </div>
+  <div class="foot"><span>garnier-plomberie.fr</span><span class="swipe">Glissez <svg><use href="#arrow"/></svg></span></div>
+  <svg class="pipe" viewBox="0 0 1080 114"><use href="#pipeRun"/><rect x="180" y="16" width="22" height="48" rx="3" fill="url(#ring)"/><rect x="640" y="16" width="22" height="48" rx="3" fill="url(#ring)"/></svg>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ SLIDE 4 — SIGNE 3 ============ -->
+<section class="slide">
+  <div class="grid"></div>
+  <header class="hdr">
+    <div class="brand"><svg><use href="#mark"/></svg><div class="wm"><b>GARNIER &amp; FILS</b><span>Plomberie · Chauffage</span></div></div>
+    <div class="count">04<i> / 07</i></div>
+  </header>
+  <div class="tag"><span class="dot"></span>Signe n°3</div>
+  <div class="bignum">03</div>
+  <h2 class="title">Ça coule au groupe de sécurité</h2>
+  <svg class="illo" viewBox="0 0 400 420">
+    <!-- inlet pipe from the tank -->
+    <rect x="186" y="0" width="34" height="90" fill="url(#cuV)"/>
+    <rect x="180" y="70" width="46" height="18" rx="3" fill="url(#ring)"/>
+    <!-- valve body -->
+    <rect x="140" y="88" width="126" height="150" rx="20" fill="#b9c1cd" stroke="#13264A" stroke-width="6"/>
+    <rect x="156" y="110" width="20" height="100" rx="10" fill="#fff" opacity=".6"/>
+    <!-- lever -->
+    <rect x="256" y="120" width="120" height="30" rx="15" fill="#C4652B" stroke="#13264A" stroke-width="6"/>
+    <circle cx="266" cy="135" r="14" fill="#13264A"/>
+    <!-- side cold inlet -->
+    <rect x="0" y="160" width="146" height="34" fill="url(#cu)"/>
+    <rect x="30" y="154" width="18" height="46" rx="3" fill="url(#ring)"/>
+    <!-- drain funnel (siphon) -->
+    <rect x="180" y="238" width="46" height="36" fill="#6b7482" stroke="#13264A" stroke-width="5"/>
+    <path d="M160 300 h86 l-24 40 h-38 z" fill="#fff" stroke="#13264A" stroke-width="6" stroke-linejoin="round"/>
+    <rect x="186" y="340" width="34" height="80" fill="#e4e4e4" stroke="#13264A" stroke-width="6"/>
+    <!-- drops -->
+    <path d="M203 278 c-5 8 -8 12 -8 16 a8 8 0 0 0 16 0 c0 -4 -3 -8 -8 -16z" fill="#4E9BC7"/>
+    <!-- tick marks -->
+    <g font-family="Manrope" font-weight="800" font-size="24">
+      <text x="146" y="400" text-anchor="end" fill="#4F7F71">goutte = OK</text>
+      <text x="240" y="400" fill="#8E3B1C">filet = alerte</text>
+    </g>
+  </svg>
+  <div class="cards">
+    <div class="row">
+      <div class="card ok"><h4><svg style="width:26px;height:26px"><use href="#check"/></svg>Normal</h4><p>Quelques gouttes pendant la chauffe&nbsp;: l’eau se dilate.</p></div>
+      <div class="card"><h4>À surveiller</h4><p>Un filet continu, ou plus <strong>jamais</strong> une goutte.</p></div>
+    </div>
+    <div class="card do"><h4><svg><use href="#wrench"/></svg>Quoi faire</h4><p>Actionnez la manette du groupe <strong>une fois par mois</strong>. Ça coule sans arrêt&nbsp;? Appelez un pro.</p></div>
+  </div>
+  <div class="foot"><span>garnier-plomberie.fr</span><span class="swipe">Glissez <svg><use href="#arrow"/></svg></span></div>
+  <svg class="pipe" viewBox="0 0 1080 114"><use href="#pipeRun"/><rect x="420" y="16" width="22" height="48" rx="3" fill="url(#ring)"/><rect x="900" y="16" width="22" height="48" rx="3" fill="url(#ring)"/></svg>
+  <div class="grain"></div>
+</section>
+
+<script>window.KLIPT = { width: 1080, height: 1350 };</script>
+</body>
+</html>

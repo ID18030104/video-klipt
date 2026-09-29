@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Garnier & Fils - 5 signes chauffe-eau</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/800.css">
+<style>
+:root{--navy:#12263A;--ink:#0B1826;--cream:#F6EFE3;--cream2:#EBE1CF;--cu:#D9642B;--cu2:#F08A4B;--water:#3FA7D6;--yel:#F2B33D;--rust:#8A4B25}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;background:#000}
+body{overflow:visible;font-family:'Figtree',sans-serif}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--cream);color:var(--navy)}
+.slide.dark{background:var(--navy);color:var(--cream)}
+.slide.cu{background:var(--cu);color:var(--ink)}
+/* pipe-grid texture */
+.slide::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(18,38,58,.10) 2px,transparent 2.5px);background-size:36px 36px;pointer-events:none}
+.dark::before{background-image:radial-gradient(circle,rgba(246,239,227,.07) 2px,transparent 2.5px)}
+.top{position:absolute;left:64px;right:64px;top:56px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+.brand{display:flex;align-items:center;gap:14px;font:800 30px 'Barlow Condensed';letter-spacing:.08em;text-transform:uppercase}
+.mark{width:48px;height:48px;border-radius:12px;background:var(--cu);color:var(--cream);display:grid;place-items:center;font:800 26px 'Barlow Condensed';letter-spacing:0}
+.cu .mark{background:var(--navy)}
+.pg{font:700 28px 'Barlow Condensed';letter-spacing:.1em;opacity:.7}
+.num{position:absolute;left:52px;top:150px;font:800 400px/0.8 'Barlow Condensed';color:var(--cu);opacity:.16;z-index:1}
+.dark .num{opacity:.22}
+.tag{position:absolute;left:64px;top:170px;z-index:3;display:inline-block;background:var(--navy);color:var(--cream);font:700 28px 'Barlow Condensed';letter-spacing:.14em;text-transform:uppercase;padding:10px 22px;border-radius:40px}
+.dark .tag{background:var(--cu)}
+h2{position:absolute;left:64px;right:64px;top:250px;z-index:3;font:800 118px/0.92 'Barlow Condensed';text-transform:uppercase;letter-spacing:-.005em}
+h2 em{font-style:normal;color:var(--cu)}
+.art{position:absolute;z-index:2}
+.art.i{top:590px!important;right:60px!important;transform-origin:top right;transform:scale(1.08)}
+.why{position:absolute;left:64px;top:610px;z-index:3;font:400 42px/1.35 'Figtree';width:520px}
+.why b{font-weight:800}
+.todo{position:absolute;left:64px;right:64px;bottom:120px;z-index:4;background:var(--navy);color:var(--cream);border-radius:28px;padding:34px 40px 36px 40px;border-left:14px solid var(--cu)}
+.dark .todo{background:var(--cream);color:var(--navy)}
+.todo .k{font:800 28px 'Barlow Condensed';letter-spacing:.16em;text-transform:uppercase;color:var(--cu2);margin-bottom:10px;display:flex;align-items:center;gap:12px}
+.dark .todo .k{color:var(--cu)}
+.todo p{font:700 37px/1.28 'Figtree'}
+.foot{position:absolute;left:64px;right:64px;bottom:44px;z-index:5;display:flex;justify-content:space-between;align-items:center;font:700 26px 'Barlow Condensed';letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.swipe{display:flex;align-items:center;gap:10px}
+.bar{position:absolute;left:0;bottom:0;height:12px;background:var(--cu);z-index:6}
+svg{overflow:visible}
+svg text{font-family:'Barlow Condensed',sans-serif}
+/* cover */
+.cover h1{position:absolute;left:64px;right:64px;top:300px;z-index:3;font:800 150px/0.9 'Barlow Condensed';text-transform:uppercase}
+.cover h1 span{color:var(--cu2)}
+.cover .sub{position:absolute;left:64px;top:880px;width:520px;z-index:3;font:400 40px/1.3 'Figtree'}
+.cover .sub b{color:var(--cu2)}
+.badge{position:absolute;left:64px;top:190px;z-index:3;font:700 28px 'Barlow Condensed';letter-spacing:.16em;text-transform:uppercase;border:3px solid var(--cu2);color:var(--cu2);padding:8px 22px;border-radius:40px}
+.since{position:absolute;left:64px;bottom:130px;z-index:4;width:210px;height:210px;border-radius:50%;background:var(--cu);color:var(--ink);display:grid;place-items:center;text-align:center;font:800 30px/1 'Barlow Condensed';text-transform:uppercase;letter-spacing:.06em;transform:rotate(-8deg)}
+.since b{display:block;font-size:84px;line-height:.9;letter-spacing:0}
+/* cta */
+.cta h2{top:210px;font-size:126px}
+.offer{position:absolute;left:64px;right:64px;top:640px;z-index:3;background:var(--ink);color:var(--cream);border-radius:34px;padding:44px 50px;display:flex;align-items:center;gap:36px}
+.offer .price{font:800 250px/0.8 'Barlow Condensed';color:var(--cu2);letter-spacing:-.02em}
+.offer .price small{font-size:120px;vertical-align:top;margin-left:6px}
+.offer .t{font:400 36px/1.3 'Figtree'}
+.offer .t b{display:block;font:800 52px/1 'Barlow Condensed';text-transform:uppercase;margin-bottom:10px;color:var(--cream)}
+.offer .t i{display:inline-block;margin-top:14px;font:800 26px 'Barlow Condensed';font-style:normal;letter-spacing:.12em;text-transform:uppercase;background:var(--yel);color:var(--ink);padding:8px 16px;border-radius:8px}
+.contact{position:absolute;left:64px;right:64px;top:1000px;z-index:3;display:flex;flex-direction:column;gap:18px}
+.btn{display:flex;align-items:center;gap:22px;background:var(--cream);color:var(--ink);border-radius:26px;padding:24px 36px;font:800 76px/1 'Barlow Condensed';letter-spacing:.02em}
+.btn.s{background:transparent;border:4px solid var(--ink);font-size:52px;padding:18px 36px}
+.btn svg{flex:none}
+.note{position:absolute;left:64px;right:64px;top:1004px;display:none}
+</style></head><body>
+
+<!-- 1 COVER -->
+<section class="slide dark cover">
+ <div class="top"><div class="brand"><div class="mark">G&amp;F</div>Garnier &amp; Fils</div><div class="pg">1/7</div></div>
+ <div class="badge">Le conseil du plombier</div>
+ <h1>5 signes que votre <span>chauffe&#8209;eau</span> va lâcher</h1>
+ <div class="sub">Et quoi faire <b>avant la douche froide</b> un dimanche matin.</div>
+ <svg class="art" style="right:40px;top:880px" width="300" height="372" viewBox="0 0 380 470">
+  <rect x="60" y="40" width="240" height="380" rx="60" fill="#F6EFE3"/>
+  <rect x="60" y="40" width="240" height="380" rx="60" fill="none" stroke="#D9642B" stroke-width="8"/>
+  <rect x="60" y="250" width="240" height="170" rx="0" fill="#3FA7D6" opacity=".0"/>
+  <path d="M60 300 Q120 280 180 300 T300 300 V360 a60 60 0 0 1 -60 60 H120 a60 60 0 0 1 -60 -60z" fill="#3FA7D6" opacity=".85"/>
+  <circle cx="180" cy="130" r="46" fill="#12263A"/><path d="M180 100 v34" stroke="#F6EFE3" stroke-width="7" stroke-linecap="round"/><circle cx="180" cy="150" r="5" fill="#F6EFE3"/>
+  <rect x="120" y="14" width="26" height="40" fill="#D9642B"/><rect x="214" y="14" width="26" height="40" fill="#D9642B"/>
+  <rect x="120" y="420" width="120" height="14" fill="#12263A" opacity=".5"/>
+  <path d="M330 90 l10 -30 l10 30 a12 12 0 1 1 -20 0z" fill="#F2B33D"/>
+  <path d="M40 200 q-20 -14 0 -28 q20 -14 0 -28" stroke="#F08A4B" stroke-width="7" fill="none" stroke-linecap="round"/>
+ </svg>
+ <div class="since"><div><b>1987</b>3 générations</div></div>
+ <div class="foot"><span>Nantes · Dépannage 7j/7</span><span class="swipe">Glissez
+  <svg width="40" height="24" viewBox="0 0 40 24"><path d="M2 12h34M26 3l10 9-10 9" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+ <div class="bar" style="width:14.3%"></div>
+</section>
+
+<!-- 2 TEPID / RUSTY -->
+<section class="slide">
+ <div class="top"><div class="brand"><div class="mark">G&amp;F</div>Garnier &amp; Fils</div><div class="pg">2/7</div></div>
+  <div class="tag">Signe n°1</div>
+ <h2>Eau tiède<br>ou <em>rouillée</em></h2>
+ <svg class="art i" style="right:50px;top:660px" width="330" height="340" viewBox="0 0 330 340">
+  <path d="M40 30 h250 l-30 260 a30 30 0 0 1 -30 26 h-130 a30 30 0 0 1 -30 -26z" fill="#fff" stroke="#12263A" stroke-width="8"/>
+  <path d="M52 130 h226 l-18 160 a30 30 0 0 1 -30 26 h-130 a30 30 0 0 1 -30 -26z" fill="#B9662E"/>
+  <path d="M52 130 q40 -14 80 0 t80 0 t66 0" stroke="#8A4B25" stroke-width="6" fill="none"/>
+  <circle cx="110" cy="220" r="8" fill="#8A4B25"/><circle cx="190" cy="250" r="12" fill="#8A4B25"/><circle cx="220" cy="190" r="6" fill="#8A4B25"/>
+  <circle cx="250" cy="20" r="0" />
+ </svg>
+ <div class="why">Elle sort à peine chaude, ou <b>brunâtre</b> quand vous tirez au chaud : la cuve est <b>entartrée ou corrodée</b> de l'intérieur.</div>
+ <div class="todo"><div class="k">Que faire ?</div><p>Faites couler l'eau chaude 1 minute. Toujours brune ? Ne tardez pas : la cuve se perce.</p></div>
+ <div class="foot"><span>Garnier &amp; Fils</span><span class="swipe">Suite <svg width="40" height="24" viewBox="0 0 40 24"><path d="M2 12h34M26 3l10 9-10 9" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+ <div class="bar" style="width:28.6%"></div>
+</section>
+
+<!-- 3 NOISES -->
+<section class="slide dark">
+ <div class="top"><div class="brand"><div class="mark">G&amp;F</div>Garnier &amp; Fils</div><div class="pg">3/7</div></div>
+  <div class="tag">Signe n°2</div>
+ <h2>Des bruits<br><em>qui font peur</em></h2>
+ <svg class="art i" style="right:40px;top:640px" width="360" height="380" viewBox="-20 -10 400 400">
+  <rect x="110" y="60" width="180" height="290" rx="46" fill="#F6EFE3"/>
+  <rect x="110" y="60" width="180" height="290" rx="46" fill="none" stroke="#D9642B" stroke-width="7"/>
+  <path d="M110 240 q45 -16 90 0 t90 0 v50 a46 46 0 0 1 -46 60 h-88 a46 46 0 0 1 -46 -60z" fill="#3FA7D6"/>
+  <circle cx="160" cy="280" r="9" fill="#fff" opacity=".8"/><circle cx="215" cy="300" r="6" fill="#fff" opacity=".8"/><circle cx="240" cy="262" r="8" fill="#fff" opacity=".8"/>
+  <path d="M84 150 q-24 30 0 60 M56 130 q-40 50 0 100" stroke="#F08A4B" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M316 150 q24 30 0 60 M344 130 q40 50 0 100" stroke="#F08A4B" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <g transform="rotate(-10 200 40)"><rect x="110" y="4" width="180" height="52" rx="26" fill="#F2B33D"/><text x="200" y="44" text-anchor="middle" font-size="42" font-weight="800" fill="#0B1826" letter-spacing="2">TOC TOC !</text></g>
+ </svg>
+ <div class="why">Claquements, sifflements, grondements : c'est du <b>calcaire au fond de la cuve</b> qui surchauffe et fatigue l'acier.</div>
+ <div class="todo"><div class="k">Que faire ?</div><p>Un détartrage ou une vidange peut encore sauver l'appareil. Faites-le contrôler avant qu'il fuie.</p></div>
+ <div class="foot"><span>Garnier &amp; Fils</span><span class="swipe">Suite <svg width="40" height="24" viewBox="0 0 40 24"><path d="M2 12h34M26 3l10 9-10 9" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+ <div class="bar" style="width:42.9%"></div>
+</section>
+
+<!-- 4 LEAK -->
+<section class="slide">
+ <div class="top"><div class="brand"><div class="mark">G&amp;F</div>Garnier &amp; Fils</div><div class="pg">4/7</div></div>
+  <div class="tag">Signe n°3</div>
+ <h2>Ça goutte au<br><em>groupe de sécurité</em></h2>
+ <svg class="art i" style="right:50px;top:690px" width="300" height="330" viewBox="0 0 300 330">
+  <rect x="0" y="60" width="130" height="46" fill="#12263A"/>
+  <rect x="120" y="30" width="80" height="106" rx="14" fill="#D9642B"/>
+  <rect x="200" y="60" width="80" height="46" fill="#12263A"/>
+  <rect x="140" y="0" width="40" height="34" rx="6" fill="#12263A"/>
+  <rect x="146" y="136" width="28" height="34" fill="#12263A"/>
+  <path d="M160 200 c-22 30 -22 50 0 58 c22 -8 22 -28 0 -58z" fill="#3FA7D6"/>
+  <path d="M160 268 c-12 16 -12 28 0 32 c12 -4 12 -16 0 -32z" fill="#3FA7D6" opacity=".6"/>
+  <circle cx="160" cy="316" r="8" fill="#3FA7D6" opacity=".35"/>
+ </svg>
+ <div class="why">Un léger goutte-à-goutte est normal. <b>Un filet continu</b> ou de l'humidité sous la cuve, non : la soupape ou la cuve est en cause.</div>
+ <div class="todo"><div class="k">Que faire ?</div><p>Placez un récipient dessous, coupez l'arrivée d'eau froide si ça coule fort, puis appelez-nous.</p></div>
+ <div class="foot"><span>Garnier &amp; Fils</span><span class="swipe">Suite <svg width="40" height="24" viewBox="0 0 40 24"><path d="M2 12h34M26 3l10 9-10 9" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+ <div class="bar" style="width:57.1%"></div>
+</section>
+
+<!-- 5 AGE -->
+<section class="slide dark">
+ <div class="top"><div class="brand"><div class="mark">G&amp;F</div>Garnier &amp; Fils</div><div class="pg">5/7</div></div>
+  <div class="tag">Signe n°4</div>
+ <h2>Il a plus de<br><em>10 ans</em></h2>
+ <svg class="art i" style="right:50px;top:650px" width="340" height="360" viewBox="0 0 340 360">
+  <rect x="20" y="30" width="300" height="300" rx="34" fill="#F6EFE3"/>
+  <rect x="20" y="30" width="300" height="120" rx="34" fill="#D9642B"/><rect x="20" y="110" width="300" height="40" fill="#D9642B"/>
+  <rect x="80" y="8" width="20" height="46" rx="8" fill="#12263A"/><rect x="240" y="8" width="20" height="46" rx="8" fill="#12263A"/>
+  <text x="170" y="118" text-anchor="middle" font-size="64" font-weight="800" fill="#F6EFE3" letter-spacing="6">DEPUIS</text>
+  <text x="170" y="270" text-anchor="middle" font-size="150" font-weight="800" fill="#12263A">10+</text>
+  <text x="170" y="312" text-anchor="middle" font-size="40" font-weight="700" fill="#12263A" letter-spacing="5">ANS</text>
+ </svg>
+ <div class="why">La durée de vie moyenne d'un chauffe-eau est de <b>10 à 15 ans</b>. Au-delà, chaque année est un pari.</div>
+ <div class="todo"><div class="k">Que faire ?</div><p>Repérez l'âge sur la plaque signalétique. Passé 10 ans, faites un diagnostic préventif.</p></div>
+ <div class="foot"><span>Garnier &amp; Fils</span><span class="swipe">Suite <svg width="40" height="24" viewBox="0 0 40 24"><path d="M2 12h34M26 3l10 9-10 9" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+ <div class="bar" style="width:71.4%"></div>
+</section>
+
+<!-- 6 BILL -->
+<section class="slide">
+ <div class="top"><div class="brand"><div class="mark">G&amp;F</div>Garnier &amp; Fils</div><div class="pg">6/7</div></div>
+  <div class="tag">Signe n°5</div>
+ <h2>La facture<br>d'énergie <em>grimpe</em></h2>
+ <svg class="art i" style="right:50px;top:660px" width="340" height="340" viewBox="0 0 340 340">
+  <rect x="10" y="20" width="320" height="300" rx="30" fill="#12263A"/>
+  <rect x="50" y="240" width="46" height="50" rx="6" fill="#3FA7D6"/>
+  <rect x="120" y="200" width="46" height="90" rx="6" fill="#3FA7D6"/>
+  <rect x="190" y="150" width="46" height="140" rx="6" fill="#F2B33D"/>
+  <rect x="260" y="80" width="46" height="210" rx="6" fill="#D9642B"/>
+  <path d="M40 200 L140 150 L210 110 L290 50" stroke="#F6EFE3" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="2 16"/>
+  <path d="M270 44 l30 -8 l-6 30z" fill="#F6EFE3"/>
+ </svg>
+ <div class="why">Un ballon entartré chauffe plus longtemps pour le même résultat : <b>jusqu'à +30 %</b> de consommation sans que vous ne changiez rien.</div>
+ <div class="todo"><div class="k">Que faire ?</div><p>Comparez vos factures d'hiver sur 2 ans. Une hausse sans raison ? Faites vérifier la résistance.</p></div>
+ <div class="foot"><span>Garnier &amp; Fils</span><span class="swipe">Suite <svg width="40" height="24" viewBox="0 0 40 24"><path d="M2 12h34M26 3l10 9-10 9" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+ <div class="bar" style="width:85.7%"></div>
+</section>
+
+<!-- 7 CTA -->
+<section class="slide cu cta">
+ <div class="top"><div class="brand"><div class="mark">G&amp;F</div>Garnier &amp; Fils</div><div class="pg">7/7</div></div>
+ <h2 style="color:var(--ink)">Un doute ?<br>Faites le<br>diagnostic.</h2>
+ <div class="offer">
+  <div class="price">49<small>€</small></div>
+  <div class="t"><b>Diagnostic chauffe-eau</b>par un de nos 9 techniciens.<br><i>Offert si remplacement</i></div>
+ </div>
+ <div class="contact">
+  <div class="btn"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#0B1826" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>02 40 12 34 56</div>
+  <div class="btn s">garnier-plomberie.fr</div>
+ </div>
+ <div class="foot" style="opacity:.85;color:var(--ink)"><span>Nantes · Dépannage 7j/7 · Depuis 1987</span><span>Enregistrez ce post</span></div>
+ <div class="bar" style="width:100%;background:var(--navy)"></div>
+</section>
+<script>window.KLIPT={width:1080,height:1350};</script>
+</body></html>

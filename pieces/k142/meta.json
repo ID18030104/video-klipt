@@ -1,0 +1,3 @@
+{ "id":"k142","brand":"Maison Castel — Barbier","sector":"Barbier / coiffeur de quartier","kind":"video","format":"1080x1920","duration":21.5,"slides":null,
+"title":"Rasage à l'ancienne","concept":"Ambiance barbershop old-school : bandeaux de poteau de barbier défilants, Bodoni crème et laiton sur brun chaud. Hook « 40 min rien que pour vous », puis le rituel en 3 gestes (serviette, blaireau, coupe-chou), prix 35 € et CTA RDV en ligne.",
+"techniques":["gsap","svg-illustration","css-gradients"],"fonts":["Bodoni Moda","Oswald"],"palette":["#1a110d","#f2e6ce","#a3271f","#d0a04a","#1f3a5f"],"copy_language":"fr" }
