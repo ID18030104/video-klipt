@@ -1,0 +1,13 @@
+{ "id": "o01", "brand": "Relai", "sector": "SaaS B2B — service client IA", "kind": "video",
+  "format": "1920x1080", "duration": 28, "slides": null,
+  "title": "Relai 2.0 — le relais",
+  "concept": "Le relais : une ligne orange passe de plan en plan, du délai barré de 6 h à l'agent Relai, puis à l'humain, puis à la démo. Un zoom-through dans le 0 de « 40 s » ouvre l'orbe Relai ; les preuves (71 %, 40 s, 4,8/5, 300 clients) se resserrent en grille suisse avant de reboucler sur « 6 h ».",
+  "techniques": ["gsap", "css-3d-perspective", "svg", "clip-path-masks", "svg-directional-blur", "seeded-grain", "deterministic-counters"],
+  "fonts": ["Inter Tight", "JetBrains Mono"],
+  "palette": ["#08090C", "#12141A", "#F3EFE7", "#8E939E", "#FF5A1F"],
+  "copy_language": "fr",
+  "tier": "S",
+  "style": "Product keynote (dark stage, spotlit UI) + Swiss hairline grid for proof",
+  "credits": [],
+  "attention_mechanics": ["hook: bold number '6 h' on screen at t=0 (0-1.5 s)", "retention: escalation of proof stats cut in on the beat (21.6-23.5 s)", "payoff: loop back to the '6 h' frame (27.5-28 s)"]
+}

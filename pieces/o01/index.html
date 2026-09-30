@@ -29,7 +29,7 @@ svg.orb{position:absolute;overflow:visible}
 .gr b{font-weight:600}.gr span{color:var(--dim)}
 .gr i{width:12px;height:12px;border-radius:50%;background:var(--acc);flex:none}
 #numwrap{left:0;top:0;width:1920px;height:1080px}
-.n{position:absolute;left:130px;top:170px;font-size:560px;font-weight:800;line-height:1;letter-spacing:-.05em;white-space:nowrap}
+.n{position:absolute;left:130px;top:230px;font-size:560px;font-weight:800;line-height:1;letter-spacing:-.05em;white-space:nowrap}
 .n .u{font-size:.42em;margin-left:.1em;color:var(--dim);font-weight:700;letter-spacing:-.02em}
 .n40{opacity:0}.n40 .d{color:var(--acc)}.n40 .u{color:var(--paper)}
 #bm{display:inline-block;width:0;height:0}
@@ -59,8 +59,8 @@ svg.orb{position:absolute;overflow:visible}
 .card .an:before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--acc);margin-right:12px}
 
 /* S4 */
-#t4{left:130px;top:230px;font-size:104px;font-weight:800;letter-spacing:-.04em;line-height:1;width:760px}
-#sub4{left:134px;top:640px;font-size:48px;font-weight:500;color:var(--dim);width:700px;line-height:1.15}
+#t4{left:130px;top:330px;font-size:104px;font-weight:800;letter-spacing:-.04em;line-height:1;width:760px}
+#sub4{left:134px;top:590px;font-size:48px;font-weight:500;color:var(--dim);width:700px;line-height:1.15}
 #phone{left:1360px;top:100px;width:440px;height:880px;border-radius:64px;background:#0D0F14;border:2px solid rgba(255,255,255,.22);box-shadow:0 60px 140px rgba(0,0,0,.65),0 0 0 10px #050609;overflow:hidden}
 .ph-head{height:124px;padding:46px 26px 0;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--line);font-size:32px;font-weight:700}
 .ph-head small{display:block;font-size:26px;color:var(--dim);font-weight:400}
@@ -78,10 +78,10 @@ svg.orb{position:absolute;overflow:visible}
 .mini{font-size:29px;line-height:1.2;padding:14px 18px;border-radius:20px;margin-top:16px;width:fit-content;max-width:330px}
 
 /* S5 */
-#t5{left:130px;top:200px;font-size:88px;font-weight:800;letter-spacing:-.04em;line-height:1.02;width:780px}
-#sub5{left:134px;top:690px;font-size:48px;font-weight:500;color:var(--dim);width:700px;line-height:1.15}
+#t5{left:130px;top:290px;font-size:88px;font-weight:800;letter-spacing:-.04em;line-height:1.02;width:780px}
+#sub5{left:134px;top:560px;font-size:48px;font-weight:500;color:var(--dim);width:700px;line-height:1.15}
 #cardA{left:960px;top:120px;width:830px;height:320px;padding:28px 34px;opacity:0}
-#cardB{left:960px;top:560px;width:830px;height:430px;padding:28px 34px;opacity:0}
+#cardB{left:960px;top:560px;width:830px;height:410px;padding:28px 34px;opacity:0}
 .hd{display:flex;align-items:center;gap:18px;font-size:34px;font-weight:700}
 .hd small{font-weight:400;color:var(--dim);font-size:30px}
 .bub{font-size:33px;line-height:1.15;padding:14px 22px;border-radius:24px;width:fit-content;margin-top:16px}
@@ -256,7 +256,7 @@ const gm=[['03:12','Marc L.','Où est mon colis ?'],['03:40','Sofia R.','Mi vuel
 $('#ghost').innerHTML=gm.map(r=>`<div class="gr"><i></i><span class="t">${r[0]}</span><b>${r[1]}</b><span>${r[2]}</span></div>`).join('');
 
 // wall of languages (S3)
-const L=[['FR','Où est ma commande ?','Elle arrive demain avant 12&nbsp;h.'],['EN','Where is my order?','It arrives tomorrow before noon.'],['ES','¿Dónde está mi pedido?','Llega mañana antes del mediodía.'],['DE','Wo ist meine Bestellung?','Sie kommt morgen vor 12 Uhr.'],['IT','Dov’è il mio ordine?','Arriva domani prima di mezzogiorno.'],['PT','Onde está a minha encomenda?','Chega amanhã antes do meio-dia.'],['NL','Waar is mijn bestelling?','Ze komt morgen vóór 12 uur.'],['PL','Gdzie jest moje zamówienie?','Dotrze jutro przed 12:00.'],['SV','Var är min beställning?','Den kommer imorgon före 12.'],['TR','Siparişim nerede?','Yarın öğleden önce ulaşır.']];
+const L=[['FR','Où est ma commande&#8239;?','Elle arrive demain avant 12&nbsp;h.'],['EN','Where is my order?','It arrives tomorrow before noon.'],['ES','¿Dónde está mi pedido?','Llega mañana antes del mediodía.'],['DE','Wo ist meine Bestellung?','Sie kommt morgen vor 12 Uhr.'],['IT','Dov’è il mio ordine?','Arriva domani prima di mezzogiorno.'],['PT','Onde está a minha encomenda?','Chega amanhã antes do meio-dia.'],['NL','Waar is mijn bestelling?','Ze komt morgen vóór 12 uur.'],['PL','Gdzie jest moje zamówienie?','Dotrze jutro przed 12:00.'],['SV','Var är min beställning?','Den kommer imorgon före 12.'],['TR','Siparişim nerede?','Yarın öğleden önce ulaşır.']];
 const cols=[];
 for(let c=0;c<3;c++){const d=document.createElement('div');d.className='col';d.style.left=(c*428)+'px';
   let h='';for(let r=0;r<8;r++){const l=L[(c*3+r*4+c)%10];h+=`<div class="card"><div class="tag mono">${l[0]}</div><div class="q">${l[1]}</div><div class="an">${l[2]}</div></div>`}

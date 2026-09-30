@@ -1,0 +1,101 @@
+{
+ "id": "o02",
+ "brand": "Aux Jardins de Marcel",
+ "sector": "Primeur de quartier",
+ "kind": "video",
+ "format": "1080x1920",
+ "duration": 10.5,
+ "slides": null,
+ "title": "-30 % fruits d'été, ce week-end",
+ "concept": "A giant tomato-red price stamp is slammed on a crate of apricots, shrinks into a corner tag while the five summer fruits count off 1/5 to 5/5, then lands as the seal on the shop card (address, hours, 'depuis 1998'). Retail punch x market-stall authentic: kraft, deep green, one warm grade and grain over real market photos.",
+ "techniques": [
+  "gsap",
+  "clip-path wipes and iris",
+  "real photography (Open Images)",
+  "svg grain",
+  "css grade"
+ ],
+ "fonts": [
+  "Anton",
+  "Fraunces",
+  "Figtree",
+  "Caveat"
+ ],
+ "palette": [
+  "#F1E4C8",
+  "#1F3D2B",
+  "#E8452C",
+  "#F4B740",
+  "#FFF3DC"
+ ],
+ "copy_language": "fr",
+ "tier": "B",
+ "style": "Retail punch x market-stall authentic",
+ "credits": [
+  {
+   "file": "apricot.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "ad4d7bb458b25f00",
+   "title": "apricots at the Oerlikon market",
+   "author": "Paul Asman and Jill Lenoble",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/pauljill/4828235017"
+  },
+  {
+   "file": "peach.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "3284e53e6c7b2902",
+   "title": "Peaches at The Allendale Farmer's Market",
+   "author": "tami.vroma",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/32314864@N02/3023676656"
+  },
+  {
+   "file": "nect.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "bb7075be563d2dc4",
+   "title": "Coral Springs Mega Green Market",
+   "author": "Coral Springs Talk",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/coralspringstalk/9895925196"
+  },
+  {
+   "file": "plum.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "67034a68f606a071",
+   "title": "The Changing Face of Fruit",
+   "author": "John Loo",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/johnloo/20243948186"
+  },
+  {
+   "file": "melon.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "d2f9658eacb7f6ed",
+   "title": "Cantaloup",
+   "author": "cbertel",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/cbertel/2865405233"
+  },
+  {
+   "file": "crate.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "18f32ad95c89216b",
+   "title": "movin' to the country, gonna eat a lot o' peaches",
+   "author": "Ryan",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/ryanready/4914936376"
+  }
+ ],
+ "attention_mechanics": [
+  "bold number on screen at t=0 (-30 %)",
+  "numbered progress 1/5-5/5",
+  "single CTA: address + hours"
+ ]
+}
