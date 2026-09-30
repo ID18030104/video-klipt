@@ -1,0 +1,65 @@
+{
+ "id": "v03",
+ "brand": "Klipt",
+ "sector": "Content studio (social video, posts, carousels)",
+ "kind": "video",
+ "format": "1080x1920",
+ "duration": 15,
+ "slides": null,
+ "title": "Klipt brand film \u2014 Every brand looks different",
+ "tier": "S",
+ "style": "hybrid: Kling 3.0 real-world + abstract 3D footage, kinetic Bricolage type, lime/coral band wipes, CSS-exact logo reveal",
+ "concept": "Every brand looks different, so should its content: baker, hairdresser, abstract 3D carousel and founder shots in one ink/lime/coral grade, cut with code wipes, landing on the real Klipt logo and 'Let's make yours.'",
+ "techniques": [
+  "kling-3.0 multi-shot",
+  "css-animation-by-t",
+  "clip-path wipes",
+  "kinetic typography",
+  "sfx.py sound design"
+ ],
+ "fonts": [
+  "Bricolage Grotesque 800"
+ ],
+ "palette": [
+  "#0E1320",
+  "#F4F1EA",
+  "#D4F54A",
+  "#FF5A36"
+ ],
+ "copy_language": "en",
+ "clip": {
+  "model": "kling-video/v3.0/std/text-to-video",
+  "cost_usd": 1.04,
+  "prompt": {
+   "prompt": "Cinematic brand film, shot on ARRI Alexa 35 mm anamorphic, fine film grain, soft halation, shallow depth of field, slow confident camera moves. Palette: deep ink-blue shadows, warm cream highlights, one acid-lime accent light and tiny coral touches. Real small-business people in their 30s to 50s, work clothes, candid, not models, no suits; alternated with clean glossy abstract 3D in the same palette. Sound: natural room tone and foley only, no music, no speech. No text, no letters, no numbers, no logos, no signage, no watermarks, no readable screens.",
+   "duration": 15,
+   "aspect_ratio": "9:16",
+   "sound": "on",
+   "cfg_scale": 0.65,
+   "multi_shots": true,
+   "multi_prompt": [
+    {
+     "prompt": "Low-angle close-up. A baker in a flour-dusted apron lifts a wooden tray of golden croissants out of a stone oven; steam and flour drift through a beam of low warm light from the left. Slow push-in. Subject in the lower half, clean dark upper third. Sounds: oven door creak, crackling crust, soft steam hiss.",
+     "duration": 3
+    },
+    {
+     "prompt": "Medium shot. A hairdresser in a black apron finishes a blow-out; the client turns her head to camera, long auburn hair swinging into a soft glow, and smiles. Coral neon rim light from behind, dark moody salon, slow dolly left. Clean dark wall in the upper third. Sounds: hairdryer winding down, scissors snip, soft laugh.",
+     "duration": 3
+    },
+    {
+     "prompt": "Abstract 3D render. A row of blank glossy rounded panels in acid lime, cream, coral and ink slides smoothly like a carousel across a dark ink-blue void, reflections on a mirror-black floor, soft studio rim light. Slow lateral camera track. Panels in the lower half, empty dark space above. Sounds: soft glassy chimes, low airy whoosh.",
+     "duration": 3
+    },
+    {
+     "prompt": "Medium close-up. A young founder in a casual jacket on a rooftop at blue hour, city lights in soft bokeh behind, looks down at a smartphone in both hands with a blank softly glowing screen, then looks up with a confident smile. Slow push-in, lime-green glow on the face. Subject in the lower half, open sky above. Sounds: distant city traffic, soft wind, phone tap.",
+     "duration": 3
+    },
+    {
+     "prompt": "Abstract calm background. Dark ink-blue void with a soft volumetric acid-lime light beam sweeping slowly across fine floating dust particles, gentle lens bloom, almost empty centre, slow drift. Nothing else. Sounds: soft low airy hum, faint glassy shimmer.",
+     "duration": 3
+    }
+   ]
+  }
+ },
+ "audio": "Kling ambience -9 dB; synth bed 120 bpm bright with drop at 12.25 s; whooshes on the 4 cuts, riser into the end wipe, ticks/pops on text, impact at the logo reveal (13.3 s) + shimmer"
+}

@@ -1,0 +1,247 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="fonts/bricolage-grotesque.css">
+<style>
+:root{--ink:#0E1320;--paper:#F4F1EA;--lime:#D4F54A;--coral:#FF5A36}
+*{box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--ink)}
+body{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;color:var(--paper)}
+#stage{position:absolute;inset:0;overflow:hidden;background:var(--ink)}
+.ft{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;will-change:transform}
+#vig{position:absolute;inset:0;background:radial-gradient(ellipse 85% 70% at 50% 52%,rgba(14,19,32,0) 55%,rgba(14,19,32,.55) 100%)}
+#scrim{position:absolute;left:0;top:0;width:1080px;height:1150px;background:linear-gradient(180deg,rgba(14,19,32,1) 0%,rgba(14,19,32,.72) 40%,rgba(14,19,32,0) 100%)}
+#scrimB{position:absolute;left:0;bottom:0;width:1080px;height:700px;background:linear-gradient(0deg,rgba(14,19,32,.8) 0%,rgba(14,19,32,0) 100%)}
+#tint{position:absolute;inset:0;background:linear-gradient(200deg,rgba(212,245,74,.10),rgba(255,90,54,.10) 70%);mix-blend-mode:soft-light}
+#endov{position:absolute;inset:0;background:radial-gradient(ellipse 80% 55% at 50% 42%,rgba(14,19,32,.25),rgba(14,19,32,.72));opacity:0}
+.blk{position:absolute;left:70px;width:940px;visibility:hidden;text-shadow:0 4px 40px rgba(14,19,32,.35)}
+.ln{overflow:hidden;padding:.04em .08em .14em 0;margin-bottom:-.12em;line-height:.96;letter-spacing:-.045em}
+.in{display:inline-block;will-change:transform;white-space:nowrap}
+.lime{color:var(--lime)}.coral{color:var(--coral)}
+.hl{display:inline-block;padding:0 .14em;margin:0 -.06em;border-radius:.16em;background:linear-gradient(var(--lime),var(--lime)) no-repeat left center/var(--p,0%) 100%}
+.eyebrow{position:absolute;left:74px;top:268px;font-size:30px;letter-spacing:.22em;text-transform:uppercase;color:var(--lime);display:flex;align-items:center;gap:16px;visibility:hidden}
+.eyebrow i{display:block;width:16px;height:16px;border-radius:50%;background:var(--coral)}
+.sub{position:absolute;left:74px;width:940px;font-size:52px;letter-spacing:-.025em;line-height:1.1;visibility:hidden;color:var(--paper)}
+.s{position:relative;display:inline-block}
+.s:after{content:"";position:absolute;left:-2%;top:54%;height:.13em;width:calc(var(--sw,0) * 104%);background:var(--coral);border-radius:.1em;transform:rotate(-3deg)}
+#band{position:absolute;left:0;top:-300px;width:390px;height:2520px;visibility:hidden;will-change:transform}
+#band b{position:absolute;top:0;height:100%;display:block}
+#end{position:absolute;inset:0;visibility:hidden}
+#lg{position:absolute;left:0;top:730px;width:1080px;display:flex;justify-content:center}
+#lgi{display:flex;align-items:center;gap:34px;transform:scale(1.32);transform-origin:50% 50%}
+.mark{width:150px;height:150px;border-radius:38px;background:#D4F54A;position:relative}
+.mark:before{content:"";position:absolute;left:52px;top:40px;border-left:62px solid #0E1320;border-top:36px solid transparent;border-bottom:36px solid transparent;transform:scale(var(--tri,1));transform-origin:30% 50%}
+.mark:after{content:"";position:absolute;right:-14px;top:24px;width:28px;height:28px;border-radius:50%;background:#FF5A36;transform:translate(var(--dx,0px),var(--dy,0px)) scale(var(--dot,1))}
+.w{font:800 190px/1 "Bricolage Grotesque";letter-spacing:-.05em;color:#F4F1EA}
+#tag{position:absolute;left:0;width:1080px;top:1010px;text-align:center;font-size:112px;letter-spacing:-.045em}
+#tag .ln{display:block;margin-bottom:0;padding-right:0}
+#tag2{position:absolute;left:0;width:1080px;top:1215px;text-align:center;font-size:36px;letter-spacing:.02em;color:var(--paper);opacity:0;font-weight:800}
+#tag2 span{color:var(--lime);margin:0 .5em}
+#ring{position:absolute;left:540px;top:805px;width:200px;height:200px;margin:-100px 0 0 -100px;border-radius:50%;border:6px solid var(--lime);opacity:0}
+.pt{position:absolute;width:16px;height:16px;border-radius:5px;opacity:0}
+#grain{position:absolute;inset:-256px;opacity:.13;mix-blend-mode:overlay;background-size:512px 512px}
+</style></head>
+<body><div id="stage">
+<img class="ft" id="A"><img class="ft" id="B">
+<div id="tint"></div><div id="vig"></div><div id="scrimB"></div><div id="scrim"></div><div id="endov"></div>
+
+<div class="eyebrow" id="eb"><i></i>Klipt Studio</div>
+<div class="blk" id="b1" style="top:340px"><div class="ln"><span class="in">Every brand</span></div><div class="ln"><span class="in">looks</span></div><div class="ln"><span class="in lime">different.</span></div></div>
+<div class="blk" id="b2" style="top:330px"><div class="ln"><span class="in">So should</span></div><div class="ln"><span class="in">its <span class="hl" id="hl">content.</span></span></div></div>
+<div class="blk" id="b3" style="top:290px"><div class="ln"><span class="in">Reels.</span></div><div class="ln"><span class="in lime">Posts.</span></div><div class="ln"><span class="in coral">Carousels.</span></div></div>
+<div class="sub" id="s3" style="top:905px;font-size:46px">From SaaS scale-ups to the corner bakery.</div>
+<div class="blk" id="b4" style="top:300px"><div class="ln"><span class="in">Made for</span></div><div class="ln"><span class="in lime">your brand.</span></div></div>
+<div class="sub" id="s4" style="top:760px;font-size:56px"><span id="s4a">Art-directed. Never a <span class="s" id="tp">template</span>.</span></div>
+
+<div id="band"><b style="left:0;width:44px;background:#0E1320"></b><b style="left:44px;width:250px;background:#D4F54A"></b><b style="left:294px;width:96px;background:#FF5A36"></b></div>
+
+<div id="end"><div id="ring"></div>
+<div id="lg"><div id="lgi"><div class="mark" id="mk"></div><div class="w" id="wm">klipt</div></div></div>
+<div id="tag"><div class="ln"><span class="in" id="tg">Let’s make <span class="lime">yours</span><span class="coral">.</span></span></div></div>
+<div id="tag2">Social video<span>·</span>Posts<span>·</span>Carousels</div>
+</div>
+<div id="grain"></div>
+</div>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+const {prog, ease, clamp, lerp} = KK;
+const N = 451, FPS = 30;
+const CUTS = [3.0, 6.0, 9.3, 12.93];          // first frame of shots 2..5
+const SHOT0 = [0, 3.0, 6.0, 9.3, 12.93, 15.0];
+const WD = 0.38;                               // wipe duration
+const $ = id => document.getElementById(id);
+const A = $('A'), B = $('B'), band = $('band');
+const pad = n => String(n + 1).padStart(4, '0');
+const cur = {A: -1, B: -1};
+async function setFrame(img, key, n) {
+  n = clamp(n, 0, N - 1);
+  if (cur[key] === n) return; cur[key] = n;
+  img.src = `footage/clip/f${pad(n)}.jpg`;
+  try { await img.decode(); } catch (e) {}
+}
+const shotAt = t => { let s = 0; for (let i = 1; i < 5; i++) if (t >= CUTS[i - 1]) s = i; return s; };
+function xf(t, s) {           // slow push + punch after the cut, per shot
+  const a = SHOT0[s], b = SHOT0[s + 1];
+  const p = clamp((t - a) / (b - a));
+  const punch = (1 - ease.outExpo(clamp((t - a) / .5))) * (s ? .05 : .03);
+  const sc = 1.05 + .07 * p + punch;
+  const o = ['50% 75%', '50% 60%', '50% 65%', '50% 70%', '50% 50%'][s];
+  const dx = [-6, 4, 0, 0, 0][s] * p;
+  return [o, `translate(${dx}px,0) scale(${sc})`];
+}
+const FIL = ['contrast(1.1) saturate(1.12)', 'contrast(1.1) saturate(1.1)', 'contrast(1.08) saturate(1.15)', 'contrast(1.1) saturate(1.05) brightness(.93)', 'contrast(1.05) saturate(1.1) blur(3px) brightness(.85)'];
+const SCR = [.42, .5, .4, .62, .3];
+
+// text blocks: [element, tIn, tOut]
+function lines(el, tIn, tOut, t, stag = .09) {
+  const ls = el.querySelectorAll('.ln');
+  const vis = t >= tIn - .001 && t < tOut + .5;
+  el.style.visibility = vis ? 'visible' : 'hidden';
+  if (!vis) return;
+  ls.forEach((l, i) => {
+    const pi = ease.outExpo(prog(t, tIn + i * stag, .6));
+    const po = ease.inCubic(prog(t, tOut + i * .04, .24));
+    const y = (1 - pi) * 112 - po * 112;
+    const inn = l.firstElementChild;
+    inn.style.transform = `translateY(${y}%) skewY(${(1 - pi) * 4}deg)`;
+  });
+}
+function fade(el, tIn, tOut, t, dy = 24) {
+  const pi = ease.outCubic(prog(t, tIn, .5)), po = ease.inCubic(prog(t, tOut, .2));
+  el.style.visibility = (t >= tIn && t < tOut + .3) ? 'visible' : 'hidden';
+  el.style.opacity = pi * (1 - po);
+  el.style.transform = `translateY(${(1 - pi) * dy - po * dy}px)`;
+}
+
+// grain tile (seeded, once)
+(function () {
+  const c = document.createElement('canvas'); c.width = c.height = 512; const g = c.getContext('2d');
+  const im = g.createImageData(512, 512), r = KK.rng(7);
+  for (let i = 0; i < im.data.length; i += 4) { const v = 90 + r() * 120; im.data[i] = im.data[i + 1] = im.data[i + 2] = v; im.data[i + 3] = 255; }
+  g.putImageData(im, 0, 0); $('grain').style.backgroundImage = `url(${c.toDataURL()})`;
+})();
+const pr = KK.rng(21);
+const PT = [];
+for (let i = 0; i < 16; i++) { const e = document.createElement('i'); e.className = 'pt'; $('end').appendChild(e);
+  PT.push({e, a: pr() * Math.PI * 2, d: 240 + pr() * 360, c: pr() > .5 ? '#D4F54A' : (pr() > .5 ? '#FF5A36' : '#F4F1EA'), s: .5 + pr() * 1, r: pr() * 180}); }
+
+function fit() {
+  ['b1', 'b2', 'b3', 'b4'].forEach(id => {
+    const el = $(id); el.style.fontSize = '200px';
+    const w = Math.max(...[...el.querySelectorAll('.in')].map(x => x.offsetWidth));
+    el.style.fontSize = Math.min(200, Math.floor(200 * 930 / w)) + 'px';
+  });
+  const tg = $('tg'); const tw = tg.offsetWidth; $('tag').style.fontSize = Math.min(112, Math.floor(112 * 960 / tw)) + 'px';
+}
+const ready = (async () => {
+  try { await document.fonts.load('800 100px "Bricolage Grotesque"'); await document.fonts.ready; } catch (e) {}
+  fit();
+  await setFrame(A, 'A', 0); await setFrame(B, 'B', 0);
+})();
+
+const T_LOGO = 13.3;
+async function render(t) {
+  const s = shotAt(t);
+  const n = Math.floor(t * FPS + 1e-6);
+  // wipe
+  let wipeI = -1;
+  for (let i = 0; i < 4; i++) if (t >= CUTS[i] && t < CUTS[i] + WD) wipeI = i;
+  let pa, pb, sa, sb;
+  if (wipeI >= 0) {
+    const tc = CUTS[wipeI], q = ease.inOutCubic((t - tc) / WD);
+    const xb = lerp(-470, 1530, q);
+    const first = Math.floor(tc * FPS + 1e-6);
+    await setFrame(A, 'A', first - 1); await setFrame(B, 'B', n);
+    sa = wipeI; sb = wipeI + 1;
+    const k = .25;
+    B.style.clipPath = `polygon(0 0,${xb - k * 960}px 0,${xb + k * 960}px 1920px,0 1920px)`;
+    A.style.visibility = 'visible';
+    band.style.visibility = 'visible';
+    band.style.transform = `translateX(${xb - 195}px) skewX(14deg)`;
+    band.style.transformOrigin = '50% 50%';
+  } else {
+    await setFrame(B, 'B', n);
+    sa = sb = s;
+    B.style.clipPath = 'none'; A.style.visibility = 'hidden'; band.style.visibility = 'hidden';
+  }
+  { const [o, tr] = xf(t, sa); A.style.transformOrigin = o; A.style.transform = tr; A.style.filter = FIL[sa]; }
+  { const [o, tr] = xf(t, sb); B.style.transformOrigin = o; B.style.transform = tr; B.style.filter = FIL[sb]; }
+  $('scrim').style.opacity = sb === 4 ? 0 : SCR[sb] / .5;
+  $('scrimB').style.opacity = sb === 2 || sb === 4 ? .5 : 1;
+  $('endov').style.opacity = ease.outCubic(prog(t, CUTS[3], .6));
+
+  // --- shot 1
+  const eb = $('eb'); eb.style.visibility = t < 2.75 ? 'visible' : 'hidden';
+  eb.style.opacity = ease.outCubic(prog(t, .05, .4)) * (1 - ease.inCubic(prog(t, 2.55, .2)));
+  eb.style.transform = `translateX(${(1 - ease.outCubic(prog(t, .05, .5))) * -30}px)`;
+  lines($('b1'), .0, 2.6, t, .1);
+  // --- shot 2
+  lines($('b2'), 3.36, 5.6, t, .12);
+  { const p = ease.outExpo(prog(t, 3.85, .45)); $('hl').style.setProperty('--p', (p * 100) + '%'); $('hl').style.color = p > .45 ? '#0E1320' : '#F4F1EA'; }
+  // --- shot 3
+  lines($('b3'), 6.38, 9.0, t, .28);
+  fade($('s3'), 7.45, 8.98, t, 26);
+  // --- shot 4
+  lines($('b4'), 9.66, 12.62, t, .13);
+  fade($('s4'), 10.3, 12.6, t, 26);
+  { const p = ease.inOutCubic(prog(t, 11.0, .35)); $('tp').style.setProperty('--sw', p); $('tp').style.opacity = 1 - .5 * p; }
+
+  // --- end card
+  const te = t - T_LOGO;
+  $('end').style.visibility = t >= T_LOGO - .02 ? 'visible' : 'hidden';
+  const mp = ease.outBack(prog(te, 0, .5), 2.2);
+  const mk = $('mk');
+  mk.style.transform = `scale(${mp}) rotate(${(1 - clamp(mp, 0, 1)) * -14}deg)`;
+  mk.style.setProperty('--tri', ease.outBack(prog(te, .14, .42), 2.6));
+  const dp = ease.outBack(prog(te, .2, .55), 2.4);
+  mk.style.setProperty('--dot', dp);
+  mk.style.setProperty('--dx', (1 - clamp(dp, 0, 1)) * -150 + 'px');
+  mk.style.setProperty('--dy', (1 - clamp(dp, 0, 1)) * -170 + 'px');
+  const wp = ease.outExpo(prog(te, .2, .55));
+  const wm = $('wm');
+  wm.style.clipPath = `inset(-10% ${(1 - wp) * 100}% -10% -2%)`;
+  wm.style.transform = `translateX(${(1 - wp) * -60}px)`;
+  wm.style.opacity = wp > 0 ? 1 : 0;
+  // ring + particles
+  const rp = prog(te, 0, .7);
+  const ring = $('ring'); ring.style.opacity = rp > 0 && rp < 1 ? (1 - rp) * .9 : 0; ring.style.transform = `scale(${1 + ease.outExpo(rp) * 4.2})`; ring.style.borderWidth = (8 * (1 - rp) + 1) + 'px';
+  PT.forEach(o => {
+    const p = prog(te, .02, .9), d = ease.outExpo(p) * o.d;
+    o.e.style.opacity = p > 0 && p < 1 ? 1 - p * p : 0;
+    o.e.style.background = o.c;
+    o.e.style.left = (540 + Math.cos(o.a) * d - 8) + 'px'; o.e.style.top = (805 + Math.sin(o.a) * d - 8) + 'px';
+    o.e.style.transform = `scale(${o.s * (1 - p * .6)}) rotate(${o.r + p * 160}deg)`;
+  });
+  // logo settle pulse
+  $('lgi').style.transform = `scale(${1.32 + .03 * (1 - ease.outCubic(prog(te, .25, .7))) + .012 * Math.sin(te * 1.4)})`;
+  // tagline
+  { const p = ease.outExpo(prog(t, 13.85, .6)); $('tg').style.transform = `translateY(${(1 - p) * 115}%) skewY(${(1 - p) * 4}deg)`; }
+  { const p = ease.outCubic(prog(t, 14.25, .5)); $('tag2').style.opacity = p * .8; $('tag2').style.transform = `translateY(${(1 - p) * 20}px)`; }
+  // grain jitter
+  const gi = Math.floor(t * 24);
+  $('grain').style.transform = `translate(${(gi * 137) % 256 - 128}px,${(gi * 71) % 256 - 128}px)`;
+}
+window.KLIPT = {
+  width: 1080, height: 1920, fps: 30, duration: 15, poster: 14.6, ready, render,
+  audio: [
+    { src: 'assets/clip.mp4', gain: -9 },
+    { src: 'audio/bed.wav', gain: -9, dur: 15, fadeOut: 1.0 },
+    { src: 'audio/whoosh.wav', at: 2.85, gain: -3 },
+    { src: 'audio/whoosh.wav', at: 5.85, gain: -3 },
+    { src: 'audio/whoosh.wav', at: 9.15, gain: -3 },
+    { src: 'audio/riser.wav', at: 11.6, gain: -4 },
+    { src: 'audio/whoosh.wav', at: 12.78, gain: -2 },
+    { src: 'audio/tick.wav', at: 0.05, gain: -8 },
+    { src: 'audio/pop.wav', at: 3.4, gain: -8 },
+    { src: 'audio/tick.wav', at: 3.9, gain: -5 },
+    { src: 'audio/tick.wav', at: 6.4, gain: -5 },
+    { src: 'audio/tick.wav', at: 6.68, gain: -5 },
+    { src: 'audio/tick.wav', at: 6.96, gain: -5 },
+    { src: 'audio/pop.wav', at: 9.7, gain: -8 },
+    { src: 'audio/tick.wav', at: 11.05, gain: -3 },
+    { src: 'audio/impact.wav', at: 13.3, gain: -1 },
+    { src: 'audio/pop.wav', at: 13.5, gain: -6 },
+    { src: 'audio/shimmer.wav', at: 13.55, gain: -5 },
+    { src: 'audio/tick.wav', at: 13.9, gain: -6 },
+  ],
+};
+</script></body></html>
