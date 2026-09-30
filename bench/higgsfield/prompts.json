@@ -1,0 +1,17 @@
+[
+ {
+  "name": "klipt-hero",
+  "aspect": "3:4",
+  "prompt": "Instagram post for Klipt, a French content studio that creates social videos and posts for businesses. Bold editorial typographic poster on a deep ink-blue background with subtle film grain. Huge white sans-serif headline, exactly: \"Vos vidéos. Vos posts. En 24 h.\" Below, smaller: \"Le studio de contenu des marques qui bougent.\" A floating smartphone at an angle shows a vibrant short video frame (a chef plating a dish). Small wordmark \"klipt\" in lowercase bottom left, electric lime accent line. Clean grid, generous margins, premium agency design, sharp legible text, no other text."
+ },
+ {
+  "name": "klipt-promo",
+  "aspect": "3:4",
+  "prompt": "Instagram promo post for Klipt, a content studio for small businesses. Warm, bright, modern design: a real photo of a smiling bakery owner behind her counter holding a phone, natural morning light, shallow depth of field. Large bold text overlay in the top third, exactly: \"1er mois offert\". Under it, smaller: \"Des Reels pro pour votre commerce\". A lime rounded button at the bottom with the text \"klipt.fr\". Balanced composition, legible typography, authentic, not stock-looking, no other text."
+ },
+ {
+  "name": "klipt-carousel-cover",
+  "aspect": "3:4",
+  "prompt": "Cover slide of an educational Instagram carousel by Klipt, a content studio. Swiss-style typographic layout on an off-white paper background, strict grid, black text with one lime highlight. Giant headline, exactly: \"3 erreurs qui tuent vos Reels\". A big number \"3\" in lime cut by the grid. Bottom right, small text: \"Glissez →\". Tiny wordmark \"klipt\" top left. Minimal, editorial, sharp typography, no photos, no other text."
+ }
+]
