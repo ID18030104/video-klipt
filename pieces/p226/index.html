@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Verne Woodworks — Before the wood, the drawing</title>
+<!-- DIRECTION: concept = one shop drawing that becomes the table (blueprint -> paper/wood -> 100-year rule -> title block signs the sheet).
+ palette: Prussian #1B3553 / chalk #EDE6D6 / paper #F1EADC / ink #221C17 / walnut #5A3825 / oak #C79A62 / red pencil #C24A2C.
+ type: Fraunces (headlines) + IBM Plex Mono (dimensions). graphic language: architectural drafting conventions, slash ticks, hatch, hidden lines.
+ motion: draftsman's hand - lines are drawn, text slides from masks, one fast beat (plane pass). -->
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/400-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/ibm-plex-mono/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/ibm-plex-mono/500.css">
+<style>
+:root{--prus:#1B3553;--deep:#12263D;--chalk:#EDE6D6;--paper:#F1EADC;--ink:#221C17;--red:#C24A2C;--oak:#C79A62}
+html,body{margin:0;padding:0;background:#12263D;overflow:hidden}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--prus)}
+#stage svg{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#blue{--line:#EDE6D6;--bg:#1B3553}
+#paper{--line:#221C17;--bg:#F1EADC;clip-path:polygon(0 0,0 0,0 0,0 0)}
+svg text{fill:var(--line);font-family:'IBM Plex Mono',monospace;font-weight:500}
+.dimt{font-size:26px}.key{font-size:30px}
+.lab{font-size:22px;letter-spacing:.08em}
+.frm{fill:none;stroke:var(--line);stroke-width:1.5}
+.ln{fill:none;stroke:var(--line);stroke-width:1.25;stroke-linecap:butt}
+.fine{fill:none;stroke:var(--line);stroke-width:1;}
+.hid{fill:none;stroke:var(--line);stroke-width:.9;stroke-dasharray:9 5}
+.wall{fill:none;stroke:var(--line);stroke-width:2.2}
+#txt{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none}
+#txt .g{position:absolute;left:0;top:0}
+.kick{position:absolute;left:120px;top:274px;font:500 22px/30px 'IBM Plex Mono',monospace;letter-spacing:.14em;white-space:nowrap;color:var(--chalk)}
+.h1{position:absolute;left:120px;top:330px;font:400 96px/98px 'Fraunces',serif;letter-spacing:-.01em;color:var(--chalk);white-space:nowrap}
+.h1.big{font-size:112px;line-height:114px;letter-spacing:-.015em}
+.mask{overflow:hidden;padding:0 0 .16em;margin-bottom:-.16em}
+.mask>span{display:block;will-change:transform}
+.h1 i{font-style:italic}
+.h1 b{font-weight:600;color:var(--red)}
+.sub{position:absolute;left:120px;top:580px;width:660px;font:400 38px/47px 'Fraunces',serif;color:var(--ink)}
+.ink .kick,.ink .h1{color:var(--ink)}
+#grain{mix-blend-mode:normal}
+</style></head><body>
+<div id="stage">
+ <svg id="blue" viewBox="0 0 1920 1080"></svg>
+ <svg id="paper" viewBox="0 0 1920 1080"></svg>
+ <svg id="bandsvg" viewBox="0 0 1920 1080"></svg>
+ <div id="txt"></div>
+ <svg id="grain" viewBox="0 0 1920 1080">
+  <defs>
+   <filter id="fg" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7"/><feColorMatrix type="saturate" values="0"/></filter>
+   <filter id="fm" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.004" numOctaves="2" seed="3"/><feColorMatrix type="saturate" values="0"/></filter>
+   <radialGradient id="vigB" cx="50%" cy="50%" r="75%"><stop offset=".55" stop-color="#12263D" stop-opacity="0"/><stop offset="1" stop-color="#12263D" stop-opacity=".38"/></radialGradient>
+  </defs>
+  <rect width="1920" height="1080" filter="url(#fm)" opacity=".05"/>
+  <rect width="1920" height="1080" filter="url(#fg)" opacity=".07"/>
+ </svg>
+</div>
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../node_modules/gsap/dist/DrawSVGPlugin.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script src="main.js"></script>
+</body></html>

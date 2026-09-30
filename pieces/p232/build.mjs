@@ -1,0 +1,10 @@
+import fs from 'fs';
+const dir = new URL('.', import.meta.url).pathname;
+const ic = n => fs.readFileSync(`${dir}../../node_modules/lucide-static/icons/${n}.svg`, 'utf8');
+const inline = (n, color, size) => ic(n).replace(/<!--[\s\S]*?-->/g, '').replace(/width="24"/, `width="${size || 24}"`).replace(/height="24"/, `height="${size || 24}"`).replace(/stroke="currentColor"/, `stroke="${color}"`);
+const sym = s => `<svg class="sym" viewBox="0 0 48 48" width="${s}" height="${s}" style="flex:none"><rect width="48" height="48" rx="12" fill="#5CF2A8"/><polyline points="8,28 17,28 21,18 27,34 31,24 40,14" fill="none" stroke="#0A0E14" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="14" r="2.5" fill="#0A0E14"/></svg>`;
+let h = fs.readFileSync(dir + 'template.html', 'utf8');
+h = h.replace(/\{\{ICON:([\w-]+):(#[0-9A-Fa-f]+)\}\}/g, (_, n, c) => inline(n, c));
+h = h.replace('{{SYM28}}', sym(28)).replace('{{SYM96}}', sym(96));
+h = h.replace('{{CURSOR}}', inline('mouse-pointer-2', '#0A0E14', 32).replace(/fill="none"/, ''));
+fs.writeFileSync(dir + 'index.html', h);

@@ -1,0 +1,8 @@
+{ "id": "p232", "brand": "DataPulse", "sector": "Product analytics SaaS", "kind": "video",
+  "format": "1920x1080", "duration": 24, "slides": null,
+  "title": "The curve flips",
+  "concept": "One account-health chart tells the whole story: the line slides into a cancellation, rewinds 30 days, DataPulse flags it, and the curve flips upward before zooming out to the portfolio and +21% NRR. Dark product-UI look with ember for risk and mint for DataPulse.",
+  "techniques": ["gsap","d3","svg-dataviz","ui-mockup","scrambletext","drawsvg"],
+  "fonts": ["Manrope","JetBrains Mono"],
+  "palette": ["#0A0E14","#121821","#1F2733","#EEF2F6","#7D8898","#FF5B3A","#5CF2A8"],
+  "copy_language": "en" }

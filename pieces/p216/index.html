@@ -22,7 +22,7 @@ svg.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
 .grp{position:absolute;left:0;top:0;width:1080px;height:1920px}
 .m{position:absolute;overflow:hidden;white-space:nowrap;line-height:1;box-sizing:content-box}
 .m>span{display:block;line-height:1;will-change:transform}
-.c{font-family:'Cormorant Garamond',serif;font-weight:300}
+.c{font-family:'Cormorant Garamond',serif;font-weight:300;font-variant-numeric:lining-nums}
 .mn{font-family:'Manrope',sans-serif}
 em{font-style:italic;color:var(--argf);display:inline-block}
 sup{font-size:.55em;line-height:0;position:relative;top:-.45em;vertical-align:baseline}
@@ -60,7 +60,7 @@ sup{font-size:.55em;line-height:0;position:relative;top:-.45em;vertical-align:ba
   </g>
   <line id="rule" x1="480" y1="950" x2="600" y2="950" stroke="#2E2925" stroke-width="1.5"/>
   <g id="pastilles"></g>
-  <rect id="pill" x="240" y="1248" width="600" height="84" rx="42" fill="none" stroke="#2E2925" stroke-width="2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+  <rect id="pill" x="240" y="1248" width="600" height="84" rx="42" fill="none" stroke="#2E2925" stroke-width="2" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1"/>
   <line id="water" x1="240" y1="790" x2="840" y2="790" stroke="#2E2925" stroke-width="3" opacity=".6"/>
   <circle id="head" cx="260" cy="760" r="22" fill="#C4836A"/>
 </svg>
@@ -127,16 +127,16 @@ gsap.set(['#d1','#d2'],{scale:0,transformOrigin:'50% 50%'});
 gsap.set('#head',{scale:0,transformOrigin:'50% 50%'});
 gsap.set('#water',{opacity:0});
 gsap.set('#rule',{scaleX:0,svgOrigin:'540 950'});
-gsap.set('.dr',{strokeDasharray:1,strokeDashoffset:1});
+gsap.set('.dr',{strokeDasharray:'1 2',strokeDashoffset:1});
 gsap.set('#line',{strokeDasharray:'1 10'});
 gsap.set(tickEls,{opacity:0});
 pas.forEach(c=>gsap.set(c,{scale:.6,transformOrigin:'50% 50%'}));
-[t1a,t1b,t1c,t2l,t2a,t2b,t2s,t3a,t3b,t3s,t4p,t4x,t4l,e1,e2,e3,e4,e5].forEach(s=>gsap.set(s,{yPercent:110}));
+[t1a,t1b,t1c,t2l,t2a,t2b,t2s,t3a,t3b,t3s,t4p,t4x,t4l,e1,e2,e3,e4,e5].forEach(s=>gsap.set(s,{yPercent:190}));
 
 /* ---------- timeline ---------- */
 const tl=gsap.timeline({paused:true});
 const up=(el,at,d=.8)=>tl.to(el,{yPercent:0,duration:d,ease:'expo.out'},at);
-const dn=(el,at,d=.38)=>tl.to(el,{yPercent:-115,duration:d,ease:'power2.in'},at);
+const dn=(el,at,d=.38)=>tl.to(el,{yPercent:-190,duration:d,ease:'power2.in'},at);
 // T1
 up(t1a,.15);up(t1b,.27);up(t1c,.39);
 tl.fromTo('#mini',{opacity:0,y:12},{opacity:.9,y:0,duration:.6,ease:'power3.out'},.4);
@@ -202,10 +202,8 @@ function shapeRef(off){
   const x0=210,x1=380+off,n=12;
   for(let i=1;i<=n;i++)p.push([x0+(x1-x0)*(1-(i-.5)/n),cy+(i%2?-11:11)]);
   p.push([x0,cy]);return resample(p)}
-const lerpPts=(a,b,u)=>a.map((p,i)=>[p[0]+(b[0]-p[0])*u ,0].fill(0,1,2)&&[p[0]+(b[0][0]===undefined?0:0),0]);
 function mix(a,b,u){const o=new Array(N);for(let i=0;i<N;i++)o[i]=[a[i][0]+(b[i][0]-a[i][0])*u,a[i][1]+(b[i][1]-a[i][1])*u];return o}
 const breath=t=>{const s=t-7.2;if(s<0||s>2.2)return 0;return -120*(.5-.5*Math.cos(2*Math.PI*s/2.2))};
-const flat=k0=>k0;
 const uK=t=>1-.7273*ez('power2.out')(KK.prog(t,10.2,.8)); // wave amp factor 1 -> 6/22
 function linePts(t){
   const wob=t<.9?0:(t<1.8?22*Math.exp(-3.6*(t-.9))*Math.cos(2*Math.PI*2.2*(t-.9)):0);
