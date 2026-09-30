@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Night 10K</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/big-shoulders-display/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/big-shoulders-display/900.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/700.css">
+<style>
+:root{--ink:#070A10;--ink2:#0D131D;--white:#F4F1E8;--lime:#C8FF2E;--amber:#FFB21F;--dim:#9AA3AE}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;background:var(--ink)}
+body{margin:0;overflow:hidden}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--ink);color:var(--white);font-family:'JetBrains Mono',monospace}
+svg.scene{position:absolute;inset:0;width:1080px;height:1350px}
+.scrim{position:absolute;left:0;right:0;bottom:0;height:640px;background:linear-gradient(to bottom,rgba(7,10,16,0) 0%,rgba(7,10,16,.68) 42%,rgba(7,10,16,.94) 100%)}
+.vig{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%)}
+.grain{position:absolute;inset:0;width:100%;height:100%;opacity:.09;mix-blend-mode:screen;pointer-events:none}
+.top{position:absolute;left:60px;right:60px;top:60px;display:flex;justify-content:space-between;font-size:26px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.top span:last-child{color:var(--lime)}
+.top i{display:inline-block;width:14px;height:14px;background:var(--lime);border-radius:50%;margin-right:14px;box-shadow:0 0 18px 4px rgba(200,255,46,.7);vertical-align:1px}
+.head{position:absolute;left:60px;right:60px;top:118px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;text-transform:uppercase;line-height:.74;white-space:nowrap}
+.head .l{display:block;transform-origin:left top}
+#night{color:var(--white)}
+#ten{margin-top:18px;color:var(--lime);text-shadow:0 0 60px rgba(200,255,46,.35)}
+.sub{position:absolute;left:60px;top:0;width:380px;font-size:32px;font-weight:500;letter-spacing:.02em;color:var(--white);line-height:1.35}
+.info{position:absolute;left:60px;right:60px;bottom:60px}
+.date{display:flex;align-items:flex-end;justify-content:space-between;border-top:3px solid var(--lime);padding-top:22px}
+.date .d{font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:150px;line-height:.8;text-transform:uppercase;letter-spacing:-.005em}
+.date .d small{font-size:.5em;color:var(--lime);margin-left:14px;letter-spacing:.02em}
+.date .t{text-align:right;font-size:30px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;line-height:1.4;padding-bottom:4px}
+.date .t b{display:block;font-family:'Big Shoulders Display',sans-serif;font-size:100px;font-weight:900;line-height:.85;color:var(--lime);letter-spacing:0}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:26px;border-top:1px solid rgba(244,241,232,.28)}
+.facts div{padding:16px 14px 0 0;font-size:28px;line-height:1.25;font-weight:500;color:var(--white)}
+.facts div+div{padding-left:22px;border-left:1px solid rgba(244,241,232,.28)}
+.facts b{display:block;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:64px;line-height:.95;color:var(--lime);margin-bottom:4px}
+.cta{margin-top:26px;background:var(--lime);color:var(--ink);display:flex;justify-content:space-between;align-items:center;padding:16px 30px 18px}
+.cta .a{font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:72px;line-height:.9;text-transform:uppercase;letter-spacing:.005em}
+.cta .b{font-size:28px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;text-align:right;line-height:1.3}
+</style>
+</head>
+<body>
+<section class="slide" id="s">
+  <svg class="scene" id="scene" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070A10"/><stop offset=".55" stop-color="#0B1220"/><stop offset="1" stop-color="#14202F"/></linearGradient>
+      <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B2532"/><stop offset="1" stop-color="#0A0E15"/></linearGradient>
+      <radialGradient id="hz" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#C8FF2E" stop-opacity=".55"/><stop offset=".35" stop-color="#C8FF2E" stop-opacity=".16"/><stop offset="1" stop-color="#C8FF2E" stop-opacity="0"/></radialGradient>
+      <radialGradient id="dot" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#F8FFD8"/><stop offset=".22" stop-color="#C8FF2E"/><stop offset=".55" stop-color="#C8FF2E" stop-opacity=".22"/><stop offset="1" stop-color="#C8FF2E" stop-opacity="0"/></radialGradient>
+      <radialGradient id="amb" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFE9B0"/><stop offset=".3" stop-color="#FFB21F"/><stop offset="1" stop-color="#FFB21F" stop-opacity="0"/></radialGradient>
+      <filter id="gr" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.1 -.2"/></filter>
+    </defs>
+    <rect width="1080" height="1350" fill="url(#sky)"/>
+    <g id="world"></g>
+  </svg>
+  <div class="scrim"></div>
+  <div class="vig"></div>
+
+  <div class="top"><span><i></i>Stride Collective · Kreuzberg</span><span>Free · Untimed</span></div>
+
+  <div class="head">
+    <span class="l" id="night">Night</span>
+    <span class="l" id="ten">10K</span>
+  </div>
+  <div class="sub" id="sub">Free group run on the old Tempelhof runways. <span style="color:var(--lime)">No clock.</span> Just 400 headlamps.</div>
+
+  <div class="info">
+    <div class="date">
+      <div class="d">Fri 22<small>May</small></div>
+      <div class="t">Start<b>21:00</b></div>
+    </div>
+    <div class="facts">
+      <div><b>400</b>free spots</div>
+      <div><b>Headlamps</b>provided</div>
+      <div><b>DJ</b>afterparty at the store</div>
+    </div>
+    <div class="cta"><span class="a">Sign up</span><span class="b">stride.berlin<br>Link in bio</span></div>
+  </div>
+
+  <svg class="grain" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" filter="url(#gr)"/></svg>
+</section>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+window.KLIPT = { width:1080, height:1350 };
+(function(){
+  const NS='http://www.w3.org/2000/svg', W=1080, HZ=600, BOT=1350, VPX=540, HALF=980;
+  const world=document.getElementById('world');
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);(p||world).appendChild(e);return e;};
+  const Y=s=>HZ+(BOT-HZ)*s, X=(u,s)=>VPX+u*HALF*s; // u in [-1,1] across runway
+  // horizon glow
+  el('ellipse',{cx:VPX,cy:HZ,rx:620,ry:150,fill:'url(#hz)'});
+  // runway surface
+  el('polygon',{points:`${VPX-2},${HZ} ${VPX+2},${HZ} ${VPX+HALF},${BOT} ${VPX-HALF},${BOT}`,fill:'url(#road)'});
+  // edge lines
+  [-1,1].forEach(u=>{el('line',{x1:VPX,y1:HZ,x2:X(u*.94,1),y2:BOT,stroke:'#F4F1E8','stroke-opacity':.55,'stroke-width':3});});
+  // centre dashes
+  const z=(s)=>1/s-1;
+  let zz=0.05;
+  while(true){
+    const s1=1/(1+zz), s2=1/(1+zz+0.7); if(s2<.012)break;
+    const w1=16*s1, w2=16*s2;
+    el('polygon',{points:`${VPX-w1},${Y(s1)} ${VPX+w1},${Y(s1)} ${VPX+w2},${Y(s2)} ${VPX-w2},${Y(s2)}`,fill:'#F4F1E8','fill-opacity':Math.min(.55,.15+s1)});
+    zz+=1.5;
+  }
+  // amber edge lights (twin rows)
+  for(let i=0,q=0.06;q<60;i++,q+=0.55+q*0.08){
+    const s=1/(1+q); if(s<.012)break;
+    [-1,1].forEach(u=>{const r=Math.max(2,26*s);el('circle',{cx:X(u*1.02,s),cy:Y(s),r:r,fill:'url(#amb)','fill-opacity':.95});});
+  }
+  // runners' headlamps: seeded, perspective-scaled
+  const R=KK.rng(22);
+  const dots=[];
+  for(let i=0;i<150;i++){const s=Math.pow(R(),1.6)*.7+.012; const u=(R()*2-1)*.8; dots.push([s,u]);}
+  dots.sort((a,b)=>a[0]-b[0]);
+  dots.forEach(([s,u])=>{
+    const r=3+22*s; const cx=X(u,s), cy=Y(s)-r*0.6;
+    el('circle',{cx,cy,r:r*1.7,fill:'url(#dot)','fill-opacity':.75+.25*s});
+    // tiny runner body hint
+    if(s>.16){el('rect',{x:cx-r*.55,y:cy+r*.9,width:r*1.1,height:r*3.4,rx:r*.5,fill:'#05080D','fill-opacity':.92});}
+  });
+  // horizon line light
+  el('rect',{x:0,y:HZ-1.5,width:W,height:3,fill:'#C8FF2E','fill-opacity':.35});
+
+  // fit headline lines to the same width, place sub-copy under them
+  function fit(){
+    const n=document.getElementById('night'), t=document.getElementById('ten'), sub=document.getElementById('sub');
+    n.style.fontSize='100px';n.style.display='inline-block';const w=n.getBoundingClientRect().width;n.style.fontSize=(100*960/w)+'px';n.style.display='block';
+    t.style.fontSize='430px';t.style.display='inline-block';
+    const tb=t.getBoundingClientRect();
+    sub.style.left=(tb.right+36)+'px';sub.style.width=(1020-tb.right-36)+'px';
+    const sb=sub.getBoundingClientRect();
+    sub.style.top=(tb.bottom-sb.height-(tb.height*0.16))+'px';
+  }
+  window.KLIPT.ready=(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(fit);
+  fit();
+})();
+</script>
+</body>
+</html>

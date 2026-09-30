@@ -1,0 +1,8 @@
+{ "id":"o05","brand":"Stride Collective","sector":"Running club & store","kind":"post","format":"1080x1350","duration":null,"slides":1,
+  "title":"Night 10K — Tempelhof runway run",
+  "concept":"Tempelhof's closed runways become the poster: a line of runner headlamps vanishes to the horizon behind a giant lime 10K, with airfield-signage typography and the date as the hero. One light source, one accent colour, an offer readable in a second.",
+  "techniques":["html-css","svg-perspective-scene","seeded-rng","svg-grain","big-type-fit"],
+  "fonts":["Big Shoulders Display","JetBrains Mono"],
+  "palette":["#070A10","#F4F1E8","#C8FF2E","#FFB21F"],
+  "copy_language":"en","tier":"A","style":"Neo-grotesk poster with airfield signage codes",
+  "credits":[],"attention_mechanics":["bold claim at t0 (Night 10K)","scarcity (400 spots)","CTA + date urgency"] }
