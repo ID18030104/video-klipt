@@ -1,0 +1,12 @@
+{
+ "prompt": "Inside a wood-fired bakery before dawn: the oven door opens and a baker slides out golden crusty loaves on a long wooden peel, steam and warm orange glow, embers in the background, handheld camera slowly tracking forward. Vertical cinematic film still, 35mm, warm film grade, photorealistic. No text, no letters, no logos, no watermarks, no third-party brands or trademarks.",
+ "quality": "low",
+ "resolution": "2k",
+ "aspect_ratio": "9:16",
+ "moderation": "auto",
+ "enhance_prompt": false,
+ "request_id": "62c2701e-b9e5-468c-a1c9-c69502764ac5",
+ "seconds": 183.0,
+ "image_host": "d3u0tzju9qaucj.cloudfront.net",
+ "cost_usd": 0.019
+}

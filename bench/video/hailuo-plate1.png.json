@@ -1,0 +1,12 @@
+{
+ "prompt": "Extreme close-up, 35mm film look: a baker's floured hands score a round sourdough loaf with a razor blade in one confident stroke, flour dust drifting in warm low side light, dark wooden bench, shallow depth of field, slow push-in. Vertical cinematic film still, 35mm, warm film grade, photorealistic. No text, no letters, no logos, no watermarks, no third-party brands or trademarks.",
+ "quality": "low",
+ "resolution": "2k",
+ "aspect_ratio": "9:16",
+ "moderation": "auto",
+ "enhance_prompt": false,
+ "request_id": "84dfba77-8f60-471b-a764-8eebbfc616f7",
+ "seconds": 286.5,
+ "image_host": "d3u0tzju9qaucj.cloudfront.net",
+ "cost_usd": 0.019
+}

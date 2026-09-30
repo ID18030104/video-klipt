@@ -1,0 +1,28 @@
+{
+ "endpoint": "kling-video/v3.0/std/text-to-video",
+ "request": {
+  "prompt": "Artisan sourdough bakery commercial, three shots. Cinematic, warm film grade, real textures, natural skin, no text, no letters, no logos, no watermarks.",
+  "duration": 15,
+  "aspect_ratio": "9:16",
+  "sound": "off",
+  "multi_shots": true,
+  "multi_prompt": [
+   {
+    "prompt": "Extreme close-up, 35mm film look: a baker's floured hands score a round sourdough loaf with a razor blade in one confident stroke, flour dust drifting in warm low side light, dark wooden bench, shallow depth of field, slow push-in. Cinematic, warm film grade, real textures, natural skin, no text, no letters, no logos, no watermarks.",
+    "duration": 5
+   },
+   {
+    "prompt": "Inside a wood-fired bakery before dawn: the oven door opens and a baker slides out golden crusty loaves on a long wooden peel, steam and warm orange glow, embers in the background, handheld camera slowly tracking forward. Cinematic, warm film grade, real textures, natural skin, no text, no letters, no logos, no watermarks.",
+    "duration": 5
+   },
+   {
+    "prompt": "Morning in a small Lyon bakery shop with sunlight through the window: a smiling woman in her thirties receives a paper bag with a baguette over the wooden counter, soft natural light, gentle dolly-in, candid and authentic. Cinematic, warm film grade, real textures, natural skin, no text, no letters, no logos, no watermarks.",
+    "duration": 5
+   }
+  ]
+ },
+ "request_id": "2580cc84-ea2d-4fe3-b431-c881da6431bb",
+ "seconds": 195.6,
+ "cost_usd": 0.693,
+ "video_host": "d3u0tzju9qaucj.cloudfront.net"
+}

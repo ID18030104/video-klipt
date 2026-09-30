@@ -1,0 +1,12 @@
+{
+ "endpoint": "minimax/hailuo-2.3/standard/image-to-video",
+ "request": {
+  "prompt": "The woman takes the paper bag with the baguette and smiles warmly, natural small movements, sunlight, gentle dolly-in, cinematic, no text",
+  "image_url": "https://d3snorpfx4xhv8.cloudfront.net/46b5bfaf-d692-44da-ae17-fced3cb8cb9b/e4949d60-5a12-46ed-a8fb-2290d8a2a45b.png",
+  "duration": 6
+ },
+ "request_id": "2078160f-7bf3-4d1b-b588-8c5c8c9c6a0e",
+ "seconds": 140.0,
+ "cost_usd": 0.07,
+ "video_host": "d3u0tzju9qaucj.cloudfront.net"
+}
