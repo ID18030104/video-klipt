@@ -22,7 +22,7 @@ Ce fichier rassemble tout ce qui a été construit et mesuré pour produire le c
 |---|---|---|---|---|
 | Post, carrousel ou story avec photo (restaurant, hôtel, commerce, événement) | **Hybride image** : image Higgsfield + couche Claude | Sonnet 5.5 | **0,24–0,31 $** | 1–2 min |
 | Petite vidéo promo (niveau B : soldes, horaires, plat du jour) | **Hybride 1 image** : image animée + couche Claude | Sonnet 5.5 | **≈ 0,83 $** | ≈ 6 min |
-| Vidéo 15 s avec vraies images en mouvement | **Hybride clip vidéo** : clip IA + couche Claude | Sonnet 5.5 + modèle vidéo (§ 6) | voir § 6 | voir § 6 |
+| Vidéo 15 s avec vraies images en mouvement (Reel, pub locale, lancement) | **Hybride clip vidéo** : 3 images → Hailuo 2.3 + couche Claude | Sonnet 5.5 + Higgsfield | **≈ 0,94 $** (rush 0,27 $ + Claude 0,68 $) | ≈ 17 min + génération |
 | Film SaaS, lancement, interface produit, datavisualisation (niveaux S/S+) | **Studio optimisé** : 100 % code + photos libres | Sonnet 5.5 (Opus 5.5 pour les pièces vitrines) | 1,26–2,94 $ (vidéo), 0,40–0,60 $ (post) | 4–30 min |
 | Déclinaisons en volume, tests A/B d'accroches | **Higgsfield seul** (Marketing Studio avec texte) + contrôle du texte | aucun agent créatif | 0,02–0,07 $ | 20–40 s |
 
@@ -135,7 +135,7 @@ Il note sa pièce dans un historique pour ne pas répéter la même combinaison 
 - **Défaut relevé** : l'offre « −30 % » n'arrivait qu'à 3 s. Au niveau B, **l'offre doit être lisible dès la première image**. La règle est dans le prompt Studio mais doit être rappelée dans le prompt hybride (voir la feuille de route).
 
 ### 3.5 Hybride clip vidéo
-Voir § 6 : le comparatif des modèles vidéo à moins de 2 $ pour 15 s.
+Un rush IA de 15 s (3 à 5 plans) sert de fond, et la couche Claude raconte l'histoire : accroche, un titre par plan, volets sur les coupes, carton de fin. C'est la section « Clip mode » du prompt hybride (annexe B). Le comparatif des modèles et les coûts sont au § 6.
 
 ### 3.6 Higgsfield seul (Marketing Studio avec texte intégré)
 
@@ -366,7 +366,7 @@ Et les séries plus récentes, produites après ce banc (non notées à l'aveugl
 |---|---|
 | Studio | s01 Relai (film SaaS 16:9), s02 Aux Jardins de Marcel (primeur 9:16), s03 Casa Almar (hôtel), s04 Nexus Arena (esport), s05 Stride Collective (événement) |
 | Studio optimisé | o01 à o05 (mêmes briefs) |
-| Hybride | h02 primeur vidéo, h03 Casa Almar, h04 Nexus Arena, h05 Relai LinkedIn |
+| Hybride | h02 primeur vidéo, h03 Casa Almar, h04 Nexus Arena, h05 Relai LinkedIn, **v02 Maison Brune (vidéo 15 s, Hailuo + couche Claude, la meilleure vidéo à ce jour)**, v01 Maison Brune (Kling 3.0) |
 
 La galerie interactive (vidéos, notes, défauts, coûts) est en ligne : https://claude.ai/artifact/Hsg5U2GQQHs7LmC6skCEQ2. Elle ne contient pas encore les séries o et h.
 
