@@ -1,0 +1,110 @@
+{
+ "id": "s02",
+ "brand": "Aux Jardins de Marcel",
+ "sector": "Primeur de quartier",
+ "kind": "video",
+ "format": "1080x1920",
+ "duration": 10,
+ "slides": null,
+ "title": "-30 % fruits d’été ce week-end",
+ "tier": "B",
+ "style": "Retail punch x Market-stall authentic (kraft, price sticker, real produce)",
+ "concept": "The price sticker is the hero: a giant -30 % lands on real sun-lit peaches, five fruit names cut past like crates being counted, and the sticker swells into the kraft paper of a market stall before landing on the address. Ends on the hook frame for a seamless loop.",
+ "techniques": [
+  "gsap",
+  "real-photography",
+  "svg-filter-grade",
+  "clip-path-iris",
+  "canvas-grain"
+ ],
+ "fonts": [
+  "Anton",
+  "Fraunces"
+ ],
+ "palette": [
+  "#0E2B1E",
+  "#FFF1D6",
+  "#FF8F2E",
+  "#E4C48C",
+  "#E5462B"
+ ],
+ "copy_language": "fr",
+ "attention_mechanics": [
+  "bold number at t=0",
+  "numbered progress 1/5-5/5",
+  "CTA with urgency (jusqu’à épuisement, samedi dès 8 h)",
+  "loop back to hook frame"
+ ],
+ "credits": [
+  {
+   "file": "apricot_slate.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "bc4fe22fca715fe6",
+   "title": "Cueillis ce matin!",
+   "author": "Fred Bigio",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/bigiof/18579862718"
+  },
+  {
+   "file": "plums.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "2494f7c8f0bc940a",
+   "title": "Delicious Plums",
+   "author": "THOR",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/geishaboy500/4526452842"
+  },
+  {
+   "file": "nectarine.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "c04044e50ac8fe48",
+   "title": "Nectarine Fruit",
+   "author": "Emilian Robert Vicol",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/free-stock/4791921423"
+  },
+  {
+   "file": "melon.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "cd06c5ced09f8dfd",
+   "title": "Untitled",
+   "author": "Jessica Fiess-Hill",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/gesika22/6177041324"
+  },
+  {
+   "file": "apricot_market.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "ad4d7bb458b25f00",
+   "title": "apricots at the Oerlikon market",
+   "author": "Paul Asman and Jill Lenoble",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/pauljill/4828235017"
+  },
+  {
+   "file": "peaches_tree.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "343f92a2a2ed25b4",
+   "title": "Peaches through the netting",
+   "author": "Paul Long",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/plong/5723401279"
+  },
+  {
+   "file": "peach_branch.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "07d37a0f6a0db311",
+   "title": "Grandma's Garden",
+   "author": "Rob Bertholf",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/robbertholf/14825338339"
+  }
+ ]
+}

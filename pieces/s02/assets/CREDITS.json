@@ -1,15 +1,5 @@
 [
  {
-  "file": "peach_hero.jpg",
-  "source": "Open Images (Flickr)",
-  "image_id": "93a65ad209801d34",
-  "title": "Fuzzy peach",
-  "author": "Bob Doran",
-  "license": "CC BY 2.0",
-  "license_url": "https://creativecommons.org/licenses/by/2.0/",
-  "page": "https://www.flickr.com/photos/humblog/9603393898"
- },
- {
   "file": "apricot_slate.jpg",
   "source": "Open Images (Flickr)",
   "image_id": "bc4fe22fca715fe6",
@@ -70,23 +60,13 @@
   "page": "https://www.flickr.com/photos/plong/5723401279"
  },
  {
-  "file": "melon_x2.jpg",
+  "file": "peach_branch.jpg",
   "source": "Open Images (Flickr)",
-  "image_id": "cd06c5ced09f8dfd",
-  "title": "Untitled",
-  "author": "Jessica Fiess-Hill",
+  "image_id": "07d37a0f6a0db311",
+  "title": "Grandma's Garden",
+  "author": "Rob Bertholf",
   "license": "CC BY 2.0",
   "license_url": "https://creativecommons.org/licenses/by/2.0/",
-  "page": "https://www.flickr.com/photos/gesika22/6177041324"
- },
- {
-  "file": "plums_x2.jpg",
-  "source": "Open Images (Flickr)",
-  "image_id": "2494f7c8f0bc940a",
-  "title": "Delicious Plums",
-  "author": "THOR",
-  "license": "CC BY 2.0",
-  "license_url": "https://creativecommons.org/licenses/by/2.0/",
-  "page": "https://www.flickr.com/photos/geishaboy500/4526452842"
+  "page": "https://www.flickr.com/photos/robbertholf/14825338339"
  }
 ]
