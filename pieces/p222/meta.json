@@ -1,0 +1,8 @@
+{ "id": "p222", "brand": "Boucherie Dufour", "sector": "Boucherie-charcuterie artisanale", "kind": "carousel",
+  "format": "1080x1350", "duration": null, "slides": 6,
+  "title": "Le guide des morceaux pour réussir votre barbecue",
+  "concept": "La fiche du boucher sur papier kraft : une ficelle rouge et blanche traverse les 6 slides et une étiquette-prix avance d’un cran à chaque slide. Chaque morceau a sa jauge de feu, ses temps de cuisson et l’astuce du boucher ; tampon rond Dufour à l’encre.",
+  "techniques": ["svg-illustration","svg-filters","css-layout","textPath"],
+  "fonts": ["Fraunces","Barlow Condensed"],
+  "palette": ["#EFE6D6","#1E1A18","#A3202A","#E8792B","#C9B79A"],
+  "copy_language": "fr" }
