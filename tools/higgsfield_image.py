@@ -8,6 +8,8 @@ Network: api.higgsfield.ai and the host serving the result images must be allowe
 Writes the image plus <out>.json (prompt, parameters, request id, timings) for the cost/quality comparison.
 """
 import argparse, json, os, subprocess, sys, time
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import hf_ledger
 
 API = 'https://api.higgsfield.ai/marketing-studio/image'
 
@@ -37,28 +39,24 @@ a.add_argument('--image-url', action='append', default=[], help='reference image
 a = a.parse_args()
 body = dict(prompt=a.prompt, quality=a.quality, resolution=a.resolution, aspect_ratio=a.aspect, moderation='auto', enhance_prompt=False)
 if a.image_url: body['image_urls'] = a.image_url
-# Budget guard: price the request first and refuse to overspend the ledger (/root/klipt-state/hf_budget.json).
-LEDGER = '/root/klipt-state/hf_budget.json'
+# Budget guard: price the request first, reserve it in the shared ledger (file-locked), refund on failure.
 est = call('POST', 'https://api.higgsfield.ai/estimate/marketing-studio/image', body)
 usd = float(est.get('usd', 0))
-ledger = json.load(open(LEDGER)) if os.path.exists(LEDGER) else None
-if ledger is not None and usd > ledger['remaining_usd'] + 1e-9:
-    sys.exit(f'BUDGET GUARD: this image costs ${usd:.3f} but only ${ledger["remaining_usd"]:.3f} remains. Not generated.')
+hf_ledger.reserve(usd, a.out)
 print(f'estimated cost ${usd:.3f}', file=sys.stderr)
 t0 = time.time()
-job = call('POST', API, body)
+try:
+    job = call('POST', API, body)
+except SystemExit: hf_ledger.refund(usd, a.out); raise   # rejected before any work: not billed
 rid, status_url = job.get('request_id'), job.get('status_url')
 while job.get('status') in ('queued', 'in_progress', None):
     time.sleep(3)
     job = call('GET', status_url or f'https://api.higgsfield.ai/requests/{rid}/status')
-if job.get('status') != 'completed': sys.exit(f'generation {job.get("status")}: {job.get("error", "")}')
+if job.get('status') != 'completed': hf_ledger.refund(usd, a.out); sys.exit(f'generation {job.get("status")}: {job.get("error", "")}')
 os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
 img_url = job['images'][0]['url']
 r = subprocess.run(['curl', '-sfL', '-m', '120', '-o', a.out, img_url])
 if r.returncode: sys.exit(f'could not download the image from {img_url.split("/")[2]} — allow that host too')
 meta = dict(body, request_id=rid, seconds=round(time.time() - t0, 1), image_host=img_url.split('/')[2], cost_usd=usd)
-if ledger is not None:
-    ledger['remaining_usd'] = round(ledger['remaining_usd'] - usd, 4); ledger.setdefault('log', []).append(dict(out=a.out, usd=usd))
-    json.dump(ledger, open(LEDGER, 'w'), indent=1)
 json.dump(meta, open(a.out + '.json', 'w'), indent=1, ensure_ascii=False)
 print(json.dumps(meta, ensure_ascii=False))
