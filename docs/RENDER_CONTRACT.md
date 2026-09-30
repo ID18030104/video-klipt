@@ -9,6 +9,7 @@ Every piece lives in its own folder `pieces/<PIECE_ID>/` and is authored as **on
 - Page body must be exactly the canvas size (`margin:0; overflow:hidden`).
 - Do not read or copy other folders in `pieces/` — each piece is an independent creation.
 - Do not run `git` commands.
+- **Never kill processes you did not start** (`pkill -f render.mjs`, `killall node`, `killall chrome`…): other designers render in parallel on this machine and you would destroy their work. To stop your own render, kill its PID only. A render that prints "waiting for a free render slot…" is queued, not stuck.
 
 ## Video pieces
 Define, before or at load:

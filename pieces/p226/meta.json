@@ -1,0 +1,8 @@
+{ "id": "p226", "brand": "Verne Woodworks", "sector": "Bespoke furniture maker", "kind": "video",
+  "format": "1920x1080", "duration": 21, "slides": null,
+  "title": "Before the wood, the drawing",
+  "concept": "One continuous architect's shop drawing: a Park Slope dining room is drafted in plan, the walnut table is dimensioned into it, then a plane pass turns the blueprint into warm paper and real wood grain, a carpenter's rule runs 2026 to 2126, and the title block grows into the end card.",
+  "techniques": ["gsap", "svg-illustration", "drawsvg", "canvas-procedural-texture", "clip-path-wipe", "kinetic-type"],
+  "fonts": ["Fraunces", "IBM Plex Mono"],
+  "palette": ["#1B3553", "#EDE6D6", "#F1EADC", "#221C17", "#5A3825", "#C79A62", "#C24A2C"],
+  "copy_language": "en" }

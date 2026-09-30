@@ -33,3 +33,8 @@ La pizza devient une vraie carte: aucune image de pizza « appétissante », uni
 
 ## Tokens
 #EAD9B2 #3A2517 #B3301E #C98A4B #F4E8CC #4A3426 #56702C · Gloock, EB Garamond (400, 500 italic)
+
+## 8. Critique (first render)
+- Art director: labels « Marais de crème de truffe » and « Forêt de roquette » collide, the forest eats the marsh; seal arc text and price crowd the rim. Fix: forest moved south, lakes and mushrooms redistributed, seal type scaled down.
+- Stranger in the feed: reads in 3 s (title, X, 17 €); the pizza is recognisable as a pizza despite being a map. Keep.
+- AI detector: too many labels would feel generated; kept only 4 toponyms plus coast, all from the real ingredients.

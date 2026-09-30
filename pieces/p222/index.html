@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Boucherie Dufour – Le guide barbecue</title>
+<!--
+DIRECTION — « La fiche du boucher »
+Concept: la fiche cuisson du boucher sur papier kraft, ficelée de ficelle rouge et blanche qui traverse les 6 slides; l’étiquette-prix avance d’un cran à chaque slide (progression).
+Palette: Papier #EFE6D6 · Charbon #1E1A18 · Rouge Dufour #A3202A · Braise #E8792B (flammes seulement) · Kraft #C9B79A
+Type: Fraunces (900 / 700 / 600 italic) + Barlow Condensed (500/600/700)
+Graphisme: illustrations plates SVG, tampon rond à l’encre, jauge de feu, thermomètre, bloc « L’astuce du boucher »
+Motion: aucune (carrousel statique)
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/index.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/900.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/700.css">
+<style>
+:root{--paper:#EFE6D6;--ink:#1E1A18;--red:#A3202A;--red2:#7E1820;--ember:#E8792B;--kraft:#C9B79A;--cream:#F7F1E6;--pork:#C4474F}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#777}
+body{width:1080px;overflow:hidden}
+.defs{position:absolute;width:0;height:0;overflow:hidden}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--paper);color:var(--ink);font-family:'Barlow Condensed',sans-serif}
+.slide.dark{background:var(--ink);color:var(--cream)}
+.slide.redbg{background:var(--red);color:var(--cream)}
+.a{position:absolute}
+.fx{position:absolute;left:0;top:0;width:1080px;height:1350px;pointer-events:none}
+.kick{font:700 28px/1 'Barlow Condensed';letter-spacing:.14em;text-transform:uppercase;color:var(--red);white-space:nowrap}
+.h1{font:900 104px/1 'Fraunces';letter-spacing:-.02em;margin:0;white-space:nowrap}
+.h1 em,.h0 em,.h2 em{font-style:italic;font-weight:600;color:var(--red)}
+.h0{font:900 100px/.98 'Fraunces';letter-spacing:-.02em;margin:0;white-space:nowrap}
+.tagl{font:italic 600 44px/1.15 'Fraunces';white-space:nowrap}
+.h2{font:700 52px/1.1 'Fraunces';letter-spacing:-.01em}
+.body{font:500 36px/1.25 'Barlow Condensed';letter-spacing:.01em}
+.data{font:700 40px/1.1 'Barlow Condensed';white-space:nowrap}
+.data i{font-style:normal;color:var(--kraft);padding:0 .3em}
+.lab{font:700 28px/1 'Barlow Condensed';letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.hf{font:600 26px/1 'Barlow Condensed';letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+.nb{white-space:nowrap}
+.feu{display:flex;align-items:center;gap:10px}
+.feu svg{display:block}
+.feu .lab{margin-left:10px}
+.astuce{border-left:6px solid var(--red);padding-left:22px}
+.astuce .lab{color:var(--red);font-size:26px;letter-spacing:.14em;margin-bottom:12px}
+.astuce p{margin:0;font:italic 600 38px/1.2 'Fraunces'}
+.dark .astuce{border-color:var(--ember)}.dark .astuce .lab{color:var(--ember)}
+.pill{position:absolute;background:var(--paper);border:2px solid var(--ink);padding:6px 14px;font:700 30px/1 'Barlow Condensed';white-space:nowrap;border-radius:4px}
+.step{position:absolute;left:72px;width:700px}
+.step .n{position:absolute;left:0;top:0;width:56px;height:56px;border-radius:50%;background:var(--red);color:var(--cream);font:900 32px/56px 'Fraunces';text-align:center}
+.step .t{margin-left:78px}
+.step .lab{color:var(--red);margin-bottom:6px;margin-top:2px}
+</style>
+</head>
+<body>
+<script>window.KLIPT={width:1080,height:1350};</script>
+
+<svg class="defs" xmlns="http://www.w3.org/2000/svg"><defs>
+  <symbol id="flame" viewBox="0 0 24 24"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="head" viewBox="0 0 100 100">
+    <!-- Charolaise, face: fill=currentColor, contre-formes=var(--counter) -->
+    <path d="M27 40 C10 36 4 28 2 22 C10 24 20 28 30 32Z M73 40 C90 36 96 28 98 22 C90 24 80 28 70 32Z"/>
+    <path d="M30 27 C22 16 24 6 30 1 C30 10 34 17 40 22Z M70 27 C78 16 76 6 70 1 C70 10 66 17 60 22Z"/>
+    <path d="M28 26 C40 20 60 20 72 26 C74 40 70 56 66 70 C64 82 58 92 50 93 C42 92 36 82 34 70 C30 56 26 40 28 26Z"/>
+    <ellipse cx="50" cy="76" rx="17" ry="12" style="fill:var(--counter)"/>
+    <ellipse cx="43" cy="77" rx="2.6" ry="3.4" style="fill:currentColor"/><ellipse cx="57" cy="77" rx="2.6" ry="3.4" style="fill:currentColor"/>
+    <ellipse cx="38" cy="45" rx="4" ry="2.6" style="fill:var(--counter)"/><ellipse cx="62" cy="45" rx="4" ry="2.6" style="fill:var(--counter)"/>
+    <path d="M46 26 C48 34 52 34 54 26 C52 22 48 22 46 26Z" style="fill:var(--counter)"/>
+  </symbol>
+  <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7"/><feColorMatrix type="saturate" values="0"/></filter>
+  <filter id="fibres" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.35" numOctaves="2" seed="5"/><feColorMatrix type="saturate" values="0"/></filter>
+  <filter id="ink" x="-6%" y="-6%" width="112%" height="112%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="3" result="d"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="11" result="g"/>
+    <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  10 0 0 0 -3.1" result="m"/>
+    <feComposite in="d" in2="m" operator="in"/>
+  </filter>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="18" stdDeviation="12" flood-color="#1E1A18" flood-opacity=".22"/></filter>
+</defs></svg>
+
+<div id="s1" class="slide"></div>
+<div id="s2" class="slide"></div>
+<div id="s3" class="slide"></div>
+<div id="s4" class="slide dark"></div>
+<div id="s5" class="slide"></div>
+<div id="s6" class="slide redbg"></div>
+
+<script>
+const N=' ', T=' ';
+const PORK='#C4474F', RED='#A3202A', INK='#1E1A18', KRAFT='#C9B79A', CREAM='#F7F1E6', EMBER='#E8792B', PAPER='#EFE6D6';
+const $=id=>document.getElementById(id);
+
+/* ---------- components ---------- */
+function stamp(size,{full=true,color=RED,counter=PAPER,rot=0,arc,uid='x'}={}){
+  const ring = `<circle cx="150" cy="150" r="${full?146:140}" fill="none" stroke="${color}" stroke-width="${full?6:12}"/>`
+   + (full?`<circle cx="150" cy="150" r="108" fill="none" stroke="${color}" stroke-width="2.5"/>`:'');
+  const txt = arc||'BOUCHERIE · CHARCUTERIE · ARTISAN DEPUIS 1978 ·';
+  const r=127, circ=2*Math.PI*r;
+  const path = full?`<path id="arc${uid}" d="M150 ${150+r} A${r} ${r} 0 1 1 150 ${150-r} A${r} ${r} 0 1 1 150 ${150+r}" fill="none"/>
+   <text font-family="Barlow Condensed" font-weight="700" font-size="28" fill="${color}" textLength="${(circ-8).toFixed(0)}" lengthAdjust="spacing"><textPath href="#arc${uid}" startOffset="0">${txt}</textPath></text>`:'';
+  const head = full
+   ? `<g style="color:${color};--counter:${counter}"><use href="#head" x="88" y="50" width="124" height="124"/></g>
+      <text x="150" y="226" text-anchor="middle" font-family="Fraunces" font-weight="900" font-size="40" letter-spacing="1" fill="${color}">DUFOUR</text>`
+   : `<g style="color:${color};--counter:${counter}"><use href="#head" x="62" y="62" width="176" height="176"/></g>`;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 300 300" style="transform:rotate(${rot}deg);overflow:visible"><g filter="url(#ink)">${ring}${path}${head}</g></svg>`;
+}
+function flames(active,{size=46,total=3,off=KRAFT,label='',labelColor}={}){
+  let s='';
+  for(let i=0;i<total;i++){
+    const on=i<active;
+    s+=`<svg width="${size}" height="${size}" viewBox="0 0 24 24"><use href="#flame" fill="${on?EMBER:'none'}" stroke="${on?INK:off}" stroke-width="${(2.5*24/size).toFixed(2)}"/></svg>`;
+  }
+  return `<div class="feu">${s}${label?`<span class="lab" ${labelColor?`style="color:${labelColor}"`:''}>${label}</span>`:''}</div>`;
+}
+const icon=(paths,size,color,sw=2.5,extra='')=>`<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" ${extra}>${paths}</svg>`;
+const I={
+ arrow:'<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+ check:'<path d="M20 6 9 17l-5-5"/>',
+ slice:'<path d="M11 16.586V19a1 1 0 0 1-1 1H2L18.37 3.63a1 1 0 1 1 3 3l-9.663 9.663a1 1 0 0 1-1.414 0L8 14"/>',
+ bookmark:'<path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z"/>'
+};
+function twine(n,mode){ // mode: paper | dark | red
+  const c = {paper:[CREAM,RED,KRAFT],dark:[CREAM,RED,'#000'],red:[CREAM,INK,'#5A1016']}[mode];
+  const d='M0 30 Q540 58 1080 30';
+  const cx=[150,306,462,618,774,930][n-1];
+  const t=cx/1080, ty=1232+30+56*t*(1-t);
+  const hx=cx-48;
+  const th=hx/1080, thy=1232+30+56*th*(1-th);
+  const last=n===6;
+  const clip=last?`<clipPath id="tc"><rect x="0" y="0" width="1004" height="80"/></clipPath>`:'';
+  const g=`<g ${last?'clip-path="url(#tc)"':''}>
+    <path d="${d}" transform="translate(0,5)" fill="none" stroke="${c[2]}" stroke-width="12" opacity=".55"/>
+    <path d="${d}" fill="none" stroke="${c[0]}" stroke-width="10"/>
+    <path d="${d}" fill="none" stroke="${c[1]}" stroke-width="10" stroke-dasharray="9 9"/>
+    <path d="${d}" fill="none" stroke="${INK}" stroke-width="1" opacity=".25" transform="translate(0,-4)"/></g>`;
+  const knot = last?`<g fill="none" stroke-linecap="round">
+     <path d="M990 34 C1010 8 1040 40 1010 46 C985 50 985 18 1012 30 C1030 40 1040 62 1046 78" stroke="${c[2]}" stroke-width="12" opacity=".5"/>
+     <path d="M990 34 C1010 8 1040 40 1010 46 C985 50 985 18 1012 30 C1030 40 1040 62 1046 78" stroke="${c[0]}" stroke-width="9"/>
+     <path d="M990 34 C1010 8 1040 40 1010 46 C985 50 985 18 1012 30 C1030 40 1040 62 1046 78" stroke="${c[1]}" stroke-width="9" stroke-dasharray="7 8"/>
+     <path d="M1004 44 C1000 60 992 76 984 88" stroke="${c[0]}" stroke-width="8"/>
+     <path d="M1004 44 C1000 60 992 76 984 88" stroke="${c[1]}" stroke-width="8" stroke-dasharray="7 8"/></g>`:'';
+  const tagFill=CREAM;
+  return `<svg class="a" style="left:0;top:1232px;overflow:visible" width="1080" height="60" viewBox="0 1232 1080 60">${clip}
+     <g transform="translate(0,1232)">${g}${knot}</g></svg>
+   <svg class="a" style="left:0;top:0;overflow:visible" width="1080" height="1350" viewBox="0 0 1080 1350">
+     <line x1="${hx}" y1="${thy}" x2="${hx}" y2="1316" stroke="${mode==='paper'?INK:CREAM}" stroke-width="2.5" opacity=".8"/>
+     <g transform="translate(${cx-60},1284)" filter="url(#shadow2)">
+       <path d="M0 32 L20 2 Q22 0 26 0 L116 0 Q120 0 120 4 L120 60 Q120 64 116 64 L26 64 Q22 64 20 62Z" fill="${tagFill}" stroke="${KRAFT}" stroke-width="1"/>
+       <circle cx="18" cy="32" r="5" fill="${mode==='paper'?PAPER:(mode==='dark'?INK:RED)}" stroke="${KRAFT}" stroke-width="2.5"/>
+       <text x="72" y="42" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="28" fill="${INK}">0${n} / 06</text>
+     </g></svg>`;
+}
+function chrome(n,mode){
+  const dark=mode==='dark', red=mode==='red';
+  const tx = dark?'rgba(247,241,230,.6)':(red?CREAM:INK);
+  const logoC = dark?CREAM:(red?CREAM:RED), logoCt = dark?INK:(red?RED:PAPER);
+  const bg = mode==='paper'
+   ? `<svg class="fx"><rect width="1080" height="1350" filter="url(#fibres)" opacity=".05" style="mix-blend-mode:multiply"/><rect width="1080" height="1350" filter="url(#grain)" opacity=".07" style="mix-blend-mode:multiply"/></svg>
+      <div class="fx" style="background:radial-gradient(ellipse at center,transparent 70%,rgba(30,26,24,.10) 100%)"></div>`
+   : dark
+   ? `<div class="fx" style="background:radial-gradient(circle at 8% 92%,rgba(232,121,43,.10),transparent 45%),radial-gradient(circle at 96% 6%,rgba(232,121,43,.10),transparent 40%)"></div>
+      <svg class="fx"><rect width="1080" height="1350" filter="url(#grain)" opacity=".10" style="mix-blend-mode:screen"/></svg>`
+   : `<svg class="fx"><rect width="1080" height="1350" filter="url(#grain)" opacity=".10" style="mix-blend-mode:multiply"/></svg>
+      <div class="fx" style="background:radial-gradient(ellipse at center,transparent 70%,rgba(30,26,24,.16) 100%)"></div>`;
+  const head = `
+    <div class="a" style="left:72px;top:60px">${stamp(64,{full:false,color:logoC,counter:logoCt,uid:'h'+n})}</div>
+    <div class="a hf" style="left:150px;top:82px;color:${tx}">Boucherie Dufour</div>
+    <div class="a hf" style="right:72px;top:82px;color:${tx}">Le guide barbecue</div>
+    <div class="a" style="left:72px;top:139px;width:936px;height:2px;background:${dark?'rgba(247,241,230,.25)':(red?'rgba(247,241,230,.5)':KRAFT)}"></div>`;
+  return {bg,head,tw:twine(n,mode)};
+}
+function build(id,n,mode,inner,{under=''}={}){
+  const c=chrome(n,mode);
+  $(id).innerHTML = c.bg + under + inner + c.head + c.tw;
+}
+const A=(cls,style,html)=>`<div class="a ${cls}" style="${style}">${html}</div>`;
+const astuce=(style,html,size)=>`<div class="a astuce" style="${style}"><div class="lab">L’astuce du boucher</div><p ${size?`style="font-size:${size}px"`:''}>${html}</p></div>`;
+
+/* extra filter (tag shadow) */
+document.querySelector('.defs defs').insertAdjacentHTML('beforeend','<filter id="shadow2" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#1E1A18" flood-opacity=".25"/></filter>');
+
+/* ---------- illustrations ---------- */
+function grill(clipId,{w=800,h=800,cx=0,cy=0,rot=-35,gap=60,cnt=7,color=INK,op=.85,bw=14}={}){
+  let l='';
+  for(let i=-Math.floor(cnt/2);i<=Math.floor(cnt/2);i++){
+    const j=(i*37%9)-4;
+    l+=`<line x1="${-w/2+j*3}" y1="${i*gap}" x2="${w/2-j*4}" y2="${i*gap+(j*2)}" stroke="${color}" stroke-width="${bw}" stroke-linecap="round"/>`;
+  }
+  return `<g clip-path="url(#${clipId})"><g transform="translate(${cx},${cy}) rotate(${rot})" opacity="${op}">${l}</g></g>`;
+}
+function marbling(paths,sw=5,op=.55){ return paths.map((d,i)=>`<path d="${d}" fill="none" stroke="${CREAM}" stroke-width="${sw-(i%3)}" stroke-linecap="round" opacity="${op+(i%3)*.05}"/>`).join(''); }
+
+function cote(){ // 520x440
+  const meat='M120 150 C130 60 330 30 440 90 C520 140 510 300 420 370 C330 430 170 420 120 330 C95 280 105 200 120 150Z';
+  const edge='M440 90 C520 140 510 300 420 370 C330 430 170 420 120 330';
+  const m=marbling(['M170 150 C210 140 250 170 300 150','M190 210 C240 200 280 240 340 215 C370 205 390 215 410 200','M180 280 C230 270 270 300 330 290','M250 100 C280 120 300 110 340 120','M300 180 C340 190 360 170 400 180','M260 250 C300 240 340 260 380 250','M350 130 C380 150 410 140 430 165','M330 320 C360 310 390 320 410 300'],6,.5);
+  return `<svg width="520" height="440" viewBox="0 0 520 440" style="overflow:visible;filter:drop-shadow(0 18px 24px rgba(30,26,24,.22))">
+   <defs><clipPath id="cm"><path d="${meat}"/></clipPath></defs>
+   <g transform="translate(150,140) rotate(-38)"><rect x="-32" y="-215" width="64" height="235" rx="30" fill="${CREAM}"/><rect x="8" y="-205" width="16" height="215" rx="8" fill="${KRAFT}" opacity=".8"/><circle cx="-14" cy="-206" r="30" fill="${CREAM}"/><circle cx="16" cy="-206" r="28" fill="${CREAM}"/><circle cx="-14" cy="-196" r="6" fill="${KRAFT}" opacity=".7"/></g>
+   <path d="${meat}" fill="${RED}"/>
+   <g clip-path="url(#cm)"><path d="M120 330 C170 420 330 430 420 370 C510 300 520 140 440 90 L470 380 L150 440Z" fill="#7E1820" opacity=".55"/>${m}
+     <path d="${edge}" fill="none" stroke="${KRAFT}" stroke-width="42"/><path d="${edge}" fill="none" stroke="${CREAM}" stroke-width="36"/></g>
+   ${grill('cm',{cx:270,cy:230,rot:-35,gap:74,cnt:7,bw:13,op:.8})}
+  </svg>`;
+}
+function entrecote(){ // 420x300
+  const meat='M22 130 C10 60 110 22 220 30 C330 34 414 66 402 140 C394 214 330 274 226 266 C140 272 60 248 32 196 C24 176 24 150 22 130Z';
+  const fat='M20 150 C10 70 90 30 200 34 C320 30 410 70 400 150';
+  return `<svg width="440" height="310" viewBox="0 0 440 310" style="overflow:visible;filter:drop-shadow(0 18px 24px rgba(30,26,24,.22))">
+   <defs><clipPath id="ec"><path d="${meat}"/></clipPath></defs>
+   <g transform="translate(10,4)">
+   <path d="${meat}" fill="${RED}"/>
+   <g clip-path="url(#ec)"><path d="M22 200 C60 290 340 300 402 190 L420 300 L0 300Z" fill="#7E1820" opacity=".5"/>
+     ${marbling(['M60 130 C100 120 130 150 170 135','M250 120 C290 110 330 140 370 120','M80 200 C120 185 150 215 200 200','M240 210 C280 200 320 225 360 200','M120 90 C150 100 170 90 190 100','M270 85 C300 95 330 88 350 100','M50 170 C70 160 90 175 110 165','M300 165 C320 175 350 165 380 175','M180 240 C210 235 240 245 270 238'],8,.6)}
+     <path d="${fat}" fill="none" stroke="${KRAFT}" stroke-width="50"/><path d="${fat}" fill="none" stroke="${CREAM}" stroke-width="44"/>
+     <g fill="${RED}"><path d="M150 26 l10 22 l14 -22Z"/><path d="M255 24 l10 24 l14 -24Z"/><path d="M60 50 l6 22 l16 -20Z"/></g>
+   </g>
+   <g clip-path="url(#ec)"><path d="M180 152 C185 122 230 118 250 138 C265 155 238 178 208 174 C188 172 178 166 180 152Z" fill="${CREAM}"/><path d="M188 152 C192 132 225 128 240 142" fill="none" stroke="${KRAFT}" stroke-width="3" opacity=".7"/></g>
+   ${grill('ec',{cx:210,cy:158,rot:-35,gap:72,cnt:5,bw:12,op:.8})}
+   </g></svg>`;
+}
+function vache(){ // 620x380 local
+  const body='M72 108 C95 92 130 96 160 92 C200 86 230 84 270 88 L510 92 C550 92 575 108 580 140 C585 180 570 215 560 250 L556 292 L562 368 L528 368 L524 306 C516 290 500 272 490 264 C440 285 330 290 250 282 L238 300 L242 366 L204 366 L198 312 C180 292 160 262 148 236 C134 226 116 232 100 250 C86 258 66 256 54 250 C34 244 20 230 22 212 C22 190 28 176 40 150 C48 132 58 118 72 108Z';
+  const zones = `<path d="M258 60 L360 60 L354 190 L246 186Z" fill="${RED}" opacity=".92"/><path d="M360 60 L474 60 L468 190 L354 190Z" fill="${RED}" opacity=".75"/><ellipse cx="342" cy="238" rx="48" ry="22" transform="rotate(-8 342 238)" fill="${RED}" opacity=".92"/>`;
+  const cuts = `<g fill="none" stroke="${INK}" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 9"><path d="M360 88 L354 190"/><path d="M474 92 L468 190"/><path d="M246 186 L354 190 L468 190"/><path d="M160 96 C170 150 210 200 250 190"/><path d="M290 268 C320 285 380 285 420 250"/></g>`;
+  return `<svg width="620" height="380" viewBox="0 0 620 380" style="overflow:visible">
+   <defs><clipPath id="vc"><path d="${body}"/></clipPath></defs>
+   <path d="M262 300 L266 360 L296 360 L294 296Z M470 292 L476 360 L504 360 L500 288Z" fill="#DCCFB8" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/>
+   <path d="M578 130 C604 150 608 200 596 250 C594 262 588 262 586 250 C594 210 590 170 574 150Z" fill="${INK}"/>
+   <path d="${body}" fill="${CREAM}"/>
+   <g clip-path="url(#vc)">${zones}${cuts}</g>
+   <path d="${body}" fill="none" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/>
+   <path d="M88 100 C70 84 66 62 78 46 C84 66 96 78 108 88Z" fill="${CREAM}" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/>
+   <path d="M104 116 C124 104 146 112 150 124 C134 134 112 130 104 116Z" fill="${CREAM}" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/>
+   <circle cx="64" cy="140" r="5.5" fill="${INK}"/><ellipse cx="30" cy="212" rx="6" ry="4" fill="${INK}"/>
+   <g font-family="Barlow Condensed" font-weight="700" font-size="26" text-anchor="middle">
+    <circle cx="308" cy="126" r="22" fill="${RED}" stroke="${CREAM}" stroke-width="3"/><text x="308" y="135" fill="${CREAM}">1</text>
+    <circle cx="416" cy="126" r="22" fill="${RED}" stroke="${CREAM}" stroke-width="3"/><text x="416" y="135" fill="${CREAM}">2</text>
+    <circle cx="342" cy="238" r="22" fill="${RED}" stroke="${CREAM}" stroke-width="3"/><text x="342" y="247" fill="${CREAM}">3</text>
+   </g></svg>`;
+}
+function cochon(){ // 300x190
+  const body='M40 80 C60 40 110 30 170 32 C240 30 285 55 288 100 C290 130 280 150 270 158 L272 185 L244 185 L240 160 C200 168 150 168 120 160 L116 185 L88 185 L88 155 C70 148 58 138 52 128 C30 132 14 122 12 104 L10 92 C14 80 28 74 40 80Z';
+  return `<svg width="280" height="178" viewBox="0 0 300 190" style="overflow:visible">
+   <defs><clipPath id="pc"><path d="${body}"/></clipPath></defs>
+   <path d="M288 66 C312 58 314 84 296 82 C284 82 286 72 294 74" fill="none" stroke="${INK}" stroke-width="4" stroke-linecap="round"/>
+   <path d="${body}" fill="${CREAM}"/>
+   <g clip-path="url(#pc)"><rect x="96" y="112" width="180" height="60" fill="${RED}" opacity=".92"/><path d="M96 130 H276 M96 146 H276" stroke="${CREAM}" stroke-width="4" opacity=".7"/></g>
+   <path d="${body}" fill="none" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/>
+   <path d="M70 52 L92 24 L108 56Z" fill="${CREAM}" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/>
+   <ellipse cx="14" cy="102" rx="8" ry="15" fill="#E8B4A6" stroke="${INK}" stroke-width="4"/>
+   <circle cx="52" cy="78" r="5" fill="${INK}"/>
+   <g fill="none" stroke="${INK}" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 9"><path d="M96 112 H276"/></g>
+   <circle cx="186" cy="142" r="22" fill="${RED}" stroke="${CREAM}" stroke-width="3"/><text x="186" y="151" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="26" fill="${CREAM}">4</text>
+  </svg>`;
+}
+function merguezChain(){ // 300x80
+  const segs=[[16,40,72,30],[88,28,146,30],[162,32,220,44],[236,46,288,56]];
+  let s='';
+  segs.forEach(([x1,y1,x2,y2],i)=>{
+    const my=(y1+y2)/2+10;
+    s+=`<path d="M${x1} ${y1+8} Q${(x1+x2)/2} ${my+12} ${x2} ${y2+8}" fill="none" stroke="#7E1820" stroke-width="30" stroke-linecap="round"/>
+        <path d="M${x1+4} ${y1} Q${(x1+x2)/2} ${my+3} ${x2-4} ${y2}" fill="none" stroke="${CREAM}" stroke-width="5" stroke-linecap="round" opacity=".6"/>`;
+  });
+  let k=''; [79,154,228].forEach((x,i)=>{const y=[40,42,54][i]; k+=`<path d="M${x-9} ${y+2} q9 9 18 0 M${x-9} ${y+16} q9 -9 18 0" fill="none" stroke="#5a1018" stroke-width="4" stroke-linecap="round"/>`;});
+  return `<svg width="300" height="80" viewBox="0 0 300 80" style="overflow:visible">${s}${k}</svg>`;
+}
+function coil(){ // 300x300
+  let pts=[]; const turns=3;
+  for(let i=0;i<=240;i++){ const a=i/240*turns*2*Math.PI; const r=22+ (i/240)*118; pts.push([150+r*Math.cos(a-1.2),150+r*Math.sin(a-1.2)]); }
+  const d='M'+pts.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L');
+  const dh='M'+pts.map(p=>(p[0]-3).toFixed(1)+' '+(p[1]-6).toFixed(1)).join(' L');
+  return `<svg width="320" height="320" viewBox="-10 -10 320 320" style="overflow:visible">
+   <defs><mask id="cmk"><path d="${d}" fill="none" stroke="#fff" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/></mask></defs>
+   <g transform="rotate(38 150 150)"><line x1="-10" y1="150" x2="310" y2="150" stroke="${KRAFT}" stroke-width="9" stroke-linecap="round"/></g>
+   <path d="${d}" transform="translate(4,8)" fill="none" stroke="rgba(30,26,24,.22)" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/>
+   <path d="${d}" fill="none" stroke="#7E1820" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/>
+   <path d="${dh}" fill="none" stroke="${CREAM}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>
+   <g mask="url(#cmk)"><g transform="translate(150,150) rotate(-35)" opacity=".6">${[-3,-2,-1,0,1,2,3].map(i=>`<line x1="-200" y1="${i*52}" x2="200" y2="${i*52}" stroke="${INK}" stroke-width="12" stroke-linecap="round"/>`).join('')}</g></g>
+   <g transform="rotate(-52 150 150)"><line x1="-10" y1="150" x2="310" y2="150" stroke="${KRAFT}" stroke-width="9" stroke-linecap="round"/><line x1="-10" y1="150" x2="310" y2="150" stroke="#8a7a5c" stroke-width="2" transform="translate(0,3)"/></g>
+  </svg>`;
+}
+function thermo(){ // 178 x 300
+  const y=t=>232-(t-30)*5.2;
+  const ticks=[40,50,60].map(t=>`<line x1="66" y1="${y(t)}" x2="80" y2="${y(t)}" stroke="${INK}" stroke-width="3"/><text x="88" y="${y(t)+9}" font-family="Barlow Condensed" font-weight="600" font-size="26" fill="${INK}">${t}</text>`).join('');
+  return `<svg width="178" height="300" viewBox="0 0 178 300">
+   <rect x="20" y="2" width="36" height="262" rx="18" fill="${CREAM}" stroke="${INK}" stroke-width="3"/>
+   <rect x="31" y="${y(52)}" width="14" height="${268-y(52)}" fill="${EMBER}"/>
+   <circle cx="38" cy="268" r="30" fill="${CREAM}" stroke="${INK}" stroke-width="3"/><circle cx="38" cy="268" r="22" fill="${EMBER}"/>
+   <rect x="31" y="230" width="14" height="30" fill="${EMBER}"/>
+   ${ticks}<line x1="60" y1="${y(52)}" x2="82" y2="${y(52)}" stroke="${RED}" stroke-width="4"/>
+  </svg>`;
+}
+function onglet(){ // 740x200
+  const shape='M12 96 C60 30 170 14 330 26 C500 34 640 40 712 78 C732 90 730 106 706 118 C620 168 470 184 320 178 C170 184 60 170 12 96Z';
+  let fib=''; for(let k=-13;k<=13;k++){ const o=k*6.6; const sw=(k%3===0)?3.2:2; fib+=`<path d="M6 ${98+o*.28} C180 ${98+o*1.0-4} 500 ${98+o*1.05+4} 730 ${98+o*.3}" fill="none" stroke="${k%2?'#5a1018':'#7E1820'}" stroke-width="${sw}" opacity="${k%2?.75:.95}"/>`; }
+  const cuts=[210,370,530].map(x=>`<path d="M${x+62} -6 L${x-62} 206" stroke="${EMBER}" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="2 10"/>`).join('');
+  return `<svg width="740" height="200" viewBox="0 0 740 200" style="overflow:visible"><defs><clipPath id="oc"><path d="${shape}"/></clipPath></defs>
+   <path d="${shape}" transform="translate(5,10)" fill="#000" opacity=".4"/>
+   <path d="${shape}" fill="#B02832"/><g clip-path="url(#oc)">${fib}<path d="M12 96 C60 30 170 14 330 26 C500 34 640 40 712 78 C560 58 200 52 12 96Z" fill="${CREAM}" opacity=".13"/></g>
+   ${cuts}</svg>`;
+}
+function pork(){ // slice 170x330
+  const cols=[PORK,CREAM,PORK,CREAM,PORK,CREAM,PORK];
+  let st='',y=26; const hs=[62,26,58,26,56,26,60]; hs.forEach((h,i)=>{st+=`<rect x="0" y="${y}" width="170" height="${h+1}" fill="${cols[i]}"/>`;y+=h;});
+  return `<svg width="190" height="350" viewBox="-10 -10 190 350" style="overflow:visible;filter:drop-shadow(0 12px 14px rgba(30,26,24,.22))">
+   <defs><clipPath id="pk"><rect x="0" y="0" width="170" height="330" rx="26"/></clipPath></defs>
+   <g clip-path="url(#pk)">${st}<rect x="0" y="0" width="170" height="30" fill="#B8742E"/><rect x="0" y="22" width="170" height="8" fill="#8f5620" opacity=".55"/>
+    <path d="M20 60 C60 76 100 56 150 74 M20 150 C70 166 110 146 150 158 M20 240 C60 256 110 236 150 250" fill="none" stroke="${CREAM}" stroke-width="3" opacity=".5"/>
+    <g transform="translate(85,168) rotate(-35)" opacity=".8">${[-3,-2,-1,0,1,2,3].map(i=>`<line x1="-260" y1="${i*58}" x2="260" y2="${i*58}" stroke="${INK}" stroke-width="13" stroke-linecap="round"/>`).join('')}</g></g></svg>`;
+}
+
+/* ---------- SLIDE 1 ---------- */
+build('s1',1,'paper',`
+  ${A('kick','left:72px;top:196px',`Boucherie Dufour · Le guide`)}
+  ${A('h0','left:72px;top:236px',`Le guide<br>des morceaux<br>pour <em>réussir</em><br>votre barbecue`)}
+  ${A('body','left:72px;top:646px;color:rgba(30,26,24,.85);white-space:nowrap',`5 morceaux, leurs cuissons et nos astuces de boucher.`)}
+  <div class="a" style="left:72px;top:800px">${vache()}</div>
+  <div class="a" style="left:728px;top:836px">${cochon()}</div>
+  <div class="a" style="left:722px;top:1078px">${merguezChain()}</div>
+  <svg class="a" style="left:0;top:0" width="1080" height="1350" viewBox="0 0 1080 1350"><g stroke="${INK}" stroke-width="2" fill="none">
+    <path d="M380 766 V920"/><path d="M500 766 L490 920"/><path d="M414 1050 V1100"/><path d="M866 1004 V1030"/><circle cx="1000" cy="1130" r="0"/></g></svg>
+  ${A('pill','left:236px;top:720px',`Côte de bœuf`)}
+  ${A('pill','left:472px;top:720px',`Entrecôte`)}
+  ${A('pill','left:376px;top:1094px',`Onglet`)}
+  ${A('pill','left:748px;top:1028px',`Poitrine de porc`)}
+  <svg class="a" style="left:722px;top:1078px;overflow:visible" width="300" height="80"><circle cx="266" cy="10" r="22" fill="${RED}" stroke="${CREAM}" stroke-width="3"/><text x="266" y="19" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="26" fill="${CREAM}">5</text></svg>
+  ${A('pill','left:806px;top:1156px;font-size:30px',`Merguez maison`)}
+  ${A('lab','left:72px;top:1190px;color:'+RED+';display:flex;align-items:center;gap:14px',`Faites glisser ${icon(I.arrow,32,RED,2.5)}`)}
+  <div class="a" style="left:795px;top:210px">${stamp(230,{rot:-12,arc:'CHAROLAISE · MATURÉE SUR PLACE ·',uid:'s1'})}</div>
+`);
+
+/* ---------- SLIDE 2 ---------- */
+build('s2',2,'paper',`
+  ${A('kick','left:72px;top:196px',`Morceau 01`)}
+  ${A('h1','left:72px;top:238px;font-size:92px',`Côte de bœuf`)}
+  ${A('tagl','left:72px;top:352px',`La reine du feu, à partager.`)}
+  <div class="a" style="left:548px;top:206px;transform:rotate(8deg) scale(-.76,.76);transform-origin:center">${cote()}</div>
+  ${A('data','left:72px;top:426px;line-height:1.25',`1,2${N}kg<i>·</i>4${N}cm d’épaisseur<br>3 à 4${N}personnes`)}
+  ${A('','left:72px;top:530px',flames(3,{label:'Feu vif, puis indirect'}))}
+  <div class="a" style="left:82px;top:612px;width:4px;height:236px;background-image:radial-gradient(circle,${KRAFT} 2px,transparent 2.5px);background-size:4px 12px"></div>
+  ${[['Saisir',`3${N}min par face sur les braises vives.`],['Finir',`12${N}min à côté des braises, couvercle fermé.`],['Reposer',`10${N}min sous une feuille d’alu.`]].map(([l,b],i)=>`<div class="step" style="top:${606+i*120}px"><div class="n">${i+1}</div><div class="t"><div class="lab">${l}</div><div class="body">${b}</div></div></div>`).join('')}
+  ${A('lab','left:800px;top:574px;width:208px;text-align:center;color:'+RED,`À cœur`)}
+  <div class="a" style="left:800px;top:606px">${thermo()}</div>
+  ${A('','left:800px;top:906px;width:208px;text-align:center',`<div style="font:900 64px/1 Fraunces;color:${RED};white-space:nowrap">52${N}°C</div><div class="body" style="font-size:30px;margin-top:2px">= saignant</div>`)}
+  ${astuce('left:72px;top:1010px;width:936px',`Sortez-la du frigo 1${N}h avant. Sel juste avant la grille, poivre après.`)}
+  ${A('hf','left:72px;top:1180px;color:rgba(30,26,24,.7)',`Maturée 4 semaines dans notre cave`)}
+`);
+
+/* ---------- SLIDE 3 ---------- */
+build('s3',3,'paper',`
+  ${A('kick','left:72px;top:196px',`Morceau 02`)}
+  ${A('h1','left:72px;top:232px',`Entrecôte`)}
+  ${A('tagl','left:72px;top:352px',`Persillée, tendre, vite cuite.`)}
+  ${A('','left:52px;top:410px;font:900 250px/1 Fraunces;letter-spacing:-.03em;color:'+RED+';white-space:nowrap;font-variant-numeric:tabular-nums',`2′30″`)}
+  ${A('h2','left:72px;top:688px;width:600px',`par face, pour une cuisson saignante.`)}
+  ${A('body','left:72px;top:820px;white-space:nowrap',`À point${T}: 3′30″ par face.`)}
+  <div class="a" style="left:596px;top:604px;transform:rotate(8deg) scale(1.08);transform-origin:top left">${entrecote()}</div>
+  ${A('','left:72px;top:890px',flames(3,{label:'Feu vif'}))}
+  ${A('data','left:72px;top:960px',`350${N}g<i>·</i>2,5${N}cm<i>·</i>1${N}personne`)}
+  ${A('body','left:72px;top:1030px;width:936px;display:flex;gap:16px;align-items:center;white-space:nowrap',`${icon(I.check,40,RED,3.5)}<span>Retournez-la une seule fois, à la pince. Jamais à la fourchette.</span>`)}
+  ${astuce('left:72px;top:1100px;width:936px',`Entaillez le gras du bord tous les 3${N}cm${T}: elle ne se recroquevillera pas sur la grille.`,34)}
+`);
+
+/* ---------- SLIDE 4 ---------- */
+build('s4',4,'dark',`
+  ${A('kick','left:72px;top:196px;color:'+EMBER,`Morceau 03`)}
+  ${A('h1','left:72px;top:232px;color:'+CREAM,`Onglet`)}
+  ${A('tagl','left:72px;top:352px;color:'+EMBER,`Le morceau du boucher.`)}
+  ${A('','left:72px;top:440px;font:900 96px/1 Fraunces;letter-spacing:-.02em;color:'+CREAM+';white-space:nowrap',`Un seul<br>par bête.`)}
+  ${A('body','left:72px;top:650px;width:530px;color:'+CREAM,`Longtemps, on le gardait pour nous. Maintenant, on vous le réserve.`)}
+  ${astuce('left:640px;top:436px;width:368px',`Des échalotes crues ciselées, de la fleur de sel. C’est tout.`,34)}
+  <div class="a" style="left:60px;top:808px">${onglet()}</div>
+  <div class="a" style="left:318px;top:754px">${icon(I.slice,50,CREAM,2.2)}</div>
+  ${A('lab','left:72px;top:1016px;width:936px;text-align:center;color:'+EMBER,`Tranchez en biais, contre le fil`)}
+  ${A('','left:72px;top:1058px',flames(3,{off:'#5A504A',label:'Feu très vif'}))}
+  ${A('data','right:72px;top:1066px;color:'+CREAM,`180 à 200${N}g par personne`)}
+  ${A('h2','left:72px;top:1112px;color:'+CREAM,`2${N}min par face, pas plus.`)}
+  ${A('body','left:72px;top:1174px;color:rgba(247,241,230,.8)',`Bleu ou saignant, sinon il durcit.`)}
+`);
+
+/* ---------- SLIDE 5 ---------- */
+const half=(kick,title,gauge,body,astx,ax)=>'';
+build('s5',5,'paper',`
+  <div class="a" style="left:72px;top:700px;width:936px;height:4px;background-image:radial-gradient(circle,${KRAFT} 2px,transparent 2.5px);background-size:12px 4px"></div>
+  <div class="a" style="left:64px;top:180px;transform:rotate(-6deg) scale(.86);transform-origin:top left">${pork()}</div>
+  <div class="a" style="left:238px;top:196px;transform:rotate(4deg) scale(.86);transform-origin:top left">${pork()}</div>
+  ${A('kick','left:440px;top:186px',`Morceau 04`)}
+  ${A('h1','left:440px;top:222px;font-size:84px;white-space:normal',`Poitrine<br>de porc`)}
+  ${A('','left:440px;top:406px',flames(2,{label:'Feu moyen'}))}
+  ${A('body','left:440px;top:464px;width:568px',`Tranches de 1${N}cm, 4 à 5${N}min par face, jusqu’à ce qu’elle croustille.`)}
+  ${astuce('left:440px;top:562px;width:568px',`Le gras coule et ça flambe${T}? Décalez‑la hors des braises 30${N}secondes.`,32).replace('margin-bottom:12px','')}
+  ${A('kick','left:72px;top:736px',`Morceau 05`)}
+  ${A('h1','left:72px;top:772px;font-size:84px;white-space:normal',`Merguez<br><em>maison</em>`)}
+  ${A('body','left:72px;top:950px;font-size:30px;color:rgba(30,26,24,.75);white-space:nowrap',`Bœuf et agneau, nos épices, embossées chaque jeudi.`)}
+  ${A('','left:72px;top:994px',flames(2,{label:'Feu moyen'}))}
+  ${A('body','left:72px;top:1054px;white-space:nowrap',`8 à 10${N}min, en les tournant souvent.`)}
+  ${astuce('left:72px;top:1112px;width:600px',`Ne les piquez jamais${T}: tout le jus reste dedans.`,32)}
+  <div class="a" style="left:690px;top:800px">${coil()}</div>
+`);
+
+/* ---------- SLIDE 6 ---------- */
+const rec=[['Côte de bœuf',3],['Entrecôte',3],['Onglet',3],['Poitrine de porc',2],['Merguez maison',2]];
+build('s6',6,'red',`
+  ${A('kick','left:72px;top:196px;color:rgba(247,241,230,.8)',`Pour samedi${T}?`)}
+  ${A('h1','left:72px;top:232px;font-size:88px;color:'+CREAM,`On vous prépare<br>tout ça.`)}
+  ${A('body','left:72px;top:434px;width:640px;font-weight:500;font-size:38px;color:'+CREAM,`Commandez la veille, c’est prêt, ficelé et emballé à votre arrivée.`)}
+  <div class="a" style="left:780px;top:330px">${stamp(240,{color:CREAM,counter:RED,rot:-10,uid:'s6'})}</div>
+  ${A('lab','left:72px;top:590px;color:rgba(247,241,230,.8)',`Commande la veille au`)}
+  ${A('','left:72px;top:624px;font:900 100px/1.05 Fraunces;color:'+CREAM+';white-space:nowrap;font-variant-numeric:tabular-nums',`04${N}78${N}00${N}00${N}12`)}
+  <div class="a" style="left:72px;top:748px;width:770px;height:3px;background:${CREAM}"></div>
+  <div class="a" style="left:72px;top:800px;width:936px;height:322px;background:${PAPER};border-radius:4px;transform:rotate(-1.5deg);box-shadow:0 16px 30px rgba(30,26,24,.28);color:${INK};overflow:hidden">
+    <svg class="a" style="left:0;top:0" width="936" height="322"><rect width="936" height="322" filter="url(#grain)" opacity=".07" style="mix-blend-mode:multiply"/></svg>
+    <div class="a" style="left:40px;top:20px;font:700 40px/1 Fraunces;color:${RED}">Le récap’</div>
+    ${rec.map(([n,f],i)=>`<div class="a" style="left:40px;right:40px;top:${78+i*48}px;height:48px;border-top:1px solid ${KRAFT};display:flex;justify-content:space-between;align-items:center"><span style="font:600 32px/1 'Barlow Condensed'">${n}</span>${flames(f,{size:30,total:3})}</div>`).join('')}
+  </div>
+  ${A('','left:72px;top:1160px;font:600 28px/1 Barlow Condensed;color:'+CREAM+';white-space:nowrap',`Boucherie Dufour · Artisan boucher-charcutier`)}
+  ${A('','left:72px;top:1198px;font:500 28px/1 Barlow Condensed;color:rgba(247,241,230,.8);white-space:nowrap',`Du mardi au samedi · 7${N}h${N}30 – 12${N}h${N}30 et 15${N}h${N}30 – 19${N}h`)}
+  ${A('lab','right:72px;top:1156px;color:'+CREAM+';font-size:26px;display:flex;align-items:center;gap:10px',`${icon(I.bookmark,30,CREAM,2.5)}Enregistrez ce guide`)}
+  ${A('','right:72px;top:1198px;font:600 28px/1 Barlow Condensed;color:'+CREAM,`@boucheriedufour`)}
+`);
+</script>
+</body>
+</html>

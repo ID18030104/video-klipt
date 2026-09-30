@@ -2,3 +2,4 @@ node_modules/
 *.log
 pieces/*/preview.mp4
 pieces/*/frame-*.png
+tools/.kbg.mjs

@@ -23,8 +23,8 @@
   .place{font-family:'EB Garamond',serif;font-style:italic;font-weight:500;font-size:32px;fill:var(--ink);letter-spacing:.01em;}
   .place.big{font-size:34px;}
   .caps{font-family:'EB Garamond',serif;font-weight:600;font-size:30px;letter-spacing:.22em;fill:var(--ink);}
-  .price{font-family:'Gloock',serif;font-size:86px;fill:#F6E9CF;letter-spacing:-.01em;}
-  .seal-t{font-family:'EB Garamond',serif;font-weight:600;font-size:22px;letter-spacing:.3em;fill:#F6E9CF;}
+  .price{font-family:'Gloock',serif;font-size:70px;fill:#F6E9CF;letter-spacing:-.01em;}
+  .seal-t{font-family:'EB Garamond',serif;font-weight:600;font-size:20px;letter-spacing:.26em;fill:#F6E9CF;}
   .foot{font-family:'EB Garamond',serif;font-style:italic;font-weight:500;font-size:32px;fill:var(--ink);}
 </style>
 </head>
@@ -145,7 +145,7 @@
 
   // fior di latte lakes
   const lakes=g({});
-  [[C.x-40,C.y+30,62,4],[C.x+10,C.y+215,48,9],[C.x-205,C.y+175,40,2],[C.x+215,C.y-165,36,6],[C.x-95,C.y-215,34,12]].forEach(([x,y,r,s])=>{
+  [[C.x-110,C.y+65,56,4],[C.x+10,C.y+215,48,9],[C.x+250,C.y+10,32,2],[C.x+215,C.y-165,36,6],[C.x-95,C.y-215,34,12]].forEach(([x,y,r,s])=>{
     el('path',{d:blob(x,y,r,.16,s),fill:'#FFFBF0',stroke:'#3A2517','stroke-width':1.6},lakes);
     el('path',{d:blob(x,y,r*.72,.16,s+1),fill:'none',stroke:'#3A2517','stroke-width':1,opacity:.35},lakes);
   });
@@ -167,7 +167,7 @@
     // hatching on the shaded side like map relief
     for(let k=0;k<5;k++){el('line',{x1:s*(.15+k*.14),y1:-s*(.55-k*.08),x2:s*(.05+k*.14),y2:-s*(.2-k*.03),stroke:'#3A2517','stroke-width':1.3,opacity:.55},m);}
   }
-  [[C.x-175,C.y-95,40,-6],[C.x-120,C.y-60,30,8],[C.x-232,C.y-30,27,-12],[C.x-110,C.y+140,36,5],[C.x+150,C.y+145,38,-8],[C.x+205,C.y+195,26,10],[C.x-20,C.y-150,28,4]].forEach(a=>mush(...a));
+  [[C.x-175,C.y-95,40,-6],[C.x-120,C.y-60,30,8],[C.x-232,C.y-30,27,-12],[C.x-200,C.y+150,34,5],[C.x-150,C.y+215,24,10],[C.x-20,C.y-150,28,4]].forEach(a=>mush(...a));
 
   // rocket forest
   const forest=g({});
@@ -177,11 +177,11 @@
     el('path',{d:lobes,fill:'#5E7A31',stroke:'#27330F','stroke-width':1.6,'stroke-linejoin':'round'},lg);
     el('path',{d:`M2,0 L${len*.95},0`,stroke:'#C9D59A','stroke-width':1.2,opacity:.8},lg);
   }
-  const F={x:C.x+170,y:C.y+30};
-  for(let i=0;i<26;i++){const a=R()*Math.PI*2, rr=Math.sqrt(R())*80;
-    leaf(F.x+rr*Math.cos(a)*1.15,F.y+rr*Math.sin(a)*.8,52+R()*30,R()*360);}
-  for(let i=0;i<9;i++){const a=R()*Math.PI*2, rr=Math.sqrt(R())*60;
-    leaf(C.x-185+rr*Math.cos(a),C.y+85+rr*Math.sin(a)*.6,40+R()*22,R()*360);}
+  const F={x:C.x+205,y:C.y+165};
+  for(let i=0;i<24;i++){const a=R()*Math.PI*2, rr=Math.sqrt(R())*50;
+    leaf(F.x+rr*Math.cos(a)*1.1,F.y+rr*Math.sin(a)*.6,46+R()*26,R()*360);}
+  for(let i=0;i<8;i++){const a=R()*Math.PI*2, rr=Math.sqrt(R())*50;
+    leaf(C.x-235+rr*Math.cos(a)*.7,C.y+45+rr*Math.sin(a)*.8,38+R()*20,R()*360);}
 
   // route (dotted) from Toulouse to X
   const X={x:TM.x+6,y:TM.y-6};
@@ -212,20 +212,20 @@
   const ct=el('text',{class:'caps','letter-spacing':'.24em'});
   const tp=el('textPath',{href:'#arcTop',startOffset:'50%','text-anchor':'middle'},ct);tp.textContent='CÔTE DU FOUR À BOIS';
   // halo helper: parchment-coloured stroke behind labels on busy ground
-  label('Marais de\ncrème de truffe',TM.x+8,TM.y+140,-4,'place big').setAttribute('style','paint-order:stroke;stroke:#F1E2C2;stroke-width:8px;stroke-linejoin:round');
+  label('Marais de\ncrème de truffe',TM.x-35,TM.y+150,-3,'place big').setAttribute('style','paint-order:stroke;stroke:#F1E2C2;stroke-width:8px;stroke-linejoin:round');
   label('Monts champignons',C.x-165,C.y-150,-10).setAttribute('style','paint-order:stroke;stroke:#F1E2C2;stroke-width:8px;stroke-linejoin:round');
-  label('Forêt de roquette',F.x+14,F.y+118,8).setAttribute('style','paint-order:stroke;stroke:#F1E2C2;stroke-width:8px;stroke-linejoin:round');
-  label('Lacs de fior di latte',C.x-60,C.y+262,3).setAttribute('style','paint-order:stroke;stroke:#F1E2C2;stroke-width:8px;stroke-linejoin:round');
-  label('Toulouse',120,1222,0,'caps','start');
+  label('Forêt de roquette',F.x-40,F.y+68,-14).setAttribute('style','paint-order:stroke;stroke:#F1E2C2;stroke-width:8px;stroke-linejoin:round');
+  label('Lacs de fior di latte',C.x-40,C.y+280,3).setAttribute('style','paint-order:stroke;stroke:#F1E2C2;stroke-width:8px;stroke-linejoin:round');
+  label('Toulouse',112,1222,0,'caps','start').setAttribute('letter-spacing','.12em');
 
   // price wax seal
   const seal=g({transform:'translate(905,1170) rotate(-9)'});
   el('path',{d:blob(0,0,112,.05,5,64),fill:'#9E2616',filter:'url(#rough)'},seal);
   el('circle',{r:92,fill:'#B3301E'},seal);
   el('circle',{r:80,fill:'none',stroke:'#F6E9CF','stroke-width':1.6,opacity:.8},seal);
-  el('path',{id:'sealArc',d:'M-62,0 A62,62 0 0 1 62,0',fill:'none'},seal);
+  el('path',{id:'sealArc',d:'M-60,-4 A60,60 0 0 1 60,-4',fill:'none'},seal);
   const sa=el('text',{class:'seal-t'},seal);const sp=el('textPath',{href:'#sealArc',startOffset:'50%','text-anchor':'middle'},sa);sp.textContent='LE TRÉSOR';
-  const pr=el('text',{x:0,y:44,'text-anchor':'middle',class:'price'},seal);pr.textContent='17 €';
+  const pr=el('text',{x:0,y:48,'text-anchor':'middle',class:'price'},seal);pr.textContent='17 €';
   el('path',{d:blob(-40,-60,18,.3,2),fill:'#FFFFFF',opacity:.12},seal);
 
   // footer
