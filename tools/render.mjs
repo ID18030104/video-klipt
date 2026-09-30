@@ -3,7 +3,7 @@
 // Usage:
 //   node tools/render.mjs video  <piece-dir> [--fps 30] [--preview]   → video.mp4 + poster.jpg + sheet.jpg
 //   node tools/render.mjs stills <piece-dir>                          → slides/slide-01.png … + sheet.jpg
-//   node tools/render.mjs frame  <piece-dir> <t-seconds> [out.png]    → single frame (quick check)
+//   node tools/render.mjs frame  <piece-dir> <t-seconds> [out.png] [--w 540] → single frame (quick check)
 //   node tools/render.mjs qa     <piece-dir>                          → qa.jpg keyframe grid + automatic defect report
 // Contract: see docs/RENDER_CONTRACT.md
 import { chromium } from 'playwright-core';
@@ -104,8 +104,11 @@ try {
   if (mode === 'frame') {
     const t = parseFloat(rest[0] || '0');
     await seek(page, t);
-    const out = rest[1] || path.join(dir, `frame-${t}.png`);
+    const out = rest[1] && !rest[1].startsWith('--') ? rest[1] : path.join(dir, `frame-${t}.png`);
     await page.screenshot({ path: out });
+    // --w <px>: downscale the saved frame (cheaper to look at than a full 1080p frame).
+    const w = opt('--w', null);
+    if (w) { const tmpOut = out + '.full.png'; fs.renameSync(out, tmpOut); await ff(['-i', tmpOut, '-vf', `scale=${w}:-2`, out]); fs.rmSync(tmpOut); }
     console.log(out);
   } else if (mode === 'video') {
     if (!meta.duration) throw new Error('KLIPT.duration must be set for video pieces');
