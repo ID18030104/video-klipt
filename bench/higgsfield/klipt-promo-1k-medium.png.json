@@ -1,0 +1,11 @@
+{
+ "prompt": "Instagram promo post for Klipt, a content studio for small businesses. Warm, bright, modern design: a real photo of a smiling bakery owner behind her counter holding a phone, natural morning light, shallow depth of field. Large bold text overlay in the top third, exactly: \"1er mois offert\". Under it, smaller: \"Des Reels pro pour votre commerce\". A lime rounded button at the bottom with the text \"klipt.fr\". Balanced composition, legible typography, authentic, not stock-looking, no other text.",
+ "quality": "medium",
+ "resolution": "1k",
+ "aspect_ratio": "3:4",
+ "moderation": "auto",
+ "enhance_prompt": false,
+ "request_id": "fffe56d5-d19d-4481-b865-fa4e89e4a6c0",
+ "seconds": 38.7,
+ "image_host": "d3u0tzju9qaucj.cloudfront.net"
+}
