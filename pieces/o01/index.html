@@ -23,19 +23,19 @@ svg.orb{position:absolute;overflow:visible}
 #hero .glow,#hero .bars,#hero .orbit,#hero .sat,#hero .rip{opacity:0}
 
 /* S1 */
-#ghost{left:1090px;top:0;width:800px;opacity:.5;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 92%,transparent 100%)}
+.ghost{left:1090px;top:0;width:800px;opacity:.5;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 92%,transparent 100%)}
 .gr{height:92px;display:flex;align-items:center;gap:22px;border-bottom:1px solid var(--line);font-size:30px;white-space:nowrap}
 .gr .t{font-family:'JetBrains Mono',monospace;font-size:26px;color:var(--dim)}
 .gr b{font-weight:600}.gr span{color:var(--dim)}
 .gr i{width:12px;height:12px;border-radius:50%;background:var(--acc);flex:none}
-#numwrap{left:0;top:0;width:1920px;height:1080px}
+.numwrap{left:0;top:0;width:1920px;height:1080px}
 .n{position:absolute;left:130px;top:230px;font-size:560px;font-weight:800;line-height:1;letter-spacing:-.05em;white-space:nowrap}
 .n .u{font-size:.42em;margin-left:.1em;color:var(--dim);font-weight:700;letter-spacing:-.02em}
 .n40{opacity:0}.n40 .d{color:var(--acc)}.n40 .u{color:var(--paper)}
 #bm{display:inline-block;width:0;height:0}
 .strike{position:absolute;left:-40px;top:280px;height:24px;width:640px;background:var(--acc);transform:rotate(-5deg) scaleX(0);transform-origin:0% 50%}
 .sub{left:130px;top:830px;font-size:64px;font-weight:500;letter-spacing:-.02em;white-space:nowrap}
-#sub40{opacity:0}
+.sub40{opacity:0}
 
 /* S2 */
 #h2{font-size:196px;font-weight:800;letter-spacing:-.05em;line-height:1;white-space:nowrap}
@@ -131,14 +131,14 @@ svg.orb{position:absolute;overflow:visible}
 
 <!-- S1 -->
 <div class="shot" id="s1"><div class="bg" id="bg1"></div><div class="in" id="in1">
-  <div id="ghost" class="a"></div>
+  <div id="ghost" class="a ghost"></div>
   <div id="lab1" class="a lab mono"><i class="dot"></i>Première réponse client · avant</div>
-  <div id="numwrap" class="a">
+  <div id="numwrap" class="a numwrap">
     <div class="n n6" id="n6"><span class="d">6</span><span class="u">h</span><b class="strike" id="strike"></b></div>
     <div class="n n40" id="n40"><i id="bm"></i><span class="d">4</span><span class="d" id="zero">0</span><span class="u">s</span></div>
   </div>
   <div id="sub6" class="a sub">pour une première réponse.</div>
-  <div id="sub40" class="a sub">Avec <em>Relai&nbsp;2.0</em>.</div>
+  <div id="sub40" class="a sub sub40">Avec <em>Relai&nbsp;2.0</em>.</div>
 </div></div>
 
 <!-- S3 -->
