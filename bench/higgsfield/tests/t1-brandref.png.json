@@ -1,0 +1,15 @@
+{
+ "prompt": "Premium Instagram launch post for the brand shown in the reference image (Klipt, a content studio). Reproduce the reference logo exactly: the lime rounded-square play icon with the small coral dot, next to the lowercase wordmark \"klipt\". Scene: the lime play icon as a glossy 3D object floating above a deep ink-navy (#0E1320) studio floor, soft reflections, a few vertical phone screens around it showing vivid short-video frames (a barista pouring latte art, a sneaker close-up, a sunset rooftop), cinematic rim light in lime and coral. Headline at the top in a heavy grotesque, exactly: \"Vos contenus tournent. Même quand vous dormez.\" Small wordmark logo at the bottom center. Clean, luxurious, high-end tech advertising, sharp legible text, no other text.",
+ "quality": "low",
+ "resolution": "2k",
+ "aspect_ratio": "3:4",
+ "moderation": "auto",
+ "enhance_prompt": false,
+ "image_urls": [
+  "https://d3snorpfx4xhv8.cloudfront.net/46b5bfaf-d692-44da-ae17-fced3cb8cb9b/3f1552a3-349c-4d41-808c-50cbf05c3703.png"
+ ],
+ "request_id": "8004a183-0329-4eeb-bd45-8601419b9d38",
+ "seconds": 25.5,
+ "image_host": "d3u0tzju9qaucj.cloudfront.net",
+ "cost_usd": 0.036
+}
