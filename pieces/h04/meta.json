@@ -1,0 +1,6 @@
+{"id":"h04","brand":"Nexus Arena","sector":"Salle esport / gaming","kind":"post","format":"1080x1350","duration":null,"slides":1,
+"title":"Nexus Cup #4","tier":"A","style":"affiche de tournoi néon sur photo de salle, ticket d'arène",
+"concept":"Photo générée d'une rangée de joueurs de dos face à leurs écrans juste avant le match ; la couche code pose l'affiche exacte : titre géant NEXUS CUP #4 au néon, sticker acide 2 000 €, ticket date/format/finale et bande d'inscription.",
+"techniques":["higgsfield-plate","html-css","svg-grain","backdrop-filter"],"fonts":["Big Shoulders Display","Anton","JetBrains Mono"],
+"palette":["#070914","#19e3ff","#ff2e93","#d8ff3d","#f4f7ff"],"copy_language":"fr",
+"plate":{"model":"higgsfield marketing-studio/image","resolution":"2k","quality":"low","cost_usd":0.024,"prompt":"Documentary-style photograph inside a real esports gaming room at night, shot from the back of the room, row of gamers seen from behind facing monitors with abstract cyan/magenta gradients, haze, LED rim light, top 40% empty dark ceiling. No text, no letters, no logos, no watermarks, no third-party brands or trademarks."}}

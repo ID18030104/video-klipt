@@ -1,0 +1,8 @@
+{ "id": "h05", "brand": "Relai", "sector": "SaaS B2B — service client IA", "kind": "post",
+  "format": "1080x1350", "duration": null, "slides": 1, "tier": "A", "style": "hybrid: cinematic night photograph + editorial serif and chat-UI code layer",
+  "title": "Elle a écrit à 2 h 14",
+  "concept": "A lone traveller in an empty airport gate at night stands for every customer writing at 2 a.m.; the exact proof (reply at 2 h 14 min 40 s, 71 %, 4,8/5, 32 langues) is typeset on top as a timeline and a real Portuguese chat exchange.",
+  "techniques": ["higgsfield-plate", "html-css", "glass-ui", "svg-grain"], "fonts": ["Instrument Serif", "Inter", "JetBrains Mono"],
+  "palette": ["#0b1e24", "#f2b56b", "#f6efe4", "#7be0a8"], "copy_language": "fr",
+  "plate": {"model": "higgsfield marketing-studio/image", "resolution": "2k", "quality": "low", "cost_usd": 0.024,
+   "prompt": "Candid documentary night photograph: young woman in beige trench coat on a bench in an almost empty airport gate, face lit by phone glow, carry-on beside her, warm amber ceiling lamps, deep teal windows; top 42% empty dark ceiling/glass; no text, no logos."} }

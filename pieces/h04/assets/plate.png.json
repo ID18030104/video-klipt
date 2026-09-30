@@ -1,0 +1,12 @@
+{
+ "prompt": "Documentary-style photograph inside a real esports gaming room at night, shot from the back of the room at chest height with a 35mm lens, looking down a long row of about eight gamers seen from behind in dark hoodies and headsets, sitting at PC stations, each facing a bright monitor whose screen shows only abstract glowing cyan and magenta colour gradients with no interface and nothing legible. Soft volumetric haze, cyan and magenta LED strip light rims on the players' shoulders and keyboards, a polished dark floor with faint reflections, cable-managed desks. The top 40 percent of the frame is an almost empty dark blue-black ceiling with soft haze and a few out-of-focus light dots, the clear area for a headline. Moody, tense, pre-match atmosphere, palette deep navy, cyan, magenta. No text, no letters, no logos, no watermarks, no third-party brands or trademarks.",
+ "quality": "low",
+ "resolution": "2k",
+ "aspect_ratio": "3:4",
+ "moderation": "auto",
+ "enhance_prompt": false,
+ "request_id": "a13257f1-323c-477d-aa91-805512754125",
+ "seconds": 25.3,
+ "image_host": "d3u0tzju9qaucj.cloudfront.net",
+ "cost_usd": 0.024
+}

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Nexus Cup #4</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/big-shoulders-display/900.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/big-shoulders-display/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/anton/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/700.css">
+<style>
+:root{--ink:#070914;--cy:#19e3ff;--mg:#ff2e93;--ac:#d8ff3d;--wh:#f4f7ff}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--ink)}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--ink);color:var(--wh);font-family:'JetBrains Mono',monospace}
+.plate{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.1) contrast(1.06)}
+.top-shade{position:absolute;left:0;right:0;top:0;height:900px;background:linear-gradient(180deg,rgba(7,9,20,.78) 0%,rgba(7,9,20,.35) 55%,rgba(7,9,20,0) 100%)}
+.bot-shade{position:absolute;left:0;right:0;bottom:0;height:470px;background:linear-gradient(0deg,rgba(7,9,20,.94) 0%,rgba(7,9,20,.6) 60%,rgba(7,9,20,0) 100%)}
+.grain{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:overlay;opacity:.22;pointer-events:none}
+.vig{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 55%,transparent 55%,rgba(0,0,0,.55) 100%)}
+.scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.028) 0 1px,transparent 1px 4px)}
+/* header */
+.head{position:absolute;left:60px;right:60px;top:56px;display:flex;justify-content:space-between;align-items:center;font-size:19px;letter-spacing:.14em;font-weight:500}
+.logo{display:flex;align-items:center;gap:16px;font-family:'Big Shoulders Display';font-weight:900;font-size:34px;letter-spacing:.12em}
+.logo svg{width:44px;height:44px}
+.logo em{font-style:normal;color:var(--cy)}
+.live{display:flex;align-items:center;gap:12px;color:#c9d3ff}
+.live i{width:12px;height:12px;border-radius:50%;background:var(--mg);box-shadow:0 0 14px var(--mg)}
+.rule{position:absolute;left:60px;right:60px;top:122px;height:2px;background:linear-gradient(90deg,var(--cy),rgba(25,227,255,.0) 80%)}
+.kicker{position:absolute;left:60px;top:148px;font-size:24px;letter-spacing:.3em;color:var(--cy);font-weight:700}
+.kicker b{color:var(--wh)}
+/* title */
+.title{position:absolute;left:52px;top:205px;font-family:'Big Shoulders Display';font-weight:900;line-height:.76;text-transform:uppercase;letter-spacing:-.005em}
+.t1{display:block;font-size:385px;color:var(--wh);text-shadow:0 0 60px rgba(25,227,255,.25)}
+.t2{display:block;font-size:335px;margin-top:14px;white-space:nowrap}
+.t2 .cup{color:var(--wh)}
+.t2 .n{margin-left:24px;color:transparent;-webkit-text-stroke:5px var(--cy);filter:drop-shadow(0 0 18px rgba(25,227,255,.75))}
+.echo{position:absolute;left:48px;top:170px;font-family:'Big Shoulders Display';font-weight:900;line-height:.76;text-transform:uppercase;font-size:430px;color:transparent;-webkit-text-stroke:2px rgba(255,46,147,.7);transform:translate(14px,14px);z-index:0}
+.title{z-index:2}
+/* sticker */
+.sticker{position:absolute;right:54px;top:772px;width:410px;transform:rotate(-5deg);background:var(--ac);color:var(--ink);padding:20px 28px 22px;box-shadow:0 14px 40px rgba(0,0,0,.55),10px 10px 0 var(--mg);z-index:3}
+.sticker .lbl{font-size:21px;font-weight:700;letter-spacing:.22em}
+.sticker .amt{font-family:Anton;font-size:122px;line-height:1.05;letter-spacing:.01em;white-space:nowrap}
+.sticker .sub{white-space:nowrap;font-size:20px;font-weight:700;letter-spacing:.18em;border-top:3px solid var(--ink);padding-top:10px;margin-top:4px;display:flex;justify-content:space-between}
+.hex{position:absolute;left:62px;top:780px;z-index:3;font-size:21px;letter-spacing:.2em;line-height:1.7;color:#dfe6ff;text-shadow:0 2px 14px #000}
+.hex b{display:block;font-family:'Big Shoulders Display';font-weight:900;font-size:76px;letter-spacing:.04em;color:var(--wh);line-height:1}
+.hex span{color:var(--cy)}
+/* ticket */
+.ticket{position:absolute;left:54px;right:54px;bottom:54px;z-index:3}
+.cells{display:grid;grid-template-columns:1.5fr 1.15fr .9fr;border:2px solid rgba(25,227,255,.85);background:rgba(7,9,20,.72);backdrop-filter:blur(10px);box-shadow:0 0 40px rgba(25,227,255,.18)}
+.cell{padding:20px 22px 18px;border-right:2px dashed rgba(244,247,255,.28)}
+.cell:last-child{border-right:0}
+.k{font-size:17px;letter-spacing:.24em;color:var(--cy);font-weight:700}
+.v{font-family:'Big Shoulders Display';font-weight:900;font-size:46px;line-height:.98;text-transform:uppercase;margin-top:8px;white-space:nowrap}
+.v small{font-size:.56em;font-weight:700;color:#c9d3ff;letter-spacing:.04em}
+.cta{display:flex;margin-top:14px;align-items:stretch}
+.cta .l{flex:1;background:var(--mg);color:#fff;padding:16px 24px;font-size:21px;letter-spacing:.12em;font-weight:700;line-height:1.45;display:flex;align-items:center}
+.cta .l b{font-size:1.25em}
+.cta .r{background:var(--wh);color:var(--ink);padding:0 28px;font-weight:700;font-size:30px;letter-spacing:.02em;display:flex;align-items:center;gap:12px}
+.cta .r:after{content:"→";font-size:38px;color:var(--mg)}
+.corner{position:absolute;width:26px;height:26px;border:solid var(--cy);z-index:4}
+.c1{left:30px;top:30px;border-width:3px 0 0 3px}.c2{right:30px;top:30px;border-width:3px 3px 0 0}
+.c3{left:30px;bottom:30px;border-width:0 0 3px 3px}.c4{right:30px;bottom:30px;border-width:0 3px 3px 0}
+</style></head><body>
+<script>window.KLIPT={width:1080,height:1350};</script>
+<section class="slide">
+  <img class="plate" src="assets/plate.png" alt="">
+  <div class="top-shade"></div><div class="bot-shade"></div>
+  <div class="scan"></div>
+  <div class="head">
+    <div class="logo"><svg viewBox="0 0 44 44"><polygon points="22,2 40,12 40,32 22,42 4,32 4,12" fill="none" stroke="#19e3ff" stroke-width="3"/><path d="M13 31V13l18 18V13" fill="none" stroke="#f4f7ff" stroke-width="4" stroke-linejoin="miter"/></svg>NEXUS<em>ARENA</em></div>
+    <div class="live"><i></i>LILLE · EURATECHNOLOGIES</div>
+  </div>
+  <div class="rule"></div>
+  <div class="kicker">TOURNOI FPS TACTIQUE <b>/ 5v5</b></div>
+  <div class="title"><span class="t1">Nexus</span><span class="t2"><span class="cup">Cup</span><span class="n">#4</span></span></div>
+  <div class="sticker"><div class="lbl">À GAGNER</div><div class="amt">2 000 €</div><div class="sub"><span>CASHPRIZE</span><span>FINALE LIVE</span></div></div>
+  <div class="ticket">
+    <div class="cells">
+      <div class="cell"><div class="k">QUAND</div><div class="v">Sam. 18 avril <small>dès 10h</small></div></div>
+      <div class="cell"><div class="k">FORMAT</div><div class="v">5v5 <small>32 équipes</small></div></div>
+      <div class="cell"><div class="k">FINALE</div><div class="v">En direct</div></div>
+    </div>
+    <div class="cta"><div class="l"><span><b>50 € / ÉQUIPE</b><br>INSCRIPTIONS JUSQU’AU 10 AVRIL</span></div><div class="r">nexus-arena.gg</div></div>
+  </div>
+  <div class="vig"></div>
+  <svg class="grain" viewBox="0 0 1080 1350" preserveAspectRatio="none"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.2 -.1"/></filter><rect width="1080" height="1350" filter="url(#g)"/></svg>
+  <i class="corner c1"></i><i class="corner c2"></i><i class="corner c3"></i><i class="corner c4"></i>
+</section>
+</body></html>
