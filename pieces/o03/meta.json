@@ -1,0 +1,66 @@
+{
+ "id": "o03",
+ "brand": "Casa Almar",
+ "sector": "Boutique hotel",
+ "kind": "post",
+ "format": "1080x1350",
+ "duration": null,
+ "slides": 1,
+ "title": "Summer opens 15 May",
+ "concept": "The date is the sun: an arched window of golden rice-field light under a giant serif '15 May', with a round sailboat photo carrying the direct-booking gift. Kinfolk-style paper poster, calm and uncrowded.",
+ "techniques": [
+  "html-css",
+  "svg-grain",
+  "warm-film-grade",
+  "frame-in-frame"
+ ],
+ "fonts": [
+  "Instrument Serif",
+  "Figtree"
+ ],
+ "palette": [
+  "#EFE5D3",
+  "#2B2117",
+  "#B4532F",
+  "#D9C6A5"
+ ],
+ "copy_language": "en",
+ "tier": "S",
+ "style": "Kinfolk slow living x magazine cover",
+ "attention_mechanics": [
+  "bold date claim at top",
+  "single CTA + gift"
+ ],
+ "credits": [
+  {
+   "file": "sun.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "2776df82cf0bd9b9",
+   "title": "150411_0779",
+   "author": "Guy Leech",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/guyleech/5647907519"
+  },
+  {
+   "file": "boat.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "8ec6b73d181782b6",
+   "title": "Roseway schooner",
+   "author": "Henry Zbyszynski",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/hankzby/610964551"
+  },
+  {
+   "file": "pool.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "200f84e3eb5604ae",
+   "title": "Hidrofobia",
+   "author": "Tay Nascimento",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/tay/4078734921"
+  }
+ ]
+}

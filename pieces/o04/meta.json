@@ -1,0 +1,6 @@
+{"id":"o04","brand":"Nexus Arena","sector":"Salle esport / gaming","kind":"post","format":"1080x1350","duration":null,"slides":1,
+"title":"Nexus Cup #4 — annonce tournoi","concept":"Overlay de diffusion esport pour un FPS tactique : macro WASD duotone avec réticule, cashprize 2 000 € en lime géant, bandeau d'infos type lower-third et bloc CTA d'inscription.",
+"techniques":["html-css","svg-filters","duotone","grain"],"fonts":["Big Shoulders Display","JetBrains Mono"],
+"palette":["#080B12","#C8FF2E","#F2F5FA","#8C96AB"],"copy_language":"fr","tier":"A","style":"Esports broadcast",
+"attention_mechanics":["bold number at t0 (2 000 €)","scarcity (32 équipes, deadline 10 avril)"],
+"credits":[{"id":"74fe00dcf307c42e","title":"Netbook","author":"Brandon Giesbrecht","license":"CC BY 2.0"}]}
