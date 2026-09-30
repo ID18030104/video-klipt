@@ -1,0 +1,322 @@
+{
+ "k142": {
+  "config": "A",
+  "set": "bench",
+  "brief_id": "H1"
+ },
+ "k120": {
+  "config": "B",
+  "set": "bench",
+  "brief_id": "H1"
+ },
+ "k151": {
+  "config": "C",
+  "set": "bench",
+  "brief_id": "H1"
+ },
+ "k184": {
+  "config": "D",
+  "set": "bench",
+  "brief_id": "H1"
+ },
+ "k107": {
+  "config": "E",
+  "set": "bench",
+  "brief_id": "H1"
+ },
+ "k110": {
+  "config": "F",
+  "set": "bench",
+  "brief_id": "H1"
+ },
+ "k169": {
+  "config": "A",
+  "set": "bench",
+  "brief_id": "H2"
+ },
+ "k113": {
+  "config": "B",
+  "set": "bench",
+  "brief_id": "H2"
+ },
+ "k147": {
+  "config": "C",
+  "set": "bench",
+  "brief_id": "H2"
+ },
+ "k175": {
+  "config": "D",
+  "set": "bench",
+  "brief_id": "H2"
+ },
+ "k108": {
+  "config": "E",
+  "set": "bench",
+  "brief_id": "H2"
+ },
+ "k165": {
+  "config": "F",
+  "set": "bench",
+  "brief_id": "H2"
+ },
+ "k128": {
+  "config": "A",
+  "set": "bench",
+  "brief_id": "H3"
+ },
+ "k105": {
+  "config": "B",
+  "set": "bench",
+  "brief_id": "H3"
+ },
+ "k112": {
+  "config": "C",
+  "set": "bench",
+  "brief_id": "H3"
+ },
+ "k156": {
+  "config": "D",
+  "set": "bench",
+  "brief_id": "H3"
+ },
+ "k154": {
+  "config": "E",
+  "set": "bench",
+  "brief_id": "H3"
+ },
+ "k109": {
+  "config": "F",
+  "set": "bench",
+  "brief_id": "H3"
+ },
+ "k174": {
+  "config": "G",
+  "set": "bench",
+  "brief_id": "H1"
+ },
+ "k190": {
+  "config": "H",
+  "set": "bench",
+  "brief_id": "H1"
+ },
+ "k177": {
+  "config": "G",
+  "set": "bench",
+  "brief_id": "H2"
+ },
+ "k198": {
+  "config": "H",
+  "set": "bench",
+  "brief_id": "H2"
+ },
+ "k183": {
+  "config": "G",
+  "set": "bench",
+  "brief_id": "H3"
+ },
+ "k134": {
+  "config": "H",
+  "set": "bench",
+  "brief_id": "H3"
+ },
+ "p295": {
+  "config": "D",
+  "set": "prod"
+ },
+ "p262": {
+  "config": "D",
+  "set": "prod"
+ },
+ "p230": {
+  "config": "G",
+  "set": "prod"
+ },
+ "p220": {
+  "config": "G",
+  "set": "prod"
+ },
+ "p243": {
+  "config": "A",
+  "set": "prod"
+ },
+ "p271": {
+  "config": "A",
+  "set": "prod"
+ },
+ "p234": {
+  "config": "H",
+  "set": "prod"
+ },
+ "p201": {
+  "config": "B",
+  "set": "prod"
+ },
+ "p277": {
+  "config": "A",
+  "set": "prod"
+ },
+ "p279": {
+  "config": "F",
+  "set": "prod"
+ },
+ "p226": {
+  "config": "E",
+  "set": "prod"
+ },
+ "p236": {
+  "config": "F",
+  "set": "prod"
+ },
+ "p213": {
+  "config": "G",
+  "set": "prod"
+ },
+ "p233": {
+  "config": "C",
+  "set": "prod"
+ },
+ "p239": {
+  "config": "G",
+  "set": "prod"
+ },
+ "p250": {
+  "config": "D",
+  "set": "prod"
+ },
+ "p288": {
+  "config": "C",
+  "set": "prod"
+ },
+ "p289": {
+  "config": "F",
+  "set": "prod"
+ },
+ "p215": {
+  "config": "E",
+  "set": "prod"
+ },
+ "p216": {
+  "config": "E",
+  "set": "prod"
+ },
+ "p232": {
+  "config": "E",
+  "set": "prod"
+ },
+ "p210": {
+  "config": "A",
+  "set": "prod"
+ },
+ "p293": {
+  "config": "H",
+  "set": "prod"
+ },
+ "p209": {
+  "config": "B",
+  "set": "prod"
+ },
+ "p245": {
+  "config": "G",
+  "set": "prod"
+ },
+ "p269": {
+  "config": "B",
+  "set": "prod"
+ },
+ "p218": {
+  "config": "G",
+  "set": "prod"
+ },
+ "p207": {
+  "config": "C",
+  "set": "prod"
+ },
+ "p286": {
+  "config": "F",
+  "set": "prod"
+ },
+ "p221": {
+  "config": "B",
+  "set": "prod"
+ },
+ "p281": {
+  "config": "D",
+  "set": "prod"
+ },
+ "p275": {
+  "config": "F",
+  "set": "prod"
+ },
+ "p261": {
+  "config": "A",
+  "set": "prod"
+ },
+ "p278": {
+  "config": "B",
+  "set": "prod"
+ },
+ "p252": {
+  "config": "D",
+  "set": "prod"
+ },
+ "p224": {
+  "config": "C",
+  "set": "prod"
+ },
+ "p258": {
+  "config": "A",
+  "set": "prod"
+ },
+ "p283": {
+  "config": "E",
+  "set": "prod"
+ },
+ "p267": {
+  "config": "F",
+  "set": "prod"
+ },
+ "p292": {
+  "config": "B",
+  "set": "prod"
+ },
+ "p294": {
+  "config": "C",
+  "set": "prod"
+ },
+ "p273": {
+  "config": "E",
+  "set": "prod"
+ },
+ "p290": {
+  "config": "C",
+  "set": "prod"
+ },
+ "p282": {
+  "config": "H",
+  "set": "prod"
+ },
+ "p263": {
+  "config": "H",
+  "set": "prod"
+ },
+ "p222": {
+  "config": "E",
+  "set": "prod"
+ },
+ "p219": {
+  "config": "H",
+  "set": "prod"
+ },
+ "p287": {
+  "config": "D",
+  "set": "prod"
+ },
+ "p296": {
+  "config": "H",
+  "set": "prod"
+ },
+ "p272": {
+  "config": "D",
+  "set": "prod"
+ }
+}

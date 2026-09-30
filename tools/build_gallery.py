@@ -16,12 +16,12 @@ CONFIGS = {
  'H': dict(name='Sonnet + taste-express', models=['Sonnet 5.5'], skill='taste-express', pipeline='1 agent'),
 }
 FF = 'ffmpeg'
-out = 'gallery'; os.makedirs(f'{out}/a', exist_ok=True)
+out = sys.argv[3] if len(sys.argv) > 3 else 'gallery'; os.makedirs(f'{out}/a', exist_ok=True)
 def run(*a): subprocess.run([FF, '-hide_banner', '-loglevel', 'error', '-y', *a], check=True)
 per = {}
 for r in costs:
-    p = per.setdefault(r['piece'], dict(cost=0, seconds=0, out=0, inp=0, cache_read=0, cache_write=0, stages=[], done=True))
-    p['done'] &= r['done']
+    if not r['done'] or r['label'].startswith(('judge', 'rank')): continue  # interrupted attempts & judges are reported separately
+    p = per.setdefault(r['piece'], dict(cost=0, seconds=0, out=0, inp=0, cache_read=0, cache_write=0, stages=[]))
     for k in ('cost', 'seconds', 'out', 'inp', 'cache_read', 'cache_write'): p[k] += r[k]
     p['stages'].append(dict(stage=r['stage'], model=r['model'], cost=round(r['cost'], 3), seconds=r['seconds'], out=r['out']))
 rankpos = {}
@@ -30,7 +30,7 @@ for r in J['ranks']:
 items = []
 for pid, a in assign.items():
     d = f'pieces/{pid}'
-    if not os.path.exists(f'{d}/meta.json') or not per.get(pid, {}).get('done'): continue  # skip pieces still in production
+    if not os.path.exists(f'{d}/meta.json'): continue
     meta = json.load(open(f'{d}/meta.json'))
     brief = json.load(open(f'bench/briefs/{pid}.json')) if os.path.exists(f'bench/briefs/{pid}.json') else {}
     ad = f'{out}/a/{pid}'; os.makedirs(ad, exist_ok=True)
@@ -52,10 +52,11 @@ for pid, a in assign.items():
             if not os.path.exists(o): run('-i', s, '-vf', 'scale=720:-2', '-q:v', '4', o)
             it['slides'].append(f'a/{pid}/s{i+1:02d}.jpg')
         it['thumb'] = it['slides'][0]
-    if os.path.exists(f'{d}/sheet.jpg'):
+    if os.path.exists(f'{d}/sheet.jpg') and 'video' in it:
         if not os.path.exists(f'{ad}/sheet.jpg'): run('-i', f'{d}/sheet.jpg', '-vf', 'scale=1400:-2', '-q:v', '5', f'{ad}/sheet.jpg')
         it['sheet'] = f'a/{pid}/sheet.jpg'
     c = per.get(pid)
+    if c and pid in (summary_reused := set((json.load(open('bench/results/summary.json')) or {}).get('reused_excluded_from_cost', []))): it['resumed'] = True
     if c: it['metrics'] = dict(cost=round(c['cost'], 2), minutes=round(c['seconds'] / 60, 1), out=c['out'], inp=c['inp'] + c['cache_read'] + c['cache_write'], stages=c['stages'])
     js = [s for s in J['scores'] if s['id'] == pid]
     if js:
@@ -65,5 +66,6 @@ for pid, a in assign.items():
     if pid in rankpos: it['rank'] = rankpos[pid]
     items.append(it)
 ranks = [dict(brief_id=assign[r['ranking'][0]].get('brief_id'), ranking=r['ranking'], rationale=r['rationale']) for r in J['ranks']]
-json.dump(dict(configs=CONFIGS, items=items, ranks=ranks), open(f'{out}/data.json', 'w'), ensure_ascii=False)
+summary = json.load(open('bench/results/summary.json')) if os.path.exists('bench/results/summary.json') else None
+json.dump(dict(configs=CONFIGS, items=items, ranks=ranks, summary=summary), open(f'{out}/data.json', 'w'), ensure_ascii=False)
 print(len(items), 'items;', sum(1 for i in items if 'judges' in i), 'judged')

@@ -1,0 +1,393 @@
+{
+ "configs": {
+  "A": {
+   "config": "A",
+   "name": "Sonnet seul",
+   "pieces": 9,
+   "videos": 5,
+   "score_sonnet_all": 6.33,
+   "score_video": 5.8,
+   "score_stills": 7,
+   "client_ready_pct": 22,
+   "bench_score_opus": 6.33,
+   "bench_score_both": 6.17,
+   "bench_rank": 6.67,
+   "cost_per_piece": 0.43,
+   "cost_video": 0.55,
+   "cost_stills": 0.31,
+   "minutes_per_piece": 10.86,
+   "out_tokens_per_piece": 10666,
+   "in_tokens_per_piece": 829865,
+   "cost_total": 3.69,
+   "criteria": {
+    "brand_fit": 7.67,
+    "art_direction": 6.67,
+    "typography": 7,
+    "composition": 5.89,
+    "copy_quality": 6.89,
+    "storytelling": 6.67,
+    "technical_polish": 5.67,
+    "originality": 5.33
+   },
+   "score_per_dollar": 14.7
+  },
+  "B": {
+   "config": "B",
+   "name": "Sonnet + klipt-craft",
+   "pieces": 9,
+   "videos": 5,
+   "score_sonnet_all": 6.44,
+   "score_video": 6,
+   "score_stills": 7,
+   "client_ready_pct": 22,
+   "bench_score_opus": 6.67,
+   "bench_score_both": 6.67,
+   "bench_rank": 4.67,
+   "cost_per_piece": 0.53,
+   "cost_video": 0.68,
+   "cost_stills": 0.34,
+   "minutes_per_piece": 11.13,
+   "out_tokens_per_piece": 15940,
+   "in_tokens_per_piece": 851507,
+   "cost_total": 4.76,
+   "criteria": {
+    "brand_fit": 7.78,
+    "art_direction": 7,
+    "typography": 7.22,
+    "composition": 5.78,
+    "copy_quality": 7.11,
+    "storytelling": 7.33,
+    "technical_polish": 5.67,
+    "originality": 6
+   },
+   "score_per_dollar": 12.2
+  },
+  "C": {
+   "config": "C",
+   "name": "Opus seul",
+   "pieces": 9,
+   "videos": 5,
+   "score_sonnet_all": 6.89,
+   "score_video": 6.4,
+   "score_stills": 7.5,
+   "client_ready_pct": 67,
+   "bench_score_opus": 7.33,
+   "bench_score_both": 7,
+   "bench_rank": 2.67,
+   "cost_per_piece": 1.38,
+   "cost_video": 1.46,
+   "cost_stills": 1.28,
+   "minutes_per_piece": 15.3,
+   "out_tokens_per_piece": 22473,
+   "in_tokens_per_piece": 1326102,
+   "cost_total": 12.43,
+   "criteria": {
+    "brand_fit": 8.33,
+    "art_direction": 7.44,
+    "typography": 7.56,
+    "composition": 6.67,
+    "copy_quality": 7.44,
+    "storytelling": 7.33,
+    "technical_polish": 6,
+    "originality": 6.44
+   },
+   "score_per_dollar": 5.0
+  },
+  "D": {
+   "config": "D",
+   "name": "Opus + klipt-craft",
+   "pieces": 10,
+   "videos": 6,
+   "score_sonnet_all": 6.8,
+   "score_video": 6.33,
+   "score_stills": 7.5,
+   "client_ready_pct": 20,
+   "bench_score_opus": 7,
+   "bench_score_both": 6.83,
+   "bench_rank": 2.33,
+   "cost_per_piece": 1.11,
+   "cost_video": 1.28,
+   "cost_stills": 0.88,
+   "minutes_per_piece": 12.45,
+   "out_tokens_per_piece": 21417,
+   "in_tokens_per_piece": 1278220,
+   "cost_total": 9.95,
+   "criteria": {
+    "brand_fit": 8.2,
+    "art_direction": 7.2,
+    "typography": 7.4,
+    "composition": 6.3,
+    "copy_quality": 7.5,
+    "storytelling": 7.4,
+    "technical_polish": 6.1,
+    "originality": 6.2
+   },
+   "score_per_dollar": 6.1
+  },
+  "E": {
+   "config": "E",
+   "name": "Opus DA → Sonnet",
+   "pieces": 10,
+   "videos": 6,
+   "score_sonnet_all": 6.6,
+   "score_video": 6.33,
+   "score_stills": 7,
+   "client_ready_pct": 30,
+   "bench_score_opus": 7,
+   "bench_score_both": 6.67,
+   "bench_rank": 5.33,
+   "cost_per_piece": 3.13,
+   "cost_video": 3.26,
+   "cost_stills": 2.76,
+   "minutes_per_piece": 66.45,
+   "out_tokens_per_piece": 58648,
+   "in_tokens_per_piece": 6114295,
+   "cost_total": 26.21,
+   "criteria": {
+    "brand_fit": 7.8,
+    "art_direction": 7.1,
+    "typography": 6.9,
+    "composition": 6.1,
+    "copy_quality": 7.2,
+    "storytelling": 7.1,
+    "technical_polish": 5.5,
+    "originality": 6.3
+   },
+   "score_per_dollar": 2.1
+  },
+  "F": {
+   "config": "F",
+   "name": "Sonnet → critique Opus → Sonnet",
+   "pieces": 9,
+   "videos": 6,
+   "score_sonnet_all": 6.44,
+   "score_video": 6,
+   "score_stills": 7.33,
+   "client_ready_pct": 56,
+   "bench_score_opus": 6.67,
+   "bench_score_both": 6.5,
+   "bench_rank": 4.33,
+   "cost_per_piece": 1.73,
+   "cost_video": 1.95,
+   "cost_stills": 1.52,
+   "minutes_per_piece": 42.11,
+   "out_tokens_per_piece": 30598,
+   "in_tokens_per_piece": 3338553,
+   "cost_total": 17.31,
+   "criteria": {
+    "brand_fit": 7.78,
+    "art_direction": 7,
+    "typography": 6.89,
+    "composition": 6,
+    "copy_quality": 7.22,
+    "storytelling": 7.11,
+    "technical_polish": 5.56,
+    "originality": 6
+   },
+   "score_per_dollar": 3.7
+  },
+  "G": {
+   "config": "G",
+   "name": "Opus + taste-express",
+   "pieces": 9,
+   "videos": 6,
+   "score_sonnet_all": 6.78,
+   "score_video": 6.5,
+   "score_stills": 7.33,
+   "client_ready_pct": 56,
+   "bench_score_opus": 6.67,
+   "bench_score_both": 6.5,
+   "bench_rank": 2.67,
+   "cost_per_piece": 3.0,
+   "cost_video": 3.63,
+   "cost_stills": 1.42,
+   "minutes_per_piece": 43.43,
+   "out_tokens_per_piece": 31108,
+   "in_tokens_per_piece": 3173676,
+   "cost_total": 24.11,
+   "criteria": {
+    "brand_fit": 7.56,
+    "art_direction": 7.67,
+    "typography": 7,
+    "composition": 6.33,
+    "copy_quality": 6.67,
+    "storytelling": 7.11,
+    "technical_polish": 5.78,
+    "originality": 7.33
+   },
+   "score_per_dollar": 2.3
+  },
+  "H": {
+   "config": "H",
+   "name": "Sonnet + taste-express",
+   "pieces": 9,
+   "videos": 5,
+   "score_sonnet_all": 6.11,
+   "score_video": 5.8,
+   "score_stills": 6.5,
+   "client_ready_pct": 0,
+   "bench_score_opus": 6.67,
+   "bench_score_both": 6.5,
+   "bench_rank": 7.33,
+   "cost_per_piece": 0.8,
+   "cost_video": 0.92,
+   "cost_stills": 0.65,
+   "minutes_per_piece": 23.31,
+   "out_tokens_per_piece": 17147,
+   "in_tokens_per_piece": 1805566,
+   "cost_total": 7.22,
+   "criteria": {
+    "brand_fit": 7.11,
+    "art_direction": 6.89,
+    "typography": 6.78,
+    "composition": 5.44,
+    "copy_quality": 6.22,
+    "storytelling": 6.22,
+    "technical_polish": 5.33,
+    "originality": 6.78
+   },
+   "score_per_dollar": 7.6
+  }
+ },
+ "totals": {
+  "pieces": 74,
+  "production_cost": 105.68,
+  "judging_cost": 14.88,
+  "lost_to_restart": 8.63,
+  "orchestration_cost": 21.38,
+  "total": 150.58,
+  "orchestration_out_tokens": 187602,
+  "orchestration_cache_read": 57338659,
+  "judge_pairs": 24,
+  "judge_mean_abs_diff": 0.62
+ },
+ "by_model": {
+  "Sonnet 5.5 seul (A,B,H)": {
+   "score": 6.3,
+   "cost": 0.59,
+   "minutes": 15.27
+  },
+  "Opus 5.5 seul (C,D,G)": {
+   "score": 6.82,
+   "cost": 1.73,
+   "minutes": 22.15
+  },
+  "Mixte Opus+Sonnet (E,F)": {
+   "score": 6.53,
+   "cost": 2.67,
+   "minutes": 58.34
+  }
+ },
+ "by_skill": {
+  "aucun skill (A,C)": {
+   "score": 6.61,
+   "cost": 0.93
+  },
+  "klipt-craft (B,D)": {
+   "score": 6.63,
+   "cost": 0.82
+  },
+  "taste-express (G,H)": {
+   "score": 6.44,
+   "cost": 1.76
+  }
+ },
+ "top": [
+  {
+   "id": "k112",
+   "brand": "Garnier & Fils — Plomberie Chauffage",
+   "kind": "carousel",
+   "config": "C",
+   "score": 8
+  },
+  {
+   "id": "p220",
+   "brand": "Domaine des Trois Chênes",
+   "kind": "video",
+   "config": "G",
+   "score": 8
+  },
+  {
+   "id": "p236",
+   "brand": "Shala Yoga Annecy",
+   "kind": "carousel",
+   "config": "F",
+   "score": 8
+  },
+  {
+   "id": "p250",
+   "brand": "Taco Loco",
+   "kind": "story",
+   "config": "D",
+   "score": 8
+  },
+  {
+   "id": "p224",
+   "brand": "Blank Page Books",
+   "kind": "carousel",
+   "config": "C",
+   "score": 8
+  },
+  {
+   "id": "k156",
+   "brand": "Garnier & Fils — Plomberie Chauffage",
+   "kind": "carousel",
+   "config": "D",
+   "score": 7.5
+  },
+  {
+   "id": "k154",
+   "brand": "Garnier & Fils — Plomberie Chauffage",
+   "kind": "carousel",
+   "config": "E",
+   "score": 7.5
+  },
+  {
+   "id": "k183",
+   "brand": "Garnier & Fils — Plomberie Chauffage",
+   "kind": "carousel",
+   "config": "G",
+   "score": 7.5
+  },
+  {
+   "id": "k107",
+   "brand": "Maison Castel — Barbier",
+   "kind": "video",
+   "config": "E",
+   "score": 7
+  },
+  {
+   "id": "k113",
+   "brand": "Ledgerly",
+   "kind": "video",
+   "config": "B",
+   "score": 7
+  },
+  {
+   "id": "k165",
+   "brand": "Ledgerly",
+   "kind": "video",
+   "config": "F",
+   "score": 7
+  },
+  {
+   "id": "k128",
+   "brand": "Garnier & Fils — Plomberie Chauffage",
+   "kind": "carousel",
+   "config": "A",
+   "score": 7
+  }
+ ],
+ "reused_excluded_from_cost": [
+  "p213",
+  "p245",
+  "p258",
+  "p267",
+  "p273",
+  "p275",
+  "p279",
+  "p283",
+  "p286",
+  "p289"
+ ]
+}
