@@ -7,3 +7,4 @@ pieces/*/assets/cands/
 pieces/*/assets/vcands/
 pieces/*/footage/
 pieces/*/qa.jpg
+__pycache__/
