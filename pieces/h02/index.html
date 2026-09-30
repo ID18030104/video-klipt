@@ -18,13 +18,13 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#14251c}
 #warm{position:absolute;inset:0;background:linear-gradient(0deg,rgba(244,162,97,.18),rgba(244,162,97,0) 50%);mix-blend-mode:soft-light}
 #grain{position:absolute;inset:0;width:1080px;height:1920px;opacity:.22;mix-blend-mode:overlay;pointer-events:none}
 .abs{position:absolute}
-#eyebrow{left:0;right:0;top:118px;text-align:center;font:800 27px/1 'Bricolage Grotesque';letter-spacing:.34em;color:var(--peach);text-transform:uppercase}
+#eyebrow{left:0;right:0;top:200px;text-align:center;font:800 27px/1 'Bricolage Grotesque';letter-spacing:.34em;color:var(--peach);text-transform:uppercase}
 #eyebrow i{display:inline-block;width:54px;height:2px;background:var(--peach);vertical-align:middle;margin:0 22px 4px}
-#h1{left:70px;top:205px;width:940px;font:900 italic 262px/.86 'Fraunces';color:var(--cream);letter-spacing:-.02em;text-shadow:0 6px 40px rgba(0,0,0,.35)}
+#h1{left:70px;top:270px;width:940px;font:900 italic 236px/.86 'Fraunces';color:var(--cream);letter-spacing:-.02em;text-shadow:0 6px 40px rgba(0,0,0,.35)}
 #h1 .ln{display:block;overflow:hidden;padding:.06em .08em .12em 0;margin-bottom:-.12em}
 #h1 .ln span{display:inline-block;will-change:transform}
-#h1 .ln:nth-child(2){color:var(--peach);padding-left:150px}
-#uline{left:230px;top:688px;width:700px;height:40px}
+#h1 .ln:nth-child(2){color:var(--peach);padding-left:130px}
+#uline{left:230px;top:672px;width:700px;height:40px}
 #sub{left:70px;width:940px;top:748px;height:140px}
 #sub p{position:absolute;left:0;top:0;font:500 50px/1.15 'Bricolage Grotesque';color:var(--cream);text-align:center;width:100%}
 #sub b{font-weight:800;color:var(--peach)}
@@ -36,19 +36,19 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#14251c}
 #sealtxt .big small{font-size:120px;letter-spacing:0;margin-left:10px}
 #sealtxt .bot{font:800 30px/1 'Bricolage Grotesque';letter-spacing:.22em;text-transform:uppercase;margin-top:12px;padding-top:14px;border-top:3px solid rgba(251,241,220,.7)}
 #ring{left:430px;top:1160px;width:20px;height:20px;border-radius:50%;border:6px solid var(--cream);opacity:0}
-#band{left:-60px;top:1452px;width:1200px;height:92px;background:var(--cream);transform:rotate(-3deg);overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.35)}
+#band{left:-60px;top:1372px;width:1200px;height:92px;background:var(--cream);transform:rotate(-3deg);overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.35)}
 #band div{position:absolute;left:0;top:0;height:92px;white-space:nowrap;font:700 italic 50px/92px 'Fraunces';color:var(--green)}
 #band em{font-style:normal;color:var(--red);margin:0 26px}
-#ticket{left:96px;top:1470px;width:888px;height:380px;transform-origin:50% 100%}
-#ticket .paper{position:absolute;inset:0;background:var(--cream);padding:44px 54px 0;color:var(--ink);box-shadow:0 30px 60px rgba(0,0,0,.4)}
+#ticket{left:96px;top:1215px;width:888px;height:340px;transform-origin:50% 100%}
+#ticket .paper{position:absolute;inset:0;background:var(--cream);padding:40px 54px 0;color:var(--ink);box-shadow:0 30px 60px rgba(0,0,0,.4)}
 #tshadow{position:absolute;inset:0;filter:drop-shadow(0 24px 30px rgba(0,0,0,.45))}
-#ticket h3{font:700 italic 54px/1 'Fraunces';color:var(--green)}
-#ticket .addr{font:800 40px/1.1 'Bricolage Grotesque';margin-top:14px;color:var(--red)}
-#ticket hr{border:0;border-top:3px dashed rgba(32,40,31,.35);margin:24px 0 20px}
+#ticket h3{font:700 italic 48px/1 'Fraunces';color:var(--green)}
+#ticket .addr{font:800 38px/1.1 'Bricolage Grotesque';margin-top:10px;color:var(--red)}
+#ticket hr{border:0;border-top:3px dashed rgba(32,40,31,.35);margin:18px 0 16px}
 #ticket .hrs{display:flex;gap:40px;font:500 34px/1.25 'Bricolage Grotesque'}
 #ticket .hrs div{flex:1}
 #ticket .hrs b{display:block;font:800 26px/1 'Bricolage Grotesque';letter-spacing:.2em;text-transform:uppercase;color:var(--apricot);margin-bottom:8px}
-#ticket .sig{position:absolute;left:54px;right:54px;bottom:26px;font:700 italic 28px/1 'Fraunces';color:rgba(32,40,31,.7);display:flex;justify-content:space-between}
+#ticket .sig{position:absolute;left:54px;right:54px;bottom:24px;font:700 italic 27px/1 'Fraunces';color:rgba(32,40,31,.7);display:flex;justify-content:space-between}
 #flash{inset:0;background:#fff;opacity:0}
 </style></head>
 <body><div id="stage">
@@ -59,7 +59,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#14251c}
  <svg id="uline" class="abs" viewBox="0 0 700 40"><path id="ulp" d="M6 28 C 120 8, 260 34, 380 18 S 600 8, 694 22" fill="none" stroke="#fbf1dc" stroke-width="9" stroke-linecap="round"/></svg>
  <div id="sub" class="abs"><p id="s1">sur <b>tous les fruits d’été</b></p><p id="s2">Ce week-end, <b>jusqu’à épuisement</b></p></div>
  <div id="seal" class="abs"><svg viewBox="-280 -280 560 560"><path id="sealp" fill="#d8432b"/><circle r="236" fill="none" stroke="#fbf1dc" stroke-width="4" stroke-dasharray="3 11" stroke-linecap="round"/><path id="sealsh" fill="rgba(0,0,0,.0)"/></svg>
-  <div id="sealtxt"><div class="top">Fin de saison</div><div class="big">−30<small>&#8239;%</small></div><div class="bot">sur tous les fruits d’été</div></div></div>
+  <div id="sealtxt"><div class="top">Fin de saison</div><div class="big">−30<small>&#8239;%</small></div><div class="bot">fruits d’été</div></div></div>
  <div id="ring" class="abs"></div>
  <div id="band" class="abs"><div id="bandin"></div></div>
  <div id="ticket" class="abs"><div id="tshadow"><div class="paper" id="paper">
@@ -78,7 +78,7 @@ const rng = KK.rng(7);
 (function(){const n=28,R=262,r=246;let d='';for(let i=0;i<n*2;i++){const a=i/(n*2)*Math.PI*2,rad=i%2?r:R;d+=(i?'L':'M')+(Math.cos(a)*rad).toFixed(1)+' '+(Math.sin(a)*rad).toFixed(1)}
  document.getElementById('sealp').setAttribute('d',d+'Z');})();
 // ticket zigzag top edge
-(function(){const w=888,h=380,n=37,pts=['0% 100%'];let s='0px 12px';const p=[];p.push('0 12px');for(let i=0;i<n;i++){p.push((i+.5)*w/n+'px 0px');p.push((i+1)*w/n+'px 12px')}p.push(w+'px '+h+'px');p.push('0 '+h+'px');
+(function(){const w=888,h=340,n=37,pts=['0% 100%'];let s='0px 12px';const p=[];p.push('0 12px');for(let i=0;i<n;i++){p.push((i+.5)*w/n+'px 0px');p.push((i+1)*w/n+'px 12px')}p.push(w+'px '+h+'px');p.push('0 '+h+'px');
  document.getElementById('paper').style.clipPath='polygon('+p.join(',')+')';})();
 // grain
 (function(){const c=document.getElementById('grain'),g=c.getContext('2d'),im=g.createImageData(540,960);for(let i=0;i<im.data.length;i+=4){const v=128+(rng()-.5)*200;im.data[i]=im.data[i+1]=im.data[i+2]=v;im.data[i+3]=255}g.putImageData(im,0,0);})();
@@ -97,7 +97,7 @@ gsap.set('#eyebrow',{opacity:0,y:-20});
 gsap.set('#s1',{opacity:0,y:30});
 gsap.set('#seal',{scale:3,rotation:-30,opacity:0});
 gsap.set('#band',{x:-1300});
-gsap.set('#ticket',{y:520,rotation:2});
+gsap.set('#ticket',{y:900,rotation:2});
 gsap.set('#cam',{scale:1.0,x:0});
 // camera: slow push and drift
 tl.fromTo('#cam',{scale:1.0,x:0,y:0},{scale:1.16,x:-22,y:-30,duration:10,ease:'none'},0);
@@ -109,9 +109,8 @@ tl.to('#ulp',{strokeDashoffset:0,duration:.7,ease:'power2.inOut'},1.65);
 tl.to('#s1',{opacity:1,y:0,duration:.7,ease:'power3.out'},2.0);
 // seal slam
 tl.to('#seal',{opacity:1,scale:1,rotation:-8,duration:.55,ease:'back.out(1.6)'},2.75);
-tl.fromTo('#flash',{opacity:.55},{opacity:0,duration:.35,ease:'power2.out'},3.0);
-tl.fromTo('#ring',{opacity:.9,scale:1},{opacity:0,scale:28,duration:.9,ease:'power2.out'},3.0);
-tl.fromTo('#cam',{rotation:0},{rotation:.0,duration:.01},0);
+tl.fromTo('#flash',{opacity:.55},{opacity:0,duration:.35,ease:'power2.out',immediateRender:false},3.0);
+tl.fromTo('#ring',{opacity:.9,scale:1},{opacity:0,scale:28,duration:.9,ease:'power2.out',immediateRender:false},3.0);
 for(let i=0;i<6;i++)tl.to('#stage',{x:(i%2?6:-6)*(1-i/6),y:(i%2?-4:4)*(1-i/6),duration:.05},3.0+i*.05);
 tl.to('#stage',{x:0,y:0,duration:.05},3.32);
 // seal idle wobble
@@ -124,9 +123,9 @@ tl.to('#s1',{opacity:0,y:-26,duration:.4,ease:'power2.in'},5.0);
 tl.fromTo('#s2',{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:'power3.out'},5.45);
 // band out, seal shifts up, ticket in
 tl.to('#band',{x:1400,duration:.6,ease:'power3.in'},6.2);
-tl.to('#seal',{scale:.82,x:-10,y:-40,rotation:-6,duration:.8,ease:'power3.inOut'},6.3);
+tl.to('#seal',{scale:.6,x:-30,y:-190,rotation:-6,duration:.8,ease:'power3.inOut'},6.3);
 tl.to('#ticket',{y:0,rotation:-1.4,duration:.85,ease:'back.out(1.25)'},6.6);
-tl.to('#seal',{scale:.86,duration:.28,yoyo:true,repeat:1,ease:'sine.inOut'},8.7);
+tl.to('#seal',{scale:.66,duration:.28,yoyo:true,repeat:1,ease:'sine.inOut'},8.7);
 
 window.KLIPT={width:W,height:H,fps:30,duration:10,poster:4.0,
  ready:document.fonts.ready,

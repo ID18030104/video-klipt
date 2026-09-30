@@ -1,0 +1,10 @@
+{ "id": "h02", "brand": "Aux Jardins de Marcel", "sector": "Primeur de quartier", "kind": "video",
+  "format": "1080x1920", "duration": 10, "slides": null, "tier": "A", "style": "hybrid: generated market-stall photograph + code typography layer (seal, ticket, marquee)",
+  "title": "Fin de saison : -30 % sur les fruits d'été",
+  "concept": "Une vraie photo d'étal de primeur au petit matin sert de décor ; une couche code pose le titre en Fraunces italique, un sceau rouge '-30 %' qui claque, un bandeau défilant des fruits, puis un ticket de caisse avec adresse et horaires exacts.",
+  "techniques": ["gsap", "higgsfield-plate", "svg", "css-clip-path", "canvas-grain", "camera-push-in"],
+  "fonts": ["Fraunces", "Bricolage Grotesque"],
+  "palette": ["#1f3a2b", "#f4a261", "#e9822b", "#fbf1dc", "#d8432b"],
+  "copy_language": "fr",
+  "plate": {"model": "higgsfield marketing-studio/image", "resolution": "2k", "quality": "low", "cost_usd": 0.021,
+    "prompt": "Authentic documentary photograph of a neighbourhood greengrocer's market stall in Lyon at 8 am, late summer. Lower 55%: worn wooden crates overflowing with ripe peaches, apricots, nectarines, plums and cantaloupe melons, warm golden low sun, shallow depth of field, 35mm. Top 40%: calm empty out-of-focus deep-green canvas awning (negative space). Palette forest green, peach, apricot, cream, warm wood. No text, no letters, no logos, no watermarks, no third-party brands or trademarks."} }
