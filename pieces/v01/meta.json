@@ -1,0 +1,50 @@
+{
+ "id": "v01",
+ "brand": "Maison Brune",
+ "sector": "Boulangerie au levain",
+ "kind": "video",
+ "format": "1080x1920",
+ "duration": 15,
+ "slides": null,
+ "title": "Le Pain du Plateau",
+ "tier": "A",
+ "style": "hybrid clip: warm cinematic AI footage + editorial serif code layer",
+ "concept": "Three Kling shots (scoring the loaf, wood-fired oven, counter) carry the craft story; a code layer adds the exact hook 'Le Pain du Plateau' at t=0, one super per shot, panel wipes on the cuts (5.0 s, 10.625 s), a 40-miches stamp and a 1.7 s end card with address, hours and CTA.",
+ "techniques": [
+  "gsap",
+  "kk.footage",
+  "css blend-mode grade",
+  "seeded grain",
+  "panel wipes"
+ ],
+ "fonts": [
+  "Fraunces",
+  "Manrope"
+ ],
+ "palette": [
+  "#170F09",
+  "#F6EAD3",
+  "#C77A35",
+  "#E8772E",
+  "#F3C489"
+ ],
+ "copy_language": "fr",
+ "clip": {
+  "model": "kling-video/v3.0/std/text-to-video",
+  "cost_usd": 0.693,
+  "prompt": [
+   {
+    "prompt": "Extreme close-up, 35mm film look: a baker's floured hands score a round sourdough loaf with a razor blade in one confident stroke, flour dust drifting in warm low side light, dark wooden bench, shallow depth of field, slow push-in. Cinematic, warm film grade, real textures, natural skin, no text, no letters, no logos, no watermarks.",
+    "duration": 5
+   },
+   {
+    "prompt": "Inside a wood-fired bakery before dawn: the oven door opens and a baker slides out golden crusty loaves on a long wooden peel, steam and warm orange glow, embers in the background, handheld camera slowly tracking forward. Cinematic, warm film grade, real textures, natural skin, no text, no letters, no logos, no watermarks.",
+    "duration": 5
+   },
+   {
+    "prompt": "Morning in a small Lyon bakery shop with sunlight through the window: a smiling woman in her thirties receives a paper bag with a baguette over the wooden counter, soft natural light, gentle dolly-in, candid and authentic. Cinematic, warm film grade, real textures, natural skin, no text, no letters, no logos, no watermarks.",
+    "duration": 5
+   }
+  ]
+ }
+}
