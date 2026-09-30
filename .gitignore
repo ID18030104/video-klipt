@@ -3,3 +3,7 @@ node_modules/
 pieces/*/preview.mp4
 pieces/*/frame-*.png
 tools/.kbg.mjs
+pieces/*/assets/cands/
+pieces/*/assets/vcands/
+pieces/*/footage/
+pieces/*/qa.jpg
