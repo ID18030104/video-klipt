@@ -25,12 +25,13 @@ body{font-family:'Figtree',sans-serif;color:var(--ink)}
 .blobwrap{position:absolute;width:760px;height:760px;pointer-events:none}
 .blobwrap svg{width:100%;height:100%;display:block}
 .line{display:block;overflow:hidden;padding:.06em 0 .16em;margin:-.06em 0 -.16em;white-space:nowrap}
+.line .num,.line .seance{display:inline-block}
 .line .w{display:inline-block;will-change:transform}
 .fr{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.01em}
 .fri{font-family:'Fraunces',serif;font-weight:400;font-style:italic;letter-spacing:-.01em}
 #s1{left:90px;top:330px}
 #s1 .l1,#s1 .l2,#s1 .l3{font-size:112px;line-height:1.02}
-#s1 .l2{font-size:96px}
+#s1 .l2{font-size:92px}
 #s1 .l3{font-size:112px}
 .tooth{position:absolute;left:0;top:0;overflow:hidden;border:2px solid rgba(15,61,62,.10);background:#E6CFA6;will-change:transform}
 .shine{position:absolute;top:-30px;bottom:-30px;left:0;width:160px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.75) 50%,rgba(255,255,255,0));transform:skewX(-20deg);opacity:0}
@@ -45,6 +46,8 @@ body{font-family:'Figtree',sans-serif;color:var(--ink)}
 #info .seance{font-weight:600;font-size:48px;line-height:1.2}
 #price{display:flex;align-items:center;margin-top:0;height:160px}
 #price .dot{width:18px;height:18px;border-radius:50%;background:var(--coral);margin-right:22px;margin-top:22px}
+#price .line{font-size:150px;line-height:1;padding:.06em 0 .12em;margin:-.06em 0 -.12em}
+#info>.line{font-size:48px;height:auto!important}
 #price .num{font-family:'Fraunces',serif;font-weight:600;font-size:150px;letter-spacing:-.02em;line-height:1;white-space:nowrap}
 #mention{left:660px;top:1400px;width:340px;font-weight:500;font-size:30px;line-height:1.25;color:var(--soft)}
 #s3h{left:90px;top:250px;font-size:84px;line-height:1.05}
@@ -114,8 +117,8 @@ body{font-family:'Figtree',sans-serif;color:var(--ink)}
   <div class="abs avap" style="left:96px">AVANT</div>
   <div class="abs avap" style="right:96px;text-align:right" id="apres">APRÈS</div>
   <div class="abs" id="info">
-    <span class="line" style="height:58px"><span class="w seance">1&nbsp;séance</span></span>
-    <div id="price"><i class="dot"></i><span class="line" style="padding-top:.1em"><span class="num">390&nbsp;€</span></span></div>
+    <span class="line"><span class="w seance">1&nbsp;séance</span></span>
+    <div id="price"><i class="dot"></i><span class="line"><span class="num">390&nbsp;€</span></span></div>
   </div>
   <div class="abs" id="mention" style="opacity:0">Après bilan<br>avec votre dentiste.</div>
 
@@ -265,8 +268,8 @@ window.KLIPT = {
     });
     // smile breath (scene 1)
     const be=env(0.9,.5,2.85,.2);
-    $('#smile1').style.scale = 1+0.02*be*(0.5-0.5*Math.cos(t*Math.PI));
-    $('#smile1').style.transformOrigin='540px 1170px';
+    
+    
     // tab floats
     const fe=env(5.9,.4,7.05,.15);
     for(let i=0;i<6;i++){ teeth[i].style.translate=`0px ${4*fe*Math.sin(t*2.2+i*1.1)}px`; }
@@ -297,8 +300,9 @@ function build(){
   // ---- initial states ----
   const poses=[...Array(6)].map((_,i)=>toothPose(i));
   const tabX=i=>96+i*148, tabY=760;
-  teeth.forEach((d,i)=>{const p=poses[i];
-    gsap.set(d,{width:96,height:128,x:p.cx-48,y:p.cy-64,rotation:p.rot,scale:0,borderRadius:TOOTH_RAD,backgroundColor:'#E6CFA6',transformOrigin:'50% 50%'});
+  const SC=1.15;
+  teeth.forEach((d,i)=>{const p=poses[i];const cx=540+(p.cx-540)*SC, cy=1170+(p.cy-1170)*SC;
+    gsap.set(d,{width:96*SC,height:128*SC,x:cx-48*SC,y:cy-64*SC,rotation:p.rot,scale:0,borderRadius:TOOTH_RAD,backgroundColor:'#E6CFA6',transformOrigin:'50% 50%'});
     gsap.set(d.querySelector('.shine'),{x:-300-tabX(i)});
   });
   // end smile: scaled
@@ -310,8 +314,8 @@ function build(){
   });
   gsap.set('#spark4',{x:poses[3].cx-35-6,y:poses[3].cy-35-70,scale:0,transformOrigin:'50% 50%'});
   // text hidden inside masks
-  gsap.set('#s1 .w',{yPercent:112});
-  gsap.set('#s2h .w,#s3h .w,#e-title .w,#info .w,#info .num',{yPercent:115});
+  gsap.set('#s1 .w',{yPercent:135});
+  gsap.set('#s2h .w,#s3h .w,#e-title .w,#info .w,#info .num',{yPercent:135});
   gsap.set('#info .dot',{scale:0});
   gsap.set(['#e-logo','#cta','#url','#contact','#mention4'],{opacity:0});
   gsap.set('#url u',{scaleX:0});
@@ -322,7 +326,7 @@ function build(){
   gsap.set('#screen .blk',{opacity:0,y:20});
   gsap.set('.slot',{opacity:0});
   const chk=$('#ccirc path'); gsap.set(chk,{drawSVG:'0%'});
-  gsap.set('#lipP1',{drawSVG:'46% 54%'});
+  gsap.set('#lipP1',{drawSVG:'46% 54%'});gsap.set('#smile1',{transformOrigin:'540px 1170px',scale:SC});gsap.set('#lipP4',{opacity:0});
   gsap.set('#lipP4',{drawSVG:'50% 50%'});
   gsap.set('#e-logo',{y:0});
   gsap.set('#badge',{x:-30});
@@ -339,9 +343,9 @@ function build(){
   T.to(l[2],{yPercent:0,duration:.6,ease:'expo.out',stagger:.08},1.9);
   T.to(teeth,{backgroundColor:'#DDBF8F',duration:1.4,ease:'sine.inOut'},.9);
   T.to(l[2][1],{scale:1.04,duration:.25,ease:'sine.out',yoyo:true,repeat:1,transformOrigin:'50% 70%'},2.6);
-  T.to('#s1 .w',{yPercent:-112,duration:.4,ease:'power2.in',stagger:.04},3.0);
+  T.to('#s1 .w',{yPercent:-135,duration:.4,ease:'power2.in',stagger:.04},3.0);
   // lip retracts
-  T.to('#lipP1',{drawSVG:'50% 50%',duration:.5,ease:'power2.inOut'},3.0);
+  T.to('#lipP1',{drawSVG:'50% 50%',duration:.5,ease:'power2.inOut'},3.0);T.set('#lipP1',{opacity:0},3.5);
 
   // teeth -> tabs
   teeth.forEach((d,i)=>{
@@ -371,10 +375,10 @@ function build(){
   T.to('#info .num',{yPercent:0,duration:.7,ease:'expo.out'},5.45);
   T.fromTo('#mention',{opacity:0},{opacity:1,duration:.4},5.7);
   // exit scene 2
-  T.to(['#s2h .w','#info .seance','#info .num'],{yPercent:-115,duration:.3,ease:'power2.in'},7.2);
+  T.to(['#s2h .w','#info .seance','#info .num'],{yPercent:-135,duration:.3,ease:'power2.in'},7.2);
   T.to(['#s2lab','#logoC','#mention','#rail','.avap','#info .dot'],{opacity:0,duration:.25},7.2);
   T.to('#info .dot',{scale:0,duration:.25},7.2);
-  teeth.slice(0,5).forEach((d,i)=>T.to(d,{y:tabY+900,duration:.45,ease:'power3.in'},7.15+i*.04));
+  teeth.slice(0,5).forEach((d,i)=>T.to(d,{y:tabY+1400,duration:.45,ease:'power3.in'},7.15+i*.04));
   T.to(teeth[5].querySelector('.tlabel'),{opacity:0,duration:.2},7.2);
   // tab 6 -> phone
   T.to(teeth[5],{x:230,y:580,width:620,height:1000,borderRadius:'72px 72px 72px 72px',borderWidth:14,borderColor:'#0F3D3E',backgroundColor:'#FFFFFF',boxShadow:'0 30px 80px rgba(15,61,62,0.18)',duration:.5,ease:'power3.inOut'},7.2);
@@ -418,7 +422,7 @@ function build(){
   T.to('#end',{clipPath:`circle(1700px at ${circ.x}px ${circ.y}px)`,duration:.4,ease:'power2.in'},11.2);
 
   // ===== Scene 4 =====
-  T.fromTo('#lipP4',{drawSVG:'50% 50%'},{drawSVG:'0% 100%',duration:.6,ease:'power3.out'},11.6);
+  T.set('#lipP4',{opacity:1},11.6);T.fromTo('#lipP4',{drawSVG:'50% 50%'},{drawSVG:'0% 100%',duration:.6,ease:'power3.out'},11.6);
   teeth4.forEach((d,i)=>T.to(d,{scale:1,duration:.5,ease:'back.out(1.6)'},11.6+Math.abs(i-2.5)*.08));
   T.to('#e-title .w',{yPercent:0,duration:.7,ease:'expo.out',stagger:.1},11.8);
   teeth4.forEach((d,i)=>{const sh=d.querySelector('.shine');

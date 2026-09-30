@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Boulangerie Lemaire - Tourte seigle et noix</title>
+<!--
+DIRECTION
+Concept: les ingrédients de la Tourte tombent sur la planche et composent le pain, puis la fiche du mois.
+Palette: kraft #C9A26A, crème farine #F5EBD6, brun croûte #5A3520, brique #B04A2C, encre #2A1A10
+Type: Fraunces (titres, chaleureux) + Figtree (infos). Graphisme: illustrations SVG dessinées, papier kraft, tampons, étiquettes.
+Motion: chutes avec rebond doux, poussière de farine, tampon qui claque; calme sur la carte finale.
+-->
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/900.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/800.css">
+<style>
+:root{--kraft:#C9A26A;--cream:#F5EBD6;--crust:#5A3520;--brick:#B04A2C;--ink:#2A1A10}
+*{box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--kraft)}
+#stage{position:absolute;inset:0;width:1080px;height:1920px;overflow:hidden;background:
+ radial-gradient(ellipse at 50% 40%,#d7b27a 0%,#c9a26a 55%,#a97f4a 100%)}
+svg.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.t{position:absolute;left:0;width:1080px;text-align:center;font-family:'Fraunces',serif;color:var(--ink);line-height:1}
+.mask{overflow:hidden;position:absolute;left:0;width:1080px;text-align:center}
+.mask>div{font-family:'Fraunces',serif;color:var(--ink);line-height:1.02;will-change:transform}
+.tag{position:absolute;font-family:'Figtree',sans-serif;font-weight:800;font-size:40px;color:var(--ink);background:var(--cream);
+ padding:16px 30px 16px 34px;border-radius:6px;box-shadow:0 8px 0 rgba(60,35,15,.25);white-space:nowrap;letter-spacing:.2px}
+.tag i{position:absolute;left:12px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:#8a5a30;box-shadow:inset 0 0 0 3px #5a3520}
+.tag{padding-left:46px}
+.tag i{left:16px}
+#card{position:absolute;left:90px;top:250px;width:900px;height:700px;opacity:0}
+</style></head><body>
+<div id="stage">
+<svg class="full" viewBox="0 0 1080 1920" id="art">
+<defs>
+ <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="4"/><feColorMatrix values="0 0 0 0 .25  0 0 0 0 .15  0 0 0 0 .05  0 0 0 .9 -.25"/></filter>
+ <filter id="fiber" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".004 .09" numOctaves="2" seed="9"/><feColorMatrix values="0 0 0 0 .35  0 0 0 0 .22  0 0 0 0 .1  0 0 0 .9 -.35"/></filter>
+ <linearGradient id="crustG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9c6a3a"/><stop offset=".55" stop-color="#6d4325"/><stop offset="1" stop-color="#4a2b17"/></linearGradient>
+ <radialGradient id="dust" cx=".5" cy=".3" r=".7"><stop offset="0" stop-color="#f5ebd6" stop-opacity=".75"/><stop offset="1" stop-color="#f5ebd6" stop-opacity="0"/></radialGradient>
+ <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b98a55"/><stop offset="1" stop-color="#8a5f34"/></linearGradient>
+ <g id="ear"></g>
+ <g id="nut"></g>
+ <g id="ringlogo"></g>
+</defs>
+<rect width="1080" height="1920" filter="url(#fiber)" opacity=".5"/>
+<rect width="1080" height="1920" filter="url(#grain)" opacity=".55"/>
+
+<!-- board -->
+<g id="board">
+ <ellipse cx="540" cy="1462" rx="470" ry="26" fill="rgba(50,28,10,.35)"/>
+ <rect x="110" y="1400" width="860" height="52" rx="14" fill="url(#wood)"/>
+ <rect x="110" y="1400" width="860" height="10" rx="5" fill="#d1a56f" opacity=".7"/>
+ <path d="M140 1424 h180 M380 1436 h260 M700 1422 h200" stroke="#7a4f28" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+</g>
+<!-- flour mound -->
+<g id="mound" transform="translate(540 1400)"><path d="M-230 0 C-170 -40 -90 -110 0 -112 C90 -110 170 -40 230 0Z" fill="#f5ebd6"/><path d="M-150 -6 C-90 -50 -40 -86 0 -88" stroke="#d9c9a6" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+<g id="flour"></g>
+<!-- jar -->
+<g id="jar" transform="translate(540 -300)">
+ <rect x="-80" y="-170" width="160" height="30" rx="8" fill="#8a5a30"/>
+ <path d="M-90 -140 h180 v20 q10 60 0 120 q-4 30 -30 30 h-120 q-26 0 -30 -30 q-10 -60 0 -120z" fill="#efe1c2" opacity=".96" stroke="#5a3520" stroke-width="5"/>
+ <path d="M-84 -60 h168 v56 q-2 22 -24 22 h-120 q-22 0 -24 -22z" fill="#e2c78c"/>
+ <g id="bubbles" fill="#f8eed6" stroke="#b18a4c" stroke-width="3"><circle cx="-40" cy="-30" r="12"/><circle cx="20" cy="-42" r="9"/><circle cx="46" cy="-14" r="14"/><circle cx="-10" cy="-10" r="7"/></g>
+ <path d="M-70 -122 v70" stroke="#fff" stroke-width="8" opacity=".45" stroke-linecap="round"/>
+ <rect x="-52" y="-108" width="104" height="48" rx="6" fill="#b04a2c"/><text x="0" y="-74" text-anchor="middle" font-family="Fraunces" font-weight="700" font-size="26" fill="#f5ebd6">LEVAIN</text>
+</g>
+<g id="items"></g>
+<g id="puff"></g>
+<!-- loaf -->
+<g id="loafwrap" transform="translate(540 1396)"><g id="loaf" opacity="0">
+ <ellipse cx="0" cy="8" rx="300" ry="26" fill="rgba(40,20,8,.3)"/>
+ <path d="M-290 0 C-310 -120 -200 -250 0 -252 C200 -250 310 -120 290 0 C270 22 -270 22 -290 0Z" fill="url(#crustG)"/>
+ <path d="M-290 0 C-310 -120 -200 -250 0 -252 C200 -250 310 -120 290 0 C270 22 -270 22 -290 0Z" fill="url(#dust)"/>
+ <g id="scores" stroke="#efdcb4" stroke-width="12" stroke-linecap="round" fill="none" opacity=".92">
+  <path d="M-190 -60 C-140 -140 -80 -200 -20 -226"/>
+  <path d="M-110 -30 C-60 -110 20 -190 100 -224"/>
+  <path d="M-20 -10 C30 -80 110 -150 190 -180"/>
+  <path d="M90 -10 C130 -60 200 -110 250 -120"/>
+  <path d="M-250 -30 C-230 -80 -200 -110 -180 -128"/>
+ </g>
+ <g id="crustnuts"></g>
+ <path d="M-260 -40 C-250 -110 -200 -170 -130 -206" stroke="#f9f0da" stroke-width="7" fill="none" opacity=".25" stroke-linecap="round"/>
+</g></g>
+<g id="loafears"></g>
+<!-- price stamp -->
+<g id="stamp" transform="translate(830 1050) rotate(-10)" opacity="0">
+ <circle r="140" fill="#b04a2c"/><circle r="126" fill="none" stroke="#f5ebd6" stroke-width="4" stroke-dasharray="3 9" stroke-linecap="round"/>
+ <text y="-30" text-anchor="middle" font-family="Figtree" font-weight="800" font-size="30" fill="#f5ebd6" letter-spacing="4">LE KILO</text>
+ <text y="52" text-anchor="middle" font-family="Fraunces" font-weight="900" font-size="88" fill="#f5ebd6">6,80&#8239;€</text>
+ <text y="96" text-anchor="middle" font-family="Figtree" font-weight="800" font-size="26" fill="#f5ebd6" letter-spacing="4">FAIT MAISON</text>
+</g>
+</svg>
+
+<!-- hook -->
+<div id="h1" class="mask" style="top:250px;height:400px"><div id="h1i" style="font-weight:900;font-size:150px;letter-spacing:-3px">Le pain<br>d’octobre<br><span style="font-style:italic;font-weight:600;font-size:96px;letter-spacing:0">se prépare.</span></div></div>
+<div class="tag" id="tag1" style="left:70px;top:1000px"><i></i>Seigle d’un moulin bourguignon</div>
+<div class="tag" id="tag2" style="right:70px;top:1100px"><i></i>Noix croquantes</div>
+<div class="tag" id="tag3" style="left:70px;top:1200px"><i></i>Levain naturel</div>
+
+<!-- beat C -->
+<div id="c1" class="mask" style="top:250px;height:180px"><div style="font-weight:900;font-size:170px;letter-spacing:-4px">La Tourte</div></div>
+<div id="c2" class="mask" style="top:440px;height:130px"><div style="font-weight:600;font-style:italic;font-size:104px">au seigle &amp; noix</div></div>
+<div id="c3" class="mask" style="top:620px;height:70px"><div style="font-family:'Figtree';font-weight:800;font-size:40px;letter-spacing:6px;color:#5a3520">LE PAIN DU MOIS D’OCTOBRE</div></div>
+
+<!-- end card -->
+<div id="card">
+ <svg width="900" height="700" viewBox="0 0 900 700"><path id="paper" fill="#F5EBD6" d=""/><path id="paperEdge" fill="none" stroke="rgba(90,53,32,.25)" stroke-width="3" d=""/></svg>
+ <div style="position:absolute;left:0;top:44px;width:900px;text-align:center">
+  <svg width="120" height="120" viewBox="-60 -60 120 120" style="display:block;margin:0 auto"><circle r="54" fill="#5a3520"/><circle r="47" fill="none" stroke="#f5ebd6" stroke-width="2"/><use href="#ringlogo"/></svg>
+  <div style="font-family:Fraunces;font-weight:900;font-size:64px;color:#2a1a10;margin-top:14px;letter-spacing:-1px">Boulangerie Lemaire</div>
+  <div style="font-family:Figtree;font-weight:800;font-size:28px;color:#b04a2c;letter-spacing:6px;margin-top:10px">ARTISAN BOULANGER · DIJON</div>
+ </div>
+ <div style="position:absolute;left:70px;right:70px;top:300px;height:3px;background:repeating-linear-gradient(90deg,#5a3520 0 10px,transparent 10px 20px);opacity:.5"></div>
+ <div style="position:absolute;left:0;width:900px;top:340px;text-align:center">
+  <div style="font-family:Figtree;font-weight:800;font-size:34px;letter-spacing:5px;color:#5a3520">EN BOUTIQUE</div>
+  <div style="font-family:Fraunces;font-weight:900;font-size:96px;color:#2a1a10;margin-top:14px;line-height:1">Vendredi<br><span style="font-weight:600;font-style:italic;font-size:70px;color:#b04a2c">&amp; samedi</span></div>
+  <div style="font-family:Figtree;font-weight:600;font-size:38px;color:#2a1a10;margin-top:22px">12 rue Monge, Dijon</div>
+ </div>
+</div>
+</div>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+const NS='http://www.w3.org/2000/svg'.replace('http://','http'+'://');
+const R=KK.rng(269);
+// ---- ear of rye (drawn upward from origin) ----
+function earMarkup(len,n){
+  let s=`<path d="M0 0 L0 ${-len}" stroke="#b8963e" stroke-width="7" stroke-linecap="round"/>`;
+  const top=-len*0.42, step=(len*0.58)/n;
+  for(let i=0;i<n;i++){
+    const y=top-i*step*1.0, sc=1-i/(n*1.6);
+    for(const sd of [-1,1]){
+      s+=`<g transform="translate(${sd*4} ${y}) rotate(${sd*(24+i*.6)})"><ellipse cx="0" cy="-16" rx="${9*sc+3}" ry="${21*sc+7}" fill="#d9b04e" stroke="#8a6620" stroke-width="2.5"/>
+      <path d="M0 -34 L${sd*10} ${-len*.55-i*step*.6}" stroke="#b8963e" stroke-width="2" stroke-linecap="round" opacity=".9"/></g>`;
+    }
+  }
+  s+=`<ellipse cx="0" cy="${top-n*step-14}" rx="7" ry="18" fill="#d9b04e" stroke="#8a6620" stroke-width="2.5"/>`;
+  return s;
+}
+document.getElementById('ear').innerHTML=earMarkup(340,8);
+// ---- walnut ----
+document.getElementById('nut').innerHTML=`
+ <path d="M0 -48 C34 -50 52 -26 50 4 C48 34 26 50 0 50 C-26 50 -48 34 -50 4 C-52 -26 -34 -50 0 -48Z" fill="#a97544" stroke="#5f3a1a" stroke-width="5"/>
+ <path d="M0 -46 C-8 -16 8 16 0 48" stroke="#5f3a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+ <path d="M-30 -28 q8 14 4 30 M30 -28 q-8 14 -4 30 M-38 6 q10 10 6 24 M38 6 q-10 10 -6 24" stroke="#7a4f27" stroke-width="4" fill="none" stroke-linecap="round"/>
+ <path d="M-26 -36 q8 -8 20 -10" stroke="#d3a26e" stroke-width="6" fill="none" stroke-linecap="round" opacity=".7"/>`;
+// half walnut kernel (for crust)
+const kernel=`<g><path d="M-26 0 C-30 -22 -8 -30 0 -18 C8 -30 30 -22 26 0 C24 20 6 24 0 14 C-6 24 -24 20 -26 0Z" fill="#d8b47a" stroke="#7a4f27" stroke-width="3.5"/><path d="M0 -16 V12 M-14 -10 q6 6 4 14 M14 -10 q-6 6 -4 14" stroke="#8b5f30" stroke-width="3" fill="none" stroke-linecap="round"/></g>`;
+document.getElementById('crustnuts').innerHTML=
+ [[-150,-120,-25,1],[110,-195,20,.9],[200,-70,35,1],[-60,-70,10,.8],[30,-145,-15,.85],[-235,-50,-40,.8]].map(a=>`<g transform="translate(${a[0]} ${a[1]}) rotate(${a[2]}) scale(${a[3]})">${kernel}</g>`).join('');
+// logo mark
+document.getElementById('ringlogo').innerHTML=`<g transform="translate(0 30) scale(.16)" fill="#f5ebd6">${earMarkup(300,7).replace(/#d9b04e/g,'#f5ebd6').replace(/#8a6620/g,'#5a3520').replace(/#b8963e/g,'#f5ebd6')}</g>`;
+// loaf ears (end card decoration, behind loaf sides)
+document.getElementById('loafears').innerHTML=`
+ <g transform="translate(220 1396) rotate(-72) scale(.95)" opacity="0" id="le1"><use href="#ear"/></g>
+ <g transform="translate(860 1396) rotate(72) scale(.95) " opacity="0" id="le2"><use href="#ear"/></g>`;
+// torn paper edge for card
+(function(){const r=KK.rng(7);let d='M0 30',pts=[];for(let x=0;x<=900;x+=25)pts.push([x,20+r()*22]);
+ d='M0 '+pts[0][1];pts.forEach(p=>d+=` L${p[0]} ${p[1]}`);d+=' L900 690';
+ const pb=[];for(let x=900;x>=0;x-=25)pb.push([x,668+r()*24]);pb.forEach(p=>d+=` L${p[0]} ${p[1]}`);d+='Z';
+ document.getElementById('paper').setAttribute('d',d);document.getElementById('paperEdge').setAttribute('d',d);})();
+
+// ---- build items ----
+const items=document.getElementById('items');
+function mk(id,inner){const g=document.createElementNS(NS,'g');g.id=id;g.innerHTML=inner;items.appendChild(g);return g;}
+const ears=[0,1,2].map(i=>mk('e'+i,'<use href="#ear"/>'));
+const nuts=[0,1,2,3,4].map(i=>mk('n'+i,'<use href="#nut"/>'));
+// landing targets on the board (y 1400 = board top)
+const earT=[{x:250,y:1372,r:82},{x:300,y:1340,r:96},{x:210,y:1300,r:74}];
+const nutT=[{x:770,y:1350,r:10},{x:850,y:1352,r:-20},{x:810,y:1290,r:30},{x:700,y:1352,r:-8},{x:760,y:1235,r:60}];
+// flour particles
+const fl=document.getElementById('flour');const fp=[];
+for(let i=0;i<46;i++){const c=document.createElementNS(NS,'circle');c.setAttribute('r',(4+R()*9).toFixed(1));c.setAttribute('fill',R()<.5?'#f5ebd6':'#fff8e6');fl.appendChild(c);fp.push({c,x:540+(R()-.5)*90,d:R()*1.0,dr:(R()-.5)*30});}
+// puff
+const puffEl=document.getElementById('puff');const pf=[];
+for(let i=0;i<22;i++){const c=document.createElementNS(NS,'circle');c.setAttribute('r',(30+R()*50).toFixed(0));c.setAttribute('fill','#f8eed6');c.setAttribute('opacity','0');puffEl.appendChild(c);pf.push({c,a:R()*Math.PI*2,d:150+R()*280});}
+
+const tl=gsap.timeline({paused:true});
+gsap.set('#mound',{scaleY:0,transformOrigin:'0 0'});
+gsap.set('#stamp',{transformOrigin:'0 0'});
+gsap.set('#card',{y:60});
+// hook text: masked slide, from frame 0 partially visible
+gsap.set('#h1i',{yPercent:0});
+tl.from('#h1i',{yPercent:110,duration:.9,ease:'expo.out'},0);
+// ears fall
+ears.forEach((e,i)=>{const T=earT[i];
+ gsap.set(e,{x:T.x+(i-1)*70-40,y:-380-i*70,rotation:-30+i*40});
+ tl.to(e,{y:T.y,x:T.x,rotation:T.r,duration:.95,ease:'bounce.out'},.0+i*.28);});
+nuts.forEach((n,i)=>{const T=nutT[i];
+ gsap.set(n,{x:T.x-120+i*10,y:-200-i*140,rotation:-200});
+ tl.to(n,{y:T.y,x:T.x,rotation:T.r,duration:.95,ease:'bounce.out'},.15+i*.24);});
+// flour pour
+fp.forEach(p=>{gsap.set(p.c,{cx:p.x,cy:-30,opacity:0});
+ tl.to(p.c,{opacity:1,duration:.05},1.0+p.d).to(p.c,{cy:1390,cx:p.x+p.dr,duration:.7,ease:'power2.in'},1.0+p.d)
+   .to(p.c,{opacity:0,duration:.25},1.72+p.d);});
+tl.to('#mound',{scaleY:1,duration:1.2,ease:'power2.out'},1.5);
+// jar drops
+tl.to('#jar',{y:1400,duration:.8,ease:'bounce.out'},2.0);
+tl.fromTo('#bubbles circle',{y:0},{y:-8,duration:.5,yoyo:true,repeat:5,ease:'sine.inOut',stagger:.13},2.6);
+// tags
+[['#tag1',1.5,{x:-700}],['#tag2',2.3,{x:700}],['#tag3',3.1,{x:-700}]].forEach(([s,t,f])=>{
+ tl.from(s,{x:f.x,rotation:f.x<0?-6:6,duration:.7,ease:'back.out(1.2)'},t);
+ tl.to(s,{x:f.x,duration:.5,ease:'power2.in'},4.55);});
+// hook exit
+tl.to('#h1i',{yPercent:-120,duration:.55,ease:'power3.in'},4.3);
+// merge -> loaf
+const all=[...ears,...nuts,'#jar'];
+tl.to(all,{x:540,y:1290,scale:.25,rotation:'+=140',opacity:0,duration:.75,ease:'power3.in',stagger:.03},4.6);
+tl.to('#mound',{scaleY:0,duration:.5,ease:'power2.in'},4.7);
+pf.forEach((p,i)=>{gsap.set(p.c,{cx:540,cy:1300,opacity:0,scale:.3,transformOrigin:'center'});
+ tl.to(p.c,{cx:540+Math.cos(p.a)*p.d*1.4,cy:1250+Math.sin(p.a)*p.d*.5-60,scale:1.2,duration:1.0,ease:'power3.out'},5.35)
+   .fromTo(p.c,{opacity:0},{opacity:.85,duration:.1},5.35).to(p.c,{opacity:0,duration:.8},5.6);});
+gsap.set('#loaf',{scale:.6,transformOrigin:'0 0'});
+tl.to('#loaf',{opacity:1,duration:.05},5.35).to('#loaf',{scale:1,duration:.8,ease:'back.out(1.6)'},5.35);
+tl.fromTo('#scores path',{strokeDasharray:400,strokeDashoffset:400},{strokeDashoffset:0,duration:.6,ease:'power2.out',stagger:.1},5.9);
+// slow breathing
+tl.to('#loaf',{scale:1.035,duration:9,ease:'sine.inOut'},6.2);
+// beat C
+[['#c1',6.0],['#c2',6.35],['#c3',6.8]].forEach(([s,t])=>{tl.from(s+' > div',{yPercent:115,duration:.75,ease:'expo.out'},t);tl.to(s+' > div',{yPercent:-125,duration:.45,ease:'power3.in'},10.6);});
+tl.fromTo('#stamp',{opacity:0,scale:2.4,rotation:-40},{opacity:1,scale:1,rotation:-10,duration:.35,ease:'power4.in'},7.7);
+tl.to('#stamp',{y:'-=0',x:'+=0',duration:.12,yoyo:true,repeat:1,ease:'sine.inOut',scale:1.06},8.05);
+tl.to('#stamp',{x:150,y:-150,rotation:6,scale:.7,duration:.8,ease:'power3.inOut'},10.9);
+// beat D end card
+tl.to('#card',{opacity:1,y:0,duration:.8,ease:'expo.out'},10.9);
+tl.to(['#le1','#le2'],{opacity:1,duration:.5},11.4);
+tl.from('#card > div',{y:30,opacity:0,duration:.6,stagger:.15,ease:'power3.out'},11.2);
+tl.to('#card',{y:-12,duration:3.4,ease:'sine.inOut'},11.7);
+window.KLIPT={width:1080,height:1920,fps:30,duration:15,render(t){tl.seek(t,false);}};
+</script></body></html>

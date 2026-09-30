@@ -1,0 +1,6 @@
+{ "id": "p215", "brand": "Cabinet dentaire Dr Amrani", "sector": "Santé (dentiste)", "kind": "video",
+  "format": "1080x1920", "duration": 15, "slides": null,
+  "title": "Le nuancier — blanchiment & RDV en ligne",
+  "concept": "Le teintier du dentiste devient le héros : les dents d'un sourire stylisé se rangent en nuancier qui s'éclaircit sous un reflet, la languette blanche devient l'écran de prise de RDV, puis le zoom sur la confirmation ouvre l'end card. Ivoire, lagon et menthe, formes rondes, ton rassurant et non clinique.",
+  "techniques": ["gsap","svg-illustration","morph","ui-mockup","drawsvg"], "fonts": ["Fraunces","Figtree"],
+  "palette": ["#FBF6EE","#0F3D3E","#CFE8DF","#FF8C69","#44706E"], "copy_language": "fr" }

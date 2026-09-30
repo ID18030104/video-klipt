@@ -1,0 +1,8 @@
+{ "id": "p245", "brand": "Sève", "sector": "Premium organic skincare", "kind": "video",
+  "format": "1080x1920", "duration": 15, "slides": null,
+  "title": "The night shift: Overnight Renewal Serum",
+  "concept": "The reel is the night itself: 11 pm to 7 am passes in 15 seconds while giant italic hour numerals roll behind a 3D amber dropper bottle, one golden drop falls, camellia and bakuchiol seeds arrive, and the sky grades from ink to dawn cream for the price and URL.",
+  "techniques": ["three.js", "gsap", "canvas", "procedural-3d-botanicals", "kinetic-type"],
+  "fonts": ["Instrument Serif", "Manrope"],
+  "palette": ["#0B1026", "#2A2346", "#A85418", "#E7A444", "#F3E4D0", "#F7F1EA", "#2E4A37"],
+  "copy_language": "en" }

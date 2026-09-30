@@ -69,7 +69,7 @@ html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--i
       <h1 class="h"><span class="line"><span>One drop,</span></span><span class="line"><span><em>then sleep.</em></span></span></h1>
     </div>
     <div class="beat" id="b3">
-      <h1 class="h"><span class="line"><span>They take</span></span><span class="line"><span>the <em>night shift.</em></span></span></h1>
+      <h1 class="h"><span class="line"><span>It works</span></span><span class="line"><span>the <em>night shift.</em></span></span></h1>
     </div>
     <div class="tag" id="tagA"><span>Camellia oil</span><b></b></div>
     <div class="tag" id="tagB"><span>Bakuchiol</span><b></b></div>
@@ -145,7 +145,7 @@ function clockAt(t){
   hrA.style.transform = `translateY(${-roll*900}px)`;
   hrB.style.transform = `translateY(${(1-roll)*900}px)`;
   const dk = dawnK(t);
-  const col = dk<0.5 ? `rgba(243,228,208,${lerp(0.16,0.0,dk*2)})` : `rgba(168,84,24,${lerp(0,0.2,(dk-.5)*2)})`;
+  const col = dk<0.5 ? `rgba(243,228,208,${lerp(0.26,0.0,dk*2)})` : `rgba(168,84,24,${lerp(0,0.26,(dk-.5)*2)})`;
   hrA.style.color = hrB.style.color = col;
 }
 

@@ -1,0 +1,8 @@
+{ "id": "p216", "brand": "Studio Pilates Rive Gauche", "sector": "Studio de pilates", "kind": "video",
+  "format": "1080x1920", "duration": 16, "slides": null,
+  "title": "La ligne du midi",
+  "concept": "Une seule ligne argile continue s'étire sous l'accroche, s'enroule en cadran 12h15–13h, devient la sangle et le ressort d'un reformer qui respire, souligne le prix 25 €, puis s'arque en logo (pont de la Rive Gauche et posture shoulder bridge). Blobs organiques, grain, palette lin/sable/sauge, rythme calme.",
+  "techniques": ["gsap", "svg-illustration", "path-morphing", "simplex-noise"],
+  "fonts": ["Cormorant Garamond", "Manrope"],
+  "palette": ["#F3ECE2", "#E6D6C3", "#B7C1AB", "#C4836A", "#2E2925", "#9A5A43"],
+  "copy_language": "fr" }

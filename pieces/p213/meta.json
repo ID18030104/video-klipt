@@ -1,0 +1,8 @@
+{ "id": "p213", "brand": "Nonna Rosa", "sector": "Pizzeria napolitaine",
+  "kind": "post", "format": "1080x1350", "duration": null, "slides": 1,
+  "title": "La Tartufata, carte au trésor",
+  "concept": "La pizza du mois vue de dessus devient une île cartographiée sur un parchemin plié : côte du four à bois, monts champignons, lacs de fior di latte, forêt de roquette, et un X rouge qui marque le marais de crème de truffe. Toponymes de graveur, route en pointillés depuis Toulouse, prix de 17 € sur un sceau de cire.",
+  "techniques": ["svg-illustration", "svg-filters", "procedural-texture", "seeded-rng", "textPath"],
+  "fonts": ["Gloock", "EB Garamond"],
+  "palette": ["#EAD9B2", "#3A2517", "#B3301E", "#C98A4B", "#F4E8CC", "#4A3426", "#56702C"],
+  "copy_language": "fr" }

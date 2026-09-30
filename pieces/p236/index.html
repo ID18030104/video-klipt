@@ -23,7 +23,7 @@ body{width:1080px;overflow:hidden;font-family:Figtree,sans-serif;color:var(--nig
 .grain{position:absolute;inset:0;opacity:.09;mix-blend-mode:multiply;pointer-events:none;z-index:50}
 .top{position:absolute;left:70px;right:70px;top:62px;display:flex;justify-content:space-between;align-items:center;z-index:10}
 .logo{display:flex;align-items:center;gap:16px;font-family:Fraunces;font-weight:600;font-size:38px;letter-spacing:.01em}
-.logo small{display:block;font-family:Figtree;font-weight:700;font-size:20px;letter-spacing:.28em;text-transform:uppercase;opacity:.7;margin-top:2px}
+.logo small{display:block;font-family:Figtree;font-weight:700;font-size:22px;letter-spacing:.26em;text-transform:uppercase;opacity:.85;margin-top:2px}
 .count{font-weight:700;font-size:30px;letter-spacing:.12em}
 .count b{color:var(--apricot)}
 .arch{position:absolute;left:70px;top:150px;width:940px;height:590px;border-radius:470px 470px 36px 36px;background:linear-gradient(180deg,#F8D9A6 0%,#F4C08A 55%,#EFA774 100%);overflow:hidden}
@@ -36,11 +36,11 @@ h2{position:absolute;left:70px;top:806px;font-family:Fraunces;font-weight:600;fo
 h2 i{font-weight:400}
 .desc{position:absolute;left:70px;top:948px;width:940px;font-size:36px;line-height:1.35;font-weight:400}
 .chips{position:absolute;left:70px;right:70px;top:1075px;display:flex;gap:20px}
-.chip{flex:1;background:var(--night);color:var(--cream);border-radius:28px;padding:18px 24px;display:flex;gap:18px;align-items:center;min-height:118px}
+.chip{flex:1;background:var(--night);color:var(--cream);border-radius:28px;padding:18px 24px;display:flex;gap:18px;align-items:center;min-height:128px}
 .chip.b{background:var(--sand);color:var(--night)}
 .chip svg{width:46px;height:46px;flex:none;stroke:var(--sun);}
 .chip.b svg{stroke:var(--apricot)}
-.chip span{display:block;font-size:22px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.75;margin-bottom:4px}
+.chip span{display:block;font-size:24px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.9;margin-bottom:4px}
 .chip p{font-size:30px;font-weight:600;line-height:1.15}
 .foot{position:absolute;left:70px;right:70px;bottom:44px;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:28px}
 .dots{display:flex;gap:12px}
@@ -61,13 +61,17 @@ h2 i{font-weight:400}
 .list em{font-style:normal;width:46px;height:46px;border-radius:50%;background:var(--apricot);color:var(--night);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700}
 .cover .foot{color:var(--cream);z-index:5}
 .cover .swipe{color:var(--sun);font-size:32px}
-.cover .pill{position:absolute;right:70px;top:1235px;z-index:5;background:var(--sun);color:var(--night);font-weight:700;font-size:28px;padding:14px 26px;border-radius:40px;letter-spacing:.02em}
+.cover .pill{position:absolute;right:70px;top:1235px;z-index:5;background:var(--sun);color:var(--night);font-weight:700;font-size:28px;padding:14px 26px 14px 30px;border-radius:40px;letter-spacing:.02em;display:flex;align-items:center;gap:12px}
+.cover .pill svg{width:34px;height:34px}
 /* cta */
-.cta{position:absolute;left:0;right:0;bottom:0;height:170px;background:var(--night);color:var(--cream);z-index:6;padding:0 70px;display:flex;align-items:center;justify-content:space-between}
+.cta{position:absolute;left:0;right:0;bottom:0;height:220px;background:var(--night);color:var(--cream);z-index:6;padding:0 70px;display:flex;align-items:center;justify-content:space-between}
 .cta .l{font-family:Fraunces;font-size:50px;font-weight:600;line-height:1.05}
-.cta .l small{display:block;font-family:Figtree;font-size:26px;font-weight:600;color:var(--sun);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
-.cta .r{background:var(--apricot);color:var(--night);font-weight:700;font-size:38px;padding:22px 34px;border-radius:60px}
-.last .tag{top:762px}.last h2{top:794px;font-size:96px}.last .desc{top:906px}.last .chips{top:1020px}
+.cta .l small{display:block;font-family:Figtree;font-size:26px;font-weight:700;color:var(--sun);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+.cta .r{background:var(--apricot);color:var(--night);border-radius:44px;padding:20px 34px;text-align:left}
+.cta .r small{display:flex;align-items:center;gap:10px;font-size:26px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.cta .r small svg{width:30px;height:30px}
+.cta .r b{display:block;font-size:38px;font-weight:700}
+.last .tag{top:744px}.last h2{top:770px;font-size:84px}.last .desc{top:868px}.last .chips{top:986px}.last .chip{min-height:108px}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 .2  0 0 0 0 .15  0 0 0 0 .1  0 0 0 1.4 -.3"/></filter>
@@ -94,18 +98,19 @@ const fig={
 };
 // hand-tuned pose 3 (clean) and 4
 fig[3]=`<g transform="translate(190,55)"><path d="M30 380H150" ${S}/><path d="M150 380L215 300" ${S}/><path d="M215 300L360 290L385 385" ${S}/><path d="M215 300L235 145" ${S}/><path d="M235 145L330 30" ${S}/>${head(228,88)}<path d="M385 385h64" stroke="#1E3A3E" stroke-width="16" stroke-linecap="round"/></g>`;
-fig[4]=`<g transform="translate(170,30)"><path d="M70 395Q140 355 300 385Q460 355 530 395Q450 425 300 410Q150 425 70 395Z" fill="#E8825A" stroke="#1E3A3E" stroke-width="16" stroke-linejoin="round"/><path d="M300 375V170" ${S}/><path d="M245 185h110" ${S}/><path d="M355 190Q410 280 395 380" ${S} stroke-width="22"/><path d="M245 195Q260 300 385 350" stroke="#E8825A" stroke-width="20" stroke-linecap="round" fill="none"/>${head(300,112)}<path d="M430 140q80 50 30 130M462 262l-6 26-26-14" stroke="#1E3A3E" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/></g>`;
+fig[4]=`<g transform="translate(170,30)"><path d="M70 395Q140 355 300 385Q460 355 530 395Q450 425 300 410Q150 425 70 395Z" fill="#E8825A" stroke="#1E3A3E" stroke-width="16" stroke-linejoin="round"/><path d="M190 372L300 350L415 372" ${S}/><path d="M300 350V200" ${S}/><path d="M245 208L355 182" ${S}/><path d="M245 208Q205 290 215 358" ${S} stroke-width="22"/><path d="M355 182Q440 260 410 352" ${S} stroke-width="22"/>${head(312,122)}<path d="M500 150q70 40 30 120M532 262l-6 26-26-14" stroke="#1E3A3E" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/></g>`;
 fig[5]=`<g transform="translate(150,60)"><path d="M60 370H340" ${S}/><path d="M120 300L340 370" ${S}/><path d="M120 295Q210 200 340 290" ${S}/><path d="M340 290L580 365" ${S}/>${head(440,325)}</g>`;
 fig[2]=`<g transform="translate(170,50)"><path d="M110 390L340 140L570 390" ${S}/>${head(228,320)}<path d="M80 390h64M540 390h64" stroke="#1E3A3E" stroke-width="16" stroke-linecap="round"/></g>`;
-fig[1]=`<g transform="translate(150,70)"><path d="M190 220Q295 270 400 220" ${S}/><path d="M190 220Q295 120 400 220" stroke="#1E3A3E" stroke-width="7" stroke-dasharray="4 16" stroke-linecap="round" fill="none"/><path d="M190 220V370M400 220V370L500 370" ${S}/>${head(120,205)}<path d="M600 190q30 30 0 62M616 172q46 48 0 98" stroke="#1E3A3E" stroke-width="6" fill="none" stroke-linecap="round" opacity=".55"/></g>`;
-const waves=`<svg width="940" height="40" viewBox="0 0 940 40" preserveAspectRatio="none"><path d="M0 20q29-24 58 0t58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0V0H0z" fill="#F0A776" transform="translate(0,-1)"/></svg>`;
+fig[1]=`<g transform="translate(150,70)"><path d="M190 250Q295 300 400 250" ${S}/><path d="M190 250Q295 140 400 250" stroke="#E8825A" stroke-width="8" stroke-dasharray="2 18" stroke-linecap="round" fill="none"/><path d="M190 250V370M400 250V370L500 370" ${S}/><path d="M190 252L160 266" ${S}/>${head(160,274)}</g>`;
+const waves=`<svg width="940" height="40" viewBox="0 0 940 40" preserveAspectRatio="none"><path d="M0 20q29-24 58 0t58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0 58 0V0H0z" fill="#F0A776" transform="translate(0,-1)"/></svg>`;
 const P=[
  {n:'Chat-vache',t:'Posture 1',d:'À quatre pattes, mains sous les épaules, genoux sous les hanches. Le dos suit le souffle.',r:'Inspirez, creusez. Expirez, arrondissez.',dur:'8 cycles · 1 min'},
- {n:'Chien tête en bas',t:'Posture 2',d:'Poussez le sol des mains, hanches vers le ciel. Fléchissez les genoux si le dos tire.',r:'Longues, par le nez.',dur:'5 souffles · 40 s'},
+ {n:'Chien tête en bas',t:'Posture 2',d:'Poussez le sol des mains, hanches vers le ciel. Fléchissez les genoux si le dos tire.',r:'Inspirez et expirez par le nez, lentement.',dur:'5 souffles · 40 s'},
  {n:'Fente basse',t:'Posture 3',d:'Genou arrière posé, bras vers le ciel. Le bassin s’enracine, la poitrine s’ouvre.',r:'Inspirez, grandissez. Expirez, ancrez.',dur:'5 souffles par côté'},
  {n:'Torsion assise',t:'Posture 4',d:'Assis, dos long. Une main derrière vous, l’autre sur le genou opposé. Tournez sans forcer.',r:'Inspirez, allongez. Expirez, tournez.',dur:'30 s par côté'},
- {n:'Posture de l’enfant',t:'Posture 5',d:'Front au sol, bras devant, fesses vers les talons. Relâchez la nuque et la mâchoire.',r:'6 expirations longues.',dur:'1 min'}
+ {n:'Posture de l’enfant',t:'Posture 5',d:'Front au sol, bras devant, fesses vers les talons. Relâchez la nuque et la mâchoire.',r:'6 longues expirations',dur:'1 min'}
 ];
+const mix=(a,b,t)=>{const p=x=>[1,3,5].map(k=>parseInt(x.slice(k,k+2),16));const A=p(a),B=p(b);return '#'+A.map((v,k)=>Math.round(v+(B[k]-v)*t).toString(16).padStart(2,'0')).join('')};
 let h='';
 // cover
 h+=`<section class="slide cover">${GRAIN}
@@ -115,25 +120,24 @@ h+=`<section class="slide cover">${GRAIN}
 <div class="list">${P.map((p,i)=>`<div><em>${i+1}</em>${p.n}</div>`).join('')}</div>
 <svg class="lakeart" viewBox="0 0 1080 640" preserveAspectRatio="none">
 <circle cx="800" cy="330" r="150" fill="#F2B95B"/><circle cx="800" cy="330" r="215" fill="#F2B95B" opacity=".18"/>
-<path d="M0 360L150 250L260 330L420 190L560 330L700 260L860 350L1000 270L1080 320V640H0z" fill="#2F5D62" opacity=".55"/>
+<path d="M0 360L150 250L260 330L420 190L560 330L700 260L860 350L1000 270L1080 320V640H0z" fill="#284C50"/>
 <path d="M0 430L120 340L250 410L380 320L520 420L660 350L820 430L960 360L1080 410V640H0z" fill="#2F5D62"/>
 <rect y="450" width="1080" height="190" fill="#3B7176"/>
 <g stroke="#F6EDE0" stroke-linecap="round" fill="none" opacity=".55"><path d="M120 490h220M420 520h300M760 480h220M200 560h260M600 590h340" stroke-width="6"/></g>
 <path d="M700 470h200M730 500h140M750 530h100" stroke="#F2B95B" stroke-width="8" stroke-linecap="round" opacity=".8"/>
 </svg>
-<div class="pill">Glissez pour la routine</div>
-<div class="foot" style="justify-content:flex-end"><div class="swipe">${ic.arrow}</div></div>
+<div class="pill">Glissez pour la routine ${ic.arrow}</div>
 </section>`;
 P.forEach((p,i)=>{
  const last=i===4;
  h+=`<section class="slide${last?' last':''}">${GRAIN}
  <div class="top">${logo()}<div class="count"><b>0${i+2}</b>/06</div></div>
- <div class="arch"><div class="sun" style="top:${300-i*22}px"></div><svg class="fig" viewBox="0 0 940 590">${fig[i+1]}</svg><div class="water">${waves}</div></div>
+ <div class="arch" style="background:linear-gradient(180deg,${mix("#F8D9A6","#FBE7C4",i/4)} 0%,#F4C08A 55%,#EFA774 100%)"><div class="sun" style="top:${330-i*55}px"></div><svg class="fig" viewBox="0 0 940 590">${fig[i+1]}</svg><div class="water">${waves}</div></div>
  <div class="tag">${p.t} sur 5</div>
  <h2>${p.n}</h2>
  <div class="desc">${p.d}</div>
  <div class="chips"><div class="chip">${ic.wind}<div><span>Respiration</span><p>${p.r}</p></div></div><div class="chip b">${ic.timer}<div><span>Durée</span><p>${p.dur}</p></div></div></div>
- ${last?`<div class="cta"><div class="l"><small>Cours du matin</small>Tous les jours, 7h15</div><div class="r">shala-annecy.fr</div></div>`:
+ ${last?`<div class="cta"><div class="l"><small>Cours du matin · Bord du lac</small>Rejoignez-nous à&nbsp;7h15</div><div class="r"><small>Réserver ${ic.arrow}</small><b>shala-annecy.fr</b></div></div>`:
  `<div class="foot"><div class="dots">${[0,1,2,3,4].map(k=>`<i class="${k===i?'on':''}"></i>`).join('')}</div><div class="swipe">Suite ${ic.arrow}</div></div>`}
  </section>`;
 });

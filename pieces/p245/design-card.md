@@ -35,3 +35,8 @@ The clock numerals are enormous (≈ 600 px italic) and roll hour by hour behind
 ## Tokens
 --ink #0B1026 · --violet #2A2346 · --amber #A85418 · --gold #E7A444 · --dawn #F3E4D0 · --petal #F7F1EA · --leaf #2E4A37
 Fonts: Instrument Serif 400 + italic, Manrope 500/700 (local @fontsource)
+
+## Critique (first render)
+- Art director: committed night-to-dawn arc, real 3D glass; weak point was the clock numerals at 16% opacity, the bold move barely read. Fixed: raised to 26%.
+- Stranger in the feed: stops on the glowing bottle in the dark; "They take the night shift" was ambiguous (who?). Fixed: "It works the night shift."
+- AI detector: little gives it away; the time stamp ticking in real minutes and the physical drop make it feel directed.

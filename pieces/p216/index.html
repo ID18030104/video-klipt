@@ -167,6 +167,7 @@ dn(t3a,9.45);dn(t3b,9.5);dn(t3s,9.55);
 pas.forEach((c,i)=>tl.to(c,{attr:{'fill-opacity':0,'stroke-opacity':0},duration:.3,ease:'power2.in'},9.5+i*.03));
 tl.to('#carriage',{opacity:0,duration:.35},9.55);
 [...drs].reverse().forEach((e,i)=>tl.to(e,{strokeDashoffset:-1,duration:.5,ease:'power2.in'},9.55+i*.03));
+tl.to('#refstatic',{opacity:0,duration:.4,ease:'power2.in'},9.75);
 // T4
 up(t4p,10.0);
 tl.fromTo(t4x,{letterSpacing:'0.06em'},{letterSpacing:'-0.02em',duration:1,ease:'expo.out'},10.15);
@@ -175,7 +176,7 @@ tl.to('#pill',{strokeDashoffset:0,duration:.6,ease:'power2.inOut'},10.7);
 up(t4l,10.9,.7);
 tl.fromTo(g4,{scale:1},{scale:1.025,duration:1.2,ease:'sine.inOut',transformOrigin:'540px 900px'},11.3);
 dn(t4p,12.4);dn(t4x,12.45);dn(t4l,12.5);
-tl.to('#pill',{strokeDashoffset:-1,duration:.4,ease:'power2.in'},12.4);
+tl.to('#pill',{opacity:0,duration:.4,ease:'power2.in'},12.4);
 tl.to('#mini',{opacity:0,y:-14,duration:.35,ease:'power2.in'},12.4);
 // End card
 tl.to('#water',{opacity:.6,duration:.3},13.1);
