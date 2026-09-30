@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Relai 2.0</title>
+<link rel="stylesheet" href="fonts/inter-tight.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/700.css">
+<style>
+:root{--ink:#08090C;--panel:#12141A;--panel2:#1A1D25;--line:rgba(255,255,255,.1);--paper:#F3EFE7;--dim:#8E939E;--acc:#FF5A1F}
+*{box-sizing:border-box}
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:var(--ink)}
+body{font-family:'Inter Tight',sans-serif;color:var(--paper);-webkit-font-smoothing:antialiased}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden}
+.shot{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;visibility:hidden}
+.in{position:absolute;left:0;top:0;width:1920px;height:1080px}
+.bg{position:absolute;left:0;top:0;width:1920px;height:1080px;background:radial-gradient(1500px 950px at 32% 48%,#191C24 0%,#0C0D11 58%,#08090C 100%)}
+.a{position:absolute}
+.mono{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.1em;font-weight:400}
+.dot{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--acc);margin-right:16px;vertical-align:1px}
+em{font-style:normal;color:var(--acc)}
+.lab{left:130px;top:96px;font-size:28px;color:var(--dim);white-space:nowrap}
+.panel{background:var(--panel);border:1.5px solid var(--line);border-radius:28px;box-shadow:0 40px 120px rgba(0,0,0,.55)}
+.ic{width:34px;height:34px;filter:invert(1);display:block}
+svg.orb{position:absolute;overflow:visible}
+#hero .glow,#hero .bars,#hero .orbit,#hero .sat,#hero .rip{opacity:0}
+
+/* S1 */
+#ghost{left:1090px;top:0;width:800px;opacity:.5;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 92%,transparent 100%)}
+.gr{height:92px;display:flex;align-items:center;gap:22px;border-bottom:1px solid var(--line);font-size:30px;white-space:nowrap}
+.gr .t{font-family:'JetBrains Mono',monospace;font-size:26px;color:var(--dim)}
+.gr b{font-weight:600}.gr span{color:var(--dim)}
+.gr i{width:12px;height:12px;border-radius:50%;background:var(--acc);flex:none}
+#numwrap{left:0;top:0;width:1920px;height:1080px}
+.n{position:absolute;left:130px;top:170px;font-size:560px;font-weight:800;line-height:1;letter-spacing:-.05em;white-space:nowrap}
+.n .u{font-size:.42em;margin-left:.1em;color:var(--dim);font-weight:700;letter-spacing:-.02em}
+.n40{opacity:0}.n40 .d{color:var(--acc)}.n40 .u{color:var(--paper)}
+#bm{display:inline-block;width:0;height:0}
+.strike{position:absolute;left:-40px;top:280px;height:24px;width:640px;background:var(--acc);transform:rotate(-5deg) scaleX(0);transform-origin:0% 50%}
+.sub{left:130px;top:830px;font-size:64px;font-weight:500;letter-spacing:-.02em;white-space:nowrap}
+#sub40{opacity:0}
+
+/* S2 */
+#h2{font-size:196px;font-weight:800;letter-spacing:-.05em;line-height:1;white-space:nowrap}
+#sub2{font-size:54px;font-weight:500;line-height:1.14;letter-spacing:-.015em;width:820px}
+.chip{display:flex;align-items:center;gap:14px;border:2px solid var(--line);border-radius:20px;padding:16px 26px 16px 20px;font-size:36px;font-weight:600;background:rgba(255,255,255,.03)}
+.chip.on{border-color:var(--acc);background:rgba(255,90,31,.14)}
+#chips{display:flex;gap:18px}
+.baton{height:4px;background:var(--acc);transform-origin:0 50%}
+
+/* S3 */
+#big32{left:120px;top:150px;font-size:540px;font-weight:800;color:var(--acc);letter-spacing:-.06em;line-height:1}
+#lang{left:130px;top:690px;font-size:136px;font-weight:800;letter-spacing:-.035em;line-height:1}
+#sub3{left:134px;top:870px;font-size:50px;font-weight:500;color:var(--dim);letter-spacing:-.01em}
+#wallp{left:900px;top:-110px;width:1100px;height:1300px;perspective:1800px;perspective-origin:0% 50%}
+#wall{position:absolute;left:0;top:0;width:1100px;height:1300px;transform-style:preserve-3d;transform:rotateY(-26deg) rotateX(5deg) rotateZ(4deg);transform-origin:0 50%}
+.col{position:absolute;top:0;width:400px}
+.card{height:250px;margin-bottom:28px;border-radius:26px;background:linear-gradient(180deg,#1A1D25,#13151B);border:1.5px solid var(--line);padding:22px 26px;overflow:hidden}
+.card .tag{font-size:28px;color:var(--dim);margin-bottom:8px}
+.card .q{font-size:33px;font-weight:600;line-height:1.12;letter-spacing:-.01em}
+.card .an{font-size:28px;color:var(--dim);margin-top:12px;line-height:1.15}
+.card .an:before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--acc);margin-right:12px}
+
+/* S4 */
+#t4{left:130px;top:230px;font-size:104px;font-weight:800;letter-spacing:-.04em;line-height:1;width:760px}
+#sub4{left:134px;top:640px;font-size:48px;font-weight:500;color:var(--dim);width:700px;line-height:1.15}
+#phone{left:1360px;top:100px;width:440px;height:880px;border-radius:64px;background:#0D0F14;border:2px solid rgba(255,255,255,.22);box-shadow:0 60px 140px rgba(0,0,0,.65),0 0 0 10px #050609;overflow:hidden}
+.ph-head{height:124px;padding:46px 26px 0;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--line);font-size:32px;font-weight:700}
+.ph-head small{display:block;font-size:26px;color:var(--dim);font-weight:400}
+.av{width:56px;height:56px;border-radius:50%;background:var(--acc);color:var(--ink);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:28px;flex:none}
+.msgs{padding:24px 22px}
+.b{max-width:340px;padding:16px 22px;border-radius:26px;font-size:30px;line-height:1.22;margin-bottom:18px;opacity:0}
+.b.c{background:#232733;margin-right:auto;border-bottom-left-radius:8px}
+.b.r{background:var(--acc);color:#120803;margin-left:auto;border-bottom-right-radius:8px;font-weight:500}
+#typing{position:absolute;right:22px;top:0;background:var(--acc);border-radius:26px;padding:22px 26px;display:flex;gap:9px;opacity:0}
+#typing i{width:12px;height:12px;border-radius:50%;background:#120803}
+#mail{left:880px;top:150px;width:500px;height:400px;padding:26px 30px;transform:rotate(-3deg);opacity:0;filter:blur(1.4px)}
+#chatw{left:880px;top:610px;width:410px;height:330px;padding:24px 26px;opacity:0;filter:blur(.8px)}
+.sk{height:14px;border-radius:7px;background:rgba(255,255,255,.09);margin:14px 0}
+.rep{border-left:5px solid var(--acc);padding-left:18px;font-size:29px;line-height:1.2;margin-top:22px}
+.mini{font-size:29px;line-height:1.2;padding:14px 18px;border-radius:20px;margin-top:16px;width:fit-content;max-width:330px}
+
+/* S5 */
+#t5{left:130px;top:200px;font-size:88px;font-weight:800;letter-spacing:-.04em;line-height:1.02;width:780px}
+#sub5{left:134px;top:690px;font-size:48px;font-weight:500;color:var(--dim);width:700px;line-height:1.15}
+#cardA{left:960px;top:120px;width:830px;height:320px;padding:28px 34px;opacity:0}
+#cardB{left:960px;top:560px;width:830px;height:430px;padding:28px 34px;opacity:0}
+.hd{display:flex;align-items:center;gap:18px;font-size:34px;font-weight:700}
+.hd small{font-weight:400;color:var(--dim);font-size:30px}
+.bub{font-size:33px;line-height:1.15;padding:14px 22px;border-radius:24px;width:fit-content;margin-top:16px}
+#batonV{left:1372px;top:440px;width:6px;height:120px;background:var(--acc);transform-origin:50% 0;transform:scaleY(0)}
+#bdot{left:1362px;top:432px;width:26px;height:26px;border-radius:50%;background:var(--acc);box-shadow:0 0 30px var(--acc);opacity:0}
+#blab{left:1410px;top:478px;font-size:28px;color:var(--acc);opacity:0;white-space:nowrap}
+.row{display:flex;align-items:center;gap:18px;font-size:33px;font-weight:500;height:62px;opacity:0}
+.row svg{flex:none}
+.tagc{margin-left:auto;font-size:26px;color:var(--acc);border:2px solid var(--acc);border-radius:999px;padding:6px 16px;white-space:nowrap}
+
+/* S6 */
+.vl{width:2px;height:590px;background:var(--line);top:190px}
+.num{font-size:200px;font-weight:800;letter-spacing:-.05em;line-height:1;white-space:nowrap}
+.num small{font-size:.5em;letter-spacing:-.02em;color:var(--dim);font-weight:700}
+.lb{font-size:38px;font-weight:500;line-height:1.15;color:var(--dim);width:480px}
+.lb b{color:var(--paper);font-weight:600}
+.bar{height:34px;border-radius:6px;transform-origin:0 50%}
+.dt{width:66px;height:66px;border-radius:50%;background:#2A2E38;overflow:hidden}
+.dt i{display:block;height:100%;background:var(--paper)}
+
+/* S7 */
+#t7{font-size:150px;font-weight:800;letter-spacing:-.045em;line-height:.98;width:900px}
+#btn{display:flex;align-items:center;gap:26px;background:var(--acc);color:#120803;font-size:84px;font-weight:800;letter-spacing:-.03em;padding:26px 54px 30px 56px;border-radius:26px;width:fit-content}
+
+/* global */
+#vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,0) 56%,rgba(0,0,0,.5) 100%)}
+#grain{position:absolute;left:-256px;top:-256px;width:2432px;height:1592px;pointer-events:none;mix-blend-mode:overlay;opacity:.2}
+#band{position:absolute;inset:0;background:var(--acc);visibility:hidden}
+#iris{position:absolute;border:12px solid var(--acc);border-radius:50%;visibility:hidden;pointer-events:none}
+</style></head>
+<body>
+<svg width="0" height="0" style="position:absolute"><filter id="bx" x="-5%" y="0" width="110%" height="100%"><feGaussianBlur id="gb" stdDeviation="0 0"/></filter></svg>
+<div id="stage">
+
+<!-- S2 (under S1) -->
+<div class="shot" id="s2"><div class="bg"></div><div class="in" id="in2">
+  <div id="o2" class="a" style="width:560px;height:560px"></div>
+  <div id="bat2" class="a baton" style="width:0"></div>
+  <div id="h2" class="a">Relai <em>2.0</em></div>
+  <div id="sub2" class="a">L’agent IA qui répond à vos clients, 24&nbsp;h/24.</div>
+  <div id="chips" class="a">
+    <div class="chip"><img class="ic" src="../../node_modules/lucide-static/icons/mail.svg">E-mail</div>
+    <div class="chip"><img class="ic" src="../../node_modules/lucide-static/icons/message-circle.svg">Chat</div>
+    <div class="chip"><img class="ic" src="../../node_modules/lucide-static/icons/smartphone.svg">WhatsApp</div>
+  </div>
+</div></div>
+
+<!-- S1 -->
+<div class="shot" id="s1"><div class="bg" id="bg1"></div><div class="in" id="in1">
+  <div id="ghost" class="a"></div>
+  <div id="lab1" class="a lab mono"><i class="dot"></i>Première réponse client · avant</div>
+  <div id="numwrap" class="a">
+    <div class="n n6" id="n6"><span class="d">6</span><span class="u">h</span><b class="strike" id="strike"></b></div>
+    <div class="n n40" id="n40"><i id="bm"></i><span class="d">4</span><span class="d" id="zero">0</span><span class="u">s</span></div>
+  </div>
+  <div id="sub6" class="a sub">pour une première réponse.</div>
+  <div id="sub40" class="a sub">Avec <em>Relai&nbsp;2.0</em>.</div>
+</div></div>
+
+<!-- S3 -->
+<div class="shot" id="s3"><div class="bg"></div><div class="in" id="in3">
+  <div id="big32" class="a"><span id="c32">32</span></div>
+  <div id="lang" class="a">langues.</div>
+  <div id="sub3" class="a">Chaque client, dans sa langue.</div>
+  <div id="wallp" class="a"><div id="wall"></div></div>
+</div></div>
+
+<!-- S4 -->
+<div class="shot" id="s4"><div class="bg"></div><div class="in" id="in4">
+  <div id="t4" class="a">Directement dans vos outils.</div>
+  <div id="sub4" class="a">Là où vos clients écrivent déjà.</div>
+  <div id="mail" class="a panel">
+    <div class="mono" style="font-size:28px;color:var(--dim)"><i class="dot"></i>E-mail</div>
+    <div style="font-size:33px;font-weight:700;margin-top:16px;line-height:1.1">Commande n°&nbsp;48213 : où en est la livraison ?</div>
+    <div class="sk" style="width:80%"></div><div class="sk" style="width:55%"></div>
+    <div class="rep">Bonjour Lucas, votre colis est en cours de livraison.</div>
+  </div>
+  <div id="chatw" class="a panel">
+    <div class="mono" style="font-size:28px;color:var(--dim)"><i class="dot"></i>Chat</div>
+    <div class="mini" style="background:#232733">Puis-je changer mon adresse ?</div>
+    <div class="mini" style="background:var(--acc);color:#120803;margin-left:auto;font-weight:500">C’est fait, merci !</div>
+  </div>
+  <div id="phone" class="a">
+    <div class="ph-head"><div class="av">R</div><div>Relai<small>WhatsApp · en ligne</small></div></div>
+    <div class="msgs" id="msgs">
+      <div class="b c" id="m1">Mon vol de demain est annulé, je fais quoi ?</div>
+      <div class="b r" id="m2">Désolé Inès. Je vous ai reclassée sur le vol de 18&nbsp;h&nbsp;40.</div>
+      <div class="b c" id="m3">Parfait, merci !</div>
+      <div class="b r" id="m4">Carte d’embarquement envoyée <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#120803" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M4 12.5l5 5L20 6.5"/></svg></div>
+      <div id="typing"><i></i><i></i><i></i></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- S5 -->
+<div class="shot" id="s5"><div class="bg"></div><div class="in" id="in5">
+  <div id="t5" class="a">Quand il faut un humain, Relai <em>passe la main.</em></div>
+  <div id="sub5" class="a">Au bon moment, avec tout le contexte.</div>
+  <div id="cardA" class="a panel">
+    <div class="hd"><div class="av" style="background:#2A2E38;color:var(--paper)">L</div><div>Lucas M.<small> · e-mail</small></div></div>
+    <div class="bub" id="ba1" style="background:#232733;opacity:0">Ça fait la 3<sup style="font-size:.6em">e</sup> fois que j’écris.</div>
+    <div class="bub" id="ba2" style="background:var(--acc);color:#120803;font-weight:500;margin-left:auto;opacity:0">Je vous mets en relation avec Camille.</div>
+  </div>
+  <div id="batonV" class="a"></div><div id="bdot" class="a"></div>
+  <div id="blab" class="a mono">Passage de relais</div>
+  <div id="cardB" class="a panel">
+    <div class="hd"><div class="av" style="background:var(--paper)">C</div><div>Camille R.<small> · Service client</small></div><div class="tagc mono">Prend la main</div></div>
+    <div class="mono" style="font-size:28px;color:var(--dim);margin:20px 0 6px">Contexte transmis</div>
+    <div id="rows"></div>
+  </div>
+</div></div>
+
+<!-- S6 -->
+<div class="shot" id="s6"><div class="bg"></div><div class="in" id="in6">
+  <div class="a lab mono"><i class="dot"></i>Résultats clients</div>
+  <div class="a vl" style="left:650px"></div><div class="a vl" style="left:1225px"></div>
+  <div class="a num" id="c71w" style="left:130px;top:425px"><span id="c71" style="color:var(--acc)">71</span><small>&#8239;%</small></div>
+  <div class="a lb" style="left:134px;top:660px">des demandes résolues <b>sans humain</b></div>
+
+  <div id="c2" class="a" style="left:700px;top:0;width:520px;height:1080px">
+    <div class="a mono" style="left:0;top:206px;font-size:28px;color:var(--dim)">Avant</div>
+    <div class="a bar" id="bar1" style="left:0;top:252px;width:470px;background:#3A3F4B"></div>
+    <div class="a mono" style="left:0;top:312px;font-size:28px;color:var(--acc)">Avec Relai</div>
+    <div class="a bar" id="bar2" style="left:0;top:358px;width:12px;background:var(--acc)"></div>
+    <div class="a num" style="left:0;top:425px"><span id="c40">40</span><small>&nbsp;s</small></div>
+    <div class="a lb" style="left:4px;top:660px">pour une première réponse, contre <b>6&nbsp;h</b></div>
+  </div>
+  <div id="c3" class="a" style="left:1275px;top:0;width:520px;height:1080px">
+    <div id="dots" class="a" style="left:0;top:267px;display:flex;gap:24px"></div>
+    <div class="a num" style="left:0;top:425px"><span id="c48">4,8</span><small>/5</small></div>
+    <div class="a lb" style="left:4px;top:660px">de satisfaction <b>client</b></div>
+  </div>
+  <div id="foot" class="a" style="left:130px;top:850px;width:1660px">
+    <div class="a" style="left:0;top:0;width:1660px;height:2px;background:var(--line)"></div>
+    <div class="a" style="left:0;top:38px;font-size:60px;font-weight:800;letter-spacing:-.03em;white-space:nowrap"><span style="color:var(--acc)">300</span> entreprises clientes</div>
+    <div class="a mono" style="right:0;top:56px;font-size:28px;color:var(--dim);white-space:nowrap">E-commerce · Voyage · Banque en ligne</div>
+  </div>
+</div></div>
+
+<!-- S7 -->
+<div class="shot" id="s7"><div class="bg"></div><div class="in" id="in7">
+  <div id="bat7" class="a baton" style="width:0"></div>
+  <div id="k7" class="a lab mono" style="left:1000px;top:200px"><i class="dot"></i>Relai 2.0</div>
+  <div id="t7" class="a">Réservez<br>une démo.</div>
+  <div id="btn" class="a">relai.ai<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#120803" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+</div></div>
+
+<div id="hero" class="a" style="width:560px;height:560px;visibility:hidden"></div>
+<div id="band"></div><div id="iris"></div>
+<div id="vig"></div><div id="grain"></div>
+</div>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+(function(){
+const $=s=>document.querySelector(s), K=KK, E=K.ease;
+const PB='&#8239;';
+function orbSVG(id){return `<svg class="orb" viewBox="0 0 560 560" width="560" height="560"><defs><radialGradient id="${id}g"><stop offset="0" stop-color="#FF5A1F" stop-opacity=".5"/><stop offset=".55" stop-color="#FF5A1F" stop-opacity=".12"/><stop offset="1" stop-color="#FF5A1F" stop-opacity="0"/></radialGradient></defs>
+<circle class="glow" cx="280" cy="280" r="275" fill="url(#${id}g)"/>
+<circle class="rip r1" cx="280" cy="280" r="190" fill="none" stroke="#FF5A1F" stroke-width="3"/>
+<circle class="rip r2" cx="280" cy="280" r="190" fill="none" stroke="#FF5A1F" stroke-width="3"/>
+<circle class="orbit" cx="280" cy="280" r="248" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="2"/>
+<g class="sat"><circle cx="528" cy="280" r="11" fill="#F3EFE7"/></g>
+<circle class="track" cx="280" cy="280" r="170" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="30"/>
+<circle class="prog" cx="280" cy="280" r="170" fill="none" stroke="#FF5A1F" stroke-width="30" pathLength="100" stroke-dasharray="100 100" stroke-dashoffset="0" transform="rotate(-90 280 280)"/>
+<g class="bars" fill="#F3EFE7">${[0,1,2,3,4].map(i=>`<rect x="${280+(i-2)*36-8}" y="250" width="16" height="60" rx="8"/>`).join('')}</g></svg>`}
+$('#o2').innerHTML=orbSVG('a'); $('#hero').innerHTML=orbSVG('b');
+
+// ghost mail wall (S1)
+const gm=[['03:12','Marc L.','Où est mon colis ?'],['03:40','Sofia R.','Mi vuelo fue cancelado'],['04:05','J. Weber','Rückerstattung bitte'],['04:31','Emma T.','Facture en double'],['05:12','Luca B.','Ordine non arrivato'],['05:58','Inès K.','Changer mon billet'],['06:20','A. Novak','Zwrot pieniędzy ?'],['06:47','Tom H.','Where is my refund?'],['07:05','Léa P.','Mot de passe perdu'],['07:31','Ana C.','Cancelar reserva'],['08:02','Paul D.','Carte bloquée'],['08:15','M. Keller','Lieferung verspätet'],['08:40','Zoé F.','Échange de taille'],['09:03','N. Rossi','Fattura errata']];
+$('#ghost').innerHTML=gm.map(r=>`<div class="gr"><i></i><span class="t">${r[0]}</span><b>${r[1]}</b><span>${r[2]}</span></div>`).join('');
+
+// wall of languages (S3)
+const L=[['FR','Où est ma commande ?','Elle arrive demain avant 12&nbsp;h.'],['EN','Where is my order?','It arrives tomorrow before noon.'],['ES','¿Dónde está mi pedido?','Llega mañana antes del mediodía.'],['DE','Wo ist meine Bestellung?','Sie kommt morgen vor 12 Uhr.'],['IT','Dov’è il mio ordine?','Arriva domani prima di mezzogiorno.'],['PT','Onde está a minha encomenda?','Chega amanhã antes do meio-dia.'],['NL','Waar is mijn bestelling?','Ze komt morgen vóór 12 uur.'],['PL','Gdzie jest moje zamówienie?','Dotrze jutro przed 12:00.'],['SV','Var är min beställning?','Den kommer imorgon före 12.'],['TR','Siparişim nerede?','Yarın öğleden önce ulaşır.']];
+const cols=[];
+for(let c=0;c<3;c++){const d=document.createElement('div');d.className='col';d.style.left=(c*428)+'px';
+  let h='';for(let r=0;r<8;r++){const l=L[(c*3+r*4+c)%10];h+=`<div class="card"><div class="tag mono">${l[0]}</div><div class="q">${l[1]}</div><div class="an">${l[2]}</div></div>`}
+  d.innerHTML=h;$('#wall').appendChild(d);cols.push(d)}
+const colCfg=[{y0:-260,v:-64},{y0:-520,v:52},{y0:-170,v:-88}];
+
+// context rows (S5)
+const chk='<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>';
+['Commande n°&nbsp;48213 · 3 jours de retard','Déjà tenté : suivi colis, geste commercial','Ton : tendu · priorité haute','Langue : français'].forEach(s=>{const d=document.createElement('div');d.className='row';d.innerHTML=chk+'<div>'+s+'</div>';$('#rows').appendChild(d)});
+// dots (S6)
+$('#dots').innerHTML=[1,1,1,1,.8].map(f=>`<div class="dt"><i style="width:${f*100}%"></i></div>`).join('');
+
+// grain tile
+const cv=document.createElement('canvas');cv.width=cv.height=256;const cx=cv.getContext('2d'),im=cx.createImageData(256,256),rg=K.rng(11);
+for(let i=0;i<256*256;i++){const v=Math.floor(rg()*255);im.data[i*4]=im.data[i*4+1]=im.data[i*4+2]=v;im.data[i*4+3]=255}
+cx.putImageData(im,0,0);$('#grain').style.backgroundImage=`url(${cv.toDataURL()})`;$('#grain').style.backgroundSize='256px 256px';
+
+const shots={s1:[0,3.6],s2:[3.0,7.95],s3:[7.5,12.9],s4:[12.4,17.6],s5:[17.0,21.6],s6:[21.6,25.7],s7:[25.3,28.1]};
+const drifts={in1:[0,3.6,.03],in2:[3.0,7.95,.04],in3:[7.5,12.9,.03],in4:[12.4,17.6,.035],in5:[17.0,21.6,.03]};
+let ZX=600,ZY=490,tl,tail;
+const orbs=[];
+function setup(){
+  // measure hole of the "0" in "40"
+  const zr=$('#zero').getBoundingClientRect(),base=$('#bm').getBoundingClientRect().bottom;
+  const c2=document.createElement('canvas').getContext('2d');c2.font='800 560px "Inter Tight"';const m=c2.measureText('0');
+  ZX=zr.left+zr.width/2-0.02*560; ZY=base-(m.actualBoundingBoxAscent-m.actualBoundingBoxDescent)/2;
+  ZX=Math.round(ZX);ZY=Math.round(ZY);
+  const R=280;
+  $('#o2').style.left=(ZX-R)+'px';$('#o2').style.top=(ZY-R)+'px';
+  $('#hero').style.left=(ZX-R)+'px';$('#hero').style.top=(ZY-R)+'px';
+  const tx=1010;
+  Object.assign($('#h2').style,{left:tx+'px',top:(ZY-230)+'px'});
+  Object.assign($('#sub2').style,{left:(tx+4)+'px',top:(ZY-20)+'px'});
+  Object.assign($('#chips').style,{left:tx+'px',top:(ZY+190)+'px'});
+  [['#bat2'],['#bat7']].forEach(([s])=>Object.assign($(s).style,{left:(ZX+265)+'px',top:(ZY-2)+'px'}));
+  Object.assign($('#t7').style,{left:tx+'px',top:(ZY-190)+'px'});
+  Object.assign($('#btn').style,{left:tx+'px',top:(ZY+170)+'px'});
+  $('#k7').style.top=(ZY-290)+'px';
+  // typing bubble pos
+  // tail = frame-0 clone of S1 for the loop
+  tail=$('#s1').cloneNode(true);tail.removeAttribute('id');tail.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));tail.id='';
+  $('#stage').insertBefore(tail,$('#band'));
+  orbs.push({el:$('#o2'),g:()=>1},{el:$('#hero'),g:t=>K.prog(t,25.0,.6)});
+  gsap.set('#numwrap',{transformOrigin:ZX+'px '+ZY+'px'});
+  gsap.set('#hero',{x:225-ZX,y:300-ZY,scale:.56,transformOrigin:'280px 280px'});
+  tl=gsap.timeline({paused:true});
+  const IN=(s,f,t,at,d=.6,e='expo.out',st=0)=>tl.fromTo(s,f,Object.assign({duration:d,ease:e,stagger:st},t),at);
+  const OUT=(s,t,at,d=.3,e='power3.in')=>tl.to(s,Object.assign({duration:d,ease:e,immediateRender:false},t),at);
+  // S1
+  IN('#strike',{scaleX:0,rotation:-5},{scaleX:1},.85,.35);
+  OUT('#n6',{y:-130,opacity:0},1.55,.4);OUT('#sub6',{y:-40,opacity:0},1.55,.3);
+  IN('#n40',{y:140,opacity:0},{y:0,opacity:1},1.72,.6);IN('#sub40',{y:40,opacity:0},{y:0,opacity:1},1.88,.5);
+  OUT('#lab1',{opacity:0},2.85,.2,'power2.in');OUT('#sub40',{opacity:0},2.85,.2,'power2.in');OUT('#ghost',{opacity:0},2.85,.25,'power2.in');
+  OUT('#bg1',{opacity:0},3.0,.3,'none');
+  IN('#numwrap',{scale:1},{scale:30},3.0,.6,'power3.in');
+  // S2
+  IN('#o2',{scale:.5,opacity:0},{scale:1,opacity:1},3.1,.8);
+  IN('#h2',{y:60,opacity:0},{y:0,opacity:1},3.5,.7);
+  IN('#sub2',{y:40,opacity:0},{y:0,opacity:1},3.7,.6);
+  IN('#bat2',{width:0},{width:(1010-ZX-265-30)},3.45,.6,'expo.inOut');
+  IN('#chips .chip',{y:36,opacity:0},{y:0,opacity:1},4.0,.5,'expo.out',.09);
+  // S3
+  IN('#big32',{x:-90,opacity:0},{x:0,opacity:1},7.55,.6);IN('#lang',{y:50,opacity:0},{y:0,opacity:1},7.7,.6);IN('#sub3',{y:36,opacity:0},{y:0,opacity:1},7.9,.5);
+  // S4
+  IN('#t4',{y:60,opacity:0},{y:0,opacity:1},12.55,.7);IN('#sub4',{y:40,opacity:0},{y:0,opacity:1},12.8,.6);
+  IN('#mail',{x:50,opacity:0},{x:0,opacity:.85},12.6,.7);IN('#chatw',{x:50,opacity:0},{x:0,opacity:.85},12.75,.7);
+  const msg=(id,at)=>IN(id,{y:30,opacity:0,scale:.96},{y:0,opacity:1,scale:1},at,.45);
+  msg('#m1',13.0);msg('#m2',14.05);msg('#m3',15.15);msg('#m4',15.7);
+  // S5
+  IN('#t5',{y:60,opacity:0},{y:0,opacity:1},17.15,.7);IN('#sub5',{y:40,opacity:0},{y:0,opacity:1},17.5,.6);
+  IN('#cardA',{y:40,opacity:0},{y:0,opacity:1},17.2,.6);
+  IN('#ba1',{y:24,opacity:0},{y:0,opacity:1},17.6,.45);IN('#ba2',{y:24,opacity:0},{y:0,opacity:1},18.2,.45);
+  IN('#batonV',{scaleY:0},{scaleY:1},18.85,.4,'power2.inOut');
+  IN('#bdot',{y:0,opacity:0},{y:100,opacity:1,duration:.4,ease:'power2.inOut'},18.85);
+  IN('#blab',{x:-20,opacity:0},{x:0,opacity:1},18.95,.4);
+  IN('#cardB',{y:50,opacity:0},{y:0,opacity:1},19.1,.6);
+  IN('#rows .row',{x:-30,opacity:0},{x:0,opacity:1},19.5,.45,'expo.out',.38);
+  // S6
+  IN('#hero .prog',{attr:{'stroke-dashoffset':100}},{attr:{'stroke-dashoffset':29},duration:.8},21.6,.8,'expo.out');
+  IN('#bar1',{scaleX:0},{scaleX:1},22.15,.5,'expo.out');IN('#bar2',{scaleX:0},{scaleX:1},22.5,.3);
+  IN('#c2',{x:60,opacity:0},{x:0,opacity:1},22.15,.5);
+  IN('#c3',{x:60,opacity:0},{x:0,opacity:1},22.75,.5);
+  IN('#dots .dt',{scale:.4,opacity:0},{scale:1,opacity:1},22.9,.4,'back.out(2)',.07);
+  IN('#foot',{y:40,opacity:0},{y:0,opacity:1},23.5,.6);
+  OUT('#c2,#c3,#foot,#c71w,#in6 .lb,#in6 .vl',{opacity:0},25.0,.3,'power2.in');
+  // hero ring flies to CTA
+  tl.to('#hero',{x:0,y:0,scale:1,duration:.6,ease:'power3.inOut',immediateRender:false},25.0);
+  tl.to('#hero .prog',{attr:{'stroke-dashoffset':0},duration:.6,ease:'power3.inOut',immediateRender:false},25.0);
+  // S7
+  IN('#bat7',{width:0},{width:(1010-ZX-265-30)},25.55,.5,'expo.inOut');
+  IN('#k7',{y:30,opacity:0},{y:0,opacity:1},25.5,.5);
+  IN('#t7',{y:60,opacity:0},{y:0,opacity:1},25.6,.7);
+  IN('#btn',{y:40,opacity:0,scale:.94},{y:0,opacity:1,scale:1},25.9,.6,'back.out(1.6)');
+}
+const cache={};
+function txt(id,v){if(cache[id]!==v){cache[id]=v;$('#'+id).textContent=v}}
+function tick(t){
+  for(const k in shots){const [a,b]=shots[k];$('#'+k).style.visibility=(t>=a&&t<b)?'visible':'hidden'}
+  for(const k in drifts){const [a,b,s]=drifts[k];$('#'+k).style.transform=`scale(${1+s*K.prog(t,a,b-a)})`}
+  $('#hero').style.visibility=(t>=21.6&&t<27.5)?'visible':'hidden';
+  // ghost drift
+  $('#ghost').style.transform=`translateY(${-34*t}px)`;
+  // whip pan S2 -> S3
+  const pw=K.prog(t,7.5,.45),ew=E.inOutExpo(pw),s2=$('#s2'),s3=$('#s3'),blur=pw>0&&pw<1?90*Math.sin(Math.PI*pw):0;
+  s2.style.transform=pw>0?`translateX(${-1920*ew}px)`:'';s3.style.transform=pw<1?`translateX(${1920*(1-ew)}px)`:'';
+  $('#gb').setAttribute('stdDeviation',blur.toFixed(1)+' 0');
+  const f=blur>0?'url(#bx)':'none';s2.style.filter=f;s3.style.filter=f;
+  // iris S3 -> S4
+  const pi=K.prog(t,12.4,.5),ei=E.inOutExpo(pi),r=2300*ei,s4=$('#s4'),ir=$('#iris');
+  s4.style.clipPath=pi>=1?'none':`circle(${r}px at 1500px 500px)`;
+  if(pi>0&&pi<1){ir.style.visibility='visible';ir.style.width=ir.style.height=(2*r)+'px';ir.style.left=(1500-r)+'px';ir.style.top=(500-r)+'px';ir.style.opacity=1-pi*pi}else ir.style.visibility='hidden';
+  // diagonal wipe S4 -> S5
+  const pd=K.prog(t,17.0,.55),ed=E.inOutExpo(pd),B=1920+340-(2260)*ed,A=B+320,s5=$('#s5'),bd=$('#band');
+  s5.style.clipPath=pd>=1?'none':`polygon(${A}px 0px,1930px 0px,1930px 1080px,${B}px 1080px)`;
+  if(pd>0&&pd<1){bd.style.visibility='visible';bd.style.clipPath=`polygon(${A}px 0px,${A+80}px 0px,${B+80}px 1080px,${B}px 1080px)`}else bd.style.visibility='hidden';
+  // wall columns
+  cols.forEach((c,i)=>{const cf=colCfg[i];c.style.transform=`translateY(${cf.y0+cf.v*(t-7.5)}px)`});
+  // counters
+  txt('c32',String(Math.max(1,Math.round(32*E.outCubic(K.prog(t,7.6,.9))))));
+  txt('c71',String(Math.round(71*E.outExpo(K.prog(t,21.6,.9)))));
+  txt('c40',String(Math.round(40*E.outExpo(K.prog(t,22.2,.8)))));
+  txt('c48',(4.8*E.outExpo(K.prog(t,22.8,.9))).toFixed(1).replace('.',','));
+  // chips glow
+  document.querySelectorAll('#chips .chip').forEach((c,i)=>c.classList.toggle('on',t>4.8&&t<7.5&&Math.floor((t-4.8)/.75)%3===i));
+  // typing indicator (S4)
+  const ty=$('#typing'),on=t>13.55&&t<14.1;ty.style.opacity=on?1:0;
+  if(on){ty.style.top=($('#m1').offsetTop+$('#m1').offsetHeight+18)+'px';ty.querySelectorAll('i').forEach((d,i)=>d.style.opacity=.35+.65*Math.max(0,Math.sin(t*14-i*1.1)))}
+  // baton dot in S5 glows
+  // orbs
+  orbs.forEach(o=>{const g=o.g(t),el=o.el;
+    el.querySelectorAll('.bars rect').forEach((b,i)=>{const h=26+56*Math.abs(Math.sin(t*3.1+i*1.25))*(0.55+.45*Math.sin(t*1.3+i));b.setAttribute('height',h.toFixed(1));b.setAttribute('y',(280-h/2).toFixed(1))});
+    [['.r1',0],['.r2',.5]].forEach(([s,off])=>{const ph=((t*.55+off)%1),c=el.querySelector(s);c.setAttribute('r',(180+90*ph).toFixed(1));c.style.opacity=(.5*(1-ph)*g).toFixed(3)});
+    el.querySelector('.sat').setAttribute('transform',`rotate(${(t*38).toFixed(2)} 280 280)`);
+    if(el.id==='hero'){['.glow','.bars','.orbit','.sat'].forEach(s=>el.querySelector(s).style.opacity=g)}
+  });
+  // loop tail: crossfade into frame 0
+  if(tail){const p=K.prog(t,27.5,.5);tail.style.visibility=p>0?'visible':'hidden';tail.style.opacity=E.inOutCubic(p)}
+  // grain jitter (24 fps)
+  const fr=Math.floor(t*24),rr=K.rng(fr+5);$('#grain').style.transform=`translate(${Math.floor(rr()*256)}px,${Math.floor(rr()*256)}px)`;
+}
+const ready=Promise.all([document.fonts.load('800 100px "Inter Tight"','Relai 2.0 é'),document.fonts.load('500 40px "Inter Tight"','é'),document.fonts.load('700 40px "Inter Tight"','é'),document.fonts.load('600 40px "Inter Tight"','é'),document.fonts.load('400 30px "JetBrains Mono"','E'),document.fonts.load('700 30px "JetBrains Mono"','E'),document.fonts.ready]).then(setup);
+window.KLIPT={width:1920,height:1080,fps:30,duration:28,poster:6.3,ready,render(t){tl.seek(t,false);tick(t)}};
+})();
+</script></body></html>

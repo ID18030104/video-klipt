@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Aux Jardins de Marcel</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/anton/index.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/700-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/700.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/caveat/700.css">
+<style>
+:root{--kraft:#F1E4C8;--green:#1F3D2B;--red:#E8452C;--honey:#F4B740;--cream:#FFF3DC;--ink:#17231b}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--kraft)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--kraft)}
+.scene{position:absolute;inset:0;overflow:hidden;background:var(--kraft)}
+#s1{z-index:1}#s2{z-index:2;background:var(--green)}#s3{z-index:3}#s4{z-index:4}
+.ph{position:absolute;left:0;width:1080px;overflow:hidden;background:#000}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:50% 55%;filter:contrast(1.07) saturate(1.1) sepia(.12) brightness(1.02)}
+.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,196,130,.14),rgba(40,60,30,.16));mix-blend-mode:multiply}
+.chip{position:absolute;left:64px;top:246px;height:64px;padding:0 28px;border-radius:32px;background:var(--green);color:var(--cream);font:800 34px/64px Figtree;letter-spacing:.12em}
+.sub{position:absolute;left:0;width:1080px;text-align:center;font:italic 700 68px/1 Fraunces;color:var(--green)}
+#stamp{position:absolute;z-index:50;left:0;top:0;width:900px;height:420px;margin:-210px 0 0 -450px;background:var(--red);color:var(--cream);border-radius:36px;text-align:center;font:400 290px/424px Anton;letter-spacing:0;box-shadow:0 18px 0 rgba(23,35,27,.22);white-space:nowrap}
+#stamp::before{content:"";position:absolute;inset:14px;border:6px dashed rgba(255,243,220,.55);border-radius:26px}
+.fr{position:absolute;inset:0;background:var(--bg)}
+.fr .ph{top:430px;height:760px}
+.wd{position:absolute;left:0;width:1080px;top:1190px;height:330px;overflow:hidden;text-align:center;font-family:Anton;line-height:330px;color:var(--fg);text-transform:uppercase}
+.wd span{display:inline-block;white-space:nowrap}
+.cnt{position:absolute;left:64px;top:240px;font:400 92px/1 Anton;color:var(--fg)}
+.cnt small{font:800 30px/1 Figtree;letter-spacing:.14em;margin-left:18px;opacity:.85}
+.bar{position:absolute;left:64px;top:372px;width:600px;height:12px;display:flex;gap:10px}
+.bar i{flex:1;border-radius:6px;background:var(--fg);opacity:.25}.bar i.on{opacity:1;background:var(--honey)}
+.h1{position:absolute;left:64px;top:372px;width:952px;height:200px;overflow:hidden;font:400 196px/200px Anton;color:var(--green);letter-spacing:.005em;white-space:nowrap}
+.h1 span{display:inline-block}
+.board{position:absolute;left:64px;top:640px;width:952px;height:470px;background:var(--green);border-radius:30px;box-shadow:0 16px 0 rgba(23,35,27,.2)}
+.board::before{content:"";position:absolute;inset:16px;border:4px solid rgba(255,243,220,.28);border-radius:20px}
+.row{position:absolute;left:56px;right:56px;height:150px;display:flex;align-items:baseline;font:400 128px/150px Anton;color:var(--cream)}
+.row .d{flex:none}.row .l{flex:1;border-bottom:8px dotted rgba(255,243,220,.7);margin:0 22px;transform:translateY(-22px)}.row .h{flex:none;color:var(--honey)}
+.row small{display:block;position:absolute;left:0;top:118px;font:700 32px/1 Figtree;letter-spacing:.12em;color:rgba(255,243,220,.8)}
+.hand{position:absolute;left:64px;top:1195px;width:560px;font:700 132px/.92 Caveat;color:var(--red);transform:rotate(-4deg);transform-origin:0 50%}
+.circ{position:absolute;left:660px;top:1175px;width:360px;height:360px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 12px var(--cream),0 0 0 18px var(--green)}
+.circ img{width:100%;height:100%;object-fit:cover;transform-origin:50% 50%;filter:contrast(1.07) saturate(1.1) sepia(.12)}
+.brand{position:absolute;left:0;width:1080px;top:236px;height:90px;overflow:hidden;text-align:center;font:800 78px/90px Fraunces;color:var(--green)}
+.brand span{display:inline-block}
+.a1{position:absolute;left:0;width:1080px;text-align:center;top:1285px;font:800 58px/1 Figtree;color:var(--green)}
+.a2{position:absolute;left:0;width:1080px;text-align:center;top:1362px;font:700 46px/1 Figtree;color:var(--ink)}
+.a3{position:absolute;left:0;width:1080px;text-align:center;top:1440px;font:italic 700 50px/1 Fraunces;color:var(--red)}
+#grain{position:absolute;inset:0;z-index:90;pointer-events:none;opacity:.13;mix-blend-mode:multiply}
+#vig{position:absolute;inset:0;z-index:80;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,0) 62%,rgba(20,25,10,.28) 100%)}
+</style></head><body>
+<div id="root">
+ <div class="scene" id="s1">
+  <div class="chip" id="chip1">FIN DE SAISON · LYON 7e</div>
+  <div class="ph" style="top:330px;height:716px"><img id="p1" src="assets/apricot.jpg"></div>
+  <div class="sub" id="sub1" style="top:1478px">sur tous les fruits d’été</div>
+ </div>
+ <div class="scene" id="s2"></div>
+ <div class="scene" id="s3">
+  <div class="h1"><span id="h1t">CE WEEK-END</span></div>
+  <div class="board" id="board">
+   <div class="row" style="top:44px"><span class="d">SAMEDI</span><span class="l"></span><span class="h">8h–19h</span></div>
+   <div class="row" style="top:258px"><span class="d">DIMANCHE</span><span class="l"></span><span class="h">8h–13h</span></div>
+  </div>
+  <div class="hand" id="hand">jusqu’à épuisement</div>
+  <div class="circ" id="circ"><img id="pc" src="assets/crate.jpg" style="object-position:50% 40%"></div>
+ </div>
+ <div class="scene" id="s4">
+  <div class="brand"><span id="brand">Aux Jardins de Marcel</span></div>
+  <div class="ph" style="top:330px;height:716px"><img id="p4" src="assets/peach.jpg"></div>
+  <div class="a1" id="a1">42 rue de Marseille, Lyon 7e</div>
+  <div class="a2" id="a2">sam. 8h–19h · dim. 8h–13h</div>
+  <div class="a3" id="a3">Marcel et sa fille, depuis 1998</div>
+ </div>
+ <div id="stamp">-30&nbsp;%</div>
+ <div id="vig"></div>
+ <svg id="grain" width="1080" height="1920"><filter id="gf" x="0" y="0" width="100%" height="100%"><feTurbulence id="ft" type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="1" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="1080" height="1920" filter="url(#gf)"/></svg>
+</div>
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+const FR=[["pêches","peach.jpg","#1F3D2B","#FFF3DC"],["abricots","apricot.jpg","#F1E4C8","#1F3D2B"],["melons","melon.jpg","#1F3D2B","#FFF3DC"],["nectarines","nect.jpg","#F1E4C8","#1F3D2B"],["prunes","plum.jpg","#1F3D2B","#FFF3DC"]];
+const s2=document.getElementById('s2');
+FR.forEach((f,i)=>{
+  const d=document.createElement('div');d.className='fr';d.id='fr'+i;d.style.cssText=`--bg:${f[2]};--fg:${f[3]};z-index:${i+1}`;
+  d.innerHTML=`<div class="cnt">${i+1} / 5<small>FRUITS D’ÉTÉ</small></div><div class="bar">${FR.map((_,j)=>`<i class="${j<=i?'on':''}"></i>`).join('')}</div>
+  <div class="ph"><img id="fp${i}" src="assets/${f[1]}"></div><div class="wd"><span id="fw${i}">${f[0]}</span></div>`;
+  s2.appendChild(d);
+});
+gsap.set('#stamp',{x:540,y:1230,rotation:-4});
+gsap.set('#s2',{clipPath:'inset(100% 0% 0% 0%)'});
+gsap.set('#s3',{clipPath:'inset(0% 0% 0% 100%)'});
+gsap.set('#s4',{clipPath:'circle(0px at 881px 300px)'});
+const tl=gsap.timeline({paused:true});
+const XO='expo.out',XIO='expo.inOut';
+// S1
+tl.fromTo('#stamp',{scale:1.03,rotation:-6},{scale:1,rotation:-4,duration:.38,ease:XO},0);
+tl.to('#stamp',{scale:1.035,rotation:-3,duration:1.9,ease:'sine.inOut'},.4);
+tl.fromTo('#p1',{scale:1},{scale:1.08,duration:2.6,ease:'none'},0);
+tl.fromTo('#sub1',{y:36,autoAlpha:0},{y:0,autoAlpha:1,duration:.35,ease:XO},0.02);
+tl.fromTo('#chip1',{x:-40,autoAlpha:0.0},{x:0,autoAlpha:1,duration:.3,ease:XO},0);
+// stamp to tag + wipe into S2
+tl.to('#stamp',{x:881,y:300,scale:.3,rotation:3,duration:.45,ease:XIO},2.3);
+tl.to('#s2',{clipPath:'inset(0% 0% 0% 0%)',duration:.4,ease:XIO},2.3);
+// S2 fruit cards
+FR.forEach((f,i)=>{
+  const t0=2.3+i*.56;
+  if(i>0) tl.fromTo('#fr'+i,{autoAlpha:0},{autoAlpha:1,duration:.001},t0);
+  tl.fromTo('#fp'+i,{scale:1.13},{scale:1.02,duration:.6,ease:'power2.out'},t0);
+  tl.fromTo('#fw'+i,{yPercent:70,autoAlpha:0},{yPercent:0,autoAlpha:1,duration:.28,ease:XO},t0+.02);
+});
+// S3
+tl.to('#s3',{clipPath:'inset(0% 0% 0% 0%)',duration:.4,ease:XIO},5.1);
+tl.to('#stamp',{x:881,y:300,scale:.3,rotation:2,duration:.4,ease:'sine.inOut'},5.1);
+tl.fromTo('#h1t',{yPercent:100},{yPercent:0,duration:.3,ease:XO},5.25);
+tl.fromTo('#board',{y:60,autoAlpha:0},{y:0,autoAlpha:1,duration:.4,ease:XO},5.3);
+tl.fromTo('.row',{x:-60,autoAlpha:0},{x:0,autoAlpha:1,duration:.4,stagger:.12,ease:XO},5.4);
+tl.fromTo('#hand',{scale:.7,autoAlpha:0},{scale:1,autoAlpha:1,duration:.45,ease:'back.out(1.6)'},5.75);
+tl.fromTo('#circ',{scale:.4,autoAlpha:0},{scale:1,autoAlpha:1,duration:.45,ease:XO},5.65);
+tl.fromTo('#pc',{scale:1.02},{scale:1.14,duration:2.6,ease:'none'},5.1);
+// S4
+tl.to('#s4',{clipPath:'circle(2400px at 881px 300px)',duration:.5,ease:XIO},7.6);
+tl.to('#stamp',{x:540,y:1112,scale:.55,rotation:-3,duration:.5,ease:XIO},7.6);
+tl.fromTo('#brand',{yPercent:110},{yPercent:0,duration:.35,ease:XO},7.85);
+tl.fromTo('#p4',{scale:1.03},{scale:1.09,duration:2.7,ease:'none'},7.6);
+tl.fromTo('#a1',{y:30,autoAlpha:0},{y:0,autoAlpha:1,duration:.4,ease:XO},8.15);
+tl.fromTo('#a2',{y:30,autoAlpha:0},{y:0,autoAlpha:1,duration:.4,ease:XO},8.25);
+tl.fromTo('#a3',{y:30,autoAlpha:0},{y:0,autoAlpha:1,duration:.4,ease:XO},8.4);
+tl.to('#stamp',{scale:.58,rotation:-2,duration:2,ease:'sine.inOut'},8.2);
+// fit words + stamp text
+const ready=(async()=>{
+  await document.fonts.load('400 100px Anton');await document.fonts.load('italic 700 60px Fraunces');
+  await document.fonts.load('800 60px Fraunces');await document.fonts.load('800 40px Figtree');await document.fonts.load('700 40px Figtree');await document.fonts.load('700 100px Caveat');
+  await document.fonts.ready;
+  FR.forEach((f,i)=>{const w=document.getElementById('fw'+i);let fs=330;w.parentElement.style.fontSize=fs+'px';const m=w.getBoundingClientRect().width;if(m>952){fs=Math.floor(fs*952/m);w.parentElement.style.fontSize=fs+'px';}});
+  await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));
+})();
+const ft=document.getElementById('ft');
+window.KLIPT={width:1080,height:1920,fps:30,duration:10.5,poster:1.0,ready,
+ render(t){tl.seek(t,false);ft.setAttribute('seed',1+Math.floor(t*15)%50);}};
+</script></body></html>
