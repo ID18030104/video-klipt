@@ -14,6 +14,7 @@ CONFIGS = {
  'F': dict(name='Sonnet → critique Opus → Sonnet', models=['Sonnet 5.5', 'Opus 5.5'], skill='klipt-craft', pipeline='exécutant → critique → correction'),
  'G': dict(name='Opus + taste-express', models=['Opus 5.5'], skill='taste-express', pipeline='1 agent'),
  'H': dict(name='Sonnet + taste-express', models=['Sonnet 5.5'], skill='taste-express', pipeline='1 agent'),
+ 'S': dict(name='Klipt Studio', models=['Sonnet 5.5'], skill='aucun (prompt expert + catalogue)', pipeline='1 agent, effort élevé, vraies photos, contrôle qualité'),
 }
 FF = 'ffmpeg'
 out = sys.argv[3] if len(sys.argv) > 3 else 'gallery'; os.makedirs(f'{out}/a', exist_ok=True)
@@ -37,7 +38,7 @@ for pid, a in assign.items():
     it = dict(id=pid, set=a['set'], brief_id=a.get('brief_id'), config=a['config'], brand=brief.get('brand', meta.get('brand')),
               sector=brief.get('sector', meta.get('sector')), kind=brief.get('kind', meta.get('kind')), format=brief.get('format', meta.get('format')),
               lang=brief.get('lang', 'fr'), title=meta.get('title'), concept=meta.get('concept'), techniques=meta.get('techniques', []),
-              fonts=meta.get('fonts', []), palette=meta.get('palette', []), duration=meta.get('duration'), brief=brief.get('brief'))
+              fonts=meta.get('fonts', []), palette=meta.get('palette', []), tier=meta.get('tier'), style=meta.get('style'), credits=meta.get('credits'), duration=meta.get('duration'), brief=brief.get('brief'))
     w, h = map(int, (it['format'] or '1080x1920').split('x'))
     if os.path.exists(f'{d}/video.mp4'):
         if not os.path.exists(f'{ad}/v.mp4'):
