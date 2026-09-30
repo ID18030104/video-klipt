@@ -1,0 +1,13 @@
+{
+ "endpoint": "minimax/h3/text-to-video",
+ "request": {
+  "prompt": "15-second vertical commercial for an artisan sourdough bakery, three shots with hard cuts. Shot 1 (0-5s): Extreme close-up, 35mm film look: a baker's floured hands score a round sourdough loaf with a razor blade in one confident stroke, flour dust drifting in warm low side light, dark wooden bench, shallow depth of field, slow push-in. Shot 2 (5-10s): Inside a wood-fired bakery before dawn: the oven door opens and a baker slides out golden crusty loaves on a long wooden peel, steam and warm orange glow, embers in the background, handheld camera slowly tracking forward. Shot 3 (10-15s): Morning in a small Lyon bakery shop with sunlight through the window: a smiling woman in her thirties receives a paper bag with a baguette over the wooden counter, soft natural light, gentle dolly-in, candid and authentic. Cinematic, warm film grade, real textures, natural skin, no text, no letters, no logos, no watermarks.",
+  "duration": 15,
+  "aspect_ratio": "9:16",
+  "resolution": "2K"
+ },
+ "request_id": "512b3ec7-60cc-4885-839f-d215873652a1",
+ "seconds": 810.2,
+ "cost_usd": 1.365,
+ "video_host": "d3u0tzju9qaucj.cloudfront.net"
+}
