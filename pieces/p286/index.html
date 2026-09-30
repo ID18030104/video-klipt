@@ -21,23 +21,30 @@ canvas{position:absolute;left:0;top:0}
 .abs{position:absolute}
 .grain{position:absolute;inset:0;opacity:.09;mix-blend-mode:overlay;pointer-events:none}
 .vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,transparent 55%,rgba(5,10,24,.55) 100%)}
-.serif{font-family:'Cormorant Garamond',serif;font-weight:300}
+.serif{font-family:'Cormorant Garamond',serif;font-weight:300;font-variant-numeric:lining-nums}
+#b1,#b2,#b3{isolation:isolate}
+#b1::before,#b2::before,#b3::before{content:'';position:absolute;z-index:-1;left:50%;top:50%;width:1100px;height:520px;transform:translate(-50%,-50%);background:radial-gradient(ellipse,rgba(10,20,40,.28),rgba(10,20,40,0) 70%)}
+#b2::before{left:450px}
+#w2{position:absolute;left:0;top:0;width:1920px;height:650px;overflow:hidden}
+#sig{left:80px;top:990px;display:flex;align-items:center;gap:16px;opacity:0}
+#sig svg{width:44px;height:44px}
+#sig .caps{font-size:18px;letter-spacing:.34em;opacity:.7}
 .caps{font-family:'Figtree',sans-serif;font-weight:500;letter-spacing:.34em;text-transform:uppercase;font-size:26px}
 .mask{overflow:hidden;display:block;padding:0 0 .14em;margin-bottom:-.14em}
 .mask>span{display:block;will-change:transform}
 #b1{left:0;width:1920px;top:250px;text-align:center}
 #b1 .h{font-size:120px;line-height:1.02;font-style:italic}
-#b1 .caps{margin-bottom:44px;color:var(--amber)}
-#b2{left:200px;top:210px;width:900px}
-#b2 .caps{color:var(--amber);margin-bottom:46px}
+#b1 .caps{margin-bottom:44px;color:var(--ivory)}
+#b2{left:200px;top:150px;width:900px}
+#b2 .caps{color:var(--ivory);margin-bottom:46px}
 .row{display:flex;align-items:baseline;gap:34px;padding:22px 0;position:relative}
-.row .n{font-family:'Figtree';font-size:26px;letter-spacing:.2em;color:var(--amber);width:52px}
+.row .n{font-family:'Figtree';font-size:26px;letter-spacing:.2em;color:var(--ivory);width:52px}
 .row .t{font-size:78px;line-height:1;font-style:italic}
 .rule{position:absolute;left:0;bottom:0;height:1px;width:100%;background:rgba(246,239,228,.45);transform-origin:left}
-#b3{left:0;width:1920px;top:120px;text-align:center}
-#b3 .from{font-size:44px;font-style:italic;margin-bottom:-6px}
+#b3{left:0;width:1920px;top:170px;text-align:center}
+#b3 .from{font-size:56px;font-style:italic;margin-bottom:-28px}
 #b3 .price{font-size:330px;line-height:1;font-weight:300;letter-spacing:-.02em}
-#b3 .sub{margin-top:22px;font-size:30px}
+#b3 .sub{margin-top:36px;font-size:30px}
 #b4{left:0;width:1920px;top:120px;text-align:center}
 #b4 svg{width:150px;height:150px;display:block;margin:0 auto 26px}
 #b4 .name{font-size:36px;letter-spacing:.5em;margin-right:-.5em}
@@ -59,17 +66,19 @@ canvas{position:absolute;left:0;top:0}
 <circle cx="50" cy="30" r="6" stroke="#F5C98E" stroke-width="2"/></g>
 </defs></svg>
 
-<div id="b1" class="abs"><div class="caps mask"><span>Biarritz · Winter</span></div>
-<div class="serif h"><span class="mask"><span>The ocean is most honest</span></span><span class="mask"><span>in winter.</span></span></div></div>
+<div id="b1" class="abs"><div class="caps mask"><span>Maison Ondine · Biarritz</span></div>
+<div class="serif h"><span class="mask"><span>Biarritz, out of season.</span></span><span class="mask"><span>Just the two of you.</span></span></div></div>
 
-<div id="b2" class="abs"><div class="caps mask"><span>The Winter Escape</span></div>
+<div id="w2"><div id="b2" class="abs"><div class="caps mask"><span>The Winter Escape</span></div>
 <div class="row"><div class="n">01</div><div class="serif t mask"><span>Two nights by the sea</span></div><div class="rule"></div></div>
 <div class="row"><div class="n">02</div><div class="serif t mask"><span>Full access to the spa</span></div><div class="rule"></div></div>
-<div class="row"><div class="n">03</div><div class="serif t mask"><span>A 60-minute treatment</span></div><div class="rule"></div></div></div>
+<div class="row"><div class="n">03</div><div class="serif t mask"><span>A 60-minute treatment</span></div><div class="rule"></div></div></div></div>
 
 <div id="b3" class="abs"><div class="serif from mask"><span>from</span></div>
 <div class="serif price mask"><span>€420</span></div>
-<div class="caps sub mask"><span>for two · November to March</span></div></div>
+<div class="caps sub mask"><span>2 nights for two · November–March</span></div></div>
+
+<div id="sig" class="abs"><svg viewBox="0 0 100 100"><use href="#mark"/></svg><div class="caps">Maison Ondine</div></div>
 
 <div id="b4" class="abs"><svg viewBox="0 0 100 100"><use href="#mark"/></svg>
 <div class="caps name mask"><span>Maison Ondine</span></div>
@@ -140,11 +149,12 @@ function drawScene(t){
    const dx=(x-sx-(L.f*(sx-W/2))*.15)/spread;
    const gl=Math.exp(-dx*dx);
    const tw=.5+.5*Math.sin(x*.21+t*(2+L.f*3)+L.ph*3);
-   const a=(.09+gl*(.4+.7*tw*tw))*glow*(1-.35*L.f);
+   const a=(.14+gl*(.4+.7*tw*tw))*glow*(1-.35*L.f);
    g.fillStyle=`rgba(255,${200-gl*20|0},${150-gl*20|0},${a})`;
    g.fillRect(x,y-.5,6,1.6+L.f*2.2);
   }
  }
+ g.save();g.globalCompositeOperation='screen';g.translate(sx,HZ);g.scale(230,H-HZ);const rr=g.createRadialGradient(0,0,0,0,0,1);rr.addColorStop(0,`rgba(255,190,130,${.42*glow})`);rr.addColorStop(.5,`rgba(255,170,110,${.14*glow})`);rr.addColorStop(1,'rgba(255,170,110,0)');g.fillStyle=rr;g.fillRect(-1,0,2,1);g.restore();
  // horizon line glint
  const hl=g.createLinearGradient(0,0,W,0);hl.addColorStop(0,'rgba(246,200,150,0)');hl.addColorStop(.5,`rgba(255,215,170,${.5*glow})`);hl.addColorStop(1,'rgba(246,200,150,0)');
  g.fillStyle=hl;g.fillRect(0,HZ-1,W,2);
@@ -160,23 +170,24 @@ tl.fromTo('#b1 .h .mask>span',{yPercent:110},{yPercent:0,duration:1.4,ease:'expo
 tl.fromTo('#b1',{scale:1.05,transformOrigin:'50% 50%'},{scale:1,duration:5,ease:'power1.out'},0);
 dn('#b1 .caps>span',4.5);tl.to('#b1 .h .mask>span',{yPercent:-115,duration:.7,ease:'power2.in',stagger:.12},4.5);
 // b2
-up('#b2 .caps>span',5.5,1);
+up('#b2 .caps>span',5.3,1);
 ['.row:nth-of-type(2)','.row:nth-of-type(3)','.row:nth-of-type(4)'].forEach((r,i)=>{
- const a=6+i*.9;
+ const a=5.9+i*.7;
  tl.fromTo(`#b2 ${r} .rule`,{scaleX:0},{scaleX:1,duration:1.2,ease:'power3.inOut'},a);
  up(`#b2 ${r} .t>span`,a+.1,1.1);
  tl.fromTo(`#b2 ${r} .n`,{opacity:0},{opacity:1,duration:.8},a+.3);
 });
-tl.to('#b2',{opacity:0,x:-40,duration:.8,ease:'power2.in'},9.6);
+tl.to('#b2',{yPercent:135,duration:.9,ease:'power2.in'},10.6);
 // b3
-up('#b3 .from>span',10.3,.9);up('#b3 .price>span',10.5,1.4);up('#b3 .sub>span',11.2,1);
-tl.fromTo('#b3',{scale:.97,transformOrigin:'50% 50%'},{scale:1.03,duration:4.2,ease:'none'},10.3);
-tl.to('#b3',{opacity:0,y:-30,duration:.8,ease:'power2.in'},14.1);
+up('#b3 .from>span',11.1,.9);up('#b3 .price>span',11.3,1.4);up('#b3 .sub>span',12.0,1);
+tl.fromTo('#b3',{scale:.97,transformOrigin:'50% 50%'},{scale:1.03,duration:3.5,ease:'none'},11.1);
+tl.to('#b3',{opacity:0,y:-30,duration:.8,ease:'power2.in'},14.6);
+tl.fromTo('#sig',{opacity:0},{opacity:1,duration:.9,ease:'power2.out'},.6);tl.to('#sig',{opacity:0,duration:.7,ease:'power2.in'},14.6);
 // b4
 tl.set('#b4',{y:0});
-up('#b4 svg',15.1,1.2);
-tl.fromTo('#b4 svg',{opacity:0,rotation:-20},{opacity:1,rotation:0,duration:1.4,ease:'power3.out'},15.1);
-up('#b4 .name>span',15.6,1);up('#b4 .h>span',15.9,1.3);up('#b4 .cta>span',16.6,1);up('#b4 .addr>span',17,1);
-tl.fromTo('#b4',{scale:1.02,transformOrigin:'50% 50%'},{scale:1,duration:5,ease:'none'},15.1);
-window.KLIPT={width:W,height:H,fps:30,duration:D,render(t){drawScene(t);tl.seek(t,false);}};
+up('#b4 svg',15.4,1.2);
+tl.fromTo('#b4 svg',{opacity:0,rotation:-20},{opacity:1,rotation:0,duration:1.4,ease:'power3.out'},15.4);
+up('#b4 .name>span',15.9,1);up('#b4 .h>span',16.2,1.3);up('#b4 .cta>span',16.9,1);up('#b4 .addr>span',17.3,1);
+tl.fromTo('#b4',{scale:1.02,transformOrigin:'50% 50%'},{scale:1,duration:5,ease:'none'},15.4);
+window.KLIPT={width:W,height:H,fps:30,duration:D,render(t){cv.style.transform=`scale(${1+.03*t/D})`;drawScene(t);tl.seek(t,false);}};
 </script></body></html>

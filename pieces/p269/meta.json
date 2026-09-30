@@ -1,0 +1,8 @@
+{ "id": "p269", "brand": "Boulangerie Lemaire", "sector": "Boulangerie artisanale", "kind": "video",
+  "format": "1080x1920", "duration": 15, "slides": null,
+  "title": "La Tourte au seigle & noix",
+  "concept": "Seigle, noix, farine et levain tombent sur la planche puis se transforment en Tourte, tamponnée du prix; carte kraft finale avec les jours de vente.",
+  "techniques": ["gsap", "svg-illustration", "svg-filters-texture"],
+  "fonts": ["Fraunces", "Figtree"],
+  "palette": ["#C9A26A", "#F5EBD6", "#5A3520", "#B04A2C", "#2A1A10"],
+  "copy_language": "fr" }

@@ -91,10 +91,10 @@ svg.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
 </svg>
 
 <!-- hook -->
-<div id="h1" class="mask" style="top:250px;height:400px"><div id="h1i" style="font-weight:900;font-size:150px;letter-spacing:-3px">Le pain<br>d’octobre<br><span style="font-style:italic;font-weight:600;font-size:96px;letter-spacing:0">se prépare.</span></div></div>
-<div class="tag" id="tag1" style="left:70px;top:1000px"><i></i>Seigle d’un moulin bourguignon</div>
-<div class="tag" id="tag2" style="right:70px;top:1100px"><i></i>Noix croquantes</div>
-<div class="tag" id="tag3" style="left:70px;top:1200px"><i></i>Levain naturel</div>
+<div id="h1" class="mask" style="top:240px;height:470px"><div id="h1i" style="font-weight:900;font-size:150px;letter-spacing:-3px">Le pain<br>d’octobre<br><span style="font-style:italic;font-weight:600;font-size:96px;letter-spacing:0">se prépare.</span></div></div>
+<div class="tag" id="tag1" style="left:70px;top:880px"><i></i>Seigle d’un moulin bourguignon</div>
+<div class="tag" id="tag2" style="right:70px;top:980px"><i></i>Noix croquantes</div>
+<div class="tag" id="tag3" style="left:70px;top:1080px"><i></i>Levain naturel</div>
 
 <!-- beat C -->
 <div id="c1" class="mask" style="top:250px;height:180px"><div style="font-weight:900;font-size:170px;letter-spacing:-4px">La Tourte</div></div>
@@ -125,16 +125,16 @@ const NS='http://www.w3.org/2000/svg'.replace('http://','http'+'://');
 const R=KK.rng(269);
 // ---- ear of rye (drawn upward from origin) ----
 function earMarkup(len,n){
-  let s=`<path d="M0 0 L0 ${-len}" stroke="#b8963e" stroke-width="7" stroke-linecap="round"/>`;
+  let s=`<path d="M0 0 L0 ${-len}" stroke="#8a6620" stroke-width="9" stroke-linecap="round"/>`;
   const top=-len*0.42, step=(len*0.58)/n;
   for(let i=0;i<n;i++){
     const y=top-i*step*1.0, sc=1-i/(n*1.6);
     for(const sd of [-1,1]){
       s+=`<g transform="translate(${sd*4} ${y}) rotate(${sd*(24+i*.6)})"><ellipse cx="0" cy="-16" rx="${9*sc+3}" ry="${21*sc+7}" fill="#d9b04e" stroke="#8a6620" stroke-width="2.5"/>
-      <path d="M0 -34 L${sd*10} ${-len*.55-i*step*.6}" stroke="#b8963e" stroke-width="2" stroke-linecap="round" opacity=".9"/></g>`;
+      </g>`;
     }
   }
-  s+=`<ellipse cx="0" cy="${top-n*step-14}" rx="7" ry="18" fill="#d9b04e" stroke="#8a6620" stroke-width="2.5"/>`;
+  s+=`<path d="M0 ${top-n*step} L-6 ${top-n*step-70} M0 ${top-n*step} L6 ${top-n*step-74}" stroke="#b8963e" stroke-width="3" stroke-linecap="round"/><ellipse cx="0" cy="${top-n*step-14}" rx="7" ry="18" fill="#d9b04e" stroke="#8a6620" stroke-width="2.5"/>`;
   return s;
 }
 document.getElementById('ear').innerHTML=earMarkup(340,8);
@@ -166,7 +166,7 @@ function mk(id,inner){const g=document.createElementNS(NS,'g');g.id=id;g.innerHT
 const ears=[0,1,2].map(i=>mk('e'+i,'<use href="#ear"/>'));
 const nuts=[0,1,2,3,4].map(i=>mk('n'+i,'<use href="#nut"/>'));
 // landing targets on the board (y 1400 = board top)
-const earT=[{x:250,y:1372,r:82},{x:300,y:1340,r:96},{x:210,y:1300,r:74}];
+const earT=[{x:120,y:1385,r:82},{x:150,y:1350,r:94},{x:110,y:1310,r:76}];
 const nutT=[{x:770,y:1350,r:10},{x:850,y:1352,r:-20},{x:810,y:1290,r:30},{x:700,y:1352,r:-8},{x:760,y:1235,r:60}];
 // flour particles
 const fl=document.getElementById('flour');const fp=[];
@@ -175,13 +175,14 @@ for(let i=0;i<46;i++){const c=document.createElementNS(NS,'circle');c.setAttribu
 const puffEl=document.getElementById('puff');const pf=[];
 for(let i=0;i<22;i++){const c=document.createElementNS(NS,'circle');c.setAttribute('r',(30+R()*50).toFixed(0));c.setAttribute('fill','#f8eed6');c.setAttribute('opacity','0');puffEl.appendChild(c);pf.push({c,a:R()*Math.PI*2,d:150+R()*280});}
 
+gsap.set([...ears,...nuts,'#jar'],{svgOrigin:'0 0'});
 const tl=gsap.timeline({paused:true});
 gsap.set('#mound',{scaleY:0,transformOrigin:'0 0'});
 gsap.set('#stamp',{transformOrigin:'0 0'});
 gsap.set('#card',{y:60});
 // hook text: masked slide, from frame 0 partially visible
 gsap.set('#h1i',{yPercent:0});
-tl.from('#h1i',{yPercent:110,duration:.9,ease:'expo.out'},0);
+tl.fromTo('#h1i',{yPercent:110},{yPercent:0,duration:.9,ease:'expo.out'},0);
 // ears fall
 ears.forEach((e,i)=>{const T=earT[i];
  gsap.set(e,{x:T.x+(i-1)*70-40,y:-380-i*70,rotation:-30+i*40});
@@ -202,7 +203,7 @@ tl.fromTo('#bubbles circle',{y:0},{y:-8,duration:.5,yoyo:true,repeat:5,ease:'sin
  tl.from(s,{x:f.x,rotation:f.x<0?-6:6,duration:.7,ease:'back.out(1.2)'},t);
  tl.to(s,{x:f.x,duration:.5,ease:'power2.in'},4.55);});
 // hook exit
-tl.to('#h1i',{yPercent:-120,duration:.55,ease:'power3.in'},4.3);
+tl.fromTo('#h1i',{yPercent:0},{yPercent:-125,duration:.55,ease:'power3.in',immediateRender:false},4.3);
 // merge -> loaf
 const all=[...ears,...nuts,'#jar'];
 tl.to(all,{x:540,y:1290,scale:.25,rotation:'+=140',opacity:0,duration:.75,ease:'power3.in',stagger:.03},4.6);
@@ -216,7 +217,7 @@ tl.fromTo('#scores path',{strokeDasharray:400,strokeDashoffset:400},{strokeDasho
 // slow breathing
 tl.to('#loaf',{scale:1.035,duration:9,ease:'sine.inOut'},6.2);
 // beat C
-[['#c1',6.0],['#c2',6.35],['#c3',6.8]].forEach(([s,t])=>{tl.from(s+' > div',{yPercent:115,duration:.75,ease:'expo.out'},t);tl.to(s+' > div',{yPercent:-125,duration:.45,ease:'power3.in'},10.6);});
+[['#c1',6.0],['#c2',6.35],['#c3',6.8]].forEach(([s,t])=>{tl.fromTo(s+' > div',{yPercent:300},{yPercent:0,duration:.75,ease:'expo.out',immediateRender:true},t);tl.fromTo(s+' > div',{yPercent:0},{yPercent:-130,duration:.45,ease:'power3.in',immediateRender:false},10.6);});
 tl.fromTo('#stamp',{opacity:0,scale:2.4,rotation:-40},{opacity:1,scale:1,rotation:-10,duration:.35,ease:'power4.in'},7.7);
 tl.to('#stamp',{y:'-=0',x:'+=0',duration:.12,yoyo:true,repeat:1,ease:'sine.inOut',scale:1.06},8.05);
 tl.to('#stamp',{x:150,y:-150,rotation:6,scale:.7,duration:.8,ease:'power3.inOut'},10.9);

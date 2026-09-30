@@ -19,9 +19,10 @@ svg.bg{position:absolute;inset:0}
 .logo{position:absolute;left:72px;top:64px;display:flex;align-items:center;gap:16px;font-family:Gloock,serif;font-size:36px;letter-spacing:.01em}
 .logo small{display:block;font:700 17px Figtree;letter-spacing:.22em;text-transform:uppercase;color:#B4533A;margin-top:2px}
 .kick{position:absolute;left:72px;top:230px;font:700 26px Figtree;letter-spacing:.2em;text-transform:uppercase;color:#B4533A}
-h1{position:absolute;left:72px;top:276px;margin:0;font:400 84px/1 Gloock,serif;letter-spacing:-.01em;width:440px}
-.big{position:absolute;left:60px;top:560px;font:400 300px/1 Gloock,serif;color:#B4533A;letter-spacing:-.04em;white-space:nowrap}
-.big span{font-size:150px;letter-spacing:0;margin-left:10px}
+h1{position:absolute;left:72px;top:290px;margin:0;font:400 74px/1.02 Gloock,serif;letter-spacing:-.01em;width:420px}
+.big{position:absolute;left:64px;top:585px;font:400 240px/1 Gloock,serif;color:#B4533A;letter-spacing:-.03em;white-space:nowrap;display:flex;align-items:center}
+.big i{display:block;width:62px;height:20px;background:#B4533A;margin-right:20px;margin-top:12px;border-radius:2px}
+.big span{font-size:100px;letter-spacing:0;margin-left:8px;align-self:flex-start;margin-top:52px}
 .cond{position:absolute;left:72px;top:860px;font:500 31px/1.35 Figtree;width:600px}
 .cond b{font-weight:700}
 .foot{position:absolute;left:0;right:0;bottom:0;height:96px;background:#2A1A13;color:#F3EADB;display:flex;align-items:center;justify-content:space-between;padding:0 72px;font:500 28px Figtree}
@@ -30,11 +31,11 @@ h1{position:absolute;left:72px;top:276px;margin:0;font:400 84px/1 Gloock,serif;l
 <section class="slide" id="s">
 <svg class="bg" id="art" width="1080" height="1080" viewBox="0 0 1080 1080"></svg>
 <div class="logo"><svg width="58" height="58" viewBox="0 0 58 58"><circle cx="29" cy="29" r="28" fill="#2A1A13"/><path d="M20 47C20 30 26 16 33 9c1 10 6 15 6 24 0 7-4 12-9 14" fill="none" stroke="#D8A25E" stroke-width="3" stroke-linecap="round"/><path d="M27 47c-1-9 1-17 5-24" fill="none" stroke="#F3EADB" stroke-width="2.5" stroke-linecap="round"/></svg><div>Atelier Mèche<small>Nancy</small></div></div>
-<div class="kick">Novembre</div>
-<h1>Le balayage qui vous ressemble.</h1>
-<div class="big">−20<span>%</span></div>
-<div class="cond"><b>sur tous les balayages</b><br>sur rendez-vous, en couleurs naturelles</div>
-<div class="foot"><span>Réservez au <b>03 83 27 41 60</b></span><span>@ateliermeche</span></div>
+<div class="kick">Du 1<sup style="font-size:.6em;letter-spacing:0">er</sup> au 30 novembre</div><div style="position:absolute;left:72px;top:266px;width:120px;height:3px;background:#7F8C6C"></div>
+<h1>Un balayage qui a l’air naturel.</h1>
+<div class="big"><i></i>20<span>%</span></div>
+<div class="cond"><b>Sur tous les balayages.</b><br>Uniquement sur rendez-vous.</div>
+<div class="foot"><span>Réservez au <b>03&nbsp;83&nbsp;27&nbsp;41&nbsp;60</b></span><span>DM · <b>@ateliermeche</b></span></div>
 </section>
 <script>
 window.KLIPT={width:1080,height:1080};
@@ -46,7 +47,7 @@ const f=E('filter',{id:'g',x:0,y:0,width:'100%',height:'100%'},defs);
 E('feTurbulence',{type:'fractalNoise',baseFrequency:.8,numOctaves:2,seed:4},f);
 E('feColorMatrix',{values:'0 0 0 0 .16  0 0 0 0 .1  0 0 0 0 .07  0 0 0 .55 0'},f);
 // arch
-const ax=520,aw=460,ay=90,ah=800;
+const ax=570,aw=420,ay=90,ah=800;
 const archD=`M${ax} ${ay+ah}V${ay+aw/2}A${aw/2} ${aw/2} 0 0 1 ${ax+aw} ${ay+aw/2}V${ay+ah}Z`;
 const cp=E('clipPath',{id:'arch'},defs);E('path',{d:archD},cp);
 const lg=E('linearGradient',{id:'hair',gradientUnits:'userSpaceOnUse',x1:0,y1:ay,x2:0,y2:ay+ah},defs);
@@ -55,24 +56,31 @@ E('path',{d:archD,fill:'#D9C3A4'});
 const g=E('g',{'clip-path':'url(#arch)'});
 E('rect',{x:ax,y:ay,width:aw,height:ah,fill:'#7F8C6C',opacity:.0},g);
 // strands
-for(let i=0;i<70;i++){
- const x0=ax-30+r()*(aw+60), w=(r()-.5)*90, sw=5+r()*13;
- const d=`M${x0} ${ay-30}C${x0+w*1.6} ${ay+ah*.3},${x0-w*1.2} ${ay+ah*.65},${x0+w*.6} ${ay+ah+30}`;
- E('path',{d,fill:'none',stroke:'url(#hair)',opacity:.55+r()*.45,'stroke-width':sw,'stroke-linecap':'round'},g);
+const lg2=E('linearGradient',{id:'hair2',gradientUnits:'userSpaceOnUse',x1:0,y1:ay,x2:0,y2:ay+ah},defs);
+[[0,'#2A1A13'],[.3,'#4A2B1B'],[.5,'#B98550'],[.75,'#E3B978'],[1,'#F0D49C']].forEach(([o,c])=>E('stop',{offset:o,'stop-color':c},lg2));
+const lg4=E('linearGradient',{id:'rib',gradientUnits:'userSpaceOnUse',x1:0,y1:ay,x2:0,y2:ay+ah},defs);
+[[.3,'#F6DDA6',0],[.55,'#F6DDA6',.7],[1,'#FBE8B8',.9]].forEach(([o,c,a])=>E('stop',{offset:o,'stop-color':c,'stop-opacity':a},lg4));
+const lg3=E('linearGradient',{id:'dark',gradientUnits:'userSpaceOnUse',x1:0,y1:ay,x2:0,y2:ay+ah},defs);
+[[0,'#2A1A13'],[1,'#5A3220']].forEach(([o,c])=>E('stop',{offset:o,'stop-color':c},lg3));
+E('rect',{x:ax,y:ay,width:aw,height:ah,fill:'#3A2216'},g);
+for(let i=0;i<80;i++){
+ const x0=ax-30+r()*(aw+60), w=(r()-.5)*160, sw=5+r()*13, light=i%2===0;
+ const d=`M${x0} ${ay-30}C${x0+w*2.2} ${ay+ah*.35},${x0-w*1.2} ${ay+ah*.65},${x0+w*.6} ${ay+ah+30}`;
+ E('path',{d,fill:'none',stroke:light?'url(#hair2)':'url(#dark)',opacity:.7+r()*.3,'stroke-width':sw,'stroke-linecap':'round'},g);
 }
-// highlight sheen
-for(let i=0;i<9;i++){const x0=ax+30+r()*(aw-60),w=(r()-.5)*70;
- E('path',{d:`M${x0} ${ay+ah*.35}C${x0+w} ${ay+ah*.5},${x0-w*.5} ${ay+ah*.7},${x0+w*.3} ${ay+ah}`,fill:'none',stroke:'#F6DDA6',opacity:.5,'stroke-width':3,'stroke-linecap':'round'},g);}
+// painted ribbons
+for(let i=0;i<6;i++){const x0=ax+40+r()*(aw-80),w=(r()-.5)*90,sw=10+r()*6;
+ E('path',{d:`M${x0} ${ay+ah*.3}C${x0+w} ${ay+ah*.5},${x0-w*.6} ${ay+ah*.7},${x0+w*.3} ${ay+ah+20}`,fill:'none',stroke:'url(#rib)','stroke-width':sw,'stroke-linecap':'round'},g);}
 // arch outline offset
-E('path',{d:archD,fill:'none',stroke:'#2A1A13','stroke-width':3,transform:'translate(-16 16)'});
+E('path',{d:archD,fill:'none',stroke:'#7F8C6C','stroke-width':3,transform:'translate(-16 16)'});
 // rotating seal
-const seal=E('g',{transform:'translate(880 780)'});
+const seal=E('g',{transform:'translate(900 800)'});
 E('circle',{r:88,fill:'#B4533A'},seal);
 E('circle',{r:78,fill:'none',stroke:'#F3EADB','stroke-width':1.5,'stroke-dasharray':'2 5'},seal);
 E('path',{id:'sp',d:'M-58 0a58 58 0 1 1 116 0a58 58 0 1 1 -116 0',fill:'none'},seal);
-const tx=E('text',{'font-family':'Figtree','font-weight':700,'font-size':15,fill:'#F3EADB'},seal);
-const tp=E('textPath',{href:'#sp',textLength:350,lengthAdjust:'spacing'},tx);tp.textContent='COULEURS NATURELLES · NANCY · ';
-const t2=E('text',{'font-family':'Gloock','font-size':44,fill:'#F3EADB','text-anchor':'middle',y:15},seal);t2.textContent='RDV';
+const tx=E('text',{'font-family':'Figtree','font-weight':700,'font-size':18,fill:'#F3EADB'},seal);
+const tp=E('textPath',{href:'#sp',textLength:358,lengthAdjust:'spacing'},tx);tp.textContent='COULEURS NATURELLES · SUR RDV · ';
+const t2=E('text',{'font-family':'Gloock','font-size':40,fill:'#F3EADB','text-anchor':'middle',y:14},seal);t2.textContent='-20\u202f%';
 // grain overlay
 E('rect',{width:1080,height:1080,filter:'url(#g)',opacity:.35,'pointer-events':'none'});
 </script>
