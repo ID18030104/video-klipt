@@ -1,0 +1,12 @@
+{
+ "model": "higgsfield marketing-studio/image 2k low (3 plates) + minimax/hailuo-2.3/standard/image-to-video 6 s ×3, trimmed to 5 s each",
+ "cost_usd": 0.267,
+ "prompt": [
+  "Extreme close-up, 35mm film look: a baker's floured hands score a round sourdough loaf with a razor blade in one confident stroke, flour dust drifting in warm low side light, dark wooden bench, shallow depth of field, slow push-in. Vertical cinematic film still, 35mm, warm film grade, photorealistic. No text, no letters, no logos, no watermarks, no third-party brands or trademarks.",
+  "Inside a wood-fired bakery before dawn: the oven door opens and a baker slides out golden crusty loaves on a long wooden peel, steam and warm orange glow, embers in the background, handheld camera slowly tracking forward. Vertical cinematic film still, 35mm, warm film grade, photorealistic. No text, no letters, no logos, no watermarks, no third-party brands or trademarks.",
+  "Morning in a small Lyon bakery shop with sunlight through the window: a smiling woman in her thirties receives a paper bag with a baguette over the wooden counter, soft natural light, gentle dolly-in, candid and authentic. Vertical cinematic film still, 35mm, warm film grade, photorealistic. No text, no letters, no logos, no watermarks, no third-party brands or trademarks.",
+  "The baker's floured hands score the round sourdough loaf with a razor blade in one confident stroke, flour dust drifting in warm side light, slow push-in, cinematic, no text",
+  "The baker slides the golden loaves out of the wood-fired oven on the long peel, flames flicker, steam rises, slow handheld push-in, cinematic, no text",
+  "The woman takes the paper bag with the baguette and smiles warmly, natural small movements, sunlight, gentle dolly-in, cinematic, no text"
+ ]
+}
