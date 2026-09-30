@@ -1,0 +1,6 @@
+{ "id":"h03","brand":"Casa Almar","sector":"Boutique hotel","kind":"post","format":"1080x1350","duration":null,"slides":1,
+ "title":"Summer opens 15 May","concept":"A calm Sado estuary sunset photographed by the generator is the plate; the exact announcement (giant lining-figure date, direct-booking boat-trip seal, CTA) is a typographic code layer in dusk-plum and apricot sampled from the sky.",
+ "techniques":["higgsfield-plate","html-css","svg-textpath-seal","grain-grade"],"fonts":["Cormorant Garamond","Manrope"],
+ "palette":["#2b1922","#fbeedd","#f2a46a","#c98b80","#10232c"],"copy_language":"en","tier":"A","style":"editorial travel-magazine, calm luxury",
+ "plate":{"model":"higgsfield marketing-studio/image","resolution":"2k","quality":"low","cost_usd":0.023,
+ "prompt":"Documentary-style travel photograph at dusk over the Sado estuary near Comporta, Portugal. Low wide shot from water level across perfectly calm water; a small traditional wooden fishing boat with a couple seen from behind in the lower right third. Golden-hour apricot to rose sky, top 45% clear for type, bottom 15% calm dark water. 50mm, film grain. No text, no letters, no logos, no watermarks, no third-party brands or trademarks."}}
