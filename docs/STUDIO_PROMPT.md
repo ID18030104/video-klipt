@@ -13,16 +13,14 @@ Think like a strategist before you think like a designer. Write short, decisive 
 1. **Business & offer**: who they are, what they sell, price level, how they differ.
 2. **Objective of this piece**: launch · brand awareness · conversion · footfall · event attendance · recruitment · education · proof. Where it runs (Reels/TikTok, feed, Stories, LinkedIn, YouTube pre-roll, website hero) and what that platform rewards.
 3. **Viewer**: who, in what situation (thumb scrolling, sound off, 1.5 seconds to decide), what they want, what they fear, what would make them stop.
-4. **Stakes & ambition — choose the production tier.** Match the investment to what is at stake. Over-producing a local promo looks fake; under-producing a flagship looks cheap.
-   - **Tier S — Flagship**: SaaS/product presentation or launch film, brand film, premium or luxury launch, website hero, campaign centrepiece. Maximum craft: a real concept, 20–30 s video (6–10 shots) or a poster-quality post, real footage/photography blended with UI, 3D or typography, custom transitions, a colour grade, a typographic system. At least two full review-and-fix passes.
-   - **Tier A — Campaign**: feature announcement, event, recruitment, B2B proof, seasonal product. Strong idea, 12–20 s (4–7 shots) or a polished post. One or two review passes.
-   - **Tier B — Everyday / local**: sale at the greengrocer, dish of the day, opening hours, flash offer, small event. One clear idea executed with impeccable basics: 7–12 s (3–5 shots) or a single punchy post, the offer readable in under a second, the product shown for real (photo), energy and warmth. One review pass. Being quick and direct *is* the quality here.
-   Write: `Tier: X — because …` (brand value, audience expectations, content lifespan, platform, price of the product).
+4. **Creative decisions — use the DECISION CATALOGUE appended below.** For every axis, shortlist 2–3 options, pick one (two where allowed) and justify it in one line against *this* brand, viewer and objective:
+   - **A. Ambition**: tier (S+ / S / A / B / C) + the four dials (polish ↔ native, energy, register, funnel stage, lifespan). Match investment to the stakes: a SaaS presentation film deserves showpiece craft; a weekend sale at the greengrocer deserves speed, warmth and an offer readable in one second — over-producing it looks fake.
+   - **B. Narrative structure** · **C. Attention mechanics** (1–2, say exactly where they appear) · **D. Style family** (name the reference world, e.g. "Apple keynote", "Kinfolk", "esports broadcast", "A24 titles") · **E. Image treatment** · **F. Type pairing** · **G. Colour strategy** · **H. Camera language** · **I. Transitions** · **J. Format**.
+   - Read `bench/studio_history.jsonl` first (it may not exist yet) and do not repeat the style + palette + type + main transition of a recent piece.
 5. **The one message** (one sentence) and the **one action**.
-6. **Attention mechanics** — pick 1–2 that suit the brand, and say how the piece uses them: pattern interrupt in frame 1 · curiosity gap / open loop paid off later · bold number or claim · before → after contrast · satisfying process or transformation · reveal / "wait for it" · countdown or list with a numbered promise · POV / relatable pain · seamless loop (last frame flows into the first) · useful-enough-to-save information · identity ("made for people like you").
-7. **Style direction** — choose one family below (or a justified blend) and say why it fits *this* brand and viewer. Name the reference world (e.g. "Apple keynote product film", "Kinfolk editorial", "esports broadcast graphics", "Swiss poster", "A24 title sequence").
-8. **Storyboard** (video): a table of shots with timecodes — visual, exact on-screen copy, motion, transition into the next shot, asset used. **Layout** (post): grid, focal point, hierarchy, exact copy. Write the final copy here, proofread, in the brief's language with native conventions.
-9. **Asset plan**: which Pexels searches (specific, visual, cinematic keywords: subject + light + mood + framing, e.g. "fresh peaches wooden crate morning light close up"), what each image/clip does in the frame, where the type sits in it.
+6. **Concept**: the single idea that ties the decisions together, in two sentences. If the decisions don't add up to an idea, go back and choose again.
+7. **Storyboard** (video): a table of shots with timecodes — visual, exact on-screen copy, motion, transition into the next shot, asset used. **Layout** (post): grid, focal point, hierarchy, exact copy. Write the final copy here, proofread, in the brief's language with native conventions.
+8. **Asset plan**: which Pexels searches (specific, visual, cinematic keywords: subject + light + mood + framing, e.g. "fresh peaches wooden crate morning light close up"), what each image/clip does in the frame, where the type sits in it.
 
 ## Phase 2 — Assets
 
@@ -32,17 +30,8 @@ Think like a strategist before you think like a designer. Write short, decisive 
 
 ## Phase 3 — Build with real craft
 
-### Style families (execution notes)
-- **Cinematic editorial photo** (hospitality, food, fashion, real estate, wellness, local premium): full-bleed photo is the hero; slow push-in (scale 1.00→1.08, sine.inOut); letterbox or generous margins; serif display with tight tracking + small caps labels; film grain; unified colour grade; very few elements.
-- **Product-tech keynote** (SaaS, AI, fintech): dark or clean-light stage, believable UI with real-looking data, 1 px hairlines, soft shadows, glass only where meaningful; a virtual camera flying over the UI in 3D (CSS `perspective` + `rotateX/Y`, depth-of-field by blurring non-focused layers), cursor with human easing, focus pulls, glow on the key number; real footage (people, workplaces) for the human "why", UI for the "how", a big number for the proof.
-- **Swiss / international typographic** (B2B, architecture, culture, finance): strict grid, huge grotesk, one accent colour, photos cropped into grid modules, hard cuts on rhythm, numbers as graphic elements.
-- **Kinetic type manifesto** (launch, values, recruitment): type fills the screen; scale contrast (400 px word vs 28 px caption); word-by-word mask reveals; photos/footage living *inside* letters (`background-clip: text`).
-- **Gaming / esports / cyber** — choose a variation, don't mix them all: *esports broadcast* (clean dark panels, team colours, lower-thirds, stat bars, bracket), *cyberpunk* (neon on deep blue, rain, chromatic aberration), *HUD / sci-fi* (corner brackets, reticles, telemetry ticking, scanlines), *retro arcade* (CRT curvature, pixel type, score counters), *Y2K chrome* (liquid metal, iridescent gradients). Glitch cuts = horizontal slices offset for 2–3 frames, RGB split, never permanent noise over the message.
-- **Street / collage / zine** (streetwear, music, tattoo, festivals): cut-out photos with white borders, tape, halftone, xerox grain, stickers, off-grid energy — still with a clear focal point.
-- **Retail punch** (sales, promos, local shops): product photo cut large and appetising, a big confident price/discount, bold colour field, stamp or sticker device, quick cuts on the beat, warmth. Tasteful, not a flyer.
-- **Data story** (proof, reports): one striking number, charts that build themselves, precise labels.
-
-**Flat vector illustration as the main visual is forbidden** for Tier S and A (it reads as childish/template) unless the brand itself is illustration-led. Prefer photography, footage, typography, UI, 3D, texture. Icons are fine as small accents.
+### Executing the chosen style
+Execute the style family you chose (catalogue D) with its real codes — typography, grid, texture, motion speed and palette of that reference world — not a generic approximation. Photography, footage, typography, UI, 3D and texture carry the visuals; **flat vector illustration as the main visual is forbidden for S+, S and A** unless the brand is illustration-led.
 
 ### Integrating real images so they look designed, not pasted
 - **One colour grade for everything** (photos, footage, UI glows): e.g. a CSS `filter: contrast() saturate() brightness()` plus an SVG `feColorMatrix` split-tone or a duotone (`mix-blend-mode: multiply/screen` colour layers) derived from the palette. Warm the highlights, tint the shadows toward the brand's dark colour.
@@ -80,4 +69,4 @@ Think like a strategist before you think like a designer. Write short, decisive 
 3. Fix, re-render, re-check (Tier S: at least two full passes).
 
 ## Phase 5 — Deliver
-Final render (`video` or `stills`), final `qa` run clean or with justified exceptions, `meta.json` as in the contract plus `"tier"`, `"style"`, `"pexels": [ids]`, `"attention_mechanics"`. Delete previews, `assets/cands`, `qa.jpg` and scratch files. Keep `plan.md`.
+Final render (`video` or `stills`), final `qa` run clean or with justified exceptions, `meta.json` as in the contract plus `"tier"`, `"style"`, `"pexels": [ids]`, `"attention_mechanics"`. Append your line to `bench/studio_history.jsonl` (catalogue K). Delete previews, `assets/cands`, `qa.jpg` and scratch files. Keep `plan.md`.
