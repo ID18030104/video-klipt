@@ -24,6 +24,21 @@ window.KLIPT = {
 - **CSS `@keyframes` / Web Animations**: automatically paused and scrubbed to `t` by the renderer — they just work.
 - **Canvas / three.js**: redraw everything from `t` inside `render(t)`; create the WebGL renderer with `preserveDrawingBuffer: true`. WebGL runs in software (SwiftShader): keep geometry/shaders reasonable, no heavy post-processing.
 
+## Sound (video pieces)
+The picture is silent unless you declare a soundtrack; the renderer mixes it into the MP4 after the frames:
+```js
+window.KLIPT = { …, audio: [
+  { src: 'assets/clip.mp4', gain: -8 },                         // ambience from an AI clip (its audio track)
+  { src: 'audio/bed.wav', gain: -7, dur: 15, fadeOut: 1.2 },    // music bed
+  { src: 'audio/whoosh.wav', at: 3.9 },                         // effects placed on your cuts/wipes (seconds)
+  { src: 'audio/impact.wav', at: 12.0, gain: -2 },
+] };
+```
+Fields: `src` (relative to the piece folder: wav/mp3/m4a or a video's audio), `at` (start in the piece, s), `from` (offset in the source, s), `dur`, `gain` (dB), `fadeIn`, `fadeOut` (needs `dur`). The mix is limited to avoid clipping. Make sounds with `python3 tools/sfx.py -h` (whoosh, riser, impact, tick, pop, shimmer, glitch, and a music `bed` at a given bpm/mood with an optional drop) into `pieces/<id>/audio/`. `node tools/render.mjs audio pieces/<id>` re-mixes the sound into the existing video.mp4 in seconds — iterate on sound without re-rendering frames. Keep ambience under music, effects short and on the picture's events, and nothing louder than the logo hit.
+
+## AI video clips as footage
+`python3 tools/clip_frames.py <clip.mp4> --out pieces/<id>/footage/clip --size 1080x1920 [--start s --dur s --speed 0.8]` turns a clip into frames for `KK.footage()`. Frame folders are not versioned (regenerable from the clip).
+
 ## Still pieces (posts, carousels, stories)
 - Each image is a `<section class="slide">` sized exactly `width × height`, stacked vertically in the page.
 - `window.KLIPT = { width: 1080, height: 1350 };` (no duration/render needed). Static CSS only (or scripts that run once at load).

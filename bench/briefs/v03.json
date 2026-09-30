@@ -1,0 +1,12 @@
+{
+ "id": "v03",
+ "kind": "video",
+ "format": "1080x1920",
+ "duration": "15 s",
+ "lang": "en",
+ "tier": "S",
+ "brand": "Klipt",
+ "sector": "Content studio (social video, posts, carousels)",
+ "brief": "Klipt is a content studio that makes short social videos, posts and carousels for every kind of business — from SaaS scale-ups to SMEs to the hairdresser or baker around the corner — each with its own art direction that fits the brand, never a template. This is Klipt's own presentation film for its website and socials (Reels/TikTok/LinkedIn), in English. Goal: in 15 seconds a business owner understands what Klipt does and feels 'that's the level I want for my brand'. Audience: founders, marketing leads and local business owners. Tone: confident, crafted, energetic, never corporate. Use the real Klipt logo and palette (brand/klipt/: brand.json; the logo is defined exactly in CSS in brand/klipt/_src/index.html — lime rounded square with an ink play triangle and a coral dot, wordmark 'klipt' in Bricolage Grotesque 800, fonts in brand/klipt/_src/fonts/). No URL, handle, prices, client names, numbers or testimonials are provided: do not invent any; end with the logo and a short CTA such as 'Let's make yours.'",
+ "clip": {"generate": true, "endpoint": "kling-video/v3.0/std/text-to-video", "settings": "15 s, 9:16, multi_shots with custom multi_prompt, sound on (about $1.04). Complete creative freedom: real-world footage, abstract 3D, or a mix."}
+}

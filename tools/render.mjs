@@ -5,6 +5,7 @@
 //   node tools/render.mjs stills <piece-dir>                          → slides/slide-01.png … + sheet.jpg
 //   node tools/render.mjs frame  <piece-dir> <t-seconds> [out.png] [--w 540] → single frame (quick check)
 //   node tools/render.mjs qa     <piece-dir>                          → qa.jpg keyframe grid + automatic defect report
+//   node tools/render.mjs audio  <piece-dir>                          → re-mix KLIPT.audio into video.mp4 (no re-render)
 // Contract: see docs/RENDER_CONTRACT.md
 import { chromium } from 'playwright-core';
 import { spawn } from 'node:child_process';
@@ -53,7 +54,7 @@ async function open() {
     await document.fonts.ready;
     // Freeze every CSS/WAAPI animation so the renderer owns the clock.
     for (const a of document.getAnimations()) a.pause();
-    return { width: K.width || 1080, height: K.height || 1920, fps: K.fps || 30, duration: K.duration || 0, poster: K.poster, slides: document.querySelectorAll('.slide').length };
+    return { width: K.width || 1080, height: K.height || 1920, fps: K.fps || 30, duration: K.duration || 0, poster: K.poster, audio: K.audio || null, slides: document.querySelectorAll('.slide').length };
   });
   await page.setViewportSize({ width: meta.width, height: meta.height });
   return { browser, page, meta, errors };
@@ -76,12 +77,38 @@ async function sheet(pattern, start, n, cols, out) {
     '-vf', `scale=360:-2,pad=iw+8:ih+8:4:4:color=0x222222,tile=${cols}x${rows}:color=0x111111`, '-frames:v', '1', '-q:v', '3', out]);
 }
 
+// Sound: KLIPT.audio = [{ src, at = 0, from = 0, dur, gain = 0 (dB), fadeIn = 0, fadeOut = 0 }, …]
+// src is relative to the piece folder (wav/mp3/m4a, or a video whose audio track is used, e.g. assets/clip.mp4).
+// Tracks start at `at` seconds in the piece, play `dur` seconds of the source from `from`; fadeOut needs dur.
+// The mix is limited to −1 dBTP and muxed as AAC into the MP4 (video stream copied, not re-encoded).
+async function mixAudio(video, tracks, duration) {
+  if (!Array.isArray(tracks) || !tracks.length) return false;
+  const inputs = [], chains = [];
+  tracks.forEach((tr, i) => {
+    const src = path.resolve(dir, tr.src);
+    if (!fs.existsSync(src)) throw new Error(`KLIPT.audio: missing ${tr.src}`);
+    inputs.push('-i', src);
+    const f = [`atrim=start=${tr.from || 0}${tr.dur ? `:duration=${tr.dur}` : ''}`, 'asetpts=PTS-STARTPTS', 'aresample=48000', 'aformat=channel_layouts=stereo'];
+    if (tr.gain) f.push(`volume=${tr.gain}dB`);
+    if (tr.fadeIn) f.push(`afade=t=in:st=0:d=${tr.fadeIn}`);
+    if (tr.fadeOut && tr.dur) f.push(`afade=t=out:st=${Math.max(0, tr.dur - tr.fadeOut)}:d=${tr.fadeOut}`);
+    const ms = Math.round((tr.at || 0) * 1000); if (ms) f.push(`adelay=${ms}|${ms}`);
+    chains.push(`[${i + 1}:a]${f.join(',')}[a${i}]`);
+  });
+  const mix = `${tracks.map((_, i) => `[a${i}]`).join('')}amix=inputs=${tracks.length}:normalize=0:dropout_transition=0,apad,atrim=0:${duration},alimiter=limit=0.89[mix]`;
+  const tmpOut = video.replace(/\.mp4$/, '.mix.mp4');
+  await ff(['-i', video, ...inputs, '-filter_complex', [...chains, mix].join(';'), '-map', '0:v', '-map', '[mix]',
+    '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-t', String(duration), '-movflags', '+faststart', tmpOut]);
+  fs.renameSync(tmpOut, video);
+  return true;
+}
+
 // Machine-wide render slots: parallel agents share 4 CPUs, and too many concurrent
 // Chromium captures crash ("browser closed"). Full renders queue for a free slot.
 const SLOTS = +(process.env.KLIPT_RENDER_SLOTS || 2);
 function alive(pid) { try { process.kill(pid, 0); return true; } catch { return false; } }
 async function acquireSlot() {
-  if (mode === 'frame' || mode === 'qa') return null;
+  if (mode === 'frame' || mode === 'qa' || mode === 'audio') return null;
   const waitStart = Date.now(); let told = false;
   for (;;) {
     for (let i = 0; i < SLOTS; i++) {
@@ -129,12 +156,20 @@ try {
       if (f % Math.max(1, Math.round(fps * 5)) === 0) process.stdout.write(`frame ${f}/${frames}\n`);
     }
     enc.end(); await done;
+    const sound = await mixAudio(out, meta.audio, meta.duration);
     for (const [i, t] of sheetTimes.entries()) { await seek(page, t); const p = path.join(tmp, `s${String(i).padStart(2, '0')}.jpg`); await page.screenshot({ path: p, type: 'jpeg', quality: 90 }); shots.push(p); }
     const posterT = meta.poster != null ? meta.poster : meta.duration * 0.62; await seek(page, posterT);
     await page.screenshot({ path: path.join(dir, 'poster.jpg'), type: 'jpeg', quality: 90 });
     await sheet(path.join(tmp, 's%02d.jpg'), 0, shots.length, 6, path.join(dir, 'sheet.jpg'));
     const size = fs.statSync(out).size;
-    console.log(JSON.stringify({ out, frames, fps, duration: meta.duration, width: meta.width, height: meta.height, mb: +(size / 1e6).toFixed(2), renderSeconds: (Date.now() - t0) / 1000 }));
+    console.log(JSON.stringify({ out, frames, fps, duration: meta.duration, width: meta.width, height: meta.height, audio: sound ? meta.audio.length + ' tracks' : 'none', mb: +(size / 1e6).toFixed(2), renderSeconds: (Date.now() - t0) / 1000 }));
+  } else if (mode === 'audio') {
+    // Re-mix the sound only: re-encode nothing, keep the rendered picture. Replaces any previous soundtrack.
+    const out = path.join(dir, fs.existsSync(path.join(dir, 'video.mp4')) ? 'video.mp4' : 'preview.mp4');
+    const silent = out.replace(/\.mp4$/, '.silent.mp4');
+    await ff(['-i', out, '-map', '0:v', '-c:v', 'copy', silent]); fs.renameSync(silent, out);
+    const sound = await mixAudio(out, meta.audio, meta.duration);
+    console.log(JSON.stringify({ out, audio: sound ? meta.audio.length + ' tracks' : 'none (KLIPT.audio empty)' }));
   } else if (mode === 'qa') {
     // Keyframes a viewer (or a judge) actually sees: first frame, hook, every 1.5 s, end, poster — or every slide.
     const tmp = fs.mkdtempSync('/tmp/klipt-qa-');
