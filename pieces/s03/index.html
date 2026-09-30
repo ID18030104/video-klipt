@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Casa Almar — Summer opens 15 May</title>
+<meta name="viewport" content="width=1080">
+<link rel="stylesheet" href="../../node_modules/@fontsource/instrument-serif/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/instrument-serif/400-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/figtree/700.css">
+<style>
+  :root{
+    --paper:#F1E9DA; --sand:#D9C7A6; --terra:#B4532F; --ink:#1E2A2C; --ink2:#4B5450;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1350px;background:var(--paper);overflow:hidden}
+  .slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--paper);color:var(--ink);
+    font-family:'Figtree',sans-serif}
+  /* paper wash: warm centre, slightly darker edges */
+  .slide::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(120% 90% at 30% 25%, rgba(255,250,240,.7), rgba(217,199,166,.28) 100%);}
+
+  .cap{position:absolute;font-weight:600;font-size:28px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink)}
+  .top-l{left:60px;top:62px}
+  .top-r{right:60px;top:62px;text-align:right}
+  .rule{position:absolute;left:60px;right:60px;height:2px;background:var(--ink);opacity:.85}
+
+  /* arch window */
+  .arch{position:absolute;left:60px;top:158px;width:620px;height:740px;
+    border-radius:310px 310px 0 0;overflow:hidden;background:#8b7a68}
+  .arch img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:34% 50%;
+    filter:contrast(1.1) saturate(1.0) sepia(.2) brightness(1.1);}
+  .arch .glow{position:absolute;inset:0;mix-blend-mode:screen;
+    background:
+      radial-gradient(70% 45% at 30% 46%, rgba(255,190,130,.55), rgba(255,190,130,0) 70%),
+      linear-gradient(180deg, rgba(246,178,128,.55) 0%, rgba(250,205,160,.35) 32%, rgba(250,205,160,0) 55%);}
+  .arch .shade{position:absolute;inset:0;mix-blend-mode:multiply;
+    background:linear-gradient(180deg, rgba(255,255,255,0) 50%, rgba(120,60,40,.45) 100%);}
+  .arch .tint{position:absolute;inset:0;mix-blend-mode:soft-light;background:rgba(180,83,47,.35)}
+  .arch .vig{position:absolute;inset:0;background:radial-gradient(90% 80% at 50% 45%, rgba(0,0,0,0) 55%, rgba(30,20,15,.32) 100%)}
+  .archline{position:absolute;left:44px;top:142px;width:652px;height:772px;border:2px solid var(--terra);
+    border-radius:326px 326px 0 0;border-bottom:none;pointer-events:none}
+
+  /* date block */
+  .date{position:absolute;left:728px;top:150px;width:330px}
+  .date .s{font-family:'Instrument Serif',serif;font-style:italic;font-size:64px;line-height:1.02;color:var(--ink)}
+  .date .n{font-family:'Instrument Serif',serif;font-size:330px;line-height:.82;letter-spacing:-.02em;color:var(--terra);
+    margin-top:26px;margin-left:-14px}
+  .date .m{font-family:'Instrument Serif',serif;font-style:italic;font-size:152px;line-height:.9;color:var(--ink);margin-top:4px;margin-left:2px}
+  .det{position:absolute;left:728px;top:772px;width:300px;font-weight:600;font-size:28px;letter-spacing:.14em;
+    text-transform:uppercase;line-height:1.45;color:var(--ink2)}
+  .det::before{content:"";display:block;width:64px;height:3px;background:var(--terra);margin-bottom:20px}
+
+  /* bottom block */
+  .rule2{top:952px}
+  .say{position:absolute;left:60px;top:990px;width:960px;font-family:'Instrument Serif',serif;font-size:66px;line-height:1.06;color:var(--ink);letter-spacing:-.005em}
+  .say em{color:var(--terra)}
+  .cta{position:absolute;left:60px;top:1188px;height:88px;padding:0 44px;border-radius:44px;background:var(--terra);color:#FBF4E8;
+    display:flex;align-items:center;font-weight:700;font-size:36px;letter-spacing:.01em}
+  .cta span{opacity:.85;font-weight:500;margin-left:14px}
+  .arrow{position:absolute;left:560px;right:60px;top:1231px;height:2px;background:var(--ink);opacity:.85}
+  .arrow::after{content:'';position:absolute;right:0;top:-9px;width:18px;height:18px;border-top:2px solid var(--ink);border-right:2px solid var(--ink);transform:rotate(45deg);transform-origin:70% 30%;right:2px}
+  .foot{position:absolute;right:60px;top:1188px;height:88px;display:flex;align-items:center;font-weight:600;font-size:28px;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--ink2);text-align:right;line-height:1.35}
+
+  /* one grain over everything */
+  .grain{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.16}
+  .grain2{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.05}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="cap top-l">Casa Almar</div>
+  <div class="cap top-r">Comporta · Portugal</div>
+  <div class="rule" style="top:112px"></div>
+
+  <div class="archline"></div>
+  <div class="arch">
+    <img src="assets/schooner.jpg" alt="">
+    <div class="glow"></div><div class="tint"></div><div class="shade"></div><div class="vig"></div>
+  </div>
+
+  <div class="date">
+    <div class="s">Summer<br>opens</div>
+    <div class="n">15</div>
+    <div class="m">May</div>
+  </div>
+  <div class="det">24 rooms<br>between dunes<br>&amp; rice fields</div>
+
+  <div class="rule rule2"></div>
+  <div class="say">Book direct and your <em>sunset boat trip</em><br>on the Sado estuary is included.</div>
+  <div class="cta">Book at casaalmar.pt</div>
+  <div class="arrow"></div>
+
+  <svg class="grain" width="1080" height="1350"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0" intercept="1"/></feComponentTransfer></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+  <svg class="grain2" width="1080" height="1350"><filter id="g2"><feTurbulence type="fractalNoise" baseFrequency=".6" numOctaves="2" seed="21"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#g2)"/></svg>
+</section>
+<script>window.KLIPT={width:1080,height:1350};</script>
+</body>
+</html>

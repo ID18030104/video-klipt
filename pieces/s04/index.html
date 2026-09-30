@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Nexus Cup #4</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/big-shoulders-display/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/big-shoulders-display/900.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/jetbrains-mono/700.css">
+<style>
+:root{
+  --bg:#0A0C11; --panel:#12151D; --line:#262B38; --volt:#D6FF3F; --red:#FF3B5C; --ink:#F3F5F9; --mute:#8E96A8;
+  --disp:'Big Shoulders Display',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;background:var(--bg)}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--disp)}
+
+/* atmosphere */
+.glow{position:absolute;inset:0;background:
+  radial-gradient(700px 520px at 78% 33%, rgba(214,255,63,.16), transparent 70%),
+  radial-gradient(600px 500px at 8% 100%, rgba(70,90,255,.13), transparent 70%);}
+.grid{position:absolute;inset:0;opacity:.55;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:60px 60px;background-position:0 0;
+  -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.15) 60%,rgba(0,0,0,.5));mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.15) 60%,rgba(0,0,0,.5))}
+
+/* top bar */
+.top{position:absolute;left:60px;right:60px;top:56px;height:52px;display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-weight:700;font-size:28px;letter-spacing:.08em}
+.top .brand{display:flex;align-items:center;gap:16px}
+.top .brand i{width:16px;height:16px;background:var(--volt);display:block;transform:rotate(45deg)}
+.live{display:flex;align-items:center;gap:14px;background:var(--red);color:#fff;padding:8px 20px;font-size:28px;letter-spacing:.1em;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%)}
+.live b{width:14px;height:14px;border-radius:50%;background:#fff;display:block}
+
+/* volt slab + headset */
+.slab{position:absolute;left:470px;top:150px;width:800px;height:420px;background:var(--volt);transform:skewX(-9deg);transform-origin:0 0;overflow:hidden}
+.slab .cp{position:absolute;left:-470px;top:-150px;transform:skewX(9deg);transform-origin:0 0}
+.slab .cp .title{color:var(--bg)}
+.slab .cp .title *{color:var(--bg)!important}
+.slab::after{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(180deg,rgba(0,0,0,.07) 0 2px,transparent 2px 6px)}
+.headset{position:absolute;left:648px;top:104px;width:444px;height:auto;-webkit-mask-image:linear-gradient(180deg,#000 82%,transparent 99%);mask-image:linear-gradient(180deg,#000 82%,transparent 99%)}
+.tick{position:absolute;font-family:var(--mono);font-weight:700;font-size:24px;color:#0A0C11;letter-spacing:.1em}
+
+/* title */
+.title{position:absolute;left:52px;top:122px;line-height:.8;font-weight:900;text-transform:uppercase}
+.t1{display:block;font-size:214px;letter-spacing:-.005em;color:var(--ink)}
+.t2{display:block;font-size:214px;letter-spacing:-.005em;color:var(--ink);margin-top:2px}
+.t2 em{font-style:normal}
+.sub{position:absolute;left:60px;top:486px;font-family:var(--mono);font-weight:700;font-size:30px;letter-spacing:.08em;display:flex;gap:10px;align-items:center}
+.sub span{background:var(--ink);color:var(--bg);padding:8px 16px}
+.sub span+span{background:var(--bg);color:var(--ink);border:2px solid var(--ink);padding:6px 16px}
+
+/* prize */
+.prize{position:absolute;left:60px;top:600px;display:flex;align-items:flex-end;gap:26px}
+.prize .n{font-weight:900;font-size:300px;line-height:.78;color:var(--volt);letter-spacing:-.01em;white-space:nowrap}
+.prize .l{font-family:var(--mono);font-weight:700;font-size:30px;letter-spacing:.12em;color:var(--ink);line-height:1.3;padding-bottom:8px}
+.prize .l b{color:var(--ink);font-weight:700;display:block}
+
+/* stat bar */
+.bracket{position:absolute;left:60px;right:60px;top:892px;height:104px;display:flex;align-items:center;justify-content:space-between}
+.bracket .b{font-weight:900;font-size:88px;line-height:1;color:var(--mute);letter-spacing:.01em}
+.bracket .b:nth-child(1){color:#7b859b}.bracket .b:nth-child(3){color:#8a94a9}.bracket .b:nth-child(5){color:#9aa3b7}.bracket .b:nth-child(7){color:#aeb6c6}.bracket .b:nth-child(9){color:#c4cad8}
+.bracket .a{flex:1;height:4px;margin:0 14px;background:linear-gradient(90deg,#2b3140,#4a5266);position:relative}
+.bracket .a::after{content:'';position:absolute;right:-2px;top:-8px;border-left:14px solid #4a5266;border-top:10px solid transparent;border-bottom:10px solid transparent}
+.bracket .w{background:var(--volt);color:var(--bg)!important;padding:4px 28px 0;display:flex;align-items:center;height:96px;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%)}
+.bracket .w small{font-family:var(--mono);font-weight:700;font-size:28px;letter-spacing:.06em;margin-left:16px;line-height:1.1;color:var(--bg)}
+.stats{position:absolute;left:60px;right:60px;top:1046px;height:128px;display:flex;justify-content:space-between;background:var(--panel);border-top:3px solid var(--volt)}
+.cell{padding:14px 14px 0;border-left:2px solid var(--line);display:flex;flex-direction:column;justify-content:center}
+.cell:first-child{border-left:0}
+.cell small{font-family:var(--mono);font-weight:700;font-size:28px;letter-spacing:.06em;color:var(--mute);text-transform:uppercase;white-space:nowrap}
+.cell strong{font-weight:800;font-size:46px;line-height:1;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
+
+/* action */
+.cta{position:absolute;left:60px;right:60px;top:1194px;height:96px;display:flex;align-items:stretch}
+.btn{background:var(--volt);color:var(--bg);display:flex;align-items:center;gap:22px;padding:0 34px;font-weight:900;font-size:60px;letter-spacing:.01em;text-transform:uppercase;clip-path:polygon(0 0,100% 0,calc(100% - 26px) 100%,0 100%);padding-right:56px;white-space:nowrap}
+.btn svg{width:42px;height:42px}
+.url{flex:1;display:flex;flex-direction:column;justify-content:center;padding-left:24px;font-family:var(--mono);font-weight:700;font-size:34px;color:var(--ink);letter-spacing:0;line-height:1.25;white-space:nowrap}
+.url span{font-weight:700;font-size:28px;color:var(--red);letter-spacing:.02em}
+
+/* one texture over everything */
+.grain{position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:.5}
+.scan{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px)}
+.vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(0,0,0,.5))}
+</style>
+<script>window.KLIPT={width:1080,height:1350};</script>
+</head>
+<body>
+<section class="slide">
+  <div class="glow"></div>
+  <div class="grid"></div>
+
+  <div class="title"><span class="t1">Nexus</span><span class="t2">Cup&nbsp;<em>#4</em></span></div>
+
+  <div class="slab"><div class="cp"><div class="title"><span class="t1">Nexus</span><span class="t2">Cup&nbsp;<em>#4</em></span></div></div></div>
+
+  <img class="headset" src="assets/headset.png" alt="">
+
+  <div class="top">
+    <div class="brand"><i></i>NEXUS ARENA · LILLE</div>
+    <div class="live"><b></b>FINALE EN DIRECT</div>
+  </div>
+
+  <div class="sub"><span>FPS TACTIQUE</span><span>5 CONTRE 5</span></div>
+
+  <div class="prize">
+    <div class="n">2&#8239;000&#8239;€</div>
+    <div class="l">CASH<br>PRIZE</div>
+  </div>
+
+  <div class="bracket"><span class="b">32</span><i class="a"></i><span class="b">16</span><i class="a"></i><span class="b">8</span><i class="a"></i><span class="b">4</span><i class="a"></i><span class="b w">1<small>CHAMPION</small></span></div>
+
+  <div class="stats">
+    <div class="cell"><small>Date</small><strong>Sam. 18 avril</strong></div>
+    <div class="cell"><small>Début</small><strong>Dès 10 h</strong></div>
+    <div class="cell"><small>Places</small><strong>32 équipes</strong></div>
+    <div class="cell"><small>Inscription</small><strong>50 € / équipe</strong></div>
+  </div>
+
+  <div class="cta">
+    <div class="btn">Inscris ton équipe
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0A0C11" stroke-width="3.2" stroke-linecap="square"><path d="M4 12h15M13 5l7 7-7 7"/></svg></div>
+    <div class="url">nexus-arena.gg<span>avant le 10 avril</span></div>
+  </div>
+
+  <svg class="grain" width="1080" height="1350"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.4 -.2"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+  <div class="scan"></div>
+  <div class="vig"></div>
+</section>
+</body>
+</html>

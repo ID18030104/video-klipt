@@ -1,0 +1,59 @@
+{
+ "id": "s05",
+ "brand": "Stride Collective",
+ "sector": "Running club & store",
+ "kind": "post",
+ "format": "1080x1350",
+ "duration": null,
+ "slides": 1,
+ "title": "Night 10K — free untimed night run",
+ "concept": "The numerals NIGHT 10K stand as ink silhouettes on the last light of a dusk horizon, with the old runway centreline and a stream of headlamps leading to them. One dusk gradient-map grade ties sky, track and dance-floor photos to the brand palette.",
+ "techniques": [
+  "html-css",
+  "svg-filters",
+  "gradient-map-grade",
+  "perspective-svg",
+  "grain"
+ ],
+ "fonts": [
+  "Big Shoulders Display",
+  "Space Grotesk"
+ ],
+ "palette": [
+  "#07061A",
+  "#2A1560",
+  "#E8481F",
+  "#FFAA2B",
+  "#FFF1DC"
+ ],
+ "copy_language": "en",
+ "tier": "A",
+ "style": "Neo-grotesk poster (event poster with runway markings)",
+ "attention_mechanics": [
+  "bold number at t0 (10K fills the canvas)",
+  "scarcity sticker (400 spots)"
+ ],
+ "credits": [
+  {
+   "file": "legs.jpg",
+   "title": "ATLETISMO",
+   "author": "Alvaro_Tapia",
+   "license": "CC BY 2.0",
+   "page": "https://www.flickr.com/photos/foto_saiker/2920264170"
+  },
+  {
+   "file": "disco.jpg",
+   "title": "Print After Party",
+   "author": "Jason Eppink",
+   "license": "CC BY 2.0",
+   "page": "https://www.flickr.com/photos/jasoneppink/3818849642/"
+  },
+  {
+   "file": "sky.jpg",
+   "title": "ChatSunset",
+   "author": "Ray Ashley",
+   "license": "CC BY 2.0",
+   "page": "https://www.flickr.com/photos/southernview/362123831"
+  }
+ ]
+}

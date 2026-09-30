@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>Night 10K</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/big-shoulders-display/900.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/big-shoulders-display/800.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/space-grotesk/500.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/space-grotesk/700.css">
+<style>
+  :root{
+    --ink:#07061A; --dusk:#2A1560; --ember:#E8481F; --lamp:#FFAA2B; --cream:#FFF1DC;
+    --disp:'Big Shoulders Display', 'Arial Narrow', sans-serif;
+    --sans:'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--ink)}
+  body{margin:0;overflow:hidden}
+  .slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--ink);color:var(--cream);font-family:var(--sans)}
+
+  /* ---- sky (hero photo, gradient-mapped) ---- */
+  .sky{position:absolute;left:-640px;top:0;width:2543px;height:auto;filter:brightness(1.32) contrast(1.05) url(#gm);}
+  .skyfill{position:absolute;left:0;top:0;width:1080px;height:600px;
+    background:linear-gradient(180deg,#5a1a2c 0%,#a5321f 55%,rgba(232,72,31,0) 100%);}
+  .sun{position:absolute;left:0;top:0;width:1080px;height:1350px;mix-blend-mode:screen;
+    background:radial-gradient(ellipse 760px 560px at 540px 640px,rgba(255,190,60,.5),rgba(255,110,30,.2) 55%,rgba(255,80,20,0) 100%);}
+  .dark{position:absolute;left:0;top:800px;width:1080px;height:550px;
+    background:linear-gradient(180deg,rgba(7,6,26,0) 0%,rgba(7,6,26,.55) 22%,rgba(7,6,26,.94) 62%,var(--ink) 100%);}
+
+  /* ---- type ---- */
+  .hdr{position:absolute;left:60px;right:60px;top:60px;display:flex;justify-content:space-between;
+    font:700 29px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+  .hdr span:last-child{font-weight:500}
+  .hero{position:absolute;left:0;width:1080px;text-align:center;font-family:var(--disp);font-weight:900;
+    color:var(--ink);line-height:1;white-space:nowrap}
+  .night{top:98px;font-size:198px;letter-spacing:.28em;padding-left:.28em}
+  .tenk{top:237px;font-size:640px;letter-spacing:-.01em}
+
+  /* ---- runway ---- */
+  svg.run{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .tag{position:absolute;left:60px;top:826px;font:500 34px/1.25 var(--sans);color:var(--cream)}
+  .tag b{display:block;font:700 34px/1.25 var(--sans);color:var(--lamp)}
+  .sticker{position:absolute;left:808px;top:738px;width:206px;height:206px;border-radius:50%;
+    background:var(--ember);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    transform:rotate(-9deg);box-shadow:0 0 0 6px var(--ink), 0 0 0 9px var(--cream);}
+  .sticker .n{font:900 118px/.86 var(--disp);letter-spacing:-.01em}
+  .sticker .l{font:700 30px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+
+  /* ---- info ---- */
+  .date{position:absolute;left:60px;top:968px;font:900 128px/1 var(--disp);color:var(--cream);letter-spacing:.005em;white-space:nowrap;text-transform:uppercase}
+  .date i{font-style:normal;color:var(--lamp)}
+  .cells{position:absolute;left:60px;right:60px;top:1102px;display:flex;gap:28px}
+  .cell{flex:1;display:flex;gap:18px;align-items:center}
+  .tile{flex:none;width:104px;height:104px;overflow:hidden;position:relative;border-radius:10px;background:var(--ink)}
+  .tile img{position:absolute;filter:url(#gm) contrast(1.08)}
+  .cell p{font:500 30px/1.2 var(--sans);color:var(--cream)}
+  .cell p b{font-weight:700}
+  .cta{position:absolute;left:60px;right:60px;top:1224px;height:72px;border-radius:36px;background:var(--ember);color:var(--ink);
+    display:flex;align-items:center;justify-content:space-between;padding:0 34px;font:700 34px/1 var(--sans);}
+  .cta span:last-child{letter-spacing:.02em}
+
+  /* ---- shared surface ---- */
+  .vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 55%,rgba(7,6,26,.5) 100%);pointer-events:none}
+  .grain{position:absolute;inset:0;width:1080px;height:1350px;opacity:.16;mix-blend-mode:overlay;pointer-events:none}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- one grade for every photo: luminance -> gradient map ink / dusk / ember / lamp / cream -->
+    <filter id="gm" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+      <feColorMatrix type="matrix" values="0.3 0.55 0.15 0 0  0.3 0.55 0.15 0 0  0.3 0.55 0.15 0 0  0 0 0 1 0"/>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.027 0.165 0.91 1 1"/>
+        <feFuncG type="table" tableValues="0.024 0.082 0.282 0.667 0.945"/>
+        <feFuncB type="table" tableValues="0.102 0.376 0.122 0.169 0.863"/>
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".30" stop-color="#fff"/><stop offset=".44" stop-color="#fff" stop-opacity=".0"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <mask id="fade" maskUnits="userSpaceOnUse" x="0" y="780" width="1080" height="570"><rect x="0" y="780" width="1080" height="570" fill="url(#fg)"/></mask>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
+    <filter id="noise" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  1.6 0 0 0 -.3"/>
+    </filter>
+  </defs>
+</svg>
+
+<section class="slide" id="s1">
+  <img class="sky" src="assets/sky.jpg" alt="">
+  <div class="sun"></div>
+  <div class="dark"></div>
+
+  <svg class="run" id="run" viewBox="0 0 1080 1350"></svg>
+
+  <div class="hdr"><span>Stride Collective</span><span>Berlin · Kreuzberg</span></div>
+  <div class="hero night">NIGHT</div>
+  <div class="hero tenk">10K</div>
+
+  <div class="tag"><b>Run into the dark.</b>Old Tempelhof runways.<br>Headlamps provided.</div>
+  <div class="sticker"><div class="n">400</div><div class="l">spots</div></div>
+
+  <div class="date">Fri 22 May <i>·</i> 21:00</div>
+  <div class="cells">
+    <div class="cell">
+      <div class="tile"><img src="assets/legs.jpg" alt="" style="width:250px;left:-4px;top:-6px"></div>
+      <p><b>Free, untimed</b> group run for every pace</p>
+    </div>
+    <div class="cell">
+      <div class="tile"><img src="assets/disco.jpg" alt="" style="width:140px;left:-24px;top:-4px"></div>
+      <p><b>Afterparty</b> at the store, with a DJ</p>
+    </div>
+  </div>
+  <div class="cta"><span>Sign up · link in bio</span><span>stride.berlin</span></div>
+
+  <div class="vig"></div>
+  <svg class="grain" viewBox="0 0 1080 1350"><rect width="1080" height="1350" filter="url(#noise)"/></svg>
+</section>
+
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+window.KLIPT = { width: 1080, height: 1350 };
+(function(){
+  const NS='http://www.w3.org/2000/svg', HZ=800, VPX=540, K=3.1;
+  const svg=document.getElementById('run');
+  const rnd=KK.rng(2205);
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e;};
+  const hw=y=>(y-HZ)*K;
+  // runway edges + centreline dashes (perspective converging on the horizon, under the type)
+  const g=el('g',{mask:'url(#fade)'});
+  const edge=(s)=>el('polygon',{points:`${VPX+s*1},${HZ} ${VPX+s*hw(1350)},1350 ${VPX+s*(hw(1350)-16)},1350 ${VPX+s*2},${HZ}`,fill:'#FFF1DC',opacity:'.55'},g);
+  edge(-1);edge(1);
+  let y=HZ+4, step=3.2;
+  while(y<1350){
+    const y2=y+step*0.55, w1=(y-HZ)*.030, w2=(y2-HZ)*.030;
+    el('polygon',{points:`${VPX-w1},${y} ${VPX+w1},${y} ${VPX+w2},${y2} ${VPX-w2},${y2}`,fill:'#FFAA2B',opacity:String(.85-Math.min(.55,(y-HZ)/700))},g);
+    y+=step; step*=1.22;
+  }
+  // threshold "piano keys" near the horizon
+  for(let i=-7;i<=7;i++){ if(i===0)continue;
+    const yy=HZ+34, yy2=HZ+70;
+    const xa=VPX+i*(hw(yy)/9.5), xb=VPX+i*(hw(yy2)/9.5);
+    const wa=hw(yy)/40, wb=hw(yy2)/40;
+    el('polygon',{points:`${xa-wa},${yy} ${xa+wa},${yy} ${xb+wb},${yy2} ${xb-wb},${yy2}`,fill:'#FFF1DC',opacity:'.22'},g);
+  }
+  // headlamps streaming toward the horizon
+  const glow=el('g',{filter:'url(#glow)'}), core=el('g');
+  const dots=[];
+  const blocked=(x,y)=>(x<490&&y>815&&y<960)||(x>790&&y>730);
+  let tries=0;
+  while(dots.length<85 && tries++<4000){
+    const d=Math.pow(rnd(),1.35);            // 0 = horizon, 1 = near
+    const yy=HZ+6+d*158;
+    const half=hw(yy);
+    const xx=VPX+(rnd()*2-1)*half*0.55;
+    if(blocked(xx,yy)) continue;
+    dots.push({yy,xx,r:.9+d*4.4,a:.55+.45*rnd()});
+  }
+  dots.sort((a,b)=>a.yy-b.yy).forEach(p=>{
+    el('circle',{cx:p.xx,cy:p.yy,r:p.r*2.6,fill:'#FFAA2B',opacity:p.a*.75},glow);
+    el('circle',{cx:p.xx,cy:p.yy,r:p.r,fill:'#FFF6E6',opacity:Math.min(1,p.a+.2)},core);
+  });
+})();
+</script>
+</body>
+</html>

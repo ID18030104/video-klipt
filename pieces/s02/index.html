@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Aux Jardins de Marcel — -30 % fruits d’été</title>
+<link rel="stylesheet" href="../../node_modules/@fontsource/anton/400.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/900.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/900-italic.css">
+<link rel="stylesheet" href="../../node_modules/@fontsource/fraunces/600-italic.css">
+<style>
+:root{--g:#0E2B1E;--g2:#174030;--cream:#FFF1D6;--or:#FF8F2E;--kraft:#E4C48C;--red:#E5462B;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--g)}
+body{position:relative;font-family:'Fraunces',serif;color:var(--cream)}
+.layer{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden}
+.bgglow{background:radial-gradient(900px 900px at 50% 45%,var(--g2) 0%,var(--g) 70%)}
+.anton{font-family:'Anton',sans-serif;font-weight:400;line-height:1;text-transform:uppercase}
+img{display:block}
+.graded{filter:url(#grade) contrast(1.05)}
+.lbl{position:absolute;font-family:'Fraunces';font-weight:600;font-size:34px;letter-spacing:.2em;text-transform:uppercase;color:var(--or)}
+
+/* S1 hero */
+#s1 .photo,#s1b .photo{position:absolute;left:0;top:700px;width:1080px;height:1080px;overflow:hidden;
+  -webkit-mask-image:radial-gradient(closest-side at 51% 52%,#000 0,#000 80%,transparent 100%);
+          mask-image:radial-gradient(closest-side at 51% 52%,#000 0,#000 80%,transparent 100%)}
+#s1 .photo img,#s1b .photo img{width:1080px;height:1080px}
+.big{position:absolute;left:0;width:1080px;text-align:center;font-size:365px;top:250px;color:var(--cream);letter-spacing:-.005em;
+  text-shadow:0 10px 60px rgba(0,0,0,.35)}
+.big b{font-weight:400;color:var(--or)}
+.sub{position:absolute;left:64px;width:952px;top:640px;text-align:center;font-style:italic;font-weight:600;font-size:84px;line-height:1.05;
+  text-shadow:0 4px 30px rgba(6,20,13,.85)}
+.pill{position:absolute;left:50%;top:1430px;transform:translateX(-50%);background:var(--or);color:var(--g);
+  font-size:74px;padding:18px 44px 14px;border-radius:14px;white-space:nowrap;box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.top{position:absolute;left:64px;width:952px;top:236px}
+
+/* S2 cards */
+.card{position:absolute;inset:0}
+.win{position:absolute;left:0;top:320px;width:1080px;height:1090px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 800px,transparent 1090px);mask-image:linear-gradient(to bottom,#000 0,#000 800px,transparent 1090px)}
+.win img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover}
+.name{position:absolute;left:0;width:1080px;text-align:center;top:1160px;color:var(--cream);text-shadow:0 8px 50px rgba(5,18,12,.7);white-space:nowrap}
+.cnt{position:absolute;right:64px;top:222px;font-size:52px;color:var(--cream);letter-spacing:.04em}
+.cnt i{font-style:normal;color:var(--or)}
+.badge{position:absolute;width:360px;height:360px;border-radius:50%;background:var(--kraft);color:var(--g);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 18px 50px rgba(0,0,0,.4)}
+.badge .n{font-size:112px;line-height:.95;padding-top:12px;white-space:nowrap}
+.badge .t{font-family:'Fraunces';font-weight:900;font-size:30px;letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
+.badge:after{content:"";position:absolute;inset:12px;border-radius:50%;border:3px dashed rgba(14,43,30,.45)}
+
+/* S3 kraft */
+#s3{background:var(--kraft);clip-path:circle(0px at 850px 560px)}
+.paper{position:absolute;inset:0;mix-blend-mode:multiply;opacity:.55}
+.stack{position:absolute;left:64px;top:236px;width:952px}
+.stack .ln{overflow:hidden;color:var(--g);white-space:nowrap}
+.stack .ln span{display:inline-block}
+.l1{font-size:330px;line-height:.98}
+.l2{font-size:186px;line-height:1.02;color:var(--red)!important}
+.l3{font-size:330px;line-height:.98}
+.polaroid{position:absolute;left:520px;top:1070px;width:500px;padding:26px 26px 92px;background:#FBF4E4;transform:rotate(5deg);box-shadow:0 26px 50px rgba(50,30,10,.35)}
+.polaroid .ph{width:448px;height:400px;overflow:hidden;background:#111}
+.polaroid img{width:100%;height:100%;object-fit:cover}
+.polaroid .cap{position:absolute;left:0;right:0;bottom:22px;text-align:center;font-style:italic;font-weight:600;font-size:36px;color:var(--g)}
+.stamp{position:absolute;left:96px;top:1090px;width:400px;height:400px}
+
+/* S4 end */
+.circle{position:absolute;left:215px;top:236px;width:650px;height:650px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 10px var(--cream),0 30px 80px rgba(0,0,0,.45)}
+.circle img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.brand{position:absolute;left:0;width:1080px;text-align:center;top:1000px;font-weight:900;font-style:italic;font-size:124px;line-height:.94;letter-spacing:-.01em;color:var(--cream)}
+.since{position:absolute;left:0;width:1080px;text-align:center;top:940px;font-size:30px;font-weight:600;letter-spacing:.2em;color:var(--or);text-transform:uppercase}
+.cta{position:absolute;left:50%;top:1270px;transform:translateX(-50%);background:var(--or);color:var(--g);font-size:76px;padding:18px 40px 14px;border-radius:14px;white-space:nowrap;box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.addr{position:absolute;left:0;width:1080px;text-align:center;top:1396px;font-size:48px;font-weight:600;line-height:1.28}
+.addr small{display:block;font-size:42px;font-weight:600;font-style:italic;color:var(--kraft)}
+
+/* global */
+#vig{pointer-events:none;background:radial-gradient(ellipse at 50% 46%,rgba(0,0,0,0) 55%,rgba(3,12,8,.5) 100%)}
+#grain{pointer-events:none;mix-blend-mode:overlay;opacity:.16;background-size:512px 512px}
+#flash{pointer-events:none;background:#FFF1D6;opacity:0}
+svg.defs{position:absolute;width:0;height:0}
+</style>
+</head>
+<body>
+<svg class="defs" xmlns="http://www.w3.org/2000/svg">
+  <filter id="grade" color-interpolation-filters="sRGB">
+    <feColorMatrix type="saturate" values="1.06"/>
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0.03 0.40 0.94 1"/>
+      <feFuncG type="table" tableValues="0.10 0.44 0.90 0.99"/>
+      <feFuncB type="table" tableValues="0.06 0.35 0.76 0.90"/>
+    </feComponentTransfer>
+  </filter>
+  <filter id="paperf" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.035 0.6" numOctaves="4" seed="7"/>
+    <feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.3  0 0 0 0 0.12  0 0 0 -1.6 1.15"/>
+  </filter>
+</svg>
+
+<div class="layer bgglow"></div>
+
+<!-- S1 : hero -->
+<div class="layer" id="s1">
+  <div class="photo"><img class="graded" id="heroimg" src="assets/peach_hero.jpg"></div>
+  <div class="lbl top" style="text-align:center">Fin de saison</div>
+  <div class="big anton" id="bigtxt">-30&#8239;<b>%</b></div>
+  <div class="sub">sur tous les fruits d’été</div>
+  <div class="pill anton">Ce week-end</div>
+</div>
+
+<!-- S2 : fruit cards -->
+<div class="layer" id="s2"></div>
+
+<!-- S3 : kraft -->
+<div class="layer" id="s3">
+  <svg class="paper" width="1080" height="1920"><rect width="1080" height="1920" filter="url(#paperf)"/></svg>
+  <div class="stack anton">
+    <div class="ln l1"><span>Samedi</span></div>
+    <div class="ln l2"><span>et dimanche</span></div>
+    <div class="ln l3"><span>matin</span></div>
+  </div>
+  <div class="polaroid" id="pol"><div class="ph"><img class="graded" src="assets/apricot_slate.jpg"></div><div class="cap">cueillis ce matin</div></div>
+  <svg class="stamp" id="stamp" viewBox="0 0 400 400">
+    <circle cx="200" cy="200" r="190" fill="#E5462B"/>
+    <circle cx="200" cy="200" r="176" fill="none" stroke="#FFF1D6" stroke-width="4"/>
+    <circle cx="200" cy="200" r="104" fill="none" stroke="#FFF1D6" stroke-width="3"/>
+    <defs><path id="ring" d="M200,200 m-140,0 a140,140 0 1,1 280,0 a140,140 0 1,1 -280,0"/></defs>
+    <text font-family="Anton" font-size="46" letter-spacing="5" fill="#FFF1D6"><textPath href="#ring" startOffset="0">JUSQU’À ÉPUISEMENT · JUSQU’À ÉPUISEMENT ·</textPath></text>
+    <text x="200" y="226" text-anchor="middle" font-family="Anton" font-size="72" fill="#FFF1D6">-30&#8239;%</text>
+  </svg>
+</div>
+
+<!-- S4 : end card -->
+<div class="layer bgglow" id="s4" style="background-color:var(--g)">
+  <div class="circle"><img class="graded" id="endimg" src="assets/nectarine.jpg"></div>
+  <div class="badge" id="endbadge" style="left:590px;top:630px;width:300px;height:300px"><div class="n anton" style="font-size:92px">-30&#8239;%</div><div class="t" style="font-size:24px">fruits d’été</div></div>
+  <div class="since" id="since">Marcel et sa fille · depuis 1998</div>
+  <div class="brand" id="brand">Aux Jardins<br>de Marcel</div>
+  <div class="cta anton" id="cta">RDV samedi dès 8&#8239;h</div>
+  <div class="addr" id="addr">42 rue de Marseille · Lyon 7<sup style="font-size:.55em;vertical-align:.5em">e</sup><small>Sam. 8&#8239;h–19&#8239;h · Dim. 8&#8239;h–13&#8239;h</small></div>
+</div>
+
+<!-- S1b : loop return, identical to frame 0 -->
+<div class="layer bgglow" id="s1b">
+  <div class="photo"><img class="graded" src="assets/peach_hero.jpg"></div>
+  <div class="lbl top" style="text-align:center">Fin de saison</div>
+  <div class="big anton">-30&#8239;<b>%</b></div>
+  <div class="sub">sur tous les fruits d’été</div>
+  <div class="pill anton">Ce week-end</div>
+</div>
+
+<div class="layer" id="vig"></div>
+<div class="layer" id="grain"></div>
+<div class="layer" id="flash"></div>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../lib/klipt-kit.js"></script>
+<script>
+const cards = [
+  {name:'PÊCHES',     img:'assets/peaches_tree.jpg',   pos:'50% 45%', t:2.10, d:0.55, o:'50% 50%'},
+  {name:'ABRICOTS',   img:'assets/apricot_market.jpg', pos:'50% 50%', t:2.65, d:0.50, o:'40% 60%'},
+  {name:'MELONS',     img:'assets/melon.jpg',          pos:'50% 42%', t:3.15, d:0.45, o:'55% 45%'},
+  {name:'NECTARINES', img:'assets/nectarine.jpg',      pos:'50% 50%', t:3.60, d:0.45, o:'50% 50%'},
+  {name:'PRUNES',     img:'assets/plums.jpg',          pos:'50% 50%', t:4.05, d:1.0, o:'50% 40%'},
+];
+const s2 = document.getElementById('s2');
+cards.forEach((c,i)=>{
+  const el = document.createElement('div'); el.className='card'; el.id='c'+i;
+  el.innerHTML = `<div class="win"><img class="graded" src="${c.img}" style="object-position:${c.pos}"></div>
+   <div class="lbl" style="left:64px;top:236px">Fin de saison</div>
+   <div class="cnt anton">${i+1}<i> / </i>5</div>
+   <div class="name anton"><span>${c.name}</span></div>`;
+  s2.appendChild(el);
+});
+const bd = document.createElement('div'); bd.className='badge'; bd.id='badge'; bd.style.left='690px'; bd.style.top='400px';
+bd.innerHTML = '<div class="n anton">-30&#8239;%</div><div class="t">fruits d’été</div>';
+s2.appendChild(bd);
+
+// grain tiles (deterministic)
+const rnd = KK.rng(42);
+const gc = document.createElement('canvas'); gc.width = gc.height = 512;
+const gx = gc.getContext('2d'), id = gx.createImageData(512,512);
+for (let i=0;i<id.data.length;i+=4){ const v = 90+Math.floor(rnd()*140); id.data[i]=id.data[i+1]=id.data[i+2]=v; id.data[i+3]=255; }
+gx.putImageData(id,0,0);
+document.getElementById('grain').style.backgroundImage = `url(${gc.toDataURL()})`;
+
+let tl = null;
+const ready = (async () => {
+  await Promise.all(['400 40px Anton','600 40px Fraunces','900 40px Fraunces','italic 900 40px Fraunces','italic 600 40px Fraunces'].map(f=>document.fonts.load(f)));
+  await document.fonts.ready;
+  await Promise.all([...document.images].map(im=>im.decode().catch(()=>{})));
+
+  // fit names to width
+  document.querySelectorAll('.name').forEach(n=>{
+    const sp = n.firstElementChild; let fs = 330; n.style.fontSize = fs+'px';
+    const w = sp.getBoundingClientRect().width; if (w > 940) n.style.fontSize = Math.floor(fs*940/w)+'px';
+    n.style.lineHeight = '1';
+  });
+
+  document.querySelectorAll('.big').forEach(n=>{
+    n.style.width='auto'; n.style.whiteSpace='nowrap'; const w=n.getBoundingClientRect().width;
+    n.style.width='1080px'; n.style.fontSize=Math.floor(365*Math.min(1,930/w))+'px'; });
+  tl = gsap.timeline({paused:true});
+  const E = 'expo.out';
+  // ---------- S1 ----------
+  tl.fromTo('#heroimg',{scale:1,y:0},{scale:1.08,y:-20,duration:2.1,ease:'none'},0);
+  tl.fromTo('#bigtxt',{scale:1.06},{scale:1,duration:0.35,ease:E},0);
+  tl.set('#s1',{visibility:'hidden'},2.1);
+  // ---------- S2 ----------
+  tl.set('#s2',{visibility:'hidden'},0).set('#s2',{visibility:'visible'},2.1);
+  cards.forEach((c,i)=>{
+    const sel='#c'+i, end=c.t+c.d;
+    tl.set(sel,{visibility:'hidden'},0).set(sel,{visibility:'visible'},c.t).set(sel,{visibility:'hidden'},end);
+    tl.fromTo(sel+' img',{scale:1.22,transformOrigin:c.o},{scale:1.04,duration:c.d+0.05,ease:'power3.out'},c.t);
+    tl.fromTo(sel+' .name span',{y:70,scale:1.08},{y:0,scale:1,duration:0.26,ease:E},c.t);
+    tl.fromTo(sel+' .name',{clipPath:'inset(-40% 0 100% 0)'},{clipPath:'inset(-40% 0 -10% 0)',duration:0.22,ease:E},c.t);
+  });
+  tl.fromTo('#c4 img',{scale:1.04},{scale:1.1,duration:0.5,ease:'none',immediateRender:false},4.55);
+  // badge stamp in, then swell into kraft
+  tl.fromTo('#badge',{scale:1.9,rotation:-22,opacity:0},{scale:1,rotation:-8,opacity:1,duration:0.3,ease:'back.out(1.6)'},2.1);
+  tl.to('#badge',{rotation:-4,duration:2.2,ease:'none'},2.4);
+  tl.to('#badge',{scale:1.15,duration:0.2,ease:'power2.in'},4.4);
+  // iris: S3 revealed from the badge
+  tl.set('#s3',{visibility:'hidden'},0).set('#s3',{visibility:'visible'},4.6);
+  const iris = {r:0};
+  tl.fromTo('#s3',{clipPath:'circle(0px at 855px 565px)'},{clipPath:'circle(2300px at 855px 565px)',duration:0.5,ease:'power3.inOut',immediateRender:false},4.6);
+  tl.set('#s2',{visibility:'hidden'},5.15);
+  // ---------- S3 ----------
+  const ls = ['.l1 span','.l2 span','.l3 span'];
+  ls.forEach((s,i)=>{
+    tl.fromTo('#s3 '+s,{yPercent:105},{yPercent:0,duration:0.32,ease:E},4.95+i*0.11);
+  });
+  tl.fromTo('#pol',{y:900,rotation:14},{y:0,rotation:5,duration:0.6,ease:'expo.out'},5.15);
+  tl.fromTo('#stamp',{scale:2.4,rotation:-40,opacity:0},{scale:1,rotation:-12,opacity:1,duration:0.28,ease:'back.out(1.4)'},5.75);
+  tl.to('#stamp',{rotation:-8,duration:1.2,ease:'none'},6.03);
+  tl.to('#pol',{y:-14,duration:1.6,ease:'none'},5.75);
+  tl.fromTo('#s3 .stack',{scale:1.015},{scale:1,duration:2.2,ease:'none',transformOrigin:'0 0'},4.8);
+  // push S3 up / S4 in
+  tl.set('#s4',{visibility:'hidden'},0).set('#s4',{visibility:'visible'},6.9);
+  tl.fromTo('#s4',{y:1920},{y:0,duration:0.5,ease:'expo.inOut',immediateRender:false},6.9);
+  tl.fromTo('#s3',{y:0},{y:-760,duration:0.5,ease:'expo.inOut',immediateRender:false},6.9);
+  tl.set('#s3',{visibility:'hidden'},7.42);
+  // ---------- S4 ----------
+  tl.fromTo('#endimg',{scale:1.15},{scale:1.02,duration:2.6,ease:'power2.out'},6.95);
+  tl.fromTo('#endbadge',{scale:0,rotation:-25},{scale:1,rotation:-8,duration:0.4,ease:'back.out(1.7)'},7.25);
+  tl.fromTo('#since',{y:40,opacity:0},{y:0,opacity:1,duration:0.45,ease:E},7.25);
+  tl.fromTo('#brand',{y:60,opacity:0},{y:0,opacity:1,duration:0.6,ease:E},7.3);
+  tl.fromTo('#cta',{y:50,opacity:0,scale:.9},{y:0,opacity:1,scale:1,duration:0.5,ease:E},7.55);
+  tl.fromTo('#addr',{y:40,opacity:0},{y:0,opacity:1,duration:0.5,ease:E},7.75);
+  tl.to('#cta',{scale:1.04,duration:0.5,yoyo:true,repeat:3,ease:'sine.inOut',transformOrigin:'50% 50%'},8.3);
+  tl.set('#s4',{visibility:'hidden'},9.62);
+  // ---------- loop back to frame 0 ----------
+  tl.set('#s1b',{visibility:'hidden'},0).set('#s1b',{visibility:'visible'},9.5);
+  tl.fromTo('#s1b',{scale:1.2,opacity:0},{scale:1,opacity:1,duration:0.28,ease:E,immediateRender:false},9.5);
+  tl.fromTo('#flash',{opacity:0.85},{opacity:0,duration:0.3,ease:'power2.out',immediateRender:false},9.5);
+  // match frame-0 state for hero
+  tl.set('#s1',{visibility:'visible'},0);
+  tl.set('#s1',{visibility:'hidden'},2.1);
+  tl.duration(10);
+  return true;
+})();
+
+window.KLIPT = {
+  width:1080, height:1920, fps:30, duration:10, poster:0.4,
+  ready,
+  render(t){
+    if(!tl) return;
+    tl.seek(t,false);
+    const f = Math.floor(t*12);
+    const r = KK.rng(f*977+13);
+    const gr = document.getElementById('grain');
+    gr.style.backgroundPosition = `${Math.floor(r()*512)}px ${Math.floor(r()*512)}px`;
+  }
+};
+</script>
+</body>
+</html>

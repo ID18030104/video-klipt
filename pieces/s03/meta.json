@@ -1,0 +1,47 @@
+{
+ "id": "s03",
+ "brand": "Casa Almar",
+ "sector": "Boutique hotel",
+ "kind": "post",
+ "format": "1080x1350",
+ "duration": null,
+ "slides": 1,
+ "title": "Summer opens 15 May",
+ "concept": "A single arched window, like a whitewashed Alentejo doorway, opens onto the estuary where a terracotta-sailed boat catches the last light; the date is set as monumental serif numerals beside it, like a page in a slow-living magazine. The perk (the sunset boat trip) is the picture itself, so the offer is seen before it is read.",
+ "techniques": [
+  "html-css",
+  "mix-blend-mode grade",
+  "svg-feTurbulence grain",
+  "clip arch mask",
+  "photo retouch (PIL)"
+ ],
+ "fonts": [
+  "Instrument Serif",
+  "Figtree"
+ ],
+ "palette": [
+  "#F1E9DA",
+  "#D9C7A6",
+  "#B4532F",
+  "#1E2A2C"
+ ],
+ "copy_language": "en",
+ "tier": "S",
+ "style": "Kinfolk / slow living x editorial serif (ivory paper, arch photo window, tracked caps)",
+ "attention_mechanics": [
+  "giant bold number '15' as first read (C1)",
+  "exclusivity perk for direct bookers (C24)"
+ ],
+ "credits": [
+  {
+   "file": "schooner.jpg",
+   "source": "Open Images (Flickr)",
+   "image_id": "ab2caef9dd386007",
+   "title": "red sails",
+   "author": "liz west",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/calliope/3812212733"
+  }
+ ]
+}

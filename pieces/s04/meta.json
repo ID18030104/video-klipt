@@ -1,0 +1,48 @@
+{
+ "id": "s04",
+ "brand": "Nexus Arena",
+ "sector": "Salle esport / gaming",
+ "kind": "post",
+ "format": "1080x1350",
+ "duration": null,
+ "slides": 1,
+ "title": "Nexus Cup #4 — annonce du tournoi",
+ "concept": "Le poster est un écran de finale : titre, cashprize, bracket 32→1, stat bar et bouton d’inscription comme un overlay de diffusion. Un casque détouré et passé en gradient map navy→volt, posé sur une dalle volt inclinée, est le seul objet réel ; le titre passe du blanc au noir en traversant la dalle.",
+ "techniques": [
+  "html-css",
+  "svg-grain",
+  "gradient-map cutout (PIL flood-fill mask)",
+  "mix of layered clip (dual-colour title)",
+  "open-images-photo"
+ ],
+ "fonts": [
+  "Big Shoulders Display",
+  "JetBrains Mono"
+ ],
+ "palette": [
+  "#0A0C11",
+  "#D6FF3F",
+  "#FF3B5C",
+  "#F3F5F9",
+  "#12151D"
+ ],
+ "copy_language": "fr",
+ "tier": "A",
+ "style": "Esports broadcast × neo-grotesk poster (finale overlay, volt slab)",
+ "attention_mechanics": [
+  "bold number: 2 000 € at 300 px",
+  "scarcity: 32 équipes + avant le 10 avril"
+ ],
+ "credits": [
+  {
+   "file": "hp2.jpg (cut out and gradient-mapped → headset.png)",
+   "source": "Open Images (Flickr)",
+   "image_id": "4879a8d9c8942d4f",
+   "title": "headphones",
+   "author": "Max",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://www.flickr.com/photos/bitninja/18222952"
+  }
+ ]
+}
