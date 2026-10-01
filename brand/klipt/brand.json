@@ -1,1 +1,19 @@
-{"name":"Klipt","palette":{"ink":"#0E1320","paper":"#F4F1EA","lime":"#D4F54A","coral":"#FF5A36"},"font":"Bricolage Grotesque 800","logo":["logo-dark.png","logo-light.png"]}
+{
+ "name": "Klipt",
+ "source": "https://www.klipt-ai.com (logo SVG /brand/klipt-mark-aurore.svg, site CSS tokens), read 2026-10-01",
+ "tagline": "All your social content. Agency quality. Automatic.",
+ "url": "klipt-ai.com",
+ "logo": {
+  "mark": "klipt-mark-aurore.svg — rounded bar #1B1830 + play triangle with the 'aurore' gradient #2456F0 → #E60A34 (top-left to bottom-right)",
+  "wordmark": "'Klipt' in Bricolage Grotesque 700, letter-spacing -0.03em, colour ink #211C2E, mark left of the word, gap ≈ 0.45 × mark height",
+  "files": ["logo-light.png (on cream)", "logo-dark.png (on ink, bar turned cream)", "mark.png"]
+ },
+ "colors": {
+  "bg": "#FAF7F3", "bg-2": "#F4F0EA", "surface": "#FFFFFF",
+  "ink": "#211C2E", "ink-soft": "#5C566E", "mark-bar": "#1B1830",
+  "indigo": "#2456F0", "violet": "#6D28D2", "red": "#E60A34", "coral-500": "#C10024", "pink": "#F65C9A", "sky": "#7DD3FC", "amber": "#FFC24B"
+ },
+ "gradients": {"aurore": "linear #2456F0 → #E60A34 (via #6D28D2 in headlines)", "background glows": "soft blurred indigo, violet and coral blooms on the cream background"},
+ "fonts": {"display": "Bricolage Grotesque 600–700", "text": "Inter 400–600"},
+ "look": "light, warm cream canvas, soft aurora glows, crisp ink type, one gradient word per headline, red primary buttons"
+}
