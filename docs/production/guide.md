@@ -1,6 +1,6 @@
 # Klipt — guide de production
 
-Ce fichier rassemble tout ce qui a été construit et mesuré pour produire le contenu Klipt (vidéos 10–30 s, posts, carrousels, stories) avec des agents Claude, et tout ce qu'il faut pour le mettre en production : l'architecture, les modes de production et quand les utiliser, les coûts réels mesurés, l'infrastructure, la sécurité et les licences, puis **en annexe le texte intégral des prompts, du catalogue de décisions, du contrat de rendu et du code des outils**. Le fichier est autonome : on peut reconstruire la chaîne à partir de lui seul.
+Ce fichier rassemble tout ce qui a été construit et mesuré pour produire le contenu Klipt (vidéos 10–30 s, posts, carrousels, stories) avec des agents Claude, et tout ce qu'il faut pour le mettre en production : l'architecture, les modes de production et quand les utiliser, les coûts réels mesurés, l'infrastructure, la sécurité et les licences, puis **en annexe le texte intégral des prompts, du contrat de rendu, du catalogue de décisions, du guide de prompt Kling et du code des outils**. Le fichier est autonome : on peut reconstruire la chaîne à partir de lui seul.
 
 > Fichier généré par `python3 tools/build_production_doc.py` à partir de `docs/production/guide.md` et des sources du dépôt. Les fichiers du dépôt restent la référence : si tu modifies un prompt ou un outil, relance le script pour régénérer ce document.
 
@@ -24,6 +24,7 @@ Ce fichier rassemble tout ce qui a été construit et mesuré pour produire le c
 | Petite vidéo promo (niveau B : soldes, horaires, plat du jour) | **Hybride 1 image** : image animée + couche Claude | Sonnet 5.5 | **≈ 0,83 $** | ≈ 6 min |
 | Vidéo 15 s avec vraies images en mouvement (Reel, pub locale, lancement) | **Hybride clip vidéo** : 3 images → Hailuo 2.3 + couche Claude | Sonnet 5.5 + Higgsfield | **≈ 0,94 $** (rush 0,27 $ + Claude 0,68 $) | ≈ 17 min + génération |
 | Film SaaS, lancement, interface produit, datavisualisation (niveaux S/S+) | **Studio optimisé** : 100 % code + photos libres | Sonnet 5.5 (Opus 5.5 pour les pièces vitrines) | 1,26–2,94 $ (vidéo), 0,40–0,60 $ (post) | 4–30 min |
+| **Générique Klipt de début / de fin** (5 s, à coller avant et après chaque vidéo) | **Kling seul** : Kling O3 « première / dernière image » avec le vrai logo en image clé, son natif | aucun agent créatif | **0,70 $** par générique (0,56 $ en std) | 2–5 min de génération |
 | Déclinaisons en volume, tests A/B d'accroches | **Higgsfield seul** (Marketing Studio avec texte) + contrôle du texte | aucun agent créatif | 0,02–0,07 $ | 20–40 s |
 
 **Les décisions qui comptent :**
@@ -32,7 +33,9 @@ Ce fichier rassemble tout ce qui a été construit et mesuré pour produire le c
 3. **Pas de pipeline multi-agents** (directeur artistique puis exécutant, ou critique puis correction) : plus cher et pas meilleur qu'un seul agent bien briefé.
 4. **Les règles d'efficacité divisent le coût par 2 à 3** à qualité égale, et c'est ce qui coûte le plus. Le coût vient du nombre d'allers-retours (chaque appel relit tout le contexte) et des images ouvertes, pas de la créativité.
 5. **L'hybride est le meilleur rapport qualité/prix** : l'IA fournit la photo (lumière, matières, personnes), Claude fournit tout ce qui doit être exact.
-6. **Contrôle qualité automatique obligatoire** (`render.mjs qa`) : il détecte les défauts qui faisaient perdre des points (première image vide, texte coupé, texte trop petit, zones de sécurité 9:16).
+6. **Vidéo IA : Kling 3.0 est le modèle retenu.** On peut le prompter plan par plan (`docs/KLING_PROMPTING.md`). Pour un générique ou toute vidéo qui doit finir pile sur le logo, on lui fournit des images clés exactes (Kling O3, première et dernière image) : le rendu final est fidèle au pixel près, sans aucune couche Claude.
+7. **Une vidéo IA a besoin d'un concept, pas d'un collage.** Assembler des plans sans rapport et poser du texte dessus ne fait pas une présentation (retour sur le film v03, § 6.7).
+8. **Contrôle qualité automatique obligatoire** (`render.mjs qa`) : il détecte les défauts qui faisaient perdre des points (première image vide, texte coupé, texte trop petit, zones de sécurité 9:16).
 
 ---
 
@@ -217,7 +220,22 @@ Avec une image de référence, compter environ +0,013 $.
 - **Leviers mesurés** : moins d'allers-retours (planifier et écrire d'un seul tenant, enchaîner les commandes), images plus petites et moins nombreuses (planches contact, `--w 540`), une seule boucle de contrôle qualité, un budget de 15 appels pour un post et 25 pour une vidéo. Résultat : **−33 % en moyenne, jusqu'à −67 % sur les posts**, pour une qualité comparable (jugée par moi, pas par des juges à l'aveugle).
 - **Comparaison avec un autre modèle** : GPT-6.1 Sol (2 $ / 10 $, 0,10 $ en cache) reviendrait environ 27 % moins cher en simulation sur un post, mais exigerait un autre moteur d'agent. Ce n'est pas testé en qualité.
 
-### 4.4 Mesurer le coût en production
+### 4.4 Le coût d'orchestration
+Ce qu'on a mesuré pendant les tests vidéo (session principale Opus 5.5, `tools/session_cost.py`) :
+
+| Travail d'orchestration | Coût |
+|---|---|
+| Outillage fait une fois (son dans le moteur, bruitages, guide Kling) | 2,38 $ |
+| Orchestrer une vidéo (brief, lancement, vérification, calcul des coûts) | 0,67 $ |
+| Génériques : lire le site, refaire le kit de marque, préparer les images clés, prompts, vérification | 6,09 $, dont ≈ 3,20 $ de réécriture du cache après plus de 2 h de pause |
+
+**Pourquoi c'est cher :**
+- c'est une conversation très longue, donc chaque appel relit environ 400 000 tokens ;
+- après une pause de plus d'une heure, le cache expire et tout l'historique est réécrit.
+
+**En production, l'orchestration doit être un script** (brief → agent → rendu → contrôle), qui coûte 0 $. Seuls l'agent créatif et la génération Higgsfield se paient. Pour une vidéo comme v03, cela fait 2,38 $ : 1,04 $ de clip et 1,34 $ d'agent.
+
+### 4.5 Mesurer le coût en production
 Il faut journaliser pour chaque pièce les tokens d'entrée, de cache lu, de cache écrit et de sortie, le nombre d'appels, la durée et le coût de l'image ou du clip IA (`<fichier>.json` écrit par les outils Higgsfield). L'outil de benchmark `tools/bench_costs.py` fait ce calcul à partir des transcripts. En production, on lit directement le champ `usage` renvoyé par l'API, ou le coût total fourni par le moteur d'agent (§ 5.3).
 
 ---
@@ -233,7 +251,10 @@ Il faut journaliser pour chaque pièce les tokens d'entrée, de cache lu, de cac
 | Images IA | `tools/higgsfield_image.py`, `tools/higgsfield_video.py`, `tools/higgsfield_upload.py`, `tools/hf_ledger.py` | génération, téléversement de la charte, garde-fou de budget |
 | Photos libres | `tools/openimages.py`, `tools/pexels.py` | recherche, planche contact, téléchargement, crédits |
 | Polices | `tools/gfont.py` + paquets `@fontsource/*` | polices locales (le rendu est hors ligne) |
-| Kit de marque | `brand/klipt/` (logos, `brand.json`) | modèle pour les kits de chaque client |
+| Kit de marque | `brand/klipt/` (logo SVG officiel, PNG clair et foncé, symbole seul, `brand.json`, source HTML) | vraie charte Klipt (klipt-ai.com) et modèle de kit pour chaque client |
+| Son | `tools/sfx.py` + `KLIPT.audio` dans `tools/render.mjs` | bruitages et musique de fond synthétisés, mixage dans le MP4 |
+| Clips IA | `tools/clip_frames.py`, `docs/KLING_PROMPTING.md` | découper un clip en images pour la couche Claude ; écrire de bons prompts Kling |
+| Génériques | `pieces/j01/` (images clés, prompts, 4 vidéos) | début et fin de chaque vidéo Klipt |
 | Exemples | `pieces/<id>/` | bibliothèque d'exemples du site (§ 8) |
 
 **Ce qui ne va pas en production** (outils d'évaluation) : `bench/`, `tools/metrics.py`, `analyze.py`, `collect_judgments.py`, `build_gallery.py` et les skills `klipt-craft` et `taste-express`, non retenus.
@@ -298,7 +319,7 @@ Plus le brief est précis (offre, preuves chiffrées, adresse, horaires, public,
 
 ---
 
-## 6. Vidéo IA à moins de 2 $ pour 15 s
+## 6. Vidéo IA : modèles, Kling, montages, son et génériques
 
 @@VIDEO_SECTION@@
 
@@ -317,16 +338,25 @@ Plus le brief est précis (offre, preuves chiffrées, adresse, horaires, public,
   - un inconnu penserait-il qu'une agence l'a fait ?
 - **Relecture humaine** avant envoi au client, ou un juge Sonnet (environ 0,11 $ par pièce) qui note sur les 9 critères du banc et liste les défauts.
 
-### 7.2 Secrets
+### 7.2 Charte de marque : toujours la source officielle
+Pendant les premiers tests, un « logo Klipt » avait été **inventé** (carré lime, point corail, palette encre et lime). Il était faux. La vraie charte vient de **klipt-ai.com** :
+- **symbole** `klipt-mark-aurore.svg` : barre arrondie #1B1830 et triangle « play » en dégradé #2456F0 → #E60A34 ;
+- **nom** « Klipt » en Bricolage Grotesque 700 (approche −0,03 em), couleur #211C2E ;
+- **fond** crème #FAF7F3 avec des halos flous indigo, violet et corail ;
+- **texte courant** en Inter.
+
+Elle est rangée dans `brand/klipt/`. L'ancien kit inventé est gardé à part dans `brand/klipt-invented-old/` et ne doit plus servir. Les pièces produites avant cette correction (k*, p*, s*, o*, h*, v01–v03) ne portent pas le logo Klipt, ou portent le faux : à vérifier avant de les montrer. **Règle pour tous les clients** : le kit vient du site ou des fichiers fournis (SVG, CSS du site), jamais d'une supposition.
+
+### 7.3 Secrets
 - Les clés Higgsfield et Pexels **ne sont jamais dans le dépôt, qui est public**. Elles sont stockées hors dépôt (`/root/klipt-state/`) ou passées par variable d'environnement (`HF_KEY`, `PEXELS_API_KEY`) ; en production, utiliser un gestionnaire de secrets.
 - Les deux clés ont circulé dans une conversation : **il faut les renouveler** avant la mise en production.
 
-### 7.3 Budget
+### 7.4 Budget
 - Tous les appels payants passent par `tools/hf_ledger.py`.
 - **Estimation gratuite** avant chaque appel, **réservation sous verrou de fichier** (sûre même avec plusieurs agents en parallèle), **remboursement** si la génération échoue (Higgsfield ne facture pas les échecs). En production, remplacer le fichier par une ligne en base par client ou par projet.
 - Les agents n'ont droit qu'à **un seul appel de génération par pièce, sans relance automatique**.
 
-### 7.4 Droits et mentions
+### 7.5 Droits et mentions
 - **Open Images** : photos Flickr sous licence CC BY 2.0, usage commercial autorisé **avec crédit de l'auteur**. Les crédits sont écrits automatiquement dans `assets/CREDITS.json` et `meta.json` ; il faut les publier (légende, page crédits du site).
 - **Pexels** : licence Pexels, usage commercial libre sans crédit obligatoire. Pas de revente de la photo seule, et pas de personnes identifiables mises dans un contexte dégradant.
 - **Polices** : Google Fonts et @fontsource sont sous licence OFL, utilisables commercialement.
@@ -368,16 +398,21 @@ Et les séries plus récentes, produites après ce banc (non notées à l'aveugl
 | Studio optimisé | o01 à o05 (mêmes briefs) |
 | Hybride | h02 primeur vidéo, h03 Casa Almar, h04 Nexus Arena, h05 Relai LinkedIn, **v02 Maison Brune (vidéo 15 s, Hailuo + couche Claude, la meilleure vidéo à ce jour)**, v01 Maison Brune (Kling 3.0) |
 
+**Génériques Klipt (vrai logo, 100 % Kling, avec le son)** : `pieces/j01/intro-a.mp4`, `intro-b.mp4` (début), `outro-a.mp4`, `outro-b.mp4` (fin), 5 s chacun en 1080×1920.
+
 La galerie interactive (vidéos, notes, défauts, coûts) est en ligne : https://claude.ai/artifact/Hsg5U2GQQHs7LmC6skCEQ2. Elle ne contient pas encore les séries o et h.
 
 ---
 
 ## 9. Feuille de route
-1. **Renouveler les clés** Higgsfield et Pexels.
-2. **Prompt hybride** : ajouter la règle des niveaux B et C (« l'offre lisible dès la première image ») et le mode clip vidéo du § 6.
-3. **Faire de l'hybride le mode par défaut** pour les posts et les promos, et garder le Studio optimisé pour le SaaS et les niveaux S.
-4. **Contrôle du texte** pour le mode Higgsfield seul : relecture par un modèle de vision avant publication.
-5. **Kits de marque clients** (logo, palette, polices) passés systématiquement à l'agent.
-6. **Journal des coûts** par pièce en base, et budget Higgsfield par client dans le registre.
-7. **Juge automatique** (Sonnet, environ 0,11 $) en fin de chaîne pour filtrer les pièces sous 7/10.
-8. Tester l'effort `medium` sur les niveaux B et C (gain de coût probable), et Opus 5.5 uniquement sur les niveaux S+.
+1. **Choisir les génériques** (j01) et les décliner en 1:1 et 16:9 (environ 0,70 $ chacun, mêmes images clés recadrées). Remonter le niveau sonore si besoin : il est bas à la sortie de Kling, entre −20 et −25 dB en moyenne.
+2. **Renouveler les clés** Higgsfield et Pexels.
+3. **Refaire les exemples du site avec la vraie charte** quand ils montrent Klipt, en vérifiant chaque pièce (§ 7.2).
+4. **Faire de l'hybride le mode par défaut** pour les posts et les promos, et garder le Studio optimisé pour le SaaS et les niveaux S.
+5. **Vidéos de présentation en Kling seul** : un concept unique et des images clés de marque plutôt qu'un collage (§ 6.7–6.8).
+6. **Musique** : remplacer la musique synthétisée par une bibliothèque libre pour usage commercial, et faire valider chaque son à l'oreille par un humain.
+7. **Contrôle du texte** pour le mode Higgsfield seul : relecture par un modèle de vision avant publication.
+8. **Kits de marque clients** (logo, palette, polices) récupérés sur le site du client et passés systématiquement à l'agent.
+9. **Orchestration par script**, journal des coûts par pièce en base, et budget Higgsfield par client dans le registre.
+10. **Juge automatique** (Sonnet, environ 0,11 $) en fin de chaîne pour filtrer les pièces sous 7/10.
+11. Tester l'effort `medium` sur les niveaux B et C (gain de coût probable), et Opus 5.5 uniquement sur les niveaux S+.

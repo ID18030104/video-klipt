@@ -25,6 +25,8 @@ PROMPTS = [
      "Ce que toute page doit respecter pour être rendue par `tools/render.mjs`. L'agent le lit en premier."),
     ('D', 'Catalogue de décisions créatives', 'docs/STUDIO_CATALOGUE.md',
      "Niveaux d'ambition, structures narratives, mécaniques d'attention, styles, traitements d'image, typographie, couleur, caméra, transitions, formats."),
+    ('E', 'Guide de prompt Kling', 'docs/KLING_PROMPTING.md',
+     "Comment écrire les prompts Kling 3.0 (bible de style, plans, son, ce qu'il faut éviter) pour des rushs utilisables."),
 ]
 CODE = [
     ('tools/render.mjs', 'js', 'Moteur de rendu : vidéo, images fixes, image unique, contrôle qualité. Chromium via playwright-core + ffmpeg.'),
@@ -35,8 +37,13 @@ CODE = [
     ('tools/higgsfield_upload.py', 'python', 'Téléverse un fichier local (logo, image) et renvoie son URL publique.'),
     ('tools/openimages.py', 'python', 'Photos libres Open Images (CC BY 2.0) : labels, recherche avec planche contact, téléchargement et crédits.'),
     ('tools/pexels.py', 'python', 'Photos et vidéos Pexels : recherche, originaux 4K, découpe d\'un clip en séquence d\'images.'),
+    ('tools/clip_frames.py', 'python', 'Découpe un clip IA en séquence d\'images pour la couche Claude.'),
+    ('tools/sfx.py', 'python', 'Bruitages et musique de fond synthétisés (WAV), à mixer avec KLIPT.audio.'),
+    ('tools/session_cost.py', 'python', 'Coût API de la session d\'orchestration entre deux dates, à partir de son transcript.'),
     ('tools/gfont.py', 'python', 'Télécharge une Google Font en local (le rendu est hors ligne).'),
-    ('brand/klipt/brand.json', 'json', 'Modèle de kit de marque.'),
+    ('brand/klipt/brand.json', 'json', 'Charte officielle Klipt (klipt-ai.com) : couleurs, polices, logo.'),
+    ('brand/klipt/klipt-mark-aurore.svg', 'xml', 'Symbole officiel Klipt (SVG du site).'),
+    ('pieces/j01/jobs.json', 'json', 'Les 4 requêtes Kling O3 des génériques (prompts, images clés, réglages).'),
     ('package.json', 'json', 'Dépendances Node du moteur de rendu.'),
 ]
 
@@ -44,7 +51,7 @@ guide = rd('docs/production/guide.md').replace('@@VIDEO_SECTION@@', rd('docs/pro
 parts = [guide, '\n---\n\n# Annexes\n']
 for letter, title, path, note in PROMPTS:
     parts.append(f'\n## Annexe {letter} — {title}\n\nSource : `{path}`. {note}\n\n' + demote(rd(path).strip()) + '\n')
-parts.append('\n## Annexe E — Code des outils de production\n\nTexte intégral des fichiers. Les clés d\'API ne sont jamais dans le code : variables d\'environnement ou `/root/klipt-state/`.\n')
+parts.append('\n## Annexe F — Code des outils de production\n\nTexte intégral des fichiers. Les clés d\'API ne sont jamais dans le code : variables d\'environnement ou `/root/klipt-state/`.\n')
 for path, lang, note in CODE:
     parts.append(f'\n### `{path}`\n\n{note}\n\n````{lang}\n{rd(path).rstrip()}\n````\n')
 out = os.path.join(ROOT, 'docs/KLIPT_PRODUCTION.md')

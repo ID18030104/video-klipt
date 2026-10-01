@@ -1,6 +1,6 @@
 # Klipt — guide de production
 
-Ce fichier rassemble tout ce qui a été construit et mesuré pour produire le contenu Klipt (vidéos 10–30 s, posts, carrousels, stories) avec des agents Claude, et tout ce qu'il faut pour le mettre en production : l'architecture, les modes de production et quand les utiliser, les coûts réels mesurés, l'infrastructure, la sécurité et les licences, puis **en annexe le texte intégral des prompts, du catalogue de décisions, du contrat de rendu et du code des outils**. Le fichier est autonome : on peut reconstruire la chaîne à partir de lui seul.
+Ce fichier rassemble tout ce qui a été construit et mesuré pour produire le contenu Klipt (vidéos 10–30 s, posts, carrousels, stories) avec des agents Claude, et tout ce qu'il faut pour le mettre en production : l'architecture, les modes de production et quand les utiliser, les coûts réels mesurés, l'infrastructure, la sécurité et les licences, puis **en annexe le texte intégral des prompts, du contrat de rendu, du catalogue de décisions, du guide de prompt Kling et du code des outils**. Le fichier est autonome : on peut reconstruire la chaîne à partir de lui seul.
 
 > Fichier généré par `python3 tools/build_production_doc.py` à partir de `docs/production/guide.md` et des sources du dépôt. Les fichiers du dépôt restent la référence : si tu modifies un prompt ou un outil, relance le script pour régénérer ce document.
 
@@ -24,6 +24,7 @@ Ce fichier rassemble tout ce qui a été construit et mesuré pour produire le c
 | Petite vidéo promo (niveau B : soldes, horaires, plat du jour) | **Hybride 1 image** : image animée + couche Claude | Sonnet 5.5 | **≈ 0,83 $** | ≈ 6 min |
 | Vidéo 15 s avec vraies images en mouvement (Reel, pub locale, lancement) | **Hybride clip vidéo** : 3 images → Hailuo 2.3 + couche Claude | Sonnet 5.5 + Higgsfield | **≈ 0,94 $** (rush 0,27 $ + Claude 0,68 $) | ≈ 17 min + génération |
 | Film SaaS, lancement, interface produit, datavisualisation (niveaux S/S+) | **Studio optimisé** : 100 % code + photos libres | Sonnet 5.5 (Opus 5.5 pour les pièces vitrines) | 1,26–2,94 $ (vidéo), 0,40–0,60 $ (post) | 4–30 min |
+| **Générique Klipt de début / de fin** (5 s, à coller avant et après chaque vidéo) | **Kling seul** : Kling O3 « première / dernière image » avec le vrai logo en image clé, son natif | aucun agent créatif | **0,70 $** par générique (0,56 $ en std) | 2–5 min de génération |
 | Déclinaisons en volume, tests A/B d'accroches | **Higgsfield seul** (Marketing Studio avec texte) + contrôle du texte | aucun agent créatif | 0,02–0,07 $ | 20–40 s |
 
 **Les décisions qui comptent :**
@@ -32,7 +33,9 @@ Ce fichier rassemble tout ce qui a été construit et mesuré pour produire le c
 3. **Pas de pipeline multi-agents** (directeur artistique puis exécutant, ou critique puis correction) : plus cher et pas meilleur qu'un seul agent bien briefé.
 4. **Les règles d'efficacité divisent le coût par 2 à 3** à qualité égale, et c'est ce qui coûte le plus. Le coût vient du nombre d'allers-retours (chaque appel relit tout le contexte) et des images ouvertes, pas de la créativité.
 5. **L'hybride est le meilleur rapport qualité/prix** : l'IA fournit la photo (lumière, matières, personnes), Claude fournit tout ce qui doit être exact.
-6. **Contrôle qualité automatique obligatoire** (`render.mjs qa`) : il détecte les défauts qui faisaient perdre des points (première image vide, texte coupé, texte trop petit, zones de sécurité 9:16).
+6. **Vidéo IA : Kling 3.0 est le modèle retenu.** On peut le prompter plan par plan (`docs/KLING_PROMPTING.md`). Pour un générique ou toute vidéo qui doit finir pile sur le logo, on lui fournit des images clés exactes (Kling O3, première et dernière image) : le rendu final est fidèle au pixel près, sans aucune couche Claude.
+7. **Une vidéo IA a besoin d'un concept, pas d'un collage.** Assembler des plans sans rapport et poser du texte dessus ne fait pas une présentation (retour sur le film v03, § 6.7).
+8. **Contrôle qualité automatique obligatoire** (`render.mjs qa`) : il détecte les défauts qui faisaient perdre des points (première image vide, texte coupé, texte trop petit, zones de sécurité 9:16).
 
 ---
 
@@ -217,7 +220,22 @@ Avec une image de référence, compter environ +0,013 $.
 - **Leviers mesurés** : moins d'allers-retours (planifier et écrire d'un seul tenant, enchaîner les commandes), images plus petites et moins nombreuses (planches contact, `--w 540`), une seule boucle de contrôle qualité, un budget de 15 appels pour un post et 25 pour une vidéo. Résultat : **−33 % en moyenne, jusqu'à −67 % sur les posts**, pour une qualité comparable (jugée par moi, pas par des juges à l'aveugle).
 - **Comparaison avec un autre modèle** : GPT-6.1 Sol (2 $ / 10 $, 0,10 $ en cache) reviendrait environ 27 % moins cher en simulation sur un post, mais exigerait un autre moteur d'agent. Ce n'est pas testé en qualité.
 
-### 4.4 Mesurer le coût en production
+### 4.4 Le coût d'orchestration
+Ce qu'on a mesuré pendant les tests vidéo (session principale Opus 5.5, `tools/session_cost.py`) :
+
+| Travail d'orchestration | Coût |
+|---|---|
+| Outillage fait une fois (son dans le moteur, bruitages, guide Kling) | 2,38 $ |
+| Orchestrer une vidéo (brief, lancement, vérification, calcul des coûts) | 0,67 $ |
+| Génériques : lire le site, refaire le kit de marque, préparer les images clés, prompts, vérification | 6,09 $, dont ≈ 3,20 $ de réécriture du cache après plus de 2 h de pause |
+
+**Pourquoi c'est cher :**
+- c'est une conversation très longue, donc chaque appel relit environ 400 000 tokens ;
+- après une pause de plus d'une heure, le cache expire et tout l'historique est réécrit.
+
+**En production, l'orchestration doit être un script** (brief → agent → rendu → contrôle), qui coûte 0 $. Seuls l'agent créatif et la génération Higgsfield se paient. Pour une vidéo comme v03, cela fait 2,38 $ : 1,04 $ de clip et 1,34 $ d'agent.
+
+### 4.5 Mesurer le coût en production
 Il faut journaliser pour chaque pièce les tokens d'entrée, de cache lu, de cache écrit et de sortie, le nombre d'appels, la durée et le coût de l'image ou du clip IA (`<fichier>.json` écrit par les outils Higgsfield). L'outil de benchmark `tools/bench_costs.py` fait ce calcul à partir des transcripts. En production, on lit directement le champ `usage` renvoyé par l'API, ou le coût total fourni par le moteur d'agent (§ 5.3).
 
 ---
@@ -233,7 +251,10 @@ Il faut journaliser pour chaque pièce les tokens d'entrée, de cache lu, de cac
 | Images IA | `tools/higgsfield_image.py`, `tools/higgsfield_video.py`, `tools/higgsfield_upload.py`, `tools/hf_ledger.py` | génération, téléversement de la charte, garde-fou de budget |
 | Photos libres | `tools/openimages.py`, `tools/pexels.py` | recherche, planche contact, téléchargement, crédits |
 | Polices | `tools/gfont.py` + paquets `@fontsource/*` | polices locales (le rendu est hors ligne) |
-| Kit de marque | `brand/klipt/` (logos, `brand.json`) | modèle pour les kits de chaque client |
+| Kit de marque | `brand/klipt/` (logo SVG officiel, PNG clair et foncé, symbole seul, `brand.json`, source HTML) | vraie charte Klipt (klipt-ai.com) et modèle de kit pour chaque client |
+| Son | `tools/sfx.py` + `KLIPT.audio` dans `tools/render.mjs` | bruitages et musique de fond synthétisés, mixage dans le MP4 |
+| Clips IA | `tools/clip_frames.py`, `docs/KLING_PROMPTING.md` | découper un clip en images pour la couche Claude ; écrire de bons prompts Kling |
+| Génériques | `pieces/j01/` (images clés, prompts, 4 vidéos) | début et fin de chaque vidéo Klipt |
 | Exemples | `pieces/<id>/` | bibliothèque d'exemples du site (§ 8) |
 
 **Ce qui ne va pas en production** (outils d'évaluation) : `bench/`, `tools/metrics.py`, `analyze.py`, `collect_judgments.py`, `build_gallery.py` et les skills `klipt-craft` et `taste-express`, non retenus.
@@ -298,7 +319,7 @@ Plus le brief est précis (offre, preuves chiffrées, adresse, horaires, public,
 
 ---
 
-## 6. Vidéo IA à moins de 2 $ pour 15 s
+## 6. Vidéo IA : modèles, Kling, montages, son et génériques
 
 **Réponse courte : oui.** Une vidéo de 15 s finie, avec des images réelles en mouvement plus le texte et la marque exacts de Klipt, revient à **0,94 $** avec le meilleur montage testé, et à 1,47 $ avec Kling 3.0. Le rush seul coûte **0,27 $** (Hailuo 2.3, à partir de 3 images) ou **0,69 $** (Kling 3.0).
 
@@ -355,6 +376,8 @@ Il n'a fait aucune génération supplémentaire.
 Pour comparaison, le Studio optimisé sans vidéo IA (primeur, 9:16) coûte 1,26 $. L'hybride à partir d'une seule image animée coûte 0,83 $ pour 10 s, mais sans vrai mouvement.
 
 ### 6.4 Recommandation vidéo
+**Mise à jour après les tests suivants : Kling 3.0 est le modèle retenu** (bon rendu, obéit au découpage, son natif, mode première et dernière image pour les logos). Hailuo reste l'option la moins chère.
+
 1. **Par défaut : la chaîne « images → Hailuo 2.3 → couche Claude »**, environ **0,95 $ les 15 s finies**.
    - L'agent écrit d'abord le découpage (3 à 5 plans).
    - Il génère ensuite une image Marketing Studio par plan (0,02 $ chacune). On peut les valider avant d'animer, et y mettre la charte ou le produit en référence.
@@ -367,6 +390,140 @@ Pour comparaison, le Studio optimisé sans vidéo IA (primeur, 9:16) coûte 1,26
 4. **Toujours sans son** (moins cher, et la musique se choisit au montage). Interdire texte, logos et marques tierces dans le prompt, parce que les vitrines et enseignes sortent souvent en texte déformé. La couche Claude peut aussi masquer ces zones.
 5. **Côté Claude**, les 0,68–0,78 $ de la couche peuvent baisser : effort `medium`, et moins de rendus intermédiaires (un rendu final de 15 s prend environ 10 min sur ce conteneur).
 6. **Garde-fou** : un seul appel de génération par plan, pas de relance automatique, estimation gratuite avant chaque appel et réservation dans le registre de budget.
+
+### 6.5 Kling : tous les prix vérifiés (devis Higgsfield, champ `usd`, 9:16)
+**Kling** (modèle retenu) :
+
+| Endpoint | Usage | 5 s | 15 s |
+|---|---|---|---|
+| `kling-video/v3.0/std/text-to-video` | texte → vidéo, jusqu'à 6 plans (`multi_shots`) | 0,35 $ avec son | **0,69 $ sans son / 1,04 $ avec son** |
+| `kling-video/v3.0/pro/text-to-video` | même modèle, qualité « pro » | — | 0,92 $ sans son |
+| `kling-video/v3.0-turbo/image-to-video` | image de départ → vidéo, 720p | 0,31 $ | 0,92 $ (1,16 $ en 1080p) |
+| `kling-video/v3.0/4k/image-to-video` | image de départ et de fin, 4K | 1,16 $ | 3,47 $ |
+| **`kling-video/o3/first-last-frame`** | **première et dernière image imposées** (Kling 3 « Omni ») | **0,56 $ std / 0,70 $ pro, avec son** | — |
+| `kling-video/o3/image-reference` | images de référence | 0,23 $ | — |
+
+**Le son natif Kling coûte +50 %** (0,69 → 1,04 $ pour 15 s). Il produit l'ambiance et les bruitages calés sur l'image, pas de la musique.
+
+**Modèles plus haut de gamme**, non retenus pour le prix :
+
+| Modèle | Prix pour 15 s |
+|---|---|
+| Seedance 2.0 | ≈ 4,50 $ en 720p avant remise |
+| Cinema Studio 4.0 | ≈ 6,90 $ en 720p |
+| Seedance 2.5 | ≈ 6,90 $ en 720p |
+| Wan 3.0 Prime 1080p | 2,94 $ |
+| Happy Horse 1.1 1080p | 1,89 $ |
+
+Veo 3.1, FLUX 3 Video, Grok Video et Gemini Omni existent dans l'application Higgsfield, mais pas via la clé API (réponse « model_not_found »).
+
+### 6.6 Bien prompter Kling (`docs/KLING_PROMPTING.md`)
+Ce qui a le plus amélioré les clips :
+- **Une « bible de style » dans le `prompt` principal**, reprise par tous les plans :
+  - support (film 35 mm ou rendu 3D studio) ;
+  - palette nommée en couleurs précises ;
+  - casting (âge, tenue, « pas de mannequins, pas de costumes ») ;
+  - grammaire de caméra ;
+  - son ;
+  - interdits : texte, logos, enseignes, écrans lisibles.
+- **Un plan = 5 éléments dans cet ordre** :
+  1. cadrage ;
+  2. sujet avec **une seule action physique simple** ;
+  3. **un seul** mouvement de caméra ;
+  4. la lumière ;
+  5. la zone laissée vide pour le texte.
+
+  Avec le son : 2 ou 3 sons concrets par plan.
+- **`multi_shots` avec des durées par plan** (3 à 6 plans de 2 à 5 s). Les coupes tombent exactement aux durées demandées (v03 : coupes réelles à 3,0 ; 6,0 ; 9,3 et 12,9 s).
+- **`cfg_scale` 0,6–0,7** pour suivre le découpage à la lettre.
+- **À éviter**, parce que Kling les rate :
+  - tout texte lisible (vitrines, écrans, enseignes) : il sort déformé ou en miroir ;
+  - les gestes d'outil précis (grigner une miche est devenu « pousser la lame du doigt ») ;
+  - les clichés de banque d'images (cliente en tailleur) ;
+  - les mains en gros plan qui font un travail fin.
+- **Ce qu'il fait très bien** : matières en macro (farine, vapeur, tissus, cheveux), lumière, mouvements de caméra lents, petits gestes humains naturels, 3D abstraite (verre, chrome, rubans de soie).
+
+### 6.7 Film de présentation Klipt en clip + couche Claude (v03) : ce qu'il ne faut pas refaire
+**Ce qui a été fait :**
+- Kling 3.0 std, 15 s, 5 plans avec son (1,04 $) : boulangère, coiffeuse, panneaux 3D, fondateur sur un toit, faisceau de lumière.
+- Un agent Sonnet a ajouté le texte en anglais, le logo, des volets de transition et une bande-son mixée (ambiance Kling, musique synthétisée, bruitages), pour 1,34 $.
+- **Total : 2,38 $** de création.
+
+**Verdict du client : raté.**
+- Ce sont des plans sans rapport collés ensemble, avec du texte par-dessus. Ce n'est pas une présentation de Klipt, et ça ne montre rien du produit.
+- Il portait en plus l'ancien logo inventé (§ 7.2).
+
+**Leçons :**
+1. Une vidéo de marque part d'**un concept visuel unique** (un univers, un objet, une transformation), pas d'une liste de métiers.
+2. Si la demande est « du Kling », on livre du Kling. La couche Claude n'est qu'une option à proposer.
+3. Le logo et les couleurs se vérifient sur le site du client avant de produire.
+
+### 6.8 Génériques Klipt de début et de fin, 100 % Kling (j01)
+**Demande :** deux vidéos de 5 s, un générique de début et un de fin à coller sur chaque vidéo Klipt. Kling uniquement, vrai logo, vraies couleurs, avec le son, au niveau d'un ident d'agence ou de chaîne.
+
+**Méthode qui a marché :**
+1. **Charte récupérée sur klipt-ai.com** : SVG officiel du symbole, CSS du site (couleurs, Bricolage Grotesque 700), capture du site pour l'ambiance (fond crème et halos aurore).
+2. **Images clés exactes rendues en code** (`pieces/j01/frames/`, 1080×1920). Elles ne sont qu'une entrée de Kling, il n'y a aucune couche sur la vidéo :
+   - fond crème avec halos, vide ;
+   - logo centré (symbole et « Klipt ») ;
+   - carte de fin : logo, « Agency quality. **Automatic.** » avec le dégradé du site, et klipt-ai.com ;
+   - symbole seul, en grand.
+3. **Kling O3 `first-last-frame`, mode pro, son activé, 5 s, 9:16.** L'image de début et l'image de fin sont imposées, Kling invente le mouvement entre les deux.
+   - Le prompt décrit le style (ident premium, fond crème, halos, 3D brillante, pas de texte en plus), l'animation et le **design sonore** : souffle, montée, impact grave et note double sur le logo, sans voix ni musique.
+   - Une phrase rappelle que la fin doit correspondre exactement à la dernière image.
+
+**Résultats :** 4 génériques en 1080×1920, 24 i/s, avec son, générés en 2 à 5 min.
+
+| Générique | Image de début → de fin | Animation |
+|---|---|---|
+| **intro-a** | fond vide → logo | trois rubans de soie indigo, violet et rouge s'enroulent et se replient en logo |
+| **intro-b** | symbole géant → logo | le symbole devient du verre en 3D, pivote dans la lumière, rétrécit, « Klipt » se pose à côté |
+| **outro-a** | fond vide → carte de fin | des cartes translucides (comme des posts) traversent l'écran, s'assemblent en logo, puis le slogan et l'URL apparaissent |
+| **outro-b** | logo → carte de fin | le triangle pulse comme un bouton play qu'on presse, une onde lumineuse part, le slogan et l'URL apparaissent |
+
+**Fidélité :** la dernière image de chaque vidéo, comparée à l'image clé, reproduit le logo, le slogan et l'URL quasiment au pixel près.
+
+**Coût :**
+
+| Poste | Coût |
+|---|---|
+| Création | 4 × 0,70 $ = **2,80 $**, soit **0,70 $ par générique** (0,56 $ en std) |
+| Orchestration (session principale) | 6,09 $ (voir § 4.4) |
+
+L'orchestration ne se repaie pas : le kit de marque et les images clés sont réutilisables, et un script ferait le reste.
+
+**Limites :**
+- **Son** : le niveau est bas (−20 à −25 dB en moyenne, crêtes entre −4 et −8 dB) et il n'a été vérifié qu'à la mesure, pas à l'écoute. Il faut l'écouter et, au besoin, le remonter au niveau des réseaux (−14 LUFS) sans toucher à l'image.
+- **Image** : pendant l'animation, le mot « Klipt » apparaît lettre par lettre ou flou pendant une fraction de seconde (intro-b et outro-a vers 3,5 s). Il faut vérifier image par image qu'aucune lettre n'est déformée. Il est net sur la fin, imposée par l'image clé.
+
+**Méthode réutilisable pour chaque client**, environ 0,70 $ par générique :
+1. récupérer le logo et les couleurs du client sur son site ;
+2. rendre 2 ou 3 images clés exactes ;
+3. lancer Kling O3 en première et dernière image, avec le son.
+
+### 6.9 Son
+**Dans le moteur de rendu :**
+- `KLIPT.audio` déclare des pistes : ambiance d'un clip, musique, bruitages, avec début, décalage, durée, gain et fondus.
+- `render.mjs` les mixe et les limite dans le MP4.
+- `node tools/render.mjs audio pieces/<id>` remixe le son en quelques secondes, sans refaire l'image.
+
+**Bruitages** (`tools/sfx.py`), synthétisés, libres de droits et déterministes : whoosh, riser, impact, tick, pop, shimmer, glitch, et une musique de fond à tempo et ambiance choisis, avec une coupure optionnelle.
+
+**Limites :**
+- Ni Claude ni l'agent ne peuvent écouter : seuls les niveaux sont mesurés.
+- La musique synthétisée est propre mais basique. Pour une vraie qualité, il faut une bibliothèque libre pour usage commercial ou la musique de la plateforme.
+- Sur Instagram et TikTok, un compte professionnel n'a le droit qu'aux sons des bibliothèques commerciales de Meta et TikTok.
+
+**Le son natif Kling** (+50 %) est le plus crédible pour l'ambiance d'une scène réelle ou d'un générique.
+
+### 6.10 Montages réalisés pendant les tests
+| Montage | Comment | Coût image | Note |
+|---|---|---|---|
+| Hailuo, 3 plans | 3 images Marketing Studio animées une par une (6 s), coupées à 5 s et mises bout à bout avec ffmpeg | 0,27 $ | rendu le plus authentique, base de v02 |
+| v01 / v02 | rush Kling ou Hailuo découpé en images (`clip_frames.py`) + couche Claude (texte, volets, carton de fin) | 0,69 / 0,27 $ + Claude 0,78 / 0,68 $ | v02 = meilleure vidéo « commerce local » |
+| v03 | rush Kling 5 plans avec son + couche Claude + mixage | 1,04 $ + 1,34 $ | raté : collage sans concept (§ 6.7) |
+| j01 | Kling seul, images clés imposées | 0,70 $ par générique | génériques de début et de fin retenus |
+| Comparatif | les 6 rushs côte à côte (`bench/results/video-models-compare.mp4`) | — | pour comparer les modèles d'un coup d'œil |
 
 ---
 
@@ -383,16 +540,25 @@ Pour comparaison, le Studio optimisé sans vidéo IA (primeur, 9:16) coûte 1,26
   - un inconnu penserait-il qu'une agence l'a fait ?
 - **Relecture humaine** avant envoi au client, ou un juge Sonnet (environ 0,11 $ par pièce) qui note sur les 9 critères du banc et liste les défauts.
 
-### 7.2 Secrets
+### 7.2 Charte de marque : toujours la source officielle
+Pendant les premiers tests, un « logo Klipt » avait été **inventé** (carré lime, point corail, palette encre et lime). Il était faux. La vraie charte vient de **klipt-ai.com** :
+- **symbole** `klipt-mark-aurore.svg` : barre arrondie #1B1830 et triangle « play » en dégradé #2456F0 → #E60A34 ;
+- **nom** « Klipt » en Bricolage Grotesque 700 (approche −0,03 em), couleur #211C2E ;
+- **fond** crème #FAF7F3 avec des halos flous indigo, violet et corail ;
+- **texte courant** en Inter.
+
+Elle est rangée dans `brand/klipt/`. L'ancien kit inventé est gardé à part dans `brand/klipt-invented-old/` et ne doit plus servir. Les pièces produites avant cette correction (k*, p*, s*, o*, h*, v01–v03) ne portent pas le logo Klipt, ou portent le faux : à vérifier avant de les montrer. **Règle pour tous les clients** : le kit vient du site ou des fichiers fournis (SVG, CSS du site), jamais d'une supposition.
+
+### 7.3 Secrets
 - Les clés Higgsfield et Pexels **ne sont jamais dans le dépôt, qui est public**. Elles sont stockées hors dépôt (`/root/klipt-state/`) ou passées par variable d'environnement (`HF_KEY`, `PEXELS_API_KEY`) ; en production, utiliser un gestionnaire de secrets.
 - Les deux clés ont circulé dans une conversation : **il faut les renouveler** avant la mise en production.
 
-### 7.3 Budget
+### 7.4 Budget
 - Tous les appels payants passent par `tools/hf_ledger.py`.
 - **Estimation gratuite** avant chaque appel, **réservation sous verrou de fichier** (sûre même avec plusieurs agents en parallèle), **remboursement** si la génération échoue (Higgsfield ne facture pas les échecs). En production, remplacer le fichier par une ligne en base par client ou par projet.
 - Les agents n'ont droit qu'à **un seul appel de génération par pièce, sans relance automatique**.
 
-### 7.4 Droits et mentions
+### 7.5 Droits et mentions
 - **Open Images** : photos Flickr sous licence CC BY 2.0, usage commercial autorisé **avec crédit de l'auteur**. Les crédits sont écrits automatiquement dans `assets/CREDITS.json` et `meta.json` ; il faut les publier (légende, page crédits du site).
 - **Pexels** : licence Pexels, usage commercial libre sans crédit obligatoire. Pas de revente de la photo seule, et pas de personnes identifiables mises dans un contexte dégradant.
 - **Polices** : Google Fonts et @fontsource sont sous licence OFL, utilisables commercialement.
@@ -434,19 +600,24 @@ Et les séries plus récentes, produites après ce banc (non notées à l'aveugl
 | Studio optimisé | o01 à o05 (mêmes briefs) |
 | Hybride | h02 primeur vidéo, h03 Casa Almar, h04 Nexus Arena, h05 Relai LinkedIn, **v02 Maison Brune (vidéo 15 s, Hailuo + couche Claude, la meilleure vidéo à ce jour)**, v01 Maison Brune (Kling 3.0) |
 
+**Génériques Klipt (vrai logo, 100 % Kling, avec le son)** : `pieces/j01/intro-a.mp4`, `intro-b.mp4` (début), `outro-a.mp4`, `outro-b.mp4` (fin), 5 s chacun en 1080×1920.
+
 La galerie interactive (vidéos, notes, défauts, coûts) est en ligne : https://claude.ai/artifact/Hsg5U2GQQHs7LmC6skCEQ2. Elle ne contient pas encore les séries o et h.
 
 ---
 
 ## 9. Feuille de route
-1. **Renouveler les clés** Higgsfield et Pexels.
-2. **Prompt hybride** : ajouter la règle des niveaux B et C (« l'offre lisible dès la première image ») et le mode clip vidéo du § 6.
-3. **Faire de l'hybride le mode par défaut** pour les posts et les promos, et garder le Studio optimisé pour le SaaS et les niveaux S.
-4. **Contrôle du texte** pour le mode Higgsfield seul : relecture par un modèle de vision avant publication.
-5. **Kits de marque clients** (logo, palette, polices) passés systématiquement à l'agent.
-6. **Journal des coûts** par pièce en base, et budget Higgsfield par client dans le registre.
-7. **Juge automatique** (Sonnet, environ 0,11 $) en fin de chaîne pour filtrer les pièces sous 7/10.
-8. Tester l'effort `medium` sur les niveaux B et C (gain de coût probable), et Opus 5.5 uniquement sur les niveaux S+.
+1. **Choisir les génériques** (j01) et les décliner en 1:1 et 16:9 (environ 0,70 $ chacun, mêmes images clés recadrées). Remonter le niveau sonore si besoin : il est bas à la sortie de Kling, entre −20 et −25 dB en moyenne.
+2. **Renouveler les clés** Higgsfield et Pexels.
+3. **Refaire les exemples du site avec la vraie charte** quand ils montrent Klipt, en vérifiant chaque pièce (§ 7.2).
+4. **Faire de l'hybride le mode par défaut** pour les posts et les promos, et garder le Studio optimisé pour le SaaS et les niveaux S.
+5. **Vidéos de présentation en Kling seul** : un concept unique et des images clés de marque plutôt qu'un collage (§ 6.7–6.8).
+6. **Musique** : remplacer la musique synthétisée par une bibliothèque libre pour usage commercial, et faire valider chaque son à l'oreille par un humain.
+7. **Contrôle du texte** pour le mode Higgsfield seul : relecture par un modèle de vision avant publication.
+8. **Kits de marque clients** (logo, palette, polices) récupérés sur le site du client et passés systématiquement à l'agent.
+9. **Orchestration par script**, journal des coûts par pièce en base, et budget Higgsfield par client dans le registre.
+10. **Juge automatique** (Sonnet, environ 0,11 $) en fin de chaîne pour filtrer les pièces sous 7/10.
+11. Tester l'effort `medium` sur les niveaux B et C (gain de coût probable), et Opus 5.5 uniquement sur les niveaux S+.
 
 
 ---
@@ -573,12 +744,13 @@ Every tool call re-sends your whole context; every image you open stays in it. P
 Return: id, status, plate cost, concept, remaining issues.
 
 #### Clip mode (video built on AI-generated footage)
-When the brief gives you a generated clip (`"clip": "<path>"`, e.g. a 15 s multi-shot Kling/Hailuo clip, silent, 720p–768p), the clip replaces the plate:
-1. Convert it once into frames at the canvas size: `python3 tools/clip_frames.py <clip> --out pieces/<id>/footage/clip --size 1080x1920` (use `--start/--dur` to take one shot, `--speed 0.8` for slow motion). Play it in the page with `KK.footage(img, {dir: 'footage/clip', frames: N, fps: 30, start: …})` (see the contract). Look at the clip's contact sheet (`<clip>-sheet.jpg` when provided) or a few `frame … --w 540` renders to know where each shot starts and where the negative space is.
+The clip replaces the plate. It is either given in the brief (`"clip": "<path>"`) or you generate it yourself when the brief says so.
+0. **Generating it yourself**: read `docs/KLING_PROMPTING.md`, write the edit and the shot list in plan.md first (what each shot shows, its duration, where its super goes, which sound), then make exactly ONE call: `python3 tools/higgsfield_video.py <endpoint> --out pieces/<id>/assets/clip.mp4 --json '{…}'` with the model and settings named in the brief (default `kling-video/v3.0/std/text-to-video`, `"multi_shots":true`, 3–6 shots in `multi_prompt`, 15 s, 9:16 — $0.69 silent, $1.04 with `"sound":"on"`). Never retry: if the clip has flaws, hide them in the layer.
+1. Convert it once into frames at the canvas size: `python3 tools/clip_frames.py <clip> --out pieces/<id>/footage/clip --size 1080x1920` (use `--start/--dur` to take one shot, `--speed 0.8` for slow motion). Play it in the page with `KK.footage(img, {dir: 'footage/clip', frames: N, fps: 30, start: …})` (see the contract). See the clip through a contact sheet (`<clip>-sheet.jpg` when provided, or `ffmpeg -i <clip> -vf fps=1,scale=180:-1,tile=15x1 <clip>-sheet.jpg`) and a few `frame … --w 540` renders, to know where each shot starts and where the negative space is.
 2. The footage is ~720p upscaled: add a unifying grade and grain, keep your type and graphics crisp and dominant, never make the footage the sharpest element. Hide AI artefacts (garbled signage, odd hands) behind type, crops or masks.
-3. Your layer carries the story: hook copy readable by t = 0.4 s (offer at t = 0 for Tier B/C), one super per shot, cut or wipe your graphics on the clip's own cuts, and an end card (logo, address/URL, CTA) held ≥ 1.5 s — the end card may freeze or blur the last footage frame.
-4. meta.json: `"clip": {"model": …, "cost_usd": …, "prompt": …}` from the clip's `.json`.
-If you must generate the clip yourself: exactly ONE call to `python3 tools/higgsfield_video.py <endpoint> --out pieces/<id>/assets/clip.mp4 --json '{…}'` with the model and settings named in the brief (default `kling-video/v3.0/std/text-to-video`, `"sound":"off"`, `"multi_shots":true`, 3–4 shots in `multi_prompt`, 15 s, 9:16 — about $0.69). The prompt must say: no text, no letters, no logos, no watermarks, no third-party brands.
+3. Your layer carries the story: hook copy readable by t = 0.4 s (offer at t = 0 for Tier B/C), one super per shot, cut or wipe your graphics on the clip's own cuts, and an end card (logo, URL, CTA) held ≥ 1.5 s — the end card may freeze or blur the last footage frame. No single-colour full-frame moment during wipes: the next shot shows through.
+4. **Sound**: mix the clip's ambience (if generated with sound), a music bed and effects placed on your cuts with `KLIPT.audio` (contract, "Sound"; `tools/sfx.py`). Iterate on the mix with `node tools/render.mjs audio pieces/<id>` (seconds, no re-render).
+5. meta.json: `"clip": {"model": …, "cost_usd": …, "prompt": …}` from the clip's `.json`, and `"audio"`: what you mixed.
 
 
 ## Annexe C — Contrat de rendu (règles techniques)
@@ -610,6 +782,21 @@ window.KLIPT = {
 - **GSAP**: build one `gsap.timeline({paused:true})`, then `render: t => { tl.seek(t, false); }` (do NOT return the timeline).
 - **CSS `@keyframes` / Web Animations**: automatically paused and scrubbed to `t` by the renderer — they just work.
 - **Canvas / three.js**: redraw everything from `t` inside `render(t)`; create the WebGL renderer with `preserveDrawingBuffer: true`. WebGL runs in software (SwiftShader): keep geometry/shaders reasonable, no heavy post-processing.
+
+#### Sound (video pieces)
+The picture is silent unless you declare a soundtrack; the renderer mixes it into the MP4 after the frames:
+```js
+window.KLIPT = { …, audio: [
+  { src: 'assets/clip.mp4', gain: -8 },                         // ambience from an AI clip (its audio track)
+  { src: 'audio/bed.wav', gain: -7, dur: 15, fadeOut: 1.2 },    // music bed
+  { src: 'audio/whoosh.wav', at: 3.9 },                         // effects placed on your cuts/wipes (seconds)
+  { src: 'audio/impact.wav', at: 12.0, gain: -2 },
+] };
+```
+Fields: `src` (relative to the piece folder: wav/mp3/m4a or a video's audio), `at` (start in the piece, s), `from` (offset in the source, s), `dur`, `gain` (dB), `fadeIn`, `fadeOut` (needs `dur`). The mix is limited to avoid clipping. Make sounds with `python3 tools/sfx.py -h` (whoosh, riser, impact, tick, pop, shimmer, glitch, and a music `bed` at a given bpm/mood with an optional drop) into `pieces/<id>/audio/`. `node tools/render.mjs audio pieces/<id>` re-mixes the sound into the existing video.mp4 in seconds — iterate on sound without re-rendering frames. Keep ambience under music, effects short and on the picture's events, and nothing louder than the logo hit.
+
+#### AI video clips as footage
+`python3 tools/clip_frames.py <clip.mp4> --out pieces/<id>/footage/clip --size 1080x1920 [--start s --dur s --speed 0.8]` turns a clip into frames for `KK.footage()`. Frame folders are not versioned (regenerable from the clip).
 
 #### Still pieces (posts, carousels, stories)
 - Each image is a `<section class="slide">` sized exactly `width × height`, stacked vertically in the page.
@@ -870,7 +1057,65 @@ Append one line to `bench/studio_history.jsonl`:
 `{"id": "...", "brand": "...", "tier": "...", "style": "...", "narrative": "...", "mechanics": [...], "treatment": "...", "type": "...", "palette": [...], "main_transition": "...", "camera": "..."}`
 
 
-## Annexe E — Code des outils de production
+## Annexe E — Guide de prompt Kling
+
+Source : `docs/KLING_PROMPTING.md`. Comment écrire les prompts Kling 3.0 (bible de style, plans, son, ce qu'il faut éviter) pour des rushs utilisables.
+
+### Prompting Kling 3.0 for Klipt clips
+
+Kling 3.0 std (`kling-video/v3.0/std/text-to-video`) is Klipt's default footage model: 15 s in up to 6 custom shots, 720×1280 at 24 fps, $0.69 silent or $1.04 with native sound (June 2026 prices, estimate endpoint). The clip is **raw footage** for the code layer: the model supplies light, material, motion and sound; Claude supplies every word, number, logo and UI. Prompt it like a director's shot list, not like a poster.
+
+#### Request shape
+```json
+{"prompt": "<STYLE BIBLE, 300–700 chars>", "duration": 15, "aspect_ratio": "9:16", "sound": "on",
+ "cfg_scale": 0.6, "multi_shots": true,
+ "multi_prompt": [{"prompt": "<SHOT 1, ≤ 512 chars>", "duration": 3}, {"prompt": "<SHOT 2>", "duration": 4}, …]}
+```
+- `multi_prompt` durations are what get generated and billed (they must add up to the total); 3–6 shots of 2–5 s. Put cuts where the edit needs them (the code layer wipes or matches on them), e.g. 3 + 3 + 4 + 5.
+- `cfg_scale` 0.6–0.7 = follows the shot list more literally (0.5 default is looser and more "creative").
+- `sound: "on"` (+50 %) gives synchronised ambience and effects — worth it for craft, food, places, nature, machines. Leave it off when the piece will be carried by music and graphics only.
+
+#### The style bible (top-level `prompt`)
+One paragraph that every shot inherits, so the cut-together clip looks like one film:
+- **Medium & look**: "shot on 35 mm film / ARRI Alexa, anamorphic, fine grain, soft halation", or "clean 3D render, Octane, studio lighting", or "macro product cinematography".
+- **Palette & grade**: name 2–4 colours and the contrast ("deep ink-blue shadows, warm tungsten highlights, one acid-lime accent light").
+- **World & casting**: place, era, the people's age range, wardrobe and attitude ("real small-business owners in their 30s–50s, work clothes, candid, not models, no suits").
+- **Camera grammar**: default lens and movement ("50 mm, slow dolly and gentle handheld, shallow depth of field").
+- **Sound** (when on): the sonic world ("natural room tone and foley only, no music, no speech").
+- **Hard constraints**: "No text, no letters, no numbers, no logos, no signage, no watermarks, no brand names, no readable screens."
+
+#### Each shot (`multi_prompt[i].prompt`)
+Write in this order, ≤ 512 characters, one idea per shot:
+1. **Shot size + angle**: extreme close-up / close-up / medium / wide / top-down / low angle.
+2. **Subject + ONE simple physical action** with a clear start and end: "pulls a tray of croissants from the oven", "spins the chair to face the camera", "a drop of espresso falls into the cup".
+3. **Camera move**, one only: slow push-in, dolly left, orbit 30°, crane up, whip pan (to cut on), locked-off.
+4. **Light**: source and direction ("low morning sun from the left, dust in the beam", "neon rim light, magenta and cyan").
+5. **Composition for the layer**: where the empty space is ("subject in the lower half, clean dark upper third for a title").
+6. **Sound** (if on): 2–3 concrete sounds ("crackling fire, metal peel scraping brick").
+
+#### What Kling does well — lean on it
+Macro textures (flour, steam, liquids, fabric, hair), light changes and flares, slow elegant camera moves, small natural human gestures (smile, turn, hand-over), crowds and cities at a distance, food and drink, nature, abstract 3D (glass, chrome, liquid metal, particles, iridescent forms), phones held in hand **with the screen facing away or glowing blank**.
+
+#### What it does badly — avoid or hide
+- **Any readable text**: signage, shop windows, screens, packaging, jerseys → ask for "blank", "out of focus", "facing away"; Claude adds real text/UI on top.
+- **Precise tool use** (knife scoring, typing specific keys, writing) → show the result or the gesture from a forgiving angle ("hands lift the scored loaf").
+- **Fast complex motion, many people interacting, hands in close-up doing fine work, mirrors, animals doing tricks.**
+- **Stock clichés** (people in suits pointing at laptops, handshakes, thumbs-up) → cast specifically and give them a real task.
+- **Morphing between shots**: each shot is independent; for continuity repeat the key descriptors (same person: "the same woman, short black hair, rust-coloured sweater").
+
+#### Designing for the code layer
+- Plan the edit first (storyboard in plan.md), then write the shots so each leaves room for its super (empty third, dark area, sky, wall).
+- Make cuts useful: end a shot on a whip pan or a dark frame to hide a wipe; match colour or shape across a cut for a match cut in code.
+- The first 0.5 s of shot 1 is the thumbnail: strong subject, high contrast, already moving.
+- Leave the last 2–3 s simple (slow move, clean background) so the end card and logo sit on it, or blur it in code.
+- For a "mix" look, alternate real-world shots with abstract 3D shots in the same palette — the style bible keeps them coherent.
+
+#### Sound in the final piece
+Kling's audio is the **ambience layer**. In the piece, mix it with `KLIPT.audio` (see the contract):
+`{src: 'assets/clip.mp4', gain: -8}` under a music bed (`tools/sfx.py bed`, −6 to −10 dB) and transition effects (`whoosh`, `impact`, `tick`, `shimmer`) placed exactly on the code layer's cuts, wipes and logo reveal. Cut picture on the bed's beats (beat = 60 / bpm).
+
+
+## Annexe F — Code des outils de production
 
 Texte intégral des fichiers. Les clés d'API ne sont jamais dans le code : variables d'environnement ou `/root/klipt-state/`.
 
@@ -887,6 +1132,7 @@ Moteur de rendu : vidéo, images fixes, image unique, contrôle qualité. Chromi
 //   node tools/render.mjs stills <piece-dir>                          → slides/slide-01.png … + sheet.jpg
 //   node tools/render.mjs frame  <piece-dir> <t-seconds> [out.png] [--w 540] → single frame (quick check)
 //   node tools/render.mjs qa     <piece-dir>                          → qa.jpg keyframe grid + automatic defect report
+//   node tools/render.mjs audio  <piece-dir>                          → re-mix KLIPT.audio into video.mp4 (no re-render)
 // Contract: see docs/RENDER_CONTRACT.md
 import { chromium } from 'playwright-core';
 import { spawn } from 'node:child_process';
@@ -935,7 +1181,7 @@ async function open() {
     await document.fonts.ready;
     // Freeze every CSS/WAAPI animation so the renderer owns the clock.
     for (const a of document.getAnimations()) a.pause();
-    return { width: K.width || 1080, height: K.height || 1920, fps: K.fps || 30, duration: K.duration || 0, poster: K.poster, slides: document.querySelectorAll('.slide').length };
+    return { width: K.width || 1080, height: K.height || 1920, fps: K.fps || 30, duration: K.duration || 0, poster: K.poster, audio: K.audio || null, slides: document.querySelectorAll('.slide').length };
   });
   await page.setViewportSize({ width: meta.width, height: meta.height });
   return { browser, page, meta, errors };
@@ -958,12 +1204,38 @@ async function sheet(pattern, start, n, cols, out) {
     '-vf', `scale=360:-2,pad=iw+8:ih+8:4:4:color=0x222222,tile=${cols}x${rows}:color=0x111111`, '-frames:v', '1', '-q:v', '3', out]);
 }
 
+// Sound: KLIPT.audio = [{ src, at = 0, from = 0, dur, gain = 0 (dB), fadeIn = 0, fadeOut = 0 }, …]
+// src is relative to the piece folder (wav/mp3/m4a, or a video whose audio track is used, e.g. assets/clip.mp4).
+// Tracks start at `at` seconds in the piece, play `dur` seconds of the source from `from`; fadeOut needs dur.
+// The mix is limited to −1 dBTP and muxed as AAC into the MP4 (video stream copied, not re-encoded).
+async function mixAudio(video, tracks, duration) {
+  if (!Array.isArray(tracks) || !tracks.length) return false;
+  const inputs = [], chains = [];
+  tracks.forEach((tr, i) => {
+    const src = path.resolve(dir, tr.src);
+    if (!fs.existsSync(src)) throw new Error(`KLIPT.audio: missing ${tr.src}`);
+    inputs.push('-i', src);
+    const f = [`atrim=start=${tr.from || 0}${tr.dur ? `:duration=${tr.dur}` : ''}`, 'asetpts=PTS-STARTPTS', 'aresample=48000', 'aformat=channel_layouts=stereo'];
+    if (tr.gain) f.push(`volume=${tr.gain}dB`);
+    if (tr.fadeIn) f.push(`afade=t=in:st=0:d=${tr.fadeIn}`);
+    if (tr.fadeOut && tr.dur) f.push(`afade=t=out:st=${Math.max(0, tr.dur - tr.fadeOut)}:d=${tr.fadeOut}`);
+    const ms = Math.round((tr.at || 0) * 1000); if (ms) f.push(`adelay=${ms}|${ms}`);
+    chains.push(`[${i + 1}:a]${f.join(',')}[a${i}]`);
+  });
+  const mix = `${tracks.map((_, i) => `[a${i}]`).join('')}amix=inputs=${tracks.length}:normalize=0:dropout_transition=0,apad,atrim=0:${duration},alimiter=limit=0.89[mix]`;
+  const tmpOut = video.replace(/\.mp4$/, '.mix.mp4');
+  await ff(['-i', video, ...inputs, '-filter_complex', [...chains, mix].join(';'), '-map', '0:v', '-map', '[mix]',
+    '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-t', String(duration), '-movflags', '+faststart', tmpOut]);
+  fs.renameSync(tmpOut, video);
+  return true;
+}
+
 // Machine-wide render slots: parallel agents share 4 CPUs, and too many concurrent
 // Chromium captures crash ("browser closed"). Full renders queue for a free slot.
 const SLOTS = +(process.env.KLIPT_RENDER_SLOTS || 2);
 function alive(pid) { try { process.kill(pid, 0); return true; } catch { return false; } }
 async function acquireSlot() {
-  if (mode === 'frame' || mode === 'qa') return null;
+  if (mode === 'frame' || mode === 'qa' || mode === 'audio') return null;
   const waitStart = Date.now(); let told = false;
   for (;;) {
     for (let i = 0; i < SLOTS; i++) {
@@ -1011,12 +1283,20 @@ try {
       if (f % Math.max(1, Math.round(fps * 5)) === 0) process.stdout.write(`frame ${f}/${frames}\n`);
     }
     enc.end(); await done;
+    const sound = await mixAudio(out, meta.audio, meta.duration);
     for (const [i, t] of sheetTimes.entries()) { await seek(page, t); const p = path.join(tmp, `s${String(i).padStart(2, '0')}.jpg`); await page.screenshot({ path: p, type: 'jpeg', quality: 90 }); shots.push(p); }
     const posterT = meta.poster != null ? meta.poster : meta.duration * 0.62; await seek(page, posterT);
     await page.screenshot({ path: path.join(dir, 'poster.jpg'), type: 'jpeg', quality: 90 });
     await sheet(path.join(tmp, 's%02d.jpg'), 0, shots.length, 6, path.join(dir, 'sheet.jpg'));
     const size = fs.statSync(out).size;
-    console.log(JSON.stringify({ out, frames, fps, duration: meta.duration, width: meta.width, height: meta.height, mb: +(size / 1e6).toFixed(2), renderSeconds: (Date.now() - t0) / 1000 }));
+    console.log(JSON.stringify({ out, frames, fps, duration: meta.duration, width: meta.width, height: meta.height, audio: sound ? meta.audio.length + ' tracks' : 'none', mb: +(size / 1e6).toFixed(2), renderSeconds: (Date.now() - t0) / 1000 }));
+  } else if (mode === 'audio') {
+    // Re-mix the sound only: re-encode nothing, keep the rendered picture. Replaces any previous soundtrack.
+    const out = path.join(dir, fs.existsSync(path.join(dir, 'video.mp4')) ? 'video.mp4' : 'preview.mp4');
+    const silent = out.replace(/\.mp4$/, '.silent.mp4');
+    await ff(['-i', out, '-map', '0:v', '-c:v', 'copy', silent]); fs.renameSync(silent, out);
+    const sound = await mixAudio(out, meta.audio, meta.duration);
+    console.log(JSON.stringify({ out, audio: sound ? meta.audio.length + ' tracks' : 'none (KLIPT.audio empty)' }));
   } else if (mode === 'qa') {
     // Keyframes a viewer (or a judge) actually sees: first frame, hook, every 1.5 s, end, poster — or every slide.
     const tmp = fs.mkdtempSync('/tmp/klipt-qa-');
@@ -1665,6 +1945,261 @@ a = p.parse_args()
 ````
 
 
+### `tools/clip_frames.py`
+
+Découpe un clip IA en séquence d'images pour la couche Claude.
+
+````python
+#!/usr/bin/env python3
+"""Turn a local video clip (e.g. a Higgsfield clip) into a deterministic frame sequence for KK.footage().
+
+  python3 tools/clip_frames.py pieces/<id>/assets/clip.mp4 --out pieces/<id>/footage/clip [--size 1080x1920] [--fps 30]
+         [--start 0] [--dur 5] [--speed 1]
+  → f0001.jpg … + info.json (frames, fps). In the page: KK.footage(img, {dir: 'footage/clip', frames: N, fps: 30, start: <t in piece>})
+Use --start/--dur to cut one shot out of a multi-shot clip; --speed 0.8 slows it down (slow motion, smoother holds).
+"""
+import argparse, json, os, re, subprocess
+
+a = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+a.add_argument('clip'); a.add_argument('--out', required=True); a.add_argument('--size', default='1080x1920')
+a.add_argument('--fps', type=int, default=30); a.add_argument('--start', type=float, default=0)
+a.add_argument('--dur', type=float); a.add_argument('--speed', type=float, default=1)
+a = a.parse_args()
+W, H = map(int, a.size.lower().split('x'))
+os.makedirs(a.out, exist_ok=True)
+for x in os.listdir(a.out):
+    if x.startswith('f') and x.endswith('.jpg'): os.unlink(os.path.join(a.out, x))
+vf = f"setpts=PTS/{a.speed},scale={W}:{H}:force_original_aspect_ratio=increase:flags=lanczos,crop={W}:{H},fps={a.fps}"
+cmd = ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-ss', str(a.start)]
+if a.dur: cmd += ['-t', str(a.dur)]
+subprocess.run(cmd + ['-i', a.clip, '-vf', vf, '-q:v', '3', os.path.join(a.out, 'f%04d.jpg')], check=True)
+n = len([x for x in os.listdir(a.out) if x.startswith('f') and x.endswith('.jpg')])
+src = re.search(r'Video: .*?, (\d{3,4}x\d{3,4})', subprocess.run(['ffmpeg', '-i', a.clip], capture_output=True, text=True).stderr)
+info = dict(clip=a.clip, source=src[1] if src else None, size=f'{W}x{H}', fps=a.fps, frames=n, start=a.start, dur=a.dur, speed=a.speed)
+json.dump(info, open(os.path.join(a.out, 'info.json'), 'w'), indent=1)
+print(json.dumps(info))
+````
+
+
+### `tools/sfx.py`
+
+Bruitages et musique de fond synthétisés (WAV), à mixer avec KLIPT.audio.
+
+````python
+#!/usr/bin/env python3
+"""Synthesised sound design for Klipt pieces (deterministic, royalty-free, offline): transition effects and a
+music bed, written as 48 kHz stereo WAV. Mix them with KLIPT.audio (see docs/RENDER_CONTRACT.md).
+
+  python3 tools/sfx.py whoosh  pieces/<id>/audio/whoosh.wav [--dur 0.6]      air sweep for wipes / whip pans
+  python3 tools/sfx.py riser   pieces/<id>/audio/riser.wav  [--dur 2.0]      tension build into a reveal
+  python3 tools/sfx.py impact  pieces/<id>/audio/impact.wav                  sub hit + air for a logo / title slam
+  python3 tools/sfx.py tick    pieces/<id>/audio/tick.wav                    UI click / counter tick
+  python3 tools/sfx.py pop     pieces/<id>/audio/pop.wav                     bubbly pop for stickers, cards
+  python3 tools/sfx.py shimmer pieces/<id>/audio/shimmer.wav [--dur 1.5]     bright chime for a logo or end card
+  python3 tools/sfx.py glitch  pieces/<id>/audio/glitch.wav  [--dur 0.3]     digital stutter (tech / gaming)
+  python3 tools/sfx.py bed     pieces/<id>/audio/bed.wav --dur 15 --bpm 112 [--mood bright|warm|dark|tech] [--drop 11.2]
+       → music bed: pad chords + pluck arpeggio + kick/hat groove (+ optional stop at --drop s, then a big return)
+Beat length = 60/bpm s: place cuts and SFX on beats (e.g. 112 bpm → a beat every 0.536 s) so picture and sound lock.
+--seed changes the random texture; --gain scales the output (dB).
+"""
+import argparse, wave
+import numpy as np
+from scipy.signal import butter, sosfilt
+
+SR = 48000
+
+def env(n, a, r, shape=3.0):
+    t = np.linspace(0, 1, n)
+    e = np.minimum(1, t * n / max(1, a * SR)) * (1 - t) ** shape if r is None else np.minimum(1, t * n / max(1, a * SR))
+    return e
+
+def adsr(n, a, d, s, r):
+    e = np.ones(n) * s
+    A, D, R = int(a * SR), int(d * SR), int(r * SR)
+    e[:A] = np.linspace(0, 1, A) if A else e[:A]
+    e[A:A + D] = np.linspace(1, s, len(e[A:A + D]))
+    if R: e[-R:] *= np.linspace(1, 0, len(e[-R:]))
+    return e
+
+def bp(x, lo, hi, order=2): return sosfilt(butter(order, [lo, hi], 'bandpass', fs=SR, output='sos'), x)
+def lp(x, f, order=2): return sosfilt(butter(order, f, 'lowpass', fs=SR, output='sos'), x)
+def hp(x, f, order=2): return sosfilt(butter(order, f, 'highpass', fs=SR, output='sos'), x)
+
+def sweep_noise(rng, dur, f0, f1, width=0.6, chunks=48):
+    """Noise through a band-pass whose centre moves from f0 to f1 (log), block-wise with crossfades."""
+    n = int(dur * SR); x = rng.standard_normal(n); out = np.zeros(n)
+    edges = np.linspace(0, n, chunks + 1).astype(int)
+    for i in range(chunks):
+        c = f0 * (f1 / f0) ** (i / (chunks - 1))
+        a, b = edges[i], edges[i + 1]; pad = min(a, 2048)
+        seg = bp(x[a - pad:b], max(30, c * (1 - width / 2)), min(SR / 2 - 100, c * (1 + width / 2)))[pad:]
+        out[a:b] = seg
+    return out
+
+def stereo(x, width=0.0, rng=None):
+    if not width: return np.stack([x, x], 1)
+    d = int(0.012 * SR); r = np.concatenate([np.zeros(d), x[:-d]])
+    return np.stack([x, (1 - width) * x + width * r], 1)
+
+def norm(x, peak=0.9):
+    m = np.max(np.abs(x)) or 1; return x / m * peak
+
+def whoosh(a, rng):
+    n = int(a.dur * SR); t = np.linspace(0, 1, n)
+    x = sweep_noise(rng, a.dur, 300, 4200) * np.sin(np.pi * t) ** 1.6
+    x += 0.5 * sweep_noise(rng, a.dur, 120, 900) * np.sin(np.pi * t) ** 2
+    return stereo(norm(x, 0.8), 0.6)
+
+def riser(a, rng):
+    n = int(a.dur * SR); t = np.linspace(0, 1, n)
+    x = sweep_noise(rng, a.dur, 200, 7000, 0.4) * t ** 2.2
+    f = 110 * 2 ** (3 * t ** 1.5); ph = 2 * np.pi * np.cumsum(f) / SR
+    x += 0.35 * np.sin(ph) * t ** 2 + 0.2 * np.sin(2 * ph) * t ** 3
+    return stereo(norm(x, 0.8), 0.5)
+
+def impact(a, rng):
+    n = int(1.6 * SR); t = np.arange(n) / SR
+    f = 38 + 90 * np.exp(-t * 18); sub = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 3.2)
+    air = hp(rng.standard_normal(n), 2500) * np.exp(-t * 14) * 0.35
+    body = lp(rng.standard_normal(n), 400) * np.exp(-t * 9) * 0.6
+    return stereo(norm(np.tanh(1.6 * (sub + body + air)), 0.95), 0.3)
+
+def tick(a, rng):
+    n = int(0.06 * SR); t = np.arange(n) / SR
+    x = np.sin(2 * np.pi * 2400 * t) * np.exp(-t * 180) + 0.4 * hp(rng.standard_normal(n), 5000) * np.exp(-t * 400)
+    return stereo(norm(x, 0.7))
+
+def pop(a, rng):
+    n = int(0.18 * SR); t = np.arange(n) / SR
+    f = 380 + 900 * np.exp(-t * 40); x = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 28)
+    return stereo(norm(x, 0.75))
+
+def shimmer(a, rng):
+    n = int(a.dur * SR); t = np.arange(n) / SR; x = np.zeros(n)
+    for k, f in enumerate([1318.5, 1760.0, 2217.5, 2637.0, 3520.0]):
+        d = int(k * 0.045 * SR); tt = t[:n - d]
+        x[d:] += np.sin(2 * np.pi * f * tt) * np.exp(-tt * 2.6) * (0.9 ** k)
+    x += 0.15 * hp(rng.standard_normal(n), 6000) * np.exp(-t * 6)
+    return stereo(norm(x, 0.6), 0.7)
+
+def glitch(a, rng):
+    n = int(a.dur * SR); x = np.zeros(n); pos = 0
+    while pos < n:
+        L = int(rng.uniform(0.01, 0.05) * SR); f = rng.choice([220, 440, 880, 1760, 3520])
+        seg = np.sign(np.sin(2 * np.pi * f * np.arange(L) / SR)) * rng.uniform(0.3, 1)
+        x[pos:pos + L] = seg[:len(x[pos:pos + L])]; pos += L + int(rng.uniform(0, 0.02) * SR)
+    return stereo(norm(lp(x, 6000), 0.55), 0.4)
+
+MOODS = {  # chord roots (MIDI) and chord shapes per bar
+    'bright': dict(prog=[(60, 'maj7'), (67, 'maj'), (69, 'm7'), (65, 'maj7')], cut=3200),
+    'warm':   dict(prog=[(57, 'm7'), (65, 'maj7'), (60, 'maj'), (67, 'maj')], cut=2200),
+    'dark':   dict(prog=[(57, 'm'), (53, 'maj'), (60, 'maj'), (55, 'maj')], cut=1600),
+    'tech':   dict(prog=[(62, 'm7'), (58, 'maj7'), (65, 'maj'), (60, 'sus2')], cut=2800),
+}
+SHAPES = dict(maj=[0, 4, 7], m=[0, 3, 7], maj7=[0, 4, 7, 11], m7=[0, 3, 7, 10], sus2=[0, 2, 7])
+hz = lambda m: 440 * 2 ** ((m - 69) / 12)
+
+def saw(f, n, rng, detune=0.004):
+    t = np.arange(n) / SR; x = np.zeros(n)
+    for d in (-detune, 0, detune):
+        ph = (f * (1 + d) * t + rng.uniform()) % 1; x += 2 * ph - 1
+    return x / 3
+
+def bed(a, rng):
+    n = int(a.dur * SR); out = np.zeros((n, 2)); beat = 60 / a.bpm; bar = 4 * beat
+    mood = MOODS[a.mood]; drop = a.drop
+    def add(sig, start, pan=0.0, g=1.0):
+        s = int(start * SR); e = min(n, s + len(sig))
+        if e <= s: return
+        seg = sig[:e - s] * g; out[s:e, 0] += seg * (1 - max(0, pan)); out[s:e, 1] += seg * (1 + min(0, pan))
+    silent = lambda t: drop is not None and drop <= t < drop + beat * 2
+    b = 0; t = 0.0
+    while t < a.dur:
+        root, shape = mood['prog'][b % len(mood['prog'])]
+        L = int(bar * SR)
+        pad = sum(saw(hz(root + iv), L, rng) for iv in SHAPES[shape]) / len(SHAPES[shape])
+        pad = lp(pad, mood['cut']) * adsr(L, 0.25, 0.4, 0.7, 0.3)
+        add(pad * 0.28, t, 0.0)
+        add(lp(saw(hz(root - 24), L, rng, 0.002), 180) * adsr(L, 0.01, 0.2, 0.8, 0.05) * 0.45, t)   # bass
+        notes = [root + 12 + SHAPES[shape][k % len(SHAPES[shape])] + (12 if k % 8 >= 4 else 0) for k in range(8)]
+        for k, m in enumerate(notes):                                                            # pluck arp, 8ths
+            tt = t + k * beat / 2
+            if tt >= a.dur or silent(tt): continue
+            Ln = int(beat * 0.9 * SR); tn = np.arange(Ln) / SR
+            pl = (np.sin(2 * np.pi * hz(m) * tn) + 0.3 * np.sin(4 * np.pi * hz(m) * tn)) * np.exp(-tn * 9)
+            add(pl * 0.16, tt, 0.35 if k % 2 else -0.35)
+        for k in range(4):                                                                       # drums
+            tt = t + k * beat
+            if tt >= a.dur or silent(tt): continue
+            Lk = int(0.35 * SR); tk = np.arange(Lk) / SR
+            kick = np.sin(2 * np.pi * np.cumsum(45 + 110 * np.exp(-tk * 30)) / SR) * np.exp(-tk * 9)
+            add(np.tanh(1.5 * kick) * 0.7, tt)
+            Lh = int(0.05 * SR); th = np.arange(Lh) / SR
+            hat = hp(rng.standard_normal(Lh), 7000) * np.exp(-th * 90)
+            add(hat * 0.18, tt + beat / 2, 0.2)
+            if k in (1, 3):
+                Ls = int(0.2 * SR); ts = np.arange(Ls) / SR
+                clap = bp(rng.standard_normal(Ls), 900, 4000) * np.exp(-ts * 22)
+                add(clap * 0.25, tt, -0.1)
+        b += 1; t += bar
+    out = np.tanh(out * 1.2)
+    fo = int(min(1.2, a.dur * 0.1) * SR); out[-fo:] *= np.linspace(1, 0, fo)[:, None]
+    return norm(out, 0.85)
+
+def write(path, x, gain_db):
+    import os
+    x = np.clip(x * 10 ** (gain_db / 20), -1, 1)
+    os.makedirs(os.path.dirname(os.path.abspath(path)) or '.', exist_ok=True)
+    with wave.open(path, 'wb') as w:
+        w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
+        w.writeframes((x * 32767).astype('<i2').tobytes())
+
+p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+p.add_argument('kind', choices=['whoosh', 'riser', 'impact', 'tick', 'pop', 'shimmer', 'glitch', 'bed']); p.add_argument('out')
+p.add_argument('--dur', type=float); p.add_argument('--bpm', type=float, default=112); p.add_argument('--mood', default='bright', choices=list(MOODS))
+p.add_argument('--drop', type=float); p.add_argument('--seed', type=int, default=1); p.add_argument('--gain', type=float, default=0)
+a = p.parse_args()
+a.dur = a.dur or dict(whoosh=0.6, riser=2.0, shimmer=1.5, glitch=0.3, bed=15).get(a.kind, 1)
+x = globals()[a.kind](a, np.random.default_rng(a.seed))
+write(a.out, x, a.gain)
+print(f'{a.out}  {len(x) / SR:.2f}s' + (f'  beat={60 / a.bpm:.3f}s' if a.kind == 'bed' else ''))
+````
+
+
+### `tools/session_cost.py`
+
+Coût API de la session d'orchestration entre deux dates, à partir de son transcript.
+
+````python
+#!/usr/bin/env python3
+"""API-equivalent cost of the main (orchestrating) session between two times, from its transcript.
+Main-loop messages carry exact final usage. Usage: python3 tools/session_cost.py <transcript.jsonl> <since ISO> [<until ISO>]"""
+import json, sys, os
+sys.path.insert(0, os.path.dirname(__file__))
+from metrics import price_for
+f, since = sys.argv[1], sys.argv[2]; until = sys.argv[3] if len(sys.argv) > 3 else '9999'
+seen, tot = {}, dict(inp=0, out=0, cr=0, cw5=0, cw1h=0, cost=0.0, calls=0)
+for line in open(f):
+    try: d = json.loads(line)
+    except json.JSONDecodeError: continue
+    ts = d.get('timestamp', '')
+    if d.get('type') != 'assistant' or not (since <= ts[:19] <= until): continue
+    m = d.get('message', {}); u = m.get('usage'); mid = m.get('id')
+    if not u or not mid: continue
+    seen[mid] = (m.get('model'), u)          # last line of a message holds its final usage
+for model, u in seen.values():
+    _, p = price_for(model)
+    if not p: continue
+    cc = u.get('cache_creation') or {}
+    cw1h = cc.get('ephemeral_1h_input_tokens', 0); cw5 = cc.get('ephemeral_5m_input_tokens', u.get('cache_creation_input_tokens', 0) - cw1h)
+    r = dict(inp=u.get('input_tokens', 0), out=u.get('output_tokens', 0), cr=u.get('cache_read_input_tokens', 0), cw5=cw5, cw1h=cw1h)
+    for k in r: tot[k] += r[k]
+    tot['cost'] += sum(r[k] * p[k] for k in r) / 1e6; tot['calls'] += 1
+tot['cost'] = round(tot['cost'], 4)
+print(json.dumps(tot))
+````
+
+
 ### `tools/gfont.py`
 
 Télécharge une Google Font en local (le rendu est hors ligne).
@@ -1699,10 +2234,92 @@ print(f'{out}/{slug}.css  font-family: "{fam}"  ({len(res)} files)')
 
 ### `brand/klipt/brand.json`
 
-Modèle de kit de marque.
+Charte officielle Klipt (klipt-ai.com) : couleurs, polices, logo.
 
 ````json
-{"name":"Klipt","palette":{"ink":"#0E1320","paper":"#F4F1EA","lime":"#D4F54A","coral":"#FF5A36"},"font":"Bricolage Grotesque 800","logo":["logo-dark.png","logo-light.png"]}
+{
+ "name": "Klipt",
+ "source": "https://www.klipt-ai.com (logo SVG /brand/klipt-mark-aurore.svg, site CSS tokens), read 2026-10-01",
+ "tagline": "All your social content. Agency quality. Automatic.",
+ "url": "klipt-ai.com",
+ "logo": {
+  "mark": "klipt-mark-aurore.svg — rounded bar #1B1830 + play triangle with the 'aurore' gradient #2456F0 → #E60A34 (top-left to bottom-right)",
+  "wordmark": "'Klipt' in Bricolage Grotesque 700, letter-spacing -0.03em, colour ink #211C2E, mark left of the word, gap ≈ 0.45 × mark height",
+  "files": ["logo-light.png (on cream)", "logo-dark.png (on ink, bar turned cream)", "mark.png"]
+ },
+ "colors": {
+  "bg": "#FAF7F3", "bg-2": "#F4F0EA", "surface": "#FFFFFF",
+  "ink": "#211C2E", "ink-soft": "#5C566E", "mark-bar": "#1B1830",
+  "indigo": "#2456F0", "violet": "#6D28D2", "red": "#E60A34", "coral-500": "#C10024", "pink": "#F65C9A", "sky": "#7DD3FC", "amber": "#FFC24B"
+ },
+ "gradients": {"aurore": "linear #2456F0 → #E60A34 (via #6D28D2 in headlines)", "background glows": "soft blurred indigo, violet and coral blooms on the cream background"},
+ "fonts": {"display": "Bricolage Grotesque 600–700", "text": "Inter 400–600"},
+ "look": "light, warm cream canvas, soft aurora glows, crisp ink type, one gradient word per headline, red primary buttons"
+}
+````
+
+
+### `brand/klipt/klipt-mark-aurore.svg`
+
+Symbole officiel Klipt (SVG du site).
+
+````xml
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Klipt">
+  <defs>
+    <linearGradient id="klipt-aurore" x1="20" y1="11" x2="38" y2="37" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2456F0"/>
+      <stop offset="1" stop-color="#E60A34"/>
+    </linearGradient>
+  </defs>
+  <rect x="9" y="8" width="8" height="32" rx="4" fill="#1B1830"/>
+  <path d="M20 11 L38 24 L20 37 Z" fill="url(#klipt-aurore)" stroke="url(#klipt-aurore)" stroke-width="4" stroke-linejoin="round"/>
+</svg>
+````
+
+
+### `pieces/j01/jobs.json`
+
+Les 4 requêtes Kling O3 des génériques (prompts, images clés, réglages).
+
+````json
+{
+ "intro-a": {
+  "prompt": "Premium motion-design brand ident for Klipt, a modern AI content studio, in the style of a world-class agency or TV network sting. Clean warm cream background (#FAF7F3) with soft blurred aurora glows of indigo blue, violet and coral red. Elegant, minimal, luxurious, glossy 3D materials, soft studio light, subtle depth of field, smooth confident camera, 24 fps, no people, no extra text, no other logos, no watermark. The final logo must match the last frame exactly: a dark rounded vertical bar and a play triangle with a blue-to-red gradient, and the word Klipt in dark ink. Intro sting: from the empty cream canvas, three silky ribbons of light in indigo, violet and red sweep in from the edges, spiral around the centre and fold together into a glossy 3D play triangle next to a dark rounded bar; a soft flash of light and the shapes snap into the flat logo as the word Klipt slides in. Sound: airy whoosh, rising bright synth shimmer, a deep punchy bass hit with a clean two-note chime exactly when the logo locks, short reverb tail. No voice, no music track.",
+  "duration": 5,
+  "first_frame_url": "https://d3snorpfx4xhv8.cloudfront.net/46b5bfaf-d692-44da-ae17-fced3cb8cb9b/6d03eb55-dbf0-48b5-8ee9-b97df3789701.png",
+  "last_frame_url": "https://d3snorpfx4xhv8.cloudfront.net/46b5bfaf-d692-44da-ae17-fced3cb8cb9b/9bd28648-4c32-4003-b5c3-3eb02edd044c.png",
+  "sound": "on",
+  "aspect_ratio": "9:16",
+  "mode": "pro"
+ },
+ "intro-b": {
+  "prompt": "Premium motion-design brand ident for Klipt, a modern AI content studio, in the style of a world-class agency or TV network sting. Clean warm cream background (#FAF7F3) with soft blurred aurora glows of indigo blue, violet and coral red. Elegant, minimal, luxurious, glossy 3D materials, soft studio light, subtle depth of field, smooth confident camera, 24 fps, no people, no extra text, no other logos, no watermark. The final logo must match the last frame exactly: a dark rounded vertical bar and a play triangle with a blue-to-red gradient, and the word Klipt in dark ink. Intro sting: the giant play symbol on cream turns into polished glass and chrome, rotates a quarter turn in 3D catching light, refractions of indigo and red ripple across the background, then it shrinks smoothly to the left while the word Klipt rises into place beside it, settling on the logo. Sound: tight tick, glassy swell, rising whoosh, crisp bass thump and a bright sparkle on the final logo. No voice, no music track.",
+  "duration": 5,
+  "first_frame_url": "https://d3snorpfx4xhv8.cloudfront.net/46b5bfaf-d692-44da-ae17-fced3cb8cb9b/7215e3fa-b07f-47af-8d2b-e996e8cbbbd2.png",
+  "last_frame_url": "https://d3snorpfx4xhv8.cloudfront.net/46b5bfaf-d692-44da-ae17-fced3cb8cb9b/9bd28648-4c32-4003-b5c3-3eb02edd044c.png",
+  "sound": "on",
+  "aspect_ratio": "9:16",
+  "mode": "pro"
+ },
+ "outro-a": {
+  "prompt": "Premium motion-design brand ident for Klipt, a modern AI content studio, in the style of a world-class agency or TV network sting. Clean warm cream background (#FAF7F3) with soft blurred aurora glows of indigo blue, violet and coral red. Elegant, minimal, luxurious, glossy 3D materials, soft studio light, subtle depth of field, smooth confident camera, 24 fps, no people, no extra text, no other logos, no watermark. The final logo must match the last frame exactly: a dark rounded vertical bar and a play triangle with a blue-to-red gradient, and the word Klipt in dark ink. End card sting: on the soft cream canvas, many thin translucent rounded cards like social media posts float and drift in depth, glowing in indigo, violet and red; they glide together and fold into the play triangle, the logo appears, then the tagline and the web address fade up beneath it and everything settles. Sound: soft whooshes, a warm rising pad, a confident bass hit with a two-note chime on the logo, gentle airy tail. No voice, no music track.",
+  "duration": 5,
+  "first_frame_url": "https://d3snorpfx4xhv8.cloudfront.net/46b5bfaf-d692-44da-ae17-fced3cb8cb9b/6d03eb55-dbf0-48b5-8ee9-b97df3789701.png",
+  "last_frame_url": "https://d3snorpfx4xhv8.cloudfront.net/46b5bfaf-d692-44da-ae17-fced3cb8cb9b/649f82cd-f611-4795-98b3-30b96e417c55.png",
+  "sound": "on",
+  "aspect_ratio": "9:16",
+  "mode": "pro"
+ },
+ "outro-b": {
+  "prompt": "Premium motion-design brand ident for Klipt, a modern AI content studio, in the style of a world-class agency or TV network sting. Clean warm cream background (#FAF7F3) with soft blurred aurora glows of indigo blue, violet and coral red. Elegant, minimal, luxurious, glossy 3D materials, soft studio light, subtle depth of field, smooth confident camera, 24 fps, no people, no extra text, no other logos, no watermark. The final logo must match the last frame exactly: a dark rounded vertical bar and a play triangle with a blue-to-red gradient, and the word Klipt in dark ink. End card sting: the Klipt logo breathes; the play triangle pulses like a pressed play button, sending a soft ring of indigo-to-red light across the cream background; the logo glides up gently and the tagline and web address appear cleanly beneath it, then a slow elegant hold. Sound: a soft click, a warm whoosh, a deep warm bass note with a bright two-note chime, airy tail. No voice, no music track.",
+  "duration": 5,
+  "first_frame_url": "https://d3snorpfx4xhv8.cloudfront.net/46b5bfaf-d692-44da-ae17-fced3cb8cb9b/9bd28648-4c32-4003-b5c3-3eb02edd044c.png",
+  "last_frame_url": "https://d3snorpfx4xhv8.cloudfront.net/46b5bfaf-d692-44da-ae17-fced3cb8cb9b/649f82cd-f611-4795-98b3-30b96e417c55.png",
+  "sound": "on",
+  "aspect_ratio": "9:16",
+  "mode": "pro"
+ }
+}
 ````
 
 
