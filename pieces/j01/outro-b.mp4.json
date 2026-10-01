@@ -1,0 +1,16 @@
+{
+ "endpoint": "kling-video/o3/first-last-frame",
+ "request": {
+  "prompt": "Premium motion-design brand ident for Klipt, a modern AI content studio, in the style of a world-class agency or TV network sting. Clean warm cream background (#FAF7F3) with soft blurred aurora glows of indigo blue, violet and coral red. Elegant, minimal, luxurious, glossy 3D materials, soft studio light, subtle depth of field, smooth confident camera, 24 fps, no people, no extra text, no other logos, no watermark. The final logo must match the last frame exactly: a dark rounded vertical bar and a play triangle with a blue-to-red gradient, and the word Klipt in dark ink. End card sting: the Klipt logo breathes; the play triangle pulses like a pressed play button, sending a soft ring of indigo-to-red light across the cream background; the logo glides up gently and the tagline and web address appear cleanly beneath it, then a slow elegant hold. Sound: a soft click, a warm whoosh, a deep warm bass note with a bright two-note chime, airy tail. No voice, no music track.",
+  "duration": 5,
+  "first_frame_url": "https://d3snorpfx4xhv8.cloudfront.net/46b5bfaf-d692-44da-ae17-fced3cb8cb9b/9bd28648-4c32-4003-b5c3-3eb02edd044c.png",
+  "last_frame_url": "https://d3snorpfx4xhv8.cloudfront.net/46b5bfaf-d692-44da-ae17-fced3cb8cb9b/649f82cd-f611-4795-98b3-30b96e417c55.png",
+  "sound": "on",
+  "aspect_ratio": "9:16",
+  "mode": "pro"
+ },
+ "request_id": "1a7479bb-32f2-4ac7-945f-aa5069b88da1",
+ "seconds": 102.7,
+ "cost_usd": 0.7,
+ "video_host": "d3u0tzju9qaucj.cloudfront.net"
+}
